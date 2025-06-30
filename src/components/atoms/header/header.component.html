@@ -1,0 +1,43 @@
+<div [ngClass]="{scrolled: scrolled}" class="nav-bar">
+    <div class="nav-logo">
+      FareWell
+    </div>
+    <div class="nav-links-container">
+      <a 
+        [routerLink]="'/'"
+        routerLinkActive="active"
+        (click)="setActiveTab('home')"
+        class="nav-link">Home</a>
+  
+      <a 
+        [routerLink]="'/about-us'"
+        routerLinkActive="active"
+        (click)="setActiveTab('about')"
+        class="nav-link">About Us</a>
+  
+      <a 
+        [routerLink]="'/team'"
+        routerLinkActive="active"
+        (click)="setActiveTab('team')"
+        class="nav-link">Team</a>
+  
+      <a 
+        [routerLink]="'/values'"
+        routerLinkActive="active"
+        (click)="setActiveTab('value')"
+        class="nav-link">Values</a>
+  
+      <a 
+        [routerLink]="'/support'"
+        routerLinkActive="active"
+        (click)="setActiveTab('support')"
+        class="nav-link">Support Us</a>
+  
+      <a 
+        [routerLink]="'/contact'"
+        routerLinkActive="active"
+        (click)="setActiveTab('contact')"
+        class="nav-link">Contact</a>
+    </div>
+  </div>
+  

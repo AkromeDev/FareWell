@@ -1,21 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, HostListener } from '@angular/core';
-import { CardComponent } from '../card/card.component';
-import { OrbitronComponent } from '../orbitron/orbitron.component';
-import { ParallaxComponent } from '../parallax/parallax.component';
-import { TextBlockComponent } from '../text-block/text-block.component';
-import { TitleComponent } from '../title/title.component';
-import { PhotoCaptionComponent } from '../photo-caption/photo-caption.component';
-import { ParagraphLinesComponent } from '../paragraph-lines/paragraph-lines.component';
+import { CardComponent } from 'src/app/standaloneComp/card/card.component';
+import { OrbitronComponent } from 'src/app/standaloneComp/orbitron/orbitron.component';
+import { ParallaxComponent } from 'src/app/standaloneComp/parallax/parallax.component';
+import { TextBlockComponent } from 'src/app/standaloneComp/text-block/text-block.component';
+import { TitleComponent } from 'src/app/standaloneComp/title/title.component';
+import { PhotoCaptionComponent } from 'src/app/standaloneComp/photo-caption/photo-caption.component';
+import { ParagraphLinesComponent } from 'src/app/standaloneComp/paragraph-lines/paragraph-lines.component';
 
 @Component({
-  selector: 'app-one-page',
+  selector: 'app-home',
   standalone: true,
   imports: [CommonModule, CardComponent, ParallaxComponent, TitleComponent, TextBlockComponent, OrbitronComponent, PhotoCaptionComponent, ParagraphLinesComponent],
-  templateUrl: './one-page.component.html',
-  styleUrls: ['./one-page.component.scss']
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
-export class OnePageComponent implements OnInit {
+export class HomeComponent implements OnInit {
+
   scrolled: boolean = false;
   activeTab: string = 'home';
 

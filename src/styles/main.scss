@@ -1,0 +1,25 @@
+// Main SCSS entry file
+
+// 1. Abstracts
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+// 2. Base
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/base';
+
+// 3. Layout
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/grid';
+
+// 4. Components
+@import 'components/buttons';
+
+// 5. Pages
+@import 'pages/home';
+
+// 6. Themes
+@import 'themes/idyllic-field';

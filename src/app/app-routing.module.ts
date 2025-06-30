@@ -1,40 +1,45 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-{ 
-  path: 'facts', 
-  loadChildren: () => import('./facts/facts-routing.module')
-  .then(m => m.FactsRoutingModule)
-},
-{
-  path: 'goals', 
-  loadChildren: () => import('./goals/goals-routing.module')
-  .then(m => m.GoalsRoutingModule)
-},
-{
-  path: 'opportunity',
-  loadChildren: () => import('./opportunity/opportunity-routing.module')
-  .then(m => m.OpportunityRoutingModule)
-},
-{
-  path: 'paypal',
-  loadChildren: () => import('./support/support-routing.module')
-  .then(m => m.SupportRoutingModule)
-},
-{
-  path: 'team',
-  loadChildren: () => import('./team/team-routing.module')
-  .then(m => m.TeamRoutingModule)
-},
-{ path: '', component: HomeComponent},
-{ path: '**', component: NotFoundComponent}
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'about-us',
+    loadChildren: () =>
+      import('./pages/about-us/about-us.module').then(m => m.AboutUsModule)
+  },
+  {
+    path: 'contact',
+    loadChildren: () =>
+      import('./pages/contact/contact.module').then(m => m.ContactModule)
+  },
+  {
+    path: 'team',
+    loadChildren: () =>
+      import('./pages/team/team.module').then(m => m.TeamModule)
+  },
+  {
+    path: 'values',
+    loadChildren: () =>
+      import('./pages/values/values.module').then(m => m.ValuesModule)
+  },
+  {
+    path: 'not-found',
+    component: NotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found'
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
