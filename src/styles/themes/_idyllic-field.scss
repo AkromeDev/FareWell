@@ -7,7 +7,26 @@ $accent-2: #a7b197;  // Sage Green
 $dark-1:   #848645;  // Olive Green
 $dark-2:   #6b6e3e;  // Deep Olive
 $black:    #000000;  // Black
+$white:    #ffffff;  // White
 
+// Font Families
+$font-cormorant: 'Cormorant Garamond', serif;
+$font-playfair: 'Playfair Display', serif;
+$font-dancing: 'Dancing Script', cursive;
+$font-vibes: 'Great Vibes', cursive;
+$font-montserrat: 'Montserrat', sans-serif;
+$font-lato: 'Lato', sans-serif;
+$font-poppins: 'Poppins', sans-serif;
+$font-open-sans: 'Open Sans', sans-serif;
+$font-raleway: 'Raleway', sans-serif;
+$font-sacramento: 'Sacramento', cursive;
+$font-allura: 'Allura', cursive;
+$font-pacifico: 'Pacifico', cursive;
+
+// 👇 Active Font (default fallback)
+$font: $font-open-sans;
+
+// Color Palette
 $palette-idyllic-field: (
   "light-1": $light-1,
   "light-2": $light-2,
@@ -16,4 +35,23 @@ $palette-idyllic-field: (
   "dark-1": $dark-1,
   "dark-2": $dark-2,
   "black": $black,
+  "white": $white,
 );
+
+// Font Map for reuse
+$fonts-idyllic-field: (
+  "font": $font,
+  "serif-elegant-1": $font-cormorant,
+  "serif-elegant-2": $font-playfair,
+  "sans-clean-1": $font-montserrat,
+  "sans-clean-2": $font-lato,
+  "sans-clean-3": $font-poppins,
+  "sans-clean-4": $font-open-sans,
+  "sans-clean-5": $font-raleway,
+  "script-soft-1": $font-dancing,
+  "script-soft-2": $font-vibes,
+  "script-soft-3": $font-sacramento,
+  "script-soft-4": $font-allura,
+  "script-soft-5": $font-pacifico,
+);
+

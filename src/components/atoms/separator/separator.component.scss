@@ -1,0 +1,57 @@
+.separator {
+  display: inline-block;
+  position: relative;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  color: var(--black);
+  margin: 20px 0;
+  text-align: center;
+  line-height: 1;
+
+  img {
+    max-width: 100px;
+    height: auto;
+    opacity: 0.8;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 25%;  // narrower
+    height: 1px;
+    background-color: var(--black);
+    opacity: 0.3;
+    transform: translateY(-50%);
+  }
+
+  &::before {
+    left: -30%;
+  }
+
+  &::after {
+    right: -30%;
+  }
+
+  animation: fadePulse 4s ease-in-out infinite;
+}
+
+.white {
+  color: var(--white);
+}
+.white::before,
+.white::after {
+  background-color: var(--white);
+}
+
+@keyframes fadePulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}

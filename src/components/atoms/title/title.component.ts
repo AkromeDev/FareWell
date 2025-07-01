@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-title',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  templateUrl: './title.component.html',
+  styleUrls: ['./title.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class TitleComponent implements OnInit {
 
   constructor() { }
 

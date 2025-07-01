@@ -1,0 +1,55 @@
+@import 'themes/theme-entry';
+
+.paragraph {
+    font-family: $font, serif;
+    line-height: 1.6;
+    margin: 0 auto 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .size-small {
+    font-size: 0.9rem;
+  }
+  
+  .size-medium {
+    font-size: 1.1rem;
+  }
+  
+  .size-large {
+    font-size: 1.4rem;
+  }
+  
+  .align-left {
+    text-align: left;
+  }
+  .align-center {
+    text-align: center;
+  }
+  .align-right {
+    text-align: right;
+  }
+  
+  .weight-normal {
+    font-weight: 400;
+  }
+  .weight-bold {
+    font-weight: 600;
+  }
+  
+  .color-light {
+    color: $white;
+  }
+  .color-dark {
+    color: $black;
+  }
+  
+  .width-narrow {
+    max-width: 500px;
+  }
+  .width-wide {
+    max-width: 800px;
+  }
+  .width-full {
+    max-width: 100%;
+  }
+  

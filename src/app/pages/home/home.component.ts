@@ -7,11 +7,14 @@ import { TextBlockComponent } from 'src/app/standaloneComp/text-block/text-block
 import { TitleComponent } from 'src/app/standaloneComp/title/title.component';
 import { PhotoCaptionComponent } from 'src/app/standaloneComp/photo-caption/photo-caption.component';
 import { ParagraphLinesComponent } from 'src/app/standaloneComp/paragraph-lines/paragraph-lines.component';
+import { SeparatorComponent } from "../../../components/atoms/separator/separator.component";
+import { ParagraphComponent } from "../../../components/atoms/paragraph/paragraph.component";
+import { ImageSectionComponent } from 'src/components/atoms/image-section/image-section.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CardComponent, ParallaxComponent, TitleComponent, TextBlockComponent, OrbitronComponent, PhotoCaptionComponent, ParagraphLinesComponent],
+  imports: [ImageSectionComponent, CommonModule, CardComponent, ParallaxComponent, TitleComponent, TextBlockComponent, OrbitronComponent, PhotoCaptionComponent, ParagraphLinesComponent, SeparatorComponent, ParagraphComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })

@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:700");
 @import url("https://fonts.googleapis.com/css?family=Orbitron:700");
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import 'themes/theme-entry';
 
 a {
-    color:rgb(0, 0, 0);
+    color: $black;
     text-decoration: none;
     background-color: none;
 }
@@ -12,7 +13,7 @@ a {
 }
 body {
     overflow-x: hidden;
-    font-family: "Roboto";
+    font-family: $font;
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 2px;
@@ -45,64 +46,11 @@ body {
     transform: translate(-50%, -50%);
     text-align: center;
 }
-.nav-bar {
-    position: fixed;
-    z-index: 100;
-    height: 110px;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 0 6%;
-    &.scrolled {
-        height: 80px;
-        background-color: rgba(0,0,0,0.7);
-    }
-}
-.nav-logo {
-    margin: 0;
-    position: absolute;
-    top: 37%;
-    left: 50%;
-    font-family: "Montserrat";
-    font-size: 3vw;
-    text-align: left;
-    letter-spacing: 0px;
-    color: var(--white);
-    transition: 0.4s ease;
-    cursor: pointer;
-    left: 4%;
-    left: 50px;
-}
-.nav-links-container {
-    position: absolute;
-    top: 50%;
-    right: 6%;
-    transform: translateY(-50%);
-    &:hover {
-        .nav-link {
-            transition: 0.4s ease;
-            height: 100%;
-            opacity: 1;
-        }
-    }
-}
-.nav-link {
-    color: #999;
-    font-size: 13px;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-weight: 500;
-    padding: 0 12px;
-    transition: 0.4s ease;
-}
-.nav-link.active,
-.nav-link:hover {
-    color: var(--white);
-}
 .top-section {
     height: 100vh;
     // background: url("../../../assets/images/backgrounds/windmills-africa.jpeg") no-repeat center;
-    background: url("../../../assets/images/backgrounds/windmills-fields.jpeg") no-repeat center;
+    // background: url("../../../assets/images/backgrounds/windmills-fields.jpeg") no-repeat center;
+    background: url("../../../assets/images/farewell/farewellStudio4.jpg") no-repeat center;
     // background: url("../../../assets/images/backgrounds/windmills-over-clouds.jpeg") no-repeat center;
     // background: url("../../../assets/images/backgrounds/windmills-sunset.jpeg") no-repeat center;
     background-size: cover;
@@ -116,10 +64,11 @@ body {
         right: 0;
         bottom: 0;
         background: radial-gradient(transparent, rgba(0,0,0,0.9));
+        z-index: 0;
     }
 }
 .top-text {
-    color: var(--white);
+    color: $white;
     top: 58%;
     line-height: 28px;
 }
@@ -146,8 +95,8 @@ body {
     margin-bottom: 45px;
 }
 .under-top-section {
-    color: var(--white);
-    background-color: #1d1d1d;
+    color: $white;
+    background-color: $black;
     text-align: left;
     padding: 0 6%;
 }
@@ -261,7 +210,7 @@ body {
     }
 }
 .small-header {
-    font-family: "Montserrat";
+    font-family: $font;
     text-transform: uppercase;
     font-size: 20px;
     line-height: 28px;
@@ -284,7 +233,7 @@ body {
     text-align: left;
     line-height: 30px;
     p {
-        font-family: "Montserrat";
+        font-family: $font;
         text-transform: uppercase;
         font-size: 15px;
         letter-spacing: 3px;
@@ -303,7 +252,7 @@ body {
 }
 .portfolio-second {
     padding: 50px 0;
-    background-color: #1d1d1d;
+    background-color: $black;
 }
 .portfolio-collage {
     height: 1000px;
@@ -371,7 +320,7 @@ body {
     }
 }
 .our-plans-section {
-    background-color: #f4f4f4;
+    background-color: $white;
     & > p {
         position: relative;
         width: 65%;
@@ -437,7 +386,7 @@ body {
         font-size: 14px;
     }
     .small-header {
-        color: #888;
+        color: $accent-2;
         letter-spacing: 2px;
         margin-bottom: 6px;
     }
@@ -498,7 +447,7 @@ body {
 .contact-input {
     width: 85%;
     margin: 8px auto;
-    font-family: "Montserrat";
+    font-family: $font;
     font-size: 12px;
     line-height: 18px;
     padding: 10px;
@@ -515,7 +464,7 @@ body {
 }
 .footer-section {
     padding: 75px 0;
-    background: #000;
+    background: $black;
     color: var(--white);
     a {
         color: var(--white);
@@ -674,50 +623,35 @@ body {
 }
 
 @media only screen and (max-width: 700px) {
-    p {
-        font-size: 3vw;
+    .top-section {
+      height: auto;
+      padding: 80px 5% 60px;
+      background-position: center center;
+      background-size: cover;
     }
-    .small-header {
-        font-size: 3vw;
-        letter-spacing: 0;
+  
+    .abs-cent-text.top-text {
+      position: static;
+      transform: none;
+      width: 100%;
+      padding: 0;
     }
-    .half-big-text {
-        line-height: 30px;
-        letter-spacing: 5px;
-        padding: 0;
+  
+    .top-text .big-text {
+      font-size: 34px;
+      line-height: 42px;
+      letter-spacing: 6px;
+      margin-bottom: 25px;
     }
-    .quad-half .bottom-left-side,
-    .quad-half .bottom-right-side {
-        padding: 0 0 30px;
-        width: 100%;
+  
+    app-paragraph {
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: 0.5px;
+      text-align: justify;
     }
-    .quad-half {
-        .collage-column {
-            height: 33.333333%;
-            width: 100%;
-            &:nth-child(1) {
-                .collage-image {
-                    &.third {
-                        height: 33.333333%;
-                    }
-                }
-            }
-        }
-    }
-    .quad-half .collage-image.third,
-    .quad-half .collage-image.two-thirds {
-        height: 50%;
-    }
-    .quad-half .profile-image,
-    .quad-half .profile-content {
-        width: 100%;
-        text-align: center;
-    }
-    .quad-half .profile-image p,
-    .quad-half .profile-content p {
-        margin: 0 auto 60px;
-    }
-}
+  }
+  
 @media only screen and (max-width: 500px) {
     .big-text {
         font-size: 36px;
