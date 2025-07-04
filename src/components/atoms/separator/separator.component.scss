@@ -6,7 +6,7 @@
   font-style: italic;
   letter-spacing: 0.1em;
   color: var(--black);
-  margin: 20px 0;
+  margin: 5px 0;
   text-align: center;
   line-height: 1;
 
@@ -20,8 +20,8 @@
   &::after {
     content: "";
     position: absolute;
-    top: 50%;
-    width: 25%;  // narrower
+    top: 63%;
+    width: 25%;
     height: 1px;
     background-color: var(--black);
     opacity: 0.3;

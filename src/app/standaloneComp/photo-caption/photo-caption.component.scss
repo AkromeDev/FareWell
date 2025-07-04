@@ -1,3 +1,5 @@
+@import 'themes/theme-entry';
+
 section { 
     align-items: center;
     font-size: 0;
@@ -23,10 +25,10 @@ section {
     }
     p {
         width: 100%;
-        font-family: 'Lato', 'Helvetica Neue', sans-serif;
+        font-family: $font;
         font-size: 15px;
         letter-spacing: 1px;
-        color: black;
+        color: $black;
         margin: 0 30px 20px 0;
         }
 }

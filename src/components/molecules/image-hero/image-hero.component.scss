@@ -1,40 +1,60 @@
+@import 'themes/theme-entry';
+
 .hero-container {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    .hero-content {
-      text-align: center;
-      max-width: 90%;
-      color: white;
-      padding: 0 1rem;
-  
-      .hero-title {
-        font-size: 3rem;
-        letter-spacing: 0.2rem;
-        margin-bottom: 1.5rem;
-      }
-  
-      .hero-paragraph {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        text-align: justify;
-      }
+  min-height: 100vh;
+  height: auto;
+  overflow: visible; 
+  display: block;
+
+  .hero-content {
+    text-align: center;
+    max-width: 95%;
+    color: white;
+    padding: 0 1rem;
+    margin-top: 25vh;
+
+    app-title {
+      display: block;
+      margin-top: 10rem;
+      margin-bottom: 0.5rem;
     }
-  
-    @media (max-width: 768px) {
-      .hero-content {
-        .hero-title {
-          font-size: 2rem;
-        }
-  
-        .hero-paragraph {
-          font-size: 0.95rem;
-          line-height: 1.5;
-          text-align: left;
-        }
-      }
+
+    app-separator {
+      margin: 0.25rem 0;
+    }
+
+    .hero-paragraph {
+      font-size: 0.95rem;
     }
   }
-  
+
+// Tablets (e.g., iPads in portrait)
+@media (min-width: 600px) and (max-width: 1024px) {
+  .hero-content {
+    margin-top: 15vh;
+  }
+}
+
+// Desktops and large screens
+@media (min-width: 1025px) {
+  .hero-content {
+    margin-top: 5vh;
+  }
+    app-title {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    app-separator {
+      margin: 0.75rem 0;
+    }
+
+    .hero-paragraph {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: justify;
+      margin-top: 0.75rem;
+    }
+  }
+}
+

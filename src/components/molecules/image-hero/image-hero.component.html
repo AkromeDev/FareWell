@@ -4,9 +4,22 @@
   class="hero-container">
 
   <div class="hero-content">
-    <h1 class="hero-title">{{ title }}</h1>
+    <app-title
+      [text]="title"
+      [level]="titleLevel"
+      [color]="titleColor"
+      [align]="titleAlign">
+    </app-title>
     <app-separator [color]="'white'"></app-separator>
-    <p class="hero-paragraph">{{ paragraph }}</p>
+    <app-paragraph
+      class="hero-paragraph"
+      [text]="paragraphText"
+      [size]="paragraphSize"
+      [align]="paragraphAlign"
+      [weight]="paragraphWeight"
+      [color]="paragraphColor"
+      [maxWidth]="paragraphMaxWidth">
+</app-paragraph>
   </div>
 
 </app-image-section>

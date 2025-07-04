@@ -38,23 +38,6 @@ body {
         float: right;
     }
 }
-.abs-cent-text {
-    position: absolute;
-    width: 90%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-.top-section {
-    height: 100vh;
-    // background: url("../../../assets/images/backgrounds/windmills-africa.jpeg") no-repeat center;
-    // background: url("../../../assets/images/backgrounds/windmills-fields.jpeg") no-repeat center;
-    background: url("../../../assets/images/farewell/farewellStudio4.jpg") no-repeat center;
-    // background: url("../../../assets/images/backgrounds/windmills-over-clouds.jpeg") no-repeat center;
-    // background: url("../../../assets/images/backgrounds/windmills-sunset.jpeg") no-repeat center;
-    background-size: cover;
-}
 .grad-back {
     &::before {
         content: "";

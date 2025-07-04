@@ -1,1 +1,7 @@
-<p>title works!</p>
+<ng-container *ngIf="text">
+    <ng-container [ngSwitch]="level">
+      <h1 *ngSwitchCase="'h1'" class="title" [ngClass]="[color, align]">{{ text }}</h1>
+      <h2 *ngSwitchCase="'h2'" class="title" [ngClass]="[color, align]">{{ text }}</h2>
+      <h3 *ngSwitchCase="'h3'" class="title" [ngClass]="[color, align]">{{ text }}</h3>
+    </ng-container>
+  </ng-container>

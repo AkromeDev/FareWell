@@ -1,7 +1,11 @@
-<div class="image-section" [ngClass]="shadow" [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}">
-    <div class="overlay"></div>
-    <div class="section-content">
-      <ng-content></ng-content>
-    </div>
+<div
+  class="image-section"
+  [ngClass]="shadow"
+  [ngStyle]="{ 'background-image': 'url(' + backgroundImage + ')' }"
+>
+  <div class="overlay"></div>
+  <div class="section-content">
+    <ng-content></ng-content>
   </div>
+</div>
   

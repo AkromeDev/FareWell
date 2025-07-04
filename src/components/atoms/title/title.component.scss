@@ -1,0 +1,57 @@
+@import 'themes/theme-entry';
+
+.title {
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+}
+
+h1.title {
+  font-size: 3rem;
+  font: $h1-font
+  
+}
+
+h2.title {
+  font-size: 2.25rem;
+  font: $h2-font
+}
+
+h3.title {
+  font-size: 1.5rem;
+  font: $h3-font
+}
+
+.light {
+  color: $white;
+}
+
+.dark {
+  color: $black;
+}
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  h1.title {
+    font-size: 2rem;
+  }
+
+  h2.title {
+    font-size: 1.75rem;
+  }
+
+  h3.title {
+    font-size: 1.25rem;
+  }
+}

@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 export class ImageSectionComponent implements OnInit {
   @Input() backgroundImage = '';
   @Input() shadow: 'light-shadow' | 'dark-shadow' | '' = '';
+  @Input() paragraphText: string = '';
 
   constructor() { }
 

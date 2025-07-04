@@ -1,3 +1,5 @@
+@import 'themes/theme-entry';
+
 .container {
     padding: 40px 10%;
 }
@@ -23,6 +25,6 @@
     letter-spacing: 8px;
 }
 p {
-    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-family: $font;
     text-align: justify;
 }

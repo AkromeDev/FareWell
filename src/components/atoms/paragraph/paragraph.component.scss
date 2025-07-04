@@ -2,9 +2,10 @@
 
 .paragraph {
     font-family: $font, serif;
-    line-height: 1.6;
-    margin: 0 auto 1.5rem;
-    padding: 0 1rem;
+    line-height: 1.2;
+    margin: 0 auto 0.75rem;
+    padding-bottom: 2rem;
+    white-space: pre-line;
   }
   
   .size-small {
@@ -22,7 +23,9 @@
   .align-left {
     text-align: left;
   }
-  .align-center {
+  .align-justify {
+    text-align: just;
+  }.align-center {
     text-align: center;
   }
   .align-right {
