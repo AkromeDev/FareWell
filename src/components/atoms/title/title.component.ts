@@ -12,7 +12,7 @@ export class TitleComponent implements OnInit {
   @Input() text: string = '';
   @Input() level: 'h1' | 'h2' | 'h3' = 'h1';
   @Input() color: 'light' | 'dark' = 'light';
-  @Input() align: 'center' | 'left' | 'right' = 'center';
+  @Input() align: 'center' | 'left' | 'right' | 'justify' = 'center';
 
   constructor() { }
 

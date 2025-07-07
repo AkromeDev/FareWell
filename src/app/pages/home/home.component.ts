@@ -3,25 +3,27 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { CardComponent } from 'src/app/standaloneComp/card/card.component';
 import { OrbitronComponent } from 'src/app/standaloneComp/orbitron/orbitron.component';
 import { ParallaxComponent } from 'src/app/standaloneComp/parallax/parallax.component';
-import { TextBlockComponent } from 'src/app/standaloneComp/text-block/text-block.component';
 import { TitleComponent } from 'src/app/standaloneComp/title/title.component';
 import { PhotoCaptionComponent } from 'src/app/standaloneComp/photo-caption/photo-caption.component';
-import { ParagraphLinesComponent } from 'src/app/standaloneComp/paragraph-lines/paragraph-lines.component';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
+import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ImageHeroComponent, CommonModule, CardComponent, ParallaxComponent, TitleComponent, TextBlockComponent, OrbitronComponent, PhotoCaptionComponent, ParagraphLinesComponent],
+  imports: [TextBlockComponent, ImageHeroComponent, CommonModule, CardComponent, ParallaxComponent, TitleComponent, TextBlockComponent, OrbitronComponent, PhotoCaptionComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
   paragraphText: string = `
-  Noch nie von Elektrolyse gehört? Die Elektrolyse ist die einzige Methode zur Haarentfernung, die von medizinischen Fachstellen als wirklich permanent anerkannt ist.<br>
-  Im Gegensatz zu Laser oder IPL, die nur eine dauerhafte Reduktion bewirken, zerstört die Elektrolyse jede einzelne Haarwurzel vollständig, unabhängig von Haarfarbe oder Hauttyp. <br>
-  Bei FareWell bieten wir diese bewährte Technologie in einem modernen, stilvollen Ambiente an. Unsere Aufgabe ist es, Ihnen eine effektive, sichere und individuelle Lösung gegen unerwünschten Haarwuchs zu bieten. Sagen wir gemeinsam Farewell zum Rasieren, Wachsen und zur Unsicherheit.<br>
+  Noch nie von Elektrolyse gehört? Die Elektrolyse ist die einzige Methode zur Haarentfernung, die von medizinischen Fachstellen als wirklich permanent anerkannt ist.
+
+  Im Gegensatz zu Laser oder IPL, die nur eine dauerhafte Reduktion bewirken, zerstört die Elektrolyse jede einzelne Haarwurzel vollständig, unabhängig von Haarfarbe oder Hauttyp.
+
+  Bei FareWell bieten wir diese bewährte Technologie in einem modernen, stilvollen Ambiente an. Unsere Aufgabe ist es, Ihnen eine effektive, sichere und individuelle Lösung gegen unerwünschten Haarwuchs zu bieten. Sagen wir gemeinsam Farewell zum Rasieren, Wachsen und zur Unsicherheit.
+  
   Willkommen in einer neuen permanenten Freiheit.
   `;
   scrolled: boolean = false;

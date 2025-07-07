@@ -1,0 +1,25 @@
+<div class="text-block" [ngClass]="theme">
+    <app-title 
+      [color]="inverseTextColor"
+      [text]="title"
+      [align]="paragraphAlign"
+    >
+    </app-title>
+  
+    <app-paragraph-lines 
+      [color]="inverseTextColor"
+      [align]="paragraphAlign"
+    ></app-paragraph-lines>
+    
+    <app-paragraph
+      class="hero-paragraph"
+      [color]="inverseTextColor"
+      [size]="paragraphSize"
+      [align]="paragraphAlign"
+      [weight]="paragraphWeight"
+      [maxWidth]="paragraphMaxWidth"
+    >
+      <ng-content></ng-content>
+    </app-paragraph>
+  </div>
+  

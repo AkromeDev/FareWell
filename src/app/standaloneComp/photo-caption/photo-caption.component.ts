@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ParagraphLinesComponent } from '../paragraph-lines/paragraph-lines.component';
+import { ParagraphLinesComponent } from '../../../components/atoms/paragraph-lines/paragraph-lines.component';
 
 @Component({
   selector: 'app-photo-caption',

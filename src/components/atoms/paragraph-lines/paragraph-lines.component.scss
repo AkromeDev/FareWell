@@ -1,0 +1,65 @@
+@import 'themes/theme-entry';
+
+.lines {
+  position: relative;
+  height: 2px;
+  width: 80px;
+  background-color: $black;
+  margin: 3rem 0;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 25px;
+    background-color: $black;
+  }
+
+  &::before {
+    top: -12px;
+  }
+
+  &::after {
+    bottom: -12px;
+  }
+
+  &.light {
+    background-color: $light-1;
+
+    &::before,
+    &::after {
+      background-color: $light-1;
+    }
+  }
+
+  &.dark {
+    background-color: $black;
+
+    &::before,
+    &::after {
+      background-color: $black;
+    }
+  }
+
+  &.align-left {
+    text-align: left;
+  }
+
+  &.align-center {
+    text-align: center;
+  }
+
+  &.align-right {
+    text-align: right;
+  }
+
+  &.align-justify {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &.margin-bottom {
+    margin-bottom: 45px;
+  }
+}

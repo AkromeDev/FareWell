@@ -1,3 +1,5 @@
+@import 'themes/theme-entry';
+
 .title {
     font-family: "Montserrat";
     text-transform: uppercase;
@@ -13,6 +15,13 @@
     // aligns vertically and horizontally
     top: 50%;
     transform: translateY(-50%);
+
+    &.color-light {
+        color: $light-1;
+      }
+    &.color-dark {
+    color: $dark-1;
+    }
 }
 
 @media only screen and (max-width: 700px) {

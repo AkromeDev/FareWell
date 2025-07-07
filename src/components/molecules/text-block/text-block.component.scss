@@ -1,0 +1,19 @@
+@import 'themes/theme-entry';
+
+.text-block {
+  padding: 2rem 1rem;
+  text-align: center;
+
+  &.dark  {
+    background-color: $black;
+  }
+  &.light {
+    background-color: $white;
+    color: $light-1;
+  }
+
+  &.custom {
+    background-color: $light-1;
+    color: $dark-2;
+  }
+}
