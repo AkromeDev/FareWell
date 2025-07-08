@@ -1,13 +1,15 @@
 .plan-parallax {
+    @import 'themes/theme-entry';
     background-size: cover;
-    height: 60vh; 
-    // Create the parallax scrolling effect
+    height: 60vh;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
-.para-text {
-    position: relative;
-    height: 60vh;
-}
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  

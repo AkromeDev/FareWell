@@ -7,26 +7,12 @@
 
 <app-text-block
     [title]="'15. September 2025: Eröffnung'"
-    [theme]="'dark'"
+    [theme]="'light'"
     >
     Freut euch auf die Eröffnung unseres neuen Salons FareWell, dem ersten Spezialisten für permanente Haarentfernung mittels Elektrolyse in Nürnberg! <br><br>
     Ab dem 15.09.2025 sind wir für euch da, zentral gelegen, gleich beim Weißen Turm.
 </app-text-block>
-
-<div class="rela-block welcome-section">
-    <div class="abs-cent-text welcome-text">
-        <h1 class="big-text">Welcome</h1>
-        <app-orbitron></app-orbitron>
-        <p>The Windmill Project is a Non-Profit Organisation created in 2022 by a three members team. We are trying to solve the electricity problems 
-            in South Africa or at least improving the situation.
-        </p>
-        <div class="has-lines black">
-            <a href="https://patreon.com/user?u=83212318&utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator&utm_content=join_link" target="_blank">
-                Support Us
-            </a>
-        </div>
-    </div>
-</div>
+<!-- 
 <div class="rela-block about-us-section" id="aboutSection">
     <app-title>About Us</app-title><br>
     <app-orbitron></app-orbitron>
@@ -39,7 +25,6 @@
         and administrations
         <a href="https://www.c40knowledgehub.org/s/article/How-to-win-support-for-local-clean-energy?language=en_US" target="_blank">(as many ecological activists explain)</a> 
         that will realise the potential it brings.
-        <!-- The number of people that can be helped vary with the amount of financing This is the essence of the  -->
     </p>
     <div class="rela-block about-us-quad-container">
         <div class="rela-block quad-row">
@@ -69,12 +54,12 @@
     <app-orbitron></app-orbitron>
     <app-card [cards]="cards"></app-card>
     <app-orbitron></app-orbitron>
-</div>
-<div class="rela-block values-section" id="valuesSection">
-    <app-parallax [imageSrc]="'../../../assets/images/backgrounds/windmills-over-clouds.jpeg'">
-        Values
-    </app-parallax>
-        <app-text-block [theme]="'dark'">
+</div> -->
+<app-parallax 
+    [imageSrc]="'../../../assets/images/treatment/armpit.png'"
+    [title]="'Values'">
+</app-parallax>
+        <app-text-block [theme]="'light'">
             <header>
                 Empowerment
             </header>
@@ -96,8 +81,9 @@
             more easily thoughout the coutry.
         </app-text-block>
     <div class="rela-block our-plans-section" id="supportSection">
-        <app-parallax [imageSrc]="'../../../assets/images/backgrounds/windmills-sunset.jpeg'">
-            Our Plans
+        <app-parallax 
+            [imageSrc]="'../../../assets/images/backgrounds/windmills-sunset.jpeg'"
+            [title]="'Our Plans'">
         </app-parallax>
         
         <div class="rela-block plans-container">

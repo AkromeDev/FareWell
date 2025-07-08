@@ -11,6 +11,7 @@ import { TitleComponent } from '../title/title.component';
 })
 export class ParallaxComponent implements OnInit {
  @Input() imageSrc: string = "";
+ @Input() title: string = "";
 
   constructor() { }
 

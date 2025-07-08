@@ -1,52 +1,93 @@
 @import 'themes/theme-entry';
 
 .title {
-  margin: 0;
+  font-family: $h1-font;
+  text-transform: uppercase;
+  display: block; 
+  width: 100%;
+  padding: 45px 0px;
   font-weight: bold;
   letter-spacing: 0.2rem;
+
+  // Default styles
+  font-size: 30px;
+  line-height: 48px;
+
+  // Color variants
+  &.color-light {
+    color: $light-1;
+  }
+
+  &.color-dark {
+    color: $dark-1;
+  }
+
+  // Style variants
+  &.cornered {
+    border: 10px solid currentColor;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  &.simple {
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  &.soft {
+    border: none;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+  }
+
+  // Text alignment
+  &.center {
+    text-align: center;
+  }
+  &.left {
+    text-align: left;
+  }
+  &.right {
+    text-align: right;
+  }
+  &.justify {
+    text-align: justify;
+  }
 }
 
+// Typography by heading level
 h1.title {
   font-size: 3rem;
-  font: $h1-font
-  
+  font: $h1-font;
 }
 
 h2.title {
   font-size: 2.25rem;
-  font: $h2-font
+  font: $h2-font;
 }
 
 h3.title {
   font-size: 1.5rem;
-  font: $h3-font
+  font: $h3-font;
 }
 
-.light {
-  color: $white;
-}
-
-.dark {
-  color: $black;
-}
-
-.center {
-  text-align: center;
-}
-
-.left {
-  text-align: left;
-}
-
-.right {
-  text-align: right;
-}
-
-.justify {
-  text-align: justify;
-}
-
+// Mobile-first responsive tweaks
 @media (max-width: 768px) {
+  .title {
+    font-size: 8vw;
+    line-height: 30px;
+    letter-spacing: 5px;
+    padding: 15px 0px;
+    margin-bottom: 30px;
+  }
+
   h1.title {
     font-size: 2rem;
   }

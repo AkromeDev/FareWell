@@ -11,6 +11,7 @@ export type ParagraphAlign = 'left' | 'center' | 'right'| 'justify';
 export type ParagraphWeight = 'normal' | 'bold';
 export type ParagraphColor = 'light' | 'dark';
 export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
+export type TitleType = 'soft' | 'cornered' | 'simple';
 
 @Component({
   selector: 'app-text-block',
@@ -22,6 +23,7 @@ export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
 export class TextBlockComponent implements OnInit {
   @Input() theme: BlockTheme = 'dark';
   @Input() title: string = '';
+  @Input() titleType: TitleType = 'simple';
 
   @Input() paragraphSize: ParagraphSize = 'medium';
   @Input() paragraphAlign: ParagraphAlign = 'left';
@@ -29,7 +31,7 @@ export class TextBlockComponent implements OnInit {
   @Input() paragraphMaxWidth: ParagraphMaxWidth = 'wide';
 
   get inverseTextColor(): ParagraphColor {
-    return this.theme === 'dark' || this.theme === 'light' ? 'light' : 'dark';
+    return this.theme === 'dark' ? 'light' : 'dark';
   }
 
   constructor() { }

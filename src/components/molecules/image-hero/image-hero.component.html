@@ -5,10 +5,10 @@
 
   <div class="hero-content">
     <app-title
-      [text]="title"
       [level]="titleLevel"
       [color]="titleColor"
       [align]="titleAlign">
+      <ng-content></ng-content>
     </app-title>
     <app-separator [color]="'white'"></app-separator>
     <app-paragraph
