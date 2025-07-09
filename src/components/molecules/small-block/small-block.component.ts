@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ParagraphLinesComponent } from "../../atoms/paragraph-lines/paragraph-lines.component";
-import { ParagraphComponent } from "../../atoms/paragraph/paragraph.component";
-import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { SeparatorComponent } from "../../atoms/separator/separator.component";
+import { TitleComponent } from 'src/components/atoms/title/title.component';
+import { ParagraphComponent } from 'src/components/atoms/paragraph/paragraph.component';
 
 export type BlockTheme = 'dark' | 'light';
 
@@ -15,16 +14,17 @@ export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
 export type TitleType = 'soft' | 'cornered' | 'simple';
 
 @Component({
-  selector: 'app-text-block',
+  selector: 'app-small-block',
   standalone: true,
-  imports: [CommonModule, ParagraphLinesComponent, ParagraphComponent, TitleComponent, SeparatorComponent],
-  templateUrl: './text-block.component.html',
-  styleUrls: ['./text-block.component.scss']
+  imports: [CommonModule, SeparatorComponent, TitleComponent, ParagraphComponent],
+  templateUrl: './small-block.component.html',
+  styleUrls: ['./small-block.component.scss']
 })
-export class TextBlockComponent implements OnInit {
+export class SmallBlockComponent implements OnInit {
   @Input() theme: BlockTheme = 'dark';
   @Input() title: string = '';
   @Input() titleType: TitleType = 'simple';
+  @Input() separator: Boolean = false;
 
   @Input() paragraphSize: ParagraphSize = 'medium';
   @Input() paragraphAlign: ParagraphAlign = 'left';
@@ -37,6 +37,7 @@ export class TextBlockComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {}
-}
+  ngOnInit(): void {
+  }
 
+}

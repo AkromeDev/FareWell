@@ -2,19 +2,16 @@
     <app-title 
       [color]="inverseTextColor"
       [align]="paragraphAlign"
-      [level]="'h2'"
+      [level]="'h3'"
       [title]="title"
       [type]="titleType"
     >
     </app-title>
   
-    <app-paragraph-lines 
-      [color]="inverseTextColor"
-      [align]="paragraphAlign"
-    ></app-paragraph-lines>
+    <app-separator *ngIf="separator"></app-separator>
     
     <app-paragraph
-      class="text-block-paragraph"
+      class="small-block-paragraph"
       [color]="inverseTextColor"
       [size]="paragraphSize"
       [align]="paragraphAlign"

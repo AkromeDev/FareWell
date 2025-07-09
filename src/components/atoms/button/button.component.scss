@@ -1,0 +1,36 @@
+@import 'themes/theme-entry';
+
+.farewell-btn {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  display: inline-block;
+
+  // Mobile first
+  width: 100%;
+  max-width: 300px;
+
+  &:hover {
+    transform: translateY(1px);
+    filter: brightness(1.05);
+  }
+
+  &.light {
+    background-color: rgba($light-1, 0.6);
+    border-color: darken($light-2, 15%);
+    color: $dark-2;
+  }
+
+  &.dark {
+    background-color: rgba($dark-2, 0.4);
+    border-color: lighten($dark-2, 15%);
+    color: $light-1;
+  }
+}
