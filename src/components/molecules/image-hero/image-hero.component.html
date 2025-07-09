@@ -10,7 +10,7 @@
       [align]="titleAlign">
       <ng-content></ng-content>
     </app-title>
-    <app-separator [color]="'white'"></app-separator>
+    <app-separator [color]="'light'"></app-separator>
     <app-paragraph
       class="hero-paragraph"
       [size]="paragraphSize"
@@ -19,7 +19,10 @@
       [color]="paragraphColor"
       [maxWidth]="paragraphMaxWidth">
       {{ paragraphText }}
-</app-paragraph>
+    </app-paragraph>
+     <app-button-list 
+     [buttons]="buttonList">
+    </app-button-list>
   </div>
 
 </app-image-section>

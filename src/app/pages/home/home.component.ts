@@ -6,25 +6,28 @@ import { PhotoCaptionComponent } from 'src/app/standaloneComp/photo-caption/phot
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
 import { TitleComponent } from 'src/components/atoms/title/title.component';
+import { ButtonComponent } from "src/components/atoms/button/button.component";
+import { ButtonItem } from 'src/app/models/ButtonItem';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TextBlockComponent, ImageHeroComponent, CommonModule, ParallaxComponent, TitleComponent, TextBlockComponent, OrbitronComponent, PhotoCaptionComponent],
+  imports: [TextBlockComponent, ImageHeroComponent, CommonModule, ParallaxComponent, TitleComponent, TextBlockComponent, OrbitronComponent, PhotoCaptionComponent, ButtonComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
   paragraphText: string = `
-  Noch nie von Elektrolyse gehört? Die Elektrolyse ist die einzige Methode zur Haarentfernung, die von medizinischen Fachstellen als wirklich permanent anerkannt ist.
+  Der Beauty Salon FareWell ist spezialisiert in Elektrolyse Haarentfernung. die einzige Methode zur Haarentfernung, die von medizinischen Fachstellen als wirklich permanent anerkannt ist, unabhängig von Haarfarbe oder Hauttyp.
 
-  Im Gegensatz zu Laser oder IPL, die nur eine dauerhafte Reduktion bewirken, zerstört die Elektrolyse jede einzelne Haarwurzel vollständig, unabhängig von Haarfarbe oder Hauttyp.
-
-  Bei FareWell bieten wir diese bewährte Technologie in einem modernen, stilvollen Ambiente an. Unsere Aufgabe ist es, Ihnen eine effektive, sichere und individuelle Lösung gegen unerwünschten Haarwuchs zu bieten. Sagen wir gemeinsam Farewell zum Rasieren, Wachsen und zur Unsicherheit.
-  
-  Willkommen in einer neuen permanenten Freiheit.
+  Willkommen in eurer neuen permanenten Freiheit.
   `;
+  buttonList: ButtonItem[] = [
+    { label: 'Mehr erfahren', link: '/info', theme: 'dark' },
+    { label: 'Unsere Preise', link: '/preis', theme: 'dark' },
+    { label: 'Jetzt buchen', link: '/buchung', theme: 'dark' }
+  ];
   scrolled: boolean = false;
   activeTab: string = 'home';
 

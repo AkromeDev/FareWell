@@ -9,7 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./separator.component.scss']
 })
 export class SeparatorComponent implements OnInit {
-  @Input() color: string = "";
+  @Input() color: "dark" | "light" = "light";
+  @Input() align: "left" |"center" |"right" = "center";
   
   constructor() { }
 

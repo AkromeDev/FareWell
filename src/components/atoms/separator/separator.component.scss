@@ -1,11 +1,12 @@
+@import 'themes/theme-entry';
+
 .separator {
   display: inline-block;
   position: relative;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: $font;
   font-size: 14px;
   font-style: italic;
   letter-spacing: 0.1em;
-  color: var(--black);
   margin: 0.25rem 0;
   text-align: center;
   line-height: 1;
@@ -23,7 +24,7 @@
     top: 63%;
     width: 25%;
     height: 1px;
-    background-color: var(--black);
+    background-color: $dark-1;
     opacity: 0.3;
     transform: translateY(-50%);
   }
@@ -39,12 +40,26 @@
   animation: fadePulse 4s ease-in-out infinite;
 }
 
-.white {
-  color: var(--white);
+.light {
+  color: $white;
 }
-.white::before,
-.white::after {
-  background-color: var(--white);
+.light::before,
+.light::after {
+  background-color: $white;
+}
+
+.dark {
+  background-color: $dark-1;
+  -webkit-mask-image: url('../../../assets/images/separator/separator-hair-light.png');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-image: url('../../../assets/images/separator/separator-hair-light.png');
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+.dark::before,
+.dark::after {
+  background-color: $dark-1;
 }
 
 @keyframes fadePulse {

@@ -4,6 +4,8 @@ import { ImageSectionComponent } from 'src/components/atoms/image-section/image-
 import { SeparatorComponent } from 'src/components/atoms/separator/separator.component';
 import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { ParagraphComponent } from "../../atoms/paragraph/paragraph.component";
+import { ButtonListComponent } from "../button-list/button-list.component";
+import { ButtonItem } from 'src/app/models/ButtonItem';
 
 export type ParagraphSize = 'small' | 'medium' | 'large';
 export type ParagraphAlign = 'left' | 'center' | 'right'| 'justify';
@@ -14,7 +16,7 @@ export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
 @Component({
   selector: 'app-image-hero',
   standalone: true,
-  imports: [TitleComponent, CommonModule, ImageSectionComponent, SeparatorComponent, ParagraphComponent],
+  imports: [TitleComponent, CommonModule, ImageSectionComponent, SeparatorComponent, ParagraphComponent, ButtonListComponent],
   templateUrl: './image-hero.component.html',
   styleUrls: ['./image-hero.component.scss']
 })
@@ -32,6 +34,8 @@ export class ImageHeroComponent implements OnInit {
   @Input() paragraphWeight: ParagraphWeight = 'normal';
   @Input() paragraphColor: ParagraphColor = 'light';
   @Input() paragraphMaxWidth: ParagraphMaxWidth = 'wide';
+
+  @Input() buttonList: ButtonItem[] = [];
 
 
 get computedShadow(): '' | 'light-shadow' | 'dark-shadow' {

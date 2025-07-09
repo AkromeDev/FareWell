@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ParagraphLinesComponent } from "../../atoms/paragraph-lines/paragraph-lines.component";
 import { ParagraphComponent } from "../../atoms/paragraph/paragraph.component";
 import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { SeparatorComponent } from "../../atoms/separator/separator.component";
@@ -8,7 +7,7 @@ import { SeparatorComponent } from "../../atoms/separator/separator.component";
 export type BlockTheme = 'dark' | 'light';
 
 export type ParagraphSize = 'small' | 'medium' | 'large';
-export type ParagraphAlign = 'left' | 'center' | 'right'| 'justify';
+export type ParagraphAlign = 'left' | 'center' | 'right';
 export type ParagraphWeight = 'normal' | 'bold';
 export type ParagraphColor = 'light' | 'dark';
 export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
@@ -17,7 +16,7 @@ export type TitleType = 'soft' | 'cornered' | 'simple';
 @Component({
   selector: 'app-text-block',
   standalone: true,
-  imports: [CommonModule, ParagraphLinesComponent, ParagraphComponent, TitleComponent, SeparatorComponent],
+  imports: [CommonModule, ParagraphComponent, TitleComponent, SeparatorComponent],
   templateUrl: './text-block.component.html',
   styleUrls: ['./text-block.component.scss']
 })

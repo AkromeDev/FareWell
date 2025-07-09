@@ -1,3 +1,11 @@
-<button class="farewell-btn" [ngClass]="theme">
-    <ng-content></ng-content>
-</button>
+<ng-container *ngIf="link; else regularButton">
+    <a [routerLink]="link" class="farewell-btn" [ngClass]="theme">
+        <ng-content></ng-content>
+    </a>
+</ng-container>
+
+<ng-template #regularButton>
+    <button class="farewell-btn" [ngClass]="theme">
+        <ng-content></ng-content>
+    </button>
+</ng-template>

@@ -1,0 +1,5 @@
+<div class="button-list">
+    <a *ngFor="let btn of buttons" [routerLink]="btn.link">
+      <app-button [theme]="btn.theme">{{ btn.label }}</app-button>
+    </a>
+</div>
