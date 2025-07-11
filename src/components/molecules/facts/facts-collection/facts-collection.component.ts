@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet, RouterLinkActive, RouterLinkWithHref } from '@angular/router';
+import { RouterOutlet, RouterLinkActive, RouterLink } from '@angular/router';
 import { DividerComponent } from 'src/app/standaloneComp/divider/divider.component';
 import { TableComponent } from 'src/app/standaloneComp/table/table.component';
 
 @Component({
   selector: 'app-facts-collection',
   standalone: true,
-  imports: [CommonModule, DividerComponent, TableComponent, RouterOutlet, RouterLinkActive, RouterLinkWithHref],
+  imports: [CommonModule, DividerComponent, TableComponent, RouterOutlet, RouterLinkActive, RouterLink],
   templateUrl: './facts-collection.component.html',
   styleUrls: ['./facts-collection.component.scss']
 })
