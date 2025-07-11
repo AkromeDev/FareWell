@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "TheWindmillProject:build:production"
+              "buildTarget": "TheWindmillProject:build:production"
             },
             "development": {
-              "browserTarget": "TheWindmillProject:build:development"
+              "buildTarget": "TheWindmillProject:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "TheWindmillProject:build"
+            "buildTarget": "TheWindmillProject:build"
           }
         },
         "test": {
