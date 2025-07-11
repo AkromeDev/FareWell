@@ -5,11 +5,10 @@ import { StatisticComponent } from 'src/app/standaloneComp/statistic/statistic.c
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-goals-description',
-  standalone: true,
-  imports: [DividerComponent, StatisticComponent, ModalComponent, CommonModule],
-  templateUrl: './goals-description.component.html',
-  styleUrls: ['./goals-description.component.scss']
+    selector: 'app-goals-description',
+    imports: [DividerComponent, StatisticComponent, ModalComponent, CommonModule],
+    templateUrl: './goals-description.component.html',
+    styleUrls: ['./goals-description.component.scss']
 })
 export class GoalsDescriptionComponent implements OnInit {
   

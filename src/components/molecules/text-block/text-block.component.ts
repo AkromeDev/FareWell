@@ -14,11 +14,10 @@ export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
 export type TitleType = 'soft' | 'cornered' | 'simple';
 
 @Component({
-  selector: 'app-text-block',
-  standalone: true,
-  imports: [CommonModule, ParagraphComponent, TitleComponent, SeparatorComponent],
-  templateUrl: './text-block.component.html',
-  styleUrls: ['./text-block.component.scss']
+    selector: 'app-text-block',
+    imports: [CommonModule, ParagraphComponent, TitleComponent, SeparatorComponent],
+    templateUrl: './text-block.component.html',
+    styleUrls: ['./text-block.component.scss']
 })
 export class TextBlockComponent implements OnInit {
   @Input() theme: BlockTheme = 'dark';

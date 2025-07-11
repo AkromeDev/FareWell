@@ -3,11 +3,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'app-header',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   scrolled: boolean = false;

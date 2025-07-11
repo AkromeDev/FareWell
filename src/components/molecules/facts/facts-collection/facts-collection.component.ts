@@ -5,11 +5,11 @@ import { DividerComponent } from 'src/app/standaloneComp/divider/divider.compone
 import { TableComponent } from 'src/app/standaloneComp/table/table.component';
 
 @Component({
-  selector: 'app-facts-collection',
   standalone: true,
-  imports: [CommonModule, DividerComponent, TableComponent, RouterOutlet, RouterLinkActive, RouterLink],
-  templateUrl: './facts-collection.component.html',
-  styleUrls: ['./facts-collection.component.scss']
+    selector: 'app-facts-collection',
+    imports: [CommonModule, DividerComponent, TableComponent, RouterOutlet, RouterLinkActive, RouterLink],
+    templateUrl: './facts-collection.component.html',
+    styleUrls: ['./facts-collection.component.scss']
 })
 export class FactsCollectionComponent implements OnInit {
   data = [

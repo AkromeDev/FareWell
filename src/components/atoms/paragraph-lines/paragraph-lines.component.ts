@@ -5,11 +5,10 @@ export type Align = 'left' | 'center' | 'right'| 'justify';
 export type Color = 'light' | 'dark';
 
 @Component({
-  selector: 'app-paragraph-lines',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './paragraph-lines.component.html',
-  styleUrls: ['./paragraph-lines.component.scss']
+    selector: 'app-paragraph-lines',
+    imports: [CommonModule],
+    templateUrl: './paragraph-lines.component.html',
+    styleUrls: ['./paragraph-lines.component.scss']
 })
 export class ParagraphLinesComponent implements OnInit {
   @Input() color: Color = "dark";

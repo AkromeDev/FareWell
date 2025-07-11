@@ -2,11 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-separator',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './separator.component.html',
-  styleUrls: ['./separator.component.scss']
+    selector: 'app-separator',
+    imports: [CommonModule],
+    templateUrl: './separator.component.html',
+    styleUrls: ['./separator.component.scss']
 })
 export class SeparatorComponent implements OnInit {
   @Input() color: "dark" | "light" = "light";

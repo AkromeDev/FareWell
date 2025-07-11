@@ -3,11 +3,10 @@ import { CardComponent } from 'src/app/standaloneComp/card/card.component';
 import { DividerComponent } from 'src/app/standaloneComp/divider/divider.component';
 
 @Component({
-  selector: 'app-team-description',
-  standalone: true,
-  imports: [DividerComponent, CardComponent],
-  templateUrl: './team-description.component.html',
-  styleUrls: ['./team-description.component.scss']
+    selector: 'app-team-description',
+    imports: [DividerComponent, CardComponent],
+    templateUrl: './team-description.component.html',
+    styleUrls: ['./team-description.component.scss']
 })
 export class TeamDescriptionComponent implements OnInit {
   cards = [

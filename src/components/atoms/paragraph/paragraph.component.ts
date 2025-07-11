@@ -8,11 +8,10 @@ export type ParagraphColor = 'light' | 'dark';
 export type ParagraphWidth = 'narrow' | 'wide' | 'full';
 
 @Component({
-  selector: 'app-paragraph',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './paragraph.component.html',
-  styleUrls: ['./paragraph.component.scss']
+    selector: 'app-paragraph',
+    imports: [CommonModule],
+    templateUrl: './paragraph.component.html',
+    styleUrls: ['./paragraph.component.scss']
 })
 export class ParagraphComponent implements OnInit {
 

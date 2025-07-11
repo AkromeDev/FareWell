@@ -14,11 +14,10 @@ export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
 export type TitleType = 'soft' | 'cornered' | 'simple';
 
 @Component({
-  selector: 'app-small-block',
-  standalone: true,
-  imports: [CommonModule, SeparatorComponent, TitleComponent, ParagraphComponent],
-  templateUrl: './small-block.component.html',
-  styleUrls: ['./small-block.component.scss']
+    selector: 'app-small-block',
+    imports: [CommonModule, SeparatorComponent, TitleComponent, ParagraphComponent],
+    templateUrl: './small-block.component.html',
+    styleUrls: ['./small-block.component.scss']
 })
 export class SmallBlockComponent implements OnInit {
   @Input() theme: BlockTheme = 'dark';

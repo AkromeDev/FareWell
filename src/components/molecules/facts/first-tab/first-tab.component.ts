@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-first-tab',
-  templateUrl: './first-tab.component.html',
-  styleUrls: ['./first-tab.component.scss']
+    selector: 'app-first-tab',
+    templateUrl: './first-tab.component.html',
+    styleUrls: ['./first-tab.component.scss'],
+    standalone: false
 })
 export class FirstTabComponent implements OnInit {
 

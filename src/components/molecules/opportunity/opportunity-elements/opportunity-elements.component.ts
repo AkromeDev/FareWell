@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AccordionComponent } from 'src/app/standaloneComp/accordion/accordion.component';
 
 @Component({
-  selector: 'app-opportunity-elements',
-  standalone: true,
-  imports: [AccordionComponent],
-  templateUrl: './opportunity-elements.component.html',
-  styleUrls: ['./opportunity-elements.component.scss']
+    selector: 'app-opportunity-elements',
+    imports: [AccordionComponent],
+    templateUrl: './opportunity-elements.component.html',
+    styleUrls: ['./opportunity-elements.component.scss']
 })
 export class OpportunityElementsComponent implements OnInit {
   protected data = [

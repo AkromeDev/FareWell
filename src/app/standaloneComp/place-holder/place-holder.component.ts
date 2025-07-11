@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { TimesDirective } from '../../directives/times/times.directive';
 
 @Component({
-  selector: 'app-place-holder',
-  standalone: true,
-  imports: [CommonModule, TimesDirective],
-  templateUrl: './place-holder.component.html',
-  styleUrls: ['./place-holder.component.scss']
+    selector: 'app-place-holder',
+    imports: [CommonModule, TimesDirective],
+    templateUrl: './place-holder.component.html',
+    styleUrls: ['./place-holder.component.scss']
 })
 export class PlaceHolderComponent implements OnInit {
   @Input() header = true;

@@ -10,11 +10,10 @@ interface ButtonItem {
 }
 
 @Component({
-  selector: 'app-button-list',
-  standalone: true,
-  imports: [CommonModule, ButtonComponent, RouterModule],
-  templateUrl: './button-list.component.html',
-  styleUrls: ['./button-list.component.scss']
+    selector: 'app-button-list',
+    imports: [CommonModule, ButtonComponent, RouterModule],
+    templateUrl: './button-list.component.html',
+    styleUrls: ['./button-list.component.scss']
 })
 export class ButtonListComponent implements OnInit {
   @Input() buttons: ButtonItem[] = [];

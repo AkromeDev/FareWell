@@ -14,11 +14,10 @@ export type ParagraphColor = 'light' | 'dark';
 export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
 
 @Component({
-  selector: 'app-image-hero',
-  standalone: true,
-  imports: [TitleComponent, CommonModule, ImageSectionComponent, SeparatorComponent, ParagraphComponent, ButtonListComponent],
-  templateUrl: './image-hero.component.html',
-  styleUrls: ['./image-hero.component.scss']
+    selector: 'app-image-hero',
+    imports: [TitleComponent, CommonModule, ImageSectionComponent, SeparatorComponent, ParagraphComponent, ButtonListComponent],
+    templateUrl: './image-hero.component.html',
+    styleUrls: ['./image-hero.component.scss']
 })
 export class ImageHeroComponent implements OnInit {
   @Input() title: string = '';

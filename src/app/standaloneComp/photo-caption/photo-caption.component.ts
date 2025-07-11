@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ParagraphLinesComponent } from '../../../components/atoms/paragraph-lines/paragraph-lines.component';
 
 @Component({
-  selector: 'app-photo-caption',
-  standalone: true,
-  imports: [CommonModule, ParagraphLinesComponent],
-  templateUrl: './photo-caption.component.html',
-  styleUrls: ['./photo-caption.component.scss']
+    selector: 'app-photo-caption',
+    imports: [CommonModule, ParagraphLinesComponent],
+    templateUrl: './photo-caption.component.html',
+    styleUrls: ['./photo-caption.component.scss']
 })
 export class PhotoCaptionComponent implements OnInit {
 
