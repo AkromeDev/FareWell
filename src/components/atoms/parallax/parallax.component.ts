@@ -4,6 +4,7 @@ import { TitleComponent } from '../title/title.component';
 
 @Component({
     selector: 'app-parallax',
+    standalone: true,
     imports: [CommonModule, TitleComponent],
     templateUrl: './parallax.component.html',
     styleUrls: ['./parallax.component.scss']

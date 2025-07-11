@@ -6,6 +6,7 @@ export type Color = 'light' | 'dark';
 
 @Component({
     selector: 'app-paragraph-lines',
+    standalone: true,
     imports: [CommonModule],
     templateUrl: './paragraph-lines.component.html',
     styleUrls: ['./paragraph-lines.component.scss']

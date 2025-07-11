@@ -1,4 +1,5 @@
-@import 'themes/theme-entry';
+@use 'themes/theme-entry' as *;
+@use 'sass:color';
 
 .farewell-btn {
   font-family: $font, sans-serif;
@@ -24,13 +25,13 @@
 
   &.light {
     background-color: rgba($light-1, 0.6);
-    border-color: darken($light-2, 15%);
+    border-color: color.adjust($light-2, $lightness: -15%);
     color: $dark-2;
   }
 
   &.dark {
     background-color: rgba($dark-2, 0.4);
-    border-color: lighten($dark-2, 15%);
+    border-color: color.adjust($dark-2, $lightness: 15%);
     color: $light-1;
   }
 }

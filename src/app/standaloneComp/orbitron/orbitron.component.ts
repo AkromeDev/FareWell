@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-orbitron',
+    standalone: true,
     imports: [CommonModule],
     templateUrl: './orbitron.component.html',
     styleUrls: ['./orbitron.component.scss']

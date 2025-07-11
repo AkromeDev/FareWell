@@ -6,12 +6,12 @@ import { PhotoCaptionComponent } from 'src/app/standaloneComp/photo-caption/phot
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
 import { TitleComponent } from 'src/components/atoms/title/title.component';
-import { ButtonComponent } from "src/components/atoms/button/button.component";
 import { ButtonItem } from 'src/app/models/ButtonItem';
 
 @Component({
     selector: 'app-home',
-    imports: [TextBlockComponent, ImageHeroComponent, CommonModule, ParallaxComponent, TitleComponent, TextBlockComponent, OrbitronComponent, PhotoCaptionComponent, ButtonComponent],
+    standalone: true,
+    imports: [TextBlockComponent, ImageHeroComponent, CommonModule, ParallaxComponent, TitleComponent, TextBlockComponent, OrbitronComponent, PhotoCaptionComponent],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })

@@ -1,4 +1,4 @@
-@import 'themes/theme-entry';
+@use 'themes/theme-entry' as *;
 
 .paragraph {
     font-family: $font, serif;

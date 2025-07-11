@@ -4,6 +4,7 @@ import { ParagraphLinesComponent } from '../../../components/atoms/paragraph-lin
 
 @Component({
     selector: 'app-photo-caption',
+    standalone: true,
     imports: [CommonModule, ParagraphLinesComponent],
     templateUrl: './photo-caption.component.html',
     styleUrls: ['./photo-caption.component.scss']

@@ -1,9 +1,11 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "@models": ["src/app/core/models"]
+    }
   },
   "files": [
     "src/main.ts",
@@ -11,8 +13,5 @@
   ],
   "include": [
     "src/**/*.d.ts"
-  ],
-  "paths": {
-    "@models": ["src/app/core/models"]
-  }
+  ]
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from "../../../components/atoms/header/header.component";
 
 @Component({
     selector: 'app-about-us',
-    imports: [CommonModule, HeaderComponent],
+    standalone: true,
+    imports: [CommonModule],
     templateUrl: './about-us.component.html',
     styleUrls: ['./about-us.component.scss']
 })

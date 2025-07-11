@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-image-section',
+    standalone: true,
     imports: [CommonModule],
     templateUrl: './image-section.component.html',
     styleUrls: ['./image-section.component.scss']

@@ -11,6 +11,7 @@ interface ButtonItem {
 
 @Component({
     selector: 'app-button-list',
+    standalone: true,
     imports: [CommonModule, ButtonComponent, RouterModule],
     templateUrl: './button-list.component.html',
     styleUrls: ['./button-list.component.scss']

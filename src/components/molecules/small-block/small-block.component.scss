@@ -1,4 +1,4 @@
-@import 'themes/theme-entry';
+@use 'themes/theme-entry' as *;
 
 .text-block {
   padding: 2rem 1rem;

@@ -15,6 +15,7 @@ export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
 
 @Component({
     selector: 'app-image-hero',
+    standalone: true,
     imports: [TitleComponent, CommonModule, ImageSectionComponent, SeparatorComponent, ParagraphComponent, ButtonListComponent],
     templateUrl: './image-hero.component.html',
     styleUrls: ['./image-hero.component.scss']

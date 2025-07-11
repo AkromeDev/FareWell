@@ -9,6 +9,7 @@ export type ParagraphWidth = 'narrow' | 'wide' | 'full';
 
 @Component({
     selector: 'app-paragraph',
+    standalone: true,
     imports: [CommonModule],
     templateUrl: './paragraph.component.html',
     styleUrls: ['./paragraph.component.scss']

@@ -1,5 +1,6 @@
+@use 'themes/theme-entry' as *;
+
 .plan-parallax {
-    @import 'themes/theme-entry';
     background-size: cover;
     height: 60vh;
     background-attachment: fixed;
