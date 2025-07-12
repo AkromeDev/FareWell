@@ -7,7 +7,7 @@ import { SeparatorComponent } from "../../atoms/separator/separator.component";
 export type BlockTheme = 'dark' | 'light';
 
 export type ParagraphSize = 'small' | 'medium' | 'large';
-export type ParagraphAlign = 'left' | 'center' | 'right';
+export type ParagraphAlign = 'left' | 'center' | 'right' | 'justify';
 export type ParagraphWeight = 'normal' | 'bold';
 export type ParagraphColor = 'light' | 'dark';
 export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';

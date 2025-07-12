@@ -18,10 +18,10 @@ export class ParagraphComponent implements OnInit {
 
   @Input() text: string = '';
   @Input() size: ParagraphSize = 'medium';
-  @Input() align: ParagraphAlign = 'center';
+  @Input() align: ParagraphAlign = 'left';
   @Input() weight: ParagraphWeight = 'normal';
   @Input() color: ParagraphColor = 'dark';
-  @Input() maxWidth: ParagraphWidth = 'wide';
+  @Input() maxWidth: ParagraphWidth = 'full';
 
   constructor() {}
 

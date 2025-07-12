@@ -25,11 +25,11 @@
   }
 
   &.light {
-    background-color: $light-1;
+    background-color: $font-light;
 
     &::before,
     &::after {
-      background-color: $light-1;
+      background-color: $font-light;
     }
   }
 

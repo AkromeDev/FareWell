@@ -1,59 +1,61 @@
 @use 'themes/theme-entry' as *;
 
 .paragraph {
-    font-family: $font, serif;
-    line-height: 1.2;
-    margin: 0 0 0.75rem;
-    padding-bottom: 2rem;
-    white-space: pre-line;
-  }
-  
-  .size-small {
-    font-size: 0.9rem;
-  }
-  
-  .size-medium {
-    font-size: 1.1rem;
-  }
-  
-  .size-large {
-    font-size: 1.4rem;
-  }
-  
-  .align-left {
-    text-align: left;
-  }
-  .align-justify {
-    text-align: just;
-  }.align-center {
-    text-align: center;
-    margin: 0 auto 0.75rem;
-  }
-  .align-right {
-    text-align: right;
-  }
-  
-  .weight-normal {
-    font-weight: 400;
-  }
-  .weight-bold {
-    font-weight: 600;
-  }
-  
-  .color-light {
-    color: $light-1;
-  }
-  .color-dark {
-    color: $dark-1;
-  }
-  
-  .width-narrow {
-    max-width: 500px;
-  }
-  .width-wide {
-    max-width: 800px;
-  }
-  .width-full {
-    max-width: 100%;
-  }
+  font-family: $font, serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 auto 1rem;
+  white-space: pre-line;
+}
+.size-small {
+  font-size: 0.9rem;
+}
+
+.size-medium {
+  font-size: 1.1rem;
+}
+
+.size-large {
+  font-size: 1.4rem;
+}
+
+.align-left {
+  text-align: left;
+}
+.align-justify {
+  text-align: justify;
+}
+.align-center {
+  text-align: center;
+  margin: 0 auto 0.75rem;
+}
+.align-right {
+  text-align: right;
+}
+
+.weight-normal {
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+}
+.weight-bold {
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+}
+
+.color-light {
+  color: $font-light;
+}
+.color-dark {
+  color: $font-dark;
+}
+
+.width-narrow {
+  max-width: 500px;
+}
+.width-wide {
+  max-width: 800px;
+}
+.width-full {
+  max-width: 100%;
+}
   

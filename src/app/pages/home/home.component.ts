@@ -2,16 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { OrbitronComponent } from 'src/app/standaloneComp/orbitron/orbitron.component';
 import { ParallaxComponent } from 'src/components/atoms/parallax/parallax.component';
-import { PhotoCaptionComponent } from 'src/app/standaloneComp/photo-caption/photo-caption.component';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
-import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { ButtonItem } from 'src/app/models/ButtonItem';
+import { OpeningHoursComponent } from "src/components/atoms/opening-hours/opening-hours.component";
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [TextBlockComponent, ImageHeroComponent, CommonModule, ParallaxComponent, TitleComponent, TextBlockComponent, OrbitronComponent, PhotoCaptionComponent],
+    imports: [TextBlockComponent, ImageHeroComponent, CommonModule, ParallaxComponent, TextBlockComponent, OrbitronComponent, OpeningHoursComponent],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })

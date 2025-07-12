@@ -18,7 +18,7 @@
 }
 
 .dark {
-  background-color: $dark-1;
+  background-color: $font-dark;
   background-image: none;
 
   -webkit-mask-image: url('../../../assets/images/separator/separator-hair-light2.png');
@@ -31,6 +31,25 @@
   mask-size: contain;
   mask-position: center;
 }
+
+.left {
+  margin-left: 0;
+  margin-right: auto;
+  display: block;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.right {
+  margin-left: auto;
+  margin-right: 0;
+  display: block;
+}
+
 
 @keyframes fadePulse {
   0%, 100% {

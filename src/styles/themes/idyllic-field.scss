@@ -1,13 +1,15 @@
 // Idyllic Field Theme – Semantic Variables
 
-$light-1:  #ede8da;  // Pale Cream
-$light-2:  #ddc49a;  // Soft Beige
-$accent-1: #ccb343;  // Golden Mustard
-$accent-2: #a7b197;  // Sage Green
-$dark-1:   #848645;  // Olive Green
-$dark-2:   #6b6e3e;  // Deep Olive
-$black:    #4f4f2f;  // Black
-$white:    #ffffff;  // White
+$light-1:      #ede8da;  // Pale Cream
+$light-2:      #ddc49a;  // Soft Beige
+$accent-1:     #ccb343;  // Golden Mustard
+$accent-2:     #a7b197;  // Sage Green
+$dark-1:       #848645;  // Olive Green
+$dark-2:       #6b6e3e;  // Deep Olive
+$black:        #4f4f2f;  // Black
+$white:        #eeebe0;  // White
+$font-dark:    #63633c;
+$font-light:   #ffffff;
 
 // Font Families
 $font-cormorant: 'Cormorant Garamond', serif;
@@ -31,7 +33,7 @@ $font-pacifico: 'Pacifico', cursive;
 $font-quicksand: 'Quicksand', sans-serif;
 
 // 👇 Active Font (default fallback)
-$font: $font-open-sans;
+$font: $font-lato;
 $h1-font: $font-lato;
 $h2-font: $font;
 $h3-font: $font;
@@ -46,6 +48,8 @@ $palette-idyllic-field: (
   "dark-2": $dark-2,
   "black": $black,
   "white": $white,
+  "font-dark": $font-dark,
+  "font-light": $font-light,
 );
 
 // Font Map for reuse

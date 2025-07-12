@@ -1,5 +1,8 @@
 <app-image-hero
   [paragraphText]="paragraphText"
+  [paragraphAlign]="'center'"
+  [paragraphWeight]="'bold'"
+  [paragraphColor]="'light'"
   [backgroundImage]="'assets/images/farewell/farewellStudio4.png'"
   [shadow]="'dark'"
   [titleLevel]="'h1'"
@@ -9,134 +12,58 @@
 <app-text-block
     [title]="'15. September 2025: Eröffnung'"
     [theme]="'light'"
-    [paragraphAlign]="'center'"
+    [paragraphAlign]="'justify'"
     >
     Freut euch auf die Eröffnung unseres neuen Salons FareWell, dem ersten Spezialisten für permanente Haarentfernung mittels Elektrolyse in Nürnberg! <br><br>
     Ab dem 15.09.2025 sind wir für euch da, zentral gelegen, gleich beim Weißen Turm.
 </app-text-block>
+
 <app-parallax 
     [imageSrc]="'../../../assets/images/treatment/armpit.png'"
     [title]="'Values'">
 </app-parallax>
+
 <app-text-block 
     [theme]="'dark'"
+    [paragraphAlign]="'center'"
+    [title]="'Bester Mehrwert für unsere Kund:innen'">
+        Bei FareWell stehen dauerhafte Ergebnisse und echte Wahlfreiheit im Mittelpunkt.<br>
+        Wir bringen die Elektrolyse, die einzige wirklich permanente Haarentfernungsmethode, ins Rampenlicht.<br>
+        Sie funktioniert bei <strong>jedem Hauttyp und an jeder Körperstelle</strong>, ganz ohne Einschränkungen.<br><br>
+
+        Unsere Kund:innen entscheiden sich nicht nur gegen Rasur, Waxing oder Hautirritationen,<br>
+        sie entscheiden sich für <strong>lebenslange Glätte, Selbstbewusstsein und Freiheit von ständiger Pflege</strong>.<br>
+        Keine eingewachsenen Haare, keine Schnitte, keine Schmerzen.<br>
+        Nur Ruhe im Kopf, und auf der Haut.<br><br>
+
+        <strong>FareWell, für alle, die sich nicht ein Leben lang rasieren wollen.</strong>
+</app-text-block>
+
+<app-text-block 
+    [theme]="'light'"
+    [paragraphAlign]="'center'"
     [title]="'Nachhaltigkeit bei FareWell'">
-    Bei FareWell setzen wir auf echte, permanente Haarentfernung, und damit auch auf Umweltschutz. Durch Elektrolyse braucht es keine Klingen, Rasierschaum, Enthaarungscremes oder Einwegprodukte mehr. Weniger Müll, weniger Chemie, mehr Nachhaltigkeit.
+    Bei FareWell setzen wir auf echte, permanente Haarentfernung, und damit auch auf Umweltschutz. Durch Elektrolyse braucht es keine Klingen, Rasierschaum, Enthaarungscremes oder Einwegprodukte mehr. <br>
+    Weniger Müll, weniger Chemie, mehr Nachhaltigkeit.
+
+    Allein in den USA werden jährlich über 
+    <a href="https://css.washingtonpost.com/climate-solutions/2024/05/19/safety-razor-sustainability/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+    2 Milliarden Einwegrasierer
+    </a> 
+    entsorgt.<br>
+    Weltweit hochgerechnet sind es viele Milliarden Stück, das verursacht enorme Mengen an Plastik, und Metallmüll.<br>
+    Und das betrifft nur Einwegrasierer. Die Haarentfernungsindustrie insgesamt verursacht noch deutlich mehr Abfall.<br><br>
+    Lass uns gemeinsam dafür sorgen, dass diese Zahl kleiner wird.
+
     Eine Entscheidung für FareWell ist auch eine Entscheidung für unsere Umwelt.    
 </app-text-block>
 
-        <app-text-block [theme]="'light'">
-            <header>
-                Empowerment
-            </header>
-            We do not only plan to deliver the turbines and potentially let them degrade over the decades. 
-            We plan to form some habitants of the township so that they understand the turbines know how 
-            to fufill routine maintenance and small repairs. We want the turbines not only to be used by the habitants
-            but also to empower them with the knowledge and pride that they are handling a country wide issues
-            on their own and for their neighbors and relatives.
-        </app-text-block>
-        <app-text-block [theme]="'dark'">
-            <header>
-                Quality over Quantity
-            </header>
-            The population of the Townships have to be taken in consideration, not only the authorities
-            should be asked for the permission to cnstruct. Our project has to reflect the population 
-            needs as weel as implicating them thoughout the whole process. This will allow them to reproduce
-            the project in the future as they see the advantages. This is why the first Turbine will be of smaller size (15m)
-            in order use as a test-phase. Once done, we should write a protocol so that such innitiatives could pop-up
-            more easily thoughout the coutry.
-        </app-text-block>
-    <div class="rela-block our-plans-section" id="supportSection">
-        <app-parallax 
-            [imageSrc]="'../../../assets/images/backgrounds/windmills-sunset.jpeg'"
-            [title]="'Our Plans'">
-        </app-parallax>
-        
-        <div class="rela-block plans-container">
-            <div class="plan">
-                <h2 class="rela-block half-big-text">Mellow First Timer</h2>
-                <app-orbitron></app-orbitron>
-                <p class="rela-block">
-                    <span style="font-family:'Montserrat'; font-size:30px; line-height: 40px;">
-                    > 5$
-                </span>
-                1 time
-                </p>
-                <app-orbitron></app-orbitron>
-                <ul class="rela-block">
-                    <li>Your Profile will <b>forever</b> be referenced on our website</li>
-                    <li>-</li>
-                    <li>-</li>
-                    <li>-</li>
-                    <li>-</li>
-                </ul>
-                <div class="has-lines black">
-                    <a href="https://patreon.com/user?u=83212318&utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator&utm_content=join_link" target="_blank">
-                        Support Us!
-                    </a>
-                </div>
-            </div>
-            <div class="plan">
-                <h2 class="rela-block half-big-text">Cheerful Contributor</h2>
-                <app-orbitron></app-orbitron>
-                <p class="rela-block"><span style="font-family:'Montserrat'; font-size:30px; line-height: 40px;">
-                    > 20$</span>1 time
-                </p>
-                <app-orbitron></app-orbitron>
-                <ul class="rela-block">
-                    <li>Your Profile will <b>forever</b> referenced on our website</li>
-                    <li>Your Name will be on a Wind Turbine</li>
-                    <li>Lifetime Updates of the project</li>
-                    <li>Write a personal message on turbine</li>
-                    <li>-</li>
-                </ul>
-                <div class="has-lines black">
-                    <a href="https://patreon.com/user?u=83212318&utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator&utm_content=join_link" target="_blank">
-                        Believe in us!
-                    </a>
-                </div>
-            </div>
-            <div class="plan">
-                <h2 class="rela-block half-big-text">Fervant Sponsor</h2>
-                <app-orbitron></app-orbitron>
-                <p class="rela-block"><span style="font-family:'Montserrat'; font-size:30px; line-height: 40px;">
-                    > 50$</span>1 time
-                </p>
-                <app-orbitron></app-orbitron>
-                <ul class="rela-block">
-                    <li>Your Profile will <b>forever</b> referenced on our website</li>
-                    <li>Your Name will be on a Wind Turbine</li>
-                    <li>Lifetime Updates of the project</li>
-                    <li>Write a personal message on turbine</li>
-                    <li>One Call to our Team</li>
-                </ul>
-                <div class="has-lines black">
-                    <a href="https://patreon.com/user?u=83212318&utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator&utm_content=join_link" target="_blank">
-                        Wow, Thanks!!
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-<div class="rela-block testimonials-section">
-<div class="floated left test-left">
-        <app-title>Testimonials</app-title><br>
-</div>
-<div class="floated left test-right">
-    <div class="abs-cent-text">
-        <p class="space">"THERESA I need a testimonial from one of the teacher or so!! Meggings cold-pressed bitters authentic, locavore butcher etsy gastropub semiotics. Banjo mixtape farm-to-table, whatever poutine master cleanse blog godard raw denim williamsburg vice pinterest forage fap. Master cleanse single-origin coffee
-            farm-to-table, flannel VHS viral XOXO bespoke banh mi tumblr umami. Banh mi brunch DIY, umami wayfarers waistcoat chia small batch brooklyn meggings food truck iPhone next level photo booth before they sold out."</p>
-            <h2 class="small-header">Benedict Cumberbatch</h2>
-            <p><em>Occupation stuff here</em></p>
-        </div>
-    </div>
-</div>
-<app-photo-caption></app-photo-caption>
-<div class="rela-block contact-section" id="contactSection">
+<app-parallax 
+    [imageSrc]="'../../../assets/images/farewell/calendar.jpg'"
+    [title]="'Öffnungzeiten'">
+</app-parallax>
 
-    <app-parallax [imageSrc]="'../../../assets/images/backgrounds/windmill-fog.jpeg'">
-        Contact
-    </app-parallax>
+<app-opening-hours></app-opening-hours>
 
     <p class="top-small-text">
         The Windmill Project Team is there for you if you have questions, want to be part of our NGO or if you simply want know more about our mission.
@@ -153,7 +80,6 @@
             </div>
         </div>
     </div>
-</div>
 <div class="rela-block footer-section">
     <h2 class="small-header"><a href="#topSection">
         Back to Top</a></h2>

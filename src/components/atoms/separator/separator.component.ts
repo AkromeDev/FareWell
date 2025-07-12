@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SeparatorComponent implements OnInit {
   @Input() color: "dark" | "light" = "light";
-  @Input() align: "left" |"center" |"right" = "center";
+  @Input() align: "left" | "center" | "right" | "justify" = "center";
   
   constructor() { }
 
