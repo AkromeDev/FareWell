@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -12,18 +12,34 @@ import { RouterModule } from '@angular/router';
 export class HeaderComponent implements OnInit {
   scrolled: boolean = false;
   activeTab: string = 'home';
+  menuOpen: boolean = false;
 
-  protected setActiveTab (tab: string) {
+  constructor(private eRef: ElementRef) {}
+
+  ngOnInit(): void {}
+
+  setActiveTab(tab: string) {
     this.activeTab = tab;
+    this.menuOpen = false;
   }
 
-    @HostListener("window:scroll", [])
-    onWindowScroll() {
-        this.scrolled = window.scrollY > 110;
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    this.scrolled = window.scrollY > 110;
+    if (this.menuOpen) {
+      this.menuOpen = false;
     }
+  }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: Event) {
+    if (this.menuOpen && !this.eRef.nativeElement.contains(event.target)) {
+      this.menuOpen = false;
+    }
   }
 }
+

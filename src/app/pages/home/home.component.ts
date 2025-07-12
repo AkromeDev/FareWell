@@ -27,17 +27,11 @@ export class HomeComponent implements OnInit {
     { label: 'Unsere Preise', link: '/preis', theme: 'dark' },
     { label: 'Jetzt buchen', link: '/buchung', theme: 'dark' }
   ];
-  scrolled: boolean = false;
   activeTab: string = 'home';
 
   protected setActiveTab (tab: string) {
     this.activeTab = tab;
   }
-
-    @HostListener("window:scroll", [])
-    onWindowScroll() {
-        this.scrolled = window.scrollY > 110;
-    }
 
   constructor() { }
 

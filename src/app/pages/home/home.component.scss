@@ -508,15 +508,6 @@ body {
         line-height: 50px;
         letter-spacing: 14px;
     }
-    .nav-logo {
-        left: 4%;
-    }
-    .nav-links-container {
-        right: 4%;
-    }
-    .nav-link{
-        padding: 0 6px;
-    }
     .welcome-section {
         background-size: 800px 580px;
     }
@@ -527,36 +518,6 @@ body {
 
 
 @media only screen and (max-width: 900px) {
-    .nav-bar.scrolled .nav-links-container {
-        top: 30px;
-    }
-    .nav-logo {
-        left: 50px;
-    }
-    .nav-links-container {
-        width: 140px;
-        text-align: right;
-        top: 40px;
-        transform: none;
-        right: 50px;
-        &:hover {
-            .nav-link {
-                transition: 0.4s ease;
-                height: 100%;
-                opacity: 1;
-            }
-        }
-    }
-    .nav-link {
-        display: block;
-        height: 0;
-        opacity: 0;
-        transition: 0s ease;
-        &.active {
-            height: 100%;
-            opacity: 1;
-        }
-    }
     .welcome-text {
         left: 50%;
         width: 80%;
