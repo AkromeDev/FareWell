@@ -1,4 +1,4 @@
-@import 'themes/theme-entry';
+@use 'themes/theme-entry' as *;
 
 .footer-section {
   background-color: $black;

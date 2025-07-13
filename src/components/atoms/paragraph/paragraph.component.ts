@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ParagraphOptions } from 'src/models';
 
 @Component({
   selector: 'app-paragraph',
@@ -10,12 +11,12 @@ import { CommonModule } from '@angular/common';
 })
 export class ParagraphComponent implements OnInit {
   @Input() text: string = '';
-  @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() align: 'left' | 'center' | 'right' | 'justify' = 'left';
-  @Input() weight: 'normal' | 'bold' = 'normal';
-  @Input() color: 'light' | 'dark' = 'dark';
-  @Input() maxWidth: 'narrow' | 'wide' | 'full' = 'full';
-  @Input() type: 'normal' | 'blur' = 'normal';
+  @Input() size: ParagraphOptions.Size = 'medium';
+  @Input() align: ParagraphOptions.Align = 'left';
+  @Input() weight: ParagraphOptions.Weight = 'normal';
+  @Input() color: ParagraphOptions.Color = 'dark';
+  @Input() maxWidth: ParagraphOptions.MaxWidth = 'full';
+  @Input() type: ParagraphOptions.Type = 'normal';
 
   constructor() {}
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { DesignTokens } from 'src/models';
 
 @Component({
     selector: 'app-button',
@@ -10,12 +11,10 @@ import { RouterModule } from '@angular/router';
     styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent implements OnInit {
-  @Input() theme: 'light' | 'dark' = 'light';
+  @Input() theme: DesignTokens.Theme = 'light';
   @Input() link?: string;
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

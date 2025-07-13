@@ -1,4 +1,4 @@
-@import 'themes/theme-entry';
+@use 'themes/theme-entry' as *;
 
 .opening-hours {
   padding: 1.5rem;

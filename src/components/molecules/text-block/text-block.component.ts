@@ -1,41 +1,37 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ParagraphComponent } from "../../atoms/paragraph/paragraph.component";
+import { ParagraphComponent } from '../../atoms/paragraph/paragraph.component';
 import { TitleComponent } from 'src/components/atoms/title/title.component';
-import { SeparatorComponent } from "../../atoms/separator/separator.component";
+import { SeparatorComponent } from '../../atoms/separator/separator.component';
 
-export type BlockTheme = 'dark' | 'light';
-
-export type ParagraphSize = 'small' | 'medium' | 'large';
-export type ParagraphAlign = 'left' | 'center' | 'right' | 'justify';
-export type ParagraphWeight = 'normal' | 'bold';
-export type ParagraphColor = 'light' | 'dark';
-export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
-export type TitleType = 'blur' | 'cornered' | 'simple';
+import {
+  DesignTokens,
+  ParagraphOptions,
+  TitleOptions
+} from 'src/models';
 
 @Component({
-    selector: 'app-text-block',
-    standalone: true,
-    imports: [CommonModule, ParagraphComponent, TitleComponent, SeparatorComponent],
-    templateUrl: './text-block.component.html',
-    styleUrls: ['./text-block.component.scss']
+  selector: 'app-text-block',
+  standalone: true,
+  imports: [CommonModule, ParagraphComponent, TitleComponent, SeparatorComponent],
+  templateUrl: './text-block.component.html',
+  styleUrls: ['./text-block.component.scss']
 })
 export class TextBlockComponent implements OnInit {
-  @Input() theme: BlockTheme = 'dark';
+  @Input() theme: DesignTokens.Theme = 'dark';
   @Input() title: string = '';
-  @Input() titleType: TitleType = 'simple';
+  @Input() titleType: TitleOptions.Type = 'simple';
 
-  @Input() paragraphSize: ParagraphSize = 'medium';
-  @Input() paragraphAlign: ParagraphAlign = 'left';
-  @Input() paragraphWeight: ParagraphWeight = 'normal';
-  @Input() paragraphMaxWidth: ParagraphMaxWidth = 'wide';
+  @Input() paragraphSize: ParagraphOptions.Size = 'medium';
+  @Input() paragraphAlign: ParagraphOptions.Align = 'left';
+  @Input() paragraphWeight: ParagraphOptions.Weight = 'normal';
+  @Input() paragraphMaxWidth: ParagraphOptions.MaxWidth = 'wide';
 
-  get inverseTextColor(): ParagraphColor {
+  get inverseTextColor(): ParagraphOptions.Color {
     return this.theme === 'dark' ? 'light' : 'dark';
   }
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {}
 }
-

@@ -3,8 +3,10 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": [],
+    "baseUrl": "src",
     "paths": {
-      "@models": ["src/app/core/models"]
+      "@models": ["src/app/core/models"],
+      "src/*": ["./*"]
     }
   },
   "files": [
