@@ -5,7 +5,7 @@ import { SeparatorComponent } from 'src/components/atoms/separator/separator.com
 import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { ParagraphComponent } from "../../atoms/paragraph/paragraph.component";
 import { ButtonListComponent } from "../button-list/button-list.component";
-import { ButtonItem } from 'src/app/models/ButtonItem';
+import { ButtonItem } from 'src/models/ButtonItem';
 
 
 @Component({

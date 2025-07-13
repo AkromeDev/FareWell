@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ButtonItem } from 'src/app/models/ButtonItem';
+import { ButtonItem } from 'src/models/ButtonItem';
 import { ImageHeroComponent } from "src/components/molecules/image-hero/image-hero.component";
 
 @Component({

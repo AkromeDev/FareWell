@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLinkActive, RouterLink } from '@angular/router';
-import { DividerComponent } from 'src/app/standaloneComp/divider/divider.component';
-import { TableComponent } from 'src/app/standaloneComp/table/table.component';
+import { DividerComponent } from 'src/components/standaloneComp/divider/divider.component';
+import { TableComponent } from 'src/components/standaloneComp/table/table.component';
 
 @Component({
   standalone: true,

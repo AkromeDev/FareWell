@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CardComponent } from 'src/app/standaloneComp/card/card.component';
-import { DividerComponent } from 'src/app/standaloneComp/divider/divider.component';
+import { CardComponent } from 'src/components/standaloneComp/card/card.component';
+import { DividerComponent } from 'src/components/standaloneComp/divider/divider.component';
 
 @Component({
     selector: 'app-team-description',

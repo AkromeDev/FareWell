@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DividerComponent } from 'src/app/standaloneComp/divider/divider.component';
-import { ModalComponent } from 'src/app/standaloneComp/modal/modal.component';
-import { StatisticComponent } from 'src/app/standaloneComp/statistic/statistic.component';
+import { DividerComponent } from 'src/components/standaloneComp/divider/divider.component';
+import { ModalComponent } from 'src/components/standaloneComp/modal/modal.component';
+import { StatisticComponent } from 'src/components/standaloneComp/statistic/statistic.component';
 import { CommonModule } from '@angular/common';
 
 @Component({

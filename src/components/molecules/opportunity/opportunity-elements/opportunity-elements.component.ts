@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccordionComponent } from 'src/app/standaloneComp/accordion/accordion.component';
+import { AccordionComponent } from 'src/components/standaloneComp/accordion/accordion.component';
 
 @Component({
     selector: 'app-opportunity-elements',
