@@ -1,0 +1,66 @@
+@use 'themes/theme-entry' as *;
+
+.privacy-wrapper {
+  background-color: $light-1;
+  width: 100%;
+
+  .privacy {
+    padding: 6rem 1.5rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: $black;
+
+    h1 {
+      font-size: 2rem;
+      color: $dark-2;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1.5rem;
+
+      li {
+        margin-bottom: 0.5rem;
+        list-style: disc;
+      }
+    }
+
+    strong {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: $dark-1;
+    }
+
+    a {
+      color: $accent-1;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .privacy {
+      padding: 12rem 3rem 3rem;
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

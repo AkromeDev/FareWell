@@ -29,6 +29,21 @@ const routes: Routes = [
       import('../components/pages/values/values.module').then(m => m.ValuesModule)
   },
   {
+    path: 'impressum',
+    loadChildren: () =>
+      import('../components/pages/legal/impressum/impressum.module').then(m => m.ImpressumModule)
+  },
+  {
+  path: 'datenschutz',
+  loadChildren: () =>
+      import('../components/pages/legal/datenschutz/datenschutz.module').then(m => m.DatenschutzModule)
+  },
+  {
+  path: 'agb',
+  loadChildren: () =>
+      import('../components/pages/legal/agb/agb.module').then(m => m.AgbModule)
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent
   },

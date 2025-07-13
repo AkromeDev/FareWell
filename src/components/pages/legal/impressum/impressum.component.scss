@@ -1,0 +1,54 @@
+@use 'themes/theme-entry' as *;
+
+.impressum-wrapper {
+  background-color: $light-1;
+  width: 100%;
+
+  .impressum {
+    padding: 6rem 1.5rem 2rem; // extra top padding for fixed header
+    max-width: 800px;
+    margin: 0 auto;
+    color: $black;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+
+    h1 {
+      font-size: 2rem;
+      color: $dark-2;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+    }
+
+    strong {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: $dark-1;
+    }
+
+    a {
+      color: $accent-1;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .impressum {
+      padding: 12rem 3rem 3rem;
+      h1 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
