@@ -11,7 +11,7 @@ export type ParagraphAlign = 'left' | 'center' | 'right' | 'justify';
 export type ParagraphWeight = 'normal' | 'bold';
 export type ParagraphColor = 'light' | 'dark';
 export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
-export type TitleType = 'soft' | 'cornered' | 'simple';
+export type TitleType = 'blur' | 'cornered' | 'simple';
 
 @Component({
     selector: 'app-text-block',

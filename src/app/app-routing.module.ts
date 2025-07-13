@@ -9,9 +9,9 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'about-us',
+    path: 'behandlung',
     loadChildren: () =>
-      import('../components/pages/about-us/about-us.module').then(m => m.AboutUsModule)
+      import('../components/pages/behandlung/behandlung.module').then(m => m.BehandlungModule)
   },
   {
     path: 'contact',

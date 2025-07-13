@@ -7,11 +7,6 @@ import { ParagraphComponent } from "../../atoms/paragraph/paragraph.component";
 import { ButtonListComponent } from "../button-list/button-list.component";
 import { ButtonItem } from 'src/app/models/ButtonItem';
 
-export type ParagraphSize = 'small' | 'medium' | 'large';
-export type ParagraphAlign = 'left' | 'center' | 'right'| 'justify';
-export type ParagraphWeight = 'normal' | 'bold';
-export type ParagraphColor = 'light' | 'dark';
-export type ParagraphMaxWidth = 'narrow' | 'wide' | 'full';
 
 @Component({
     selector: 'app-image-hero',
@@ -25,15 +20,18 @@ export class ImageHeroComponent implements OnInit {
   @Input() titleLevel: 'h1' | 'h2' | 'h3' = 'h1';
   @Input() titleColor: 'light' | 'dark' = 'light';
   @Input() titleAlign: 'center' | 'left' | 'right' = 'center';
+  @Input() titleType: 'blur' | 'cornered' | 'simple' = 'cornered';
+
   @Input() backgroundImage: string = '';
   @Input() shadow: '' | 'light' | 'dark' = 'dark';
 
   @Input() paragraphText: string = '';
-  @Input() paragraphSize: ParagraphSize = 'medium';
-  @Input() paragraphAlign: ParagraphAlign = 'center';
-  @Input() paragraphWeight: ParagraphWeight = 'normal';
-  @Input() paragraphColor: ParagraphColor = 'light';
-  @Input() paragraphMaxWidth: ParagraphMaxWidth = 'wide';
+  @Input() paragraphSize: 'small' | 'medium' | 'large' = 'medium';
+  @Input() paragraphAlign: 'left' | 'center' | 'right'| 'justify' = 'center';
+  @Input() paragraphWeight: 'normal' | 'bold' = 'normal';
+  @Input() paragraphColor: 'light' | 'dark' = 'light';
+  @Input() paragraphMaxWidth: 'narrow' | 'wide' | 'full' = 'wide';
+  @Input() paragraphType: 'normal' | 'blur' = 'normal';
 
   @Input() buttonList: ButtonItem[] = [];
 

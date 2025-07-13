@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 export class TitleComponent {
   @Input() color: 'light' | 'dark' = 'light';
   @Input() align: 'center' | 'left' | 'right' | 'justify' = 'center';
-  @Input() type: 'soft' | 'cornered' | 'simple' = 'soft';
+  @Input() type: 'blur' | 'cornered' | 'simple' = 'blur';
   @Input() level: 'h1' | 'h2' | 'h3' = 'h1';
   @Input() title: string = '';
 
