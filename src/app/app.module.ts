@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HeaderComponent } from 'src/components/atoms/header/header.component';
+import { FooterComponent } from 'src/components/molecules/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HeaderComponent } from 'src/components/atoms/header/header.component';
     BrowserModule,
     AppRoutingModule,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

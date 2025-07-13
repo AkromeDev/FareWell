@@ -1,0 +1,129 @@
+@import 'themes/theme-entry';
+
+.footer-section {
+  background-color: $black;
+  color: $light-1;
+  text-align: center;
+  padding: 2rem 1rem;
+
+  a {
+    color: $light-1;
+    text-decoration: underline;
+    font-weight: bold;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $accent-1;
+    }
+  }
+
+  a[href^="tel"],
+  a[href^="mailto"],
+  .footer-content .links a {
+    display: inline-flex;
+    align-items: center;
+
+    &::after {
+      content: '↗';
+      font-size: 0.75rem;
+      transform: translateY(-1px);
+    }
+  }
+
+  .footer-top {
+    margin-bottom: 2rem;
+
+    .back-to-top {
+      font-size: 1.2rem;
+      letter-spacing: 0.15rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+  }
+
+  .social-icon {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    background-size: cover !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(0.75);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1);
+      transition: transform 0.3s cubic-bezier(0.3, 0.2, 0, 2.5);
+    }
+
+    &.facebook {
+      background-image: url('https://cdn4.iconfinder.com/data/icons/liu-square-blac/60/facebook-square-social-media-256.png');
+    }
+
+    &.twitter {
+      background-image: url('https://cdn4.iconfinder.com/data/icons/liu-square-blac/60/twitter-square-social-media-256.png');
+    }
+
+    &.instagram {
+      background-image: url('https://cdn4.iconfinder.com/data/icons/liu-square-blac/60/instagram-square-social-media-256.png');
+    }
+
+    &.behance {
+      background-image: url('https://cdn4.iconfinder.com/data/icons/liu-square-blac/60/behance-square-social-media-256.png');
+    }
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+
+      p, a {
+        font-size: 0.95rem;
+        margin: 0;
+      }
+
+      &.links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+
+        a {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  // Optional: leicht größere Schrift auf größeren Bildschirmen
+  @media (min-width: 768px) {
+    .footer-section {
+      padding: 3rem 1rem;
+    }
+
+    .footer-content .column {
+      p, a {
+        font-size: 1rem;
+      }
+    }
+  }
+}

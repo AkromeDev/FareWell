@@ -8,9 +8,9 @@
   width: 100%;
 
   .title {
-    font-size: 1.5rem;
+    font-size: 1.7rem; // leicht größer auf Mobile
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     color: $dark-2;
     text-align: center;
   }
@@ -24,13 +24,13 @@
       display: flex;
       justify-content: center;
       gap: 2rem;
-      padding: 0.75rem 0;
+      padding: 1rem 0; // etwas mehr Luft
       border-bottom: 1px solid rgba($black, 0.05);
-      font-size: 1rem;
+      font-size: 1.1rem; // größer auf Mobile
       text-align: center;
 
       .day, .time {
-        min-width: 120px; // Keeps alignment consistent
+        min-width: 120px;
       }
 
       .day {
@@ -55,13 +55,20 @@
   }
 }
 
-// Responsive for wider screens
+// Desktop-Version
 @media (min-width: 768px) {
   .opening-hours {
-    padding: 2rem 3rem;
-  }
+    padding: 2.5rem 4rem;
 
-  .day-entry {
-    font-size: 1.125rem;
+    .title {
+      font-size: 2rem; // deutlich größerer Titel
+    }
+
+    .hours-list {
+      .day-entry {
+        font-size: 1.3rem; // größer als mobile
+        gap: 4rem; // mehr Abstand auf breiten Screens
+      }
+    }
   }
 }

@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   buttonList: ButtonItem[] = [
     { label: 'Mehr erfahren', link: '/info', theme: 'dark' },
     { label: 'Unsere Preise', link: '/preis', theme: 'dark' },
-    { label: 'Jetzt buchen', link: '/buchung', theme: 'dark' }
+    { label: 'Termin buchen', link: '/buchung', theme: 'dark' }
   ];
   activeTab: string = 'home';
 
