@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, HostListener } from '@angular/core';
-import { OrbitronComponent } from 'src/app/standaloneComp/orbitron/orbitron.component';
 import { ParallaxComponent } from 'src/components/atoms/parallax/parallax.component';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
@@ -10,7 +9,7 @@ import { OpeningHoursComponent } from "src/components/atoms/opening-hours/openin
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [TextBlockComponent, ImageHeroComponent, CommonModule, ParallaxComponent, TextBlockComponent, OrbitronComponent, OpeningHoursComponent],
+    imports: [TextBlockComponent, ImageHeroComponent, CommonModule, ParallaxComponent, TextBlockComponent, OpeningHoursComponent],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
