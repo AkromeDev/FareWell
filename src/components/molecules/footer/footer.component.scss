@@ -66,19 +66,15 @@
     }
 
     &.facebook {
-      background-image: url('https://cdn4.iconfinder.com/data/icons/liu-square-blac/60/facebook-square-social-media-256.png');
-    }
-
-    &.twitter {
-      background-image: url('https://cdn4.iconfinder.com/data/icons/liu-square-blac/60/twitter-square-social-media-256.png');
+      background-image: url('/assets/images/icons/facebook.png');
     }
 
     &.instagram {
-      background-image: url('https://cdn4.iconfinder.com/data/icons/liu-square-blac/60/instagram-square-social-media-256.png');
+      background-image: url('/assets/images/icons/instagram.png');
     }
 
-    &.behance {
-      background-image: url('https://cdn4.iconfinder.com/data/icons/liu-square-blac/60/behance-square-social-media-256.png');
+    &.linkedin {
+      background-image: url('/assets/images/icons/linkedin.png');
     }
   }
 
