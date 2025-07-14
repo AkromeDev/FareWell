@@ -1,22 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
 @import 'semantic-ui-css/semantic.css';
 
-:root {
-  // Color Theme
-    --main-bg-color: rgba(255, 255, 255, 0.163);
-    --seco-bg-color: rgba(23, 94, 171, 0.163);
-    --main-text-color: rgba(23, 94, 171, 0.163);
-
-    --main-bg-notFound: #78909c;
-
-    --white: rgb(255, 255, 255);
-    --black: rgb(0, 0, 0);
-
-
-
-  // Margin don't know if that is really useful or no but let's see!
-    --margin-top: 20px;
-  }
-body {
-    // background-color: var(--main-bg-notFound);
+p a[href] {
+  text-decoration: underline;
 }
