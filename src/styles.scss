@@ -1,5 +1,15 @@
 @import 'semantic-ui-css/semantic.css';
 
-p a[href] {
+a[href]:not(.no-underline) {
   text-decoration: underline;
 }
+
+// a.no-underline {
+//   text-decoration: none !important;
+//   border-bottom: none !important;
+//   box-shadow: none !important;
+//   &::after {
+//     content: none !important;
+//     display: none !important;
+//   }
+// }

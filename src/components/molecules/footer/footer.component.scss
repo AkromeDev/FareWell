@@ -8,25 +8,11 @@
 
   a {
     color: $light-1;
-    text-decoration: underline;
     font-weight: bold;
     transition: color 0.3s;
 
     &:hover {
       color: $accent-1;
-    }
-  }
-
-  a[href^="tel"],
-  a[href^="mailto"],
-  .footer-content .links a {
-    display: inline-flex;
-    align-items: center;
-
-    &::after {
-      content: '↗';
-      font-size: 0.75rem;
-      transform: translateY(-1px);
     }
   }
 
