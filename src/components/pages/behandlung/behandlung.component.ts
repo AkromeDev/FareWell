@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ButtonItem } from 'src/models/ButtonItem';
 import { ImageHeroComponent } from "src/components/molecules/image-hero/image-hero.component";
+import { ImageTextBlockComponent } from "src/components/molecules/image-text-block/image-text-block.component";
+import { ButtonComponent } from "src/components/atoms/button/button.component";
 
 @Component({
   selector: 'app-behandlung',
   standalone: true,
-  imports: [ImageHeroComponent],
+  imports: [ImageHeroComponent, ImageTextBlockComponent, ButtonComponent],
   templateUrl: './behandlung.component.html',
   styleUrl: './behandlung.component.scss'
 })

@@ -1,0 +1,68 @@
+@use 'themes/theme-entry' as *;
+
+.image-text-block {
+  padding: 2rem 1rem;
+
+  &.dark {
+    background-color: $black;
+    color: $light-1;
+  }
+
+  &.light {
+    background-color: $white;
+    color: $dark-2;
+  }
+
+  &.custom {
+    background-color: $light-1;
+    color: $dark-2;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+
+    .image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-size: cover;
+      background-position: center;
+      border-radius: 0.5rem;
+      overflow: hidden;
+
+      &.resize {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: $light-1;
+      }
+    }
+
+    .paragraph {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .content {
+      flex-direction: row;
+      align-items: center;
+
+      &.reverse {
+        flex-direction: row-reverse;
+      }
+
+      .image {
+        flex: 1;
+        height: auto;
+      }
+
+      .paragraph {
+        flex: 1;
+        padding: 0 1rem;
+      }
+    }
+  }
+}
