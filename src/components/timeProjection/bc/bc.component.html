@@ -1,4 +1,9 @@
-<app-body-selector (partSelected)="onPartSelected($event)"></app-body-selector>
-<app-time-calculator
-  [selectedPart]="selectedPart"
-></app-time-calculator>
+<div class="bc-layout">
+  <div class="bc-left" *ngIf="!isMobile">
+    <app-body-selector (partSelected)="onPartSelected($event)"></app-body-selector>
+  </div>
+
+  <div class="bc-right">
+    <app-time-calculator [selectedPart]="selectedPart"></app-time-calculator>
+  </div>
+</div>

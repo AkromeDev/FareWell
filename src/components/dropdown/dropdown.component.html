@@ -1,0 +1,13 @@
+<div class="farewell-dropdown" [ngClass]="theme" (clickOutside)="close()">
+    <button class="dropdown-toggle" (click)="toggle()">
+        <span class="label">{{ selectedLabel || 'Wähle...' }}</span>
+        <span class="arrow"></span>
+    </button>
+
+
+    <ul class="dropdown-menu" *ngIf="open">
+        <li *ngFor="let option of options" [class.selected]="option.value === value" (click)="select(option)">
+            {{ option.label }}
+        </li>
+    </ul>
+</div>

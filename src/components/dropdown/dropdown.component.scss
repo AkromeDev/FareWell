@@ -1,0 +1,105 @@
+@use 'themes/theme-entry' as *;
+@use 'sass:color';
+
+.farewell-dropdown {
+  position: relative;
+  font-family: $font, sans-serif;
+  width: 100%;
+  max-width: 300px;
+
+  .dropdown-toggle {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid;
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    position: relative;
+    font-weight: 550;
+    font-size: 1.05rem;
+    display: flex;                  
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .label {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .arrow {
+      position: absolute;
+      right: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid currentColor;
+    }
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: calc(55% + 0.25rem);
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: inherit;
+    border: 1px solid;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+
+    li {
+      padding: 0.75rem 1.25rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+
+      &:hover {
+        filter: brightness(1.1);
+      }
+
+      &.selected {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &.light {
+    .dropdown-toggle,
+    .dropdown-menu {
+      background-color: rgba($light-1, 0.6);
+      border-color: color.adjust($light-2, $lightness: -15%);
+      color: $dark-2;
+    }
+
+    .arrow {
+      color: $dark-2;
+    }
+  }
+
+  &.dark {
+    .dropdown-toggle,
+    .dropdown-menu {
+      background-color: rgba($dark-2, 0.4);
+      border-color: color.adjust($dark-2, $lightness: 15%);
+      color: $light-1;
+    }
+
+    .arrow {
+      color: $light-1;
+    }
+  }
+}

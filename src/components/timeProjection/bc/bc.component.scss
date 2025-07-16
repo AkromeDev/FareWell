@@ -1,0 +1,43 @@
+@use 'themes/theme-entry' as *;
+
+.bc-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+  }
+}
+
+.bc-left,
+.bc-right {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+}
+
+.bc-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bc-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $light-1;
+
+  @media (min-width: 768px) {
+    width: 50vw;
+    min-height: 80vh;
+  }
+}
+
