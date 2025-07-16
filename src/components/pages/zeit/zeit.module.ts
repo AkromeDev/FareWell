@@ -6,11 +6,11 @@ const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./team.component').then(m => m.TeamComponent)
+      import('./zeit.component').then(m => m.ZeitComponent)
   }
 ];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class TeamModule {}
+export class ZeitModule {}

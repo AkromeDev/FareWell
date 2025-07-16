@@ -1,0 +1,37 @@
+<div class="body-container">
+  <img src="/assets/images/people/proportions.png" alt="Body Image" class="body-image" />
+
+  <!-- Transparent clickable areas -->
+  <div class="clickable head" (click)="selectPart('head')"></div>
+
+  <div class="clickable-group shoulders-group" (click)="selectPart('shoulders')">
+    <div class="clickable shoulder-zone left-shoulder"></div>
+    <div class="clickable shoulder-zone right-shoulder"></div>
+  </div>
+
+
+  <div class="clickable-group arms-group" (click)="selectPart('arms')">
+    <div class="clickable arm-zone left-upper-arm"></div>
+    <div class="clickable arm-zone right-upper-arm"></div>
+    <div class="clickable arm-zone left-forearm"></div>
+    <div class="clickable arm-zone right-forearm"></div>
+  </div>
+
+
+  <div class="clickable-group armpits-group" (click)="selectPart('armpits')">
+    <div class="clickable armpit-zone left-armpit"></div>
+    <div class="clickable armpit-zone right-armpit"></div>
+  </div>
+
+  <div class="clickable torso" (click)="selectPart('torso')"></div>
+  <div class="clickable stomach" (click)="selectPart('stomach')"></div>
+  <div class="clickable bikini" (click)="selectPart('bikini')"></div>
+
+  <div class="clickable-group legs-group" (click)="selectPart('legs')">
+    <div class="clickable leg-zone left-inner"></div>
+    <div class="clickable leg-zone right-inner"></div>
+    <div class="clickable leg-zone left-outer"></div>
+    <div class="clickable leg-zone right-outer"></div>
+  </div>
+
+</div>

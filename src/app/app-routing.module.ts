@@ -19,9 +19,9 @@ const routes: Routes = [
       import('../components/pages/contact/contact.module').then(m => m.ContactModule)
   },
   {
-    path: 'team',
+    path: 'zeit',
     loadChildren: () =>
-      import('../components/pages/team/team.module').then(m => m.TeamModule)
+      import('../components/pages/zeit/zeit.module').then(m => m.ZeitModule)
   },
   {
     path: 'values',
