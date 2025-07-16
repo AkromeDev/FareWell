@@ -1,0 +1,35 @@
+<div *ngIf="selectedPart">
+  <h2>{{ selectedPart.label }}</h2>
+
+  <p><strong>Ø Anteil der Haare in der Anagenphase:</strong> {{ selectedPart.anagenPercentage }}%</p>
+
+  <label>
+    Deine Körpergröße (in cm):
+    <input type="number" [(ngModel)]="userSizeCm" (input)="calculateTime()" />
+  </label>
+
+  <div>
+    <p><strong>Wie dicht sind deine Haare an dieser Stelle?</strong></p>
+    <button [class.active]="density === 'low'" (click)="setDensity('low')">Gering</button>
+    <button [class.active]="density === 'medium'" (click)="setDensity('medium')">Mittel</button>
+    <button [class.active]="density === 'high'" (click)="setDensity('high')">Hoch</button>
+  </div>
+
+  <div>
+    <p><strong>Behandlungsgeschwindigkeit:</strong></p>
+    <select [(ngModel)]="speedMultiplier" (change)="calculateTime()">
+      <option *ngFor="let factor of [1,2,3,4]" [value]="factor">x{{ factor }} (Anzahl der Elektrologist:innen gleichzeitig)</option>
+    </select>
+  </div>
+
+  <button (click)="calculateTime()">Zeit berechnen</button>
+
+  <div *ngIf="totalHours > 0">
+    <p><strong>Behandlungsdauer pro Sitzung:</strong> {{ hoursPerSession }} Stunden</p>
+    <p><strong>Gesamtdauer:</strong> {{ totalHours }} Stunden</p>
+    <p><strong>Geplante Sitzungen:</strong></p>
+    <ul>
+      <li *ngFor="let date of sessionDates">{{ date | date: 'fullDate' }}</li>
+    </ul>
+  </div>
+</div>

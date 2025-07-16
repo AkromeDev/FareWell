@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BodySelectorComponent } from "src/components/timeProjection/body-selector/body-selector.component";
-import { BodyPart } from 'src/components/timeProjection/body-selector/body-part.model';
+import { BcComponent } from "src/components/timeProjection/bc/bc.component";
 
 @Component({
     selector: 'app-zeit',
     standalone: true,
-    imports: [CommonModule, BodySelectorComponent],
+    imports: [CommonModule, BcComponent],
     templateUrl: './zeit.component.html',
     styleUrls: ['./zeit.component.scss']
 })
@@ -16,9 +15,4 @@ export class ZeitComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  onBodyPartChange(part: BodyPart) {
-  console.log('Clicked:', part);
-}
-
 }
