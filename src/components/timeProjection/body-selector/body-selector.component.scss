@@ -10,71 +10,71 @@
     width: 100%;
     height: auto;
     display: block;
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
   }
 
-  .clickable {
+  .clickable,
+  .clickable-group > div {
     position: absolute;
+    z-index: 1; // BELOW the image
     cursor: pointer;
-    transition: background-color 0.2s;
-    &:hover,
-    .legs-group:hover & {
-      background-color: rgba($accent-1, 0.3);
-    }
-  }
-
-.legs-group {
-  .leg-zone {
-    position: absolute;
-    transform-origin: center center;
-    transition: background-color 0.2s;
-    cursor: pointer;
+    transition: box-shadow 0.3s ease;
     border-radius: 2rem;
-  }
 
-  // Group hover applies to all zones
-  &:hover .leg-zone {
-    background-color: rgba($accent-1, 0.3);
-  }
-
-  // Inner left leg
-  .left-inner {
-    left: 42%;
-    top: 56%;
-    width: 6%;
-    height: 30%;
-  }
-
-  // Inner right leg
-  .right-inner {
-    left: 49%;
-    top: 56%;
-    width: 6%;
-    height: 30%;
-  }
-
-  // Outer left leg (rotated)
-  .left-outer {
-    left: 33%;
-    top: 54%;
-    width: 5%;
-    height: 30%;
-    transform: rotate(25deg);
-  }
-
-  // Outer right leg (rotated)
-  .right-outer {
-    left: 58%;
-    top: 54%;
-    width: 5%;
-    height: 30%;
-    transform: rotate(-25deg);
+    &:hover {
+      box-shadow: 0 0 20px 8px rgba($accent-1, 0.5);
+    }
   }
 }
 
+  .legs-group {
+    .leg-zone {
+      position: absolute;
+      transform-origin: center center;
+      transition: background-color 0.2s;
+      cursor: pointer;
+      border-radius: 2rem;
+    }
 
+    // Remove color overlay and just rely on shadow
+    &:hover .leg-zone {
+      background-color: transparent;
+    }
 
+    .left-inner {
+      left: 42%;
+      top: 56%;
+      width: 6%;
+      height: 30%;
+    }
 
-  // Other body parts (unchanged but example below)
+    .right-inner {
+      left: 49%;
+      top: 56%;
+      width: 6%;
+      height: 30%;
+    }
+
+    .left-outer {
+      left: 33%;
+      top: 54%;
+      width: 5%;
+      height: 30%;
+      transform: rotate(25deg);
+    }
+
+    .right-outer {
+      left: 58%;
+      top: 54%;
+      width: 5%;
+      height: 30%;
+      transform: rotate(-25deg);
+    }
+  }
+
+  // Other parts remain, example below:
   .bikini {
     left: 41%;
     top: 46%;
@@ -96,117 +96,110 @@
     height: 8%;
   }
 
- .armpits-group {
-  .armpit-zone {
-    position: absolute;
-    transition: background-color 0.2s;
-    cursor: pointer;
+  .armpits-group {
+    .armpit-zone {
+      position: absolute;
+      transition: background-color 0.2s;
+      cursor: pointer;
 
-    .armpits-group:hover & {
-      background-color: rgba($accent-1, 0.3);
+      .armpits-group:hover & {
+        background-color: transparent;
+      }
+    }
+
+    .left-armpit {
+      left: 38%;
+      top: 29%;
+      width: 6%;
+      height: 8%;
+    }
+
+    .right-armpit {
+      left: 56%;
+      top: 29%;
+      width: 6%;
+      height: 8%;
     }
   }
 
-  .left-armpit {
-    left: 38%;
-    top: 29%;
-    width: 6%;
-    height: 8%;
+  .shoulders-group {
+    .shoulder-zone {
+      position: absolute;
+      transition: background-color 0.2s;
+      cursor: pointer;
+      border-radius: 2rem;
+    }
+
+    &:hover .shoulder-zone {
+      background-color: transparent;
+    }
+
+    .left-shoulder {
+      left: 38%;
+      top: 25%;
+      width: 7%;
+      height: 4%;
+    }
+
+    .right-shoulder {
+      left: 54.5%;
+      top: 25%;
+      width: 7%;
+      height: 4%;
+    }
   }
 
-  .right-armpit {
-    left: 56%;
-    top: 29%;
-    width: 6%;
-    height: 8%;
+  .arms-group {
+    .arm-zone {
+      position: absolute;
+      transform-origin: center center;
+      transition: background-color 0.2s;
+      cursor: pointer;
+      border-radius: 2rem;
+    }
+
+    &:hover .arm-zone {
+      background-color: transparent;
+    }
+
+    .left-upper-arm {
+      left: 26%;
+      top: 15%;
+      width: 5%;
+      height: 20%;
+      transform: rotate(111deg);
+    }
+
+    .right-upper-arm {
+      left: 68.5%;
+      top: 15%;
+      width: 5%;
+      height: 20%;
+      transform: rotate(-111deg);
+    }
+
+    .left-forearm {
+      left: 26%;
+      top: 22%;
+      width: 5%;
+      height: 18%;
+      transform: rotate(90deg);
+    }
+
+    .right-forearm {
+      left: 69%;
+      top: 22%;
+      width: 5%;
+      height: 18%;
+      transform: rotate(-90deg);
+    }
   }
-}
-
-
-.shoulders-group {
-  .shoulder-zone {
-    position: absolute;
-    transition: background-color 0.2s;
-    cursor: pointer;
-    border-radius: 2rem;
-  }
-
-  &:hover .shoulder-zone {
-    background-color: rgba($accent-1, 0.3);
-  }
-
-  .left-shoulder {
-    left: 38%;
-    top: 25%;
-    width: 7%;
-    height: 4%;
-  }
-
-  .right-shoulder {
-    left: 54.5%;
-    top: 25%;
-    width: 7%;
-    height: 4%;
-  }
-}
-
-
-.arms-group {
-  .arm-zone {
-    position: absolute;
-    transform-origin: center center;
-    transition: background-color 0.2s;
-    cursor: pointer;
-    border-radius: 2rem;
-  }
-
-  &:hover .arm-zone {
-    background-color: rgba($accent-1, 0.3);
-  }
-
-  // Left upper arm (rotated outward)
-  .left-upper-arm {
-    left: 26%;
-    top: 15%;
-    width: 5%;
-    height: 20%;
-    transform: rotate(111deg);
-  }
-
-  // Right upper arm (rotated outward)
-  .right-upper-arm {
-    left: 68.5%;
-    top: 15%;
-    width: 5%;
-    height: 20%;
-    transform: rotate(-111deg);
-  }
-
-  // Left forearm (angled slightly inward)
-  .left-forearm {
-    left: 26%;
-    top: 22%;
-    width: 5%;
-    height: 18%;
-    transform: rotate(90deg);
-  }
-
-  // Right forearm (angled slightly inward)
-  .right-forearm {
-    left: 69%;
-    top: 22%;
-    width: 5%;
-    height: 18%;
-    transform: rotate(-90deg);
-  }
-}
 
   .head {
     left: 44%;
     top: 17%;
     width: 11%;
     height: 12%;
-
     border-radius: 2rem;
   }
-}
+
