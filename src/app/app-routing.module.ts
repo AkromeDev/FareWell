@@ -14,9 +14,9 @@ const routes: Routes = [
       import('../components/pages/behandlung/behandlung.module').then(m => m.BehandlungModule)
   },
   {
-    path: 'contact',
+    path: 'price',
     loadChildren: () =>
-      import('../components/pages/contact/contact.module').then(m => m.ContactModule)
+      import('../components/pages/price/price.module').then(m => m.PriceModule)
   },
   {
     path: 'zeit',

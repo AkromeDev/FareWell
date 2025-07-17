@@ -6,11 +6,11 @@ const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./contact.component').then(m => m.ContactComponent)
+      import('./price.component').then(m => m.PriceComponent)
   }
 ];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class ContactModule {}
+export class PriceModule {}

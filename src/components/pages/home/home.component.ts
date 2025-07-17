@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   `;
   buttonList: ButtonItem[] = [
     { label: 'Mehr erfahren', link: '/behandlung', theme: 'dark' },
-    { label: 'Unsere Preise', link: '/preis', theme: 'dark' },
+    { label: 'Unsere Preise', link: '/price', theme: 'dark' },
     { label: 'Termin buchen', link: '/buchung', theme: 'dark' }
   ];
   activeTab: string = 'home';
