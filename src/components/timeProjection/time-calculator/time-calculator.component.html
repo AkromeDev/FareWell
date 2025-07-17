@@ -12,34 +12,46 @@
   </div>
 
   <p class="anagen"><strong>Ø Anteil der Haare in der Anagenphase:</strong> {{ selectedPart.anagenPercentage }}%</p>
-
+  
   <label class="label">
     Deine Körpergröße (in cm):
     <input class="input" type="number" [(ngModel)]="userSizeCm" (input)="calculateTime()" />
   </label>
-
+  
   <div class="density-group">
     <p><strong>Wie dicht sind deine Haare an dieser Stelle?</strong></p>
     <button [class.active]="density === 'low'" (click)="setDensity('low')">Gering</button>
     <button [class.active]="density === 'medium'" (click)="setDensity('medium')">Mittel</button>
     <button [class.active]="density === 'high'" (click)="setDensity('high')">Hoch</button>
   </div>
-
+  
   <div class="speed-dropdown">
     <app-dropdown
-      [(ngModel)]="speedMultiplier"
-      [options]="speedOptions"
-      [theme]="'light'"
-      (ngModelChange)="calculateTime()"
+    [(ngModel)]="speedMultiplier"
+    [options]="speedOptions"
+    [theme]="'light'"
+    (ngModelChange)="calculateTime()"
     ></app-dropdown>
   </div>
-
+  
   <div class="results" *ngIf="totalHours > 0">
-    <p><strong>Behandlungsdauer pro Sitzung:</strong> {{ hoursPerSession }} Stunden</p>
+    
+    <p><strong>Anzahl an Sitzungen:</strong> {{ recommendedSessions }}</p>
     <p><strong>Gesamtdauer:</strong> {{ totalHours }} Stunden</p>
     <p><strong>Geplante Sitzungen:</strong></p>
     <ul>
-      <li *ngFor="let date of sessionDates">{{ date | date: 'fullDate' }}</li>
-    </ul>
+<p><strong>Wenn du nächste Woche Mittwoch startest, <br>dann wären dies deine Wochen:</strong></p>
+<ul>
+  <li *ngFor="let session of sessionPlan">
+    Woche des {{ session.date | date: 'dd.MM.yyyy' }}:
+    <ng-container *ngIf="session.label === 'Clean-up'">
+      Clean-up <strong>{{ roundToQuarter(session.hours) }} Stunden</strong>
+    </ng-container>
+    <ng-container *ngIf="!session.label">
+      <strong>{{ roundToQuarter(session.hours) }} Stunden</strong>
+    </ng-container>
+  </li>
+</ul>
+</ul>
   </div>
 </section>

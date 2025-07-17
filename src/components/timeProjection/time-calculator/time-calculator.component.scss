@@ -112,6 +112,26 @@
   }
 }
 
+.cleanup-note {
+  font-style: italic;
+  color: $dark-1;
+}
+
+.results ul {
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+
+  li {
+    margin-bottom: 0.25rem;
+    line-height: 1.6;
+  }
+
+  strong {
+    color: $dark-1;
+  }
+}
+
+
 // Desktop
 @media (min-width: 768px) {
   .time-calculator {

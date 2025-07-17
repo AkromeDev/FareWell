@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BcComponent } from "src/components/timeProjection/bc/bc.component";
+import { ImageTextBlockComponent } from "src/components/molecules/image-text-block/image-text-block.component";
 
 @Component({
     selector: 'app-zeit',
     standalone: true,
-    imports: [CommonModule, BcComponent],
+    imports: [CommonModule, BcComponent, ImageTextBlockComponent],
     templateUrl: './zeit.component.html',
     styleUrls: ['./zeit.component.scss']
 })

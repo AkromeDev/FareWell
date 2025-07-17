@@ -1,0 +1,35 @@
+@use 'themes/theme-entry' as *;
+
+h3 {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    color: $accent-1;
+}
+
+ul {
+    padding-left: 1.2rem;
+    margin-bottom: 1rem;
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.example-box {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+
+    .note {
+        font-style: italic;
+        color: mix($font-light, $white, 60%); // balanced tone
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+    }
+
+}
+
+strong {
+    font-weight: 600;
+    color: $light-2;
+}
