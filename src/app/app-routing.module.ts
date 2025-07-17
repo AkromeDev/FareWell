@@ -24,9 +24,9 @@ const routes: Routes = [
       import('../components/pages/zeit/zeit.module').then(m => m.ZeitModule)
   },
   {
-    path: 'values',
+    path: 'historie',
     loadChildren: () =>
-      import('../components/pages/values/values.module').then(m => m.ValuesModule)
+      import('../components/pages/historie/historie.module').then(m => m.HistorieModule)
   },
   {
     path: 'impressum',

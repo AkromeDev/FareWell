@@ -1,5 +1,5 @@
 <div [ngClass]="{scrolled: scrolled}" class="nav-bar">
-  <div class="nav-logo">FareWell</div>
+  <a [routerLink]="'/'" class="nav-logo" (click)="setActiveTab('home')">FareWell</a>
 
   <!-- Burger Icon -->
   <div class="burger" (click)="toggleMenu()">
@@ -32,18 +32,11 @@
       >Elektrolyse-Zeitberechnung</a
     >
     <a
-      [routerLink]="'/values'"
+      [routerLink]="'/historie'"
       routerLinkActive="active"
-      (click)="setActiveTab('value')"
+      (click)="setActiveTab('historie')"
       class="nav-link"
-      >Values</a
-    >
-    <a
-      [routerLink]="'/support'"
-      routerLinkActive="active"
-      (click)="setActiveTab('support')"
-      class="nav-link"
-      >Support Us</a
+      >Historie</a
     >
     <a
       [routerLink]="'/contact'"

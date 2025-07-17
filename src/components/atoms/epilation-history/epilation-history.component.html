@@ -1,0 +1,10 @@
+<div class="epilation-history">
+  <h2 class="title">Geschichte der Elektrolyse</h2>
+
+  <ul class="history-list">
+    <li class="history-entry" *ngFor="let event of events">
+      <span class="year">{{ event.year }}</span>
+      <span class="description">{{ event.description }}</span>
+    </li>
+  </ul>
+</div>

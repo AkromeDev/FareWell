@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   Willkommen in eurer neuen permanenten Freiheit.
   `;
   buttonList: ButtonItem[] = [
-    { label: 'Mehr erfahren', link: '/info', theme: 'dark' },
+    { label: 'Mehr erfahren', link: '/behandlung', theme: 'dark' },
     { label: 'Unsere Preise', link: '/preis', theme: 'dark' },
     { label: 'Termin buchen', link: '/buchung', theme: 'dark' }
   ];

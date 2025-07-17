@@ -1,0 +1,77 @@
+@use 'themes/theme-entry' as *;
+
+.epilation-history {
+  padding: 1.5rem;
+  background-color: $light-1;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba($black, 0.1);
+  width: 100%;
+
+  .title {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: $dark-2;
+    text-align: center;
+  }
+
+  .history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .history-entry {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba($black, 0.05);
+      font-size: 1.1rem;
+      text-align: center;
+
+      .year {
+        font-weight: 600;
+        color: $accent-1;
+        margin-bottom: 0.3rem;
+      }
+
+      .description {
+        color: $dark-1;
+        max-width: 700px;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .epilation-history {
+    padding: 2.5rem 4rem;
+
+    .title {
+      font-size: 2rem;
+    }
+
+    .history-list {
+      .history-entry {
+        font-size: 1.3rem;
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 3rem;
+
+        .year {
+          min-width: 80px;
+          text-align: right;
+        }
+
+        .description {
+          text-align: left;
+        }
+      }
+    }
+  }
+}
