@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --configuration production && mv docs/browser/* docs/ && rm -rf docs/browser && git add docs && git commit -m \"fix: move files to correct GitHub Pages root\" && git push"
   },
   "private": true,
   "dependencies": {

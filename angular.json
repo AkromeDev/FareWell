@@ -57,7 +57,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/farewell/"
+              "baseHref": "/FareWell/"
             },
             "development": {
               "optimization": false,
