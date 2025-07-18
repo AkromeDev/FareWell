@@ -1,4 +1,4 @@
-import{b as u}from"./chunk-4I6YNH7B.js";import{a as g}from"./chunk-NL4BLGA7.js";import"./chunk-IYTBI67I.js";import"./chunk-KHCRVYFU.js";import{Ba as m,Ua as r,Va as t,Wa as n,Xa as i,mb as e,ra as a}from"./chunk-6RZDGDLN.js";var b=(()=>{let l=class l{constructor(){this.paragraphText=`
+import{b as u}from"./chunk-NE3QF2TI.js";import{a as g}from"./chunk-TMSYQSJC.js";import"./chunk-F3RW723J.js";import"./chunk-HVGXEG4H.js";import{Fa as m,Ua as r,Va as t,Wa as n,Xa as i,mb as e,va as a}from"./chunk-H244PCOM.js";var b=(()=>{let l=class l{constructor(){this.paragraphText=`
     Die Behandlung ist eine medizinisch anerkannte Methode zur permanenten Haarentfernung.
     Sie ist f\xFCr alle Hauttypen und Haarfarben geeignet und bietet eine sichere, effektive L\xF6sung f\xFCr unerw\xFCnschte Haare.
     
