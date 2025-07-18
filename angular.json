@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "TheWindmillProject": {
+    "FareWell": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -18,7 +18,7 @@
           "builder": "@angular/build:application",
           "options": {
             "outputPath": {
-              "base": "dist/the-windmill-project"
+              "base": "farewell"
             },
             "index": "src/index.html",
             "polyfills": [
@@ -74,10 +74,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "TheWindmillProject:build:production"
+              "buildTarget": "FareWell:build:production"
             },
             "development": {
-              "buildTarget": "TheWindmillProject:build:development"
+              "buildTarget": "FareWell:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
           "options": {
-            "buildTarget": "TheWindmillProject:build"
+            "buildTarget": "FareWell:build"
           }
         },
         "test": {

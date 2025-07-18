@@ -1,0 +1,1 @@
+import{f as n}from"./chunk-KHCRVYFU.js";import{Ca as r,P as i,_b as e}from"./chunk-6RZDGDLN.js";var s=[{path:"",loadComponent:()=>import("./chunk-SKYOWNT6.js").then(o=>o.PriceComponent)}],d=(()=>{let t=class t{};t.\u0275fac=function(m){return new(m||t)},t.\u0275mod=r({type:t}),t.\u0275inj=i({imports:[e,n.forChild(s)]});let o=t;return o})();export{d as PriceModule};
