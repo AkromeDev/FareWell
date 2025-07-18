@@ -34,8 +34,7 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
-            },
-            "browser": "src/main.ts"
+            }
           },
           "configurations": {
             "production": {
