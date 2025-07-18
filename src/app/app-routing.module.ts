@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from '../components/pages/home/home.component';
-import { NotFoundComponent } from '../components/pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    loadComponent: () =>
+      import('../components/pages/home/home.component').then(m => m.HomeComponent)
   },
   {
     path: 'behandlung',
@@ -34,18 +33,19 @@ const routes: Routes = [
       import('../components/pages/legal/impressum/impressum.module').then(m => m.ImpressumModule)
   },
   {
-  path: 'datenschutz',
-  loadChildren: () =>
+    path: 'datenschutz',
+    loadChildren: () =>
       import('../components/pages/legal/datenschutz/datenschutz.module').then(m => m.DatenschutzModule)
   },
   {
-  path: 'agb',
-  loadChildren: () =>
+    path: 'agb',
+    loadChildren: () =>
       import('../components/pages/legal/agb/agb.module').then(m => m.AgbModule)
   },
   {
     path: 'not-found',
-    component: NotFoundComponent
+    loadComponent: () =>
+      import('../components/pages/not-found/not-found.component').then(m => m.NotFoundComponent)
   },
   {
     path: '**',
@@ -57,4 +57,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
