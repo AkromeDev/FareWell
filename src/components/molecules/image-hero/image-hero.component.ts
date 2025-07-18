@@ -11,7 +11,6 @@ import {
   TitleOptions,
   ParagraphOptions,
   ShadowOptions,
-  DesignTokens
 } from 'src/models';
 
 @Component({

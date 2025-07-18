@@ -1,9 +1,11 @@
-<div [ngStyle]="{'background-image': getUrl()}" class="plan-parallax">
+<ng-container *ngIf="isVisible">
+  <div [ngStyle]="{'background-image': getUrl()}" class="plan-parallax">
     <app-title 
-    [title]='title'
-    [align]="'center'"
-    [type]="'blur'"
-    [color]="'light'"
-    [level]="'h1'">
+      [title]="title"
+      [align]="'center'"
+      [type]="'blur'"
+      [color]="'light'"
+      [level]="'h1'">
     </app-title>
-</div>
+  </div>
+</ng-container>
