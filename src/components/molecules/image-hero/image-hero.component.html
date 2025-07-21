@@ -1,7 +1,9 @@
 <app-image-section
   [backgroundImage]="backgroundImage"
   [shadow]="computedShadow"
-  class="hero-container">
+  class="hero-container"
+  [class]="'margin-top-' + margin"
+  >
 
   <div class="hero-content">
     <app-title

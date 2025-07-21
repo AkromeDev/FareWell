@@ -1,36 +1,66 @@
 @use 'themes/theme-entry' as *;
 
 .hero-container {
-  min-height: 100vh;
+  min-height: 85vh;
   height: auto;
-  overflow: visible; 
+  overflow: visible;
   display: block;
 
   .hero-content {
     max-width: 95%;
     color: white;
     padding: 0 1rem;
-    margin-top: 20vh;
+  }
 
-    app-title {
-      display: block;
-      margin-top: 10rem;
-      margin-bottom: 0.5rem;
+  // 👇 Mobile-first margin-top classes
+  &.margin-top-small .hero-content {
+    margin-top: 3vh;
+  }
+
+  &.margin-top-medium .hero-content {
+    margin-top: 5vh;
+  }
+
+  &.margin-top-large .hero-content {
+    margin-top: 20vh;
+  }
+
+  // 📱 Mobile title spacing (optional override)
+  app-title {
+    display: block;
+    margin-top: 10rem;
+    margin-bottom: 0.5rem;
+  }
+
+  // 📲 Tablet: 600px to 1024px
+  @media (min-width: 600px) and (max-width: 1024px) {
+    &.margin-top-small .hero-content {
+      margin-top: 12vh;
+    }
+
+    &.margin-top-medium .hero-content {
+      margin-top: 22vh;
+    }
+
+    &.margin-top-large .hero-content {
+      margin-top: 32vh;
     }
   }
 
-// Tablets (e.g., iPads in portrait)
-@media (min-width: 600px) and (max-width: 1024px) {
-  .hero-content {
-    margin-top: 15vh;
-  }
-}
+  // 🖥 Desktop: 1025px and above
+  @media (min-width: 1025px) {
+    &.margin-top-small .hero-content {
+      margin-top: 15vh;
+    }
 
-// Desktops and large screens
-@media (min-width: 1025px) {
-  .hero-content {
-    margin-top: 30vh;
-  }
+    &.margin-top-medium .hero-content {
+      margin-top: 25vh;
+    }
+
+    &.margin-top-large .hero-content {
+      margin-top: 35vh;
+    }
+
     app-title {
       margin-top: 2rem;
       margin-bottom: 1rem;
@@ -41,4 +71,3 @@
     }
   }
 }
-

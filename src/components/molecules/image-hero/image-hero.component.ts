@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageSectionComponent } from 'src/components/atoms/image-section/image-section.component';
-import { SeparatorComponent } from 'src/components/atoms/separator/separator.component';
 import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { ParagraphComponent } from '../../atoms/paragraph/paragraph.component';
 import { ButtonListComponent } from '../button-list/button-list.component';
@@ -11,6 +10,7 @@ import {
   TitleOptions,
   ParagraphOptions,
   ShadowOptions,
+  DesignTokens,
 } from 'src/models';
 
 @Component({
@@ -20,7 +20,6 @@ import {
     TitleComponent,
     CommonModule,
     ImageSectionComponent,
-    SeparatorComponent,
     ParagraphComponent,
     ButtonListComponent
   ],
@@ -36,6 +35,7 @@ export class ImageHeroComponent implements OnInit {
 
   @Input() backgroundImage: string = '';
   @Input() shadow: ShadowOptions.Raw = 'dark';
+  @Input() margin: DesignTokens.MarginTop = 'medium';
 
   @Input() paragraphText: string = '';
   @Input() paragraphSize: ParagraphOptions.Size = 'medium';

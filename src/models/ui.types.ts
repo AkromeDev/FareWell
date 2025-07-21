@@ -2,6 +2,7 @@ export namespace DesignTokens {
   export type Theme = 'dark' | 'light';
   export type Color = 'light' | 'dark';
   export type Align = 'left' | 'center' | 'right' | 'justify';
+  export type MarginTop = 'small' | 'medium' | 'large';
 }
 
 export namespace ShadowOptions {
