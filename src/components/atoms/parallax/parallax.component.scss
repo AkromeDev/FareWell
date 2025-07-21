@@ -1,16 +1,22 @@
 @use 'themes/theme-entry' as *;
 
 .plan-parallax {
-    background-size: cover;
-    height: 60vh;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  background-image: url('/assets/images/farewell/armpit.png');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 60vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+    background-size: 130% auto;           
+    background-position: top center;
+    height: 45vh;
   }
-  
+}

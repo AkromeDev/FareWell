@@ -7,7 +7,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; // ⭐ Parallax effect
+  background-attachment: fixed; // ✅ Parallax on desktop
   overflow: hidden;
 
   .overlay {
@@ -36,6 +36,12 @@
     text-align: center;
     color: $white;
   }
-}
 
-  
+  // 📱 Mobile fallback: disable parallax and zoom out
+  @media (max-width: 768px) {
+    background-attachment: scroll;       // ❌ disables buggy parallax
+    background-size: 300% auto;     
+    background-position: top center;
+    min-height: 70vh;                  
+  }
+}
