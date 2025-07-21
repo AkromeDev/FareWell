@@ -1,4 +1,4 @@
-import{b as o}from"./chunk-NE3QF2TI.js";import"./chunk-F3RW723J.js";import"./chunk-HVGXEG4H.js";import{Fa as t,Ua as p,Xa as n,Yb as i}from"./chunk-H244PCOM.js";var m=(()=>{let e=class e{constructor(){this.paragraphText=`
+import{b as o}from"./chunk-KFBIXG44.js";import"./chunk-F3RW723J.js";import"./chunk-HVGXEG4H.js";import{Fa as t,Ua as p,Xa as n,Yb as i}from"./chunk-H244PCOM.js";var m=(()=>{let e=class e{constructor(){this.paragraphText=`
   Wir berechnen 17\u202F\u20AC pro 15 Minuten.
 
   Ganz ohne versteckte Kosten. Damit bieten wir nicht nur volle Transparenz, sondern auch einen besseren Preis als alle Mitbewerber in der Region.
