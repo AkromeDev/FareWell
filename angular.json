@@ -57,7 +57,8 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/FareWell/"
+              "outputPath": "docs",
+              "baseHref": "/"
             },
             "development": {
               "optimization": false,
