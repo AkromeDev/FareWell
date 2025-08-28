@@ -1,1 +1,0 @@
-import{h as n}from"./chunk-L5XUOZHT.js";import{Ga as i,P as r,Zb as e}from"./chunk-FRPMARFV.js";var s=[{path:"",loadComponent:()=>import("./chunk-DCLAVGBX.js").then(o=>o.ZeitComponent)}],d=(()=>{let t=class t{};t.\u0275fac=function(m){return new(m||t)},t.\u0275mod=i({type:t}),t.\u0275inj=r({imports:[e,n.forChild(s)]});let o=t;return o})();export{d as ZeitModule};

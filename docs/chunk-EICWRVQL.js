@@ -1,1 +1,0 @@
-import{h as n}from"./chunk-L5XUOZHT.js";import{Ga as r,P as i,Zb as e}from"./chunk-FRPMARFV.js";var s=[{path:"",loadComponent:()=>import("./chunk-MLLVW5FQ.js").then(o=>o.PriceComponent)}],d=(()=>{let t=class t{};t.\u0275fac=function(m){return new(m||t)},t.\u0275mod=r({type:t}),t.\u0275inj=i({imports:[e,n.forChild(s)]});let o=t;return o})();export{d as PriceModule};
