@@ -1,1 +1,0 @@
-import{i as m}from"./chunk-DRITFAB6.js";import{$b as e,Ga as r,P as i}from"./chunk-X5RNLYHL.js";var s=[{path:"",loadComponent:()=>import("./chunk-HIHEECHO.js").then(o=>o.BehandlungComponent)}],d=(()=>{let t=class t{};t.\u0275fac=function(n){return new(n||t)},t.\u0275mod=r({type:t}),t.\u0275inj=i({imports:[e,m.forChild(s)]});let o=t;return o})();export{d as BehandlungModule};
