@@ -17,6 +17,8 @@
     border-collapse: collapse;
     font-size: 1.05rem;
     background: transparent;
+
+    border: 1px solid rgba($black, 0.06);
   }
 
   thead th {
@@ -48,21 +50,3 @@
   .empty { margin: 1rem 0; text-align: center; color: $dark-1; }
   .error { color: $accent-2; text-align: center; }
 }
-
-/* Loading shimmer */
-.skeleton { position: relative; height: 140px; overflow: hidden;
-  .shimmer { position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba($light-2,.15) 0%, rgba($light-1,.6) 40%, rgba($light-2,.15) 80%);
-    animation: shimmer 1.2s infinite;
-  }
-}
-
-@media (min-width: 768px) {
-  .fw-table {
-    padding: 2.5rem 4rem;
-    table { font-size: 1.1rem; }
-    thead th, tbody td { padding: 1rem 1rem; }
-  }
-}
-
-@keyframes shimmer { 0% { transform: translateX(-60%);} 100% { transform: translateX(60%);} }

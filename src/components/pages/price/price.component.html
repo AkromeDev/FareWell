@@ -10,21 +10,15 @@
   [shadow]="'dark'"
   [height]="'75'"
   [titleLevel]="'h1'"
-  [title]="'Unsere Preispolitik ist ganz einfach'"
+  [title]="'Electrolyse Preise'"
   [titleType]="'blur'"
   >
 </app-image-hero>
 
-<app-button-option
-  [options]="[
-    { label: 'Damen', value: 'woman' },
-    { label: 'Herren', value: 'man' }
-  ]"
-  [selected]="gender()"
-  (selectionChange)="onGenderChange($event)">
-</app-button-option>
-
-<app-table
+<app-price-block
+  [theme]="'dark'"
+  [title]="'IPL Preise'"
+  [titleType]="'simple'"
   [src]="'assets/data/prices.json'"
-  [selectedGender]="gender()">
-</app-table>
+  [initialGender]="'woman'">
+</app-price-block>
