@@ -17,8 +17,12 @@
     border-collapse: collapse;
     font-size: 1.05rem;
     background: transparent;
-
     border: 1px solid rgba($black, 0.06);
+    height: 800px; /* ← missing semicolon fixed */
+
+    /* fade rows in place */
+    tbody { transition: opacity .6s ease; will-change: opacity; }
+    &.fading tbody { opacity: .6; }
   }
 
   thead th {
@@ -42,11 +46,21 @@
     color: $dark-2;
 
     &.center { text-align: center; }
-    &.right { text-align: right; }
+    &.right  { text-align: right; }
   }
 
   tbody tr:last-child td { border-bottom: none; }
 
-  .empty { margin: 1rem 0; text-align: center; color: $dark-1; }
+  .empty-row td {
+    text-align: center;
+    color: $dark-1;
+    padding: 1rem;
+  }
+
   .error { color: $accent-2; text-align: center; }
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fw-table table tbody { transition: none; }
 }

@@ -3,8 +3,6 @@
   { "id": "IPL_LIP_D", "method": "IPL", "gender": "Damen", "zone": "Oberlippe", "durationMinutes": 15, "price": 40, "currency": "EUR" },
   { "id": "IPL_CHIN_D", "method": "IPL", "gender": "Damen", "zone": "Kinn", "durationMinutes": 15, "price": 45, "currency": "EUR" },
   { "id": "IPL_AXEL_D", "method": "IPL", "gender": "Damen", "zone": "Achseln", "durationMinutes": 20, "price": 60, "currency": "EUR" },
-  { "id": "IPL_BIK_D", "method": "IPL", "gender": "Damen", "zone": "Bikinizone klassisch", "durationMinutes": 25, "price": 70, "currency": "EUR" },
-  { "id": "IPL_INTIM_D", "method": "IPL", "gender": "Damen", "zone": "Intimbereich komplett", "durationMinutes": 35, "price": 110, "currency": "EUR" },
   { "id": "IPL_LOWLEG_D", "method": "IPL", "gender": "Damen", "zone": "Unterschenkel", "durationMinutes": 40, "price": 120, "currency": "EUR" },
   { "id": "IPL_UPLEG_D", "method": "IPL", "gender": "Damen", "zone": "Oberschenkel", "durationMinutes": 45, "price": 130, "currency": "EUR" },
   { "id": "IPL_FULLLEG_D", "method": "IPL", "gender": "Damen", "zone": "Beine komplett", "durationMinutes": 60, "price": 180, "currency": "EUR" },
@@ -14,6 +12,7 @@
   { "id": "IPL_PO_D", "method": "IPL", "gender": "Damen", "zone": "Po", "durationMinutes": 20, "price": 80, "currency": "EUR" },
   { "id": "IPL_INTIM_D", "method": "IPL", "gender": "Damen", "zone": "Intimzone", "durationMinutes": 30, "price": 95, "currency": "EUR" },
   { "id": "IPL_BIK_D", "method": "IPL", "gender": "Damen", "zone": "Bikinizone", "durationMinutes": 25, "price": 80, "currency": "EUR" },
+  { "id": "IPL_FULLINTIM_D", "method": "IPL", "gender": "Damen", "zone": "Intimbereich komplett", "durationMinutes": 35, "price": 150, "currency": "EUR" },
   { "id": "IPL_FULLBODY_D", "method": "IPL", "gender": "Damen", "zone": "Ganzkörper", "durationMinutes": 120, "price": 420, "currency": "EUR" },
 
   { "id": "IPL_BEARD_H", "method": "IPL", "gender": "Herren", "zone": "Bartkontur Wangen und Hals", "durationMinutes": 25, "price": 70, "currency": "EUR" },

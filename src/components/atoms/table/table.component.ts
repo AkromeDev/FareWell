@@ -1,28 +1,40 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input, Signal, WritableSignal, computed, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PriceItem } from '../../../../src/models/price-item';
+import { PriceItem } from 'src/models/price-item';
 
 type OptionGender = 'woman' | 'man';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe],
+  imports: [CommonModule],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent {
   @Input({ required: true }) src!: string;
 
+  // Fade when gender actually changes
   @Input() set selectedGender(value: OptionGender | null) {
-    if (value) this._selectedGender.set(value);
+    if (!value || value === this._selectedGender()) return;
+
+    // fade out current rows
+    this.fading.set(true);
+
+    // let the class apply, then swap rows, then fade back in
+    requestAnimationFrame(() => {
+      this._selectedGender.set(value);
+      requestAnimationFrame(() => this.fading.set(false));
+    });
   }
 
   readonly loading: WritableSignal<boolean> = signal(true);
   readonly error: WritableSignal<string | null> = signal(null);
+  readonly fading: WritableSignal<boolean> = signal(false);
 
   trackById = (_: number, row: PriceItem) => row.id;
+
   private _selectedGender = signal<OptionGender>('woman');
   private _rowsAll = signal<PriceItem[]>([]);
 
@@ -70,7 +82,12 @@ export class TableComponent {
   }
 
   minutesLabel(min: number) { return `${min} Min`; }
+
   euro(n: number) {
-    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+    return new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'EUR',
+      maximumFractionDigits: 0
+    }).format(n);
   }
 }
