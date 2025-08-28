@@ -1,0 +1,68 @@
+@use 'themes/theme-entry' as *;
+
+.fw-table {
+  padding: 1.5rem;
+  background-color: $light-1;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba($black, 0.1);
+  width: 100%;
+
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.05rem;
+    background: transparent;
+  }
+
+  thead th {
+    position: sticky;
+    top: 0;
+    background: $light-2;
+    color: $dark-2;
+    text-align: left;
+    padding: 0.85rem 0.75rem;
+    border-bottom: 2px solid rgba($black, 0.08);
+    font-weight: 600;
+    white-space: nowrap;
+
+    &.center { text-align: center; }
+    &.right { text-align: right; }
+  }
+
+  tbody td {
+    padding: 0.9rem 0.75rem;
+    border-bottom: 1px solid rgba($black, 0.06);
+    color: $dark-2;
+
+    &.center { text-align: center; }
+    &.right { text-align: right; }
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+
+  .empty { margin: 1rem 0; text-align: center; color: $dark-1; }
+  .error { color: $accent-2; text-align: center; }
+}
+
+/* Loading shimmer */
+.skeleton { position: relative; height: 140px; overflow: hidden;
+  .shimmer { position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba($light-2,.15) 0%, rgba($light-1,.6) 40%, rgba($light-2,.15) 80%);
+    animation: shimmer 1.2s infinite;
+  }
+}
+
+@media (min-width: 768px) {
+  .fw-table {
+    padding: 2.5rem 4rem;
+    table { font-size: 1.1rem; }
+    thead th, tbody td { padding: 1rem 1rem; }
+  }
+}
+
+@keyframes shimmer { 0% { transform: translateX(-60%);} 100% { transform: translateX(60%);} }

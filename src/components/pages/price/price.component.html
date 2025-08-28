@@ -13,3 +13,17 @@
   [titleType]="'blur'"
   >
 </app-image-hero>
+
+<app-button-option
+  [options]="[
+    { label: 'Damen', value: 'woman' },
+    { label: 'Herren', value: 'man' }
+  ]"
+  [selected]="gender()"
+  (selectionChange)="onGenderChange($event)">
+</app-button-option>
+
+<app-table
+  [src]="'assets/data/prices.json'"
+  [selectedGender]="gender()">
+</app-table>

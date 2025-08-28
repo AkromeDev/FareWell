@@ -1,0 +1,85 @@
+@use 'themes/theme-entry' as *;
+@use 'sass:color';
+
+/* Container mimics the base .farewell-btn look and size */
+.farewell-option-btn {
+  display: inline-flex;
+  width: 100%;
+  max-width: 300px; /* mobile first */
+  border-radius: 0.5rem;
+  overflow: hidden; /* keep segments perfectly stuck together */
+  border: 1px solid;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  /* smooth hover/press */
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+  &:hover { transform: translateY(1px); filter: brightness(1.05); }
+
+  &.light {
+    background-color: rgba($light-1, 0.6);
+    border-color: color.adjust($light-2, $lightness: -15%);
+    .segment {
+      color: $dark-2;
+      /* inactive visual */
+      background: transparent;
+      border-right: 1px solid color.adjust($light-2, $lightness: -15%);
+      &.right { border-right: 0; }
+      /* active side darker than the other */
+      &.active {
+        background-color: rgba($light-2, 0.55);
+        color: $black;
+      }
+      &:hover:not(.active):not(:disabled) { background-color: rgba($light-2, 0.35); }
+    }
+  }
+
+  &.dark {
+    background-color: rgba($dark-2, 0.4);
+    border-color: color.adjust($dark-2, $lightness: 15%);
+    .segment {
+      color: $light-1;
+      background: transparent;
+      border-right: 1px solid color.adjust($dark-2, $lightness: 20%);
+      &.right { border-right: 0; }
+      &.active {
+        background-color: rgba($dark-2, 0.8);
+        color: $light-1;
+      }
+      &:hover:not(.active):not(:disabled) { background-color: rgba($dark-2, 0.6); }
+    }
+  }
+
+  &.disabled,
+  &[aria-disabled='true'] {
+    filter: grayscale(0.2) opacity(0.8);
+    pointer-events: none;
+  }
+}
+
+/* Segment buttons inherit your typography and spacing from .farewell-btn */
+.segment {
+  font-family: $font, sans-serif;
+  font-weight: 550;
+  font-size: 1.15rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  border: 0;
+  flex: 1 1 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &.left { border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; }
+  &.right { border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem; }
+
+  &:disabled { cursor: not-allowed; opacity: 0.7; }
+}
+
+/* Focus styles for accessibility */
+.segment:focus-visible {
+  box-shadow: inset 0 0 0 2px color.adjust($accent-1, $lightness: 10%),
+              0 0 0 3px rgba($accent-1, 0.25);
+}

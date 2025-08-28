@@ -1,0 +1,30 @@
+<section class="fw-table" *ngIf="!loading(); else loadingTpl">
+    <div class="error" *ngIf="error() as err">{{ err }}</div>
+
+    <div class="table-wrap" role="region" aria-label="Preisliste">
+        <table *ngIf="rows() as r">
+            <thead>
+                <tr>
+                    <th>Körperzone</th>
+                    <th class="center">Dauer (Min)</th>
+                    <th class="right">Preis (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of r; trackBy: trackById">
+                    <td>{{ item.zone }}</td>
+                    <td class="center">{{ minutesLabel(item.durationMinutes) }}</td>
+                    <td class="right">{{ euro(item.price) }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="empty" *ngIf="rows().length === 0">Keine Einträge gefunden.</p>
+    </div>
+</section>
+
+<ng-template #loadingTpl>
+    <section class="fw-table skeleton">
+        <div class="shimmer"></div>
+    </section>
+</ng-template>
