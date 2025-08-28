@@ -36,6 +36,7 @@ export class ImageHeroComponent implements OnInit {
   @Input() backgroundImage: string = '';
   @Input() shadow: ShadowOptions.Raw = 'dark';
   @Input() margin: DesignTokens.MarginTop = 'medium';
+  @Input() height: DesignTokens.Height = '85';
 
   @Input() paragraphText: string = '';
   @Input() paragraphSize: ParagraphOptions.Size = 'medium';

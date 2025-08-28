@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShadowOptions } from 'src/models';
+import { DesignTokens, ShadowOptions } from 'src/models';
 
 @Component({
   selector: 'app-image-section',
@@ -13,6 +13,7 @@ export class ImageSectionComponent implements OnInit {
   @Input() backgroundImage: string = '';
   @Input() shadow: ShadowOptions.Type = '';
   @Input() paragraphText: string = '';
+  @Input() height: DesignTokens.Height = '85';
 
   constructor() {}
 

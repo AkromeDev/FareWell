@@ -1,6 +1,6 @@
 <div
   class="image-section"
-  [ngClass]="shadow"
+  [ngClass]="[shadow, 'height-' + height]"
   [ngStyle]="{ 'background-image': 'url(' + backgroundImage + ')' }"
 >
   <div class="overlay"></div>

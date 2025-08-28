@@ -1,10 +1,14 @@
 @use 'themes/theme-entry' as *;
 
 .hero-container {
-  min-height: 85vh;
   height: auto;
   overflow: visible;
   display: block;
+
+  &.height-50 { min-height: 50vh; }
+  &.height-75 { min-height: 75vh; }
+  &.height-85 { min-height: 85vh; }
+  &.height-100 { min-height: 100vh; }
 
   .hero-content {
     max-width: 95%;

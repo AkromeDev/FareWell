@@ -3,6 +3,7 @@ export namespace DesignTokens {
   export type Color = 'light' | 'dark';
   export type Align = 'left' | 'center' | 'right' | 'justify';
   export type MarginTop = 'small' | 'medium' | 'large';
+  export type Height = '50' | '75' | '85' | '100';
 }
 
 export namespace ShadowOptions {

@@ -3,12 +3,16 @@
 .image-section {
   position: relative;
   width: 100%;
-  min-height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed; // ✅ Parallax on desktop
   overflow: hidden;
+
+  &.height-50 { min-height: 50vh; }
+  &.height-75 { min-height: 75vh; }
+  &.height-85 { min-height: 85vh; }
+  &.height-100 { min-height: 100vh; }
 
   .overlay {
     position: absolute;
