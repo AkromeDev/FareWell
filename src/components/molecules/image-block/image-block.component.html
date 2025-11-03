@@ -1,0 +1,49 @@
+<div class="image-block" [ngClass]="theme">
+<figure
+  class="image-wrapper"
+  [style.aspect-ratio]="aspectRatio === 'auto' ? '' : aspectRatio"
+  [style.max-height]="maxHeightVh ? maxHeightVh + 'vh' : null"
+  [class.rounded]="rounded"
+>
+  <img
+    class="image"
+    [class.contain]="fit === 'contain' || aspectRatio === 'auto'"
+    [src]="src"
+    [alt]="alt"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    draggable="false"
+  />
+    <button
+    *ngIf="enableFullscreen"
+    class="fs-btn"
+    type="button"
+    aria-label="Bild im Vollbild anzeigen"
+    (click)="toggleFullscreen()"
+    >
+        ⤢
+    </button> 
+</figure>
+
+
+  <!-- Fallback overlay fullscreen -->
+  <div
+    *ngIf="isOverlayOpen"
+    class="fs-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Bild in Vollbild"
+    (click)="closeFullscreen()"
+  >
+    <img class="fs-image" [src]="src" [alt]="alt" />
+    <button
+      class="fs-close"
+      type="button"
+      aria-label="Vollbild schließen"
+      (click)="$event.stopPropagation(); closeFullscreen()"
+    >
+      ✕
+    </button>
+  </div>
+</div>

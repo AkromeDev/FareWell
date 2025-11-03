@@ -15,10 +15,13 @@
   >
 </app-image-hero>
 
-<app-price-block
-  [theme]="'dark'"
-  [title]="'IPL Preise'"
-  [titleType]="'simple'"
-  [src]="'assets/data/prices.json'"
-  [initialGender]="'woman'">
-</app-price-block>
+<app-image-block
+  [theme]="'light'"
+  [src]="'/assets/images/prices/price-list.svg'"
+  [alt]="'Preis Liste – FareWell Nürnberg'"
+  [aspectRatio]="'auto'"
+  [fit]="'contain'"
+  [maxHeightVh]="90"
+  [rounded]="true"
+  [enableFullscreen]="true"
+></app-image-block>

@@ -1,0 +1,152 @@
+@use 'themes/theme-entry' as *;
+
+.image-block {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+
+  &.dark {
+    background-color: $black;
+    color: $light-1;
+  }
+
+  &.light {
+    background-color: $light-1;
+    color: $dark-2;
+  }
+
+  &.custom {
+    background-color: $accent-2;
+    color: $black;
+  }
+
+  /* Mobile-first wrapper */
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 80vw;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+    border-radius: 0.5rem;
+
+    &.rounded {
+      border-radius: 0.75rem;
+    }
+
+    .image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      -webkit-user-drag: none;
+
+      &.contain {
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
+        background-color: $light-1;
+      }
+    }
+
+    /* Fullscreen button — top-right now, larger and elegant */
+    .fs-btn {
+        position: absolute;
+        z-index: 2;
+        top: 0.75rem;
+        right: 0.75rem;
+        border: none;
+        background: rgba(0, 0, 0, 0.55);
+        color: $light-1;
+        font-size: 1.4rem;          /* larger icon */
+        line-height: 1;
+        padding: 0.65rem 0.75rem;   /* more touch area */
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: transform 150ms ease, opacity 150ms ease, background-color 150ms ease;
+        opacity: 0.95;
+        backdrop-filter: blur(2px); /* softens background under the button */
+
+        &:hover {
+            transform: scale(1.08);
+            background: rgba(0, 0, 0, 0.65);
+        }
+
+        &:active {
+            transform: scale(0.97);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $accent-1;
+            outline-offset: 2px;
+        }
+
+        @media (min-width: 768px) {
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.6rem;        /* slightly larger on desktop */
+            padding: 0.7rem 0.8rem;
+        }
+    }
+  }
+
+  /* Fullscreen overlay fallback */
+  .fs-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+  }
+
+  .fs-image {
+    max-width: 95vw;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .fs-close {
+    position: fixed;
+    top: 0.75rem;
+    right: 0.75rem;
+    border: none;
+    background: rgba(0, 0, 0, 0.6);
+    color: $light-1;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0.5rem 0.65rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid $accent-1;
+      outline-offset: 2px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: 1.25rem;
+
+    .image-wrapper {
+      max-width: 60vw;
+      border-radius: 1rem;
+
+      &.rounded {
+        border-radius: 1.25rem;
+      }
+
+      .fs-btn {
+        top: 0.75rem;
+        right: 0.75rem;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

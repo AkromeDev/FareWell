@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   buttonList: ButtonItem[] = [
     { label: 'Mehr erfahren', link: '/behandlung', theme: 'dark' },
     { label: 'Unsere Preise', link: '/price', theme: 'dark' },
-    { label: 'Termin buchen', link: '/buchung', theme: 'dark' }
+    { label: 'Termin buchen', link: 'https://salonkee.de/salon/farewell?lang=de', theme: 'dark', external: true },
   ];
   activeTab: string = 'home';
 
