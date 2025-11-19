@@ -12,16 +12,28 @@
   [titleLevel]="'h1'"
   [title]="'Electrolyse Preise'"
   [titleType]="'blur'"
-  >
+>
 </app-image-hero>
+
+<farewell-toggle
+  [options]="[
+    { label: 'Frauen', value: 'female' },
+    { label: 'Männer', value: 'male' }
+  ]"
+  [selected]="gender()"
+  (selectedChange)="setGender($any($event))"
+  [backgroundTheme]="'light'"
+>
+</farewell-toggle>
 
 <app-image-block
   [theme]="'light'"
-  [src]="'/assets/images/prices/price-list.svg'"
-  [alt]="'Preis Liste – FareWell Nürnberg'"
+  [src]="priceImageSrc()"
+  [alt]="priceAlt()"
   [aspectRatio]="'auto'"
   [fit]="'contain'"
   [maxHeightVh]="90"
   [rounded]="true"
   [enableFullscreen]="true"
+  (fullscreenChange)="onFsChange($event)"
 ></app-image-block>

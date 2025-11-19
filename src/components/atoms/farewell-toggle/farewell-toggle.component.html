@@ -1,0 +1,26 @@
+<section class="farewell-toggle" [ngClass]="backgroundTheme">
+  <div class="farewell-toggle__inner">
+    <div
+      class="farewell-option-btn"
+      [ngClass]="theme"
+      role="radiogroup"
+      aria-label="Preisübersicht auswählen"
+    >
+      <button
+        *ngFor="let option of options; let i = index"
+        type="button"
+        class="segment"
+        [ngClass]="{
+          left: i === 0,
+          right: i === options.length - 1,
+          active: isActive(option.value)
+        }"
+        role="radio"
+        [attr.aria-checked]="isActive(option.value)"
+        (click)="onSelect(option.value)"
+      >
+        {{ option.label }}
+      </button>
+    </div>
+  </div>
+</section>
