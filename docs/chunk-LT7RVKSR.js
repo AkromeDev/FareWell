@@ -1,1 +1,0 @@
-import{i as m}from"./chunk-UDF32B3Y.js";import{$b as e,Ha as r,P as i}from"./chunk-3GRG2MYU.js";var s=[{path:"",loadComponent:()=>import("./chunk-F74KBUX5.js").then(o=>o.BehandlungComponent)}],d=(()=>{let t=class t{};t.\u0275fac=function(n){return new(n||t)},t.\u0275mod=r({type:t}),t.\u0275inj=i({imports:[e,m.forChild(s)]});let o=t;return o})();export{d as BehandlungModule};

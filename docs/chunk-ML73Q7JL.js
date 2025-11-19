@@ -1,1 +1,0 @@
-import{i as n}from"./chunk-UDF32B3Y.js";import{$b as e,Ha as i,P as r}from"./chunk-3GRG2MYU.js";var p=[{path:"",loadComponent:()=>import("./chunk-V3DJGMUY.js").then(o=>o.HistorieComponent)}],d=(()=>{let t=class t{};t.\u0275fac=function(m){return new(m||t)},t.\u0275mod=i({type:t}),t.\u0275inj=r({imports:[e,n.forChild(p)]});let o=t;return o})();export{d as HistorieModule};
