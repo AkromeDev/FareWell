@@ -7,7 +7,7 @@ export type BodyPartKey =
   | 'stomach'
   | 'torso'
   | 'head'
-  | 'bikini'
+  | 'intim'
   | 'monobrow'
   | 'beardContour';
 
@@ -28,7 +28,7 @@ export const BodyParts: Record<BodyPartKey, BodyPart> = {
   shoulders: { key: 'shoulders', label: 'Schultern', anagenPercentage: 35, maxMultiplier: 2, estimatedTotalHours: 8 },
   stomach:   { key: 'stomach', label: 'Bauch', anagenPercentage: 25, maxMultiplier: 2, estimatedTotalHours: 10 },
   armpits:   { key: 'armpits', label: 'Achseln', anagenPercentage: 60, maxMultiplier: 2, estimatedTotalHours: 5 },
-  bikini:    { key: 'bikini', label: 'Bikinizone', anagenPercentage: 60, maxMultiplier: 2, estimatedTotalHours: 7 },
+  intim:    { key: 'intim', label: 'Intimbereich', anagenPercentage: 60, maxMultiplier: 2, estimatedTotalHours: 7 },
   monobrow:  { key: 'monobrow', label: 'Monobraue', anagenPercentage: 85, maxMultiplier: 1, estimatedTotalHours: 0.5 },
   beardContour: { key: 'beardContour', label: 'Bartkontur', anagenPercentage: 85, maxMultiplier: 2, estimatedTotalHours: 5 },
 };
