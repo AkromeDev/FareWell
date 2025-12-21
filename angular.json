@@ -70,7 +70,6 @@
           },
           "defaultConfiguration": "production"
         },
-
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
@@ -89,13 +88,24 @@
             }
           }
         },
-        
         "prerender": {
           "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "FareWell:build:production",
             "serverTarget": "FareWell:server:production",
-            "routesFile": "src/prerender-routes.txt"
+            "routes": [
+              "/",
+              "/laser-haarentfernung-aktion-nuernberg",
+              "/elektrolyse-permanente-haarentfernung-aktion-nuernberg",
+              "/microneedling-aktion-nuernberg",
+              "/nadelepilation-angebot-nuernberg",
+              "/ipl-dauerhafte-haarentfernung-aktion-nuernberg",
+              "/price",
+              "/impressum",
+              "/datenschutz",
+              "/agb",
+              "/not-found"
+            ]
           }
         },
         "serve": {
