@@ -2,7 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": [],
+    "types": [
+      "node"
+    ],
     "baseUrl": "src",
     "paths": {
       "@models": ["src/app/core/models"],
@@ -11,7 +13,9 @@
   },
   "files": [
     "src/main.ts",
-    "src/polyfills.ts"
+    "src/polyfills.ts",
+    "src/main.server.ts",
+    "src/server.ts"
   ],
   "include": [
     "src/**/*.d.ts"

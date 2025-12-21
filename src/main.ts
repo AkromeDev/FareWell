@@ -1,5 +1,5 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
+import { bootstrapApplication, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { AppComponent } from './app/app.component';
@@ -15,6 +15,6 @@ bootstrapApplication(AppComponent, {
     provideAnimations(),
     provideHttpClient(withInterceptorsFromDi()),
     importProvidersFrom(AppRoutingModule),
-    provideHttpClient(withFetch(), withInterceptorsFromDi())
+    provideHttpClient(withFetch(), withInterceptorsFromDi()), provideClientHydration(withEventReplay())
   ]
 }).catch(err => console.error(err));
