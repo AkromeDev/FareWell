@@ -1,0 +1,1 @@
+import{i as r}from"./chunk-TLWSU67Z.js";import{Ha as e,P as i}from"./chunk-4NKFIBML.js";var s=[{path:"",loadComponent:()=>import("./chunk-REDQIKAA.js").then(o=>o.LaserPromotionComponent)}],a=(()=>{let t=class t{};t.\u0275fac=function(n){return new(n||t)},t.\u0275mod=e({type:t}),t.\u0275inj=i({imports:[r.forChild(s)]});let o=t;return o})();export{a as LaserPromotionModule};
