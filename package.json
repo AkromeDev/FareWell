@@ -5,11 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "deploy": "ng build --configuration production && cp docs/browser/index.html docs/browser/404.html && mv docs/browser/* docs/ && rm -rf docs/browser && git add docs && git commit -m \"Deployment: We are ready for a new version, let's go!\" && git push",
-    "deploynew": "set -e && ng build --configuration production && cp docs/index.html docs/404.html && git add docs && (git diff --cached --quiet || git commit -m \"Deployment: We are ready for a new version, let's go!\") && git push"
-
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {

@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "docs",
+            "outputPath": "dist/farewell",
             "index": "src/index.html",
             "polyfills": [
               "src/polyfills.ts"
@@ -33,7 +33,9 @@
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/styles"]
+              "includePaths": [
+                "src/styles"
+              ]
             }
           },
           "configurations": {
@@ -57,7 +59,7 @@
                 }
               ],
               "outputHashing": "all",
-              "outputPath": "docs",
+              "outputPath": "dist/farewell",
               "baseHref": "/"
             },
             "development": {
