@@ -36,7 +36,9 @@
               "includePaths": [
                 "src/styles"
               ]
-            }
+            },
+            "prerender": true,
+            "prerenderRoutesFile": "src/prerender-routes.txt"
           },
           "configurations": {
             "production": {

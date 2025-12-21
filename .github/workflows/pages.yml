@@ -16,6 +16,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,13 +30,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Angular app
+      - name: Build Angular app (production + prerender)
         run: |
           npm run build -- --configuration production
-          # SPA fallback for deep links (/impressum, /behandlungen, etc.)
+
+          # SPA fallback for non-prerendered routes
           cp dist/farewell/browser/index.html dist/farewell/browser/404.html
+
           # Custom domain for GitHub Pages
           echo "farewell.salon" > dist/farewell/browser/CNAME
+
+          # Prevent GitHub Pages Jekyll processing
+          touch dist/farewell/browser/.nojekyll
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -48,6 +54,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
