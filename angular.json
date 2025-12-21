@@ -66,7 +66,7 @@
         },
 
         "server": {
-          "builder": "@angular/build:server",
+          "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/farewell/server",
             "main": "src/main.server.ts",
@@ -80,7 +80,7 @@
         },
 
         "prerender": {
-          "builder": "@angular/build:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "FareWell:build:production",
             "serverTarget": "FareWell:server:production",
