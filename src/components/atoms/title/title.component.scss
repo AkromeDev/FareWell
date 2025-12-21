@@ -9,11 +9,9 @@
   font-weight: bold;
   letter-spacing: 0.2rem;
 
-  // Default styles
   font-size: 30px;
   line-height: 48px;
 
-  // Color variants
   &.color-light {
     color: $font-light;
   }
@@ -22,7 +20,6 @@
     color: $font-dark
   }
 
-  // Style variants
   &.cornered {
     border: 10px solid currentColor;
     border-radius: 0;
@@ -47,7 +44,6 @@
     padding: 5px 10px;
   }
 
-  // Text alignment
   &.center {
     text-align: center;
   }
@@ -62,7 +58,6 @@
   }
 }
 
-// Typography by heading level
 h1.title {
   font-size: 3rem;
   font: $h1-font;
@@ -78,7 +73,6 @@ h3.title {
   font: $h3-font;
 }
 
-// Mobile-first responsive tweaks
 @media (max-width: 768px) {
   .title {
     font-size: 8vw;

@@ -6,7 +6,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; // ✅ Parallax on desktop
+  background-attachment: fixed; 
   overflow: hidden;
 
   &.height-50 { min-height: 50vh; }
@@ -41,9 +41,8 @@
     color: $white;
   }
 
-  // 📱 Mobile fallback: disable parallax and zoom out
   @media (max-width: 768px) {
-    background-attachment: scroll;       // ❌ disables buggy parallax
+    background-attachment: scroll; 
     background-size: 300% auto;     
     background-position: top center;
     min-height: 70vh;                  

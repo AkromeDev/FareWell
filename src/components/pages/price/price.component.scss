@@ -8,22 +8,20 @@
 
 .price-toggle {
   display: flex;
-  flex-direction: column; // mobile first
+  flex-direction: column;
   gap: 0.75rem;
   width: 100%;
   max-width: 360px;
   align-items: stretch;
 
   .farewell-btn {
-    // on mobile we keep the full width behavior from your base styles
     max-width: 100%;
   }
 
   .farewell-btn.active {
-    // subtle emphasis for the selected state
     box-shadow: 0 0 0 2px rgba($accent-1, 0.7);
     filter: brightness(1.1);
-    transform: translateY(0); // neutralize hover shift a bit for active
+    transform: translateY(0); 
   }
 
   @media (min-width: 768px) {
