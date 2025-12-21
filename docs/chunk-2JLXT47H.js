@@ -1,1 +1,0 @@
-import{i as m}from"./chunk-TLWSU67Z.js";import{Ha as r,P as i,ac as e}from"./chunk-4NKFIBML.js";var s=[{path:"",loadComponent:()=>import("./chunk-ROIXGMD7.js").then(o=>o.BehandlungComponent)}],d=(()=>{let t=class t{};t.\u0275fac=function(n){return new(n||t)},t.\u0275mod=r({type:t}),t.\u0275inj=i({imports:[e,m.forChild(s)]});let o=t;return o})();export{d as BehandlungModule};
