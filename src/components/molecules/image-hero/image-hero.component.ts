@@ -27,6 +27,7 @@ import {
   styleUrls: ['./image-hero.component.scss']
 })
 export class ImageHeroComponent implements OnInit {
+
   @Input() title: string = '';
   @Input() titleLevel: TitleOptions.Level = 'h1';
   @Input() titleColor: TitleOptions.Color = 'light';
@@ -34,6 +35,7 @@ export class ImageHeroComponent implements OnInit {
   @Input() titleType: TitleOptions.Type = 'cornered';
 
   @Input() backgroundImage: string = '';
+  @Input() imageAlt: string = '';
   @Input() shadow: ShadowOptions.Raw = 'dark';
   @Input() margin: DesignTokens.MarginTop = 'medium';
   @Input() height: DesignTokens.Height = '85';

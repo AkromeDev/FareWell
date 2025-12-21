@@ -43,6 +43,36 @@ const routes: Routes = [
       import('../components/pages/legal/agb/agb.module').then(m => m.AgbModule)
   },
   {
+    path: 'laser-haarentfernung-aktion-nuernberg',
+    loadChildren: () =>
+      import('../components/pages/promotions/laser-promotion/laser-promotion.module')
+        .then(m => m.LaserPromotionModule)
+  },
+  {
+    path: 'ipl-dauerhafte-haarentfernung-aktion-nuernberg',
+    loadChildren: () =>
+      import('../components/pages/promotions/ipl-promotion/ipl-promotion.module')
+        .then(m => m.IplPromotionModule),
+  },
+  {
+    path: 'elektrolyse-permanente-haarentfernung-aktion-nuernberg',
+    loadChildren: () =>
+      import('../components/pages/promotions/electrolysis-promotion/electrolysis-promotion.module')
+        .then(m => m.ElectrolysisPromotionModule),
+  },
+  {
+    path: 'microneedling-aktion-nuernberg',
+    loadChildren: () =>
+      import('../components/pages/promotions/microneedling-promotion/microneedling-promotion.module')
+        .then(m => m.MicroneedlingPromotionModule),
+  },
+  {
+    path: 'nadelepilation-angebot-nuernberg',
+    loadChildren: () =>
+      import('../components/pages/promotions/nadelepilation-promotion/nadelepilation-promotion.module')
+        .then(m => m.NadelepilationPromotionModule),
+  },
+  {
     path: 'not-found',
     loadComponent: () =>
       import('../components/pages/not-found/not-found.component').then(m => m.NotFoundComponent)

@@ -4,7 +4,9 @@
   [height]="height"
   class="hero-container"
   [class]="'margin-top-' + margin"
-  >
+  role="img"
+  [attr.aria-label]="imageAlt || null"
+>
 
   <div class="hero-content">
     <app-title
@@ -13,8 +15,9 @@
       [align]="titleAlign"
       [title]="title"
       [type]="titleType"
-      >
+    >
     </app-title>
+
     <app-paragraph
       class="hero-paragraph"
       [size]="paragraphSize"
@@ -25,8 +28,9 @@
       [maxWidth]="paragraphMaxWidth">
       {{ paragraphText }}
     </app-paragraph>
-     <app-button-list 
-     [buttons]="buttonList">
+
+    <app-button-list
+      [buttons]="buttonList">
     </app-button-list>
   </div>
 
