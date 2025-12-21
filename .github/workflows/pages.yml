@@ -33,14 +33,14 @@ jobs:
         run: |
           npm run build -- --configuration production
           # SPA fallback for deep links (/impressum, /behandlungen, etc.)
-          cp dist/farewell/index.html dist/farewell/404.html
+          cp dist/farewell/browser/index.html dist/farewell/browser/404.html
           # Custom domain for GitHub Pages
-          echo "farewell.salon" > dist/farewell/CNAME
+          echo "farewell.salon" > dist/farewell/browser/CNAME
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/farewell
+          path: dist/farewell/browser
 
   deploy:
     needs: build
