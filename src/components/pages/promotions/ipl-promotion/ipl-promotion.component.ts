@@ -30,8 +30,8 @@ export class IplPromotionComponent implements OnInit {
     'https://farewell.salon/assets/images/farewell/farewellStudio4.png';
 
   paragraphText: string = `
-    Dauerhafte Haarentfernung mit IPL in Nürnberg bei FareWell.
-    Sichern Sie sich jetzt 50% Rabatt auf Ihre erste IPL Behandlung
+    Dauerhafte Haarentfernung in Nürnberg bei FareWell.
+    Sichern Sie sich jetzt 50% Rabatt auf Ihre erste Behandlung
     mit dem Code ERSTEBEHANDLUNG.
 
     Diese Aktion gilt exklusiv für Neukundinnen und Neukunden und nur für kurze Zeit.
