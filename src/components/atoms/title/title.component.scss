@@ -3,21 +3,25 @@
 .title {
   font-family: $h1-font;
   text-transform: uppercase;
-  display: block; 
+  display: block;
   width: 100%;
-  padding: 15px 0px;
   font-weight: bold;
   letter-spacing: 0.2rem;
+  box-sizing: border-box;
+  word-break: break-word;
 
   font-size: 30px;
   line-height: 48px;
+
+  // Base spacing: small vertical padding only (mobile first)
+  padding: 12px 0;
 
   &.color-light {
     color: $font-light;
   }
 
   &.color-dark {
-    color: $font-dark
+    color: $font-dark;
   }
 
   &.cornered {
@@ -26,6 +30,9 @@
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;
+
+    // Important: add inner spacing so text never touches border
+    padding: 18px 20px; // vertical / horizontal
   }
 
   &.simple {
@@ -33,6 +40,9 @@
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;
+
+    // keep it minimal
+    padding: 12px 0;
   }
 
   &.soft {
@@ -41,21 +51,14 @@
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 5px 10px;
+
+    padding: 10px 14px;
   }
 
-  &.center {
-    text-align: center;
-  }
-  &.left {
-    text-align: left;
-  }
-  &.right {
-    text-align: right;
-  }
-  &.justify {
-    text-align: center;
-  }
+  &.center { text-align: center; }
+  &.left { text-align: left; }
+  &.right { text-align: right; }
+  &.justify { text-align: center; }
 }
 
 h1.title {
@@ -75,21 +78,27 @@ h3.title {
 
 @media (max-width: 768px) {
   .title {
-    font-size: 8vw;
-    line-height: 30px;
-    letter-spacing: 5px;
-    padding: 15px 0px;
+    font-size: 6.2vw;        
+    line-height: 1.35;       
+    letter-spacing: 2.5px;   
+    padding: 12px 0;
+  }
+
+  .title.cornered {
+    padding: 14px 16px;
+    border-width: 8px;
   }
 
   h1.title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   h2.title {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
   }
 
   h3.title {
     font-size: 1.25rem;
   }
 }
+

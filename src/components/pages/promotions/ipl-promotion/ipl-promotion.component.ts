@@ -30,9 +30,7 @@ export class IplPromotionComponent implements OnInit {
     'https://farewell.salon/assets/images/farewell/farewellStudio4.png';
 
   paragraphText: string = `
-    Dauerhafte Haarentfernung in Nürnberg bei FareWell.
-    Sichern Sie sich jetzt 50% Rabatt auf Ihre erste Behandlung
-    mit dem Code ERSTEBEHANDLUNG.
+    Laser Haarentfernung in Nürnberg bei FareWell.
 
     Diese Aktion gilt exklusiv für Neukundinnen und Neukunden und nur für kurze Zeit.
     Perfekt, um den Start in eine glattere und pflegeleichtere Zukunft zu setzen.

@@ -29,8 +29,6 @@ export class ElectrolysisPromotionComponent implements OnInit {
 
   paragraphText: string = `
     Permanente Haarentfernung mit Elektrolyse in Nürnberg bei FareWell.
-    Sichern Sie sich jetzt 50% Rabatt auf Ihre erste Electrolysis Behandlung
-    mit dem Code ERSTEBEHANDLUNG.
 
     Diese Aktion gilt exklusiv für Neukundinnen und Neukunden und nur für kurze Zeit.
     Perfekt, um den Start in eine glattere und pflegeleichtere Zukunft zu setzen.

@@ -31,8 +31,6 @@ export class NadelepilationPromotionComponent implements OnInit {
 
   paragraphText: string = `
     Permanente Haarentfernung mit Nadelepilation (Elektrolyse) in Nürnberg bei FareWell.
-    Sichern Sie sich jetzt 50 Prozent Rabatt auf Ihre erste Behandlung
-    mit dem Code ERSTEBEHANDLUNG.
 
     Diese Aktion gilt exklusiv für Neukundinnen und Neukunden und nur für kurze Zeit.
     Eine ideale Gelegenheit, um den Weg zu dauerhaft glatter und pflegeleichter Haut zu beginnen.

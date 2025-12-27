@@ -31,8 +31,6 @@ export class MicroneedlingPromotionComponent implements OnInit {
 
   paragraphText: string = `
     Radiofrequenz-Microneedling für Hautstraffung und Hautverjüngung in Nürnberg bei FareWell.
-    Sichern Sie sich jetzt 50% Rabatt auf Ihre erste Microneedling Behandlung
-    mit dem Code ERSTEBEHANDLUNG.
 
     Diese Aktion gilt exklusiv für Neukundinnen und Neukunden und nur für kurze Zeit.
     Ideal, um den Start in eine strahlendere, glattere und sichtbar verjüngte Haut zu setzen.
