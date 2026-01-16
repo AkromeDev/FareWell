@@ -38,7 +38,7 @@ export class PriceComponent implements OnInit {
     Sind Sie noch unsicher welche Behandlung die richtige für Sie ist? 
     Keine Sorge die erste Beratung ist kostenlos. Gemeinsam finden wir heraus was am besten zu Ihnen passt.
 
-    Bei FareWell setzen wir auf Vertrauen und langfristige Beziehungen. Darum belohnen wir unsere treuen Kundinnen und Kunden mit 30 % Rabatt auf alle Folgebehandlungen. 
+    Bei FareWell setzen wir auf Vertrauen und langfristige Beziehungen. Darum belohnen wir unsere treuen Kundinnen und Kunden mit 50 % Rabatt auf alle Folgebehandlungen. 
 
     Ganz unkompliziert, als kleines Dankeschön für Ihre Loyalität.
   `;
