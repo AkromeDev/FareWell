@@ -29,18 +29,21 @@ const routes: Routes = [
   },
   {
     path: 'impressum',
-    loadChildren: () =>
-      import('../components/pages/legal/impressum/impressum.module').then(m => m.ImpressumModule)
+    loadComponent: () =>
+      import('../components/pages/legal/impressum/impressum.component')
+        .then(m => m.ImpressumComponent)
   },
   {
     path: 'datenschutz',
-    loadChildren: () =>
-      import('../components/pages/legal/datenschutz/datenschutz.module').then(m => m.DatenschutzModule)
+    loadComponent: () =>
+      import('../components/pages/legal/datenschutz/datenschutz.component')
+        .then(m => m.DatenschutzComponent)
   },
   {
     path: 'agb',
-    loadChildren: () =>
-      import('../components/pages/legal/agb/agb.module').then(m => m.AgbModule)
+    loadComponent: () =>
+      import('../components/pages/legal/agb/agb.component')
+        .then(m => m.AgbComponent)
   },
   {
     path: 'laser-haarentfernung-aktion-nuernberg',
