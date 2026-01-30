@@ -1,8 +1,8 @@
-<div [ngClass]="{scrolled: scrolled}" class="nav-bar">
+<div [ngClass]="{ scrolled: scrolled }" class="nav-bar">
   <a [routerLink]="'/'" class="nav-logo" (click)="setActiveTab('home')">FareWell</a>
 
   <!-- Burger Icon -->
-  <div class="burger" (click)="toggleMenu()">
+  <div class="burger" (click)="toggleMenu()" aria-label="Menu öffnen" role="button" tabindex="0">
     <span></span>
     <span></span>
     <span></span>
@@ -15,35 +15,70 @@
       target="_blank"
       rel="noopener noreferrer"
       class="nav-link"
-      >Termin Buchen</a
     >
-    <a
-      [routerLink]="'/behandlung'"
-      routerLinkActive="active"
-      (click)="setActiveTab('behandlung')"
-      class="nav-link"
-      >Behandlung & Wirkung</a
+      Termin Buchen
+    </a>
+
+    <!-- Behandlungen (cards mega panel on desktop) -->
+    <div
+      class="nav-item behandlungen"
+      (mouseenter)="openBehandlungenDesktop()"
+      (mouseleave)="closeBehandlungenDesktop()"
     >
+      <button
+        type="button"
+        class="nav-link nav-link-btn"
+        [attr.aria-expanded]="behandlungenOpen"
+        (click)="toggleBehandlungen($event)"
+      >
+        Behandlungen
+        <span class="chevron" [ngClass]="{ open: behandlungenOpen }">▾</span>
+      </button>
+
+      <!-- Desktop panel -->
+      <div class="behandlungen-panel" [ngClass]="{ open: behandlungenOpen }">
+        <div class="panel-inner">
+          <a
+            class="treatment-card"
+            *ngFor="let t of treatments"
+            [routerLink]="t.route"
+            (click)="setActiveTab('behandlungen')"
+          >
+            <div class="card-image" [style.backgroundImage]="'url(' + t.image + ')'">
+              <div class="image-overlay"></div>
+              <div class="card-title">{{ t.title }}</div>
+            </div>
+            <div class="card-desc">{{ t.description }}</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
     <a
       [routerLink]="'/zeit'"
       routerLinkActive="active"
       (click)="setActiveTab('zeit')"
       class="nav-link"
-      >Elektrolyse-Zeitberechnung</a
     >
+      Elektrolyse-Zeitberechnung
+    </a>
+
     <a
       [routerLink]="'/historie'"
       routerLinkActive="active"
       (click)="setActiveTab('historie')"
       class="nav-link"
-      >Historie</a
     >
+      Historie
+    </a>
+
     <a
       [routerLink]="'/price'"
       routerLinkActive="active"
       (click)="setActiveTab('price')"
       class="nav-link"
-      >Preis</a
     >
+      Preis
+    </a>
   </div>
 </div>

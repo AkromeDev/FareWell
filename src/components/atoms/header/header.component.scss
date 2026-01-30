@@ -6,71 +6,55 @@
 
 * {
   box-sizing: border-box;
-  transition: 0.4s ease;
+  transition: 0.35s ease;
   margin: 0;
   padding: 0;
 }
 
 a {
   text-decoration: none !important;
+  cursor: pointer;
 }
 
-// ========== HEADER BAR ==========
+button {
+  font-family: inherit;
+}
+
+/* ========== HEADER (mobile first) ========== */
 .nav-bar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0 0 auto 0;
   z-index: 100;
-  height: 110px;
-  padding: 0 6%;
+
+  height: 70px;
+  padding: 0 4%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   background-color: rgba($black, 0.80);
 
   &.scrolled {
-    height: 80px;
+    height: 60px;
     background-color: rgba($black, 0.85);
   }
 }
 
-// ========== LOGO ==========
 .nav-logo {
   font-family: "Montserrat", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: $white;
   cursor: pointer;
 }
 
-// ========== NAV LINKS ==========
-.nav-links-container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-
-  .nav-link {
-    color: $light-1;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-weight: 500;
-    padding: 0 12px;
-    transition: 0.4s ease;
-
-    &.active,
-    &:hover {
-      color: $white;
-    }
-  }
-}
-
-// ========== BURGER MENU ==========
+/* Burger (mobile) */
 .burger {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
+  position: absolute;
+  right: 20px;
 
   span {
     width: 25px;
@@ -80,13 +64,228 @@ a {
   }
 }
 
-// ========== RESPONSIVE ==========
+/* Nav container (mobile) */
+.nav-links-container {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
 
-@media only screen and (max-width: 1100px) {
-  .nav-bar {
-    padding: 0 4%;
+  background-color: rgba($black, 0.80);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  padding: 0 1rem;
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  pointer-events: none;
+
+  transition: transform 0.25s ease, opacity 0.25s ease;
+
+  &.open {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+    padding: 1rem;
   }
 
+  .nav-link {
+    color: $light-1;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.55rem 0;
+
+    &:hover,
+    &.active {
+      color: $white;
+    }
+  }
+}
+
+/* Behandlungen button */
+.nav-item.behandlungen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.nav-link-btn {
+  background: transparent;
+  border: none;
+  text-align: right;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chevron {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+
+  &.open {
+    transform: rotate(180deg);
+  }
+}
+
+/* MOBILE: keep it simple – no heavy panel, just hide it (you said mobile is perfect) */
+.behandlungen-panel {
+  display: none;
+}
+
+/* ========== DESKTOP: Mega Panel with Cards ========== */
+@media (min-width: 769px) {
+  .nav-bar {
+    height: 110px;
+    padding: 0 6%;
+
+    &.scrolled {
+      height: 80px;
+    }
+  }
+
+  .nav-logo {
+    font-size: 1.5rem;
+  }
+
+  .burger {
+    display: none;
+  }
+
+  .nav-links-container {
+    position: static;
+    width: auto;
+    background-color: transparent;
+
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    padding: 0;
+
+    .nav-link {
+      font-size: 1.2rem;
+      padding: 0 12px;
+    }
+  }
+
+  .nav-item.behandlungen {
+    position: relative;
+    width: auto;
+    align-items: center;
+  }
+
+  /* Panel animation */
+  .behandlungen-panel {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 14px);
+    transform: translateX(-50%) translateY(8px);
+    width: min(980px, 78vw);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    &.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .panel-inner {
+    background-color: rgba($black, 0.30);
+    border: 1px solid rgba($light-1, 0.18);
+    border-radius: 18px;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    padding: 18px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+
+    box-shadow: 0 18px 40px rgba($black, 0.35);
+  }
+
+  .treatment-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    &:hover .card-title {
+      transform: translateY(-2px);
+      color: $white;
+    }
+
+    &:hover .card-image {
+      transform: scale(1.01);
+    }
+  }
+
+  .card-image {
+    position: relative;
+    height: 120px;
+    border-radius: 16px;
+    overflow: hidden;
+
+    background-size: cover;
+    background-position: center;
+    transform: scale(1);
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba($black, 0.10) 0%,
+      rgba($black, 0.65) 100%
+    );
+  }
+
+  .card-title {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+
+    color: $light-1;
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.15;
+    text-transform: none;
+    letter-spacing: 0.2px;
+  }
+
+  .card-desc {
+    color: rgba($light-1, 0.85);
+    font-size: 0.92rem;
+    line-height: 1.35;
+    padding: 0 6px 6px 6px;
+    max-width: 28ch;
+  }
+}
+
+/* Slight tuning for mid desktop */
+@media (min-width: 901px) {
   .nav-links-container {
     gap: 16px;
 
@@ -97,65 +296,13 @@ a {
   }
 }
 
-@media only screen and (max-width: 900px) {
-  .nav-logo {
-    font-size: 1.4rem;
-  }
-
+@media (min-width: 1101px) {
   .nav-links-container {
-    gap: 14px;
+    gap: 20px;
 
     .nav-link {
-      font-size: 1rem;
+      font-size: 1.2rem;
+      padding: 0 12px;
     }
   }
 }
-
-@media only screen and (max-width: 768px) {
-  .nav-bar {
-    height: 70px;
-
-    &.scrolled {
-      height: 60px;
-    }
-  }
-
-  .nav-logo {
-    font-size: 1.3rem;
-  }
-
-  .burger {
-    display: flex;
-    position: absolute;
-    right: 20px;
-  }
-
-  .nav-links-container {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    background-color: rgba($black, 0.80);
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 0 1rem;
-    transform-origin: top;
-    transform: scaleY(0);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    pointer-events: none;
-  }
-
-  .nav-links-container.open {
-    transform: scaleY(1);
-    opacity: 1;
-    pointer-events: auto;
-    padding: 1rem;
-  }
-
-  .nav-link {
-    font-size: 1.1rem;
-    padding: 0.5rem 0;
-  }
-}
-
