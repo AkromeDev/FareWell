@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BehandlungComponent } from './behandlung.component';
+import { NadelepilationComponent } from './nadelepilation.component';
 
-describe('BehandlungComponent', () => {
-  let component: BehandlungComponent;
-  let fixture: ComponentFixture<BehandlungComponent>;
+describe('NadelepilationComponent', () => {
+  let component: NadelepilationComponent;
+  let fixture: ComponentFixture<NadelepilationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BehandlungComponent]
+      imports: [NadelepilationComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BehandlungComponent);
+    fixture = TestBed.createComponent(NadelepilationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

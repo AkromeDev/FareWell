@@ -24,6 +24,8 @@ export class HeaderComponent implements OnInit {
   behandlungenOpen: boolean = false;
   isMobile: boolean = false;
 
+  private closeTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
   treatments: TreatmentCard[] = [
     {
       title: 'Nadelepilation',
@@ -35,7 +37,7 @@ export class HeaderComponent implements OnInit {
       title: '4 Wellen Dioden Laser',
       description: 'Dauerhafte Haarentfernung für viele Haut- & Haartypen – schnell und komfortabel.',
       route: '/behandlungen/diodenlaser-4-wellen',
-      image: 'assets/images/treatment/diodenlaser.jpg'
+      image: 'assets/images/treatment/diodenlaser.png'
     },
     {
       title: 'Microneedling Radio Frequenz',
@@ -47,7 +49,7 @@ export class HeaderComponent implements OnInit {
       title: 'Kavitation',
       description: 'Ultraschall-Unterstützung zur Kontur – sanft, nicht-invasiv und effektiv.',
       route: '/behandlungen/kavitation',
-      image: 'assets/images/treatment/kavitation.jpg'
+      image: 'assets/images/treatment/kavitation.png'
     }
   ];
 
@@ -61,6 +63,7 @@ export class HeaderComponent implements OnInit {
     this.activeTab = tab;
     this.menuOpen = false;
     this.behandlungenOpen = false;
+    this.clearCloseTimer();
   }
 
   toggleMenu() {
@@ -74,17 +77,37 @@ export class HeaderComponent implements OnInit {
     this.behandlungenOpen = !this.behandlungenOpen;
   }
 
-  openBehandlungenDesktop() {
-    if (!this.isMobile) this.behandlungenOpen = true;
+  onBehandlungenEnter() {
+    if (this.isMobile) return;
+    this.clearCloseTimer();
+    this.behandlungenOpen = true;
   }
 
-  closeBehandlungenDesktop() {
-    if (!this.isMobile) this.behandlungenOpen = false;
+  onBehandlungenLeave() {
+    if (this.isMobile) return;
+    this.scheduleClose();
+  }
+
+  private scheduleClose() {
+    this.clearCloseTimer();
+    // ✅ more forgiving for slow mouse movement
+    this.closeTimeoutId = setTimeout(() => {
+      this.behandlungenOpen = false;
+      this.closeTimeoutId = null;
+    }, 280);
+  }
+
+  private clearCloseTimer() {
+    if (this.closeTimeoutId) {
+      clearTimeout(this.closeTimeoutId);
+      this.closeTimeoutId = null;
+    }
   }
 
   closeAll() {
     this.menuOpen = false;
     this.behandlungenOpen = false;
+    this.clearCloseTimer();
   }
 
   private updateIsMobile() {
@@ -95,10 +118,7 @@ export class HeaderComponent implements OnInit {
   onResize() {
     const wasMobile = this.isMobile;
     this.updateIsMobile();
-
-    if (wasMobile && !this.isMobile) {
-      this.closeAll();
-    }
+    if (wasMobile && !this.isMobile) this.closeAll();
   }
 
   @HostListener('window:scroll')

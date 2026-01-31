@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./behandlung.component').then(m => m.BehandlungComponent)
+      import('./nadelepilation.component').then(m => m.NadelepilationComponent)
   }
 ];
 
@@ -16,4 +16,4 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ]
 })
-export class BehandlungModule { }
+export class NadelepilationModule { }

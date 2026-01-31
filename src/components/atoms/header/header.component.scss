@@ -64,6 +64,11 @@ button {
   }
 }
 
+/* ✅ Wrapper for hover zone (desktop only changes below) */
+.behandlungen-wrap {
+  width: 100%;
+}
+
 /* Nav container (mobile) */
 .nav-links-container {
   position: absolute;
@@ -107,7 +112,7 @@ button {
   }
 }
 
-/* Behandlungen button */
+/* Behandlungen trigger */
 .nav-item.behandlungen {
   width: 100%;
   display: flex;
@@ -135,12 +140,12 @@ button {
   }
 }
 
-/* MOBILE: keep it simple – no heavy panel, just hide it (you said mobile is perfect) */
+/* MOBILE: keep it hidden (your mobile is perfect) */
 .behandlungen-panel {
   display: none;
 }
 
-/* ========== DESKTOP: Mega Panel with Cards ========== */
+/* ========== DESKTOP: Full-width Mega Panel with Cards ========== */
 @media (min-width: 769px) {
   .nav-bar {
     height: 110px;
@@ -159,6 +164,11 @@ button {
     display: none;
   }
 
+  /* ✅ wrapper becomes inline container on desktop */
+  .behandlungen-wrap {
+    width: auto;
+  }
+
   .nav-links-container {
     position: static;
     width: auto;
@@ -173,9 +183,88 @@ button {
     pointer-events: auto;
     padding: 0;
 
+    /* =========================================
+       ✅ Animated underline (desktop only)
+       - left -> right on hover
+       - left -> right on unhover (same direction)
+       ========================================= */
+    .nav-link,
+    .nav-link-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+
+      /* make room for underline */
+      padding-bottom: 10px;
+
+      /* stop global transition from affecting underline timing */
+      transition: color 0.25s ease;
+    }
+
+  .nav-link::after,
+  .nav-link-btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+
+    background: rgba($light-1, 0.95);
+
+    /* hidden by default, anchored on the RIGHT */
+    transform: scaleX(0);
+    transform-origin: right;
+
+    transition: transform 0.28s ease;
+    pointer-events: none;
+  }
+
+/* Hover / active → draw LEFT → RIGHT */
+.nav-link:hover::after,
+.nav-link-btn:hover::after,
+.nav-item.behandlungen:hover .nav-link-btn::after,
+.nav-link.active::after,
+.nav-link.router-link-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+    /* Hover: draw underline left -> right */
+    .nav-link:hover::after,
+    .nav-link-btn:hover::after,
+    .nav-item.behandlungen:hover .nav-link-btn::after {
+      transform: scaleX(1);
+    }
+
+    /* Active: keep underline visible */
+    .nav-link.active::after,
+    .nav-link.router-link-active::after {
+      transform: scaleX(1);
+    }
+
+    /* Hover/Active color */
+    .nav-link:hover,
+    .nav-link-btn:hover,
+    .nav-link.active,
+    .nav-link.router-link-active {
+      color: $white;
+    }
+
     .nav-link {
       font-size: 1.2rem;
-      padding: 0 12px;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    /* keep button spacing consistent with links */
+    .nav-link-btn {
+      padding-left: 12px;
+      padding-right: 12px;
+      cursor: pointer;
     }
   }
 
@@ -185,41 +274,65 @@ button {
     align-items: center;
   }
 
-  /* Panel animation */
+  /* Panel (full width, fixed under header) */
   .behandlungen-panel {
     display: block;
-    position: absolute;
-    left: 50%;
-    top: calc(100% + 14px);
-    transform: translateX(-50%) translateY(8px);
-    width: min(980px, 78vw);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 110px;
 
+    transform: translateY(10px);
     opacity: 0;
     pointer-events: none;
 
     transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 99;
 
     &.open {
       opacity: 1;
       pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
+      transform: translateY(0);
+    }
+
+    /* ✅ Hover bridge: removes the tiny gap between trigger and panel */
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -22px;
+      height: 22px;
+      background: transparent;
+      pointer-events: auto;
     }
   }
 
+  .nav-bar.scrolled .behandlungen-panel {
+    top: 80px;
+  }
+
   .panel-inner {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1400px;
+    padding: 18px 6%;
+
+    /* keep your gradient if you added it */
+    /* background-image: linear-gradient(180deg, rgba($black, 0.35), rgba($black, 0.18)); */
+
     background-color: rgba($black, 0.30);
-    border: 1px solid rgba($light-1, 0.18);
-    border-radius: 18px;
+    border-top: 1px solid rgba($light-1, 0.18);
+    border-bottom: 1px solid rgba($light-1, 0.18);
 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
-    padding: 18px;
+    box-shadow: 0 18px 40px rgba($black, 0.35);
+
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
-
-    box-shadow: 0 18px 40px rgba($black, 0.35);
   }
 
   .treatment-card {
@@ -291,7 +404,13 @@ button {
 
     .nav-link {
       font-size: 1.1rem;
-      padding: 0 8px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    .nav-link-btn {
+      padding-left: 8px;
+      padding-right: 8px;
     }
   }
 }
@@ -302,7 +421,13 @@ button {
 
     .nav-link {
       font-size: 1.2rem;
-      padding: 0 12px;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .nav-link-btn {
+      padding-left: 12px;
+      padding-right: 12px;
     }
   }
 }
