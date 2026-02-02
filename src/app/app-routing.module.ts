@@ -24,26 +24,25 @@ const routes: Routes = [
         loadComponent: () =>
           import('../components/pages/nadelepilation/nadelepilation.component')
             .then(m => m.NadelepilationComponent)
+      },
+      {
+        path: 'diodenlaser-4-wellen',
+        loadComponent: () =>
+          import('../components/pages/diodenlaser/diodenlaser')
+            .then(m => m.Diodenlaser)
+      },
+      {
+        path: 'microneedling-radiofrequenz',
+        loadComponent: () =>
+          import('../components/pages/microneedling/microneedling')
+            .then(m => m.MicroneedlingComponent)
+      },
+      {
+        path: 'kavitation',
+        loadComponent: () =>
+          import('../components/pages/kavitation/kavitation')
+            .then(m => m.KavitationComponent)
       }
-      // ,
-      // {
-      //   path: 'diodenlaser-4-wellen',
-      //   loadComponent: () =>
-      //     import('../components/pages/diodenlaser/diodenlaser.component')
-      //       .then(m => m.DiodenlaserComponent)
-      // },
-      // {
-      //   path: 'microneedling-radiofrequenz',
-      //   loadComponent: () =>
-      //     import('../components/pages/microneedling/microneedling.component')
-      //       .then(m => m.MicroneedlingComponent)
-      // },
-      // {
-      //   path: 'kavitation',
-      //   loadComponent: () =>
-      //     import('../components/pages/kavitation/kavitation.component')
-      //       .then(m => m.KavitationComponent)
-      // }
     ]
   },
 

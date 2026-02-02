@@ -64,11 +64,6 @@ button {
   }
 }
 
-/* ✅ Wrapper for hover zone (desktop only changes below) */
-.behandlungen-wrap {
-  width: 100%;
-}
-
 /* Nav container (mobile) */
 .nav-links-container {
   position: absolute;
@@ -80,7 +75,7 @@ button {
 
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: stretch;
 
   padding: 0 1rem;
   transform-origin: top;
@@ -103,6 +98,10 @@ button {
     text-transform: uppercase;
     cursor: pointer;
     font-weight: 500;
+
+    width: 100%;
+    text-align: right;
+
     padding: 0.55rem 0;
 
     &:hover,
@@ -112,22 +111,40 @@ button {
   }
 }
 
-/* Behandlungen trigger */
+/* Behandlungen container */
 .nav-item.behandlungen {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: stretch;
+}
+
+.behandlungen-trigger {
+  width: 100%;
 }
 
 .nav-link-btn {
   background: transparent;
   border: none;
-  text-align: right;
 
   display: inline-flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 10px;
+
+  width: 100%;
+  text-align: right;
+
+  color: $light-1;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.55rem 0;
+  cursor: pointer;
+
+  &:hover {
+    color: $white;
+  }
 }
 
 .chevron {
@@ -140,12 +157,42 @@ button {
   }
 }
 
-/* MOBILE: keep it hidden (your mobile is perfect) */
+/* ✅ MOBILE sublist */
+.behandlungen-mobile {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+
+  padding-top: 6px;
+  padding-bottom: 10px;
+
+  &.open {
+    display: flex;
+  }
+}
+
+.behandlungen-mobile-link {
+  width: 100%;
+  text-align: right;
+  color: rgba($light-1, 0.90);
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: none;
+
+  padding: 0.35rem 0;
+
+  &:hover,
+  &.active {
+    color: $white;
+  }
+}
+
+/* Desktop mega panel hidden on mobile */
 .behandlungen-panel {
   display: none;
 }
 
-/* ========== DESKTOP: Full-width Mega Panel with Cards ========== */
+/* ========== DESKTOP ========== */
 @media (min-width: 769px) {
   .nav-bar {
     height: 110px;
@@ -164,11 +211,6 @@ button {
     display: none;
   }
 
-  /* ✅ wrapper becomes inline container on desktop */
-  .behandlungen-wrap {
-    width: auto;
-  }
-
   .nav-links-container {
     position: static;
     width: auto;
@@ -183,88 +225,59 @@ button {
     pointer-events: auto;
     padding: 0;
 
-    /* =========================================
-       ✅ Animated underline (desktop only)
-       - left -> right on hover
-       - left -> right on unhover (same direction)
-       ========================================= */
-    .nav-link,
+    .nav-link {
+      width: auto;
+      text-align: left;
+
+      font-size: 1.2rem;
+      padding: 0 12px 10px 12px;
+      position: relative;
+      transition: color 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
     .nav-link-btn {
+      width: auto;
+      text-align: left;
+      padding: 0 12px 10px 12px;
       position: relative;
       display: inline-flex;
       align-items: center;
-
-      /* make room for underline */
-      padding-bottom: 10px;
-
-      /* stop global transition from affecting underline timing */
-      transition: color 0.25s ease;
+      white-space: nowrap;
+      justify-content: flex-start;
     }
 
-  .nav-link::after,
-  .nav-link-btn::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 2px;
+    .nav-link::after,
+    .nav-link-btn::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      width: 100%;
+      height: 2px;
+      border-radius: 2px;
+      background: rgba($light-1, 0.95);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.28s ease;
+      pointer-events: none;
+    }
 
-    width: 100%;
-    height: 2px;
-    border-radius: 2px;
-
-    background: rgba($light-1, 0.95);
-
-    /* hidden by default, anchored on the RIGHT */
-    transform: scaleX(0);
-    transform-origin: right;
-
-    transition: transform 0.28s ease;
-    pointer-events: none;
-  }
-
-/* Hover / active → draw LEFT → RIGHT */
-.nav-link:hover::after,
-.nav-link-btn:hover::after,
-.nav-item.behandlungen:hover .nav-link-btn::after,
-.nav-link.active::after,
-.nav-link.router-link-active::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-
-    /* Hover: draw underline left -> right */
     .nav-link:hover::after,
     .nav-link-btn:hover::after,
-    .nav-item.behandlungen:hover .nav-link-btn::after {
-      transform: scaleX(1);
-    }
-
-    /* Active: keep underline visible */
     .nav-link.active::after,
     .nav-link.router-link-active::after {
       transform: scaleX(1);
+      transform-origin: left;
     }
 
-    /* Hover/Active color */
     .nav-link:hover,
     .nav-link-btn:hover,
     .nav-link.active,
     .nav-link.router-link-active {
       color: $white;
-    }
-
-    .nav-link {
-      font-size: 1.2rem;
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-
-    /* keep button spacing consistent with links */
-    .nav-link-btn {
-      padding-left: 12px;
-      padding-right: 12px;
-      cursor: pointer;
     }
   }
 
@@ -274,7 +287,15 @@ button {
     align-items: center;
   }
 
-  /* Panel (full width, fixed under header) */
+  .behandlungen-trigger {
+    width: auto;
+    display: inline-block;
+  }
+
+  .behandlungen-mobile {
+    display: none !important;
+  }
+
   .behandlungen-panel {
     display: block;
     position: fixed;
@@ -284,6 +305,7 @@ button {
 
     transform: translateY(10px);
     opacity: 0;
+
     pointer-events: none;
 
     transition: opacity 0.25s ease, transform 0.25s ease;
@@ -291,20 +313,7 @@ button {
 
     &.open {
       opacity: 1;
-      pointer-events: auto;
       transform: translateY(0);
-    }
-
-    /* ✅ Hover bridge: removes the tiny gap between trigger and panel */
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: -22px;
-      height: 22px;
-      background: transparent;
-      pointer-events: auto;
     }
   }
 
@@ -318,9 +327,6 @@ button {
     max-width: 1400px;
     padding: 18px 6%;
 
-    /* keep your gradient if you added it */
-    /* background-image: linear-gradient(180deg, rgba($black, 0.35), rgba($black, 0.18)); */
-
     background-color: rgba($black, 0.30);
     border-top: 1px solid rgba($light-1, 0.18);
     border-bottom: 1px solid rgba($light-1, 0.18);
@@ -333,13 +339,26 @@ button {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
+
+    pointer-events: auto;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -22px;
+      height: 22px;
+      background: transparent;
+      pointer-events: auto;
+    }
   }
 
   .treatment-card {
     display: flex;
     flex-direction: column;
     gap: 10px;
-
     border-radius: 16px;
     overflow: hidden;
 
@@ -358,7 +377,6 @@ button {
     height: 120px;
     border-radius: 16px;
     overflow: hidden;
-
     background-size: cover;
     background-position: center;
     transform: scale(1);
@@ -397,20 +415,17 @@ button {
   }
 }
 
-/* Slight tuning for mid desktop */
 @media (min-width: 901px) {
   .nav-links-container {
     gap: 16px;
 
     .nav-link {
       font-size: 1.1rem;
-      padding-left: 8px;
-      padding-right: 8px;
+      padding: 0 8px 10px 8px;
     }
 
     .nav-link-btn {
-      padding-left: 8px;
-      padding-right: 8px;
+      padding: 0 8px 10px 8px;
     }
   }
 }
@@ -421,13 +436,11 @@ button {
 
     .nav-link {
       font-size: 1.2rem;
-      padding-left: 12px;
-      padding-right: 12px;
+      padding: 0 12px 10px 12px;
     }
 
     .nav-link-btn {
-      padding-left: 12px;
-      padding-right: 12px;
+      padding: 0 12px 10px 12px;
     }
   }
 }

@@ -19,20 +19,28 @@
       Termin Buchen
     </a>
 
+    <!-- ✅ Behandlungen: underline stays when dropdown open OR on /behandlungen/... routes -->
     <div
       class="nav-item behandlungen"
-      (mouseenter)="onBehandlungenEnter()"
-      (mouseleave)="onBehandlungenLeave()"
+      [class.is-open]="behandlungenOpen"
+      [class.is-active]="isBehandlungenRoute"
     >
-      <button
-        type="button"
-        class="nav-link nav-link-btn"
-        [attr.aria-expanded]="behandlungenOpen"
-        (click)="toggleBehandlungen($event)"
+      <div
+        class="behandlungen-trigger"
+        (mouseenter)="onBehandlungenEnter()"
+        (mouseleave)="onBehandlungenLeave()"
       >
-        Behandlungen
-        <span class="chevron" [ngClass]="{ open: behandlungenOpen }">▾</span>
-      </button>
+        <button
+          type="button"
+          class="nav-link nav-link-btn"
+          [class.active]="isBehandlungenRoute || behandlungenOpen"
+          [attr.aria-expanded]="behandlungenOpen"
+          (click)="toggleBehandlungen($event)"
+        >
+          Behandlungen
+          <span class="chevron" [ngClass]="{ open: behandlungenOpen }">▾</span>
+        </button>
+      </div>
     </div>
 
     <a
@@ -63,14 +71,12 @@
     </a>
   </div>
 
-  <!-- ✅ Panel: ALSO keeps menu open while hovering this -->
-  <div
-    class="behandlungen-panel"
-    [ngClass]="{ open: behandlungenOpen }"
-    (mouseenter)="onBehandlungenEnter()"
-    (mouseleave)="onBehandlungenLeave()"
-  >
-    <div class="panel-inner">
+  <div class="behandlungen-panel" [ngClass]="{ open: behandlungenOpen }">
+    <div
+      class="panel-inner"
+      (mouseenter)="onBehandlungenEnter()"
+      (mouseleave)="onBehandlungenLeave()"
+    >
       <a
         class="treatment-card"
         *ngFor="let t of treatments"

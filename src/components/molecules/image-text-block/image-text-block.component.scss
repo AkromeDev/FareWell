@@ -27,16 +27,21 @@
     .image {
       width: 100%;
       aspect-ratio: 16 / 9;
-      background-size: cover;
-      background-position: center;
       border-radius: 0.5rem;
       overflow: hidden;
 
-      &.resize {
-      background-size: contain;
-      background-repeat: no-repeat;
       background-position: center;
-      background-color: $light-1;
+      background-repeat: no-repeat;
+
+      /* default behavior */
+      background-size: cover;
+
+      /* ✅ IMPORTANT: never create a different “card” color */
+      background-color: inherit;
+
+      &.resize {
+        /* ✅ always fit the whole image */
+        background-size: contain;
       }
     }
 
@@ -57,6 +62,14 @@
       .image {
         flex: 1;
         height: auto;
+
+        /* keep default desktop look */
+        background-size: cover;
+      }
+
+      /* ✅ make sure resize wins on desktop too */
+      .image.resize {
+        background-size: contain;
       }
 
       .paragraph {

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 type TreatmentCard = {
   title: string;
@@ -23,6 +24,9 @@ export class HeaderComponent implements OnInit {
 
   behandlungenOpen: boolean = false;
   isMobile: boolean = false;
+
+  // ✅ NEW: true whenever URL is /behandlungen or /behandlungen/...
+  isBehandlungenRoute: boolean = false;
 
   private closeTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
@@ -53,10 +57,21 @@ export class HeaderComponent implements OnInit {
     }
   ];
 
-  constructor(private eRef: ElementRef) {}
+  constructor(private eRef: ElementRef, private router: Router) {}
 
   ngOnInit(): void {
     this.updateIsMobile();
+    this.updateBehandlungenRouteState(this.router.url);
+
+    this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((e) => {
+        this.updateBehandlungenRouteState(e.urlAfterRedirects);
+      });
+  }
+
+  private updateBehandlungenRouteState(url: string) {
+    this.isBehandlungenRoute = url.startsWith('/behandlungen');
   }
 
   setActiveTab(tab: string) {
