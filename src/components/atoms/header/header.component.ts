@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   behandlungenOpen: boolean = false;
   isMobile: boolean = false;
 
-  // ✅ NEW: true whenever URL is /behandlungen or /behandlungen/...
+  // ✅ keeps underline active on /behandlungen and all sub-pages
   isBehandlungenRoute: boolean = false;
 
   private closeTimeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -105,7 +105,6 @@ export class HeaderComponent implements OnInit {
 
   private scheduleClose() {
     this.clearCloseTimer();
-    // ✅ more forgiving for slow mouse movement
     this.closeTimeoutId = setTimeout(() => {
       this.behandlungenOpen = false;
       this.closeTimeoutId = null;

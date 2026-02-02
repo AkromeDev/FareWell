@@ -19,12 +19,9 @@
       Termin Buchen
     </a>
 
-    <!-- ✅ Behandlungen: underline stays when dropdown open OR on /behandlungen/... routes -->
-    <div
-      class="nav-item behandlungen"
-      [class.is-open]="behandlungenOpen"
-      [class.is-active]="isBehandlungenRoute"
-    >
+    <!-- Behandlungen -->
+    <div class="nav-item behandlungen">
+      <!-- Desktop: tight hover trigger -->
       <div
         class="behandlungen-trigger"
         (mouseenter)="onBehandlungenEnter()"
@@ -33,13 +30,27 @@
         <button
           type="button"
           class="nav-link nav-link-btn"
-          [class.active]="isBehandlungenRoute || behandlungenOpen"
+          [class.active]="isBehandlungenRoute"
           [attr.aria-expanded]="behandlungenOpen"
           (click)="toggleBehandlungen($event)"
         >
           Behandlungen
           <span class="chevron" [ngClass]="{ open: behandlungenOpen }">▾</span>
         </button>
+      </div>
+
+      <!-- ✅ Mobile: sub-pages list -->
+      <div class="behandlungen-mobile" [ngClass]="{ open: behandlungenOpen }">
+        <div class="behandlungen-mobile-inner">
+          <a
+            class="behandlungen-mobile-link"
+            *ngFor="let t of treatments"
+            [routerLink]="t.route"
+            (click)="setActiveTab('behandlungen')"
+          >
+            {{ t.title }}
+          </a>
+        </div>
       </div>
     </div>
 
@@ -71,12 +82,14 @@
     </a>
   </div>
 
-  <div class="behandlungen-panel" [ngClass]="{ open: behandlungenOpen }">
-    <div
-      class="panel-inner"
-      (mouseenter)="onBehandlungenEnter()"
-      (mouseleave)="onBehandlungenLeave()"
-    >
+  <!-- ✅ Desktop mega panel -->
+  <div
+    class="behandlungen-panel"
+    [ngClass]="{ open: behandlungenOpen }"
+    (mouseenter)="onBehandlungenEnter()"
+    (mouseleave)="onBehandlungenLeave()"
+  >
+    <div class="panel-inner">
       <a
         class="treatment-card"
         *ngFor="let t of treatments"
