@@ -35,13 +35,16 @@ export class PriceComponent implements OnInit {
   ngOnInit(): void {}
 
   paragraphText: string = `
-    Sind Sie noch unsicher welche Behandlung die richtige für Sie ist? 
-    Keine Sorge die erste Beratung ist kostenlos. Gemeinsam finden wir heraus was am besten zu Ihnen passt.
+    Sind Sie noch unsicher, welche Behandlung die richtige für Sie ist  
+    Keine Sorge, die erste Beratung bei FareWell ist kostenlos. Gemeinsam finden wir heraus, was am besten zu Ihnen passt.
 
-    Bei FareWell setzen wir auf Vertrauen und langfristige Beziehungen. Darum belohnen wir unsere treuen Kundinnen und Kunden mit 50 % Rabatt auf alle Folgebehandlungen. 
+    Im Februar bedanken wir uns besonders bei neuen Kundinnen und Kunden.  
+    Mit dem Code FOREVER erhalten Sie 40 % Rabatt auf alle Folgebehandlungen.
 
-    Ganz unkompliziert, als kleines Dankeschön für Ihre Loyalität.
+    Der Rabatt gilt lebenslang und ist unser Versprechen für Vertrauen, Qualität und eine langfristige Zusammenarbeit.  
+    Ganz unkompliziert, als Dankeschön für Ihre Entscheidung für FareWell.
   `;
+
 
   isFullscreen = false;
 
