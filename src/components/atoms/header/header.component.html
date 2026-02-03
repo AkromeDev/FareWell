@@ -2,7 +2,14 @@
   <a [routerLink]="'/'" class="nav-logo" (click)="setActiveTab('home')">FareWell</a>
 
   <!-- Burger Icon -->
-  <div class="burger" (click)="toggleMenu()" aria-label="Menu öffnen" role="button" tabindex="0">
+    <div
+    class="burger"
+    [ngClass]="{ open: menuOpen }"
+    (click)="toggleMenu()"
+    aria-label="Menu öffnen"
+    role="button"
+    tabindex="0"
+  >
     <span></span>
     <span></span>
     <span></span>

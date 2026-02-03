@@ -57,6 +57,7 @@ button {
 
 /* Burger (mobile) */
 .burger {
+  /* keep your layout */
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -67,11 +68,95 @@ button {
   /* ✅ ensure burger stays clickable */
   z-index: 3;
 
+  /* ✅ triangle animation needs a stable box */
+  width: 32px;
+  height: 26px;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+
+  /* nice tap target */
+  padding: 8px;
+  margin-right: -8px;
+
+  /* smoother feel on mobile */
+  -webkit-tap-highlight-color: transparent;
+
   span {
     width: 25px;
     height: 3px;
     background-color: $light-1;
-    border-radius: 2px;
+    border-radius: 20px;
+
+    /* ✅ key for smooth morph */
+    display: block;
+    position: absolute;
+
+    /* start: 3 stacked lines */
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: center;
+
+    transition:
+      transform 550ms cubic-bezier(0.22, 1, 0.36, 1),
+      top 550ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 220ms ease,
+      width 550ms cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* default positions */
+    &:nth-child(1) { top: 6px; }
+    &:nth-child(2) { top: 12px; }
+    &:nth-child(3) { top: 18px; }
+  }
+
+    span:nth-child(1) { transform-origin: center; }
+    span:nth-child(2) { transform-origin: left center; }
+    span:nth-child(3) { transform-origin: right center; }
+
+    /* ✅ OPEN state: 3 strokes become a triangle outline (improved) */
+  &.open {
+    /* tuning knobs (easy micro-adjust) */
+    --tri-w: 28px;   /* triangle side width */
+    --tri-dx: -6px;   /* how far left/right the side strokes move */
+    --tri-top: 6px;  /* top edge position */
+    --tri-mid: 2px; /* where side strokes sit before they lean down */
+    --tri-drop: 6px; /* how much the slanted sides go down */
+
+    span {
+      width: var(--tri-w);
+    }
+
+    /* top edge */
+    span:nth-child(1) {
+      top: var(--tri-top);
+      transform: translateX(-50%) rotate(0deg);
+      transform-origin: center;
+    }
+
+    /* left edge: shift left THEN rotate around its left end */
+    span:nth-child(2) {
+      top: var(--tri-mid);
+      transform: translateX(calc(-50% - var(--tri-dx)))
+        rotate(60deg)
+        translateY(var(--tri-drop));
+      transform-origin: left center;
+    }
+
+    /* right edge: shift right THEN rotate around its right end */
+    span:nth-child(3) {
+      top: var(--tri-mid);
+      transform: translateX(calc(-50% + var(--tri-dx)))
+        rotate(-60deg)
+        translateY(var(--tri-drop));
+      transform-origin: right center;
+    }
+  }
+
+  /* ✅ keyboard accessibility: visible focus */
+  &:focus-visible {
+    outline: 2px solid rgba($light-1, 0.8);
+    outline-offset: 4px;
+    border-radius: 10px;
   }
 }
 
@@ -320,7 +405,6 @@ button {
       pointer-events: none;
     }
 
-
     .nav-link:hover::after,
     .nav-link-btn:hover::after,
     .nav-link.active::after,
@@ -553,7 +637,8 @@ button {
   .panel-inner,
   .card-image,
   .card-title,
-  .behandlungen-mobile {
+  .behandlungen-mobile,
+  .burger span {
     transition: none !important;
     transform: none !important;
     filter: none !important;
