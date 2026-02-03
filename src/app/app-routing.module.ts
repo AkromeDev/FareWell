@@ -7,11 +7,55 @@ const routes: Routes = [
     loadComponent: () =>
       import('../components/pages/home/home.component').then(m => m.HomeComponent)
   },
+
+  /**
+   * ✅ New: Treatments under /behandlungen/...
+   */
+  {
+    path: 'behandlungen',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'nadelepilation'
+      },
+      {
+        path: 'nadelepilation',
+        loadComponent: () =>
+          import('../components/pages/nadelepilation/nadelepilation.component')
+            .then(m => m.NadelepilationComponent)
+      },
+      {
+        path: 'diodenlaser-4-wellen',
+        loadComponent: () =>
+          import('../components/pages/diodenlaser/diodenlaser')
+            .then(m => m.Diodenlaser)
+      },
+      {
+        path: 'microneedling-radiofrequenz',
+        loadComponent: () =>
+          import('../components/pages/microneedling/microneedling')
+            .then(m => m.MicroneedlingComponent)
+      },
+      {
+        path: 'kavitation',
+        loadComponent: () =>
+          import('../components/pages/kavitation/kavitation')
+            .then(m => m.KavitationComponent)
+      }
+    ]
+  },
+
+  /**
+   * ✅ Old route compatibility (so existing links still work)
+   * /behandlung -> /behandlungen/nadelepilation
+   */
   {
     path: 'behandlung',
-    loadChildren: () =>
-      import('../components/pages/behandlung/behandlung.module').then(m => m.BehandlungModule)
+    redirectTo: 'behandlungen/nadelepilation',
+    pathMatch: 'full'
   },
+
   {
     path: 'price',
     loadChildren: () =>
@@ -27,6 +71,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('../components/pages/historie/historie.module').then(m => m.HistorieModule)
   },
+
   {
     path: 'impressum',
     loadComponent: () =>
@@ -45,6 +90,7 @@ const routes: Routes = [
       import('../components/pages/legal/agb/agb.component')
         .then(m => m.AgbComponent)
   },
+
   {
     path: 'laser-haarentfernung-aktion-nuernberg',
     loadChildren: () =>
@@ -75,6 +121,7 @@ const routes: Routes = [
       import('../components/pages/promotions/nadelepilation-promotion/nadelepilation-promotion.module')
         .then(m => m.NadelepilationPromotionModule),
   },
+
   {
     path: 'not-found',
     loadComponent: () =>

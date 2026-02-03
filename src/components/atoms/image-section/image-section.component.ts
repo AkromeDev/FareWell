@@ -1,21 +1,43 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DesignTokens, ShadowOptions } from 'src/models';
+import { ShadowOptions, DesignTokens } from 'src/models';
 
 @Component({
   selector: 'app-image-section',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './image-section.component.html',
-  styleUrls: ['./image-section.component.scss']
+  styleUrls: ['./image-section.component.scss'],
 })
-export class ImageSectionComponent implements OnInit {
+export class ImageSectionComponent {
   @Input() backgroundImage: string = '';
-  @Input() shadow: ShadowOptions.Type = '';
-  @Input() paragraphText: string = '';
+  @Input() shadow: ShadowOptions.Type | '' = '';
   @Input() height: DesignTokens.Height = '85';
 
-  constructor() {}
+  @Input() backgroundFit: 'cover' | 'contain' = 'cover';
 
-  ngOnInit(): void {}
+  @Input() backgroundPosition:
+    | 'center'
+    | 'top'
+    | 'bottom'
+    | 'left'
+    | 'right'
+    | 'top center'
+    | 'bottom center'
+    | 'center left'
+    | 'center right' = 'center';
+
+  @Input() parallax: boolean = true;
+
+  @Input() backgroundColor: string = 'transparent';
+
+  get sectionStyleVars(): Record<string, string> {
+    return {
+      '--bg-image': this.backgroundImage ? `url('${this.backgroundImage}')` : 'none',
+      '--bg-size': this.backgroundFit,
+      '--bg-pos': this.backgroundPosition,
+      '--bg-color': this.backgroundColor,
+      '--bg-attach': this.parallax ? 'fixed' : 'scroll',
+    };
+  }
 }

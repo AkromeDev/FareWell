@@ -40,6 +40,23 @@ export class ImageHeroComponent implements OnInit {
   @Input() margin: DesignTokens.MarginTop = 'medium';
   @Input() height: DesignTokens.Height = '85';
 
+  // ✅ NEW: control how the background image fits inside the hero
+  // cover = fills container (crops/zooms)
+  // contain = fully visible (no crop, may leave empty space)
+  @Input() backgroundFit: 'cover' | 'contain' = 'cover';
+
+  // ✅ NEW: useful if you want the focus top/center etc.
+  @Input() backgroundPosition:
+    | 'center'
+    | 'top'
+    | 'bottom'
+    | 'left'
+    | 'right'
+    | 'top center'
+    | 'bottom center'
+    | 'center left'
+    | 'center right' = 'center';
+
   @Input() paragraphText: string = '';
   @Input() paragraphSize: ParagraphOptions.Size = 'medium';
   @Input() paragraphAlign: ParagraphOptions.Align = 'center';

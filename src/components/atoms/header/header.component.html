@@ -1,8 +1,15 @@
-<div [ngClass]="{scrolled: scrolled}" class="nav-bar">
+<div [ngClass]="{ scrolled: scrolled }" class="nav-bar">
   <a [routerLink]="'/'" class="nav-logo" (click)="setActiveTab('home')">FareWell</a>
 
   <!-- Burger Icon -->
-  <div class="burger" (click)="toggleMenu()">
+    <div
+    class="burger"
+    [ngClass]="{ open: menuOpen }"
+    (click)="toggleMenu()"
+    aria-label="Menu öffnen"
+    role="button"
+    tabindex="0"
+  >
     <span></span>
     <span></span>
     <span></span>
@@ -15,35 +22,93 @@
       target="_blank"
       rel="noopener noreferrer"
       class="nav-link"
-      >Termin Buchen</a
     >
-    <a
-      [routerLink]="'/behandlung'"
-      routerLinkActive="active"
-      (click)="setActiveTab('behandlung')"
-      class="nav-link"
-      >Behandlung & Wirkung</a
-    >
+      Termin Buchen
+    </a>
+
+    <!-- Behandlungen -->
+    <div class="nav-item behandlungen">
+      <!-- Desktop: tight hover trigger -->
+      <div
+        class="behandlungen-trigger"
+        (mouseenter)="onBehandlungenEnter()"
+        (mouseleave)="onBehandlungenLeave()"
+      >
+        <button
+          type="button"
+          class="nav-link nav-link-btn"
+          [class.active]="isBehandlungenRoute"
+          [attr.aria-expanded]="behandlungenOpen"
+          (click)="toggleBehandlungen($event)"
+        >
+          Behandlungen
+          <span class="chevron" [ngClass]="{ open: behandlungenOpen }">▾</span>
+        </button>
+      </div>
+
+      <!-- ✅ Mobile: sub-pages list -->
+      <div class="behandlungen-mobile" [ngClass]="{ open: behandlungenOpen }">
+        <div class="behandlungen-mobile-inner">
+          <a
+            class="behandlungen-mobile-link"
+            *ngFor="let t of treatments"
+            [routerLink]="t.route"
+            (click)="setActiveTab('behandlungen')"
+          >
+            {{ t.title }}
+          </a>
+        </div>
+      </div>
+    </div>
+
     <a
       [routerLink]="'/zeit'"
       routerLinkActive="active"
       (click)="setActiveTab('zeit')"
       class="nav-link"
-      >Elektrolyse-Zeitberechnung</a
     >
+      Elektrolyse-Zeitberechnung
+    </a>
+
     <a
       [routerLink]="'/historie'"
       routerLinkActive="active"
       (click)="setActiveTab('historie')"
       class="nav-link"
-      >Historie</a
     >
+      Historie
+    </a>
+
     <a
       [routerLink]="'/price'"
       routerLinkActive="active"
       (click)="setActiveTab('price')"
       class="nav-link"
-      >Preis</a
     >
+      Preis
+    </a>
+  </div>
+
+  <!-- ✅ Desktop mega panel -->
+  <div
+    class="behandlungen-panel"
+    [ngClass]="{ open: behandlungenOpen }"
+    (mouseenter)="onBehandlungenEnter()"
+    (mouseleave)="onBehandlungenLeave()"
+  >
+    <div class="panel-inner">
+      <a
+        class="treatment-card"
+        *ngFor="let t of treatments"
+        [routerLink]="t.route"
+        (click)="setActiveTab('behandlungen')"
+      >
+        <div class="card-image" [style.backgroundImage]="'url(' + t.image + ')'">
+          <div class="image-overlay"></div>
+          <div class="card-title">{{ t.title }}</div>
+        </div>
+        <div class="card-desc">{{ t.description }}</div>
+      </a>
+    </div>
   </div>
 </div>
