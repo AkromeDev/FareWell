@@ -6,12 +6,16 @@
     [align]="'center'"
   ></app-title>
 
-  <div class="content" [ngClass]="{'reverse': imagePosition === 'left'}">
-    <div
-      class="image"
-      [ngClass]="{ 'resize': resize }"
-      [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}"
-    ></div>
+  <div class="content" [ngClass]="{ reverse: imagePosition === 'left' }">
+    <div class="image" [ngClass]="{ resize: resize }">
+      <img
+        class="image-img"
+        [src]="backgroundImage"
+        [alt]="title"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
 
     <app-paragraph
       class="paragraph"
