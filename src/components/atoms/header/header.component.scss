@@ -20,6 +20,19 @@ button {
   font-family: inherit;
 }
 
+/* =========================================================
+   GLASS TINT (cool/blue) — derived from your theme
+   Header: more blur
+   Panel: slightly less blur
+   ========================================================= */
+:root {
+  /* fallback for older browsers is handled by background-color below */
+}
+
+/* Cool glass tint based on theme (mix sage + a soft blue) */
+$glass-blue: rgba(mix($accent-2, #4aa3ff, 35%), 0.22);
+$glass-blue-strong: rgba(mix($accent-2, #4aa3ff, 35%), 0.28);
+
 /* ========== HEADER (mobile first) ========== */
 .nav-bar {
   position: fixed;
@@ -32,15 +45,47 @@ button {
   align-items: center;
   justify-content: space-between;
 
-  background-color: rgba($black, 0.80);
+  /* Base (fallback) */
+  background-color: rgba($black, 0.70);
+
+  /* ✅ glass (HEADER = more blurry) */
+  backdrop-filter: blur(34px) saturate(150%);
+  -webkit-backdrop-filter: blur(34px) saturate(150px);
+
   transition: background-color 220ms ease, height 220ms ease;
 
   /* ✅ keep layering predictable */
   isolation: isolate;
 
+  /* Blue glass tint layer */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Optional: a hairline for crispness */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: rgba($light-1, 0.14);
+    pointer-events: none;
+    z-index: -1;
+  }
+
   &.scrolled {
     height: 60px;
-    background-color: rgba($black, 0.85);
+    background-color: rgba($black, 0.74);
+
+    /* still slightly stronger blur than panel */
+    backdrop-filter: blur(32px) saturate(150%);
+    -webkit-backdrop-filter: blur(32px) saturate(150%);
   }
 }
 
@@ -95,7 +140,6 @@ button {
     /* start: 3 stacked lines */
     left: 50%;
     transform: translateX(-50%);
-    transform-origin: center;
 
     transition:
       transform 550ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -109,17 +153,18 @@ button {
     &:nth-child(3) { top: 18px; }
   }
 
-    span:nth-child(1) { transform-origin: center; }
-    span:nth-child(2) { transform-origin: left center; }
-    span:nth-child(3) { transform-origin: right center; }
+  /* ✅ keep transform-origin constant both ways (important for symmetric close) */
+  span:nth-child(1) { transform-origin: center; }
+  span:nth-child(2) { transform-origin: left center; }
+  span:nth-child(3) { transform-origin: right center; }
 
-    /* ✅ OPEN state: 3 strokes become a triangle outline (improved) */
+  /* ✅ OPEN state: 3 strokes become a triangle outline (improved) */
   &.open {
     /* tuning knobs (easy micro-adjust) */
     --tri-w: 28px;   /* triangle side width */
-    --tri-dx: -6px;   /* how far left/right the side strokes move */
+    --tri-dx: -6px;  /* how far left/right the side strokes move */
     --tri-top: 6px;  /* top edge position */
-    --tri-mid: 2px; /* where side strokes sit before they lean down */
+    --tri-mid: 2px;  /* where side strokes sit before they lean down */
     --tri-drop: 6px; /* how much the slanted sides go down */
 
     span {
@@ -130,7 +175,6 @@ button {
     span:nth-child(1) {
       top: var(--tri-top);
       transform: translateX(-50%) rotate(0deg);
-      transform-origin: center;
     }
 
     /* left edge: shift left THEN rotate around its left end */
@@ -139,7 +183,6 @@ button {
       transform: translateX(calc(-50% - var(--tri-dx)))
         rotate(60deg)
         translateY(var(--tri-drop));
-      transform-origin: left center;
     }
 
     /* right edge: shift right THEN rotate around its right end */
@@ -148,7 +191,6 @@ button {
       transform: translateX(calc(-50% + var(--tri-dx)))
         rotate(-60deg)
         translateY(var(--tri-drop));
-      transform-origin: right center;
     }
   }
 
@@ -167,7 +209,12 @@ button {
   right: 0;
   width: 100%;
 
-  background-color: rgba($black, 0.80);
+  /* Base (fallback) */
+  background-color: rgba($black, 0.70);
+
+  /* ✅ make mobile dropdown match the header glass (slightly less blur than header is OK, but keep it consistent) */
+  backdrop-filter: blur(28px) saturate(145%);
+  -webkit-backdrop-filter: blur(28px) saturate(145%);
 
   display: flex;
   flex-direction: column;
@@ -184,6 +231,15 @@ button {
 
   /* ✅ keep header links above mega panel corridor on desktop too */
   z-index: 3;
+
+  /* Blue tint layer */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
 
   &.open {
     transform: scaleY(1);
@@ -347,6 +403,8 @@ button {
     position: relative;
 
     background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 
     flex-direction: row;
     align-items: center;
@@ -358,6 +416,10 @@ button {
     padding: 0;
 
     z-index: 3;
+
+    &::before {
+      content: none;
+    }
 
     .nav-link {
       width: auto;
@@ -437,7 +499,7 @@ button {
     display: none !important;
   }
 
-  /* ✅ DESKTOP PANEL */
+  /* ✅ DESKTOP PANEL (FULL WIDTH GLASS) */
   .behandlungen-panel {
     display: block;
     position: fixed;
@@ -450,7 +512,6 @@ button {
 
     opacity: 0;
     transform: translateY(-6px) scale(0.985);
-
     pointer-events: none;
 
     transition:
@@ -460,6 +521,31 @@ button {
     will-change: transform, opacity;
     backface-visibility: hidden;
     transform-origin: top center;
+
+    /* ✅ FULL WIDTH background */
+    background-color: rgba($black, 0.46);
+
+    /* ✅ panel a bit LESS blurry than header */
+    backdrop-filter: blur(22px) saturate(135%);
+    -webkit-backdrop-filter: blur(22px) saturate(135%);
+
+    border-top: 1px solid rgba($light-1, 0.20);
+    border-bottom: 1px solid rgba($light-1, 0.16);
+    box-shadow: 0 18px 40px rgba($black, 0.35);
+
+    /* Blue glass tint layer (panel) */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+
+      background:
+        linear-gradient(180deg, rgba($white, 0.06), rgba($black, 0.14)),
+        radial-gradient(1200px 320px at 20% 0%, rgba($dark-2, 0.14), transparent 70%),
+        linear-gradient(90deg, transparent, rgba($dark-2, 0.10), transparent);
+    }
 
     &.open {
       opacity: 1;
@@ -473,7 +559,7 @@ button {
   }
 
   /* Hover corridor avoids dead zone */
-  .behandlungen-panel.open::before {
+  .behandlungen-panel.open::after {
     content: "";
     position: absolute;
     left: 0;
@@ -482,9 +568,10 @@ button {
     height: 80px;
     background: transparent;
     pointer-events: auto;
+    z-index: 2;
   }
 
-  /* glass blur + depth */
+  /* ✅ centered grid container (cards remain same size) */
   .panel-inner {
     margin: 0 auto;
     width: 100%;
@@ -492,17 +579,7 @@ button {
     padding: 18px 6%;
 
     position: relative;
-    overflow: hidden;
-
-    border-top: 1px solid rgba($light-1, 0.20);
-    border-bottom: 1px solid rgba($light-1, 0.16);
-
-    backdrop-filter: blur(28px) saturate(140%);
-    -webkit-backdrop-filter: blur(28px) saturate(140%);
-
-    background-color: rgba($black, 0.42);
-
-    box-shadow: 0 18px 40px rgba($black, 0.35);
+    overflow: visible;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -514,21 +591,14 @@ button {
     transition:
       opacity 240ms cubic-bezier(0.22, 1, 0.36, 1) 80ms,
       transform 320ms cubic-bezier(0.22, 1, 0.36, 1) 80ms;
+
+    /* above the tint layer */
+    z-index: 1;
   }
 
   .behandlungen-panel.open .panel-inner {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  .panel-inner::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(180deg, rgba($white, 0.05), rgba($black, 0.12)),
-      radial-gradient(1200px 320px at 20% 0%, rgba($white, 0.06), transparent 60%);
-    pointer-events: none;
   }
 
   .treatment-card {
