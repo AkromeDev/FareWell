@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
       title: 'Microneedling Radio Frequenz',
       description: 'Straffung & Hautbild: feine Nadeln + Wärme für ein glatteres Erscheinungsbild.',
       route: '/behandlungen/microneedling-radiofrequenz',
-      image: 'assets/images/treatment/microneedling.png'
+      image: 'assets/images/treatment/microneedling.jpg'
     },
     {
       title: 'Kavitation',
