@@ -8,9 +8,6 @@ const routes: Routes = [
       import('../components/pages/home/home.component').then(m => m.HomeComponent)
   },
 
-  /**
-   * ✅ New: Treatments under /behandlungen/...
-   */
   {
     path: 'behandlungen',
     children: [
@@ -46,10 +43,6 @@ const routes: Routes = [
     ]
   },
 
-  /**
-   * ✅ Old route compatibility (so existing links still work)
-   * /behandlung -> /behandlungen/nadelepilation
-   */
   {
     path: 'behandlung',
     redirectTo: 'behandlungen/nadelepilation',
