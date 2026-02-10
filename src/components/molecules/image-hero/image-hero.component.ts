@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, booleanAttribute } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageSectionComponent } from 'src/components/atoms/image-section/image-section.component';
 import { TitleComponent } from 'src/components/atoms/title/title.component';
@@ -12,6 +12,7 @@ import {
   ShadowOptions,
   DesignTokens,
 } from 'src/models';
+import { GoogleReviewsComponent } from '../google-reviews/google-reviews';
 
 @Component({
   selector: 'app-image-hero',
@@ -21,7 +22,8 @@ import {
     CommonModule,
     ImageSectionComponent,
     ParagraphComponent,
-    ButtonListComponent
+    ButtonListComponent,
+    GoogleReviewsComponent,
   ],
   templateUrl: './image-hero.component.html',
   styleUrls: ['./image-hero.component.scss']
@@ -40,12 +42,8 @@ export class ImageHeroComponent implements OnInit {
   @Input() margin: DesignTokens.MarginTop = 'medium';
   @Input() height: DesignTokens.Height = '85';
 
-  // ✅ NEW: control how the background image fits inside the hero
-  // cover = fills container (crops/zooms)
-  // contain = fully visible (no crop, may leave empty space)
   @Input() backgroundFit: 'cover' | 'contain' = 'cover';
 
-  // ✅ NEW: useful if you want the focus top/center etc.
   @Input() backgroundPosition:
     | 'center'
     | 'top'
@@ -66,6 +64,8 @@ export class ImageHeroComponent implements OnInit {
   @Input() paragraphType: ParagraphOptions.Type = 'normal';
 
   @Input() buttonList: ButtonItem[] = [];
+
+  @Input({ transform: booleanAttribute }) googleReviews = false;
 
   get computedShadow(): ShadowOptions.Type {
     if (this.shadow === 'dark') return 'dark-shadow';

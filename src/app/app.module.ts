@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from '../components/pages/home/home.component';
@@ -8,14 +9,19 @@ import { FooterComponent } from 'src/components/molecules/footer/footer.componen
 
 @NgModule({
   declarations: [
+    // ⚠️ leer lassen, Standalone Components benutzt
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+
+    // Standalone Components
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 })
-export class AppModule { }
+export class AppModule {}

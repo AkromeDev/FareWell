@@ -1,0 +1,112 @@
+<section class="reviews" *ngIf="vm$ | async as vm">
+    <header class="reviews__head">
+        <div class="reviews__title-wrap">
+            <h2 class="reviews__title">{{ vm.placeName }}</h2>
+
+            @if (vm.state === 'ready' && vm.rating !== null) {
+            <div class="reviews__meta">
+                <div class="reviews__stars" aria-label="Rating">
+                    <span class="star" *ngFor="let s of stars(vm.rating)">
+                        {{ s ? '★' : '☆' }}
+                    </span>
+                </div>
+                <span class="reviews__score">{{ vm.rating | number : '1.1-1' }}</span>
+                @if (vm.userRatingCount !== null) {
+                <span class="reviews__count">({{ vm.userRatingCount }})</span>
+                }
+            </div>
+            }
+        </div>
+
+        @if (vm.state === 'ready') {
+        <div class="reviews__badge" aria-hidden="true">
+            <span class="dot" [class.dot--ok]="vm.source === 'cache'"></span>
+            <span class="txt">Google</span>
+        </div>
+        }
+    </header>
+
+    <!-- Loading -->
+    @if (vm.state === 'loading') {
+    <div class="carousel">
+        <div class="track">
+            <article class="card card--skeleton" *ngFor="let _ of [1,2,3]">
+                <div class="sk sk--top"></div>
+                <div class="sk sk--line"></div>
+                <div class="sk sk--line"></div>
+                <div class="sk sk--line short"></div>
+            </article>
+        </div>
+    </div>
+    }
+
+    <!-- Error -->
+    @if (vm.state === 'error') {
+    <p class="reviews__empty">
+        Bewertungen konnten gerade nicht geladen werden. Bitte später erneut versuchen.
+    </p>
+    }
+
+    <!-- Ready -->
+    @if (vm.state === 'ready') {
+    @if (vm.reviews.length === 0) {
+    <p class="reviews__empty">Noch keine Bewertungen vorhanden.</p>
+    } @else {
+    <div class="carousel" tabindex="0" (keydown)="onKeydown($event, vm.reviews.length)"
+        (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event, vm.reviews.length)"
+        aria-label="Google Bewertungen Karussell">
+        <button type="button" class="nav nav--left" (click)="prev(vm.reviews.length)" aria-label="Vorherige Bewertung"
+            [disabled]="pageCount(vm.reviews.length) <= 1">
+            ‹
+        </button>
+
+        <div class="viewport">
+            <div class="track" [style.transform]="translateX(activeIndex)">
+                <article class="card" *ngFor="let r of vm.reviews; trackBy: trackByName">
+                    <div class="card__top">
+                        <div class="avatar avatar--logo">
+                            <img src="assets/images/icons/google.svg" alt="FareWell Logo" loading="lazy" />
+                        </div>
+
+                        <div class="who">
+                            <div class="who__name">
+                                {{ r.authorAttribution?.displayName ?? 'Anonym' }}
+                            </div>
+                            <div class="who__time">
+                                {{ r.relativePublishTimeDescription ?? '' }}
+                            </div>
+                        </div>
+
+                        <div class="mini-stars" *ngIf="r.rating">
+                            <span *ngFor="let s of stars(r.rating)">{{ s ? '★' : '☆' }}</span>
+                        </div>
+                    </div>
+
+
+                    <p class="card__text" [class.is-expanded]="isExpanded(r)">
+                        <span class="card__text-inner">{{ reviewText(r) }}</span>
+                    </p>
+
+                    @if (shouldShowReadMore(r)) {
+                    <button type="button" class="read-more" (click)="toggleExpanded(r)"
+                        [attr.aria-expanded]="isExpanded(r)">
+                        {{ isExpanded(r) ? 'Weniger' : 'Mehr lesen' }}
+                    </button>
+                    }
+                </article>
+            </div>
+        </div>
+
+        <button type="button" class="nav nav--right" (click)="next(vm.reviews.length)" aria-label="Nächste Bewertung"
+            [disabled]="pageCount(vm.reviews.length) <= 1">
+            ›
+        </button>
+    </div>
+
+    <div class="dots" aria-hidden="true">
+        <button type="button" class="dot-btn" *ngFor="let _ of pages(vm.reviews.length); let i = index"
+            [class.is-active]="i === activeIndex" (click)="goTo(i)"></button>
+    </div>
+    }
+    }
+</section>

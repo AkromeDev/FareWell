@@ -1,6 +1,5 @@
 @use 'themes/theme-entry' as *;
 
-/* ✅ Best practice: do NOT transition everything globally */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,15 +13,6 @@ a {
 
 button {
   font-family: inherit;
-}
-
-/* =========================================================
-   GLASS TINT (cool/blue) — derived from your theme
-   Header: more blur
-   Panel: slightly less blur
-   ========================================================= */
-:root {
-  /* fallback for older browsers is handled by background-color below */
 }
 
 /* ========== HEADER (mobile first) ========== */

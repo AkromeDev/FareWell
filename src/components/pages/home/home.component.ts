@@ -16,10 +16,13 @@ import { OpeningHoursComponent } from "src/components/atoms/opening-hours/openin
 export class HomeComponent implements OnInit {
 
   paragraphText: string = `
-  Der Beauty Salon FareWell ist spezialisiert in Elektrolyse Haarentfernung. die einzige Methode zur Haarentfernung, die von medizinischen Fachstellen als wirklich permanent anerkannt ist, unabhängig von Haarfarbe oder Hauttyp.
+Der Beauty Salon FareWell ist spezialisiert auf Nadelepilation, die einzige Methode zur Haarentfernung, die von medizinischen Fachstellen als wirklich permanent anerkannt ist. Unabhängig von Haarfarbe oder Hauttyp.
 
-  Willkommen in deiner neuen permanenten Freiheit.
-  `;
+Ergänzend bieten wir Laser Haarentfernung zur dauerhaften Haarreduktion, Microneedling mit Radiofrequenz zur Hautverjüngung und Narbenbehandlung sowie Körperforming mit Ultraschall und Radiofrequenz zur Straffung und Behandlung von Cellulite an.
+
+Willkommen in deiner neuen permanenten Freiheit.
+`;
+
   buttonList: ButtonItem[] = [
     { label: 'Mehr erfahren', link: '/behandlung', theme: 'dark' },
     { label: 'Unsere Preise', link: '/price', theme: 'dark' },

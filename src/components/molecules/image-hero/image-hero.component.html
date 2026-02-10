@@ -4,12 +4,10 @@
   [height]="height"
   [backgroundFit]="backgroundFit"
   [backgroundPosition]="backgroundPosition"
-  class="hero-container"
-  [class]="'margin-top-' + margin"
+  [ngClass]="['hero-container', 'margin-top-' + margin, 'height-' + height]"
   role="img"
   [attr.aria-label]="imageAlt || null"
 >
-
   <div class="hero-content">
     <app-title
       [level]="titleLevel"
@@ -27,13 +25,17 @@
       [weight]="paragraphWeight"
       [color]="paragraphColor"
       [type]="paragraphType"
-      [maxWidth]="paragraphMaxWidth">
+      [maxWidth]="paragraphMaxWidth"
+    >
       {{ paragraphText }}
     </app-paragraph>
 
-    <app-button-list
-      [buttons]="buttonList">
-    </app-button-list>
-  </div>
+    <app-button-list [buttons]="buttonList"></app-button-list>
 
+    @if (googleReviews) {
+    <div class="hero-reviews">
+      <fw-google-reviews></fw-google-reviews>
+    </div>
+}
+  </div>
 </app-image-section>
