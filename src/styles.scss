@@ -1,4 +1,4 @@
-@use 'themes/theme-entry' as *;
+@import 'semantic-ui-css/semantic.css';
 
 a[href]:not(.no-underline) {
   text-decoration: underline;
