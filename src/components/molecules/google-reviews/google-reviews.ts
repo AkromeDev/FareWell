@@ -5,12 +5,34 @@ import {
   HostListener,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { catchError, map, of, startWith } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, of, shareReplay, startWith } from 'rxjs';
 
-import {
-  GoogleReviewsService,
-  GoogleReview,
-} from '../../../../backend/src/google-reviews.service';
+export interface GooglePlaceReviewsResponse {
+  source: 'google' | 'cache';
+  data: {
+    id: string;
+    displayName?: { text?: string; languageCode?: string };
+    rating?: number;
+    userRatingCount?: number;
+    reviews?: GoogleReview[];
+  };
+  fetchedAt?: string;
+}
+
+export interface GoogleReview {
+  name?: string;
+  rating?: number;
+  text?: { text?: string; languageCode?: string };
+  originalText?: { text?: string; languageCode?: string };
+  publishTime?: string;
+  relativePublishTimeDescription?: string;
+  authorAttribution?: {
+    displayName?: string;
+    uri?: string;
+    photoUri?: string;
+  };
+}
 
 type Vm = {
   state: 'loading' | 'ready' | 'error';
@@ -43,12 +65,22 @@ export class GoogleReviewsComponent {
   /** expanded state per review (stable key) */
   private expanded = new Set<string>();
 
-  readonly vm$ = this.reviewsService.getReviews().pipe(
+  // ✅ Reads from Angular assets (src/assets/data/google-reviews.json)
+  private readonly url = '/assets/data/google-reviews.json';
+
+  private readonly raw$ = this.http
+    .get<GooglePlaceReviewsResponse>(this.url)
+    .pipe(shareReplay({ bufferSize: 1, refCount: false }));
+
+  readonly vm$ = this.raw$.pipe(
     map((res): Vm => {
       const reviews = (res.data.reviews ?? []).slice(0, this.maxItems);
 
       // keep index valid after data changes / resize
-      this.activeIndex = Math.min(this.activeIndex, this.maxStartIndex(reviews.length));
+      this.activeIndex = Math.min(
+        this.activeIndex,
+        this.maxStartIndex(reviews.length)
+      );
 
       return {
         state: 'ready',
@@ -56,7 +88,7 @@ export class GoogleReviewsComponent {
         rating: res.data.rating ?? null,
         userRatingCount: res.data.userRatingCount ?? null,
         reviews,
-        source: res.source,
+        source: res.source ?? null,
       };
     }),
     startWith({
@@ -79,7 +111,7 @@ export class GoogleReviewsComponent {
     )
   );
 
-  constructor(private readonly reviewsService: GoogleReviewsService) {
+  constructor(private readonly http: HttpClient) {
     this.updatePerView();
   }
 
@@ -89,8 +121,6 @@ export class GoogleReviewsComponent {
     this.updatePerView();
     if (before !== this.perView) {
       // clamp so we don't slide into empty space
-      // (vm$ also clamps on next emission, but resize should be immediate)
-      // note: we don't know total here; safest is keep current and clamp in navigation ops
       this.activeIndex = Math.max(0, this.activeIndex);
     }
   }
@@ -105,7 +135,11 @@ export class GoogleReviewsComponent {
   }
 
   private keyOf(r: GoogleReview): string {
-    return r.name ?? r.authorAttribution?.displayName ?? JSON.stringify(r).slice(0, 40);
+    return (
+      r.name ??
+      r.authorAttribution?.displayName ??
+      JSON.stringify(r).slice(0, 40)
+    );
   }
 
   stars(rating: number | null): number[] {
