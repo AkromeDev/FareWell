@@ -27,7 +27,7 @@ export class IplPromotionComponent implements OnInit {
   private readonly pageUrl =
     'https://farewell.salon/ipl-dauerhafte-haarentfernung-aktion-nuernberg';
   private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/farewell/farewellStudio4.png';
+    'https://farewell.salon/assets/images/treatment/laser2.png';
 
   paragraphText: string = `
     Laser Haarentfernung in Nürnberg bei FareWell.

@@ -25,7 +25,7 @@ export class ElectrolysisPromotionComponent implements OnInit {
 
   // Seite und Bild als Konstanten, damit du die Url an einer Stelle ändern kannst
   private readonly pageUrl = 'https://farewell.salon/elektrolyse-permanente-haarentfernung-aktion-nuernberg';
-  private readonly heroImageUrl = 'https://farewell.salon/assets/images/farewell/farewellStudio4.png';
+  private readonly heroImageUrl = 'https://farewell.salon/assets/images/treatment/nadel.jpg';
 
   paragraphText: string = `
     Permanente Haarentfernung mit Elektrolyse in Nürnberg bei FareWell.
