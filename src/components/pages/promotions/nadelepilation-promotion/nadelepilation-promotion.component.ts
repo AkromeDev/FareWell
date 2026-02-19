@@ -27,7 +27,7 @@ export class NadelepilationPromotionComponent implements OnInit {
   private readonly pageUrl =
     'https://farewell.salon/nadelepilation-angebot-nuernberg';
   private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/farewell/farewellStudio4.png';
+    'https://farewell.salon/assets/images/treatment/nadel.jpg';
 
   paragraphText: string = `
     Permanente Haarentfernung mit Nadelepilation (Elektrolyse) in Nürnberg bei FareWell.
