@@ -39,6 +39,13 @@ const routes: Routes = [
         loadComponent: () =>
           import('../components/pages/kavitation/kavitation')
             .then(m => m.KavitationComponent)
+      },
+
+      {
+        path: 'massage',
+        loadComponent: () =>
+          import('../components/pages/massage/massage')
+            .then(m => m.MassageComponent)
       }
     ]
   },

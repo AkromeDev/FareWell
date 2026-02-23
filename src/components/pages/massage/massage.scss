@@ -1,0 +1,21 @@
+@use 'themes/theme-entry' as *;
+
+:host {
+  display: block;
+}
+
+/* Mobile-first: kleine, klare Preisanzeige */
+.priceLine {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+}
+
+/* Optional: etwas mehr Luft in Listen (falls dein globales Styling das nicht schon macht) */
+ul {
+  padding-left: 1.1rem;
+  margin: 0.5rem 0 0;
+}
+
+li {
+  margin: 0.35rem 0;
+}
