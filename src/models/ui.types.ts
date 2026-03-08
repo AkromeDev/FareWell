@@ -25,7 +25,7 @@ export namespace ParagraphOptions {
   export type Weight = 'normal' | 'bold';
   export type Color = DesignTokens.Color;
   export type MaxWidth = 'narrow' | 'wide' | 'full';
-  export type Type = 'normal' | 'blur';
+  export type Type = 'normal' | 'blur' | 'dark';
 }
 
 export namespace TitleOptions {

@@ -21,4 +21,17 @@ export class ParagraphComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  get classes(): string[] {
+  return [
+    'paragraph',
+    `size-${this.size}`,
+    `align-${this.align}`,
+    `weight-${this.weight}`,
+    `color-${this.color}`,
+    `width-${this.maxWidth}`,
+    `type-${this.type}`
+  ];
 }
+}
+

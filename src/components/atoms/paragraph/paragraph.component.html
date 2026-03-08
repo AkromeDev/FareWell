@@ -1,13 +1,3 @@
-<p
-  [ngClass]="[
-    'paragraph',
-    'size-' + size,
-    'align-' + align,
-    'weight-' + weight,
-    'color-' + color,
-    'width-' + maxWidth,
-    'type-' + type
-  ]"
->
-<ng-content></ng-content>
+<p [ngClass]="classes">
+  <ng-content></ng-content>
 </p>
