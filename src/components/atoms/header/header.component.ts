@@ -50,6 +50,12 @@ export class HeaderComponent implements OnInit {
       image: 'assets/images/treatment/microneedling.jpg'
     },
     {
+      title: 'Massagen',
+      description: 'Entspannung, Regeneration & neue Leichtigkeit mit wohltuenden Wellness-Massagen.',
+      route: '/behandlungen/massage',
+      image: 'assets/images/treatment/massage-hero.jpg'
+    },
+    {
       title: 'Kavitation',
       description: 'Ultraschall-Unterstützung zur Kontur – sanft, nicht-invasiv und effektiv.',
       route: '/behandlungen/kavitation',
