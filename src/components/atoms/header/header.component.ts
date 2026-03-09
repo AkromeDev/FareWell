@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
   behandlungenOpen: boolean = false;
   isMobile: boolean = false;
 
-  // ✅ keeps underline active on /behandlungen and all sub-pages
   isBehandlungenRoute: boolean = false;
 
   private closeTimeoutId: ReturnType<typeof setTimeout> | null = null;
