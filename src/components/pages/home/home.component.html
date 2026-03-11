@@ -6,10 +6,12 @@
   [paragraphWeight]="'bold'"
   [paragraphColor]="'light'"
   [paragraphType]="'dark'"
-  [height]="'75'"
   [backgroundImage]="'assets/images/farewell/studio.jpg'"
   [shadow]="'dark'"
+  [title]="'Permanente Haarentfernung in Nürnberg'"
   [titleLevel]="'h1'"
+  [titleColor]="'dark'"
+  [titleType]="'simple'"
   [buttonList]="buttonList"
   [googleReviews]="true"
   >
@@ -64,7 +66,7 @@ Warum FareWell?
 
     Allein in den USA werden jährlich über 
     <a href="https://css.washingtonpost.com/climate-solutions/2024/05/19/safety-razor-sustainability/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
-    2 Milliarden Einwegrasierer
+    2 Milliarden Einwegrasierer
     </a> 
     entsorgt.<br>
     Weltweit hochgerechnet sind es viele Milliarden Stück, das verursacht enorme Mengen an Plastik, und Metallmüll.<br>
@@ -80,3 +82,5 @@ Warum FareWell?
 </app-parallax>
 
 <app-opening-hours></app-opening-hours>
+
+<script type="application/ld+json" [textContent]="structuredData"></script>
