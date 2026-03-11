@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://farewell.salon/sitemap.xml

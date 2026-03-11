@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://farewell.salon/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/behandlungen/nadelepilation</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/behandlungen/diodenlaser-4-wellen</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/behandlungen/microneedling-radiofrequenz</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/behandlungen/kavitation</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/behandlungen/massage</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/price</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/zeit</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/historie</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Promotions -->
+  <url>
+    <loc>https://farewell.salon/laser-haarentfernung-aktion-nuernberg</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/ipl-dauerhafte-haarentfernung-aktion-nuernberg</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/elektrolyse-permanente-haarentfernung-aktion-nuernberg</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/microneedling-aktion-nuernberg</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/nadelepilation-angebot-nuernberg</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Legal -->
+  <url>
+    <loc>https://farewell.salon/impressum</loc>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/datenschutz</loc>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/agb</loc>
+    <priority>0.2</priority>
+  </url>
+
+</urlset>
