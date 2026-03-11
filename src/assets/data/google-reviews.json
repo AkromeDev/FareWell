@@ -1,38 +1,38 @@
 {
-  "source": "cache",
+  "source": "google",
   "data": {
     "id": "ChIJZRtxOqdXn0cR5C9Q7j0xvPw",
     "rating": 5,
-    "userRatingCount": 21,
+    "userRatingCount": 34,
     "displayName": {
       "text": "Farewell - Electrolysis & Laser Haarentfernung",
       "languageCode": "en"
     },
     "reviews": [
       {
-        "name": "places/ChIJZRtxOqdXn0cR5C9Q7j0xvPw/reviews/Ci9DQUlRQUNvZENodHljRjlvT2xJMWVYSnJPVlpuVTNSNE5ITXpVbXBmZUZSdldGRRAB",
-        "relativePublishTimeDescription": "vor 2 Wochen",
+        "name": "places/ChIJZRtxOqdXn0cR5C9Q7j0xvPw/reviews/Ci9DQUlRQUNvZENodHljRjlvT2tKM1dVUTFkblZFTjJka1MxbFdZWEZQWmpCcFZuYxAB",
+        "relativePublishTimeDescription": "vor 2 Monaten",
         "rating": 5,
         "text": {
-          "text": "Ich war heute das erste Mal da (Haarentfernung mit Elektrolysis).\nIch bin begeistert und kann es nur weiterempfehlen.\nIch hatte einen Termin gebucht für 30 Minuten aber Joe war sehr nett und hat die restlichen Haare auch entfernt und dafür danke ich ihn noch einmal extra, weil das ist nicht selbstverständlich!\nIch werde auf jeden Fall weitere Behandlung bei FareWell machen lassen.\nHygiene top\nAufklärung top\nBehandlung top\nFreundlichkeit top\nAmbiente super entspannt und schöne Musik",
+          "text": "Heute hatte ich meine erste Laserbehandlung zur Haarentfernung und bin wirklich begeistert. Alles lief sehr professionell ab, gleichzeitig war der Behandelnde extrem freundlich und einfühlsam. Er hat sich auch Zeitgenommen um mir alles zu erklären, den Ablauf und generell die Laserbehandlung. Die Atmosphäre ist ruhig und gemütlich, mit angenehmer Hintergrundmusik – man fühlt sich sofort gut aufgehoben. Ich komme auf jeden Fall wieder und kann es nur weiterempfehlen.🤩🤩🤩🙌🏼",
           "languageCode": "de"
         },
         "originalText": {
-          "text": "Ich war heute das erste Mal da (Haarentfernung mit Elektrolysis).\nIch bin begeistert und kann es nur weiterempfehlen.\nIch hatte einen Termin gebucht für 30 Minuten aber Joe war sehr nett und hat die restlichen Haare auch entfernt und dafür danke ich ihn noch einmal extra, weil das ist nicht selbstverständlich!\nIch werde auf jeden Fall weitere Behandlung bei FareWell machen lassen.\nHygiene top\nAufklärung top\nBehandlung top\nFreundlichkeit top\nAmbiente super entspannt und schöne Musik",
+          "text": "Heute hatte ich meine erste Laserbehandlung zur Haarentfernung und bin wirklich begeistert. Alles lief sehr professionell ab, gleichzeitig war der Behandelnde extrem freundlich und einfühlsam. Er hat sich auch Zeitgenommen um mir alles zu erklären, den Ablauf und generell die Laserbehandlung. Die Atmosphäre ist ruhig und gemütlich, mit angenehmer Hintergrundmusik – man fühlt sich sofort gut aufgehoben. Ich komme auf jeden Fall wieder und kann es nur weiterempfehlen.🤩🤩🤩🙌🏼",
           "languageCode": "de"
         },
         "authorAttribution": {
-          "displayName": "MaryGio",
-          "uri": "https://www.google.com/maps/contrib/102763562878011900150/reviews",
-          "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVQc2oqDoZlQi5qMNQUu0Q_AMXSN30b57lA1zJ6W_6saEEmh-i6=s128-c0x00000000-cc-rp-mo"
+          "displayName": "Valeria Eßig",
+          "uri": "https://www.google.com/maps/contrib/102642761055782946922/reviews",
+          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLyFg2jnYcveQcs9xzO-i93g7w1xZZmK6PHVfdreayNg0U7xA=s128-c0x00000000-cc-rp-mo"
         },
-        "publishTime": "2026-01-22T16:38:05.152155375Z",
-        "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT2xJMWVYSnJPVlpuVTNSNE5ITXpVbXBmZUZSdldGRRAB&d=17924085&t=1",
-        "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xJMWVYSnJPVlpuVTNSNE5ITXpVbXBmZUZSdldGRRAB!2m1!1s0x479f57a73a711b65:0xfcbc313dee502fe4"
+        "publishTime": "2025-12-16T19:32:16.416622039Z",
+        "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT2tKM1dVUTFkblZFTjJka1MxbFdZWEZQWmpCcFZuYxAB&d=17924085&t=1",
+        "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2tKM1dVUTFkblZFTjJka1MxbFdZWEZQWmpCcFZuYxAB!2m1!1s0x479f57a73a711b65:0xfcbc313dee502fe4"
       },
       {
         "name": "places/ChIJZRtxOqdXn0cR5C9Q7j0xvPw/reviews/Ci9DQUlRQUNvZENodHljRjlvT2tsaE1tWTBZM1pGYWtGSFpITkdXbU5xU1Y5TllYYxAB",
-        "relativePublishTimeDescription": "vor einer Woche",
+        "relativePublishTimeDescription": "vor einem Monat",
         "rating": 5,
         "text": {
           "text": "Ich war für eine Microneedling-Behandlung im Kosmetikstudio Farewell und bin rundum begeistert. Von der ersten Minute an habe ich mich unglaublich gut aufgehoben und ernst genommen gefühlt. Nicole und Joé sind nicht nur sehr professionell und fachlich kompetent, sondern auch herzlich, einfühlsam und aufmerksam.\n\nEs wird sich viel Zeit genommen, alles wird ausführlich und verständlich erklärt und auf Fragen oder Bedenken wird jederzeit eingegangen. Man merkt sofort, dass hier nichts „abgearbeitet“ wird, sondern jede Behandlung individuell und mit großer Sorgfalt durchgeführt wird. Meine Wünsche und Anliegen wurden absolut ernst genommen.\n\nDie Atmosphäre im Studio ist ruhig, stilvoll und lädt zum Entspannen ein. Ich habe mich durchgehend wohl, sicher und bestens betreut gefühlt. Für mich eine absolute Herzensempfehlung!\n\nIch komme definitiv wieder ✨💆‍♀️🤍",
@@ -52,69 +52,69 @@
         "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2tsaE1tWTBZM1pGYWtGSFpITkdXbU5xU1Y5TllYYxAB!2m1!1s0x479f57a73a711b65:0xfcbc313dee502fe4"
       },
       {
-        "name": "places/ChIJZRtxOqdXn0cR5C9Q7j0xvPw/reviews/Ci9DQUlRQUNvZENodHljRjlvT210c1l6ZEdhRjlLYlhCSVNFWldTSFExYzI1SVMwRRAB",
-        "relativePublishTimeDescription": "vor 2 Wochen",
-        "rating": 5,
-        "text": {
-          "text": "Ich war heute bei FareWell zur Laser Haarentfernung und bin rundum zufrieden. Der Service war von Anfang an professionell und super herzlich. Ich habe mich zu jeder Zeit wohl und sehr gut betreut gefühlt. Alles wurde verständlich erklärt und ruhig durchgeführt. Das Studio ist modern, sauber und einladend. Die Lage ist perfekt. Zwei Minuten zu Fuß vom Nürnberger Hauptbahnhof entfernt. Mein nächster Termin ist bereits gebucht. Ich empfehle FareWell für Laser Haarentfernung uneingeschränkt weiter.",
-          "languageCode": "de"
-        },
-        "originalText": {
-          "text": "Ich war heute bei FareWell zur Laser Haarentfernung und bin rundum zufrieden. Der Service war von Anfang an professionell und super herzlich. Ich habe mich zu jeder Zeit wohl und sehr gut betreut gefühlt. Alles wurde verständlich erklärt und ruhig durchgeführt. Das Studio ist modern, sauber und einladend. Die Lage ist perfekt. Zwei Minuten zu Fuß vom Nürnberger Hauptbahnhof entfernt. Mein nächster Termin ist bereits gebucht. Ich empfehle FareWell für Laser Haarentfernung uneingeschränkt weiter.",
-          "languageCode": "de"
-        },
-        "authorAttribution": {
-          "displayName": "Caro Pel",
-          "uri": "https://www.google.com/maps/contrib/107278641333035317986/reviews",
-          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIF1JBGTCRAj-VzHxsBnCxNM8ySqvN4zz9Wo_JsQP0L-QtBbQ=s128-c0x00000000-cc-rp-mo"
-        },
-        "publishTime": "2026-01-24T19:16:56.888895540Z",
-        "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT210c1l6ZEdhRjlLYlhCSVNFWldTSFExYzI1SVMwRRAB&d=17924085&t=1",
-        "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT210c1l6ZEdhRjlLYlhCSVNFWldTSFExYzI1SVMwRRAB!2m1!1s0x479f57a73a711b65:0xfcbc313dee502fe4"
-      },
-      {
-        "name": "places/ChIJZRtxOqdXn0cR5C9Q7j0xvPw/reviews/Ci9DQUlRQUNvZENodHljRjlvT2todGQyTmhObWRxU1c5MmFtdzVjalZ5VUMxSlRGRRAB",
-        "relativePublishTimeDescription": "vor 2 Monaten",
-        "rating": 5,
-        "text": {
-          "text": "Ich bin total begeistert von diesem Haarentfernungssalon! Der Service ist unglaublich professionell und freundlich. Der Salon ist sehr sauber und die Atmosphäre ist entspannt.\nDie Behandlung (bei mir Laserhaarentfernung) war schnell, effizient und die Ergebnisse sind fantastisch. Endlich bin ich die Haare auf Schulter und Rücken für allemal los!\nDas gesamte Team ist wunderbar. Absolute 5 Sterne-Empfehlung! Ich komme definitiv wieder.",
-          "languageCode": "de"
-        },
-        "originalText": {
-          "text": "Ich bin total begeistert von diesem Haarentfernungssalon! Der Service ist unglaublich professionell und freundlich. Der Salon ist sehr sauber und die Atmosphäre ist entspannt.\nDie Behandlung (bei mir Laserhaarentfernung) war schnell, effizient und die Ergebnisse sind fantastisch. Endlich bin ich die Haare auf Schulter und Rücken für allemal los!\nDas gesamte Team ist wunderbar. Absolute 5 Sterne-Empfehlung! Ich komme definitiv wieder.",
-          "languageCode": "de"
-        },
-        "authorAttribution": {
-          "displayName": "Kevin Donath (DoughnutBot)",
-          "uri": "https://www.google.com/maps/contrib/113631441819323217489/reviews",
-          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLJiqIk6R7CjL_YKI_WAu-PwyCS-cmOMsCpMw1jxZv1HAD6bg=s128-c0x00000000-cc-rp-mo"
-        },
-        "publishTime": "2025-12-04T08:53:11.328614311Z",
-        "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT2todGQyTmhObWRxU1c5MmFtdzVjalZ5VUMxSlRGRRAB&d=17924085&t=1",
-        "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2todGQyTmhObWRxU1c5MmFtdzVjalZ5VUMxSlRGRRAB!2m1!1s0x479f57a73a711b65:0xfcbc313dee502fe4"
-      },
-      {
-        "name": "places/ChIJZRtxOqdXn0cR5C9Q7j0xvPw/reviews/Ci9DQUlRQUNvZENodHljRjlvT2tKM1dVUTFkblZFTjJka1MxbFdZWEZQWmpCcFZuYxAB",
+        "name": "places/ChIJZRtxOqdXn0cR5C9Q7j0xvPw/reviews/Ci9DQUlRQUNvZENodHljRjlvT2xJMWVYSnJPVlpuVTNSNE5ITXpVbXBmZUZSdldGRRAB",
         "relativePublishTimeDescription": "vor einem Monat",
         "rating": 5,
         "text": {
-          "text": "Heute hatte ich meine erste Laserbehandlung zur Haarentfernung und bin wirklich begeistert. Alles lief sehr professionell ab, gleichzeitig war der Behandelnde extrem freundlich und einfühlsam. Er hat sich auch Zeitgenommen um mir alles zu erklären, den Ablauf und generell die Laserbehandlung. Die Atmosphäre ist ruhig und gemütlich, mit angenehmer Hintergrundmusik – man fühlt sich sofort gut aufgehoben. Ich komme auf jeden Fall wieder und kann es nur weiterempfehlen.🤩🤩🤩🙌🏼",
+          "text": "Ich war heute das erste Mal da (Haarentfernung mit Elektrolysis).\nIch bin begeistert und kann es nur weiterempfehlen.\nIch hatte einen Termin gebucht für 30 Minuten aber Joe war sehr nett und hat die restlichen Haare auch entfernt und dafür danke ich ihn noch einmal extra, weil das ist nicht selbstverständlich!\nIch werde auf jeden Fall weitere Behandlung bei FareWell machen lassen.\nHygiene top\nAufklärung top\nBehandlung top\nFreundlichkeit top\nAmbiente super entspannt und schöne Musik",
           "languageCode": "de"
         },
         "originalText": {
-          "text": "Heute hatte ich meine erste Laserbehandlung zur Haarentfernung und bin wirklich begeistert. Alles lief sehr professionell ab, gleichzeitig war der Behandelnde extrem freundlich und einfühlsam. Er hat sich auch Zeitgenommen um mir alles zu erklären, den Ablauf und generell die Laserbehandlung. Die Atmosphäre ist ruhig und gemütlich, mit angenehmer Hintergrundmusik – man fühlt sich sofort gut aufgehoben. Ich komme auf jeden Fall wieder und kann es nur weiterempfehlen.🤩🤩🤩🙌🏼",
+          "text": "Ich war heute das erste Mal da (Haarentfernung mit Elektrolysis).\nIch bin begeistert und kann es nur weiterempfehlen.\nIch hatte einen Termin gebucht für 30 Minuten aber Joe war sehr nett und hat die restlichen Haare auch entfernt und dafür danke ich ihn noch einmal extra, weil das ist nicht selbstverständlich!\nIch werde auf jeden Fall weitere Behandlung bei FareWell machen lassen.\nHygiene top\nAufklärung top\nBehandlung top\nFreundlichkeit top\nAmbiente super entspannt und schöne Musik",
           "languageCode": "de"
         },
         "authorAttribution": {
-          "displayName": "Valeria Eßig",
-          "uri": "https://www.google.com/maps/contrib/102642761055782946922/reviews",
-          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLyFg2jnYcveQcs9xzO-i93g7w1xZZmK6PHVfdreayNg0U7xA=s128-c0x00000000-cc-rp-mo"
+          "displayName": "MaryGio",
+          "uri": "https://www.google.com/maps/contrib/102763562878011900150/reviews",
+          "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVQc2oqDoZlQi5qMNQUu0Q_AMXSN30b57lA1zJ6W_6saEEmh-i6=s128-c0x00000000-cc-rp-mo"
         },
-        "publishTime": "2025-12-16T19:32:16.416622039Z",
-        "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT2tKM1dVUTFkblZFTjJka1MxbFdZWEZQWmpCcFZuYxAB&d=17924085&t=1",
-        "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2tKM1dVUTFkblZFTjJka1MxbFdZWEZQWmpCcFZuYxAB!2m1!1s0x479f57a73a711b65:0xfcbc313dee502fe4"
+        "publishTime": "2026-01-22T16:38:05.152155375Z",
+        "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT2xJMWVYSnJPVlpuVTNSNE5ITXpVbXBmZUZSdldGRRAB&d=17924085&t=1",
+        "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xJMWVYSnJPVlpuVTNSNE5ITXpVbXBmZUZSdldGRRAB!2m1!1s0x479f57a73a711b65:0xfcbc313dee502fe4"
+      },
+      {
+        "name": "places/ChIJZRtxOqdXn0cR5C9Q7j0xvPw/reviews/Ci9DQUlRQUNvZENodHljRjlvT25kTGJrUTVMVGs0YzNwdmRVTndaRWhOYzFkaFJHYxAB",
+        "relativePublishTimeDescription": "vor einem Monat",
+        "rating": 5,
+        "text": {
+          "text": "Moderne und richtig gemütliche Praxis.\nDie Behandlung war sehr professionell und ich habe mich ehrlich wohl gefühlt.\nJoe hat sich viel Zeit genommen, um die Behandlung zu erklären und war sehr einfühlsam.\nTolles Team und toller Service.\nKomme auf jeden Fall nochmal vorbei! :)",
+          "languageCode": "de"
+        },
+        "originalText": {
+          "text": "Moderne und richtig gemütliche Praxis.\nDie Behandlung war sehr professionell und ich habe mich ehrlich wohl gefühlt.\nJoe hat sich viel Zeit genommen, um die Behandlung zu erklären und war sehr einfühlsam.\nTolles Team und toller Service.\nKomme auf jeden Fall nochmal vorbei! :)",
+          "languageCode": "de"
+        },
+        "authorAttribution": {
+          "displayName": "Lara Richter",
+          "uri": "https://www.google.com/maps/contrib/101663804283006850553/reviews",
+          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJbda7IYMYlfwxGiB0e4Tu02lGt8-o27wT4a8ytPXju-a3hrw=s128-c0x00000000-cc-rp-mo"
+        },
+        "publishTime": "2026-01-12T17:51:46.414253854Z",
+        "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT25kTGJrUTVMVGs0YzNwdmRVTndaRWhOYzFkaFJHYxAB&d=17924085&t=1",
+        "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT25kTGJrUTVMVGs0YzNwdmRVTndaRWhOYzFkaFJHYxAB!2m1!1s0x479f57a73a711b65:0xfcbc313dee502fe4"
+      },
+      {
+        "name": "places/ChIJZRtxOqdXn0cR5C9Q7j0xvPw/reviews/Ci9DQUlRQUNvZENodHljRjlvT20weGQwRTNiRFppUjA1TGRXSjFUM05HTFdoUFprRRAB",
+        "relativePublishTimeDescription": "vor 4 Wochen",
+        "rating": 5,
+        "text": {
+          "text": "War heute das erste Mal überhaupt beim Lasern (Intim) und hatte ehrlich gesagt richtig Schiss vor dem Schmerz. Man kann aber bei einer niedrigeren Stufe anfangen, bei der man erstmal so gut wie nichts merkt, also war alles super entspannt!\nNicole war dazu super lieb und hat mega Rücksicht auf einen genommen. Sie hat auch kurze Pausen gemacht und sich immer versichert, dass alles in Ordnung ist.\nAlles in Allem war es ein sehr angenehmer Besuch und ich freue mich schon auf meinen nächsten Termin!",
+          "languageCode": "de"
+        },
+        "originalText": {
+          "text": "War heute das erste Mal überhaupt beim Lasern (Intim) und hatte ehrlich gesagt richtig Schiss vor dem Schmerz. Man kann aber bei einer niedrigeren Stufe anfangen, bei der man erstmal so gut wie nichts merkt, also war alles super entspannt!\nNicole war dazu super lieb und hat mega Rücksicht auf einen genommen. Sie hat auch kurze Pausen gemacht und sich immer versichert, dass alles in Ordnung ist.\nAlles in Allem war es ein sehr angenehmer Besuch und ich freue mich schon auf meinen nächsten Termin!",
+          "languageCode": "de"
+        },
+        "authorAttribution": {
+          "displayName": "Tarja Winkler",
+          "uri": "https://www.google.com/maps/contrib/100356763410920376676/reviews",
+          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIdHbx3Dd9VfDk6NtO-KPAYJ23WqW5KvxHP9f0vGDnmhTCqeA=s128-c0x00000000-cc-rp-mo"
+        },
+        "publishTime": "2026-02-11T14:14:44.249844864Z",
+        "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT20weGQwRTNiRFppUjA1TGRXSjFUM05HTFdoUFprRRAB&d=17924085&t=1",
+        "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT20weGQwRTNiRFppUjA1TGRXSjFUM05HTFdoUFprRRAB!2m1!1s0x479f57a73a711b65:0xfcbc313dee502fe4"
       }
     ]
   },
-  "fetchedAt": "2026-02-10T22:29:47.870Z"
+  "fetchedAt": "2026-03-11T14:16:25.340Z"
 }
