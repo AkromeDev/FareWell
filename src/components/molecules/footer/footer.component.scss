@@ -38,18 +38,17 @@
 
   .social-icon {
     display: inline-block;
-    width: 75px;
-    height: 75px;
-    background-size: cover !important;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    transform: scale(0.75);
     transition: transform 0.3s ease;
     cursor: pointer;
 
     &:hover {
-      transform: scale(1);
-      transition: transform 0.3s cubic-bezier(0.3, 0.2, 0, 2.5);
+      transform: scale(1.08);
     }
 
     &.facebook {
@@ -79,7 +78,8 @@
       text-align: center;
       gap: 0.5rem;
 
-      p, a {
+      p,
+      a {
         font-size: 0.95rem;
         margin: 0;
       }
@@ -98,12 +98,11 @@
   }
 
   @media (min-width: 768px) {
-    .footer-section {
-      padding: 3rem 1rem;
-    }
+    padding: 3rem 1rem;
 
     .footer-content .column {
-      p, a {
+      p,
+      a {
         font-size: 1rem;
       }
     }
