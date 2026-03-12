@@ -30,8 +30,9 @@
     .social-buttons {
       display: flex;
       justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 1.5rem;   // increased from 1rem
+      gap: 1.5rem;
       margin-top: 1rem;
     }
   }
