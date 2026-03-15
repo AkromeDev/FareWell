@@ -1,19 +1,12 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { ButtonComponent } from 'src/components/atoms/button/button.component';
-
-export interface ButtonItem {
-  label: string;
-  link: string;                
-  theme: 'light' | 'dark';
-  external?: boolean;
-}
+import { ButtonItem } from 'src/models/ButtonItem';
 
 @Component({
   selector: 'app-button-list',
   standalone: true,
-  imports: [CommonModule, ButtonComponent, RouterModule],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './button-list.component.html',
   styleUrls: ['./button-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

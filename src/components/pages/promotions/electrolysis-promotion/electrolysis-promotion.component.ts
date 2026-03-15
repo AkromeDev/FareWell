@@ -2,8 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
-import { ButtonItem } from 'src/components/molecules/button-list/button-list.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
+import { ButtonItem } from 'src/models/ButtonItem';
 
 @Component({
   standalone: true,
@@ -34,7 +34,10 @@ export class ElectrolysisPromotionComponent implements OnInit {
       label: 'Termin buchen',
       link: 'https://salonkee.de/salon/farewell?lang=de',
       theme: 'dark',
-      external: true
+      external: true,
+      analyticsEvent: 'generate_lead',
+      analyticsLocation: 'electrolysis-page',
+      analyticsLabel: 'Termin Buchen Electrolysis Page'
     }
   ];
 

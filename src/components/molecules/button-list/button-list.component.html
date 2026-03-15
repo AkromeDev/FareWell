@@ -1,22 +1,13 @@
 <div class="button-list">
-  <ng-container *ngFor="let btn of buttons; trackBy: trackByLabel">
-    <a
-      *ngIf="isExternal(btn.link, btn.external); else internal"
-      [attr.href]="btn.link"
-      target="_blank"
-      rel="noopener noreferrer"
-      [attr.aria-label]="btn.label"
-    >
-      <app-button [theme]="btn.theme">{{ btn.label }}</app-button>
-    </a>
-
-    <ng-template #internal>
-      <a
-        [routerLink]="btn.link"
-        [attr.aria-label]="btn.label"
-      >
-        <app-button [theme]="btn.theme">{{ btn.label }}</app-button>
-      </a>
-    </ng-template>
-  </ng-container>
+  <app-button
+    *ngFor="let btn of buttons; trackBy: trackByLabel"
+    [link]="btn.link"
+    [theme]="btn.theme"
+    [external]="isExternal(btn.link, btn.external)"
+    [analyticsEvent]="btn.analyticsEvent"
+    [analyticsLocation]="btn.analyticsLocation"
+    [analyticsLabel]="btn.analyticsLabel"
+  >
+    {{ btn.label }}
+  </app-button>
 </div>

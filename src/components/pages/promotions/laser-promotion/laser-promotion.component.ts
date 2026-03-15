@@ -3,8 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
-import { ButtonItem } from 'src/components/molecules/button-list/button-list.component';
-
+import { ButtonItem } from 'src/models/ButtonItem';
 @Component({
   standalone: true,
   selector: 'app-laser-promotion',
@@ -35,8 +34,11 @@ export class LaserPromotionComponent implements OnInit {
       label: 'Termin buchen',
       link: 'https://salonkee.de/salon/farewell?lang=de',
       theme: 'dark',
-      external: true
-    }
+      external: true,
+      analyticsEvent: 'generate_lead',
+      analyticsLocation: 'laser-page',
+      analyticsLabel: 'Termin Buchen Laser Page'
+  }
   ];
 
   structuredData = '';

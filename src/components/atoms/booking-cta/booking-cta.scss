@@ -1,0 +1,11 @@
+@use 'themes/theme-entry' as *;
+
+.booking-link {
+  color: $accent-1;
+  font-weight: 600;
+  text-decoration: underline;
+
+  &:hover {
+    color: $dark-1;
+  }
+}

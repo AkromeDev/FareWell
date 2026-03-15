@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ParallaxComponent } from 'src/components/atoms/parallax/parallax.component';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   private readonly pageUrl = 'https://farewell.salon/';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/farewell/studio.jpg';
+  private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
 
   paragraphText: string = `
 Der Beauty Salon FareWell ist spezialisiert auf Nadelepilation, die einzige Methode zur Haarentfernung, die von medizinischen Fachstellen als wirklich permanent anerkannt ist. Unabhängig von Haarfarbe oder Hauttyp.
@@ -43,8 +44,11 @@ Willkommen in deiner neuen permanenten Freiheit.
       label: 'Termin buchen',
       link: 'https://salonkee.de/salon/farewell?lang=de',
       theme: 'dark',
-      external: true
-    }
+      external: true,
+      analyticsEvent: 'generate_lead',
+      analyticsLocation: 'home-page',
+      analyticsLabel: 'Termin Buchen Home Page'
+  }
   ];
 
   activeTab: string = 'home';

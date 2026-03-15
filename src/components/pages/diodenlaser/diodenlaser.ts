@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
+import { BookingCtaComponent } from "src/components/atoms/booking-cta/booking-cta";
 
 @Component({
   selector: 'app-diodenlaser',
   standalone: true,
-  imports: [RouterModule, ImageHeroComponent, ImageTextBlockComponent],
+  imports: [RouterModule, ImageHeroComponent, ImageTextBlockComponent, BookingCtaComponent],
   templateUrl: './diodenlaser.html',
   styleUrls: ['./diodenlaser.scss']
 })

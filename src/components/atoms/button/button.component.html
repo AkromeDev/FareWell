@@ -1,11 +1,36 @@
 <ng-container *ngIf="link; else regularButton">
-    <a [routerLink]="link" class="farewell-btn" [ngClass]="theme">
-        <ng-content></ng-content>
+  <ng-container *ngIf="external; else internalLink">
+    <a
+      [href]="link"
+      class="farewell-btn"
+      [ngClass]="theme"
+      [attr.target]="target"
+      [attr.rel]="rel"
+      (click)="handleClick()"
+    >
+      <ng-content></ng-content>
     </a>
+  </ng-container>
+
+  <ng-template #internalLink>
+    <a
+      [routerLink]="link"
+      class="farewell-btn"
+      [ngClass]="theme"
+      (click)="handleClick()"
+    >
+      <ng-content></ng-content>
+    </a>
+  </ng-template>
 </ng-container>
 
 <ng-template #regularButton>
-    <button class="farewell-btn" [ngClass]="theme">
-        <ng-content></ng-content>
-    </button>
+  <button
+    type="button"
+    class="farewell-btn"
+    [ngClass]="theme"
+    (click)="handleClick()"
+  >
+    <ng-content></ng-content>
+  </button>
 </ng-template>
