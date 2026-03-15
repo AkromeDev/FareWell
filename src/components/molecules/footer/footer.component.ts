@@ -16,13 +16,34 @@ declare global {
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  trackBookingClick() {
-    window.gtag?.('event', 'generate_lead', {
+
+  private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
+
+  trackBookingClick(event: MouseEvent): void {
+    event.preventDefault();
+
+    if (!window.gtag) {
+      window.open(this.bookingUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    let opened = false;
+
+    const openBooking = () => {
+      if (opened) return;
+      opened = true;
+      window.open(this.bookingUrl, '_blank', 'noopener,noreferrer');
+    };
+
+    window.gtag('event', 'generate_lead', {
       event_category: 'engagement',
       event_label: 'Termin Buchen Footer',
       link_text: 'TERMIN BUCHEN',
       location: 'footer',
-      destination: 'salonkee'
+      destination: 'salonkee',
+      event_callback: openBooking
     });
+
+    setTimeout(openBooking, 800);
   }
 }

@@ -40,7 +40,7 @@ export class ButtonComponent implements OnInit {
   handleClick(): void {
     if (!this.analyticsEvent) return;
 
-    window.gtag?.('event', this.analyticsEvent, {
+      window.gtag?.('event', this.analyticsEvent, {
       event_category: 'engagement',
       event_label: this.analyticsLabel ?? this.analyticsLocation ?? 'button-click',
       location: this.analyticsLocation ?? 'unknown',
