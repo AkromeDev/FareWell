@@ -3,6 +3,12 @@ import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 type TreatmentCard = {
   title: string;
   description: string;
@@ -106,6 +112,16 @@ export class HeaderComponent implements OnInit {
   onBehandlungenLeave() {
     if (this.isMobile) return;
     this.scheduleClose();
+  }
+
+  trackBookingClick() {
+    window.gtag?.('event', 'generate_lead', {
+      event_category: 'engagement',
+      event_label: 'Termin Buchen Header',
+      link_text: 'Termin Buchen',
+      location: 'header',
+      destination: 'salonkee'
+    });
   }
 
   private scheduleClose() {

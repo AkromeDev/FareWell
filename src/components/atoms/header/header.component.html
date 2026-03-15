@@ -2,7 +2,7 @@
   <a [routerLink]="'/'" class="nav-logo" (click)="setActiveTab('home')">FareWell</a>
 
   <!-- Burger Icon -->
-    <div
+  <div
     class="burger"
     [ngClass]="{ open: menuOpen }"
     (click)="toggleMenu()"
@@ -22,6 +22,7 @@
       target="_blank"
       rel="noopener noreferrer"
       class="nav-link"
+      (click)="trackBookingClick()"
     >
       Termin Buchen
     </a>
@@ -46,7 +47,6 @@
         </button>
       </div>
 
-      <!-- ✅ Mobile: sub-pages list -->
       <div class="behandlungen-mobile" [ngClass]="{ open: behandlungenOpen }">
         <div class="behandlungen-mobile-inner">
           <a
@@ -89,7 +89,6 @@
     </a>
   </div>
 
-  <!-- ✅ Desktop mega panel -->
   <div
     class="behandlungen-panel"
     [ngClass]="{ open: behandlungenOpen }"
