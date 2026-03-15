@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from 'src/components/atoms/header/header.component';
 import { FooterComponent } from 'src/components/molecules/footer/footer.component';
+import { AnalyticsService } from 'src/services/analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,6 @@ import { FooterComponent } from 'src/components/molecules/footer/footer.componen
     FooterComponent
   ]
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private analytics: AnalyticsService) {}
+}
