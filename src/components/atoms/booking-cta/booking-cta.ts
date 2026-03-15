@@ -13,20 +13,36 @@ declare global {
   styleUrls: ['./booking-cta.scss']
 })
 export class BookingCtaComponent {
-
   @Input() label: string = 'Termin buchen';
   @Input() location: string = 'unknown';
 
-  bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
+  readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
 
-  trackBookingClick() {
-    window.gtag?.('event', 'generate_lead', {
+  trackBookingClick(event: MouseEvent): void {
+    event.preventDefault();
+
+    if (!window.gtag) {
+      window.open(this.bookingUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    let opened = false;
+
+    const openBooking = () => {
+      if (opened) return;
+      opened = true;
+      window.open(this.bookingUrl, '_blank', 'noopener,noreferrer');
+    };
+
+    window.gtag('event', 'generate_lead', {
       event_category: 'engagement',
       event_label: `Termin Buchen ${this.location}`,
       link_text: this.label,
       location: this.location,
-      destination: 'salonkee'
+      destination: 'salonkee',
+      event_callback: openBooking
     });
-  }
 
+    setTimeout(openBooking, 800);
+  }
 }
