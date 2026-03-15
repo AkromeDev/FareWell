@@ -13,7 +13,7 @@ export class AnalyticsService {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
 
-        gtag('config', 'G-J0K7WS909C', {
+        gtag('config', 'G-TQCJ2D64MQ', {
           page_path: event.urlAfterRedirects
         });
 
