@@ -1,8 +1,23 @@
 <div
   class="image-section"
-  [ngClass]="[shadow, 'height-' + height]"
+  [ngClass]="[shadow, 'height-' + height, parallax ? 'is-parallax' : '']"
   [ngStyle]="sectionStyleVars"
 >
+  @if (backgroundImage) {
+    <img
+      class="image-section-bg"
+      [src]="normalizedBackgroundImage"
+      [alt]="backgroundAlt"
+      [attr.fetchpriority]="imagePriority"
+      [attr.loading]="imageLoading"
+      decoding="async"
+      [ngClass]="[
+        'fit-' + backgroundFit,
+        'pos-' + backgroundPositionClass
+      ]"
+    />
+  }
+
   <div class="overlay"></div>
 
   <div class="section-content">

@@ -1,6 +1,7 @@
 <div class="button-list">
   <app-button
     *ngFor="let btn of buttons; trackBy: trackByLabel"
+    [label]="btn.label"
     [link]="btn.link"
     [theme]="btn.theme"
     [external]="isExternal(btn.link, btn.external)"
@@ -8,6 +9,5 @@
     [analyticsLocation]="btn.analyticsLocation"
     [analyticsLabel]="btn.analyticsLabel"
   >
-    {{ btn.label }}
   </app-button>
 </div>

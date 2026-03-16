@@ -6,9 +6,10 @@
       [ngClass]="theme"
       [attr.target]="target"
       [attr.rel]="rel"
+      [attr.aria-label]="ariaLabel || label"
       (click)="handleClick()"
     >
-      <ng-content></ng-content>
+      <span class="farewell-btn__label">{{ label }}</span>
     </a>
   </ng-container>
 
@@ -17,9 +18,10 @@
       [routerLink]="link"
       class="farewell-btn"
       [ngClass]="theme"
+      [attr.aria-label]="ariaLabel || label"
       (click)="handleClick()"
     >
-      <ng-content></ng-content>
+      <span class="farewell-btn__label">{{ label }}</span>
     </a>
   </ng-template>
 </ng-container>
@@ -29,8 +31,9 @@
     type="button"
     class="farewell-btn"
     [ngClass]="theme"
+    [attr.aria-label]="ariaLabel || label"
     (click)="handleClick()"
   >
-    <ng-content></ng-content>
+    <span class="farewell-btn__label">{{ label }}</span>
   </button>
 </ng-template>

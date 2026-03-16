@@ -1,36 +1,114 @@
 @use 'themes/theme-entry' as *;
-@use 'sass:color';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+:host a.farewell-btn,
+:host a.farewell-btn:hover,
+:host a.farewell-btn:focus,
+:host a.farewell-btn:active,
+:host a.farewell-btn:visited {
+  text-decoration: none !important;
+}
 
 .farewell-btn {
-  font-family: $font, sans-serif;
-  font-weight: 550;
-  font-size: 1.15rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-  display: inline-block;
-
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  max-width: 300px;
+  min-height: 3.25rem;
+  padding: 0.9rem 1.4rem;
+  border-radius: 0.6rem;
+  border: 1px solid transparent;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  appearance: none;
+
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 
   &:hover {
-    transform: translateY(1px);
-    filter: brightness(1.05);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-1;
+    outline-offset: 3px;
   }
 
   &.light {
-    background-color: rgba($light-1, 0.6);
-    border-color: color.adjust($light-2, $lightness: -15%);
-    color: $dark-2;
+    background-color: rgba($light-1, 0.9);
+    color: $black;
+    border-color: rgba($light-1, 0.95);
+
+    &:hover {
+      background-color: $light-1;
+      color: $black;
+    }
   }
 
   &.dark {
-    background-color: rgba($dark-2, 0.4);
-    border-color: color.adjust($dark-2, $lightness: 15%);
+    background-color: rgba($dark-2, 0.82);
     color: $light-1;
+    border-color: rgba($accent-1, 0.7);
+    box-shadow: 0 6px 20px rgba($black, 0.18);
+
+    &:hover {
+      background-color: rgba($dark-2, 0.94);
+      color: $light-1;
+      border-color: $accent-1;
+    }
+  }
+
+  &.accent {
+    background-color: rgba($accent-1, 0.92);
+    color: $black;
+    border-color: $accent-1;
+
+    &:hover {
+      background-color: $accent-1;
+      color: $black;
+    }
+  }
+}
+
+.farewell-btn__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  white-space: nowrap;
+  opacity: 1;
+  visibility: visible;
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+@media (min-width: 768px) {
+  :host {
+    width: auto;
+  }
+
+  .farewell-btn {
+    width: 100%;
+    min-width: 200px;
   }
 }

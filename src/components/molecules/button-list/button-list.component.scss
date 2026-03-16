@@ -1,5 +1,10 @@
 @use 'themes/theme-entry' as *;
 
+:host {
+  display: block;
+  width: 100%;
+}
+
 .button-list {
   display: flex;
   flex-direction: column;
@@ -9,26 +14,25 @@
   width: 100%;
   max-width: 900px;
   margin: 3rem auto;
+}
 
-  a {
-    text-decoration: none;
-    display: block;
-    flex: 1 1 auto;
-    width: 100%;
-  }
+.button-list app-button {
+  display: block;
+  width: 100%;
+  flex: 1 1 auto;
+}
 
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
+  .button-list {
     flex-direction: row;
     align-items: stretch;
     flex-wrap: nowrap;
     width: 100%;
     max-width: 900px;
+  }
 
-    a {
-      display: flex;
-      justify-content: center;
-      flex: 1 1 0;
-      width: auto;
-    }
+  .button-list app-button {
+    flex: 1 1 0;
+    width: auto;
   }
 }

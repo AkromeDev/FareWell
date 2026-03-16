@@ -1,12 +1,13 @@
 <app-image-section
   [backgroundImage]="backgroundImage"
+  [backgroundAlt]="imageAlt"
   [shadow]="computedShadow"
   [height]="height"
   [backgroundFit]="backgroundFit"
   [backgroundPosition]="backgroundPosition"
+  [imagePriority]="'high'"
+  [imageLoading]="'eager'"
   [ngClass]="['hero-container', 'margin-top-' + margin, 'height-' + height]"
-  role="img"
-  [attr.aria-label]="imageAlt || null"
 >
   <div class="hero-content">
     <app-title
@@ -30,12 +31,14 @@
       {{ paragraphText }}
     </app-paragraph>
 
-    <app-button-list [buttons]="buttonList"></app-button-list>
+    @if (buttonList.length) {
+      <app-button-list [buttons]="buttonList"></app-button-list>
+    }
 
     @if (googleReviews) {
-    <div class="hero-reviews">
-      <fw-google-reviews></fw-google-reviews>
-    </div>
-}
+      <div class="hero-reviews">
+        <fw-google-reviews></fw-google-reviews>
+      </div>
+    }
   </div>
 </app-image-section>

@@ -18,6 +18,8 @@ declare global {
 })
 export class ButtonComponent implements OnInit {
   @Input() theme: DesignTokens.Theme = 'light';
+  @Input() label: string = '';
+  @Input() ariaLabel?: string;
   @Input() link?: string;
   @Input() external: boolean = false;
 
@@ -40,9 +42,9 @@ export class ButtonComponent implements OnInit {
   handleClick(): void {
     if (!this.analyticsEvent) return;
 
-      window.gtag?.('event', this.analyticsEvent, {
+    window.gtag?.('event', this.analyticsEvent, {
       event_category: 'engagement',
-      event_label: this.analyticsLabel ?? this.analyticsLocation ?? 'button-click',
+      event_label: this.analyticsLabel ?? this.analyticsLocation ?? this.label ?? 'button-click',
       location: this.analyticsLocation ?? 'unknown',
       link_url: this.link ?? ''
     });

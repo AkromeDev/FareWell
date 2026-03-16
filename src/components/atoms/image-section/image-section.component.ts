@@ -11,6 +11,7 @@ import { ShadowOptions, DesignTokens } from 'src/models';
 })
 export class ImageSectionComponent {
   @Input() backgroundImage: string = '';
+  @Input() backgroundAlt: string = '';
   @Input() shadow: ShadowOptions.Type | '' = '';
   @Input() height: DesignTokens.Height = '85';
 
@@ -27,17 +28,34 @@ export class ImageSectionComponent {
     | 'center left'
     | 'center right' = 'center';
 
-  @Input() parallax: boolean = true;
-
+  @Input() parallax: boolean = false;
   @Input() backgroundColor: string = 'transparent';
+  @Input() imagePriority: 'high' | 'auto' = 'auto';
+  @Input() imageLoading: 'eager' | 'lazy' = 'lazy';
+
+  get normalizedBackgroundImage(): string {
+    if (!this.backgroundImage) {
+      return '';
+    }
+
+    if (
+      this.backgroundImage.startsWith('http://') ||
+      this.backgroundImage.startsWith('https://') ||
+      this.backgroundImage.startsWith('/')
+    ) {
+      return this.backgroundImage;
+    }
+
+    return `/${this.backgroundImage}`;
+  }
+
+  get backgroundPositionClass(): string {
+    return this.backgroundPosition.replace(/\s+/g, '-');
+  }
 
   get sectionStyleVars(): Record<string, string> {
     return {
-      '--bg-image': this.backgroundImage ? `url('${this.backgroundImage}')` : 'none',
-      '--bg-size': this.backgroundFit,
-      '--bg-pos': this.backgroundPosition,
       '--bg-color': this.backgroundColor,
-      '--bg-attach': this.parallax ? 'fixed' : 'scroll',
     };
   }
 }
