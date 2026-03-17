@@ -39,7 +39,7 @@ export class PriceComponent implements OnInit {
     Keine Sorge, die erste Beratung bei FareWell ist kostenlos. Gemeinsam finden wir heraus, was am besten zu Ihnen passt.
 
     Im Februar bedanken wir uns besonders bei neuen Kundinnen und Kunden.  
-    Mit dem Code FOREVER erhalten Sie 40 % Rabatt auf alle Folgebehandlungen.
+    Mit dem Code FOREVER erhalten Sie 30 % Rabatt auf alle Folgebehandlungen.
 
     Der Rabatt gilt lebenslang und ist unser Versprechen für Vertrauen, Qualität und eine langfristige Zusammenarbeit.  
     Ganz unkompliziert, als Dankeschön für Ihre Entscheidung für FareWell.
