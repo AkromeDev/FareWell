@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   private readonly pageUrl = 'https://farewell.salon/';
   private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/farewell/studio.jpg';
+    'https://farewell.salon/assets/images/farewell/studio.webp';
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
 
   paragraphText: string = `

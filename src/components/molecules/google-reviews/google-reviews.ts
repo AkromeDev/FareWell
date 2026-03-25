@@ -3,10 +3,23 @@ import {
   ChangeDetectionStrategy,
   Input,
   HostListener,
+  ElementRef,
+  AfterViewInit,
+  OnDestroy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, of, shareReplay, startWith } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  map,
+  of,
+  shareReplay,
+  startWith,
+  switchMap,
+  catchError,
+} from 'rxjs';
+import { ReviewLoadingIndicatorComponent } from 'src/components/atoms/review-loading-indicator/review-loading-indicator';
 
 export interface GooglePlaceReviewsResponse {
   source: 'google' | 'cache';
@@ -35,7 +48,7 @@ export interface GoogleReview {
 }
 
 type Vm = {
-  state: 'loading' | 'ready' | 'error';
+  state: 'idle' | 'loading' | 'ready' | 'error';
   placeName: string;
   rating: number | null;
   userRatingCount: number | null;
@@ -43,40 +56,92 @@ type Vm = {
   source: 'google' | 'cache' | null;
 };
 
+type RequestState =
+  | { kind: 'idle' }
+  | { kind: 'loading' }
+  | { kind: 'success'; data: GooglePlaceReviewsResponse }
+  | { kind: 'error' };
+
 @Component({
   selector: 'fw-google-reviews',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReviewLoadingIndicatorComponent],
   templateUrl: './google-reviews.html',
   styleUrls: ['./google-reviews.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GoogleReviewsComponent {
-  /** how many reviews to display in the carousel */
+export class GoogleReviewsComponent implements AfterViewInit, OnDestroy {
   @Input() maxItems = 8;
+  @Input() deferMs = 1200;
 
   activeIndex = 0;
 
   private touchStartX: number | null = null;
-
-  /** matches SCSS breakpoints: <720 = 1, >=720 = 2, >=1024 = 3 */
   private perView = 1;
-
-  /** expanded state per review (stable key) */
   private expanded = new Set<string>();
 
-  // ✅ Reads from Angular assets (src/assets/data/google-reviews.json)
+  private readonly shouldLoad$ = new BehaviorSubject(false);
+
+  private intersectionObserver?: IntersectionObserver;
+  private loadTimerId: number | null = null;
+
   private readonly url = '/assets/data/google-reviews.json';
 
-  private readonly raw$ = this.http
-    .get<GooglePlaceReviewsResponse>(this.url)
-    .pipe(shareReplay({ bufferSize: 1, refCount: false }));
+  private readonly requestState$ = this.shouldLoad$.pipe(
+    switchMap((shouldLoad) => {
+      if (!shouldLoad) {
+        return of<RequestState>({ kind: 'idle' });
+      }
 
-  readonly vm$ = this.raw$.pipe(
-    map((res): Vm => {
-      const reviews = (res.data.reviews ?? []).slice(0, this.maxItems);
+      return this.http.get<GooglePlaceReviewsResponse>(this.url).pipe(
+        map((data) => ({ kind: 'success', data }) as RequestState),
+        startWith({ kind: 'loading' } as RequestState),
+        catchError(() => of<RequestState>({ kind: 'error' }))
+      );
+    }),
+    shareReplay({ bufferSize: 1, refCount: false })
+  );
 
-      // keep index valid after data changes / resize
+  readonly vm$ = combineLatest([this.shouldLoad$, this.requestState$]).pipe(
+    map(([shouldLoad, requestState]): Vm => {
+      if (!shouldLoad || requestState.kind === 'idle') {
+        return {
+          state: 'idle',
+          placeName: 'Google Bewertungen',
+          rating: null,
+          userRatingCount: null,
+          reviews: [],
+          source: null,
+        };
+      }
+
+      if (requestState.kind === 'loading') {
+        return {
+          state: 'loading',
+          placeName: 'Google Bewertungen',
+          rating: null,
+          userRatingCount: null,
+          reviews: [],
+          source: null,
+        };
+      }
+
+      if (requestState.kind === 'error') {
+        return {
+          state: 'error',
+          placeName: 'Google Bewertungen',
+          rating: null,
+          userRatingCount: null,
+          reviews: [],
+          source: null,
+        };
+      }
+
+      const reviews = (requestState.data.data.reviews ?? []).slice(
+        0,
+        this.maxItems
+      );
+
       this.activeIndex = Math.min(
         this.activeIndex,
         this.maxStartIndex(reviews.length)
@@ -84,43 +149,79 @@ export class GoogleReviewsComponent {
 
       return {
         state: 'ready',
-        placeName: res.data.displayName?.text ?? 'Google Bewertungen',
-        rating: res.data.rating ?? null,
-        userRatingCount: res.data.userRatingCount ?? null,
+        placeName:
+          requestState.data.data.displayName?.text ?? 'Google Bewertungen',
+        rating: requestState.data.data.rating ?? null,
+        userRatingCount: requestState.data.data.userRatingCount ?? null,
         reviews,
-        source: res.source ?? null,
+        source: requestState.data.source ?? null,
       };
     }),
-    startWith({
-      state: 'loading',
-      placeName: 'Google Bewertungen',
-      rating: null,
-      userRatingCount: null,
-      reviews: [],
-      source: null,
-    } satisfies Vm),
-    catchError(() =>
-      of({
-        state: 'error',
-        placeName: 'Google Bewertungen',
-        rating: null,
-        userRatingCount: null,
-        reviews: [],
-        source: null,
-      } satisfies Vm)
-    )
+    shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  constructor(private readonly http: HttpClient) {
+  constructor(
+    private readonly http: HttpClient,
+    private readonly host: ElementRef<HTMLElement>
+  ) {
     this.updatePerView();
+  }
+
+  ngAfterViewInit(): void {
+    if (
+      typeof window === 'undefined' ||
+      typeof IntersectionObserver === 'undefined'
+    ) {
+      this.scheduleLoad();
+      return;
+    }
+
+    this.intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        const isVisible = entries.some((entry) => entry.isIntersecting);
+
+        if (!isVisible) {
+          return;
+        }
+
+        this.scheduleLoad();
+        this.intersectionObserver?.disconnect();
+      },
+      {
+        root: null,
+        rootMargin: '150px 0px',
+        threshold: 0.01,
+      }
+    );
+
+    this.intersectionObserver.observe(this.host.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.intersectionObserver?.disconnect();
+
+    if (this.loadTimerId !== null) {
+      window.clearTimeout(this.loadTimerId);
+    }
+  }
+
+  private scheduleLoad(): void {
+    if (this.shouldLoad$.value || this.loadTimerId !== null) {
+      return;
+    }
+
+    this.loadTimerId = window.setTimeout(() => {
+      this.shouldLoad$.next(true);
+      this.loadTimerId = null;
+    }, this.deferMs);
   }
 
   @HostListener('window:resize')
   onResize(): void {
     const before = this.perView;
     this.updatePerView();
+
     if (before !== this.perView) {
-      // clamp so we don't slide into empty space
       this.activeIndex = Math.max(0, this.activeIndex);
     }
   }
@@ -147,12 +248,10 @@ export class GoogleReviewsComponent {
     return Array.from({ length: 5 }, (_, i) => (i < safe ? 1 : 0));
   }
 
-  /** number of possible "pages" (start positions) */
   pageCount(total: number): number {
     return this.maxStartIndex(total) + 1;
   }
 
-  /** for template *ngFor */
   pages(total: number): number[] {
     return Array.from({ length: this.pageCount(total) }, (_, i) => i);
   }
@@ -200,24 +299,20 @@ export class GoogleReviewsComponent {
 
     const dx = endX - startX;
     const threshold = 40;
+
     if (dx > threshold) this.prev(total);
     if (dx < -threshold) this.next(total);
   }
 
   translateX(activeIndex: number): string {
-    // step = card width + gap (card width is a CSS var computed from per-view)
     return `translateX(calc(-${activeIndex} * (var(--card-w) + var(--gap))))`;
   }
 
-  // -------------------------
-  // Read more / less
-  // -------------------------
   reviewText(r: GoogleReview): string {
     return (r.text?.text ?? r.originalText?.text ?? '').trim();
   }
 
   shouldShowReadMore(r: GoogleReview): boolean {
-    // pragmatic approach (no DOM measurement): show if likely to exceed 5 lines
     const t = this.reviewText(r);
     return t.length > 240 || t.split('\n').length > 3;
   }
@@ -228,7 +323,11 @@ export class GoogleReviewsComponent {
 
   toggleExpanded(r: GoogleReview): void {
     const k = this.keyOf(r);
-    if (this.expanded.has(k)) this.expanded.delete(k);
-    else this.expanded.add(k);
+
+    if (this.expanded.has(k)) {
+      this.expanded.delete(k);
+    } else {
+      this.expanded.add(k);
+    }
   }
 }

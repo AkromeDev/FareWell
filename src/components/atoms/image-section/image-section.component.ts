@@ -58,4 +58,8 @@ export class ImageSectionComponent {
       '--bg-color': this.backgroundColor,
     };
   }
+
+  get imageDecoding(): 'sync' | 'async' {
+    return this.imageLoading === 'eager' ? 'sync' : 'async';
+  }
 }
