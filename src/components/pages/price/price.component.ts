@@ -35,14 +35,17 @@ export class PriceComponent implements OnInit {
   ngOnInit(): void {}
 
   paragraphText: string = `
-    Sind Sie noch unsicher, welche Behandlung die richtige für Sie ist  
+    Sind Sie noch unsicher, welche Behandlung die richtige für Sie ist
     Keine Sorge, die erste Beratung bei FareWell ist kostenlos. Gemeinsam finden wir heraus, was am besten zu Ihnen passt.
 
-    Im Februar bedanken wir uns besonders bei neuen Kundinnen und Kunden.  
-    Mit dem Code FOREVER erhalten Sie 30 % Rabatt auf alle Folgebehandlungen.
+    Aktuell bieten wir Ihnen ein exklusives Angebot:
+    60 % Rabatt auf die Laser Haarentfernung für die Achseln.
 
-    Der Rabatt gilt lebenslang und ist unser Versprechen für Vertrauen, Qualität und eine langfristige Zusammenarbeit.  
-    Ganz unkompliziert, als Dankeschön für Ihre Entscheidung für FareWell.
+    Sobald Sie dieses Angebot einmal nutzen, erhalten Sie den Rabatt von 60 % für die gesamte Behandlungsserie in diesem Bereich.
+
+    Dieses Angebot ist nur bis zum 15. Mai gültig.
+
+    Nutzen Sie diese Gelegenheit, um unsere Behandlung kennenzulernen und sich selbst von den Ergebnissen zu überzeugen.
   `;
 
 
