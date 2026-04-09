@@ -1,37 +1,74 @@
 <div class="footer-section">
-  <div class="footer-top">
+  <div class="footer-primary">
     <h2 class="back-to-top">
-      <a [appScrollTo]="'topSection'" class="no-underline">Back Home</a>
+      <a [appScrollTo]="'topSection'" class="footer-action no-underline">Back Home</a>
     </h2>
 
     <div class="social-buttons">
-      <a href="https://www.facebook.com/share/14PfPkcmpKs/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" class="social-icon facebook"></a>
+      <a
+        href="https://www.facebook.com/share/14PfPkcmpKs/?mibextid=wwXIfr"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Facebook"
+      >
+        <img
+          src="assets/images/icons/facebook.svg"
+          alt=""
+          width="40"
+          height="40"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </a>
+
       <a
         href="https://www.instagram.com/farewell.salon/"
         target="_blank"
+        rel="noopener noreferrer"
         aria-label="Instagram"
-        class="social-icon instagram"
-      ></a>
+      >
+        <img
+          src="assets/images/icons/insta.svg"
+          alt=""
+          width="40"
+          height="40"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </a>
+
       <a
         href="https://www.linkedin.com/company/farewell-gmbh/about/"
         target="_blank"
+        rel="noopener noreferrer"
         aria-label="LinkedIn"
-        class="social-icon linkedin"
-      ></a>
+      >
+        <img
+          src="assets/images/icons/linkedin.svg"
+          alt=""
+          width="40"
+          height="40"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </a>
     </div>
-  </div>
 
-  <h3 class="back-to-top">
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="no-underline"
-      (click)="trackBookingClick($event)"
-    >
-      TERMIN BUCHEN
-    </a>
-  </h3>
+    <h3 class="footer-booking">
+      <a
+        href="https://salonkee.de/salon/farewell?lang=de"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-action no-underline"
+        (click)="trackBookingClick($event)"
+      >
+        TERMIN BUCHEN
+      </a>
+    </h3>
+  </div>
 
   <div class="footer-content">
     <div class="column contact">
@@ -43,7 +80,7 @@
           rel="noopener noreferrer"
           aria-label="Öffnet Google Maps in einem neuen Tab oder in der App"
         >
-          Frauentorgraben 5<br>
+          Frauentorgraben 5<br />
           90443 Nürnberg
         </a>
       </p>

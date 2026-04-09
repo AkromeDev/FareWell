@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { ShadowOptions, DesignTokens } from 'src/models';
 
 @Component({
@@ -60,6 +60,18 @@ export class ImageSectionComponent {
   }
 
   get imageDecoding(): 'sync' | 'async' {
-    return this.imageLoading === 'eager' ? 'sync' : 'async';
+    return this.shouldPrioritizeImage ? 'sync' : 'async';
+  }
+
+  get resolvedImageLoading(): 'eager' | 'lazy' {
+    return this.shouldPrioritizeImage ? 'eager' : this.imageLoading;
+  }
+
+  get resolvedFetchPriority(): 'high' | 'auto' {
+    return this.shouldPrioritizeImage ? 'high' : 'auto';
+  }
+
+  get shouldPrioritizeImage(): boolean {
+    return this.imagePriority === 'high';
   }
 }

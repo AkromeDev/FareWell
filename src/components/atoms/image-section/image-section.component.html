@@ -8,8 +8,8 @@
       class="image-section-bg"
       [src]="normalizedBackgroundImage"
       [alt]="backgroundAlt"
-      [attr.fetchpriority]="imagePriority"
-      [attr.loading]="imageLoading"
+      [attr.fetchpriority]="resolvedFetchPriority"
+      [attr.loading]="resolvedImageLoading"
       [attr.decoding]="imageDecoding"
       [ngClass]="[
         'fit-' + backgroundFit,
