@@ -3,23 +3,11 @@ import {
   ChangeDetectionStrategy,
   Input,
   HostListener,
-  ElementRef,
-  AfterViewInit,
-  OnDestroy,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import {
-  BehaviorSubject,
-  combineLatest,
-  map,
-  of,
-  shareReplay,
-  startWith,
-  switchMap,
-  catchError,
-} from 'rxjs';
-import { ReviewLoadingIndicatorComponent } from 'src/components/atoms/review-loading-indicator/review-loading-indicator';
+import googleReviewsJson from 'src/assets/data/google-reviews.json';
 
 export interface GooglePlaceReviewsResponse {
   source: 'google' | 'cache';
@@ -48,7 +36,6 @@ export interface GoogleReview {
 }
 
 type Vm = {
-  state: 'idle' | 'loading' | 'ready' | 'error';
   placeName: string;
   rating: number | null;
   userRatingCount: number | null;
@@ -56,23 +43,16 @@ type Vm = {
   source: 'google' | 'cache' | null;
 };
 
-type RequestState =
-  | { kind: 'idle' }
-  | { kind: 'loading' }
-  | { kind: 'success'; data: GooglePlaceReviewsResponse }
-  | { kind: 'error' };
-
 @Component({
   selector: 'fw-google-reviews',
   standalone: true,
-  imports: [CommonModule, ReviewLoadingIndicatorComponent],
+  imports: [CommonModule],
   templateUrl: './google-reviews.html',
   styleUrls: ['./google-reviews.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GoogleReviewsComponent implements AfterViewInit, OnDestroy {
+export class GoogleReviewsComponent implements OnChanges {
   @Input() maxItems = 8;
-  @Input() deferMs = 1200;
 
   activeIndex = 0;
 
@@ -80,140 +60,35 @@ export class GoogleReviewsComponent implements AfterViewInit, OnDestroy {
   private perView = 1;
   private expanded = new Set<string>();
 
-  private readonly shouldLoad$ = new BehaviorSubject(false);
+  private readonly data =
+    googleReviewsJson as GooglePlaceReviewsResponse;
 
-  private intersectionObserver?: IntersectionObserver;
-  private loadTimerId: number | null = null;
+  vm: Vm = this.buildVm();
 
-  private readonly url = '/assets/data/google-reviews.json';
-
-  private readonly requestState$ = this.shouldLoad$.pipe(
-    switchMap((shouldLoad) => {
-      if (!shouldLoad) {
-        return of<RequestState>({ kind: 'idle' });
-      }
-
-      return this.http.get<GooglePlaceReviewsResponse>(this.url).pipe(
-        map((data) => ({ kind: 'success', data }) as RequestState),
-        startWith({ kind: 'loading' } as RequestState),
-        catchError(() => of<RequestState>({ kind: 'error' }))
-      );
-    }),
-    shareReplay({ bufferSize: 1, refCount: false })
-  );
-
-  readonly vm$ = combineLatest([this.shouldLoad$, this.requestState$]).pipe(
-    map(([shouldLoad, requestState]): Vm => {
-      if (!shouldLoad || requestState.kind === 'idle') {
-        return {
-          state: 'idle',
-          placeName: 'Google Bewertungen',
-          rating: null,
-          userRatingCount: null,
-          reviews: [],
-          source: null,
-        };
-      }
-
-      if (requestState.kind === 'loading') {
-        return {
-          state: 'loading',
-          placeName: 'Google Bewertungen',
-          rating: null,
-          userRatingCount: null,
-          reviews: [],
-          source: null,
-        };
-      }
-
-      if (requestState.kind === 'error') {
-        return {
-          state: 'error',
-          placeName: 'Google Bewertungen',
-          rating: null,
-          userRatingCount: null,
-          reviews: [],
-          source: null,
-        };
-      }
-
-      const reviews = (requestState.data.data.reviews ?? []).slice(
-        0,
-        this.maxItems
-      );
-
-      this.activeIndex = Math.min(
-        this.activeIndex,
-        this.maxStartIndex(reviews.length)
-      );
-
-      return {
-        state: 'ready',
-        placeName:
-          requestState.data.data.displayName?.text ?? 'Google Bewertungen',
-        rating: requestState.data.data.rating ?? null,
-        userRatingCount: requestState.data.data.userRatingCount ?? null,
-        reviews,
-        source: requestState.data.source ?? null,
-      };
-    }),
-    shareReplay({ bufferSize: 1, refCount: true })
-  );
-
-  constructor(
-    private readonly http: HttpClient,
-    private readonly host: ElementRef<HTMLElement>
-  ) {
+  constructor() {
     this.updatePerView();
   }
 
-  ngAfterViewInit(): void {
-    if (
-      typeof window === 'undefined' ||
-      typeof IntersectionObserver === 'undefined'
-    ) {
-      this.scheduleLoad();
-      return;
-    }
-
-    this.intersectionObserver = new IntersectionObserver(
-      (entries) => {
-        const isVisible = entries.some((entry) => entry.isIntersecting);
-
-        if (!isVisible) {
-          return;
-        }
-
-        this.scheduleLoad();
-        this.intersectionObserver?.disconnect();
-      },
-      {
-        root: null,
-        rootMargin: '150px 0px',
-        threshold: 0.01,
-      }
-    );
-
-    this.intersectionObserver.observe(this.host.nativeElement);
-  }
-
-  ngOnDestroy(): void {
-    this.intersectionObserver?.disconnect();
-
-    if (this.loadTimerId !== null) {
-      window.clearTimeout(this.loadTimerId);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['maxItems']) {
+      this.vm = this.buildVm();
+      this.activeIndex = Math.min(
+        this.activeIndex,
+        this.maxStartIndex(this.vm.reviews.length)
+      );
     }
   }
 
-  private scheduleLoad(): void {
-    if (this.shouldLoad$.value || this.loadTimerId !== null) {
-      return;
-    }
+  private buildVm(): Vm {
+    const reviews = (this.data.data.reviews ?? []).slice(0, this.maxItems);
 
-    this.loadTimerId = window.setTimeout(() => {
-      this.shouldLoad$.next(true);
-      this.loadTimerId = null;
-    }, this.deferMs);
+    return {
+      placeName: this.data.data.displayName?.text ?? 'Google Bewertungen',
+      rating: this.data.data.rating ?? null,
+      userRatingCount: this.data.data.userRatingCount ?? null,
+      reviews,
+      source: this.data.source ?? null,
+    };
   }
 
   @HostListener('window:resize')
@@ -222,11 +97,19 @@ export class GoogleReviewsComponent implements AfterViewInit, OnDestroy {
     this.updatePerView();
 
     if (before !== this.perView) {
-      this.activeIndex = Math.max(0, this.activeIndex);
+      this.activeIndex = Math.min(
+        this.activeIndex,
+        this.maxStartIndex(this.vm.reviews.length)
+      );
     }
   }
 
   private updatePerView(): void {
+    if (typeof window === 'undefined') {
+      this.perView = 1;
+      return;
+    }
+
     const w = window.innerWidth;
     this.perView = w >= 1024 ? 3 : w >= 720 ? 2 : 1;
   }
