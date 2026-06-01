@@ -17,7 +17,7 @@ export class MicroneedlingComponent implements OnInit {
 
   private readonly pageUrl = 'https://farewell.salon/behandlungen/microneedling-radiofrequenz';
   private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/treatment/microneedling2.png';
+    'https://farewell.salon/assets/images/treatment/microneedling2.webp';
 
   constructor() {}
 

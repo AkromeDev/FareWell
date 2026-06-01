@@ -18,7 +18,7 @@ export class Diodenlaser implements OnInit {
 
   private readonly pageUrl = 'https://farewell.salon/behandlungen/diodenlaser-4-wellen';
   private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/treatment/laser.png';
+    'https://farewell.salon/assets/images/treatment/laser.webp';
 
   paragraphText: string = `
     Der 4-Wellen-Diodenlaser ist eine moderne Methode zur dauerhaften Haarentfernung.

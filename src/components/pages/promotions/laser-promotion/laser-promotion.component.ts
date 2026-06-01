@@ -19,7 +19,7 @@ export class LaserPromotionComponent implements OnInit {
     'https://farewell.salon/laser-haarentfernung-aktion-nuernberg';
 
   private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/treatment/laser2.png';
+    'https://farewell.salon/assets/images/treatment/laser2.webp';
 
   paragraphText: string = `
     Laser Haarentfernung mit moderner Diodenlaser-Technologie in Nürnberg bei FareWell.

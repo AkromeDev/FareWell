@@ -20,7 +20,7 @@ export class MicroneedlingPromotionComponent implements OnInit {
     'https://farewell.salon/microneedling-aktion-nuernberg';
 
   private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/treatment/microneedling.jpg';
+    'https://farewell.salon/assets/images/treatment/microneedling.webp';
 
   paragraphText: string = `
     Radiofrequenz-Microneedling für Hautstraffung und Hautverjüngung in Nürnberg bei FareWell.

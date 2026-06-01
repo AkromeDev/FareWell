@@ -18,7 +18,7 @@ export class KavitationComponent implements OnInit {
 
   private readonly pageUrl = 'https://farewell.salon/behandlungen/kavitation';
   private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/treatment/kavitation2.png';
+    'https://farewell.salon/assets/images/treatment/kavitation2.webp';
 
   constructor() {}
 

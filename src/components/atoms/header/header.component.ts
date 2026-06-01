@@ -47,13 +47,13 @@ export class HeaderComponent implements OnInit {
       title: '4 Wellen Dioden Laser',
       description: 'Dauerhafte Haarentfernung für viele Haut- & Haartypen – schnell und komfortabel.',
       route: '/behandlungen/diodenlaser-4-wellen',
-      image: 'assets/images/treatment/diodenlaser.png'
+      image: 'assets/images/treatment/diodenlaser.webp'
     },
     {
       title: 'Microneedling Radio Frequenz',
       description: 'Straffung & Hautbild: feine Nadeln + Wärme für ein glatteres Erscheinungsbild.',
       route: '/behandlungen/microneedling-radiofrequenz',
-      image: 'assets/images/treatment/microneedling.jpg'
+      image: 'assets/images/treatment/microneedling.webp'
     },
     {
       title: 'Wellness Massage',
@@ -71,7 +71,7 @@ export class HeaderComponent implements OnInit {
       title: 'Kavitation',
       description: 'Ultraschall-Unterstützung zur Kontur – sanft, nicht-invasiv und effektiv.',
       route: '/behandlungen/kavitation',
-      image: 'assets/images/treatment/kavitation.png'
+      image: 'assets/images/treatment/kavitation.webp'
     }
   ];
 
