@@ -56,10 +56,16 @@ export class HeaderComponent implements OnInit {
       image: 'assets/images/treatment/microneedling.jpg'
     },
     {
-      title: 'Massagen',
+      title: 'Wellness Massage',
       description: 'Entspannung, Regeneration & neue Leichtigkeit mit wohltuenden Wellness-Massagen.',
-      route: '/behandlungen/massage',
+      route: '/behandlungen/wellness-massage',
       image: 'assets/images/treatment/massage-hero.jpg'
+    },
+    {
+      title: 'Therapeutische Massage',
+      description: 'Gezielte Behandlung bei Verspannungen, sportlicher Belastung & für individuelle Regeneration.',
+      route: '/behandlungen/therapeutische-massage',
+      image: 'assets/images/massages/tm%20massaging.jpg'
     },
     {
       title: 'Kavitation',

@@ -62,12 +62,27 @@ const routes: Routes = [
       },
       {
         path: 'massage',
+        redirectTo: 'wellness-massage',
+        pathMatch: 'full'
+      },
+      {
+        path: 'wellness-massage',
         loadComponent: () =>
           import('../components/pages/massage/massage')
             .then(m => m.MassageComponent),
         data: {
-          title: 'Massage Nürnberg | FareWell',
-          description: 'Entspannende Massagen in Nürnberg – Wohlbefinden, Entspannung und Regeneration für Körper und Geist.'
+          title: 'Wellness Massage Nürnberg | FareWell',
+          description: 'Entspannende Wellness Massagen bei FareWell in Nürnberg: Rücken-Schulter-Nacken-Massage, Ganzkörpermassage mit Aromaölen und Teilkörpermassage.'
+        }
+      },
+      {
+        path: 'therapeutische-massage',
+        loadComponent: () =>
+          import('../components/pages/therapeutische-massage/therapeutische-massage')
+            .then(m => m.TherapeutischeMassageComponent),
+        data: {
+          title: 'Therapeutische Massage Nürnberg | FareWell',
+          description: 'Gezielte therapeutische Massagen in Nürnberg: Ersttermin mit Anamnese, Sport- & Regenerationsmassage sowie medizinisch-funktionelle Massage bei FareWell.'
         }
       }
     ]

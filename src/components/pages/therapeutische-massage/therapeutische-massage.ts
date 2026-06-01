@@ -3,30 +3,27 @@ import { Meta, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
-import { BookingCtaComponent } from "src/components/atoms/booking-cta/booking-cta";
+import { BookingCtaComponent } from 'src/components/atoms/booking-cta/booking-cta';
 
 @Component({
-  selector: 'app-wellness-massagen',
+  selector: 'app-therapeutische-massage',
   standalone: true,
   imports: [RouterModule, ImageHeroComponent, ImageTextBlockComponent, BookingCtaComponent],
-  templateUrl: './massage.html',
-  styleUrls: ['./massage.scss']
+  templateUrl: './therapeutische-massage.html',
+  styleUrls: ['./therapeutische-massage.scss']
 })
-export class MassageComponent implements OnInit {
+export class TherapeutischeMassageComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
 
-  private readonly pageUrl = 'https://farewell.salon/behandlungen/wellness-massage';
+  private readonly pageUrl = 'https://farewell.salon/behandlungen/therapeutische-massage';
   private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/treatment/massage-hero.jpg';
-
-  constructor() {}
+    'https://farewell.salon/assets/images/massages/tm%20massaging.jpg';
 
   paragraphText: string = `
-    Wellness Massagen bei FareWell sind deine Auszeit für Körper & Kopf:
-    Verspannungen lösen, runterfahren und neue Leichtigkeit spüren.
-
-    Unten findest du unsere Massage-Angebote inkl. Dauer & Preise.
+    Bei FareWell verbinden wir achtsame Berührung mit funktionellem Blick auf deine Beschwerden,
+    Belastungen und Ziele. Jede Behandlung wird individuell angepasst,
+    für mehr Beweglichkeit, Regeneration und ein besseres Körpergefühl.
   `;
 
   structuredData = '';
@@ -37,11 +34,10 @@ export class MassageComponent implements OnInit {
   }
 
   private setSeoTags(): void {
-    const pageTitle =
-      'Wellness Massage Nürnberg | FareWell';
+    const pageTitle = 'Therapeutische Massage Nürnberg | FareWell';
 
     const description =
-      'Entspannende Wellness Massagen bei FareWell in Nürnberg: Rücken-Schulter-Nacken-Massage, Ganzkörpermassage mit Aromaölen und Teilkörpermassage.';
+      'Gezielte therapeutische Massagen in Nürnberg: Ersttermin mit Anamnese, Sport- & Regenerationsmassage sowie medizinisch-funktionelle Massage bei FareWell.';
 
     this.title.setTitle(pageTitle);
 
@@ -55,8 +51,7 @@ export class MassageComponent implements OnInit {
     this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
     this.meta.updateTag({
       property: 'og:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für Wellness Massagen, Entspannung und Regeneration'
+      content: 'Therapeutische Massage bei FareWell in Nürnberg'
     });
     this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
     this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
@@ -67,8 +62,7 @@ export class MassageComponent implements OnInit {
     this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
     this.meta.updateTag({
       name: 'twitter:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für Wellness Massagen, Entspannung und Regeneration'
+      content: 'Therapeutische Massage bei FareWell in Nürnberg'
     });
   }
 
@@ -79,10 +73,10 @@ export class MassageComponent implements OnInit {
         {
           '@type': 'Service',
           '@id': `${this.pageUrl}#service`,
-          name: 'Wellness Massagen in Nürnberg',
+          name: 'Therapeutische Massagen in Nürnberg',
           description:
-            'Wellness Massagen bei FareWell in Nürnberg für Entspannung, Regeneration und neue Leichtigkeit.',
-          serviceType: 'Wellness Massage',
+            'Gezielte therapeutische Massagen bei FareWell in Nürnberg für Regeneration, muskuläre Entlastung und Wohlbefinden.',
+          serviceType: 'Therapeutische Massage',
           areaServed: {
             '@type': 'City',
             name: 'Nürnberg'
@@ -102,34 +96,43 @@ export class MassageComponent implements OnInit {
           },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
-            name: 'Massage-Angebote',
+            name: 'Therapeutische Massage-Angebote',
             itemListElement: [
               {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Rücken-Schulter-Nacken-Massage'
+                  name: 'Massage Beratungsgespräch'
                 },
                 priceCurrency: 'EUR',
-                price: '58'
+                price: '0'
               },
               {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Ganzkörpermassage mit Aromaölen & Klangschale'
+                  name: 'Ersttermin mit Anamnese & Befundaufnahme'
                 },
                 priceCurrency: 'EUR',
-                price: '78'
+                price: '99'
               },
               {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Teilkörpermassage'
+                  name: 'Sport- & Regenerationsmassage'
                 },
                 priceCurrency: 'EUR',
-                price: '25'
+                price: '50'
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: 'Medizinisch-funktionelle Massage'
+                },
+                priceCurrency: 'EUR',
+                price: '60'
               }
             ]
           }
@@ -138,9 +141,9 @@ export class MassageComponent implements OnInit {
           '@type': 'WebPage',
           '@id': `${this.pageUrl}#webpage`,
           url: this.pageUrl,
-          name: 'Wellness Massage Nürnberg | FareWell',
+          name: 'Therapeutische Massage Nürnberg | FareWell',
           description:
-            'Entspannende Wellness Massagen bei FareWell in Nürnberg: Rücken-Schulter-Nacken-Massage, Ganzkörpermassage mit Aromaölen und Teilkörpermassage.',
+            'Gezielte therapeutische Massagen in Nürnberg: Ersttermin mit Anamnese, Sport- & Regenerationsmassage sowie medizinisch-funktionelle Massage bei FareWell.',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
