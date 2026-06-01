@@ -97,6 +97,12 @@
             "serverTarget": "FareWell:server:production",
             "routes": [
               "/",
+              "/behandlungen/nadelepilation",
+              "/behandlungen/diodenlaser-4-wellen",
+              "/behandlungen/microneedling-radiofrequenz",
+              "/behandlungen/kavitation",
+              "/behandlungen/wellness-massage",
+              "/behandlungen/therapeutische-massage",
               "/laser-haarentfernung-aktion-nuernberg",
               "/elektrolyse-permanente-haarentfernung-aktion-nuernberg",
               "/microneedling-aktion-nuernberg",

@@ -15,7 +15,7 @@ export class MicroneedlingComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
 
-  private readonly pageUrl = 'https://farewell.salon/microneedling';
+  private readonly pageUrl = 'https://farewell.salon/behandlungen/microneedling-radiofrequenz';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/microneedling2.png';
 
@@ -117,6 +117,14 @@ export class MicroneedlingComponent implements OnInit {
             '@type': 'ImageObject',
             url: this.heroImageUrl
           }
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
+            { '@type': 'ListItem', position: 2, name: 'Behandlungen', item: 'https://farewell.salon/behandlungen' },
+            { '@type': 'ListItem', position: 3, name: 'Microneedling Radiofrequenz', item: this.pageUrl }
+          ]
         }
       ]
     };

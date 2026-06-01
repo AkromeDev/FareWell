@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { HeaderComponent } from 'src/components/atoms/header/header.component';
 import { FooterComponent } from 'src/components/molecules/footer/footer.component';
 import { AnalyticsService } from 'src/services/analytics.service';
@@ -16,5 +18,17 @@ import { AnalyticsService } from 'src/services/analytics.service';
   ]
 })
 export class AppComponent {
-  constructor(private analytics: AnalyticsService) {}
+  private readonly router = inject(Router);
+  private readonly document = inject(DOCUMENT);
+
+  constructor(private analytics: AnalyticsService) {
+    this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((e) => {
+        const canonical = this.document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+        if (canonical) {
+          canonical.href = `https://farewell.salon${e.urlAfterRedirects}`;
+        }
+      });
+  }
 }

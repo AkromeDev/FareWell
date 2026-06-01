@@ -154,6 +154,14 @@ export class TherapeutischeMassageComponent implements OnInit {
             '@type': 'ImageObject',
             url: this.heroImageUrl
           }
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
+            { '@type': 'ListItem', position: 2, name: 'Behandlungen', item: 'https://farewell.salon/behandlungen' },
+            { '@type': 'ListItem', position: 3, name: 'Therapeutische Massage', item: this.pageUrl }
+          ]
         }
       ]
     };

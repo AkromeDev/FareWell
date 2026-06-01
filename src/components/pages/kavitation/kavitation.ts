@@ -16,7 +16,7 @@ export class KavitationComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
 
-  private readonly pageUrl = 'https://farewell.salon/kavitation';
+  private readonly pageUrl = 'https://farewell.salon/behandlungen/kavitation';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/kavitation2.png';
 
@@ -118,6 +118,14 @@ export class KavitationComponent implements OnInit {
             '@type': 'ImageObject',
             url: this.heroImageUrl
           }
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
+            { '@type': 'ListItem', position: 2, name: 'Behandlungen', item: 'https://farewell.salon/behandlungen' },
+            { '@type': 'ListItem', position: 3, name: 'Kavitation', item: this.pageUrl }
+          ]
         }
       ]
     };
