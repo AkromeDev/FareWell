@@ -35,17 +35,17 @@ export class PriceComponent implements OnInit {
   ngOnInit(): void {}
 
   paragraphText: string = `
-    Sind Sie noch unsicher, welche Behandlung die richtige für Sie ist
+    Sind Sie noch unsicher, welche Behandlung die richtige für Sie ist?
     Keine Sorge, die erste Beratung bei FareWell ist kostenlos. Gemeinsam finden wir heraus, was am besten zu Ihnen passt.
 
     Aktuell bieten wir Ihnen ein exklusives Angebot:
-    60 % Rabatt auf die Laser Haarentfernung für die Achseln.
+    50 % Rabatt auf Ihre erste Behandlung mit dem Code ERSTEBEHANDLUNG.
 
-    Sobald Sie dieses Angebot einmal nutzen, erhalten Sie den Rabatt von 60 % für die gesamte Behandlungsserie in diesem Bereich.
+    Gültig für Nadelepilation, Laser und Microneedling. Nicht mit anderen Rabatten kombinierbar.
 
-    Dieses Angebot ist nur bis zum 15. Mai gültig.
+    Dieses Angebot ist bis zum 15.06.2026 gültig.
 
-    Nutzen Sie diese Gelegenheit, um unsere Behandlung kennenzulernen und sich selbst von den Ergebnissen zu überzeugen.
+    Nutzen Sie diese Gelegenheit, um unsere Behandlungen kennenzulernen und sich selbst von den Ergebnissen zu überzeugen.
   `;
 
 
