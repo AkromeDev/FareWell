@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { LaserPromotionComponent } from './laser-promotion.component';
 
@@ -8,7 +9,8 @@ describe('LaserPromotionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LaserPromotionComponent]
+      imports: [LaserPromotionComponent],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 

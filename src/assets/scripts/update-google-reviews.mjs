@@ -1,80 +1,83 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
-import { spawn } from "node:child_process";
+import process from "node:process";
 
-const BACKEND_CWD = path.resolve(process.cwd(), "backend");
-const HEALTH_URL = process.env.HEALTH_URL ?? "http://localhost:5050/health";
-const REVIEWS_URL = process.env.REVIEWS_URL ?? "http://localhost:5050/reviews";
+/**
+ * Fetches Google reviews directly from the Google Places API (New) and writes
+ * them to src/assets/data/google-reviews.json, which GoogleReviewsComponent
+ * imports at build time. No backend / running server required.
+ *
+ * Usage:
+ *   1. Put GOOGLE_MAPS_API_KEY=... in a .env file at the project root
+ *      (gitignored) or export it in your shell. PLACE_ID is optional.
+ *   2. npm run update:google-reviews
+ *   3. npm run build  (so the refreshed JSON is bundled into the site)
+ */
+
+// Load .env from the project root if present (Node 20.12+). Ignore if missing.
+try {
+  process.loadEnvFile();
+} catch {
+  // no .env file -> rely on environment variables already set in the shell
+}
+
+const API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+const PLACE_ID = process.env.PLACE_ID ?? "ChIJZRTXOqdXn0cR5C9Q7j0xvPw";
+
 const OUT_FILE =
   process.env.OUT_FILE ??
   path.resolve(process.cwd(), "src/assets/data/google-reviews.json");
 
-function run(cmd, args, opts = {}) {
-  return new Promise((resolve, reject) => {
-    const p = spawn(cmd, args, { stdio: "inherit", shell: true, ...opts });
-    p.on("close", (code) => {
-      if (code === 0) resolve();
-      else reject(new Error(`${cmd} ${args.join(" ")} failed with code ${code}`));
-    });
+if (!API_KEY) {
+  console.error(
+    "❌ Missing GOOGLE_MAPS_API_KEY. Add it to a .env file at the project root " +
+      "or export it in your shell."
+  );
+  process.exit(1);
+}
+
+async function fetchReviews() {
+  const url = new URL(`https://places.googleapis.com/v1/places/${PLACE_ID}`);
+  url.searchParams.set("languageCode", "de");
+  url.searchParams.set("regionCode", "DE");
+
+  console.log(`🔄 Fetching reviews for place ${PLACE_ID} ...`);
+
+  const res = await fetch(url, {
+    method: "GET",
+    headers: {
+      "X-Goog-Api-Key": API_KEY,
+      "X-Goog-FieldMask": "id,displayName,rating,userRatingCount,reviews",
+    },
   });
-}
 
-async function waitForHealthy(url, timeoutMs = 20000) {
-  const start = Date.now();
-  while (Date.now() - start < timeoutMs) {
-    try {
-      const r = await fetch(url, { method: "GET" });
-      if (r.ok) return;
-    } catch {
-      // ignore
-    }
-    await new Promise((r) => setTimeout(r, 500));
+  if (!res.ok) {
+    const details = await res.text();
+    throw new Error(`Google Places API error ${res.status}: ${details}`);
   }
-  throw new Error(`Backend not healthy within ${timeoutMs}ms: ${url}`);
+
+  return res.json();
 }
 
-async function updateReviews() {
-  console.log(`🔄 Fetching reviews from ${REVIEWS_URL}`);
-  const res = await fetch(REVIEWS_URL);
-  if (!res.ok) throw new Error(`Backend /reviews error ${res.status}`);
-  const json = await res.json();
+async function main() {
+  const data = await fetchReviews();
 
-  const wrapped = {
-    ...json,
+  // Shape matches what GoogleReviewsComponent expects ({ source, data, fetchedAt }).
+  const payload = {
+    source: "google",
+    data,
     fetchedAt: new Date().toISOString(),
   };
 
   await mkdir(path.dirname(OUT_FILE), { recursive: true });
-  await writeFile(OUT_FILE, JSON.stringify(wrapped, null, 2), "utf-8");
-  console.log(`✅ Reviews written to ${OUT_FILE}`);
-}
+  await writeFile(OUT_FILE, JSON.stringify(payload, null, 2) + "\n", "utf-8");
 
-async function main() {
-  console.log("🚀 Starting backend...");
-  const backend = spawn("npm", ["run", "dev"], {
-    cwd: BACKEND_CWD,
-    stdio: "inherit",
-    shell: true,
-  });
-
-  try {
-    console.log(`⏳ Waiting for backend health: ${HEALTH_URL}`);
-    await waitForHealthy(HEALTH_URL);
-
-    await updateReviews();
-
-    console.log("🏗️ Building frontend...");
-    await run("npm", ["run", "build"], { cwd: process.cwd() });
-
-    console.log("✅ Done: backend started -> reviews updated -> frontend built");
-  } finally {
-    console.log("🛑 Stopping backend...");
-    // Graceful stop; on Windows this still works via shell:true
-    backend.kill("SIGTERM");
-  }
+  const count = data?.reviews?.length ?? 0;
+  console.log(`✅ Wrote ${count} reviews to ${OUT_FILE}`);
+  console.log("ℹ️  Run `npm run build` to bundle the refreshed reviews.");
 }
 
 main().catch((err) => {
-  console.error("❌ Failed:", err);
+  console.error("❌ Failed:", err?.message ?? err);
   process.exit(1);
 });

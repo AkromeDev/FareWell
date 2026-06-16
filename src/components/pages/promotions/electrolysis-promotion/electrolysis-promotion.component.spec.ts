@@ -1,14 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { ElectrolysisPromotionComponent } from './electrolysis-promotion.component';
 
-describe('ElektrolysisPromotionComponent', () => {
+describe('ElectrolysisPromotionComponent', () => {
   let component: ElectrolysisPromotionComponent;
   let fixture: ComponentFixture<ElectrolysisPromotionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ElectrolysisPromotionComponent]
+      imports: [ElectrolysisPromotionComponent],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 

@@ -1,50 +1,29 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, shareReplay } from 'rxjs';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-export interface GooglePlaceReviewsResponse {
-  source: 'google' | 'cache'; // kept for compatibility (file will be "cache")
-  data: {
-    id: string;
-    displayName?: { text?: string };
-    rating?: number;
-    userRatingCount?: number;
-    reviews?: GoogleReview[];
-  };
-  fetchedAt?: string; // optional metadata from build step
-}
+import { GoogleReviewsComponent } from './google-reviews';
 
-export interface GoogleReview {
-  name?: string;
-  rating?: number;
-  text?: { text?: string };
-  originalText?: { text?: string };
-  publishTime?: string;
-  relativePublishTimeDescription?: string;
-  authorAttribution?: {
-    displayName?: string;
-    uri?: string;
-    photoUri?: string;
-  };
-}
+describe('GoogleReviewsComponent', () => {
+  let component: GoogleReviewsComponent;
+  let fixture: ComponentFixture<GoogleReviewsComponent>;
 
-@Injectable({ providedIn: 'root' })
-export class GoogleReviewsService {
-  /**
-   * ✅ Static file generated at deploy time by GitHub Actions.
-   * No API key in browser, no localhost, no permission prompt.
-   */
-  private readonly url = 'assets/data/google-reviews.json';
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [GoogleReviewsComponent]
+    })
+    .compileComponents();
 
-  private readonly reviews$: Observable<GooglePlaceReviewsResponse>;
+    fixture = TestBed.createComponent(GoogleReviewsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-  constructor(private readonly http: HttpClient) {
-    this.reviews$ = this.http
-      .get<GooglePlaceReviewsResponse>(this.url)
-      .pipe(shareReplay({ bufferSize: 1, refCount: true }));
-  }
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-  getReviews(): Observable<GooglePlaceReviewsResponse> {
-    return this.reviews$;
-  }
-}
+  it('should build a view model from the bundled reviews JSON', () => {
+    expect(component.vm).toBeTruthy();
+    expect(Array.isArray(component.vm.reviews)).toBe(true);
+    expect(component.vm.reviews.length).toBeLessThanOrEqual(component.maxItems);
+  });
+});

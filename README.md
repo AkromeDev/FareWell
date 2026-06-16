@@ -1,27 +1,40 @@
 # FareWell
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
+Marketing website for **FareWell**, a beauty & wellness studio in Nürnberg
+(permanent hair removal / electrolysis, diode laser, microneedling, cavitation
+and massage). Built with **Angular 20** (standalone components) with SSR /
+prerendering, deployed as a static site to [farewell.salon](https://farewell.salon).
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm start` (`ng serve`) for a dev server and open `http://localhost:4200/`.
+The app reloads automatically on source changes.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- `npm run build` – production build into `dist/farewell`.
+- `npm run watch` – development build that rebuilds on change.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` (`ng test`) to execute the unit tests via
+[Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Google reviews
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The "Google Bewertungen" carousel is rendered from a static JSON file
+(`src/assets/data/google-reviews.json`) that is bundled at build time — there is
+no runtime backend or API key in the browser.
+
+To refresh the reviews:
+
+1. Copy `.env.example` to `.env` (gitignored) and set `GOOGLE_MAPS_API_KEY` to a
+   key with access to the **Places API (New)**. `PLACE_ID` defaults to the
+   FareWell listing.
+2. Run `npm run update:google-reviews` — this fetches the latest reviews from the
+   Google Places API and rewrites `src/assets/data/google-reviews.json`.
+3. Run `npm run build` and deploy so the refreshed reviews ship with the site.
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+See the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli).

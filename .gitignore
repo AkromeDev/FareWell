@@ -41,5 +41,10 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Environment / secrets (keep .env.example tracked)
+.env
+.env.*
+!.env.example
+
 # Remove old GitHub Pages build folder
 /docs/

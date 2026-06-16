@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { NadelepilationPromotionComponent } from './nadelepilation-promotion.component';
 
@@ -8,7 +9,8 @@ describe('NadelepilationPromotionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NadelepilationPromotionComponent]
+      imports: [NadelepilationPromotionComponent],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 
