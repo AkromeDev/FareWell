@@ -1,9 +1,9 @@
 @use 'themes/theme-entry' as *;
 
 .paragraph {
-  font-family: $font, serif;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-family: $font, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
   margin: 0 auto 1rem;
   white-space: pre-line;
 }
@@ -69,13 +69,13 @@
 }
 
 .type-dark {
-  border: none;
-  border-radius: 1.5rem;
+  border: 1px solid rgba($accent-1, 0.22);
+  border-radius: 1.25rem;
 
   background: rgba($black, 0.55);
   backdrop-filter: blur(10px);
-  box-shadow: 0 6px 18px rgba($black, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 
-  padding: 5px 10px;
+  padding: 14px 20px;
   color: $light-1;
 }

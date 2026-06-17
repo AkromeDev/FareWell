@@ -11,6 +11,7 @@
 >
   <div class="hero-content">
     <app-title
+      appReveal="up"
       [level]="titleLevel"
       [color]="titleColor"
       [align]="titleAlign"
@@ -21,6 +22,8 @@
 
     <app-paragraph
       class="hero-paragraph"
+      appReveal="up"
+      [revealDelay]="120"
       [size]="paragraphSize"
       [align]="paragraphAlign"
       [weight]="paragraphWeight"
@@ -32,11 +35,11 @@
     </app-paragraph>
 
     @if (buttonList.length) {
-      <app-button-list [buttons]="buttonList"></app-button-list>
+      <app-button-list appReveal="up" [revealDelay]="240" [buttons]="buttonList"></app-button-list>
     }
 
     @if (googleReviews) {
-      <div class="hero-reviews">
+      <div class="hero-reviews" appReveal="fade" [revealDelay]="360">
         <fw-google-reviews></fw-google-reviews>
       </div>
     }

@@ -5,34 +5,26 @@
   text-transform: uppercase;
   display: block;
   width: 100%;
-  font-weight: bold;
-  letter-spacing: 0.2rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   box-sizing: border-box;
   word-break: break-word;
+  text-wrap: balance;
 
-  font-size: 30px;
-  line-height: 48px;
-
-  // Base spacing: small vertical padding only (mobile first)
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.4rem);
+  line-height: 1.18;
   padding: 12px 0;
 
-  &.color-light {
-    color: $font-light;
-  }
-
-  &.color-dark {
-    color: $font-dark;
-  }
+  &.color-light { color: $font-light; }
+  &.color-dark  { color: $font-dark; }
 
   &.cornered {
-    border: 10px solid currentColor;
-    border-radius: 0;
-    background: transparent;
+    border: 1px solid rgba($accent-1, 0.55);
+    border-radius: 2px;
+    background: rgba($black, 0.25);
+    backdrop-filter: blur(6px);
     box-shadow: none;
-    backdrop-filter: none;
-
-    // Important: add inner spacing so text never touches border
-    padding: 18px 20px; // vertical / horizontal
+    padding: 18px 24px;
   }
 
   &.simple {
@@ -40,19 +32,16 @@
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;
-
-    // keep it minimal
     padding: 12px 0;
   }
 
   &.soft {
     border: none;
-    border-radius: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1.25rem;
+    background: rgba($light-1, 0.05);
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-    padding: 10px 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+    padding: 12px 18px;
   }
 
   &.center { text-align: center; }
@@ -61,44 +50,17 @@
   &.justify { text-align: center; }
 }
 
-h1.title {
-  font-size: 3rem;
-  font-family: $h1-font;
-}
-
-h2.title {
-  font-size: 2.25rem;
-  font-family: $h2-font;
-}
-
-h3.title {
-  font-size: 1.5rem;
-  font-family: $h3-font;
-}
+// Level overrides (fluid, luxury scale)
+h1.title { font-size: clamp(2rem, 1.3rem + 3.2vw, 3.6rem); font-weight: 400; }
+h2.title { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.4rem); }
+h3.title { font-size: clamp(1.2rem, 1rem + 0.9vw, 1.6rem); }
 
 @media (max-width: 768px) {
   .title {
-    font-size: 6.2vw;        
-    line-height: 1.35;       
-    letter-spacing: 2.5px;   
-    padding: 12px 0;
+    letter-spacing: 0.12em;
   }
 
   .title.cornered {
-    padding: 14px 16px;
-    border-width: 8px;
-  }
-
-  h1.title {
-    font-size: 1.8rem;
-  }
-
-  h2.title {
-    font-size: 1.6rem;
-  }
-
-  h3.title {
-    font-size: 1.25rem;
+    padding: 14px 18px;
   }
 }
-

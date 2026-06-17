@@ -4,8 +4,9 @@
   background-color: $black;
   color: $light-1;
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem 2.5rem;
   line-height: 1.5;
+  border-top: 1px solid var(--line);
 
   a {
     color: $light-1;

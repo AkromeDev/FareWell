@@ -40,6 +40,10 @@
 
   app-title {
     display: block;
+    width: 100%;
+    // Span the content box (overrides flex `align-items: center`) so the
+    // headline wraps inside the container instead of overflowing on one line.
+    align-self: stretch;
     margin: 0;
   }
 

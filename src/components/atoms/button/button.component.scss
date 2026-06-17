@@ -28,10 +28,11 @@
   appearance: none;
 
   font-family: inherit;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 600;
   line-height: 1.2;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   white-space: nowrap;
 
   transition:
@@ -41,49 +42,61 @@
     transform 0.25s ease,
     box-shadow 0.25s ease;
 
-  &:hover {
-    transform: translateY(-1px);
-  }
-
   &:focus-visible {
     outline: 2px solid $accent-1;
     outline-offset: 3px;
   }
 
+  // Ivory solid.
   &.light {
-    background-color: rgba($light-1, 0.9);
-    color: $black;
-    border-color: rgba($light-1, 0.95);
+    background-color: $light-1;
+    color: #0A130D;
+    border-color: $light-1;
+  }
 
-    &:hover {
-      background-color: $light-1;
-      color: $black;
-    }
+  // Solid emerald — used as the main CTAs; fills champagne on hover.
+  &.dark {
+    background-color: $dark-2;
+    color: $light-1;
+    border-color: rgba($accent-1, 0.5);
+    box-shadow: 0 8px 22px rgba($black, 0.18);
+  }
+
+  // Champagne-gold primary.
+  &.accent {
+    background-color: $accent-1;
+    color: #0A130D;
+    border-color: $accent-1;
+    box-shadow: 0 10px 26px rgba($accent-1, 0.28);
+  }
+}
+
+// Hover is driven by the stationary host (which does NOT move), so the lift
+// can't pull the button out from under the cursor at its edge — no flicker.
+:host:hover .farewell-btn {
+  transform: translateY(-2px);
+
+  &.light {
+    background-color: #ffffff;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.4);
   }
 
   &.dark {
-    background-color: rgba($dark-2, 0.82);
-    color: $light-1;
-    border-color: rgba($accent-1, 0.7);
-    box-shadow: 0 6px 20px rgba($black, 0.18);
-
-    &:hover {
-      background-color: rgba($dark-2, 0.94);
-      color: $light-1;
-      border-color: $accent-1;
-    }
+    background-color: $accent-1;
+    color: #15251B;
+    border-color: $accent-1;
+    box-shadow: 0 16px 36px rgba($accent-1, 0.30);
   }
 
   &.accent {
-    background-color: rgba($accent-1, 0.92);
-    color: $black;
-    border-color: $accent-1;
-
-    &:hover {
-      background-color: $accent-1;
-      color: $black;
-    }
+    background-color: var(--gold-bright, $accent-1);
+    box-shadow: 0 16px 38px rgba($accent-1, 0.42);
   }
+}
+
+// Settle on press.
+:host:active .farewell-btn {
+  transform: translateY(0);
 }
 
 .farewell-btn__label {

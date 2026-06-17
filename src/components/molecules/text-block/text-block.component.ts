@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ParagraphComponent } from '../../atoms/paragraph/paragraph.component';
 import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { SeparatorComponent } from '../../atoms/separator/separator.component';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 
 import {
   DesignTokens,
@@ -13,7 +14,7 @@ import {
 @Component({
   selector: 'app-text-block',
   standalone: true,
-  imports: [CommonModule, ParagraphComponent, TitleComponent, SeparatorComponent],
+  imports: [CommonModule, ParagraphComponent, TitleComponent, SeparatorComponent, RevealOnScrollDirective],
   templateUrl: './text-block.component.html',
   styleUrls: ['./text-block.component.scss']
 })
