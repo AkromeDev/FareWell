@@ -21,7 +21,7 @@
   --c-white: #{$white};
 
   // Semantic tokens (Light Luxe — emerald & champagne accents)
-  --bg: #F9F5EC;            // warm ivory canvas
+  --bg: #FCF9F3;            // warm ivory canvas (light)
   --surface: #{$white};     // white card
   --surface-2: #{$light-1}; // ivory card
   --emerald: #{$dark-1};    // borders / hover / accents
@@ -75,8 +75,8 @@ body {
   background-color: var(--bg);
   background-image:
     radial-gradient(120% 70% at 50% -8%, rgba($white, 0.85), transparent 55%),
-    radial-gradient(120% 70% at 50% 108%, rgba($accent-2, 0.12), transparent 60%),
-    linear-gradient(180deg, #F9F5EC 0%, #F0E7D6 100%);
+    radial-gradient(120% 70% at 50% 108%, rgba($accent-2, 0.06), transparent 60%),
+    linear-gradient(180deg, #FCF9F3 0%, #F5EFE4 100%);
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
