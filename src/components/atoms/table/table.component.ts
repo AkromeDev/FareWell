@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, Signal, WritableSignal, computed, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PriceItem } from 'src/models/price-item';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 
 type OptionGender = 'woman' | 'man';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RevealOnScrollDirective],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })

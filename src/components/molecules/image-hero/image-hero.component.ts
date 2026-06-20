@@ -4,6 +4,7 @@ import { ImageSectionComponent } from 'src/components/atoms/image-section/image-
 import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { ParagraphComponent } from '../../atoms/paragraph/paragraph.component';
 import { ButtonListComponent } from '../button-list/button-list.component';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 
 import {
   ButtonItem,
@@ -24,6 +25,7 @@ import { GoogleReviewsComponent } from '../google-reviews/google-reviews';
     ParagraphComponent,
     ButtonListComponent,
     GoogleReviewsComponent,
+    RevealOnScrollDirective,
   ],
   templateUrl: './image-hero.component.html',
   styleUrls: ['./image-hero.component.scss']

@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, HostListener, ElementRef, PLATFORM_ID, inject } from '@angular/core';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
 
   isBehandlungenRoute: boolean = false;
 
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
   private closeTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
@@ -171,6 +172,7 @@ export class HeaderComponent implements OnInit {
   }
 
   private updateIsMobile() {
+    if (!this.isBrowser) return;
     this.isMobile = window.matchMedia('(max-width: 768px)').matches;
   }
 

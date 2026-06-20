@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TitleComponent } from '../title/title.component';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 
 @Component({
     selector: 'app-parallax',
     standalone: true,
-    imports: [CommonModule, TitleComponent],
+    imports: [CommonModule, TitleComponent, RevealOnScrollDirective],
     templateUrl: './parallax.component.html',
     styleUrls: ['./parallax.component.scss']
 })

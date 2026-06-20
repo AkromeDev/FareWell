@@ -2,12 +2,13 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { ParagraphComponent } from 'src/components/atoms/paragraph/paragraph.component';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { DesignTokens, ParagraphOptions } from 'src/models';
 
 @Component({
   selector: 'app-image-text-block',
   standalone: true,
-  imports: [CommonModule, TitleComponent, ParagraphComponent],
+  imports: [CommonModule, TitleComponent, ParagraphComponent, RevealOnScrollDirective],
   templateUrl: './image-text-block.component.html',
   styleUrls: ['./image-text-block.component.scss']
 })

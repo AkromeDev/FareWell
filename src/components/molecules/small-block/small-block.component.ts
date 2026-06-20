@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SeparatorComponent } from "../../atoms/separator/separator.component";
 import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { ParagraphComponent } from 'src/components/atoms/paragraph/paragraph.component';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 
 export type BlockTheme = 'dark' | 'light';
 
@@ -15,7 +16,7 @@ export type TitleType = 'soft' | 'cornered' | 'simple';
 
 @Component({
     selector: 'app-small-block',
-    imports: [CommonModule, SeparatorComponent, TitleComponent, ParagraphComponent],
+    imports: [CommonModule, SeparatorComponent, TitleComponent, ParagraphComponent, RevealOnScrollDirective],
     templateUrl: './small-block.component.html',
     styleUrls: ['./small-block.component.scss']
 })

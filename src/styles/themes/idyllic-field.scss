@@ -1,18 +1,22 @@
-// Idyllic Field Theme – Semantic Variables
+// Light Luxe — Ivory canvas, white cards, dark text, with Emerald & Champagne
+// accents. Variable NAMES are kept for component compatibility:
+//   light vars = light surfaces / light text on dark
+//   dark vars  = deep emerald (dark text on light + occasional accent cards)
+//   accent-1   = champagne gold
 
-$light-1:      #ede8da;  // Pale Cream
-$light-2:      #ddc49a;  // Soft Beige
-$accent-1:     #ccb343;  // Golden Mustard
-$accent-2:     #a7b197;  // Sage Green
-$dark-1:       #848645;  // Olive Green
-$dark-2:       #6b6e3e;  // Deep Olive
-$black:        #4f4f2f;  // Black
-$white:        #eeebe0;  // White
-$font-dark:    #63633c;
-$font-light:   #ffffff;
+$light-1:      #F7F2E8;  // Warm ivory — light surface / light text on dark
+$light-2:      #ECE2D0;  // Soft sand — secondary light
+$accent-1:     #B8924A;  // Champagne gold — primary accent
+$accent-2:     #6E7E5A;  // Sage — secondary accent
+$dark-1:       #3E5A47;  // Emerald (mid) — dark accent / borders
+$dark-2:       #21382A;  // Deep emerald — headings / dark accent
+$black:        #15251B;  // Emerald-charcoal — dark cards / header / footer / scrim
+$white:        #FFFFFF;  // White card surface
+$font-dark:    #2B3328;  // Charcoal-emerald — primary body text on light
+$font-light:   #F7F2E8;  // Ivory — text on dark
 
 // Font Families
-$font-lato: 'Lato', sans-serif;
+$font-lato: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
 
 // Active Fonts
 $font: $font-lato;

@@ -1,11 +1,13 @@
 @use 'themes/theme-entry' as *;
 
 .fw-table {
-  padding: 1.5rem;
-  background-color: $light-1;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba($black, 0.1);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background-color: $white;
+  border-radius: clamp(16px, 2vw, 24px);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--line);
   width: 100%;
+  color: $font-dark;
 
   .table-wrap {
     overflow-x: auto;
@@ -15,24 +17,24 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     background: transparent;
-    border: 1px solid rgba($black, 0.06);
-    height: 800px; /* ← missing semicolon fixed */
 
-    /* fade rows in place */
-    tbody { transition: opacity .6s ease; will-change: opacity; }
-    &.fading tbody { opacity: .6; }
+    tbody { transition: opacity 0.6s ease; will-change: opacity; }
+    &.fading tbody { opacity: 0.6; }
   }
 
   thead th {
     position: sticky;
     top: 0;
-    background: $light-2;
+    background: $white;
     color: $dark-2;
     text-align: left;
-    padding: 0.85rem 0.75rem;
-    border-bottom: 2px solid rgba($black, 0.08);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.82rem;
+    padding: 0.95rem 0.85rem;
+    border-bottom: 2px solid rgba($accent-1, 0.55);
     font-weight: 600;
     white-space: nowrap;
 
@@ -41,19 +43,20 @@
   }
 
   tbody td {
-    padding: 0.9rem 0.75rem;
-    border-bottom: 1px solid rgba($black, 0.06);
-    color: $dark-2;
+    padding: 0.9rem 0.85rem;
+    border-bottom: 1px solid var(--line);
+    color: rgba($font-dark, 0.9);
 
     &.center { text-align: center; }
     &.right  { text-align: right; }
   }
 
   tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: rgba($accent-1, 0.06); }
 
   .empty-row td {
     text-align: center;
-    color: $dark-1;
+    color: rgba($font-dark, 0.6);
     padding: 1rem;
   }
 

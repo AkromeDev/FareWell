@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 
 @Component({
   selector: 'app-opening-hours',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RevealOnScrollDirective],
   templateUrl: './opening-hours.component.html',
   styleUrl: './opening-hours.component.scss'
 })

@@ -1,5 +1,57 @@
-// Minimal base reset — replaces semantic-ui-css (was 552 KB)
+// ===========================================================================
+// FareWell — global stylesheet
+// Minimal reset (replaces semantic-ui-css, was 552 KB) + modern base layer.
+// Colour palette comes straight from the Idyllic Field theme — no new colours.
+// ===========================================================================
 
+@use 'themes/theme-entry' as *;
+
+// ---------------------------------------------------------------------------
+// Design tokens (exposed as CSS custom properties for reuse anywhere)
+// ---------------------------------------------------------------------------
+:root {
+  // Raw palette
+  --c-light-1: #{$light-1};
+  --c-light-2: #{$light-2};
+  --c-accent-1: #{$accent-1};
+  --c-accent-2: #{$accent-2};
+  --c-dark-1: #{$dark-1};
+  --c-dark-2: #{$dark-2};
+  --c-black: #{$black};
+  --c-white: #{$white};
+
+  // Semantic tokens (Light Luxe — emerald & champagne accents)
+  --bg: #FCF9F3;            // warm ivory canvas (light)
+  --surface: #{$white};     // white card
+  --surface-2: #{$light-1}; // ivory card
+  --emerald: #{$dark-1};    // borders / hover / accents
+  --ivory: #{$light-1};
+  --ink: #{$font-dark};
+  --ink-dim: #{rgba($font-dark, 0.72)};
+  --gold: #{$accent-1};
+  --gold-bright: #C7A65C;
+  --line: #{rgba($font-dark, 0.12)};
+  --line-strong: #{rgba($font-dark, 0.18)};
+
+  // Motion
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-distance: 28px;
+  --reveal-duration: 0.7s;
+
+  // Floating-card depth — soft, warm shadow for light cards on the ivory canvas.
+  --card-shadow:
+    0 1px 2px #{rgba($black, 0.05)},
+    0 12px 28px #{rgba($black, 0.10)},
+    0 30px 60px #{rgba($black, 0.10)};
+  --card-shadow-strong:
+    0 2px 4px #{rgba($black, 0.07)},
+    0 18px 38px #{rgba($black, 0.14)},
+    0 40px 80px #{rgba($black, 0.14)};
+}
+
+// ---------------------------------------------------------------------------
+// Reset
+// ---------------------------------------------------------------------------
 *,
 *::before,
 *::after {
@@ -9,6 +61,9 @@
 html {
   font-size: 14px;
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  // Keep anchored content clear of the fixed header.
+  scroll-padding-top: 90px;
 }
 
 body {
@@ -16,26 +71,36 @@ body {
   padding: 0;
   min-width: 320px;
   overflow-x: hidden;
-  background: #fff;
-  font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+  // Static, fixed ivory canvas: content cards scroll *over* this background.
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(120% 70% at 50% -8%, rgba($white, 0.85), transparent 55%),
+    radial-gradient(120% 70% at 50% 108%, rgba($accent-2, 0.06), transparent 60%),
+    linear-gradient(180deg, #FCF9F3 0%, #F5EFE4 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
-  font-weight: normal;
-  line-height: 1.4285em;
-  color: rgba(0, 0, 0, 0.87);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
-  font-weight: 700;
-  line-height: 1.28571429em;
+  font-weight: 600;
+  line-height: 1.15;
 }
 
 p {
   margin: 0 0 1em;
   line-height: 1.4285em;
+  text-wrap: pretty;
 }
 
 ul, ol {
@@ -56,4 +121,95 @@ a {
 
 a[href]:not(.no-underline) {
   text-decoration: underline;
+  text-decoration-color: rgba($accent-1, 0.5);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+
+  &:hover {
+    color: $accent-1;
+    text-decoration-color: $accent-1;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Modern niceties — selection, focus, scrollbar
+// ---------------------------------------------------------------------------
+::selection {
+  background: rgba($accent-1, 0.85);
+  color: $black;
+}
+
+:focus-visible {
+  outline: 2px solid $accent-1;
+  outline-offset: 3px;
+}
+
+// Themed, slim scrollbar (Firefox + WebKit)
+@media (min-width: 769px) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: $dark-1 transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba($dark-1, 0.7);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: $dark-1;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Layout — on desktop the content cards span nearly the full width, so give the
+// centered text a wider measure inside them (global rule reaches into the
+// component since the global sheet is not view-encapsulated).
+// ---------------------------------------------------------------------------
+@media (min-width: 1024px) {
+  app-text-block .paragraph {
+    max-width: 1180px;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Scroll-reveal system
+// Elements get the `reveal` class from the RevealOnScroll directive (browser
+// only). The hidden state lives behind `prefers-reduced-motion: no-preference`
+// so reduced-motion users — and anyone without JS — always see full content.
+// ---------------------------------------------------------------------------
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance));
+    transition:
+      opacity var(--reveal-duration) var(--ease-out),
+      transform var(--reveal-duration) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal--fade  { transform: none; }
+  .reveal--left  { transform: translateX(calc(-1 * var(--reveal-distance) - 12px)); }
+  .reveal--right { transform: translateX(calc(var(--reveal-distance) + 12px)); }
+  .reveal--scale { transform: scale(0.94); }
+  .reveal--zoom  { transform: scale(1.06); }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

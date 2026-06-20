@@ -1,6 +1,7 @@
 @use 'themes/theme-entry' as *;
 
 .plan-parallax {
+  position: relative;
   background-image: url('src/assets/images/treatment/armpit.webp');
   background-attachment: fixed;
   background-position: center;
@@ -13,9 +14,28 @@
   justify-content: center;
   text-align: center;
 
+  // Subtle darkening so the title stays legible over any image.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba($black, 0.35) 0%,
+      rgba($black, 0.18) 45%,
+      rgba($black, 0.45) 100%
+    );
+  }
+
+  app-title {
+    position: relative;
+    z-index: 1;
+  }
+
   @media (max-width: 768px) {
     background-attachment: scroll;
-    background-size: 130% auto;           
+    background-size: 130% auto;
     background-position: top center;
     height: 45vh;
   }

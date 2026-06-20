@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA fallback.
+# Prerendered routes are served as static files directly; any unknown path
+# falls back to the app shell so Angular can route it (e.g. to /not-found).
+/*    /index.html    200

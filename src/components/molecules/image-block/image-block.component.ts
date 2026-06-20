@@ -1,11 +1,12 @@
 import { Component, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { DesignTokens } from 'src/models';
 
 @Component({
   selector: 'app-image-block',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RevealOnScrollDirective],
   templateUrl: './image-block.component.html',
   styleUrls: ['./image-block.component.scss']
 })

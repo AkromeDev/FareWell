@@ -1,17 +1,37 @@
 @use 'themes/theme-entry' as *;
 
+:host {
+  display: block;
+  padding-block: clamp(1.25rem, 3.5vw, 2.75rem);
+  padding-inline: clamp(1rem, 3vw, 3rem);
+}
+
 .opening-hours {
-  padding: 1.5rem;
-  background-color: $light-1;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba($black, 0.1);
+  padding: 1.75rem;
+  background-color: $white;
+  border-radius: clamp(18px, 2.2vw, 26px);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--line);
   width: 100%;
+  max-width: 1700px;
+  margin: 0 auto;
+  // Include opacity so the scroll-reveal fade isn't overridden by this rule.
+  transition:
+    opacity 0.6s var(--ease-out, ease),
+    transform 0.5s var(--ease-out, ease),
+    box-shadow 0.4s ease;
+
+  &:hover {
+    box-shadow: var(--card-shadow-strong);
+  }
 
   .title {
-    font-size: 1.7rem; 
-    font-weight: bold;
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     margin-bottom: 1.2rem;
-    color: $dark-2;
+    color: $accent-1;
     text-align: center;
   }
 
@@ -24,9 +44,9 @@
       display: flex;
       justify-content: center;
       gap: 2rem;
-      padding: 1rem 0; 
-      border-bottom: 1px solid rgba($black, 0.05);
-      font-size: 1.1rem; 
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 1.1rem;
       text-align: center;
 
       .day, .time {
@@ -34,13 +54,13 @@
       }
 
       .day {
-        font-weight: 500;
-        color: $dark-1;
+        font-weight: 600;
+        color: $font-dark;
       }
 
       .time {
         font-weight: 400;
-        color: $dark-2;
+        color: rgba($font-dark, 0.72);
 
         &.closed {
           color: $accent-2;
@@ -57,16 +77,32 @@
 
 @media (min-width: 768px) {
   .opening-hours {
-    padding: 2.5rem 4rem;
+    padding: 2.5rem 3rem;
 
     .title {
-      font-size: 2rem; 
+      font-size: 2rem;
     }
 
+    // Spread the days into a horizontal "hours bar" so the full-width card fills.
     .hours-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
       .day-entry {
-        font-size: 1.3rem; 
-        gap: 4rem; 
+        flex: 1 1 0;
+        min-width: 130px;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.5rem 0.75rem;
+        border-bottom: none;
+        border-right: 1px solid var(--line);
+        font-size: 1.15rem;
+
+        .day, .time { min-width: 0; }
+
+        &:last-child { border-right: none; }
       }
     }
   }

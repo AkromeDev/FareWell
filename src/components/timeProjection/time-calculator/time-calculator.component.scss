@@ -2,47 +2,58 @@
 
 .time-calculator {
   padding-top: 4rem;
-  background-color: $light-1;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba($black, 0.1);
+  background-color: $white;
+  border-radius: clamp(16px, 2vw, 22px);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--line);
   width: 100%;
+  color: $font-dark;
 
   .title {
     font-size: 1.7rem;
-    font-weight: bold;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     margin-bottom: 1.2rem;
     color: $dark-2;
     text-align: center;
   }
 
-.body-part-dropdown {
-  margin: 1rem auto 2rem auto;
-  max-width: 300px;
-  text-align: center;
-}
+  .body-part-dropdown {
+    margin: 1rem auto 2rem auto;
+    max-width: 300px;
+    text-align: center;
+  }
 
   .anagen {
     text-align: center;
     margin-bottom: 1rem;
-    color: $dark-1;
+    color: rgba($font-dark, 0.8);
   }
 
   .label {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     margin: 1rem auto;
     text-align: center;
-    color: $dark-1;
+    color: rgba($font-dark, 0.85);
 
     .input {
       display: block;
       margin: 0.5rem auto 1rem auto;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1rem;
       font-size: 1rem;
-      border-radius: 6px;
-      border: 1px solid rgba($black, 0.1);
+      border-radius: 8px;
+      border: 1px solid var(--line);
       max-width: 200px;
       width: 100%;
+      background: rgba($font-dark, 0.03);
+      color: $font-dark;
+
+      &:focus {
+        outline: 2px solid $accent-1;
+        outline-offset: 1px;
+      }
     }
   }
 
@@ -50,19 +61,25 @@
     text-align: center;
     margin-bottom: 1.5rem;
 
+    p { color: rgba($font-dark, 0.85); }
+
     button {
-      background-color: $light-1;
-      color: $dark-2;
-      border: 1px solid rgba($black, 0.1);
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
+      background: rgba($font-dark, 0.03);
+      color: $font-dark;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.55rem 1.1rem;
       margin: 0.25rem;
       cursor: pointer;
       font-weight: 500;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+      &:hover { border-color: rgba($accent-1, 0.6); }
 
       &.active {
-        background-color: $dark-1;
-        color: $light-1;
+        background-color: $accent-1;
+        color: #15251B;
+        border-color: $accent-1;
       }
     }
   }
@@ -74,47 +91,46 @@
 
   .calculate-btn {
     background-color: $accent-1;
-    color: $black;
+    color: #15251B;
     border: none;
-    border-radius: 8px;
-    padding: 0.75rem 1.5rem;
-    font-weight: bold;
-    font-size: 1rem;
+    border-radius: 10px;
+    padding: 0.8rem 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.95rem;
     display: block;
     margin: 0 auto 1.5rem auto;
     cursor: pointer;
 
-    &:hover {
-      filter: brightness(1.05);
-    }
+    &:hover { filter: brightness(1.06); }
   }
 
   .results {
-    background-color: rgba($light-2, 0.3);
-    border-radius: 6px;
-    padding: 1rem;
+    background: rgba($accent-1, 0.08);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.25rem;
     text-align: center;
-    color: $dark-2;
+    color: rgba($font-dark, 0.9);
 
-    p {
-      margin: 0.5rem 0;
-    }
+    p { margin: 0.5rem 0; }
 
     ul {
       list-style: none;
       padding: 0;
       margin: 0.5rem 0 0 0;
 
-      li {
-        padding: 0.25rem 0;
-      }
+      li { padding: 0.25rem 0; }
     }
+
+    strong { color: $dark-2; }
   }
 }
 
 .cleanup-note {
   font-style: italic;
-  color: $dark-1;
+  color: rgba($font-dark, 0.75);
 }
 
 .results ul {
@@ -126,31 +142,20 @@
     line-height: 1.6;
   }
 
-  strong {
-    color: $dark-1;
-  }
+  strong { color: $dark-2; }
 }
-
 
 // Desktop
 @media (min-width: 768px) {
   .time-calculator {
     padding: 2.5rem 4rem;
 
-    .title {
-      font-size: 2rem;
-    }
+    .title { font-size: 2rem; }
 
-    .density-group button {
-      margin: 0.5rem 1rem;
-    }
+    .density-group button { margin: 0.5rem 1rem; }
 
-    .calculate-btn {
-      font-size: 1.1rem;
-    }
+    .calculate-btn { font-size: 1rem; }
 
-    .results {
-      font-size: 1.1rem;
-    }
+    .results { font-size: 1.05rem; }
   }
 }

@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node /tmp/cdpshot.mjs \"http://localhost:4321/price\" /tmp/chk-price)",
+      "Bash(node /tmp/cdpshot.mjs \"http://localhost:4321/impressum\" /tmp/chk-imp)",
+      "Bash(awk '{print $5, $9}')",
+      "Bash(pkill -f \"ng serve\")",
+      "Bash(pkill -f \"remote-debugging-port=9222\")",
+      "Bash(grep -rnE \"color:\\\\s*\\\\\\\\\\\\$\\(dark-1|dark-2|black|white\\)\\\\b\" src --include=\"*.scss\")",
+      "Bash(sed 's#src/components/##;s#src/##')",
+      "Bash(grep -rnE \"background\\(-color\\)?:\\\\s*[^;]*\\\\\\\\\\\\$\\(light-1|light-2|font-light|font-dark\\)\\\\b\" src --include=\"*.scss\")",
+      "Bash(node /tmp/cdpshot.mjs \"http://localhost:4321/\" /tmp/emerald-home)",
+      "Bash(sed -i '' 's/color: \\\\$white;/color: \\\\$accent-1;/g' src/components/atoms/header/header.component.scss)",
+      "Bash(sed -i '' 's/background: rgba\\(\\\\$light-1, 0.95\\);/background: rgba\\(\\\\$accent-1, 0.95\\);/g' src/components/atoms/header/header.component.scss)",
+      "Bash(grep -n '$white' src/components/atoms/header/header.component.scss)",
+      "Bash(node /tmp/cdpshot.mjs \"http://localhost:4321/\" /tmp/light-home)",
+      "Bash(node -e \"console.log\\(JSON.stringify\\(require\\('./package.json'\\).scripts,null,2\\)\\)\")",
+      "Bash(node -e \"const a=require\\('./angular.json'\\).projects.FareWell.architect; for\\(const t of ['build','server','prerender']\\){const o=a[t]||{}; console.log\\(t,'->',o.builder\\); console.log\\('   options:',JSON.stringify\\(o.options||{}\\)\\);}\")"
+    ]
+  }
+}

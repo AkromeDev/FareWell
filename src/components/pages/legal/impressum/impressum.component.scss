@@ -1,21 +1,21 @@
 @use 'themes/theme-entry' as *;
 
 .impressum-wrapper {
-  background-color: $light-1;
   width: 100%;
 
   .impressum {
-    padding: 6rem 1.5rem 2rem; 
+    padding: 8rem 1.5rem 3rem;
     max-width: 800px;
     margin: 0 auto;
-    color: $black;
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
+    color: rgba($font-dark, 0.85);
+    line-height: 1.7;
 
     h1 {
-      font-size: 2rem;
+      font-size: clamp(2rem, 4vw, 2.6rem);
       color: $dark-2;
-      margin-bottom: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.25rem;
     }
 
     p {
@@ -25,9 +25,9 @@
 
     strong {
       display: block;
-      font-weight: bold;
+      font-weight: 600;
       margin-bottom: 0.5rem;
-      color: $dark-1;
+      color: $font-dark;
     }
 
     a {
@@ -42,12 +42,9 @@
 
   @media (min-width: 768px) {
     .impressum {
-      padding: 12rem 3rem 3rem;
-      h1 {
-        font-size: 2.5rem;
-      }
+      padding: 11rem 3rem 4rem;
       p {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
       }
     }
   }
