@@ -123,6 +123,17 @@ const routes: Routes = [
   },
 
   {
+    path: 'karriere/masseur-nuernberg',
+    loadComponent: () =>
+      import('../components/pages/karriere/masseur-karriere/masseur-karriere.component')
+        .then(m => m.MasseurKarriereComponent),
+    data: {
+      title: 'Masseur:in (m/w/d) in Nürnberg – freiberuflich | Karriere bei FareWell',
+      description: 'FareWell Nürnberg sucht Masseur:in zur freiberuflichen Zusammenarbeit: moderner Salon im Zentrum, flexible Arbeitszeiten, Online-Buchungssystem und eigener Kundenstamm.'
+    }
+  },
+
+  {
     path: 'impressum',
     loadComponent: () =>
       import('../components/pages/legal/impressum/impressum.component')

@@ -92,6 +92,13 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Karriere -->
+  <url>
+    <loc>https://farewell.salon/karriere/masseur-nuernberg</loc>
+    <lastmod>2026-07-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Legal -->
   <url>
     <loc>https://farewell.salon/impressum</loc>

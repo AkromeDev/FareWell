@@ -15,7 +15,13 @@
       "Bash(grep -n '$white' src/components/atoms/header/header.component.scss)",
       "Bash(node /tmp/cdpshot.mjs \"http://localhost:4321/\" /tmp/light-home)",
       "Bash(node -e \"console.log\\(JSON.stringify\\(require\\('./package.json'\\).scripts,null,2\\)\\)\")",
-      "Bash(node -e \"const a=require\\('./angular.json'\\).projects.FareWell.architect; for\\(const t of ['build','server','prerender']\\){const o=a[t]||{}; console.log\\(t,'->',o.builder\\); console.log\\('   options:',JSON.stringify\\(o.options||{}\\)\\);}\")"
+      "Bash(node -e \"const a=require\\('./angular.json'\\).projects.FareWell.architect; for\\(const t of ['build','server','prerender']\\){const o=a[t]||{}; console.log\\(t,'->',o.builder\\); console.log\\('   options:',JSON.stringify\\(o.options||{}\\)\\);}\")",
+      "Bash(rtk ls *)",
+      "Bash(rtk read *)",
+      "Bash(rtk grep *)",
+      "Bash(rtk find *)",
+      "Bash(rtk npm *)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
