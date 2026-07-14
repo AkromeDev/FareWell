@@ -105,7 +105,7 @@ export class MasseurKarriereComponent implements OnInit, OnDestroy {
           },
           applicationContact: {
             '@type': 'ContactPoint',
-            email: 'farewellgmbh@gmail.com',
+            email: 'info@farewell.salon',
             contactType: 'Bewerbung'
           },
           qualifications:
