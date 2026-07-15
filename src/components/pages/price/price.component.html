@@ -1,39 +1,641 @@
-<app-image-hero
-  id="topSection"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [paragraphType]="'dark'"
-  [paragraphSize]="'large'"
-  [backgroundImage]="'assets/images/prices/prices.jpeg'"
-  [shadow]="'dark'"
-  [height]="'75'"
-  [titleLevel]="'h1'"
-  [title]="'Preise'"
-  [titleType]="'blur'"
->
-</app-image-hero>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-lang-toggle [lang]="lang" (langChange)="setLang($event)" />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
-<farewell-toggle
-  [options]="[
-    { label: 'Frauen', value: 'female' },
-    { label: 'Männer', value: 'male' }
-  ]"
-  [selected]="gender()"
-  (selectedChange)="setGender($any($event))"
-  [backgroundTheme]="'light'"
->
-</farewell-toggle>
+  <app-guide-hero
+    kicker="FareWell · Nürnberg"
+    [heading]="
+      t(
+        'Preise für Haarentfernung, Hautverjüngung & Massage in Nürnberg',
+        'Prices for hair removal, skin rejuvenation & massage in Nuremberg'
+      )
+    "
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Alle Behandlungen, alle Zonen, alle Preise, transparent und ohne Überraschungen. Stand Juli 2026, alle Preise inklusive 19% Mehrwertsteuer.',
+        'Every treatment, every area, every price, transparent and with no surprises. As of July 2026, all prices include 19% German VAT.'
+      )
+    "
+  />
 
-<app-image-block
-  [theme]="'light'"
-  [src]="priceImageSrc()"
-  [alt]="priceAlt()"
-  [aspectRatio]="'auto'"
-  [fit]="'contain'"
-  [maxHeightVh]="90"
-  [rounded]="true"
-  [enableFullscreen]="true"
-  (fullscreenChange)="onFsChange($event)"
-></app-image-block>
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Du willst wissen, was deine Behandlung kostet? Hier steht jede Zone mit Preis, genau so, wie du sie buchst. Keine versteckten Kosten, kein Kleingedrucktes.
+          </span>
+          <span class="lang en">
+            Wondering what your treatment costs? Every area is listed here with its price, exactly as you book it. No hidden costs, no fine print.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Quelle ist unser Buchungssystem
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>. Dort siehst du immer die aktuellen Preise und freien Termine. Die
+            <a routerLink="/price" fragment="beratung">Erstberatung</a> ist kostenlos.
+          </span>
+          <span class="lang en">
+            The source is our booking system
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>. It always shows the current prices and available appointments. The
+            <a routerLink="/price" fragment="beratung">initial consultation</a> is free.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <!-- 01 · Kostenlose Erstberatung -->
+    <app-guide-section
+      index="01"
+      [heading]="t('Kostenlose Erstberatung', 'Free initial consultation')"
+      sectionId="beratung"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Bevor du buchst: Beim kostenlosen Beratungstermin schauen wir uns deine Haut- und
+          Haarsituation an, besprechen mögliche Kontraindikationen und erstellen deinen
+          persönlichen Behandlungsplan, ohne Druck und ohne Verpflichtung.
+        </span>
+        <span class="lang en">
+          Before you book: in the free consultation we look at your skin and hair, discuss
+          possible contraindications and create your personal treatment plan, with no pressure and no obligation.
+        </span>
+      </p>
+      <div
+        class="gd-table-wrap gd-table-wrap--price"
+        appReveal
+        tabindex="0"
+        role="region"
+        [attr.aria-label]="t('Preise Beratung', 'Consultation prices')"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t('Termin', 'Appointment') }}</th>
+              <th class="num">{{ t('Preis', 'Price') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of tables.beratung.rows; track $index) {
+              <tr>
+                <td>{{ t(row.de, row.en) }}</td>
+                <td class="num">{{ price(row) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="tip" [label]="t('Für den Kassenantrag', 'Insurance applications')">
+          <span class="lang de">
+            Für die Kostenübernahme durch die Krankenkasse erstellen wir dir einen schriftlichen
+            Kostenvoranschlag. Alle Schritte erklärt unser
+            <a routerLink="/ratgeber/epilation-krankenkasse">Leitfaden „Epilation über die Krankenkasse"</a>.
+          </span>
+          <span class="lang en">
+            If your health insurance is to cover the treatment, we prepare a written cost
+            estimate for your application. Our
+            <a routerLink="/ratgeber/epilation-krankenkasse">guide (in German)</a> explains every step.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 02 · Nadelepilation (Elektrolyse) -->
+    <app-guide-section
+      index="02"
+      [heading]="t('Nadelepilation (Elektrolyse) – Preise', 'Electrolysis prices')"
+      sectionId="nadelepilation"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Die Elektrolyse ist die einzige Methode der <strong>permanenten</strong>
+          Haarentfernung und eignet sich für alle Haarfarben und Hauttypen. Jedes Haar wird
+          einzeln an der Wurzel deaktiviert, ideal für empfindliche Zonen wie Gesicht, Hals und
+          Bikini, aber auch für kleine, hartnäckige Bereiche am Körper.
+        </span>
+        <span class="lang en">
+          Electrolysis is the only method of <strong>permanent</strong> hair removal and works
+          for all hair colours and skin types. Each hair is deactivated individually at the root, ideal for sensitive areas like the face, neck and bikini zone, but also for small,
+          stubborn areas on the body.
+        </span>
+      </p>
+      <div
+        class="gd-table-wrap gd-table-wrap--price"
+        appReveal
+        tabindex="0"
+        role="region"
+        [attr.aria-label]="t('Preise Nadelepilation', 'Electrolysis prices')"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t('Sitzung', 'Session') }}</th>
+              <th class="num">{{ t('Preis', 'Price') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of tables.nadelepilation.rows; track $index) {
+              <tr>
+                <td>{{ t(row.de, row.en) }}</td>
+                <td class="num">{{ price(row) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="win" [label]="t('Ein Preis für alle', 'One price for everyone')">
+          <span class="lang de">
+            Die Nadelepilation wird nach Sitzungsdauer abgerechnet. Die Preise gelten für Damen
+            und Herren gleichermaßen.
+          </span>
+          <span class="lang en">
+            Electrolysis is charged by session length. Prices are the same for women and men.
+          </span>
+        </app-guide-note>
+        <app-faq-item [question]="t(faqs['nadelepilation'].qDe, faqs['nadelepilation'].qEn)">
+          <p>{{ t(faqs['nadelepilation'].aDe, faqs['nadelepilation'].aEn) }}</p>
+        </app-faq-item>
+      </div>
+    </app-guide-section>
+
+    <!-- 03 · Laser-Haarentfernung -->
+    <app-guide-section
+      index="03"
+      [heading]="t('Laser-Haarentfernung – Preise', 'Laser hair removal prices')"
+      sectionId="laser"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Unser 4-Wellen-Diodenlaser erkennt den Hauttyp KI-gestützt und passt die Energie
+          automatisch an. Schonend, effektiv und dank starker Kühleinheit angenehm, für
+          <strong>dauerhaft</strong> reduzierte Haare. Tippe auf einen Bereich, um die Preise zu
+          öffnen.
+        </span>
+        <span class="lang en">
+          Our four-wavelength diode laser detects your skin type with AI support and adjusts the
+          energy automatically. Gentle, effective and comfortable thanks to a powerful cooling
+          unit, for <strong>long-lasting</strong> hair reduction. Tap an area to open its
+          prices.
+        </span>
+      </p>
+      @for (tbl of laserTables; track tbl.de) {
+        <app-faq-item [question]="t(tbl.de, tbl.en)" [open]="$first">
+          <div
+            class="gd-table-wrap gd-table-wrap--price"
+            tabindex="0"
+            role="region"
+            [attr.aria-label]="t('Preise Laser: ' + tbl.de, 'Laser prices: ' + tbl.en)"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>{{ t('Zone', 'Area') }}</th>
+                  <th class="num">{{ t('Preis', 'Price') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of tbl.rows; track $index) {
+                  <tr>
+                    <td>{{ t(row.de, row.en) }}</td>
+                    <td class="num">{{ price(row) }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </app-faq-item>
+      }
+      <div class="gd-read">
+        <app-faq-item [question]="t(faqs['laser'].qDe, faqs['laser'].qEn)">
+          <p>{{ t(faqs['laser'].aDe, faqs['laser'].aEn) }}</p>
+        </app-faq-item>
+      </div>
+    </app-guide-section>
+
+    <!-- 04 · Radiofrequenz-Microneedling -->
+    <app-guide-section
+      index="04"
+      [heading]="t('Radiofrequenz-Microneedling – Preise', 'RF microneedling prices')"
+      sectionId="microneedling"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Feinste Mikronadeln kombiniert mit Radiofrequenzenergie regen die natürliche
+          Neubildung von Kollagen und Elastin an: für straffere Haut, feinere Poren und
+          geglättete Narben, ganz ohne Ausfallzeiten und operative Eingriffe.
+        </span>
+        <span class="lang en">
+          The finest microneedles combined with radio-frequency energy stimulate the natural
+          production of collagen and elastin: for firmer skin, refined pores and smoothed scars, with no downtime and no surgery.
+        </span>
+      </p>
+      <div
+        class="gd-table-wrap gd-table-wrap--price"
+        appReveal
+        tabindex="0"
+        role="region"
+        [attr.aria-label]="t('Preise Microneedling', 'Microneedling prices')"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t('Zone', 'Area') }}</th>
+              <th class="num">{{ t('Preis', 'Price') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of tables.microneedling.rows; track $index) {
+              <tr>
+                <td>{{ t(row.de, row.en) }}</td>
+                <td class="num">{{ price(row) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="gd-read">
+        <app-faq-item [question]="t(faqs['microneedling'].qDe, faqs['microneedling'].qEn)">
+          <p>{{ t(faqs['microneedling'].aDe, faqs['microneedling'].aEn) }}</p>
+        </app-faq-item>
+      </div>
+    </app-guide-section>
+
+    <!-- 05 · Cellulite-Behandlung -->
+    <app-guide-section
+      index="05"
+      [heading]="t('Cellulite-Behandlung – Preise', 'Cellulite treatment prices')"
+      sectionId="cellulite"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Kosmetisches Body Forming mit Ultraschall und sanfter Vakuum-Massage: aktiviert das
+          Gewebe, fördert Durchblutung und Lymphfluss und verbessert das Hautbild sichtbar, etwa an Oberschenkeln, Gesäß, Bauch, Hüften und Oberarmen. Im Buchungssystem findest
+          du die Behandlung im Damen-Katalog.
+        </span>
+        <span class="lang en">
+          Cosmetic body forming with ultrasound and a gentle vacuum massage: it activates the
+          tissue, supports circulation and lymphatic flow and visibly improves the skin, for example on the thighs, buttocks, stomach, hips and upper arms. In our booking system
+          you will find this treatment in the women's catalogue.
+        </span>
+      </p>
+      <div
+        class="gd-table-wrap gd-table-wrap--price"
+        appReveal
+        tabindex="0"
+        role="region"
+        [attr.aria-label]="t('Preise Cellulite-Behandlung', 'Cellulite treatment prices')"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t('Sitzung', 'Session') }}</th>
+              <th class="num">{{ t('Preis', 'Price') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of tables.cellulite.rows; track $index) {
+              <tr>
+                <td>{{ t(row.de, row.en) }}</td>
+                <td class="num">{{ price(row) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="tip" [label]="t('Kur-Empfehlung', 'Recommended course')">
+          <span class="lang de">
+            6 bis 10 Sitzungen mit mindestens 3 bis 5 Tagen Pause. Ideal ist etwa eine Woche
+            Abstand, maximal 1 bis 2 Behandlungen pro Woche.
+          </span>
+          <span class="lang en">
+            6 to 10 sessions with at least 3 to 5 days in between. Ideally about one week
+            apart, and no more than 1 to 2 treatments per week.
+          </span>
+        </app-guide-note>
+        <app-faq-item [question]="t(faqs['cellulite'].qDe, faqs['cellulite'].qEn)">
+          <p>{{ t(faqs['cellulite'].aDe, faqs['cellulite'].aEn) }}</p>
+        </app-faq-item>
+      </div>
+    </app-guide-section>
+
+    <!-- 06 · Ultraschall-Fettreduktion -->
+    <app-guide-section
+      index="06"
+      [heading]="t('Ultraschall-Fettreduktion – Preise', 'Ultrasonic fat reduction prices')"
+      sectionId="fettreduktion"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Gezielte Behandlung lokaler Fettdepots mit 40-kHz-Ultraschall (Kavitation) und
+          Vakuumtechnik, für eine harmonischere, definiertere Silhouette. Geeignet für Bauch,
+          Taille, Hüften, Oberschenkel, Gesäß und Oberarme.
+        </span>
+        <span class="lang en">
+          Targeted treatment of local fat deposits with 40 kHz ultrasound (cavitation) and
+          vacuum technology, for a more harmonious, more defined silhouette. Suitable for the
+          stomach, waist, hips, thighs, buttocks and upper arms.
+        </span>
+      </p>
+      <div
+        class="gd-table-wrap gd-table-wrap--price"
+        appReveal
+        tabindex="0"
+        role="region"
+        [attr.aria-label]="t('Preise Ultraschall-Fettreduktion', 'Ultrasonic fat reduction prices')"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t('Sitzung', 'Session') }}</th>
+              <th class="num">{{ t('Preis', 'Price') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of tables.fettreduktion.rows; track $index) {
+              <tr>
+                <td>{{ t(row.de, row.en) }}</td>
+                <td class="num">{{ price(row) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="rule" [label]="t('Gut zu wissen', 'Good to know')">
+          <span class="lang de">
+            Eine kosmetische Anwendung, keine medizinische oder therapeutische Maßnahme. Die Ergebnisse sind individuell verschieden.
+          </span>
+          <span class="lang en">
+            This is a cosmetic treatment, not a medical or therapeutic procedure. Results vary
+            from person to person.
+          </span>
+        </app-guide-note>
+        <app-faq-item [question]="t(faqs['fettreduktion'].qDe, faqs['fettreduktion'].qEn)">
+          <p>{{ t(faqs['fettreduktion'].aDe, faqs['fettreduktion'].aEn) }}</p>
+        </app-faq-item>
+      </div>
+    </app-guide-section>
+
+    <!-- 07 · Wellness-Massage -->
+    <app-guide-section
+      index="07"
+      [heading]="t('Wellness-Massage – Preise', 'Wellness massage prices')"
+      sectionId="wellness-massage"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Zeit zum Durchatmen: klassische Rücken-Schulter-Nacken-Arbeit, tiefenentspannende
+          Ganzkörpermassage mit warmen Aromaölen auf naturreiner Mandelöl-Basis oder eine
+          kompakte Teilkörpermassage für den Bereich, der gerade am meisten Aufmerksamkeit
+          braucht.
+        </span>
+        <span class="lang en">
+          Time to breathe: classic back, shoulder and neck work, a deeply relaxing full-body
+          massage with warm aroma oils on a pure almond-oil base, or a compact partial-body
+          massage for the area that needs the most attention right now.
+        </span>
+      </p>
+      <div
+        class="gd-table-wrap gd-table-wrap--price"
+        appReveal
+        tabindex="0"
+        role="region"
+        [attr.aria-label]="t('Preise Wellness-Massage', 'Wellness massage prices')"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t('Massage', 'Massage') }}</th>
+              <th class="num">{{ t('Preis', 'Price') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of tables.wellnessMassage.rows; track $index) {
+              <tr>
+                <td>{{ t(row.de, row.en) }} ({{ duration(row) }})</td>
+                <td class="num">{{ price(row) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="gd-read">
+        <app-faq-item [question]="t(faqs['wellnessMassage'].qDe, faqs['wellnessMassage'].qEn)">
+          <p>{{ t(faqs['wellnessMassage'].aDe, faqs['wellnessMassage'].aEn) }}</p>
+        </app-faq-item>
+      </div>
+    </app-guide-section>
+
+    <!-- 08 · Therapeutische Massage -->
+    <app-guide-section
+      index="08"
+      [heading]="t('Therapeutische Massage – Preise', 'Therapeutic massage prices')"
+      sectionId="therapeutische-massage"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Für muskuläre Verspannungen, sportliche Belastung und Bewegungseinschränkungen: Im
+          Ersttermin nehmen wir uns Zeit für Anamnese und Befundaufnahme, damit jede Massage
+          gezielt auf dich abgestimmt ist. Das
+          <a routerLink="/price" fragment="beratung">Beratungsgespräch</a> ist kostenlos.
+        </span>
+        <span class="lang en">
+          For muscular tension, athletic strain and restricted mobility: in the first
+          appointment we take time for an intake and assessment so every massage is tailored to
+          you. The <a routerLink="/price" fragment="beratung">consultation</a> is free.
+        </span>
+      </p>
+      <div
+        class="gd-table-wrap gd-table-wrap--price"
+        appReveal
+        tabindex="0"
+        role="region"
+        [attr.aria-label]="t('Preise Therapeutische Massage', 'Therapeutic massage prices')"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t('Behandlung', 'Treatment') }}</th>
+              <th class="num">{{ t('Preis', 'Price') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of tables.therapeutischeMassage.rows; track $index) {
+              <tr>
+                <td>{{ t(row.de, row.en) }} ({{ duration(row) }})</td>
+                <td class="num">{{ price(row) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="rule" [label]="t('Wichtig', 'Please note')">
+          <span class="lang de">
+            Es erfolgt keine medizinische Diagnose und keine Heilbehandlung. Diagnosen stellen
+            ausschließlich befugte medizinische Fachkräfte.
+          </span>
+          <span class="lang en">
+            No medical diagnosis and no curative treatment is provided. Diagnoses may only be
+            made by authorised medical professionals.
+          </span>
+        </app-guide-note>
+        <app-faq-item
+          [question]="t(faqs['therapeutischeMassage'].qDe, faqs['therapeutischeMassage'].qEn)"
+        >
+          <p>{{ t(faqs['therapeutischeMassage'].aDe, faqs['therapeutischeMassage'].aEn) }}</p>
+        </app-faq-item>
+      </div>
+    </app-guide-section>
+
+    <!-- 09 · Gut zu wissen -->
+    <app-guide-section
+      index="09"
+      [heading]="t('Gut zu wissen', 'Good to know')"
+      sectionId="gut-zu-wissen"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Eine Regel macht unsere Preisliste leichter zu lesen: <strong>Permanent</strong> ist
+          allein die Nadelepilation (Elektrolyse). Jedes Haar wird einzeln und endgültig
+          verödet. Der Diodenlaser und alle anderen Methoden erzielen eine
+          <strong>dauerhafte</strong> Haarentfernung, also eine deutliche, langanhaltende
+          Reduktion.
+        </span>
+        <span class="lang en">
+          One rule makes our price list easier to read: only needle epilation (electrolysis) is
+          <strong>permanent</strong>. Every hair is deactivated individually and for good. The
+          diode laser and all other methods achieve <strong>long-lasting</strong> hair removal,
+          meaning a significant, enduring reduction.
+        </span>
+      </p>
+      <div class="gd-split">
+        <app-guide-panel
+          [heading]="t('Permanent: Nadelepilation', 'Permanent: needle epilation')"
+          tone="forest"
+        >
+          <li>
+            <span class="lang de">Jedes Haar wird einzeln an der Wurzel deaktiviert</span>
+            <span class="lang en">Each hair is deactivated individually at the root</span>
+          </li>
+          <li>
+            <span class="lang de">Die einzige Methode der permanenten Haarentfernung</span>
+            <span class="lang en">The only method of permanent hair removal</span>
+          </li>
+          <li>
+            <span class="lang de">Für alle Haarfarben und Hauttypen geeignet</span>
+            <span class="lang en">Suitable for all hair colours and skin types</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Dauerhaft: Diodenlaser', 'Long-lasting: diode laser')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">4-Wellen-Diodenlaser mit KI-gestützter Hauttyp-Erkennung</span>
+            <span class="lang en">Four-wavelength diode laser with AI-assisted skin-type detection</span>
+          </li>
+          <li>
+            <span class="lang de">Dauerhaft reduzierte Haare an nahezu allen Körperbereichen</span>
+            <span class="lang en">Long-lasting hair reduction on almost every body area</span>
+          </li>
+          <li>
+            <span class="lang de">Starke Kühleinheit für eine angenehme Behandlung</span>
+            <span class="lang en">Powerful cooling unit for a comfortable treatment</span>
+          </li>
+        </app-guide-panel>
+      </div>
+      <p class="gd-read" appReveal style="color: var(--gd-muted)">
+        <span class="lang de">
+          Mehr zu den Methoden:
+          <a routerLink="/behandlungen/nadelepilation">Nadelepilation</a> ·
+          <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser (4 Wellen)</a>
+        </span>
+        <span class="lang en">
+          More about the methods:
+          <a routerLink="/behandlungen/nadelepilation">needle epilation</a> ·
+          <a routerLink="/behandlungen/diodenlaser-4-wellen">diode laser (4 wavelengths)</a>
+        </span>
+      </p>
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="❓" [heading]="t('Häufige Fragen (FAQ)', 'FAQ')">
+          <span class="lang de">
+            Methoden, Termine, Ablauf: die Antworten aus der Erstberatung zum Nachlesen.
+          </span>
+          <span class="lang en">
+            Methods, appointments, how it works: the answers from our consultations, written
+            down.
+          </span>
+          <a routerLink="/faq">{{ t('Zu den FAQ', 'Read the FAQ') }}</a>
+        </app-guide-card>
+        <app-guide-card
+          icon="🏥"
+          [heading]="t('Epilation über die Krankenkasse', 'Insurance-covered epilation')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Für trans Personen: Wie die Haarentfernung im Gesicht zur Kassenleistung wird, mit
+            ärztlicher Delegation bei FareWell.
+          </span>
+          <span class="lang en">
+            For trans people: how facial hair removal becomes a covered benefit, with medical
+            delegation at FareWell (guide in German).
+          </span>
+          <a routerLink="/ratgeber/epilation-krankenkasse">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+        </app-guide-card>
+        <app-guide-card
+          icon="🧾"
+          [heading]="t('Kosten steuerlich absetzen', 'Tax-deductible treatments')"
+          [revealDelay]="120"
+        >
+          <span class="lang de">
+            Selbst getragene Kosten als außergewöhnliche Belastung geltend machen. Wir zeigen, welche
+            Nachweise das Finanzamt sehen will.
+          </span>
+          <span class="lang en">
+            Claim out-of-pocket costs as an extraordinary burden. We show what evidence the tax office
+            wants to see (guide in German).
+          </span>
+          <a routerLink="/ratgeber/haarentfernung-steuer-absetzen">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+        </app-guide-card>
+        <app-guide-card
+          icon="🇺🇸"
+          [heading]="t('US Forces & Mehrwertsteuer', 'US Forces & VAT relief')"
+          [revealDelay]="180"
+        >
+          <span class="lang de">
+            NF1-Formular oder Remonon-App: So zahlst du ohne die deutsche Mehrwertsteuer von
+            19%. Auf Deutsch und Englisch erklärt.
+          </span>
+          <span class="lang en">
+            NF1 forms or the Remonon app: how to stop paying the 19% German VAT. Explained in
+            English and German.
+          </span>
+          <a routerLink="/ratgeber/us-forces-vat-relief">{{ t('Zum Leitfaden (EN)', 'Read the guide') }}</a>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta [heading]="t('Bereit für deinen Termin?', 'Ready for your appointment?')">
+      <span class="lang de">
+        Buche direkt online über Salonkee. Dort siehst du live alle Preise und freien Termine.
+        Oder starte mit deiner kostenlosen Erstberatung.
+      </span>
+      <span class="lang en">
+        Book directly online via Salonkee. It shows all prices and available appointments in
+        real time. Or start with your free initial consultation.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

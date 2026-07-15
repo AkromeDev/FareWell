@@ -18,6 +18,7 @@ export { GuideCtaComponent } from './guide-cta/guide-cta.component';
 export { GuideTocComponent, type GuideTocItem } from './guide-toc/guide-toc.component';
 export { FaqItemComponent } from './faq-item/faq-item.component';
 export { GuideProgressComponent } from './guide-progress/guide-progress.component';
+export { GuideTopButtonComponent } from './guide-top-button/guide-top-button.component';
 export {
   GuideLangToggleComponent,
   type GuideLang,
@@ -37,6 +38,7 @@ import { GuideCtaComponent } from './guide-cta/guide-cta.component';
 import { GuideTocComponent } from './guide-toc/guide-toc.component';
 import { FaqItemComponent } from './faq-item/faq-item.component';
 import { GuideProgressComponent } from './guide-progress/guide-progress.component';
+import { GuideTopButtonComponent } from './guide-top-button/guide-top-button.component';
 import { GuideLangToggleComponent } from './guide-lang-toggle/guide-lang-toggle.component';
 
 /** Komplettes Set für `imports: [...GUIDE_COMPONENTS]` auf Guide-Seiten. */
@@ -55,5 +57,6 @@ export const GUIDE_COMPONENTS = [
   GuideTocComponent,
   FaqItemComponent,
   GuideProgressComponent,
+  GuideTopButtonComponent,
   GuideLangToggleComponent,
 ] as const;

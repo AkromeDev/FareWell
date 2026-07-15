@@ -40,13 +40,13 @@ export class HeaderComponent implements OnInit {
   treatments: TreatmentCard[] = [
     {
       title: 'Nadelepilation',
-      description: 'Permanente Haarentfernung mit Elektrolyse – präzise, zuverlässig, endgültig.',
+      description: 'Permanente Haarentfernung mit Elektrolyse: präzise, zuverlässig, endgültig.',
       route: '/behandlungen/nadelepilation',
       image: 'assets/images/treatment/nadelepilation.jpg'
     },
     {
       title: '4 Wellen Dioden Laser',
-      description: 'Dauerhafte Haarentfernung für viele Haut- & Haartypen – schnell und komfortabel.',
+      description: 'Dauerhafte Haarentfernung für viele Haut- & Haartypen, schnell und komfortabel.',
       route: '/behandlungen/diodenlaser-4-wellen',
       image: 'assets/images/treatment/diodenlaser.webp'
     },
@@ -70,7 +70,7 @@ export class HeaderComponent implements OnInit {
     },
     {
       title: 'Kavitation',
-      description: 'Ultraschall-Unterstützung zur Kontur – sanft, nicht-invasiv und effektiv.',
+      description: 'Ultraschall-Unterstützung zur Kontur: sanft, nicht-invasiv und effektiv.',
       route: '/behandlungen/kavitation',
       image: 'assets/images/treatment/kavitation.webp'
     }

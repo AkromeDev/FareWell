@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-faq-item',
   standalone: true,
   template: `
-    <details class="gd-faq">
+    <details class="gd-faq" [open]="open">
       <summary>
         <span>{{ question }}</span>
         <span class="gd-faq__marker" aria-hidden="true">+</span>
@@ -22,4 +22,6 @@ import { Component, Input } from '@angular/core';
 })
 export class FaqItemComponent {
   @Input({ required: true }) question!: string;
+  /** Aufgeklappt starten (z. B. erste Gruppe einer Akkordeon-Liste). */
+  @Input() open = false;
 }

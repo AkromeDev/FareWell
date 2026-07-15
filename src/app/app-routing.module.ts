@@ -96,11 +96,11 @@ const routes: Routes = [
 
   {
     path: 'price',
-    loadChildren: () =>
-      import('../components/pages/price/price.module').then(m => m.PriceModule),
+    loadComponent: () =>
+      import('../components/pages/price/price.component').then(m => m.PriceComponent),
     data: {
-      title: 'Preise | FareWell Nürnberg',
-      description: 'Alle Preise für unsere Behandlungen bei FareWell Nürnberg – transparente Kosten für Elektrolyse, Laser, Microneedling und mehr.'
+      title: 'Preise Nürnberg: Laser-Haarentfernung, Nadelepilation & mehr | FareWell',
+      description: 'Alle Preise bei FareWell Nürnberg: Laser-Haarentfernung ab 30 €, Nadelepilation ab 40 €, Microneedling ab 180 €, Massage ab 45 €. Erstberatung kostenlos.'
     }
   },
   {

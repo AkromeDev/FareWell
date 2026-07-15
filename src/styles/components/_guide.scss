@@ -253,6 +253,53 @@
         background: var(--gd-sand-tint);
       }
     }
+
+    // Mobil kleiner und dichter an die obere Ecke (Header ist 70px hoch).
+    @media (max-width: 720px) {
+      top: 78px;
+      right: 8px;
+
+      button {
+        font-size: 10.5px;
+        padding: 6px 10px;
+      }
+    }
+  }
+
+  // ---------- „Nach oben"-Button (nur mobil) ----------
+  .gd-top-btn {
+    position: fixed;
+    right: 12px;
+    bottom: 16px;
+    z-index: 90;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--gd-line-strong);
+    background: rgba(251, 250, 245, 0.94);
+    color: var(--gd-forest);
+    font-size: 18px;
+    line-height: 1;
+    box-shadow: var(--gd-shadow);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    &.is-visible {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 720px) {
+      display: inline-flex;
+    }
   }
 
   // ---------- hero ----------
@@ -657,6 +704,25 @@
       font-weight: 700;
       color: var(--gd-forest);
       background: var(--gd-surface-2);
+    }
+  }
+
+  // Kompakte zweispaltige Preistabellen (Preisseite): kein Mindestmaß, damit
+  // nichts horizontal scrollt — mobil zusätzlich kleinere Schrift.
+  .gd-table-wrap--price table {
+    min-width: 0;
+
+    tbody td:first-child {
+      overflow-wrap: break-word;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 13.5px;
+
+      thead th,
+      tbody td {
+        padding: 0.6rem 0.75rem;
+      }
     }
   }
 
