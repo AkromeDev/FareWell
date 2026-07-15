@@ -1,106 +1,105 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { SeoService } from 'src/services/seo.service';
+import {
+  GUIDE_COMPONENTS,
+  GuideStat,
+  GuideTocItem,
+} from 'src/components/molecules/guide';
 
-import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
-import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
-import { ButtonItem } from 'src/models/ButtonItem';
+const PAGE_PATH = '/laser-haarentfernung-aktion-nuernberg';
+const PAGE_URL = `https://farewell.salon${PAGE_PATH}`;
+const PAGE_TITLE = 'Laser-Haarentfernung in Nürnberg: 50% Rabatt für Neukunden | FareWell';
+const PAGE_DESCRIPTION =
+  'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg: KI-gestützte Hautanalyse, alle Körperzonen, kostenlose Erstberatung. Jetzt 50% Rabatt auf die erste Laser-Behandlung mit dem Code FIRSTLASER sichern.';
+const HERO_IMAGE = 'assets/images/treatment/laser2.webp';
+const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
+const HERO_IMAGE_ALT =
+  'FareWell Studio in Nürnberg für moderne dauerhafte Haarentfernung mit 4-Wellen-Diodenlaser';
+
+interface FaqJsonLdEntry {
+  question: string;
+  answer: string;
+}
+
 @Component({
   standalone: true,
   selector: 'app-laser-promotion',
-  imports: [ImageHeroComponent, TextBlockComponent],
+  imports: [...GUIDE_COMPONENTS, RevealOnScrollDirective, RouterLink],
   templateUrl: './laser-promotion.component.html',
-  styleUrl: './laser-promotion.component.scss'
 })
-export class LaserPromotionComponent implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class LaserPromotionComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
+  private readonly jsonLdId = 'laser-promotion-schema';
 
-  private readonly pageUrl =
-    'https://farewell.salon/laser-haarentfernung-aktion-nuernberg';
+  readonly heroImage = HERO_IMAGE;
+  readonly heroImageAlt = HERO_IMAGE_ALT;
 
-  private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/treatment/laser2.webp';
-
-  paragraphText: string = `
-    Laser Haarentfernung mit moderner Diodenlaser-Technologie in Nürnberg bei FareWell.
-
-    Diese Aktion gilt exklusiv für Neukundinnen und Neukunden und nur für kurze Zeit.
-    Ideal, um den Start in eine glattere und pflegeleichtere Zukunft zu setzen.
-  `;
-
-  buttonList: ButtonItem[] = [
-    { label: 'Unsere Preise', link: '/price', theme: 'dark' },
-    {
-      label: 'Termin buchen',
-      link: 'https://salonkee.de/salon/farewell?lang=de',
-      theme: 'dark',
-      external: true,
-      analyticsEvent: 'generate_lead',
-      analyticsLocation: 'laser-page',
-      analyticsLabel: 'Termin Buchen Laser Page'
-  }
+  readonly stats: GuideStat[] = [
+    { value: '4', label: 'Wellenlängen in einem Laser' },
+    { value: '50%', label: 'Rabatt auf deine erste Behandlung' },
+    { value: 'gratis', label: 'Erstberatung mit Hautanalyse' },
+    { value: '6', label: 'Tage pro Woche geöffnet' },
   ];
 
-  structuredData = '';
+  readonly toc: GuideTocItem[] = [
+    { id: 'angebot', label: 'Preise & Neukunden-Rabatt' },
+    { id: 'vorteile', label: 'Warum der 4-Wellen-Diodenlaser' },
+    { id: 'dauerhaft-permanent', label: 'Dauerhaft oder permanent?' },
+    { id: 'ablauf', label: 'So läuft deine Behandlung ab' },
+    { id: 'zonen', label: 'Alle Körperzonen' },
+    { id: 'faq', label: 'Häufige Fragen' },
+  ];
+
+  /**
+   * Fragen und Antworten als Klartext für das FAQPage-Schema. Inhaltlich
+   * deckungsgleich mit dem sichtbaren Akkordeon im Template halten!
+   */
+  private readonly faqEntries: FaqJsonLdEntry[] = [
+    {
+      question: 'Wie viele Sitzungen brauche ich beim Diodenlaser?',
+      answer:
+        'Haare wachsen in Zyklen, und nur Haare in der Wachstumsphase reagieren auf den Laser. Deshalb sind immer mehrere Sitzungen im Abstand von einigen Wochen nötig. Wie viele genau, hängt von Körperzone, Haardichte und Hormonlage ab – eine realistische Einschätzung bekommst du in der kostenlosen Erstberatung.',
+    },
+    {
+      question: 'Tut die Laser-Behandlung weh?',
+      answer:
+        'Die meisten empfinden die Impulse als kurzes, warmes Zwicken – deutlich sanfter als Wachsen oder Epilieren. Wir stimmen die Intensität individuell auf deine Haut ab und tasten uns gemeinsam an das richtige Setting heran.',
+    },
+    {
+      question: 'Für welche Haut- und Haartypen eignet sich der Diodenlaser?',
+      answer:
+        'Am wirksamsten ist der Laser bei dunkleren Haaren. Durch die Kombination von vier Wellenlängen und die KI-gestützte Hauterkennung kann unser Gerät mehr Haut- und Haartypen behandeln als klassische IPL-Systeme. Für helle, feine oder graue Haare empfehlen wir die Elektrolyse – sie wirkt unabhängig von der Haarfarbe.',
+    },
+    {
+      question: 'Ist das Ergebnis dauerhaft oder permanent?',
+      answer:
+        'Der Diodenlaser erreicht eine dauerhafte Haarentfernung, also eine deutliche, langanhaltende Reduktion des Haarwuchses. Permanent ist in Deutschland allein die Elektrolyse (Nadelepilation), die jede Haarwurzel einzeln und endgültig verödet. Bei FareWell bekommst du beide Methoden – und eine ehrliche Empfehlung, was zu dir passt.',
+    },
+  ];
 
   ngOnInit(): void {
-    this.setSeoTags();
-    this.setStructuredData();
-  }
-
-  private setSeoTags(): void {
-    const pageTitle =
-      'Laser Haarentfernung in Nürnberg: 50 % Rabatt für Neukunden | FareWell';
-
-    const description =
-      'Dauerhafte Haarentfernung mit modernem 4-Wellen-Diodenlaser in Nürnberg bei FareWell. ' +
-      'Jetzt 50 % Rabatt auf die erste Laser-Behandlung für Neukunden mit dem Code FIRSTLASER sichern.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für moderne dauerhafte Haarentfernung mit 4-Wellen-Diodenlaser'
+    this.seo.setPageSeo({
+      title: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      path: PAGE_PATH,
+      image: HERO_IMAGE_URL,
+      imageAlt: HERO_IMAGE_ALT,
+      largeImage: true,
     });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
 
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      name: 'twitter:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für moderne dauerhafte Haarentfernung mit 4-Wellen-Diodenlaser'
-    });
-  }
-
-  private setStructuredData(): void {
-    const jsonLd = {
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Service',
-          '@id': `${this.pageUrl}#service`,
+          '@id': `${PAGE_URL}#service`,
           name: 'Dauerhafte Haarentfernung mit 4-Wellen-Diodenlaser in Nürnberg',
           description:
-            'Dauerhafte Haarentfernung mit modernem 4-Wellen-Diodenlaser bei FareWell in Nürnberg. ' +
-            '50 % Rabatt auf die erste Laser-Behandlung für Neukunden mit dem Code FIRSTLASER.',
+            'Dauerhafte Haarentfernung mit modernem 4-Wellen-Diodenlaser bei FareWell in Nürnberg. 50% Rabatt auf die erste Laser-Behandlung für Neukunden mit dem Code FIRSTLASER.',
           serviceType: 'Laser Haarentfernung',
-          areaServed: {
-            '@type': 'City',
-            name: 'Nürnberg'
-          },
+          areaServed: { '@type': 'City', name: 'Nürnberg' },
           provider: {
             '@type': 'BeautySalon',
             '@id': 'https://farewell.salon/#organization',
@@ -111,44 +110,52 @@ export class LaserPromotionComponent implements OnInit {
               streetAddress: 'Frauentorgraben 5',
               postalCode: '90443',
               addressLocality: 'Nürnberg',
-              addressCountry: 'DE'
-            }
+              addressCountry: 'DE',
+            },
           },
           offers: {
             '@type': 'Offer',
-            name: '50 % Rabatt auf die erste Laser-Behandlung',
+            name: '50% Rabatt auf die erste Laser-Behandlung',
             description:
-              'Neukundenangebot für die erste Behandlung zur dauerhaften Haarentfernung mit Diodenlaser bei FareWell in Nürnberg.',
-            url: this.pageUrl,
+              'Neukundenangebot für die erste Behandlung zur dauerhaften Haarentfernung mit Diodenlaser bei FareWell in Nürnberg. Code: FIRSTLASER.',
+            url: PAGE_URL,
             priceCurrency: 'EUR',
             availability: 'https://schema.org/InStock',
-            eligibleCustomerType: {
-              '@type': 'BusinessEntityType',
-              name: 'Neukunden'
-            }
-          }
+            eligibleCustomerType: { '@type': 'BusinessEntityType', name: 'Neukunden' },
+          },
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Laser Haarentfernung in Nürnberg: 50 % Rabatt für Neukunden | FareWell',
-          description:
-            'Dauerhafte Haarentfernung mit modernem 4-Wellen-Diodenlaser in Nürnberg bei FareWell. Jetzt 50 % Rabatt auf die erste Laser-Behandlung für Neukunden mit dem Code FIRSTLASER sichern.',
-          isPartOf: {
-            '@id': 'https://farewell.salon/#website'
-          },
-          about: {
-            '@id': `${this.pageUrl}#service`
-          },
-          primaryImageOfPage: {
-            '@type': 'ImageObject',
-            url: this.heroImageUrl
-          }
-        }
-      ]
-    };
+          '@id': `${PAGE_URL}#webpage`,
+          url: PAGE_URL,
+          name: PAGE_TITLE,
+          description: PAGE_DESCRIPTION,
+          inLanguage: 'de',
+          about: { '@id': `${PAGE_URL}#service` },
+          primaryImageOfPage: { '@type': 'ImageObject', url: HERO_IMAGE_URL },
+        },
+        {
+          '@type': 'FAQPage',
+          '@id': `${PAGE_URL}#faq`,
+          url: `${PAGE_URL}#faq`,
+          mainEntity: this.faqEntries.map((entry) => ({
+            '@type': 'Question',
+            name: entry.question,
+            acceptedAnswer: { '@type': 'Answer', text: entry.answer },
+          })),
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
+            { '@type': 'ListItem', position: 2, name: 'Laser-Haarentfernung Aktion', item: PAGE_URL },
+          ],
+        },
+      ],
+    });
+  }
 
-    this.structuredData = JSON.stringify(jsonLd);
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 }

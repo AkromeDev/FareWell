@@ -237,22 +237,22 @@ const routes: Routes = [
 
   {
     path: 'laser-haarentfernung-aktion-nuernberg',
-    loadChildren: () =>
-      import('../components/pages/promotions/laser-promotion/laser-promotion.module')
-        .then(m => m.LaserPromotionModule),
+    loadComponent: () =>
+      import('../components/pages/promotions/laser-promotion/laser-promotion.component')
+        .then(m => m.LaserPromotionComponent),
     data: {
-      title: 'Laser Haarentfernung Aktion Nürnberg | FareWell',
-      description: 'Aktuelle Aktion für Laser Haarentfernung in Nürnberg bei FareWell.'
+      title: 'Laser-Haarentfernung in Nürnberg: 50% Rabatt für Neukunden | FareWell',
+      description: 'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf die erste Laser-Behandlung mit dem Code FIRSTLASER.'
     }
   },
   {
     path: 'ipl-dauerhafte-haarentfernung-aktion-nuernberg',
-    loadChildren: () =>
-      import('../components/pages/promotions/ipl-promotion/ipl-promotion.module')
-        .then(m => m.IplPromotionModule),
+    loadComponent: () =>
+      import('../components/pages/promotions/ipl-promotion/ipl-promotion.component')
+        .then(m => m.IplPromotionComponent),
     data: {
-      title: 'IPL Haarentfernung Aktion Nürnberg | FareWell',
-      description: 'Sonderangebot für IPL dauerhafte Haarentfernung in Nürnberg.'
+      title: 'IPL-Haarentfernung in Nürnberg? Die modernere Alternative | FareWell',
+      description: 'Statt IPL: dauerhafte Haarentfernung mit dem präziseren 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf die erste Behandlung mit dem Code ERSTEBEHANDLUNG.'
     }
   },
   {

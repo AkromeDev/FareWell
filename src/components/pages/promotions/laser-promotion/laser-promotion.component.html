@@ -1,61 +1,197 @@
-<app-image-hero
-  id="topSection"
-  [margin]="'large'"
-  title="- 50 % mit dem Code FIRSTLASER"
-  titleType="soft"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [backgroundImage]="'assets/images/treatment/laser2.webp'"
-  [imageAlt]="'FareWell Studio in Nürnberg für moderne dauerhafte Haarentfernung mit 4-Wellen-Diodenlaser'"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [buttonList]="buttonList">
-</app-image-hero>
+<div class="gd">
+  <app-guide-progress />
+  <app-guide-top-button />
 
-<app-text-block
-  theme="light"
-  title="Dauerhafte Haarentfernung mit 4-Wellen-Diodenlaser in Nürnberg"
-  paragraphAlign="center"
-  paragraphSize="medium"
-  paragraphWeight="normal"
-  paragraphMaxWidth="wide"
-  titleType="simple">
+  <app-guide-hero
+    kicker="FareWell · Nürnberg · Neukunden-Aktion"
+    heading="Laser-Haarentfernung in Nürnberg"
+    tagline="Für immer sanft."
+    lead="Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser – präzise, schonend und für fast alle Körperzonen. Für Neukunden: 50% Rabatt auf die erste Behandlung mit dem Code FIRSTLASER."
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <p>
-    In unserem Studio FareWell in Nürnberg arbeiten wir mit einem modernen
-    4-Wellen-Diodenlaser der neuesten Generation. Durch die Kombination
-    verschiedener Wellenlängen können unterschiedliche Tiefen und Strukturen
-    der Haarwurzel erreicht werden, für eine besonders effektive und zugleich
-    schonende dauerhafte Haarentfernung.
-  </p>
+  <app-guide-stats [stats]="stats" />
 
-  <p>
-    Im Unterschied zur Elektrolyse, die eine wirklich permanente Haarentfernung
-    ermöglicht, reduziert der Laser den Haarwuchs dauerhaft und deutlich.
-    Er eignet sich vor allem für dunklere Haare auf heller Haut und erlaubt
-    die Behandlung größerer Flächen in kürzerer Zeit.
-  </p>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>Kurz gesagt</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          Du willst glatte Haut, ohne ständig zu rasieren, zu wachsen oder zu epilieren? Der
+          4-Wellen-Diodenlaser reduziert deinen Haarwuchs dauerhaft – und mit dem
+          Neukunden-Code kostet dich der Einstieg nur die Hälfte.
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          Alle Details zur Technologie findest du auf der Seite zum
+          <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a>, alle
+          Preise je Körperzone auf <a routerLink="/price">unserer Preisseite</a>. Oder du
+          startest direkt mit der
+          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" />
+    </div>
 
-  <h3>Ihre Vorteile bei FareWell in Nürnberg</h3>
+    <app-guide-section index="01" heading="Preise &amp; Neukunden-Rabatt" sectionId="angebot">
+      <app-guide-offer
+        eyebrow="Neukunden-Aktion · nur für kurze Zeit"
+        headline="50% auf deine erste Laser-Behandlung"
+        sub="Online buchen und den Code bei der Buchung angeben – gilt für Neukundinnen und Neukunden."
+        badgeLabel="Promo-Code"
+        badgeValue="FIRSTLASER"
+      />
+      <p class="gd-lead-p gd-read" appReveal>
+        Alle regulären Preise stehen je Körperzone auf
+        <a routerLink="/price">unserer Preisseite</a> – ohne versteckte Kosten. Die
+        Erstberatung ist immer kostenlos und unverbindlich.
+      </p>
+    </app-guide-section>
 
-  <ul>
-    <li>Hochmoderner 4-Wellen-Diodenlaser für effiziente, dauerhafte Haarreduktion</li>
-    <li>Behandlung von Beinen, Bikinizone, Achseln, Rücken und weiteren Körperarealen</li>
-    <li>Individuelle Haut- und Haaranalyse für ein sicheres, angepasstes Setting</li>
-    <li>Angenehme Atmosphäre im zentral gelegenen Studio nahe dem Nürnberger Hauptbahnhof</li>
-  </ul>
+    <app-guide-section index="02" heading="Warum der 4-Wellen-Diodenlaser?" sectionId="vorteile">
+      <p class="gd-lead-p gd-read" appReveal>
+        Bei FareWell arbeiten wir mit einem Diodenlaser der neuesten Generation. Er kombiniert
+        vier Wellenlängen in einem Gerät und erreicht damit unterschiedliche Tiefen und
+        Strukturen der Haarwurzel – für eine besonders wirksame und zugleich schonende
+        dauerhafte Haarentfernung.
+      </p>
+      <app-guide-checklist>
+        <li>Vier Wellenlängen erreichen unterschiedliche Haartiefen und Haarstrukturen in einer Sitzung</li>
+        <li>KI-gestützte Hauterkennung analysiert deinen Hauttyp und passt die Behandlung automatisch an</li>
+        <li>Größere Zonen wie Beine oder Rücken sind in kurzer Zeit behandelt</li>
+        <li>Individuelle Haut- und Haaranalyse vor jeder Behandlung – für ein sicheres, angepasstes Setting</li>
+      </app-guide-checklist>
+      <app-guide-note variant="win" label="Dein Vorteil">
+        Wirksamer bei mehr Haut- und Haartypen als klassische IPL-Geräte – und deutlich
+        präziser, weil der Laser gezielt auf das Haarfollikel wirkt statt mit breit
+        gestreutem Licht.
+      </app-guide-note>
+    </app-guide-section>
 
-  <h3>50 Prozent Rabatt für Neukunden</h3>
+    <app-guide-section
+      index="03"
+      heading="Dauerhaft oder permanent – was ist der Unterschied?"
+      sectionId="dauerhaft-permanent"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        Ehrlichkeit gehört bei uns zur Beratung: <strong>Dauerhaft</strong> und
+        <strong>permanent</strong> sind nicht dasselbe. Beide Methoden bekommst du bei
+        FareWell – und wir sagen dir offen, welche zu dir passt.
+      </p>
+      <div class="gd-split">
+        <app-guide-panel heading="Diodenlaser – dauerhaft" tone="forest">
+          <li>Deutliche, langanhaltende Reduktion des Haarwuchses</li>
+          <li>Ideal für größere Zonen wie Beine, Rücken oder Achseln</li>
+          <li>Am wirksamsten bei dunkleren Haaren</li>
+          <li>Schnelle Sitzungen, gut planbar</li>
+        </app-guide-panel>
+        <app-guide-panel heading="Elektrolyse – permanent" tone="sage" dots="sand" [revealDelay]="60">
+          <li>Die einzige in Deutschland rechtlich als permanent anerkannte Methode</li>
+          <li>Jede Haarwurzel wird einzeln und endgültig verödet</li>
+          <li>Wirkt bei jedem Haut- und Haartyp – auch bei hellen, feinen oder grauen Haaren</li>
+          <li>Ideal für Gesicht und kleinere Zonen</li>
+        </app-guide-panel>
+      </div>
+      <app-guide-note variant="tip" label="Unsicher?">
+        In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an. Mehr zur
+        permanenten Methode liest du auf der Seite zur
+        <a routerLink="/behandlungen/nadelepilation">Nadelepilation (Elektrolyse)</a>.
+      </app-guide-note>
+    </app-guide-section>
 
-  <p>
-    Mit dem Code <strong>FIRSTLASER</strong> erhalten Sie 50 Prozent Rabatt
-    auf Ihre erste Laser-Behandlung. Buchen Sie Ihren Termin direkt online
-    oder lassen Sie sich persönlich zu den Möglichkeiten der dauerhaften
-    Haarentfernung mit Diodenlaser beraten.
-  </p>
+    <app-guide-section index="04" heading="So läuft deine Behandlung ab" sectionId="ablauf">
+      <app-guide-steps>
+        <li>
+          <strong>Kostenlose Erstberatung.</strong> Wir analysieren Haut und Haare, erklären
+          dir realistisch, wie viele Sitzungen du brauchst, und erstellen dir auf Wunsch
+          einen schriftlichen Kostenvoranschlag.
+        </li>
+        <li>
+          <strong>Dein Behandlungsplan.</strong> Zone, Intensität und Abstände werden auf
+          dich abgestimmt – die KI-gestützte Hauterkennung unterstützt das passende Setting.
+        </li>
+        <li>
+          <strong>Die Sitzungen.</strong> Haare wachsen in Zyklen, deshalb kommst du in
+          Abständen von einigen Wochen wieder – nur Haare in der Wachstumsphase reagieren
+          auf den Laser.
+        </li>
+        <li>
+          <strong>Das Ergebnis.</strong> Von Sitzung zu Sitzung wird der Haarwuchs sichtbar
+          feiner und lichter – bis du dir das Rasieren sparen kannst.
+        </li>
+      </app-guide-steps>
+    </app-guide-section>
 
-</app-text-block>
+    <app-guide-section index="05" heading="Alle Körperzonen" sectionId="zonen">
+      <p class="gd-lead-p gd-read" appReveal>
+        Vom kleinen Detail bis zur großen Fläche – für Frauen und Männer. Die Preise je Zone
+        findest du transparent auf <a routerLink="/price">unserer Preisseite</a>.
+      </p>
+      <div class="gd-split">
+        <app-guide-panel heading="Beliebte Zonen">
+          <li>Beine und Achseln</li>
+          <li>Bikinizone und Intimbereich</li>
+          <li>Gesicht und Oberlippe</li>
+          <li>Arme und Hände</li>
+        </app-guide-panel>
+        <app-guide-panel heading="Auch stark nachgefragt" dots="sand" [revealDelay]="60">
+          <li>Rücken und Schultern</li>
+          <li>Brust und Bauch</li>
+          <li>Nacken und Bartkontur bei Männern</li>
+          <li>Komplettpakete für mehrere Zonen</li>
+        </app-guide-panel>
+      </div>
+      <app-guide-note variant="tip" label="Gut zu wissen">
+        Bei hormonell bedingtem Haarwuchs, etwa durch PCOS, empfehlen wir die
+        <a routerLink="/behandlungen/nadelepilation">Elektrolyse</a>: Sie verödet jede
+        Haarwurzel endgültig und wirkt unabhängig von Haarfarbe und Hormonlage. Wir beraten
+        dich dazu ehrlich und einfühlsam – kostenlos und unverbindlich.
+      </app-guide-note>
+    </app-guide-section>
 
-<script type="application/ld+json" [textContent]="structuredData"></script>
+    <app-guide-section index="06" heading="Häufige Fragen zur Laser-Haarentfernung" sectionId="faq">
+      <app-faq-item question="Wie viele Sitzungen brauche ich beim Diodenlaser?">
+        <p>
+          Haare wachsen in Zyklen, und nur Haare in der Wachstumsphase reagieren auf den
+          Laser – deshalb sind immer mehrere Sitzungen im Abstand von einigen Wochen nötig.
+          Wie viele genau, hängt von Körperzone, Haardichte und Hormonlage ab. Eine
+          realistische Einschätzung bekommst du in der kostenlosen Erstberatung.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Tut die Laser-Behandlung weh?">
+        <p>
+          Die meisten empfinden die Impulse als kurzes, warmes Zwicken – deutlich sanfter
+          als Wachsen oder Epilieren. Wir stimmen die Intensität individuell auf deine Haut
+          ab und tasten uns gemeinsam an das richtige Setting heran.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Für welche Haut- und Haartypen eignet sich der Diodenlaser?">
+        <p>
+          Am wirksamsten ist der Laser bei dunkleren Haaren. Durch die Kombination von vier
+          Wellenlängen und die KI-gestützte Hauterkennung kann unser Gerät mehr Haut- und
+          Haartypen behandeln als klassische IPL-Systeme. Für helle, feine oder graue Haare
+          empfehlen wir die <a routerLink="/behandlungen/nadelepilation">Elektrolyse</a> –
+          sie wirkt unabhängig von der Haarfarbe.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Ist das Ergebnis dauerhaft oder permanent?">
+        <p>
+          Der Diodenlaser erreicht eine <strong>dauerhafte</strong> Haarentfernung, also
+          eine deutliche, langanhaltende Reduktion des Haarwuchses.
+          <strong>Permanent</strong> ist in Deutschland allein die
+          <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a>, die
+          jede Haarwurzel einzeln und endgültig verödet. Bei FareWell bekommst du beide
+          Methoden – und eine ehrliche Empfehlung, was zu dir passt.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-cta heading="Sichere dir deine erste Behandlung zum halben Preis">
+      Buche online über Salonkee und gib den Code <strong>FIRSTLASER</strong> an – oder
+      starte mit der kostenlosen Erstberatung, wenn du erst Fragen klären möchtest.
+    </app-guide-cta>
+  </div>
+</div>

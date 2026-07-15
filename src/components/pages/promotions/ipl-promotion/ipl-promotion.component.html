@@ -1,75 +1,160 @@
-<app-image-hero
-  id="topSection"
-  [margin]="'large'"
-  title="IPL in Nürnberg gesucht? Moderne Alternative mit 4-Wellen-Diodenlaser"
-  titleType="soft"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [backgroundImage]="'assets/images/treatment/laser2.webp'"
-  [imageAlt]="'FareWell Studio in Nürnberg für professionelle dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser'"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [buttonList]="buttonList">
-</app-image-hero>
+<div class="gd">
+  <app-guide-progress />
+  <app-guide-top-button />
 
-<app-text-block
-  theme="light"
-  title="50 % mit dem Code ERSTEBEHANDLUNG auf Ihre erste Behandlung"
-  paragraphAlign="center"
-  paragraphSize="medium"
-  paragraphWeight="normal"
-  paragraphMaxWidth="wide"
-  titleType="blur">
+  <app-guide-hero
+    kicker="FareWell · Nürnberg · Neukunden-Aktion"
+    heading="IPL in Nürnberg gesucht? Entdecke die modernere Alternative"
+    tagline="Für immer sanft."
+    lead="Statt IPL setzen wir bewusst auf den 4-Wellen-Diodenlaser: präziser, wirksamer und für mehr Haut- und Haartypen geeignet. Für Neukunden: 50% Rabatt auf die erste Behandlung mit dem Code ERSTEBEHANDLUNG."
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <p>
-    Viele Menschen suchen nach <strong>IPL zur dauerhaften Haarentfernung in Nürnberg</strong>.
-    Bei FareWell setzen wir jedoch bewusst auf eine modernere und präzisere Technologie:
-    den <strong>4-Wellen-Diodenlaser</strong>.
-  </p>
+  <app-guide-stats [stats]="stats" />
 
-  <p>
-    Im Unterschied zu klassischen IPL-Systemen arbeitet der Diodenlaser nicht mit breit gestreutem Licht,
-    sondern mit <strong>gezielt abgestimmten Wellenlängen</strong>, die präzise auf das Haarfollikel wirken.
-    Dadurch ist die Behandlung in vielen Fällen kontrollierter, wirksamer und besser auf unterschiedliche
-    Haut- und Haartypen abstimmbar.
-  </p>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>Kurz gesagt</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          Viele suchen nach IPL zur dauerhaften Haarentfernung in Nürnberg. Bei FareWell
+          findest du bewusst kein IPL – sondern eine Technologie, die einen Schritt weiter
+          ist: den 4-Wellen-Diodenlaser mit KI-gestützter Hauterkennung.
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          Was das Gerät genau kann, liest du auf der Seite zum
+          <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a>. Oder
+          du überzeugst dich selbst – in der
+          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" />
+    </div>
 
-  <p>
-    Unser hochmoderner 4-Wellen-Diodenlaser kombiniert mehrere Wellenlängen, um unterschiedliche
-    Haartiefen und Haarstrukturen gleichzeitig zu erreichen. So können wir eine
-    <strong>dauerhafte Haarreduktion</strong> mit hoher Effizienz und guter Hautschonung ermöglichen.
-  </p>
+    <app-guide-section index="01" heading="Dein Neukunden-Angebot" sectionId="angebot">
+      <app-guide-offer
+        eyebrow="Neukunden-Aktion · nur für kurze Zeit"
+        headline="50% auf deine erste Behandlung"
+        sub="Online buchen und den Code bei der Buchung angeben – gilt für Neukundinnen und Neukunden."
+        badgeLabel="Promo-Code"
+        badgeValue="ERSTEBEHANDLUNG"
+      />
+      <p class="gd-lead-p gd-read" appReveal>
+        Alle regulären Preise findest du je Körperzone auf
+        <a routerLink="/price">unserer Preisseite</a> – transparent und ohne versteckte
+        Kosten. So kannst du moderne Laser-Haarentfernung in Nürnberg besonders günstig
+        kennenlernen.
+      </p>
+    </app-guide-section>
 
-  <p>
-    Zusätzlich verfügt unser Gerät der neuesten Generation über eine
-    <strong>KI-gestützte Hauterkennung</strong>. Diese analysiert den Hauttyp automatisch und unterstützt
-    eine individuell angepasste Behandlung – für maximale Sicherheit und ein gleichmäßigeres Ergebnis.
-  </p>
+    <app-guide-section index="02" heading="IPL vs. Diodenlaser" sectionId="ipl-vs-laser">
+      <p class="gd-lead-p gd-read" appReveal>
+        Beide Methoden arbeiten mit Licht – aber nicht gleich gut. Der entscheidende
+        Unterschied: IPL streut sein Licht breit über die Haut, der Diodenlaser bündelt
+        seine Energie gezielt auf das Haarfollikel.
+      </p>
+      <div class="gd-split">
+        <app-guide-panel heading="Klassisches IPL" dots="sand">
+          <li>Breit gestreutes Licht statt gezielter Energie</li>
+          <li>Weniger präzise auf das Haarfollikel abgestimmt</li>
+          <li>Oft mehr Sitzungen für ein vergleichbares Ergebnis</li>
+          <li>Bei manchen Haut- und Haartypen nur eingeschränkt geeignet</li>
+        </app-guide-panel>
+        <app-guide-panel heading="4-Wellen-Diodenlaser" tone="forest" [revealDelay]="60">
+          <li>Vier gezielt abgestimmte Wellenlängen wirken direkt auf das Follikel</li>
+          <li>Erreicht unterschiedliche Haartiefen und Haarstrukturen gleichzeitig</li>
+          <li>KI-gestützte Hauterkennung passt die Behandlung deinem Hauttyp an</li>
+          <li>Kontrollierter, wirksamer und hautschonender</li>
+        </app-guide-panel>
+      </div>
+      <app-guide-note variant="win" label="Deshalb kein IPL">
+        Wir haben uns bewusst gegen IPL entschieden: Für eine dauerhafte Haarreduktion
+        willst du die Energie dort, wo sie wirkt – an der Haarwurzel, nicht breit über der
+        Haut verteilt.
+      </app-guide-note>
+    </app-guide-section>
 
-  <h3>Warum FareWell in Nürnberg?</h3>
+    <app-guide-section index="03" heading="Warum FareWell in Nürnberg?" sectionId="warum-farewell">
+      <app-guide-checklist>
+        <li>Spezialisierung auf Haarentfernung: Elektrolyse (permanent) und moderne Laser-Technologie (dauerhaft)</li>
+        <li>4-Wellen-Diodenlaser der neuesten Generation mit KI-unterstützter Hautanalyse</li>
+        <li>Individuelle Haut- und Haaranalyse für einen abgestimmten Behandlungsplan</li>
+        <li>4,9 Sterne bei Google – ehrliche Beratung statt Verkaufsdruck</li>
+        <li>Modernes Studio im Zentrum von Nürnberg, wenige Gehminuten vom Hauptbahnhof</li>
+      </app-guide-checklist>
+      <app-guide-note variant="tip" label="Gut zu wissen">
+        Für helle, feine oder graue Haare, die weder Laser noch IPL erreichen, bieten wir
+        die <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a> –
+        die einzige in Deutschland rechtlich als permanent anerkannte Methode.
+      </app-guide-note>
+    </app-guide-section>
 
-  <ul>
-    <li>Spezialisierung auf Elektrolyse (permanente Haarentfernung) und moderne Laserhaarentfernung</li>
-    <li>Hochmoderner 4-Wellen-Diodenlaser mit KI-unterstützter Hautanalyse</li>
-    <li>Dauerhafte Haarreduktion an Gesicht und Körper</li>
-    <li>Individuelle Haut- und Haaranalyse für einen optimal abgestimmten Behandlungsplan</li>
-    <li>Modernes Studio im Zentrum von Nürnberg, in direkter Nähe zum Hauptbahnhof</li>
-  </ul>
+    <app-guide-section index="04" heading="So läuft es ab" sectionId="ablauf">
+      <app-guide-steps>
+        <li>
+          <strong>Kostenlose Erstberatung.</strong> Wir analysieren Haut und Haare – auch
+          wenn du schon IPL-Behandlungen hinter dir hast – und sagen dir ehrlich, was
+          realistisch ist.
+        </li>
+        <li>
+          <strong>Dein Behandlungsplan.</strong> Zonen, Sitzungen und Kosten besprechen wir
+          transparent, bevor es losgeht.
+        </li>
+        <li>
+          <strong>Die Sitzungen.</strong> In Abständen von einigen Wochen, abgestimmt auf
+          den Wachstumszyklus deiner Haare.
+        </li>
+        <li>
+          <strong>Das Ergebnis.</strong> Dauerhaft reduzierter Haarwuchs – Sitzung für
+          Sitzung feiner und lichter.
+        </li>
+      </app-guide-steps>
+    </app-guide-section>
 
-  <h3>50 Prozent Rabatt für Neukunden</h3>
+    <app-guide-section index="05" heading="Häufige Fragen" sectionId="faq">
+      <app-faq-item question="Warum bietet FareWell kein IPL an?">
+        <p>
+          Weil wir von der präziseren Technologie überzeugt sind: IPL arbeitet mit breit
+          gestreutem Licht, der
+          <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a> mit
+          gezielt abgestimmten Wellenlängen, die direkt auf das Haarfollikel wirken. Das
+          macht die Behandlung kontrollierter, wirksamer und für mehr Haut- und Haartypen
+          geeignet.
+        </p>
+      </app-faq-item>
 
-  <p>
-    Mit dem Code <strong>ERSTEBEHANDLUNG</strong> erhalten Sie
-    <strong>50 Prozent Rabatt auf Ihre erste Behandlung</strong>.
-    So können Sie die Vorteile moderner Laserhaarentfernung in Nürnberg besonders attraktiv kennenlernen.
-  </p>
+      <app-faq-item question="Ist IPL oder Diodenlaser besser für dauerhafte Haarentfernung?">
+        <p>
+          Der Diodenlaser gilt als die präzisere und meist wirksamere Methode: Er bündelt
+          die Energie gezielt auf das Haarfollikel, während IPL-Geräte ihr Licht breit
+          streuen. Unser 4-Wellen-Diodenlaser kombiniert zusätzlich mehrere Wellenlängen
+          und passt sich per KI-Hauterkennung deinem Hauttyp an.
+        </p>
+      </app-faq-item>
 
-  <p>
-    Buchen Sie Ihren Termin direkt online oder lassen Sie sich persönlich beraten.
-    Wir erklären Ihnen transparent, welche Methode für Ihre Haut, Ihre Haare und Ihr Ziel am besten geeignet ist.
-  </p>
+      <app-faq-item question="Ich habe schon IPL-Behandlungen hinter mir – kann ich zu FareWell wechseln?">
+        <p>
+          Ja, jederzeit. Bring am besten die Infos zu deinen bisherigen Behandlungen mit in
+          die kostenlose Erstberatung. Wir analysieren Haut und Haare, schauen uns den
+          aktuellen Stand an und erstellen dir einen ehrlichen Plan, wie es sinnvoll
+          weitergeht.
+        </p>
+      </app-faq-item>
 
-  <script type="application/ld+json" [textContent]="structuredData"></script>
-</app-text-block>
+      <app-faq-item question="Was kostet die erste Behandlung mit dem Neukunden-Code?">
+        <p>
+          Mit dem Code <strong>ERSTEBEHANDLUNG</strong> zahlst du auf deine erste
+          Behandlung nur die Hälfte des regulären Preises. Alle regulären Preise stehen je
+          Körperzone auf <a routerLink="/price">unserer Preisseite</a>. Die Erstberatung
+          ist kostenlos und unverbindlich.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-cta heading="Überzeug dich selbst – zum halben Preis">
+      Buche online über Salonkee und gib den Code <strong>ERSTEBEHANDLUNG</strong> an –
+      oder starte mit der kostenlosen Erstberatung, wenn du erst vergleichen möchtest.
+    </app-guide-cta>
+  </div>
+</div>

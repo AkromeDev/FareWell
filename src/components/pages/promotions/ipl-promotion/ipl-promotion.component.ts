@@ -1,114 +1,160 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { SeoService } from 'src/services/seo.service';
+import {
+  GUIDE_COMPONENTS,
+  GuideStat,
+  GuideTocItem,
+} from 'src/components/molecules/guide';
 
-import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
-import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
-import { ButtonItem } from 'src/models/ButtonItem';
+const PAGE_PATH = '/ipl-dauerhafte-haarentfernung-aktion-nuernberg';
+const PAGE_URL = `https://farewell.salon${PAGE_PATH}`;
+const PAGE_TITLE = 'IPL-Haarentfernung in Nürnberg? Die modernere Alternative | FareWell';
+const PAGE_DESCRIPTION =
+  'Du suchst IPL zur dauerhaften Haarentfernung in Nürnberg? FareWell setzt bewusst auf den präziseren 4-Wellen-Diodenlaser mit KI-Hautanalyse. Jetzt 50% Rabatt auf die erste Behandlung mit dem Code ERSTEBEHANDLUNG.';
+const HERO_IMAGE = 'assets/images/treatment/laser2.webp';
+const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
+const HERO_IMAGE_ALT =
+  'FareWell Studio in Nürnberg für professionelle dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser';
+
+interface FaqJsonLdEntry {
+  question: string;
+  answer: string;
+}
 
 @Component({
   standalone: true,
   selector: 'app-ipl-promotion',
-  imports: [ImageHeroComponent, TextBlockComponent],
+  imports: [...GUIDE_COMPONENTS, RevealOnScrollDirective, RouterLink],
   templateUrl: './ipl-promotion.component.html',
-  styleUrl: './ipl-promotion.component.scss'
 })
-export class IplPromotionComponent implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class IplPromotionComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
+  private readonly jsonLdId = 'ipl-promotion-schema';
 
-  private readonly pageUrl =
-    'https://www.farewell.salon/ipl-dauerhafte-haarentfernung-aktion-nuernberg';
-  private readonly heroImageUrl =
-    'https://www.farewell.salon/assets/images/treatment/laser2.webp';
+  readonly heroImage = HERO_IMAGE;
+  readonly heroImageAlt = HERO_IMAGE_ALT;
 
-  paragraphText: string = `
-Sie suchen nach IPL zur dauerhaften Haarentfernung in Nürnberg?
-
-Bei FareWell arbeiten wir mit moderner 4-Wellen-Diodenlaser-Technologie – einer präzisen, leistungsstarken und hautschonenden Alternative zu klassischen IPL-Systemen.
-
-Exklusiv für Neukundinnen und Neukunden:
-50 % Rabatt auf die erste Behandlung mit dem Code ERSTEBEHANDLUNG.
-`;
-
-  buttonList: ButtonItem[] = [
-    { label: 'Unsere Preise', link: '/price', theme: 'dark' },
-    {
-      label: 'Termin buchen',
-      link: 'https://salonkee.de/salon/farewell?lang=de',
-      theme: 'dark',
-      external: true,
-      analyticsEvent: 'generate_lead',
-      analyticsLocation: 'ipl-page',
-      analyticsLabel: 'Termin Buchen IPL Page'
-  }
+  readonly stats: GuideStat[] = [
+    { value: '4', label: 'Wellenlängen statt breitem Streulicht' },
+    { value: 'KI', label: 'gestützte Hauterkennung' },
+    { value: '50%', label: 'Rabatt auf deine erste Behandlung' },
+    { value: 'gratis', label: 'Erstberatung mit Hautanalyse' },
   ];
 
-  structuredData = '';
+  readonly toc: GuideTocItem[] = [
+    { id: 'angebot', label: 'Neukunden-Angebot' },
+    { id: 'ipl-vs-laser', label: 'IPL vs. Diodenlaser' },
+    { id: 'warum-farewell', label: 'Warum FareWell' },
+    { id: 'ablauf', label: 'So läuft es ab' },
+    { id: 'faq', label: 'Häufige Fragen' },
+  ];
+
+  /**
+   * Fragen und Antworten als Klartext für das FAQPage-Schema. Inhaltlich
+   * deckungsgleich mit dem sichtbaren Akkordeon im Template halten!
+   */
+  private readonly faqEntries: FaqJsonLdEntry[] = [
+    {
+      question: 'Warum bietet FareWell kein IPL an?',
+      answer:
+        'Weil wir von der präziseren Technologie überzeugt sind: IPL arbeitet mit breit gestreutem Licht, der 4-Wellen-Diodenlaser mit gezielt abgestimmten Wellenlängen, die direkt auf das Haarfollikel wirken. Das macht die Behandlung kontrollierter, wirksamer und für mehr Haut- und Haartypen geeignet.',
+    },
+    {
+      question: 'Ist IPL oder Diodenlaser besser für dauerhafte Haarentfernung?',
+      answer:
+        'Der Diodenlaser gilt als die präzisere und meist wirksamere Methode: Er bündelt die Energie gezielt auf das Haarfollikel, während IPL-Geräte ihr Licht breit streuen. Unser 4-Wellen-Diodenlaser kombiniert zusätzlich mehrere Wellenlängen und passt sich per KI-Hauterkennung deinem Hauttyp an.',
+    },
+    {
+      question: 'Ich habe schon IPL-Behandlungen hinter mir – kann ich zu FareWell wechseln?',
+      answer:
+        'Ja, jederzeit. Bring am besten die Infos zu deinen bisherigen Behandlungen mit in die kostenlose Erstberatung. Wir analysieren Haut und Haare, schauen uns den aktuellen Stand an und erstellen dir einen ehrlichen Plan, wie es sinnvoll weitergeht.',
+    },
+    {
+      question: 'Was kostet die erste Behandlung mit dem Neukunden-Code?',
+      answer:
+        'Mit dem Code ERSTEBEHANDLUNG zahlst du auf deine erste Behandlung nur die Hälfte des regulären Preises. Alle regulären Preise stehen je Körperzone auf unserer Preisseite unter farewell.salon/price. Die Erstberatung ist kostenlos und unverbindlich.',
+    },
+  ];
 
   ngOnInit(): void {
-    this.setSeoTags();
-    this.setStructuredData();
-  }
+    this.seo.setPageSeo({
+      title: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      path: PAGE_PATH,
+      image: HERO_IMAGE_URL,
+      imageAlt: HERO_IMAGE_ALT,
+      largeImage: true,
+    });
 
-  private setSeoTags(): void {
-    const pageTitle =
-      'IPL Alternative in Nürnberg: 4-Wellen-Diodenlaser | FareWell';
-    const description =
-      'Sie suchen nach IPL in Nürnberg? Bei FareWell erhalten Sie eine moderne Alternative: dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser. Jetzt 50 % Rabatt auf die erste Behandlung für Neukunden.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
-
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-  }
-
-  private setStructuredData(): void {
-    const jsonLd = {
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
-      '@type': 'Service',
-      name: 'Dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser',
-      description:
-        'Moderne Alternative zu IPL in Nürnberg: dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser bei FareWell. 50 % Rabatt auf die erste Behandlung für Neukundinnen und Neukunden.',
-      serviceType: 'Laser Haarentfernung',
-      url: this.pageUrl,
-      image: this.heroImageUrl,
-      areaServed: {
-        '@type': 'City',
-        name: 'Nürnberg'
-      },
-      provider: {
-        '@type': 'BeautySalon',
-        name: 'FareWell',
-        url: 'https://www.farewell.salon',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: 'Frauentorgraben 5',
-          addressLocality: 'Nürnberg',
-          postalCode: '90443',
-          addressCountry: 'DE'
-        }
-      },
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: 'EUR',
-        description: '50 % Rabatt auf die erste Behandlung für Neukundinnen und Neukunden',
-        url: this.pageUrl
-      }
-    };
+      '@graph': [
+        {
+          '@type': 'Service',
+          '@id': `${PAGE_URL}#service`,
+          name: 'Dauerhafte Haarentfernung in Nürnberg – moderne Alternative zu IPL',
+          description:
+            'Dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser statt IPL bei FareWell in Nürnberg. 50% Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.',
+          serviceType: 'Dauerhafte Haarentfernung',
+          areaServed: { '@type': 'City', name: 'Nürnberg' },
+          provider: {
+            '@type': 'BeautySalon',
+            '@id': 'https://farewell.salon/#organization',
+            name: 'FareWell',
+            url: 'https://farewell.salon',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'Frauentorgraben 5',
+              postalCode: '90443',
+              addressLocality: 'Nürnberg',
+              addressCountry: 'DE',
+            },
+          },
+          offers: {
+            '@type': 'Offer',
+            name: '50% Rabatt auf die erste Behandlung',
+            description:
+              'Neukundenangebot für die erste Behandlung zur dauerhaften Haarentfernung bei FareWell in Nürnberg. Code: ERSTEBEHANDLUNG.',
+            url: PAGE_URL,
+            priceCurrency: 'EUR',
+            availability: 'https://schema.org/InStock',
+            eligibleCustomerType: { '@type': 'BusinessEntityType', name: 'Neukunden' },
+          },
+        },
+        {
+          '@type': 'WebPage',
+          '@id': `${PAGE_URL}#webpage`,
+          url: PAGE_URL,
+          name: PAGE_TITLE,
+          description: PAGE_DESCRIPTION,
+          inLanguage: 'de',
+          about: { '@id': `${PAGE_URL}#service` },
+          primaryImageOfPage: { '@type': 'ImageObject', url: HERO_IMAGE_URL },
+        },
+        {
+          '@type': 'FAQPage',
+          '@id': `${PAGE_URL}#faq`,
+          url: `${PAGE_URL}#faq`,
+          mainEntity: this.faqEntries.map((entry) => ({
+            '@type': 'Question',
+            name: entry.question,
+            acceptedAnswer: { '@type': 'Answer', text: entry.answer },
+          })),
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
+            { '@type': 'ListItem', position: 2, name: 'IPL-Alternative Nürnberg', item: PAGE_URL },
+          ],
+        },
+      ],
+    });
+  }
 
-    this.structuredData = JSON.stringify(jsonLd);
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 }

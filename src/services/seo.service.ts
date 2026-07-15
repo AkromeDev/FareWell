@@ -14,6 +14,8 @@ export interface PageSeo {
   type?: 'website' | 'article';
   image?: string;
   imageAlt?: string;
+  /** Twitter-Card mit großem Bild; für Promo-/Landing-Pages mit Hero-Foto. */
+  largeImage?: boolean;
 }
 
 const ORIGIN = 'https://farewell.salon';
@@ -50,7 +52,10 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:locale', content: seo.locale ?? 'de_DE' });
     this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
 
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+    this.meta.updateTag({
+      name: 'twitter:card',
+      content: seo.largeImage ? 'summary_large_image' : 'summary',
+    });
     this.meta.updateTag({ name: 'twitter:title', content: seo.title });
     this.meta.updateTag({ name: 'twitter:description', content: seo.description });
     this.meta.updateTag({ name: 'twitter:image', content: image });
