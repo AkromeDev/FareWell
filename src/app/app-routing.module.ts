@@ -123,6 +123,67 @@ const routes: Routes = [
   },
 
   {
+    path: 'faq',
+    loadComponent: () =>
+      import('../components/pages/faq/faq.component').then(m => m.FaqComponent),
+    data: {
+      title: 'FAQ – Häufige Fragen zu Haarentfernung & Behandlungen | FareWell Nürnberg',
+      description: 'Antworten auf die häufigsten Fragen an FareWell Nürnberg: Elektrolyse vs. Diodenlaser, Termine & Preise, Kostenübernahme durch die Krankenkasse, Steuer und US-Forces-Mehrwertsteuerbefreiung.'
+    }
+  },
+  {
+    path: 'ratgeber',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/faq'
+      },
+      {
+        path: 'epilation-krankenkasse',
+        loadComponent: () =>
+          import('../components/pages/ratgeber/krankenkasse-epilation/krankenkasse-epilation.component')
+            .then(m => m.KrankenkasseEpilationComponent),
+        data: {
+          title: 'Epilation über die Krankenkasse – Leitfaden für trans Personen | FareWell Nürnberg',
+          description: 'So bekommst du deine Haarentfernung im Gesicht als Kassenleistung: Ärztevorbehalt, ärztliche Delegation bei FareWell, Antrag in 5 Schritten, Fristen und Widerspruch.'
+        }
+      },
+      {
+        path: 'haarentfernung-steuer-absetzen',
+        loadComponent: () =>
+          import('../components/pages/ratgeber/steuer-absetzen/steuer-absetzen.component')
+            .then(m => m.SteuerAbsetzenComponent),
+        data: {
+          title: 'Haarentfernung von der Steuer absetzen – Leitfaden für trans Personen | FareWell Nürnberg',
+          description: 'Laser und Nadelepilation als außergewöhnliche Belastung absetzen: welche Nachweise das Finanzamt verlangt, wie du vorgehst und was FareWell dir dafür ausstellt.'
+        }
+      },
+      {
+        path: 'mehrwertsteuer-us-streitkraefte',
+        loadComponent: () =>
+          import('../components/pages/ratgeber/mwst-us-streitkraefte/mwst-us-streitkraefte.component')
+            .then(m => m.MwstUsStreitkraefteComponent),
+        data: {
+          title: 'Mehrwertsteuerbefreiung für US-Streitkräfte (SOFA) – so funktioniert\'s | FareWell Nürnberg',
+          description: 'NF1-Formular oder Remonon-App: So kaufen Angehörige der US-Streitkräfte in Deutschland ohne die 19% Mehrwertsteuer ein – Schritt für Schritt, mit FareWell als Beispiel.'
+        }
+      },
+      {
+        path: 'us-forces-vat-relief',
+        loadComponent: () =>
+          import('../components/pages/ratgeber/us-forces-vat-relief/us-forces-vat-relief.component')
+            .then(m => m.UsForcesVatReliefComponent),
+        data: {
+          title: 'US Forces VAT Relief in Germany – NF1 Forms & Remonon Explained | FareWell Nürnberg',
+          description: 'How US Forces members stop paying the 19% German VAT: NF1 and NF2 forms, the Remonon app, the five rules to keep it valid – plus 20% off laser hair removal for life.',
+          lang: 'en'
+        }
+      }
+    ]
+  },
+
+  {
     path: 'karriere/masseur-nuernberg',
     loadComponent: () =>
       import('../components/pages/karriere/masseur-karriere/masseur-karriere.component')

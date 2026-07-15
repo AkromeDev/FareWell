@@ -1,0 +1,266 @@
+<div class="gd">
+  <app-guide-hero
+    kicker="FareWell · Nürnberg"
+    heading="Häufige Fragen"
+    tagline="Für immer sanft."
+    lead="Alles Wichtige zu Behandlungen, Terminen, Preisen, Kostenübernahme und Mehrwertsteuer­befreiung – ehrlich und verständlich beantwortet."
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>Kurz gesagt</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          Hier findest du die Antworten, die wir in der Erstberatung am häufigsten geben – von
+          der richtigen Methode bis zur Kostenübernahme durch die Krankenkasse.
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          Deine Frage ist nicht dabei? Schreib uns auf
+          <a href="https://www.instagram.com/farewell.salon/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          oder buche direkt deine
+          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlose Erstberatung</a>
+          – wir nehmen uns Zeit.
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" />
+    </div>
+
+    <app-guide-section index="01" heading="Behandlungen &amp; Methoden" sectionId="behandlungen">
+      <app-faq-item question="Was ist der Unterschied zwischen permanenter und dauerhafter Haarentfernung?">
+        <p>
+          <strong>Permanent</strong> ist in Deutschland allein die
+          <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a>: Jede
+          Haarwurzel wird einzeln und endgültig verödet – die einzige rechtlich als permanent
+          anerkannte Methode.
+        </p>
+        <p>
+          Der <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser</a> erreicht eine
+          <strong>dauerhafte</strong> Haarentfernung, also eine deutliche, langanhaltende
+          Reduktion – ideal für größere Zonen. Bei FareWell bekommst du beide Methoden und eine
+          ehrliche Empfehlung, was für dich passt.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Welche Behandlungen bietet FareWell an?">
+        <ul>
+          <li>
+            <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a> –
+            permanente Haarentfernung
+          </li>
+          <li>
+            <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser (4 Wellen)</a> –
+            dauerhafte Haarentfernung
+          </li>
+          <li>
+            <a routerLink="/behandlungen/microneedling-radiofrequenz">Microneedling mit Radiofrequenz</a>
+            – Hautverjüngung
+          </li>
+          <li><a routerLink="/behandlungen/kavitation">Kavitation</a> – Körperformung</li>
+          <li>
+            <a routerLink="/behandlungen/wellness-massage">Wellness-</a> und
+            <a routerLink="/behandlungen/therapeutische-massage">therapeutische Massagen</a>
+          </li>
+        </ul>
+      </app-faq-item>
+
+      <app-faq-item question="Welche Methode der Haarentfernung passt zu mir?">
+        <p>
+          Als Faustregel: Helle, feine, rötliche oder vereinzelte Haare und kleine Zonen wie
+          das Gesicht sprechen für die Elektrolyse. Dunklere Haare auf größeren Flächen wie
+          Beinen, Rücken oder Achseln sprechen für den Diodenlaser.
+        </p>
+        <p>
+          In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an und
+          empfehlen dir die passende Methode.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Wie viele Sitzungen brauche ich?">
+        <p>
+          Haare wachsen in Zyklen, und nur Haare in der Wachstumsphase lassen sich wirksam
+          behandeln – deshalb sind immer mehrere Sitzungen nötig. Wie viele genau, hängt von
+          Körperzone, Haardichte und Hormonlage ab. Eine realistische Einschätzung bekommst du
+          in der kostenlosen Erstberatung.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-section index="02" heading="Termine, Beratung &amp; Preise" sectionId="termine">
+      <app-faq-item question="Wie buche ich einen Termin bei FareWell?">
+        <p>
+          Am einfachsten online über
+          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>
+          – rund um die Uhr, mit sofortiger Bestätigung. Alternativ erreichst du uns per
+          <a href="https://www.instagram.com/farewell.salon/" target="_blank" rel="noopener noreferrer">Instagram-Nachricht</a>
+          oder telefonisch unter <a href="tel:+4915757995694">+49 157 5799 5694</a>.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Was kostet eine Behandlung?">
+        <p>
+          Alle Preise stehen transparent je Körperzone auf
+          <a routerLink="/price">unserer Preisseite</a>. Die Erstberatung ist kostenlos, und
+          für den Kassenantrag erstellen wir dir einen schriftlichen Kostenvoranschlag.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Ist die Erstberatung wirklich kostenlos?">
+        <p>
+          Ja. Wir schauen uns deine Haut- und Haarsituation an, besprechen Methode, Ablauf,
+          Sitzungsanzahl und Kosten – ohne Berechnung und ohne Verpflichtung.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      heading="Krankenkasse &amp; Steuer"
+      sectionId="kostenuebernahme"
+    >
+      <app-faq-item question="Übernimmt die Krankenkasse die Epilation bei Geschlechtsangleichung?">
+        <p>
+          Ja, das ist möglich. Die Kasse übernimmt Epilation als Sachleistung, wenn sie
+          medizinisch notwendig ist (§ 27 SGB V), etwa bei der Diagnose Geschlechtsinkongruenz
+          (ICD F64.0). Der Knackpunkt ist der Ärztevorbehalt (§ 28 SGB V): Die Behandlung muss
+          als ärztliche Leistung gelten. Weil FareWell mit einer delegierenden Ärztin arbeitet,
+          ist genau das gelöst.
+        </p>
+        <p>
+          Wichtig: Der Antrag muss <strong>vor Behandlungsbeginn</strong> gestellt werden. Alle
+          Schritte, Fristen und der Widerspruch stehen in unserem Leitfaden
+          <a routerLink="/ratgeber/epilation-krankenkasse">„Epilation über die Krankenkasse“</a>.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Was bedeutet „ärztliche Delegation“ bei FareWell?">
+        <p>
+          Eine Ärztin delegiert die Epilationsbehandlung an unser geschultes Team und bleibt
+          medizinisch verantwortlich. Dadurch zählt die Nadelepilation bei FareWell als
+          ärztlich delegierte Leistung – die Voraussetzung dafür, dass die Krankenkasse sie als
+          Sachleistung übernehmen kann. Für deinen Antrag erstellen wir gemeinsam den
+          Kostenvoranschlag.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Kann ich die Behandlungskosten von der Steuer absetzen?">
+        <p>
+          Ja – den Anteil, den du selbst trägst, kannst du als außergewöhnliche Belastung in
+          der Steuererklärung geltend machen, wenn die medizinische Notwendigkeit dokumentiert
+          ist (z.&nbsp;B. bei Behandlungen im Zuge der Geschlechtsangleichung). Elektrolyse und
+          Diodenlaser werden steuerlich gleich behandelt.
+        </p>
+        <p>
+          Du brauchst drei Bausteine: den medizinischen Nachweis, ordentliche Rechnungen von
+          FareWell und Zahlungsbelege. Die Details stehen in unserem
+          <a routerLink="/ratgeber/haarentfernung-steuer-absetzen">Steuer-Leitfaden</a>.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Was brauche ich von meiner Ärztin, bevor ich starte?">
+        <p>
+          Die Diagnose (Geschlechtsdysphorie bzw. Geschlechtsinkongruenz, ICD F64.0) und eine
+          Bescheinigung, dass die Haarentfernung zur Geschlechtsangleichung medizinisch
+          notwendig ist – idealerweise ausgestellt vor der ersten Sitzung. Für den Kassenantrag
+          kommt der ärztliche Bericht dazu.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      heading="US Forces &amp; Mehrwertsteuer"
+      sectionId="us-forces"
+    >
+      <app-faq-item question="Ich gehöre zu den US-Streitkräften – kann ich ohne Mehrwertsteuer zahlen?">
+        <p>
+          Ja. Dank des NATO-Truppenstatuts (SOFA) stellen wir dir mit einem NF1-Formular die
+          Behandlung ohne die deutsche Mehrwertsteuer von 19% aus – das Formular musst du
+          <strong>vor der Zahlung</strong> vorlegen. Alternativ zahlst du voll und holst dir
+          die Mehrwertsteuer über die Remonon-App zurück.
+        </p>
+        <p>
+          Beide Wege erklärt unser
+          <a routerLink="/ratgeber/mehrwertsteuer-us-streitkraefte">Leitfaden zur Mehrwertsteuerbefreiung</a>
+          – auch <a routerLink="/ratgeber/us-forces-vat-relief">auf Englisch</a>.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item lang="en" question="Do you offer VAT-free treatments for US Forces members?">
+        <p lang="en">
+          Yes. Under the Status of Forces Agreement, present your NF1 form before you pay and
+          we bill you without the 19% German VAT. You can also pay in full and reclaim the VAT
+          through the Remonon app. On top of that, US Forces members get 20% off laser hair
+          removal for life with the promo code <strong>USLASER</strong>.
+        </p>
+        <p lang="en">
+          Read our English guide
+          <a routerLink="/ratgeber/us-forces-vat-relief">“US Forces VAT relief in Germany”</a>
+          for the full walkthrough.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Gibt es einen Rabatt für US-Streitkräfte?">
+        <p>
+          Ja: <strong>20% lebenslang</strong> auf Laser-Haarentfernung mit dem Promo-Code
+          <strong>USLASER</strong> – zusätzlich kombinierbar mit der Mehrwertsteuerbefreiung.
+          Eine Laserbehandlung von 150&nbsp;€ kostet so rund 100&nbsp;€, etwa ein Drittel
+          weniger.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-section index="05" heading="Kontakt &amp; Öffnungszeiten" sectionId="kontakt">
+      <app-faq-item question="Wo finde ich FareWell?">
+        <p>
+          Im Zentrum von Nürnberg:
+          <a href="https://g.co/kgs/ycCwT2s" target="_blank" rel="noopener noreferrer">Frauentorgraben 5, 90443 Nürnberg</a>
+          – wenige Gehminuten vom Hauptbahnhof und Opernhaus entfernt.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item question="Welche Öffnungszeiten hat FareWell?">
+        <p>
+          Montag bis Freitag 10–20 Uhr, Samstag 8–17 Uhr. Termine vereinbarst du am besten
+          online über
+          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-section index="06" heading="Ratgeber zum Vertiefen" sectionId="ratgeber">
+      <p class="gd-lead-p gd-read" appReveal>
+        Für die großen Themen haben wir ausführliche Leitfaden-Seiten – Schritt für Schritt,
+        mit allen Fristen, Formularen und Nachweisen.
+      </p>
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="🏥" heading="Epilation über die Krankenkasse">
+          Für trans Personen: Wie die Haarentfernung im Gesicht zur Kassenleistung wird – mit
+          ärztlicher Delegation bei FareWell.
+          <a routerLink="/ratgeber/epilation-krankenkasse">Zum Leitfaden</a>
+        </app-guide-card>
+        <app-guide-card icon="🧾" heading="Behandlungskosten steuerlich absetzen" [revealDelay]="60">
+          Selbst getragene Kosten als außergewöhnliche Belastung geltend machen – welche
+          Nachweise das Finanzamt sehen will.
+          <a routerLink="/ratgeber/haarentfernung-steuer-absetzen">Zum Leitfaden</a>
+        </app-guide-card>
+        <app-guide-card icon="🇩🇪" heading="Mehrwertsteuerbefreiung für US-Streitkräfte" [revealDelay]="120">
+          NF1-Formular oder Remonon-App: So funktioniert das Einkaufen ohne die deutsche
+          Mehrwertsteuer – auf Deutsch erklärt.
+          <a routerLink="/ratgeber/mehrwertsteuer-us-streitkraefte">Zum Leitfaden</a>
+        </app-guide-card>
+        <app-guide-card icon="🇺🇸" heading="US Forces VAT relief in Germany" [revealDelay]="180">
+          The English walkthrough: NF1 forms, the Remonon app, the five rules – and your
+          lifelong USLASER discount.
+          <a routerLink="/ratgeber/us-forces-vat-relief">Read the guide</a>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta heading="Deine Frage war nicht dabei?">
+      Schreib uns auf Instagram oder buche direkt deine kostenlose Erstberatung – wir nehmen
+      uns Zeit für deine Fragen.
+    </app-guide-cta>
+  </div>
+</div>

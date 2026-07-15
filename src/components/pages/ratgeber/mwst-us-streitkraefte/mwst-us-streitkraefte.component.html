@@ -1,0 +1,245 @@
+<div class="gd">
+  <app-guide-hero
+    kicker="Kundenleitfaden · US Streitkräfte · SOFA"
+    heading="Mehrwertsteuerbefreiung für US-Streitkräfte"
+    tagline="Für immer sanft."
+    lead="So sparen Sie in Deutschland auf fast alles die Mehrwertsteuer – mit FareWell als Beispiel."
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>Kurz gesagt</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          Dank des NATO-Truppenstatuts kaufen Sie die meisten Waren und Dienstleistungen ohne
+          die deutsche Mehrwertsteuer – mit einem Papierformular vorab oder per App im
+          Nachhinein.
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          Als Angehörige der US-Streitkräfte in Deutschland können Sie dank des
+          NATO-Truppenstatuts die meisten Waren und Dienstleistungen ohne die deutsche
+          Mehrwertsteuer von 19% (oder 7% bei einigen Artikeln) kaufen. Das gilt fast überall:
+          Einkäufe, Möbel und Elektronik, Autoreparaturen, Restaurants, Hotels, Mietwagen und
+          natürlich Beauty- und Wellness-Behandlungen. Dieser Leitfaden erklärt, wie das System
+          funktioniert und welche zwei einfachen Wege es gibt. Als Beispiel nutzen wir eine
+          Behandlung bei FareWell, dieselben Schritte gelten aber für fast jeden Einkauf.
+        </p>
+        <p class="gd-fine" lang="en" appReveal [revealDelay]="180">
+          This guide is also available in English:
+          <a routerLink="/ratgeber/us-forces-vat-relief">US Forces VAT relief in Germany</a>.
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" />
+    </div>
+
+    <app-guide-section index="01" heading="Wer es nutzen kann" sectionId="wer">
+      <div class="gd-read">
+        <ul class="gd-ticks" appReveal>
+          <li>
+            Berechtigt: Angehörige der US-Streitkräfte, DoD-Zivilangestellte und registrierte
+            Familienangehörige.
+          </li>
+          <li>
+            Der Sponsor registriert sich einmalig in einem VAT Office und fügt dann
+            Familienangehörige hinzu.
+          </li>
+          <li>
+            Für Rückerstattungen über die App benötigen Sie ein deutsches Bankkonto (IBAN).
+          </li>
+          <li>
+            VAT Offices in der Nähe: USAG Bavaria (Grafenwöhr, Vilseck, Hohenfels) und USAG
+            Ansbach.
+          </li>
+        </ul>
+        <p class="gd-fine">
+          Die Steuerbefreiung ist ein Privileg, kein Anspruch, und die Teilnahme der Händler
+          ist freiwillig.
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="02" heading="Wofür es gilt, und wofür nicht" sectionId="wofuer">
+      <div class="gd-split">
+        <app-guide-panel heading="Gilt für" tone="forest">
+          <li>Einkäufe, Kleidung, Möbel, Elektronik</li>
+          <li>Autokauf, Reparaturen, Teile und Mietwagen</li>
+          <li>Restaurants und Essen gehen</li>
+          <li>Hotelübernachtungen und viele Lebensmittel (mit 7%)</li>
+          <li>Beauty- und Wellness-Behandlungen</li>
+        </app-guide-panel>
+        <app-guide-panel heading="Nicht erlaubt" tone="sage" dots="sand" [revealDelay]="60">
+          <li>Käufe für nicht berechtigte Personen</li>
+          <li>
+            Langfristige Verträge: Strom, Telefon, Leasing (dafür gibt es das separate
+            UTAP-Programm)
+          </li>
+          <li>Kraftstoff, Tabak und Alkohol zum Mitnehmen (rationierte Waren)</li>
+          <li>Fahrzeuge mit deutscher Zulassung und Immobilien</li>
+          <li>Alles ohne Mehrwertsteuer im Preis, etwa manche medizinischen Leistungen</li>
+        </app-guide-panel>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="03" heading="Die zwei VAT-Formulare" sectionId="formulare">
+      <div class="gd-read">
+        <p class="gd-lead-p" appReveal>
+          Alles läuft über zwei Papierformulare, die Sie vorab im VAT Office kaufen.
+        </p>
+      </div>
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="📄" heading="NF1-Formular · bis €2.499,99">
+          Für Einkäufe bis €2.499,99 (ohne Mehrwertsteuer). Kostet ca. $10, ist zwei Jahre
+          gültig, bis zu 10 Stück gleichzeitig möglich.
+        </app-guide-card>
+        <app-guide-card icon="📑" heading="NF2-Formular · ab €2.500" [revealDelay]="60">
+          Für Einkäufe ab €2.500. Kostet ca. $100, ist drei Monate gültig, und Sie müssen dem
+          VAT Office vorab einen schriftlichen Kostenvoranschlag vorlegen.
+        </app-guide-card>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="rule" label="Die goldene Regel">
+          Das Formular vor der Bestellung oder Zahlung vorlegen, nie danach.
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="04" heading="Zwei Wege zum Sparen" sectionId="wege">
+      <div class="gd-split">
+        <app-guide-panel
+          heading="1 · Das klassische Formular"
+          tone="forest"
+          intro="Sofort den Nettopreis zahlen"
+        >
+          <li>Kaufen Sie das passende Formular (NF1 oder NF2) im VAT Office.</li>
+          <li>Zeigen Sie es dem Händler, bevor Sie buchen oder zahlen.</li>
+          <li>
+            Der Händler stellt ohne Mehrwertsteuer aus, Sie zahlen den Nettopreis und sparen
+            den vollen Betrag, rund 16%.
+          </li>
+          <li>
+            Ideal für größere oder geplante Einkäufe: Möbel, ein Behandlungspaket, eine
+            Autoreparatur.
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          heading="2 · Die Remonon-App"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+          intro="Voll zahlen, Mehrwertsteuer später zurück"
+        >
+          <li>
+            Das deutsche Unternehmen NOVAT betreibt die vom US-Militär unterstützte App
+            Remonon.
+          </li>
+          <li>
+            Registrieren Sie sich im VAT Office für Ihre IVN, kaufen Sie zu Monatsbeginn ein
+            NF1-Formular und laden Sie es hoch.
+          </li>
+          <li>Zahlen Sie den vollen Preis mit Karte und scannen Sie den Beleg in die App.</li>
+          <li>
+            Sie erhalten rund 14% bei 19%-Artikeln (4% bei 7%-Artikeln) auf Ihr Konto; NOVAT
+            behält eine kleine Marge.
+          </li>
+          <li>
+            Jeder Beleg bis €240, bis €2.499,99 pro Haushalt und Monat, alles auf diesem einen
+            Formular.
+          </li>
+          <li>
+            Ideal für kleine Alltagskäufe, bei denen sich ein einzelnes Formular für $10 nicht
+            lohnt.
+          </li>
+        </app-guide-panel>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="05"
+      heading="Fünf Regeln, damit alles gültig bleibt"
+      sectionId="regeln"
+    >
+      <div class="gd-read">
+        <app-guide-checklist>
+          <li>Das Formular immer vor dem Kauf vorlegen, nie danach.</li>
+          <li>
+            Mehrere Käufe beim selben Händler nur innerhalb eines Kalendermonats auf einem
+            Formular bündeln.
+          </li>
+          <li>Nur für den persönlichen Gebrauch, nie für nicht berechtigte Personen.</li>
+          <li>
+            Einen Kauf niemals auf mehrere Formulare aufteilen, um unter die Grenze von €2.500
+            zu kommen.
+          </li>
+          <li>Sie können nur die Mehrwertsteuer entfernen, die tatsächlich im Preis steckt.</li>
+        </app-guide-checklist>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="06" heading="Ihr exklusives Angebot" sectionId="angebot">
+      <div class="gd-read">
+        <p class="gd-lead-p" appReveal>
+          Zusätzlich zur Steuerersparnis ist dies unser dauerhaftes Dankeschön an die
+          US-Streitkräfte.
+        </p>
+      </div>
+      <app-guide-offer
+        eyebrow="Exklusiv für US-Streitkräfte"
+        headline="20% lebenslang"
+        sub="auf Laser-Haarentfernung, exklusiv für US-Streitkräfte"
+        badgeLabel="Promo-Code"
+        badgeValue="USLASER"
+      />
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>Eine Laserbehandlung von €150, Schritt für Schritt</p>
+      </div>
+      <div class="gd-table-wrap" appReveal tabindex="0" role="region" aria-label="Preisvergleich als Tabelle">
+        <table>
+          <thead>
+            <tr>
+              <th>Weg</th>
+              <th class="num">Sie zahlen effektiv</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Remonon-App: €150 zahlen, rund €21 Mehrwertsteuer kommen zurück</td>
+              <td class="num">≈ 129</td>
+            </tr>
+            <tr>
+              <td>NF1-Formular: wir stellen ohne Mehrwertsteuer aus</td>
+              <td class="num">126</td>
+            </tr>
+            <tr class="total">
+              <td>Zuerst Code USLASER (€120), dann die Mehrwertsteuer abziehen</td>
+              <td class="num">≈ 100</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="gd-read">
+        <p class="gd-fine">
+          Rund ein Drittel günstiger. Preise gerundet; es gilt der jeweils aktuelle
+          Behandlungspreis.
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="07" heading="Weiterlesen" sectionId="weiterlesen">
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="🇺🇸" heading="US Forces VAT relief in Germany">
+          <a routerLink="/ratgeber/us-forces-vat-relief" lang="en">Read this guide in English</a>
+        </app-guide-card>
+        <app-guide-card icon="💬" heading="Häufige Fragen" [revealDelay]="60">
+          <a routerLink="/faq">Zu den FAQ</a>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta heading="Bereit für Ihren Termin?">
+      Buchen Sie Ihren Termin über Salonkee oder folgen Sie uns auf Instagram für Angebote und
+      Ergebnisse.
+    </app-guide-cta>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import {
   OnInit,
   PLATFORM_ID,
   Renderer2,
+  RendererStyleFlags2,
   inject,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -60,7 +61,14 @@ export class RevealOnScrollDirective implements OnInit, OnDestroy {
     this.renderer.addClass(host, `reveal--${variant}`);
 
     if (this.revealDelay > 0) {
-      this.renderer.setStyle(host, '--reveal-delay', `${this.revealDelay}ms`);
+      // DashCase-Flag ist Pflicht: ohne es kann Renderer2 keine CSS Custom
+      // Property setzen (style['--x'] ist laut Spec ein No-op).
+      this.renderer.setStyle(
+        host,
+        '--reveal-delay',
+        `${this.revealDelay}ms`,
+        RendererStyleFlags2.DashCase
+      );
     }
 
     // Observe outside Angular — toggling a class needs no change detection.

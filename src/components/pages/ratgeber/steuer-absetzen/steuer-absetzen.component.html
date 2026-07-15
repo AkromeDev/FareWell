@@ -1,0 +1,198 @@
+<div class="gd">
+  <app-guide-hero
+    kicker="Kundenleitfaden · Trans Personen · Steuer"
+    heading="Behandlungskosten steuerlich absetzen"
+    tagline="Für immer sanft."
+    lead="Wie du Laser und Nadelepilation als außergewöhnliche Belastung geltend machst – mit FareWell als Beispiel."
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>Kurz gesagt</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          Die Haarentfernung im Zuge der Geschlechtsangleichung ist kein Luxus – das
+          Steuerrecht erkennt sie als Krankheitskosten an. Den Anteil, den du selbst trägst,
+          holst du dir teilweise zurück.
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          Für viele trans Personen ist die Haarentfernung ein wichtiger Teil der
+          Geschlechtsangleichung. Das erkennt auch das deutsche Steuerrecht an: Den Anteil,
+          den du selbst trägst, kannst du als außergewöhnliche Belastung absetzen und einen
+          Teil zurückbekommen. Dieser Leitfaden zeigt dir, wie das geht, mit FareWell als
+          Beispiel.
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" />
+    </div>
+
+    <app-guide-section index="01" heading="Warum das steuerlich anerkannt ist" sectionId="anerkannt">
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="⚖️" heading="Von Gerichten anerkannt">
+          Gerichte behandeln Transsexualität als eine einer Krankheit vergleichbare
+          Disposition. Behandlungen, die direkt zur Geschlechtsangleichung gehören, gelten
+          deshalb als Krankheitskosten (Finanzgericht München, 10 K 1088/03).
+        </app-guide-card>
+        <app-guide-card icon="🪒" heading="Haarentfernung zählt dazu" [revealDelay]="60">
+          Dazu zählt die Haarentfernung im Zuge der Angleichung, am eindeutigsten im Gesicht
+          und Bartbereich.
+        </app-guide-card>
+        <app-guide-card icon="🏥" heading="Die Notwendigkeit zählt, nicht wer behandelt" [revealDelay]="120">
+          Es zählt die medizinische Notwendigkeit, nicht wer behandelt. Auch eine Behandlung
+          bei FareWell ist absetzbar, wenn die Indikation dokumentiert ist.
+        </app-guide-card>
+        <app-guide-card icon="🔦" heading="Beide Methoden gleichgestellt" [revealDelay]="180">
+          Ob permanente Haarentfernung mit
+          <a routerLink="/behandlungen/nadelepilation">Nadelepilation (Elektrolyse)</a> oder
+          dauerhafte Haarentfernung mit
+          <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser</a>: steuerlich
+          werden beide gleich behandelt.
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="02" heading="Zwei Dinge, die oft verwechselt werden" sectionId="verwechselt">
+      <div class="gd-split">
+        <app-guide-panel heading="Krankenkasse · Erstattung" tone="forest">
+          <li>Übernimmt die Bartepilation grundsätzlich als Sachleistung.</li>
+          <li>Verlangt dafür normalerweise eine Behandlung durch eine Ärztin oder einen Arzt.</li>
+          <li>
+            Weil kaum Praxen Elektrolyse anbieten, haben Gerichte Kassen auch bei privater
+            Behandlung zur Zahlung verpflichtet (Bundessozialgericht, 2023).
+          </li>
+        </app-guide-panel>
+        <app-guide-panel heading="Finanzamt · Steuer" tone="sage" dots="sand" [revealDelay]="60">
+          <li>Hier spielt es keine Rolle, dass FareWell keine Arztpraxis ist.</li>
+          <li>Entscheidend ist allein die dokumentierte medizinische Notwendigkeit.</li>
+          <li>
+            Absetzbar ist der Teil, den du selbst zahlst, oberhalb deiner zumutbaren
+            Belastung von etwa 1 bis 7% deines Einkommens.
+          </li>
+        </app-guide-panel>
+      </div>
+
+      <div class="gd-read">
+        <app-guide-note variant="tip" label="Zuerst die Krankenkasse fragen">
+          Was die Kasse erstattet, kannst du nicht zusätzlich absetzen. Lehnt sie ab oder
+          findet keine Praxis, stärkt genau das deinen Steuerantrag, weil die private
+          Behandlung dann unvermeidbar war. Wie der Kassenantrag geht, steht im Leitfaden
+          <a routerLink="/ratgeber/epilation-krankenkasse">„Epilation über die Krankenkasse“</a>.
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="03" heading="Welche Nachweise du brauchst" sectionId="nachweise">
+      <div class="gd-read">
+        <p class="gd-lead-p" appReveal>Damit das Finanzamt mitspielt, brauchst du drei Bausteine.</p>
+        <app-guide-steps>
+          <li>
+            <strong>Medizinischer Nachweis.</strong> Die Diagnose (Geschlechtsdysphorie oder
+            Geschlechtsinkongruenz) und dein Behandlungsplan, idealerweise mit einer
+            ärztlichen Bescheinigung, dass die Haarentfernung zur Geschlechtsangleichung
+            gehört. Am besten vor der ersten Sitzung ausgestellt.
+          </li>
+          <li>
+            <strong>Rechnung von FareWell.</strong> Eine ordentliche Rechnung je Behandlung
+            mit Name, Adresse, Datum, Leistung und Betrag.
+          </li>
+          <li>
+            <strong>Zahlungsnachweis.</strong> Am besten per Überweisung, weil das
+            automatisch belegt ist. Bei Barzahlung bekommst du eine Quittung.
+          </li>
+        </app-guide-steps>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="04" heading="So gehst du vor" sectionId="vorgehen">
+      <div class="gd-split">
+        <app-guide-panel heading="1 · Deine Schritte" tone="forest">
+          <li>Diagnose und Behandlungsplan sichern (Psychotherapie oder Ärztin).</li>
+          <li>Vor Beginn der Sitzungen die medizinische Notwendigkeit bescheinigen lassen.</li>
+          <li>Bei der Krankenkasse Kostenübernahme beantragen.</li>
+          <li>Rechnungen und Zahlungsbelege eines Kalenderjahres sammeln.</li>
+          <li>In der Steuererklärung: Anlage Außergewöhnliche Belastungen.</li>
+        </app-guide-panel>
+        <app-guide-panel heading="2 · Das gibt dir FareWell" tone="sage" dots="sand" [revealDelay]="60">
+          <li>Eine ordentliche Rechnung mit allen Pflichtangaben.</li>
+          <li>
+            Klare Bezeichnung: permanente Haarentfernung (Nadelepilation) oder dauerhafte
+            Haarentfernung (Diodenlaser), mit Körperbereich.
+          </li>
+          <li>Auf Wunsch Einzelbelege je Sitzung.</li>
+          <li>Diskretion: kein medizinischer Grund auf der Rechnung, nur die Leistung.</li>
+          <li>Zahlung per Überweisung für einen sauberen Nachweis.</li>
+        </app-guide-panel>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="05" heading="Rechenbeispiel" sectionId="rechenbeispiel">
+      <div class="gd-read">
+        <div class="gd-table-wrap" appReveal tabindex="0" role="region" aria-label="Rechenbeispiel als Tabelle">
+          <table>
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th class="num">€</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Selbst gezahlt für die Bartepilation in einem Jahr</td>
+                <td class="num">1.200</td>
+              </tr>
+              <tr>
+                <td>Zumutbare Belastung (Beispiel, je nach Einkommen und Familienstand)</td>
+                <td class="num">− 700</td>
+              </tr>
+              <tr class="total">
+                <td>Absetzbar als außergewöhnliche Belastung</td>
+                <td class="num">500</td>
+              </tr>
+              <tr>
+                <td>Zurück je nach Steuersatz</td>
+                <td class="num">≈ 150</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="gd-fine">
+          Vereinfachtes Beispiel. Dieser Leitfaden ist eine allgemeine Information und keine
+          Steuerberatung. Im Einzelfall entscheidet dein Finanzamt oder deine Steuerberatung.
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="06" heading="Unser Dankeschön für dich" sectionId="dankeschoen">
+      <div class="gd-read">
+        <p class="gd-lead-p" appReveal>
+          Zusätzlich zur Steuerersparnis möchten wir dir etwas dauerhaft schenken.
+        </p>
+      </div>
+      <app-guide-offer
+        eyebrow="Gegen Vorlage dieses Flyers"
+        headline="50% lebenslang"
+        sub="auf die dauerhafte Haarentfernung der Achseln mit Diodenlaser"
+        badgeLabel="So einfach"
+        badgeValue="Flyer zeigen"
+      />
+    </app-guide-section>
+
+    <app-guide-section index="07" heading="Weiterlesen" sectionId="weiterlesen">
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="🏥" heading="Epilation über die Krankenkasse">
+          <a routerLink="/ratgeber/epilation-krankenkasse">Zum Leitfaden</a>
+        </app-guide-card>
+        <app-guide-card icon="💬" heading="Häufige Fragen" [revealDelay]="60">
+          <a routerLink="/faq">Zu den FAQ</a>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta heading="Bereit für deinen Termin?">
+      Buche deine kostenlose Erstberatung über Salonkee oder folge uns auf Instagram für
+      Angebote und Ergebnisse.
+    </app-guide-cta>
+  </div>
+</div>

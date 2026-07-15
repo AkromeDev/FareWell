@@ -5,6 +5,7 @@
 // ===========================================================================
 
 @use 'themes/theme-entry' as *;
+@use 'components/guide';
 
 // ---------------------------------------------------------------------------
 // Design tokens (exposed as CSS custom properties for reuse anywhere)
@@ -119,7 +120,9 @@ a {
   text-decoration: none;
 }
 
-a[href]:not(.no-underline) {
+// Guide-Seiten (.gd-Scope) bringen ihr eigenes Link- und Button-Design mit —
+// die globale Unterstreichung würde dort TOC-Links und CTA-Buttons kapern.
+a[href]:not(.no-underline):not(.gd a) {
   text-decoration: underline;
   text-decoration-color: rgba($accent-1, 0.5);
   text-underline-offset: 3px;

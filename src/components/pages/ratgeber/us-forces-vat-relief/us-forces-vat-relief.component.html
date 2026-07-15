@@ -1,0 +1,218 @@
+<div class="gd" lang="en">
+  <app-guide-hero
+    kicker="Client guide · US Forces · SOFA"
+    heading="Your guide to US Forces VAT relief in Germany"
+    tagline="Für immer sanft."
+    lead="How to stop paying the German VAT on almost everything – with FareWell as your example."
+    imageAlt="The FareWell salon in Nuremberg, Germany"
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>In short</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          Under the Status of Forces Agreement you can buy most goods and services without the
+          German VAT – with a paper form up front, or through an app afterwards.
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          As a member of the US Forces stationed in Germany, the Status of Forces Agreement
+          lets you buy most goods and services without the German VAT of 19% (or 7% on some
+          items). It works almost everywhere: everyday shopping, furniture and electronics,
+          car repairs, restaurants, hotels, rental cars and, of course, beauty and wellness
+          treatments. This guide explains how the system works and the two easy ways to use
+          it. We use a FareWell treatment as the example, but the same steps apply to almost
+          every purchase.
+        </p>
+        <p class="gd-fine" lang="de" appReveal [revealDelay]="120">
+          Diesen Leitfaden gibt es auch auf Deutsch:
+          <a routerLink="/ratgeber/mehrwertsteuer-us-streitkraefte">Mehrwertsteuerbefreiung für US-Streitkräfte</a>.
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" label="Contents" />
+    </div>
+
+    <app-guide-section index="01" heading="Who can use it" sectionId="who">
+      <div class="gd-read">
+        <ul class="gd-ticks" appReveal>
+          <li>Eligible: US Forces members, DoD civilians and command sponsored family members.</li>
+          <li>The sponsor registers once at any VAT office, then adds family members to the account.</li>
+          <li>For refunds through the app you need a German bank account (IBAN).</li>
+          <li>Your VAT offices nearby: USAG Bavaria (Grafenwöhr, Vilseck, Hohenfels) and USAG Ansbach.</li>
+        </ul>
+        <p class="gd-fine">
+          VAT relief is a privilege, not an entitlement, and vendors take part voluntarily.
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      heading="What it works on, and what it does not"
+      sectionId="what"
+    >
+      <div class="gd-split">
+        <app-guide-panel heading="Works for" tone="forest">
+          <li>Everyday shopping, clothing, furniture, electronics</li>
+          <li>Car purchases, repairs, parts and rental cars</li>
+          <li>Restaurants and dining out</li>
+          <li>Hotel stays and many groceries (at 7%)</li>
+          <li>Beauty and wellness treatments</li>
+        </app-guide-panel>
+        <app-guide-panel heading="Not allowed" tone="sage" dots="sand" [revealDelay]="60">
+          <li>Purchases for people who are not eligible</li>
+          <li>Long term contracts: electricity, phone, leases (there is a separate UTAP program)</li>
+          <li>Fuel, tobacco and alcohol to take away (rationed goods)</li>
+          <li>Vehicles registered in the German system, and real estate</li>
+          <li>Anything with no VAT in the price, such as some medical services</li>
+        </app-guide-panel>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="03" heading="The two VAT forms" sectionId="forms">
+      <div class="gd-read">
+        <p class="gd-lead-p" appReveal>
+          Everything runs on two paper forms that you buy in advance at your VAT office.
+        </p>
+      </div>
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="📄" heading="NF1 form · up to €2,499.99">
+          For any purchase up to €2,499.99 (before VAT). Costs about $10, valid two years, and
+          you may hold up to 10 at a time.
+        </app-guide-card>
+        <app-guide-card icon="📑" heading="NF2 form · €2,500 and up" [revealDelay]="60">
+          For purchases of €2,500 and more. Costs about $100, valid three months, and you must
+          give the VAT office a written cost estimate before you buy.
+        </app-guide-card>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="rule" label="The golden rule">
+          Buy and present the form before you order or pay, never afterwards.
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="04" heading="Two ways to save" sectionId="ways">
+      <div class="gd-split">
+        <app-guide-panel
+          heading="1 · The classic form"
+          tone="forest"
+          intro="Pay the net price straight away"
+        >
+          <li>Buy the right form (NF1 or NF2) at your VAT office.</li>
+          <li>Show it to the vendor before you book or pay.</li>
+          <li>
+            The vendor bills you without the VAT, so you pay the net price and save the full
+            amount, about 16%.
+          </li>
+          <li>
+            Best for larger or planned purchases: furniture, a treatment package, a car
+            repair.
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          heading="2 · The Remonon app"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+          intro="Pay in full, get the VAT back later"
+        >
+          <li>A German company, NOVAT, runs the Army supported app Remonon.</li>
+          <li>
+            Register at your VAT office for your IVN, then buy one NF1 form at the start of
+            the month and upload it.
+          </li>
+          <li>Pay full price by card at any vendor and scan the receipt into the app.</li>
+          <li>
+            You get about 14% back on 19% items (4% on 7% items) to your bank account; NOVAT
+            keeps a small margin.
+          </li>
+          <li>
+            Each receipt up to €240, up to €2,499.99 per household each month, all on that one
+            form.
+          </li>
+          <li>Best for small everyday bills where a single $10 form would not be worth it.</li>
+        </app-guide-panel>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="05" heading="Five rules to keep it valid" sectionId="rules">
+      <div class="gd-read">
+        <app-guide-checklist>
+          <li>Always present the form before the purchase, never after.</li>
+          <li>Combine several buys from the same vendor on one form only within the same calendar month.</li>
+          <li>For personal use only, never for someone who is not eligible.</li>
+          <li>Never split one purchase across forms to get under the €2,500 line.</li>
+          <li>You can only remove VAT that is really in the price.</li>
+        </app-guide-checklist>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="06" heading="Your exclusive US Forces offer" sectionId="offer">
+      <div class="gd-read">
+        <p class="gd-lead-p" appReveal>
+          On top of the VAT saving, here is our standing thank you to the US Forces community.
+        </p>
+      </div>
+      <app-guide-offer
+        eyebrow="US Forces exclusive"
+        headline="20% for life"
+        sub="off laser hair removal, exclusive for US Forces"
+        badgeLabel="Promo code"
+        badgeValue="USLASER"
+      />
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>A €150 laser session, step by step</p>
+      </div>
+      <div class="gd-table-wrap" appReveal tabindex="0" role="region" aria-label="Price comparison table">
+        <table>
+          <thead>
+            <tr>
+              <th>Route</th>
+              <th class="num">You effectively pay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Remonon app: pay €150, about €21 of VAT comes back to you</td>
+              <td class="num">≈ €129</td>
+            </tr>
+            <tr>
+              <td>NF1 form: we bill you without the VAT</td>
+              <td class="num">€126</td>
+            </tr>
+            <tr class="total">
+              <td>Use the USLASER code first (€120), then remove the VAT</td>
+              <td class="num">≈ €100</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="gd-read">
+        <p class="gd-fine">Roughly a third off. Rounded figures; current treatment prices apply.</p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="07" heading="Read on" sectionId="read-on">
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="🇩🇪" heading="Mehrwertsteuerbefreiung für US-Streitkräfte">
+          <a routerLink="/ratgeber/mehrwertsteuer-us-streitkraefte">Read this guide in German</a>
+        </app-guide-card>
+        <app-guide-card icon="💬" heading="Frequently asked questions" [revealDelay]="60">
+          <a routerLink="/faq">Browse the FAQ (German)</a>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta
+      heading="Ready to book?"
+      bookingLabel="Book on Salonkee"
+      bookingHref="https://salonkee.de/salon/farewell?lang=en"
+    >
+      Book your appointment on Salonkee, or follow us on Instagram for offers and results.
+      Your first consultation is free.
+    </app-guide-cta>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+<div class="gd">
+  <app-guide-hero
+    kicker="Kundenleitfaden · Trans Personen · Krankenkasse"
+    heading="Epilation über die Krankenkasse"
+    tagline="Für immer sanft."
+    lead="Wie du deine Haarentfernung als Kassenleistung bezahlt bekommst – Schritt für Schritt erklärt, mit FareWell als Beispiel."
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>Kurz gesagt</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          Deine Krankenkasse kann die Epilation im Gesicht übernehmen. Der Knackpunkt ist der
+          Ärztevorbehalt – und genau der ist bei FareWell durch eine delegierende Ärztin gelöst.
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          Für viele trans Personen gehört die Haarentfernung im Gesicht fest zur
+          Geschlechtsangleichung. Die gute Nachricht: Deine Krankenkasse kann die Kosten
+          übernehmen, denn die Behandlung muss als ärztliche Leistung gelten. Dieser Leitfaden
+          zeigt dir Schritt für Schritt, wie du die Kostenübernahme bekommst.
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" />
+    </div>
+
+    <app-guide-section index="01" heading="Warum die Kasse zahlen kann" sectionId="warum">
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="📄" heading="Sachleistung nach § 27 SGB V">
+          Die Kasse übernimmt Epilation als Sachleistung, wenn sie medizinisch notwendig ist.
+          Der krankhafte, entstellende Barthaarwuchs gilt als Behandlungsgrund.
+        </app-guide-card>
+        <app-guide-card icon="⚕️" heading="Ärztevorbehalt nach § 28 SGB V" [revealDelay]="60">
+          Die Behandlung muss als ärztliche Leistung zählen – deshalb scheitern Anträge sonst
+          oft an reinen Kosmetikstudios.
+        </app-guide-card>
+        <app-guide-card icon="🤝" heading="Die Delegation löst genau das" [revealDelay]="120">
+          Eine Ärztin delegiert die Behandlung an unser geschultes Team und bleibt
+          verantwortlich. So zählt deine Nadelepilation als ärztlich delegierte Leistung.
+        </app-guide-card>
+        <app-guide-card icon="🪡" heading="Die anerkannte Methode" [revealDelay]="180">
+          <a routerLink="/behandlungen/nadelepilation">Nadelepilation (Elektrolyse)</a> ist die
+          anerkannte permanente Methode.
+          <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser</a> (dauerhafte
+          Haarentfernung) bieten wir ergänzend an.
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="02" heading="Was du wissen solltest" sectionId="wissen">
+      <div class="gd-split">
+        <app-guide-panel heading="Was die Kasse anerkennt" tone="forest">
+          <li>Epilation im Gesicht und Bartbereich als medizinische Leistung.</li>
+          <li>
+            Voraussetzung: Diagnose Geschlechtsinkongruenz (ICD F64.0) und ärztliche
+            Notwendigkeit.
+          </li>
+          <li>Der Antrag muss vor Behandlungsbeginn gestellt werden.</li>
+        </app-guide-panel>
+        <app-guide-panel heading="Was FareWell beisteuert" tone="sage" dots="sand" [revealDelay]="60">
+          <li>Die Delegation durch eine Ärztin oder einen Arzt.</li>
+          <li>Einen Kostenvoranschlag für deinen Antrag.</li>
+          <li>
+            Behandlung durch geschultes Personal, permanente und dauerhafte Haarentfernung.
+          </li>
+        </app-guide-panel>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      heading="In 5 Schritten zur Kostenübernahme"
+      sectionId="schritte"
+    >
+      <div class="gd-read">
+        <app-guide-steps>
+          <li>
+            <strong>Diagnose und Verordnung holen.</strong> Lass dir von deiner Ärztin die
+            Diagnose Geschlechtsinkongruenz (F64.0) und die medizinische Notwendigkeit der
+            Epilation bestätigen.
+          </li>
+          <li>
+            <strong>Kostenvoranschlag bei FareWell.</strong> Wir erstellen dir einen
+            Kostenvoranschlag für Nadelepilation und Diodenlaser im Rahmen der Delegation. Die
+            Preise je Zone findest du auf <a routerLink="/price">unserer Preisseite</a>.
+          </li>
+          <li>
+            <strong>Antrag bei der Krankenkasse.</strong> Reiche vor dem ersten Termin den
+            Antrag auf Kostenübernahme ein, zusammen mit dem ärztlichen Bericht und unserem
+            Kostenvoranschlag.
+          </li>
+          <li>
+            <strong>Fristen nutzen.</strong> Die Kasse muss in 3 Wochen entscheiden, mit MDK in
+            5. Verpasst sie die Frist ohne Nachricht, gilt die Leistung als genehmigt.
+          </li>
+          <li>
+            <strong>Bei Ablehnung: Widerspruch.</strong> Du hast einen Monat Zeit. Ein
+            Widerspruch lohnt sich oft, und deine Ärztin oder eine Trans-Beratung unterstützt
+            dich.
+          </li>
+        </app-guide-steps>
+
+        <app-guide-note variant="rule" label="Wichtig">
+          Erst beantragen, dann behandeln. Halte alles schriftlich fest, auch Telefonate, und
+          akzeptiere keine mündliche Ablehnung.
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="04" heading="Gut zu wissen" sectionId="gut-zu-wissen">
+      <div class="gd-read">
+        <app-guide-note variant="win" label="Starke Argumente">
+          Die S3-Leitlinie Trans-Gesundheit ist eine starke Argumentationshilfe für deinen
+          Antrag.
+        </app-guide-note>
+        <ul class="gd-ticks" appReveal>
+          <li>Nadelepilation wird von den Kassen am ehesten anerkannt, Laser ist häufiger strittig.</li>
+          <li>Bei wenig Einkommen gibt es Beratungshilfe für anwaltliche Unterstützung.</li>
+        </ul>
+        <p class="gd-fine">
+          Dieser Leitfaden ist eine allgemeine Information und keine Rechtsberatung. Deine
+          Krankenkasse entscheidet im Einzelfall.
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="05" heading="Was du zum Termin mitbringst" sectionId="termin">
+      <div class="gd-read">
+        <app-guide-checklist>
+          <li>Die ärztliche Diagnose und Verordnung (F64.0 und Notwendigkeit der Epilation).</li>
+          <li>Deine Versichertendaten und den Namen deiner Krankenkasse.</li>
+          <li>Den Bescheid der Kasse, sobald er vorliegt.</li>
+        </app-guide-checklist>
+        <p appReveal style="color: var(--gd-muted)">
+          Beim Termin erstellen wir gemeinsam deinen Kostenvoranschlag und, über die ärztliche
+          Delegation, die unterschriebene Fassung für die Kasse. So musst du dich um die
+          Formalitäten nicht allein kümmern.
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="06" heading="Weiterlesen" sectionId="weiterlesen">
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="🧾" heading="Behandlungskosten steuerlich absetzen">
+          Den Anteil, den du selbst trägst, kannst du als außergewöhnliche Belastung geltend
+          machen.
+          <a routerLink="/ratgeber/haarentfernung-steuer-absetzen">Zum Steuer-Leitfaden</a>
+        </app-guide-card>
+        <app-guide-card icon="💬" heading="Häufige Fragen" [revealDelay]="60">
+          Antworten zu Methoden, Terminen, Preisen und Kostenübernahme – kompakt gesammelt.
+          <a routerLink="/faq">Zu den FAQ</a>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta heading="Bereit für den ersten Schritt?">
+      Buche deine kostenlose Erstberatung über Salonkee oder schreib uns auf Instagram. Wir
+      begleiten dich den ganzen Weg.
+    </app-guide-cta>
+  </div>
+</div>

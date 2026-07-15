@@ -614,3 +614,17 @@ button {
     filter: none !important;
   }
 }
+/* Zwischenbreiten: seit dem sechsten Nav-Link (FAQ) brauchen die Desktop-Links
+   kompaktere Typografie, sonst überlappen die nowrap-Texte im schrumpfenden
+   Flex-Container. */
+@media (min-width: 769px) and (max-width: 1160px) {
+  .nav-bar .nav-links-container {
+    gap: 0.15rem;
+
+    .nav-link,
+    .nav-link-btn {
+      font-size: 0.82rem;
+      padding: 5px 0.28rem;
+    }
+  }
+}
