@@ -1,0 +1,1055 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-lang-toggle [lang]="lang" (langChange)="setLang($event)" />
+
+  <app-guide-hero
+    [kicker]="t('Willkommen im Team', 'Welcome to the team')"
+    logo="assets/images/logo/farewell-transparent.png"
+    logoAlt="FareWell Beauty Salon Logo"
+    [heading]="t('Schön, dass du da bist.', 'Great to have you here.')"
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Diese Seite führt dich Schritt für Schritt durch alles, was du als selbständige Masseurin oder selbständiger Masseur bei FareWell wissen musst. Von deiner Probe Session bis zu deinen ersten Stammkunden.',
+        'This page walks you step by step through everything you need to know as an independent massage therapist at FareWell. From your trial session to your first regular clients.'
+      )
+    "
+    image="assets/images/massages/tm massaging.jpg"
+    [imageAlt]="t('Massage bei FareWell in Nürnberg', 'Massage at FareWell in Nuremberg')"
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Du führst deine eigene kleine Massagepraxis mitten in FareWell. Du bringst die Hände
+            und das Können, Joé kümmert sich um alles drumherum: Raum, Website, Buchung und die
+            Werkzeuge fürs Marketing.
+          </span>
+          <span class="lang en">
+            You run your own little massage practice right inside FareWell. You bring the hands
+            and the craft, Joé takes care of everything around it: the room, the website, the
+            booking system and the marketing tools.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Du bleibst dabei selbständig. Deine Kunden, deine Preise, dein Stil. Diese Seite
+            erklärt der Reihe nach, wie du startest, wie du bezahlt wirst, wie du Kunden
+            gewinnst und was den geteilten Raum für alle angenehm macht.
+          </span>
+          <span class="lang en">
+            You stay independent throughout. Your clients, your prices, your style. This page
+            explains, in order, how you start, how you get paid, how you win clients, and what
+            keeps the shared room pleasant for everyone.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <!-- 01 -->
+    <app-guide-section
+      index="01"
+      [heading]="t('So arbeiten wir zusammen', 'How we work together')"
+      sectionId="s1"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Dein Weg bei FareWell in vier ruhigen Etappen. Von der ersten Begegnung bis zu einem
+          gut gefüllten Kalender.
+        </span>
+        <span class="lang en">
+          Your path at FareWell in four calm stages. From the first meeting to a nicely filled
+          calendar.
+        </span>
+      </p>
+      <div class="gd-phases">
+        <div class="gd-phase" appReveal>
+          <div class="gd-phase__n" aria-hidden="true">1</div>
+          <div class="gd-phase__tag">
+            <span class="lang de">Kennenlernen</span><span class="lang en">Meet</span>
+          </div>
+          <h3>
+            <span class="lang de">Probe und Content</span
+            ><span class="lang en">Trial and content</span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Eine entspannte Probe Session, du massierst Nicole und Joé, wir filmen ein wenig.
+            </span>
+            <span class="lang en">
+              A relaxed trial session, you massage Nicole and Joé, we film a little.
+            </span>
+          </p>
+        </div>
+        <div class="gd-phase" appReveal [revealDelay]="60">
+          <div class="gd-phase__n" aria-hidden="true">2</div>
+          <div class="gd-phase__tag">
+            <span class="lang de">Einrichten</span><span class="lang en">Set up</span>
+          </div>
+          <h3>
+            <span class="lang de">Leistungen und Seite</span
+            ><span class="lang en">Services and page</span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Du schickst deine Liste mit Preisen, Joé baut deine Seite und legt dich bei
+              Salonkee an.
+            </span>
+            <span class="lang en">
+              You send your list with prices, Joé builds your page and adds you to Salonkee.
+            </span>
+          </p>
+        </div>
+        <div class="gd-phase" appReveal [revealDelay]="120">
+          <div class="gd-phase__n" aria-hidden="true">3</div>
+          <div class="gd-phase__tag">
+            <span class="lang de">Start</span><span class="lang en">Launch</span>
+          </div>
+          <h3>
+            <span class="lang de">Video und Kanäle</span
+            ><span class="lang en">Video and channels</span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Joé schneidet ein erstes Video für Instagram, du wählst deine Wege zu Kunden.
+            </span>
+            <span class="lang en">
+              Joé edits a first video for Instagram, you choose your channels for clients.
+            </span>
+          </p>
+        </div>
+        <div class="gd-phase" appReveal [revealDelay]="180">
+          <div class="gd-phase__n" aria-hidden="true">4</div>
+          <div class="gd-phase__tag">
+            <span class="lang de">Laufen</span><span class="lang en">Running</span>
+          </div>
+          <h3>
+            <span class="lang de">Kunden und Routine</span
+            ><span class="lang en">Clients and routine</span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Kunden kommen, du gibst den 20% Vorteil und hinterlässt den Raum bereit.
+            </span>
+            <span class="lang en">
+              Clients come, you give the 20% perk and leave the room ready.
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="tip" [label]="t('Der geteilte Raum', 'The shared room')">
+          <span class="lang de">
+            Der Massageraum wird von mehreren geteilt, aktuell mit Anna und Nika. Deine festen
+            Zeiten legen wir deshalb gemeinsam fest, damit Kalender und Raum für alle sauber
+            bleiben.
+          </span>
+          <span class="lang en">
+            The massage room is shared by several therapists, currently Anna and Nika. We agree
+            your fixed weekly times together, so the calendar and the room stay clean for
+            everyone.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 02 -->
+    <app-guide-section
+      index="02"
+      [heading]="t('Deine Probe Session', 'Your trial session')"
+      sectionId="s2"
+    >
+      <p class="gd-read" appReveal style="color: var(--gd-muted)">
+        <span class="lang de">
+          Vor deinem offiziellen Start machen wir eine entspannte Probe. Du gibst Nicole und
+          Joé eine Massage, damit wir deine Arbeit kennenlernen. Gleichzeitig filmen und
+          fotografieren wir ein wenig, natürlich nur mit deinem Okay, damit wir schönes Video-
+          und Fotomaterial für spätere Kampagnen haben.
+        </span>
+        <span class="lang en">
+          Before your official start we do a relaxed trial. You give Nicole and Joé a massage
+          so we get to know your work. At the same time we film and photograph a little, only
+          with your okay, so we have nice video and photo material for future campaigns.
+        </span>
+      </p>
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="🎬" [heading]="t('Dein Start Video', 'Your launch video')">
+          <span class="lang de">
+            Direkt danach schneidet Joé ein Video für dich und postet es auf dem FareWell
+            Instagram, um dich vorzustellen.
+          </span>
+          <span class="lang en">
+            Right after, Joé edits one video for you and posts it on the FareWell Instagram to
+            introduce you.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="⏳"
+          [heading]="t('Content Hilfe mit Maß', 'Content help, within limits')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Joé hilft gern ab und zu bei Inhalten, seine Zeit ist aber begrenzt. Dein eigenes
+            Google Profil wird deshalb wichtig.
+          </span>
+          <span class="lang en">
+            Joé is happy to help with content now and then, but his time is limited. That is
+            why your own Google profile matters.
+          </span>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <!-- 03 -->
+    <app-guide-section
+      index="03"
+      [heading]="t('Deine Leistungen festlegen', 'Define your services')"
+      sectionId="s3"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Deine erste Aufgabe: sag Joé genau, was du anbieten willst. Mit dieser Liste entsteht
+          deine Seite und deine Online Buchung.
+        </span>
+        <span class="lang en">
+          Your first task: tell Joé exactly what you want to offer. With that list, your page
+          and your online booking come to life.
+        </span>
+      </p>
+      <div class="gd-split">
+        <app-guide-panel [heading]="t('Das schickst du', 'What you send')" tone="forest">
+          <li>
+            <span class="lang de">Name jeder Massage</span
+            ><span class="lang en">Name of each massage</span>
+          </li>
+          <li>
+            <span class="lang de">Kurze Beschreibung, zwei bis drei Sätze</span
+            ><span class="lang en">Short description, two to three sentences</span>
+          </li>
+          <li>
+            <span class="lang de">Dauer in Minuten</span
+            ><span class="lang en">Duration in minutes</span>
+          </li>
+          <li>
+            <span class="lang de">Preis in €</span><span class="lang en">Price in €</span>
+          </li>
+          <li>
+            <span class="lang de">Wenn vorhanden, ein Foto</span
+            ><span class="lang en">A photo, if you have one</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Das macht Joé daraus', 'What Joé does with it')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Eine eigene Seite für dich auf farewell.salon</span
+            ><span class="lang en">Your own page on farewell.salon</span>
+          </li>
+          <li>
+            <span class="lang de">Jede Leistung im Buchungssystem Salonkee</span
+            ><span class="lang en">Every service in the Salonkee booking system</span>
+          </li>
+          <li>
+            <span class="lang de">Kunden können dich direkt online buchen</span
+            ><span class="lang en">Clients can book you directly online</span>
+          </li>
+        </app-guide-panel>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="tip" [label]="t('Tipp', 'Tip')">
+          <span class="lang de">
+            Beschreibe jede Massage so, wie ein Kunde danach sucht, zum Beispiel Rücken,
+            Ganzkörper, Sport oder Schwangerschaft. Halte die Texte warm und klar.
+          </span>
+          <span class="lang en">
+            Describe each massage the way a client would search for it, for example back, full
+            body, sport or pregnancy. Keep the texts warm and clear.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 04 -->
+    <app-guide-section
+      index="04"
+      [heading]="t('Bezahlung und dein Anteil', 'Payment and your share')"
+      sectionId="s4"
+    >
+      <p class="gd-read" appReveal style="color: var(--gd-muted)">
+        <span class="lang de">
+          Du behältst 70%, FareWell behält 30%. Die Aufteilung wird auf den Nettobetrag
+          gerechnet, also auf den Preis nachdem 19% Mehrwertsteuer abgezogen wurden. Ein
+          Beispiel für eine Sitzung zu €&nbsp;70,00:
+        </span>
+        <span class="lang en">
+          You keep 70%, FareWell keeps 30%. The split is calculated on the net amount, that is
+          the price after 19% VAT has been removed. An example for a session at €&nbsp;70,00:
+        </span>
+      </p>
+      <div class="gd-read">
+        <div
+          class="gd-table-wrap"
+          appReveal
+          tabindex="0"
+          role="region"
+          [attr.aria-label]="t('Abrechnungsbeispiel als Tabelle', 'Settlement example table')"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th><span class="lang de">Position</span><span class="lang en">Item</span></th>
+                <th class="num">€</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="lang de">Kunde zahlt (brutto)</span
+                  ><span class="lang en">Client pays (gross)</span>
+                </td>
+                <td class="num">70,00</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="lang de">abzüglich 19% MwSt</span
+                  ><span class="lang en">minus 19% VAT</span>
+                </td>
+                <td class="num">− 11,18</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="lang de">Nettobetrag</span><span class="lang en">Net amount</span>
+                </td>
+                <td class="num">58,82</td>
+              </tr>
+              <tr class="total">
+                <td>
+                  <span class="lang de">Dein Anteil 70%</span
+                  ><span class="lang en">Your share 70%</span>
+                </td>
+                <td class="num">41,18</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="lang de">FareWell 30%</span
+                  ><span class="lang en">FareWell 30%</span>
+                </td>
+                <td class="num">17,65</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="💳" [heading]="t('Wie du kassierst', 'How you take payment')">
+          <span class="lang de">
+            Du kannst über das System von FareWell kassieren oder mit deinem eigenen
+            Kartengerät, das mit deinem Konto verbunden ist. Als Kleinunternehmer weist du
+            keine Mehrwertsteuer aus, dein eigenes Gerät ist also völlig in Ordnung.
+          </span>
+          <span class="lang en">
+            You can take payment through the FareWell system or with your own card reader
+            linked to your own account. As a Kleinunternehmer you do not add VAT, so using your
+            own device is perfectly fine.
+          </span>
+        </app-guide-card>
+        <app-guide-card icon="🤝" [heading]="t('Abrechnung', 'Settlement')" [revealDelay]="60">
+          <span class="lang de">
+            Egal wie du kassierst, es gilt die Aufteilung 70 zu 30 auf den Nettobetrag. Den
+            genauen Ablauf und Rhythmus klärst du beim Start mit Joé.
+          </span>
+          <span class="lang en">
+            Whichever way you take payment, the 70 to 30 split on the net amount applies. You
+            settle the exact process and rhythm with Joé at signup.
+          </span>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <!-- 05 -->
+    <app-guide-section
+      index="05"
+      [heading]="t('Kunden gewinnen', 'Getting clients')"
+      sectionId="s5"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Drei Wege, um deinen Kalender zu füllen. Du kannst sie kombinieren.
+        </span>
+        <span class="lang en">Three ways to fill your calendar. You can combine them.</span>
+      </p>
+      <div
+        class="gd-table-wrap"
+        appReveal
+        tabindex="0"
+        role="region"
+        [attr.aria-label]="t('Vergleich der Marketing-Kanäle', 'Marketing channel comparison')"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th><span class="lang de">Weg</span><span class="lang en">Channel</span></th>
+              <th><span class="lang de">Tempo</span><span class="lang en">Speed</span></th>
+              <th><span class="lang de">Kosten</span><span class="lang en">Cost</span></th>
+              <th><span class="lang de">Gut für</span><span class="lang en">Best for</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Google Ads</strong><br /><span class="gd-fine">Paid Search</span></td>
+              <td><app-guide-pill variant="ok" [label]="t('schnell', 'fast')" /></td>
+              <td><app-guide-pill variant="warn" [label]="t('du zahlst', 'you pay')" /></td>
+              <td>
+                <span class="lang de">
+                  Schnelle Reichweite, wenn du sie willst. Effizient, aber die Kosten trägst
+                  du. Joé richtet es ein und erklärt es dir.
+                </span>
+                <span class="lang en">
+                  Quick reach when you want it. Efficient, but you carry the cost. Joé sets it
+                  up and explains it to you.
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Google Business</strong><br />
+                <span class="gd-fine">
+                  <span class="lang de">dein eigenes</span><span class="lang en">your own</span>
+                </span>
+              </td>
+              <td><app-guide-pill [label]="t('langsam', 'slow')" /></td>
+              <td><app-guide-pill variant="ok" [label]="t('gratis', 'free')" /></td>
+              <td>
+                <span class="lang de">
+                  Stetige, bleibende Sichtbarkeit und echte Bewertungen. Leg dein eigenes an,
+                  siehe Punkt 06.
+                </span>
+                <span class="lang en">
+                  Steady, lasting visibility and real reviews. Set up your own, see section 06.
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Groupon</strong></td>
+              <td><app-guide-pill variant="ok" [label]="t('sehr schnell', 'very fast')" /></td>
+              <td><app-guide-pill variant="hot" [label]="t('hohe Gebühr', 'high fee')" /></td>
+              <td>
+                <span class="lang de">
+                  Ein Schub neuer Gesichter. Sie kommen einmal günstig, deine Aufgabe ist es,
+                  sie zu Stammkunden zu machen.
+                </span>
+                <span class="lang en">
+                  A burst of new faces. They come once cheaply, your job is to turn them into
+                  regulars.
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="gd-read">
+        <h3 appReveal>
+          <span class="lang de">Groupon genauer angeschaut</span
+          ><span class="lang en">A closer look at Groupon</span>
+        </h3>
+        <p appReveal style="color: var(--gd-muted)">
+          <span class="lang de">
+            Groupon bringt Menschen schnell und kostet dich vorab nichts, nimmt sich dafür aber
+            einen großen Teil. Zwei echte Beispiele für eine Massage zu €&nbsp;70,00, aus dem
+            Groupon Rechner:
+          </span>
+          <span class="lang en">
+            Groupon brings people fast and costs you nothing upfront, but it takes a big cut.
+            Two real examples for a massage at €&nbsp;70,00, from the Groupon calculator:
+          </span>
+        </p>
+        <div
+          class="gd-table-wrap"
+          appReveal
+          tabindex="0"
+          role="region"
+          [attr.aria-label]="t('Groupon-Rechenbeispiele', 'Groupon examples table')"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th><span class="lang de">Rabatt</span><span class="lang en">Discount</span></th>
+                <th class="num">
+                  <span class="lang de">Kunde zahlt</span><span class="lang en">Client pays</span>
+                </th>
+                <th class="num">
+                  <span class="lang de">Du bekommst</span><span class="lang en">You get</span>
+                </th>
+                <th class="num">
+                  <span class="lang de">Groupon behält</span
+                  ><span class="lang en">Groupon keeps</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>50%</strong></td>
+                <td class="num">35,00</td>
+                <td class="num" style="color: var(--gd-danger)">19,17</td>
+                <td class="num">15,83</td>
+              </tr>
+              <tr>
+                <td><strong>25%</strong></td>
+                <td class="num">52,50</td>
+                <td class="num" style="color: var(--gd-ok)">28,76</td>
+                <td class="num">23,74</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="gd-fine">
+          <span class="lang de">
+            Die Beträge sind Schätzungen und können durch Rundung leicht abweichen. Was du
+            bekommst, ist nach Mehrwertsteuer, Groupons Anteil enthält Gebühren und
+            Mehrwertsteuer.
+          </span>
+          <span class="lang en">
+            The amounts are estimates and can vary slightly through rounding. What you get is
+            after VAT, Groupon's cut includes fees and VAT.
+          </span>
+        </p>
+
+        <app-guide-note variant="win" [label]="t('Der eigentliche Sinn', 'The real point')">
+          <span class="lang de">
+            Bei 50% Rabatt bekommst du rund €&nbsp;19 für eine Massage zu €&nbsp;70. Das ist
+            als einmaliger Kennenlernpreis in Ordnung, aber nur wenn du umwandelst. Bei Groupon
+            geht es nicht um Gewinn beim ersten Termin, sondern darum, dein Können zu zeigen
+            und einen Stammkunden zu gewinnen. Anna, unsere erste Masseurin, hat rund 20% ihrer
+            Groupon Gäste zu einer zweiten Massage zum vollen Preis gebracht.
+          </span>
+          <span class="lang en">
+            At 50% off you receive about €&nbsp;19 for a €&nbsp;70 massage. That is fine as a
+            one time taster, but only if you convert. With Groupon it is not about profit on
+            the first visit, it is about showing your skill and winning a regular client. Anna,
+            our first therapist, turned about 20% of her Groupon guests into a second, full
+            price massage.
+          </span>
+        </app-guide-note>
+        <app-guide-note variant="rule" [label]="t('Faustregel', 'Rule of thumb')">
+          <span class="lang de">
+            Geh nie über 30% Rabatt. Bei 39% bekam Anna 100 Groupon Tickets in weniger als
+            einem Monat, weit mehr als sie bequem bedienen konnte. Mit 30% oder weniger ziehst
+            du immer noch viele an, zu einem deutlich besseren Preis.
+          </span>
+          <span class="lang en">
+            Never go above 30% discount. At 39% Anna received 100 Groupon tickets in under a
+            month, far more than she could comfortably serve. At 30% or below you still attract
+            plenty, at a much better rate.
+          </span>
+        </app-guide-note>
+        <app-guide-note variant="tip" [label]="t('Gut zu wissen', 'Good to know')">
+          <span class="lang de">
+            Die Zahl der Groupon-Tickets, die pro Monat verkauft werden, ist steuerbar: Wir
+            können ein Limit festlegen, damit dein Kalender nie überläuft. Sag uns einfach, wie
+            viele Neukunden du bequem schaffst.
+          </span>
+          <span class="lang en">
+            The number of Groupon tickets sold per month is controllable: we can set a limit so
+            your calendar never overflows. Just tell us how many new clients you can
+            comfortably take on.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 06 -->
+    <app-guide-section
+      index="06"
+      [heading]="t('Dein eigenes Google Profil', 'Your own Google profile')"
+      sectionId="s6"
+    >
+      <p class="gd-read" appReveal style="color: var(--gd-muted)">
+        <span class="lang de">
+          Wir empfehlen dir sehr, ein eigenes Google Business Profil auf deinen Namen
+          anzulegen. Es ist gratis und arbeitet leise im Hintergrund für dich.
+        </span>
+        <span class="lang en">
+          We strongly recommend setting up your own Google Business profile in your name. It is
+          free and works quietly in the background for you.
+        </span>
+      </p>
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="⭐" [heading]="t('Bewertungen für dich', 'Reviews for you')">
+          <span class="lang de">
+            Bewertungen landen auf deinem Profil und bauen deinen guten Ruf auf.
+          </span>
+          <span class="lang en">Reviews land on your profile and build your reputation.</span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🎛️"
+          [heading]="t('Du hast die Kontrolle', 'You are in control')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Du bestimmst, was Kunden sehen: Fotos, Zeiten, Leistungen.
+          </span>
+          <span class="lang en">You decide what clients see: photos, hours, services.</span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🧳"
+          [heading]="t('Es gehört dir', 'It is portable')"
+          [revealDelay]="120"
+        >
+          <span class="lang de">
+            Wenn du eines Tages den Ort wechselst, behältst du das Profil und änderst einfach
+            die Adresse. Deine Bewertungen ziehen mit dir um.
+          </span>
+          <span class="lang en">
+            If you ever move to another location, you keep the profile and simply change the
+            address. Your reviews move with you.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🌱"
+          [heading]="t('Langsam, aber es wächst', 'Slow, but it compounds')"
+          [revealDelay]="180"
+        >
+          <span class="lang de">
+            Langsamer als Anzeigen, dafür baut es sich Woche für Woche von selbst weiter auf.
+          </span>
+          <span class="lang en">
+            Slower than ads, but it keeps building on its own, week after week.
+          </span>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <!-- 07 -->
+    <app-guide-section
+      index="07"
+      [heading]="t('Der 20% Vorteil für deine Kunden', 'The 20% perk for your clients')"
+      sectionId="s7"
+    >
+      <p class="gd-read" appReveal style="color: var(--gd-muted)">
+        <span class="lang de">
+          Am Ende jeder Sitzung gibst du deinem Kunden einen lebenslangen Rabatt von 20%. Sag
+          ihm, dass er ihn für jede Leistung bei FareWell nutzen kann, mit zwei Ausnahmen: Yoga
+          und Massage.
+        </span>
+        <span class="lang en">
+          At the end of every session, give your client a lifelong 20% discount. Tell them they
+          can use it on every service at FareWell, with two exceptions: Yoga and massage.
+        </span>
+      </p>
+      <div class="gd-read">
+        <app-guide-note variant="win" [label]="t('Warum das so klug ist', 'Why this is clever')">
+          <span class="lang de">
+            Es macht aus deinen Massagegästen Salonkunden. Sie probieren unsere anderen
+            Behandlungen zu 20% weniger, und unsere Salonkunden entdecken im Gegenzug deine
+            Massagen. Es ist der kleine Motor, der Kunden zwischen dir und dem übrigen FareWell
+            in Bewegung hält.
+          </span>
+          <span class="lang en">
+            It turns your massage guests into salon clients. They try our other treatments at
+            20% off, and our salon clients discover your massages in return. It is the little
+            engine that keeps clients moving between you and the rest of FareWell.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 08 -->
+    <app-guide-section
+      index="08"
+      [heading]="t('Das Salon Angebot kennen', 'Know the salon')"
+      sectionId="s8"
+    >
+      <p class="gd-read" appReveal style="color: var(--gd-muted)">
+        <span class="lang de">
+          Damit du den 20% Vorteil sicher weitergeben kannst, solltest du wissen, was FareWell
+          macht, und es in ein, zwei Sätzen erklären können. Eine Unterscheidung ist uns
+          wichtig, rechtlich und in der Sprache:
+        </span>
+        <span class="lang en">
+          So you can hand out that 20% perk with confidence, you should know what FareWell does
+          and be able to explain it in a sentence or two. One distinction matters to us,
+          legally and in how we speak:
+        </span>
+      </p>
+      <div class="gd-split">
+        <app-guide-panel
+          [heading]="t('Permanente Haarentfernung', 'Permanent hair removal')"
+          tone="forest"
+          [intro]="t('Nur eine Methode:', 'Only one method:')"
+        >
+          <li>
+            <span class="lang de">
+              <strong>Elektrolyse (Nadelepilation)</strong> ist die einzige in Deutschland als
+              permanent anerkannte Methode. Durchgeführt von geschultem Personal, bei uns
+              Nicole.
+            </span>
+            <span class="lang en">
+              <strong>Elektrolyse (Nadelepilation)</strong> is the only method legally
+              recognised as permanent in Germany. Carried out by trained staff, in our case
+              Nicole.
+            </span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Dauerhafte Behandlungen', 'Long lasting treatments')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+          [intro]="t('Reduktion, laut Gesetz nicht permanent:', 'Reduction, not permanent by law:')"
+        >
+          <li>
+            <span class="lang de">
+              <strong>Diodenlaser</strong>, dauerhafte Haarentfernung
+            </span>
+            <span class="lang en"><strong>Diode laser</strong>, long lasting hair removal</span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Microneedling mit Radiofrequenz</strong>, Hautverjüngung und
+              Narbenbehandlung
+            </span>
+            <span class="lang en">
+              <strong>Microneedling with radio frequency</strong>, skin rejuvenation and scar
+              treatment
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Body Forming</strong>, Fettreduktion, Konturierung und Cellulite
+            </span>
+            <span class="lang en">
+              <strong>Body Forming</strong>, fat reduction, contouring and cellulite
+            </span>
+          </li>
+        </app-guide-panel>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="tip" [label]="t('Die Wortwahl', 'The wording')">
+          <span class="lang de">
+            Permanent ist immer nur die Elektrolyse, alles andere ist dauerhaft. Diese
+            Unterscheidung ist zugleich rechtlich und Teil unserer Positionierung. Dazu kommen
+            Wellness, Sport und therapeutische Massagen, dein Bereich, zusammen mit Anna und
+            Nika. Du musst kein Experte sein, es reicht, einen neugierigen Kunden zur richtigen
+            Behandlung und zu Joé zu schicken.
+          </span>
+          <span class="lang en">
+            Permanent is only ever Elektrolyse, everything else is dauerhaft. This distinction
+            is both a legal point and part of how we position ourselves. Add to that wellness,
+            sport and therapeutic massage, your area, alongside Anna and Nika. You do not need
+            to be an expert, it is enough to point a curious client to the right treatment and
+            to Joé.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 09 -->
+    <app-guide-section
+      index="09"
+      [heading]="t('Material, Wäsche und der Raum', 'Supplies, laundry and the room')"
+      sectionId="s9"
+    >
+      <div class="gd-split">
+        <app-guide-panel [heading]="t('Das stellen wir', 'What we provide')" tone="forest">
+          <li>
+            <span class="lang de">
+              <strong>Aromaöle</strong>, Joé hat sie gekauft, nutze sie frei.
+            </span>
+            <span class="lang en">
+              <strong>Aroma oils</strong>, Joé bought them, use them freely.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Wäsche</strong> ist geregelt. Du musst am Ende nur die Maschine
+              anstellen.
+            </span>
+            <span class="lang en">
+              <strong>Laundry</strong> is taken care of. You just start the machine at the end.
+            </span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Das bringst du mit', 'What you bring')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">
+              Deine Verbrauchsmaterialien für die Massage, also alles, was pro Kunde
+              aufgebraucht wird.
+            </span>
+            <span class="lang en">
+              Your single use consumables for the massage, that is everything used up per
+              client.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              Massageöle wie Mandelöl. Da mehrere sich den Raum teilen, klärt ihr
+              untereinander, ob ihr eine Flasche teilt oder jeder seine mitbringt.
+            </span>
+            <span class="lang en">
+              Massage oils like almond oil. Since several of you share the room, sort out among
+              yourselves whether to share a bottle or each bring your own.
+            </span>
+          </li>
+        </app-guide-panel>
+      </div>
+      <div class="gd-read">
+        <app-guide-note
+          variant="tip"
+          [label]="t('Am Ende deiner Schicht', 'At the end of your shift')"
+        >
+          <span class="lang de">
+            Reinige und richte den Raum immer so her, dass er sofort wieder nutzbar ist. Die
+            nächste Person soll einen fertigen Raum vorfinden und nicht alles neu aufbauen
+            müssen. Diese kleine Aufmerksamkeit macht den geteilten Raum für alle angenehm.
+          </span>
+          <span class="lang en">
+            Always clean and reset the room so it is ready to use again right away. The next
+            person should walk into a ready space and not have to set everything up from
+            scratch. This small courtesy is what makes the shared room pleasant for everyone.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 10 -->
+    <app-guide-section index="10" [heading]="t('Erste Schritte', 'First steps')" sectionId="s10">
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">Eine kleine Liste, um loszulegen.</span>
+        <span class="lang en">A short list to get going.</span>
+      </p>
+      <div class="gd-read">
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">
+              Schick Joé deine Leistungsliste: Name, Beschreibung, Dauer, Preis
+            </span>
+            <span class="lang en">
+              Send Joé your service list: name, description, duration, price
+            </span>
+          </li>
+          <li>
+            <span class="lang de">Vereinbare deine Probe Session mit Nicole und Joé</span>
+            <span class="lang en">Book your trial session with Nicole and Joé</span>
+          </li>
+          <li>
+            <span class="lang de">Leg deine festen Zeiten rund um den geteilten Raum fest</span>
+            <span class="lang en">Agree your fixed weekly times around the shared room</span>
+          </li>
+          <li>
+            <span class="lang de">Richte dein eigenes Google Business Profil ein</span>
+            <span class="lang en">Set up your own Google Business profile</span>
+          </li>
+          <li>
+            <span class="lang de">
+              Wähle deine Wege zu Kunden: Ads, Google Business, Groupon
+            </span>
+            <span class="lang en">
+              Choose your channels for clients: Ads, Google Business, Groupon
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              Kläre Verbrauchsmaterial und das Teilen von Öl mit den anderen
+            </span>
+            <span class="lang en">Sort consumables and oil sharing with the other therapists</span>
+          </li>
+          <li>
+            <span class="lang de">Präg dir den 20% Vorteil und das Salon Angebot ein</span>
+            <span class="lang en">Learn the 20% perk and the salon's services</span>
+          </li>
+        </app-guide-checklist>
+      </div>
+    </app-guide-section>
+
+    <!-- 11 -->
+    <app-guide-section
+      index="11"
+      [heading]="t('Vorschläge und offene Punkte', 'Suggestions and open points')"
+      sectionId="s11"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Ein paar Punkte, die zu einem sauberen Start dazugehören und die wir beim Gespräch
+          gemeinsam festzurren. Diese Liste ist ein Vorschlag und noch zu bestätigen.
+        </span>
+        <span class="lang en">
+          A few points that belong to a clean start, which we lock down together at the first
+          talk. This list is a suggestion and still to confirm.
+        </span>
+      </p>
+      <div class="gd-suggest">
+        <div class="gd-sug" appReveal>
+          <h3>
+            <span><span class="lang de">Feste Zeiten</span><span class="lang en">Fixed hours</span></span>
+            <span class="gd-sug__tag">
+              <span class="lang de">klären</span><span class="lang en">confirm</span>
+            </span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Ein fester wöchentlicher Slot wie bei Anna (Mo 18–20, Mi 16–19) und Nika (Do
+              18–20) hält Raum und Buchungskalender sauber. Salonzeiten: Mo–Fr 10–20, Sa 08–17.
+            </span>
+            <span class="lang en">
+              A fixed weekly slot like Anna (Mo 18–20, We 16–19) and Nika (Th 18–20) keeps the
+              room and booking calendar clean. Salon hours: Mo–Fr 10–20, Sa 08–17.
+            </span>
+          </p>
+        </div>
+        <div class="gd-sug" appReveal [revealDelay]="60">
+          <h3>
+            <span>
+              <span class="lang de">Eigene Versicherung</span
+              ><span class="lang en">Your own insurance</span>
+            </span>
+            <span class="gd-sug__tag">
+              <span class="lang de">klären</span><span class="lang en">confirm</span>
+            </span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Als selbständige Kraft solltest du eine eigene Berufshaftpflicht haben. Sie
+              schützt dich und den Salon.
+            </span>
+            <span class="lang en">
+              As an independent therapist you should carry your own professional liability
+              insurance. It protects you and the salon.
+            </span>
+          </p>
+        </div>
+        <div class="gd-sug" appReveal>
+          <h3>
+            <span>
+              <span class="lang de">Selbständigkeit echt halten</span
+              ><span class="lang en">Keep independence real</span>
+            </span>
+            <span class="gd-sug__tag">
+              <span class="lang de">klären</span><span class="lang en">confirm</span>
+            </span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Eigene Kunden, eigene Preise, eigene Werkzeuge. Das hält den freien Status
+              sauber, Stichwort Scheinselbständigkeit.
+            </span>
+            <span class="lang en">
+              Own clients, own prices, own tools. This keeps the freelance status clean, the
+              keyword is Scheinselbständigkeit.
+            </span>
+          </p>
+        </div>
+        <div class="gd-sug" appReveal [revealDelay]="60">
+          <h3>
+            <span>
+              <span class="lang de">Steuer und Gewerbe</span
+              ><span class="lang en">Tax and trade</span>
+            </span>
+            <span class="gd-sug__tag">
+              <span class="lang de">klären</span><span class="lang en">confirm</span>
+            </span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Kleinunternehmer Status und Steuernummer. Wie die 30% abgerechnet werden, klärst
+              du mit Joé und deinem Steuerberater.
+            </span>
+            <span class="lang en">
+              Kleinunternehmer status and a tax number. How the 30% is invoiced, you clarify
+              with Joé and your tax advisor.
+            </span>
+          </p>
+        </div>
+        <div class="gd-sug" appReveal>
+          <h3>
+            <span>
+              <span class="lang de">Zugang und Abschließen</span
+              ><span class="lang en">Access and closing</span>
+            </span>
+            <span class="gd-sug__tag">
+              <span class="lang de">klären</span><span class="lang en">confirm</span>
+            </span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Schlüssel, Alarm und wie du an deiner Schicht auf und zuschließt.
+            </span>
+            <span class="lang en">Keys, alarm and how you open and close on your shift.</span>
+          </p>
+        </div>
+        <div class="gd-sug" appReveal [revealDelay]="60">
+          <h3>
+            <span><span class="lang de">Hygiene</span><span class="lang en">Hygiene</span></span>
+            <span class="gd-sug__tag">
+              <span class="lang de">klären</span><span class="lang en">confirm</span>
+            </span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Frische Wäsche pro Kunde, Flächen desinfizieren. Ein kurzes Protokoll mit Joé.
+            </span>
+            <span class="lang en">
+              Fresh linen per client, disinfect surfaces. A short protocol with Joé.
+            </span>
+          </p>
+        </div>
+        <div class="gd-sug" appReveal>
+          <h3>
+            <span>
+              <span class="lang de">Datenschutz</span
+              ><span class="lang en">Data protection</span>
+            </span>
+            <span class="gd-sug__tag">
+              <span class="lang de">klären</span><span class="lang en">confirm</span>
+            </span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Kontaktdaten von Kunden nach den Datenschutz Regeln von FareWell behandeln.
+            </span>
+            <span class="lang en">
+              Handle client contact data according to FareWell's data protection rules.
+            </span>
+          </p>
+        </div>
+        <div class="gd-sug" appReveal [revealDelay]="60">
+          <h3>
+            <span>
+              <span class="lang de">Absagen</span><span class="lang en">Cancellations</span>
+            </span>
+            <span class="gd-sug__tag">
+              <span class="lang de">klären</span><span class="lang en">confirm</span>
+            </span>
+          </h3>
+          <p>
+            <span class="lang de">
+              Wie mit Nichterscheinen und späten Absagen in Salonkee umgegangen wird.
+            </span>
+            <span class="lang en">
+              How no shows and late cancellations are handled in Salonkee.
+            </span>
+          </p>
+        </div>
+      </div>
+    </app-guide-section>
+
+    <p class="gd-fine" style="margin-top: 3rem; text-align: center">
+      <span class="lang de">FareWell · Onboarding Leitfaden Massage · Stand 15.07.2026</span>
+      <span class="lang en">FareWell · Massage Onboarding Guide · as of 15.07.2026</span>
+    </p>
+  </div>
+</div>

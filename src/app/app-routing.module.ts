@@ -184,6 +184,16 @@ const routes: Routes = [
   },
 
   {
+    path: 'karriere/masseur-nuernberg/onboarding',
+    loadComponent: () =>
+      import('../components/pages/karriere/masseur-onboarding/masseur-onboarding.component')
+        .then(m => m.MasseurOnboardingComponent),
+    data: {
+      title: 'Onboarding Massage – so arbeiten wir zusammen | FareWell Nürnberg',
+      description: 'Der Onboarding-Leitfaden für selbständige Masseur:innen bei FareWell Nürnberg: Probe-Session, Leistungen, 70/30-Abrechnung, Kundengewinnung und der geteilte Raum – auf Deutsch und Englisch.'
+    }
+  },
+  {
     path: 'karriere/masseur-nuernberg',
     loadComponent: () =>
       import('../components/pages/karriere/masseur-karriere/masseur-karriere.component')

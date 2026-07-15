@@ -20,6 +20,11 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
       />
       <div class="gd-hero__inner">
         <p class="gd-hero__kicker" appReveal>{{ kicker }}</p>
+        @if (logo) {
+          <div class="gd-hero__brand" appReveal [revealDelay]="40">
+            <img [src]="logo" [alt]="logoAlt" decoding="async" />
+          </div>
+        }
         <h1 class="gd-hero__title" appReveal [revealDelay]="60">{{ heading }}</h1>
         @if (tagline) {
           <p class="gd-hero__tagline" appReveal [revealDelay]="120">{{ tagline }}</p>
@@ -38,4 +43,7 @@ export class GuideHeroComponent {
   @Input() lead = '';
   @Input() image = 'assets/images/farewell/studio.webp';
   @Input() imageAlt = 'Der FareWell Salon in Nürnberg';
+  /** Optionales Logo (auf hellem Plättchen) zwischen Kicker und Titel. */
+  @Input() logo = '';
+  @Input() logoAlt = 'FareWell Logo';
 }

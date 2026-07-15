@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-masseur-karriere',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './masseur-karriere.component.html',
   styleUrl: './masseur-karriere.component.scss'
 })

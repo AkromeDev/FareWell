@@ -189,6 +189,72 @@
     }
   }
 
+  // ---------- zweisprachige Seiten ----------
+  // Der Seiten-Wrapper trägt data-lang="de|en"; Inhalte liegen als
+  // <span class="lang de">…</span><span class="lang en">…</span> nebeneinander.
+  &[data-lang='de'] .lang.en {
+    display: none;
+  }
+
+  &[data-lang='en'] .lang.de {
+    display: none;
+  }
+
+  // ---------- Lese-Fortschrittsbalken ----------
+  .gd-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 200;
+    pointer-events: none;
+  }
+
+  .gd-progress__bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--gd-sage), var(--gd-sand));
+  }
+
+  // ---------- Sprachumschalter (DE/EN) ----------
+  .gd-lang-switch {
+    position: fixed;
+    right: clamp(10px, 2vw, 24px);
+    top: 120px;
+    z-index: 60;
+    display: inline-flex;
+    border: 1px solid var(--gd-line-strong);
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(251, 250, 245, 0.92);
+    backdrop-filter: blur(8px);
+    box-shadow: var(--gd-shadow);
+
+    button {
+      font-family: var(--gd-font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      color: var(--gd-forest);
+      background: transparent;
+      border: 0;
+      padding: 9px 14px;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease;
+
+      &[aria-pressed='true'] {
+        background: var(--gd-forest);
+        color: var(--gd-sand-2);
+      }
+
+      &:not([aria-pressed='true']):hover {
+        background: var(--gd-sand-tint);
+      }
+    }
+  }
+
   // ---------- hero ----------
   .gd-hero {
     position: relative;
@@ -242,6 +308,23 @@
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--gd-sand);
+  }
+
+  // Logo-Zeile im Hero: dunkles Logo auf hellem Plättchen, damit es auf dem
+  // abgedunkelten Bild lesbar bleibt.
+  .gd-hero__brand {
+    display: flex;
+    align-items: center;
+    margin: 0.8rem 0 0.3rem;
+
+    img {
+      height: clamp(72px, 10vw, 104px);
+      width: auto;
+      background: rgba(251, 250, 245, 0.94);
+      border-radius: 18px;
+      padding: 10px 16px;
+      box-shadow: var(--gd-shadow-lg);
+    }
   }
 
   .gd-hero__title {
@@ -701,6 +784,136 @@
         color: var(--gd-ink);
       }
     }
+  }
+
+  // ---------- Phasen / Roadmap ----------
+  .gd-phases {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.4rem;
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .gd-phase {
+    position: relative;
+    background: var(--gd-surface);
+    border: 1px solid var(--gd-line);
+    border-radius: 12px;
+    padding: 1.15rem 1.2rem 1.25rem;
+    box-shadow: var(--gd-shadow);
+    overflow: hidden;
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--gd-shadow-lg);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gd-sage), var(--gd-sand));
+    }
+
+    h3 {
+      margin: 0.55rem 0 0;
+      font-family: var(--gd-font-sans);
+      font-size: 17px;
+      font-weight: 650;
+      color: var(--gd-ink);
+    }
+
+    p {
+      margin: 0.4rem 0 0;
+      font-size: 15px;
+      color: var(--gd-muted);
+    }
+  }
+
+  .gd-phase__n {
+    font-family: var(--gd-font-head);
+    font-size: 32px;
+    font-weight: 560;
+    color: var(--gd-sage);
+    line-height: 1;
+  }
+
+  .gd-phase__tag {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gd-faint);
+    font-weight: 700;
+    margin-top: 0.15rem;
+  }
+
+  // ---------- Vorschlags-Karten (gestrichelt, mit Tag) ----------
+  .gd-suggest {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.3rem;
+
+    @media (max-width: 720px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .gd-sug {
+    background: linear-gradient(180deg, var(--gd-surface), var(--gd-surface-2));
+    border: 1px dashed var(--gd-line-strong);
+    border-left: 3px solid var(--gd-sand);
+    border-radius: 12px;
+    padding: 1.05rem 1.2rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-left-color 0.25s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--gd-shadow);
+      border-left-color: var(--gd-sage);
+    }
+
+    h3 {
+      margin: 0;
+      font-family: var(--gd-font-sans);
+      font-size: 16px;
+      font-weight: 650;
+      color: var(--gd-ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    p {
+      margin: 0.45rem 0 0;
+      font-size: 15px;
+      color: var(--gd-muted);
+    }
+  }
+
+  .gd-sug__tag {
+    flex: none;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gd-sage-strong);
+    background: var(--gd-sand-tint);
+    padding: 0.18rem 0.45rem;
+    border-radius: 5px;
   }
 
   // ---------- checklist ----------

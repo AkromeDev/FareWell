@@ -17,6 +17,11 @@ export { GuideOfferComponent } from './guide-offer/guide-offer.component';
 export { GuideCtaComponent } from './guide-cta/guide-cta.component';
 export { GuideTocComponent, type GuideTocItem } from './guide-toc/guide-toc.component';
 export { FaqItemComponent } from './faq-item/faq-item.component';
+export { GuideProgressComponent } from './guide-progress/guide-progress.component';
+export {
+  GuideLangToggleComponent,
+  type GuideLang,
+} from './guide-lang-toggle/guide-lang-toggle.component';
 
 import { GuidePillComponent } from 'src/components/atoms/guide-pill/guide-pill.component';
 import { GuideHeroComponent } from './guide-hero/guide-hero.component';
@@ -31,6 +36,8 @@ import { GuideOfferComponent } from './guide-offer/guide-offer.component';
 import { GuideCtaComponent } from './guide-cta/guide-cta.component';
 import { GuideTocComponent } from './guide-toc/guide-toc.component';
 import { FaqItemComponent } from './faq-item/faq-item.component';
+import { GuideProgressComponent } from './guide-progress/guide-progress.component';
+import { GuideLangToggleComponent } from './guide-lang-toggle/guide-lang-toggle.component';
 
 /** Komplettes Set für `imports: [...GUIDE_COMPONENTS]` auf Guide-Seiten. */
 export const GUIDE_COMPONENTS = [
@@ -47,4 +54,6 @@ export const GUIDE_COMPONENTS = [
   GuideCtaComponent,
   GuideTocComponent,
   FaqItemComponent,
+  GuideProgressComponent,
+  GuideLangToggleComponent,
 ] as const;
