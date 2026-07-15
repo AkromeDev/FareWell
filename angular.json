@@ -29,7 +29,12 @@
               "src/assets",
               "src/sitemap.xml",
               "src/robots.txt",
-              "src/_redirects"
+              "src/_redirects",
+              {
+                "glob": "**/*",
+                "input": "src/static-pages",
+                "output": "/"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -88,7 +93,12 @@
               "src/assets",
               "src/sitemap.xml",
               "src/robots.txt",
-              "src/_redirects"
+              "src/_redirects",
+              {
+                "glob": "**/*",
+                "input": "src/static-pages",
+                "output": "/"
+              }
             ],
             "styles": [
               "src/styles.scss"

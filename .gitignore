@@ -48,3 +48,6 @@ Thumbs.db
 
 # Remove old GitHub Pages build folder
 /docs/
+
+# Claude Code personal settings (permission approvals etc.)
+.claude/settings.local.json
