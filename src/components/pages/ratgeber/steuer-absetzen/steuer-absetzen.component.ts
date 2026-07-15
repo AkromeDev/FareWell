@@ -28,7 +28,6 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
     { value: '3', label: 'Bausteine für den Nachweis' },
     { value: '1–7%', label: 'Zumutbare Belastung vom Einkommen', animate: false },
     { value: '2', label: 'Methoden, steuerlich gleichgestellt' },
-    { value: '50%', label: 'Lebenslang auf Achsel-Laser' },
   ];
 
   readonly toc: GuideTocItem[] = [
@@ -37,7 +36,6 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
     { id: 'nachweise', label: 'Welche Nachweise du brauchst' },
     { id: 'vorgehen', label: 'So gehst du vor' },
     { id: 'rechenbeispiel', label: 'Rechenbeispiel' },
-    { id: 'dankeschoen', label: 'Unser Dankeschön für dich' },
     { id: 'weiterlesen', label: 'Weiterlesen' },
   ];
 

@@ -13,7 +13,22 @@ The app reloads automatically on source changes.
 ## Build
 
 - `npm run build` – production build into `dist/farewell`.
+- `npm run prerender` – static prerender for deployment; afterwards
+  `tools/flatten-prerender.mjs` rewrites `route/index.html` → `route.html`.
 - `npm run watch` – development build that rebuilds on change.
+
+## URL canonicalization (SEO)
+
+The canonical URL for every page is `https://farewell.salon/<route>` – no www,
+no trailing slash. Two things keep that true:
+
+1. **Flat prerender output.** Cloudflare Pages derives redirects from the asset
+   shape: `route/index.html` is forced to `/route/`, `route.html` to `/route`.
+   The flatten step in `npm run prerender` therefore must always run before a
+   deploy (make sure the Cloudflare Pages build command is `npm run prerender`).
+2. **www → apex redirect.** Configured in the Cloudflare dashboard (not in this
+   repo): `www.farewell.salon/*` must 301 to `https://farewell.salon/$1`, never
+   the other way around – the on-page canonical tags point at the apex domain.
 
 ## Running unit tests
 

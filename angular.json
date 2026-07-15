@@ -29,6 +29,7 @@
               "src/assets",
               "src/sitemap.xml",
               "src/robots.txt",
+              "src/llms.txt",
               "src/_redirects"
             ],
             "styles": [
@@ -88,6 +89,7 @@
               "src/assets",
               "src/sitemap.xml",
               "src/robots.txt",
+              "src/llms.txt",
               "src/_redirects"
             ],
             "styles": [

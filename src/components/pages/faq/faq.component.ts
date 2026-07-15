@@ -66,9 +66,24 @@ export class FaqComponent implements OnInit, OnDestroy {
         'Als Faustregel: Helle, feine, rötliche oder vereinzelte Haare und kleine Zonen wie das Gesicht sprechen für die Elektrolyse. Dunklere Haare auf größeren Flächen wie Beinen, Rücken oder Achseln sprechen für den Diodenlaser. In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an und empfehlen dir die passende Methode.',
     },
     {
+      question: 'Bietet FareWell auch IPL an?',
+      answer:
+        'Nein – und das aus gutem Grund. Statt IPL setzen wir auf den 4-Wellen-Diodenlaser: Er erreicht eine dauerhafte Haarentfernung und arbeitet zuverlässiger bei mehr Haut- und Haartypen als klassische IPL-Geräte. Für die permanente Haarentfernung bieten wir zusätzlich die Elektrolyse an. Welche Methode zu dir passt, klären wir in der kostenlosen Erstberatung.',
+    },
+    {
       question: 'Wie viele Sitzungen brauche ich?',
       answer:
         'Haare wachsen in Zyklen, und nur Haare in der Wachstumsphase lassen sich wirksam behandeln. Deshalb sind immer mehrere Sitzungen nötig. Wie viele genau, hängt von Körperzone, Haardichte und Hormonlage ab – eine realistische Einschätzung bekommst du in der kostenlosen Erstberatung.',
+    },
+    {
+      question: 'Wie finde ich den richtigen Anbieter für Radiofrequenz-Microneedling in Nürnberg?',
+      answer:
+        'Achte auf drei Dinge: geschultes Personal, ein zertifiziertes Gerät und eine ehrliche Beratung, die dir sagt, was realistisch ist. Bei FareWell arbeiten Nicole und Joé mit einem Gerät, das feine Nadeln mit Radiofrequenz verbindet, und wir besprechen vor jeder Behandlung Ablauf, Sitzungen und Kosten.',
+    },
+    {
+      question: 'How can I get rid of facial hair permanently?',
+      answer:
+        'In Germany, the only method legally recognised as permanent is electrolysis (Nadelepilation): each hair root is treated individually and for good. It works on every skin and hair colour, including fine, light or grey facial hair that a laser cannot target. At FareWell in Nürnberg you get a free consultation in English and an honest recommendation. You can book easily through our online booking system (salonkee.de/salon/farewell).',
     },
     {
       question: 'Wie buche ich einen Termin bei FareWell?',
@@ -76,9 +91,24 @@ export class FaqComponent implements OnInit, OnDestroy {
         'Am einfachsten online über Salonkee (salonkee.de/salon/farewell) – rund um die Uhr, mit sofortiger Bestätigung. Alternativ erreichst du uns per Instagram-Nachricht (@farewell.salon) oder telefonisch unter +49 157 5799 5694.',
     },
     {
+      question: 'Wo kann ich Radiofrequenz-Microneedling in Nürnberg buchen?',
+      answer:
+        'Direkt bei FareWell im Zentrum von Nürnberg, Frauentorgraben 5, wenige Gehminuten vom Hauptbahnhof. Radiofrequenz-Microneedling führen Nicole und Joé durch. Am einfachsten buchst du online über Salonkee (salonkee.de/salon/farewell) – rund um die Uhr und mit sofortiger Bestätigung. Die Erstberatung ist kostenlos und unverbindlich.',
+    },
+    {
       question: 'Was kostet eine Behandlung?',
       answer:
         'Alle Preise stehen transparent je Körperzone auf unserer Preisseite unter farewell.salon/price. Die Erstberatung ist kostenlos, und für den Kassenantrag erstellen wir dir einen schriftlichen Kostenvoranschlag.',
+    },
+    {
+      question: 'Was kostet Laser-Haarentfernung in Nürnberg?',
+      answer:
+        'Die Preise richten sich nach der Körperzone und stehen alle auf unserer Preisseite unter farewell.salon/price – eine Achsel ist zum Beispiel günstiger als Beine oder Rücken. Angehörige der US-Streitkräfte erhalten mit dem Promo-Code USLASER 20% lebenslang. Die kostenlose Erstberatung gibt dir eine realistische Einschätzung deiner Sitzungen und Kosten.',
+    },
+    {
+      question: 'Was kostet Radiofrequenz-Microneedling in Nürnberg?',
+      answer:
+        'Alle Preise stehen transparent je Behandlung auf unserer Preisseite unter farewell.salon/price. In der kostenlosen Erstberatung schauen wir uns dein Hautbild an und sagen dir ehrlich, wie viele Sitzungen sinnvoll sind und was sie kosten – ohne Verpflichtung.',
     },
     {
       question: 'Ist die Erstberatung wirklich kostenlos?',
