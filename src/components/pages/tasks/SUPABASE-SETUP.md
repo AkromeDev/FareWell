@@ -136,11 +136,13 @@ auth user, and the email-pinned policies match the recreated user.
   in localStorage). Signing out is not exposed in the UI on purpose; see §6
   for revocation.
 - localStorage remains a synchronous cache + offline fallback. A persisted
-  "unpushed changes" marker plus a task-level merge guarantee that completions
-  made offline (or seconds before a concurrent write from another device)
-  survive: histories are unioned per task, the newer side wins scalar fields.
-  The one accepted edge: an undo racing a concurrent remote write within the
-  ~300ms push window can resurface the undone completion.
+  "unpushed changes" marker plus a task-level merge protect completions made
+  offline (or seconds before a concurrent write from another device):
+  histories are unioned per task, the newer side wins scalar fields. Two
+  accepted edges remain: pushes from two devices crossing within roughly the
+  same second can lose the earlier one (no server-side versioning), and an
+  undo racing a concurrent remote write within the ~300ms push window can
+  resurface the undone completion.
 - A full reset (rare) needs more than deleting the `tasks` row: every device
   still holds a local copy it would merge or re-push. To truly start over,
   delete the row AND clear site data on each device.

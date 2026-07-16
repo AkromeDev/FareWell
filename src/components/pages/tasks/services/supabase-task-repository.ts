@@ -57,8 +57,12 @@ interface TasksRow {
  * Conflict model: while this device has NO unpushed changes, a newer remote
  * row is adopted wholesale. The moment unpushed local changes exist (dirty),
  * remote states are MERGED task-by-task instead (completion histories are
- * unioned, the newer side wins per task), so no device ever loses its own
- * completion to a concurrent write — see {@link mergeStates}.
+ * unioned, the newer side wins per task), so a device holding unpushed
+ * changes never loses them to a concurrent write — see {@link mergeStates}.
+ * Accepted residual edges (no server-side versioning): two devices whose
+ * pushes cross within roughly the same second can still lose the earlier
+ * write, and an undo racing a concurrent remote write can resurface the
+ * undone completion.
  *
  * All remote work (hydrate, refetch, push, clear) runs on one serial
  * operation queue, so a refetch can never interleave with an in-flight push.
@@ -66,12 +70,14 @@ interface TasksRow {
 export class SupabaseTaskRepository implements TaskRepository {
   private readonly deviceId: string;
   private channel: RealtimeChannel | null = null;
+  private realtimeClient: SupabaseClient | null = null;
   private pushTimer: ReturnType<typeof setTimeout> | null = null;
   private retryTimer: ReturnType<typeof setTimeout> | null = null;
   /** Serial queue for ALL remote operations — no interleaving, ever. */
   private ops: Promise<void> = Promise.resolve();
-  /** Bumped on every save; lets a finished push detect newer local edits. */
-  private rev = 0;
+  /** Uniquifies this tab's dirty tokens (the marker is shared per profile). */
+  private readonly tabId = Math.random().toString(36).slice(2, 8);
+  private dirtySeq = 0;
   private listenersAttached = false;
   private readonly visibilityHandler = () => {
     if (document.visibilityState === 'visible') this.enqueueReconcile();
@@ -105,6 +111,9 @@ export class SupabaseTaskRepository implements TaskRepository {
   }
 
   save(state: PersistedTaskState): void {
+    // Order matters: state BEFORE marker. A concurrent pusher that reads an
+    // older token but newer state merely re-pushes; the reverse order could
+    // let it clear the marker for a state it never pushed.
     this.local.save(state);
     this.markDirty();
     this.schedulePush(PUSH_DEBOUNCE_MS);
@@ -112,7 +121,7 @@ export class SupabaseTaskRepository implements TaskRepository {
 
   clear(): void {
     this.local.clear();
-    this.clearDirty();
+    this.storage.remove(DIRTY_KEY);
     // Best effort; other devices keep their local copies (documented).
     this.enqueue(async () => {
       const client = await this.session.getClient();
@@ -154,18 +163,18 @@ export class SupabaseTaskRepository implements TaskRepository {
       const localState = this.local.load();
 
       if (remote) {
-        // Anyone who has seen a populated table must never seed again,
-        // even if the row is deleted later (e.g. an explicit reset).
-        this.storage.setRaw(SEEDED_KEY, new Date().toISOString());
         this.applyRemote(remote.state);
         return;
       }
 
       if (localState && hasProgress(localState) && !this.storage.getRaw(SEEDED_KEY)) {
+        // Compare-and-clear token: a save() landing during the insert's
+        // round-trip must keep its marker (same guard pushLatest uses).
+        const token = this.storage.getRaw(DIRTY_KEY);
         const { error } = await client.from(SUPABASE_CONFIG.table).insert(this.toRow(localState));
         if (error && !isDuplicateKey(error.code)) throw error;
         this.storage.setRaw(SEEDED_KEY, new Date().toISOString());
-        if (!error) this.clearDirty();
+        if (!error && token !== null) this.clearDirtyIfCurrent(token);
         // Adopt whatever won (ours, or a concurrent seeder's).
         const winner = await this.fetchRow(client);
         if (winner) this.applyRemote(winner.state);
@@ -180,21 +189,41 @@ export class SupabaseTaskRepository implements TaskRepository {
   /**
    * Bring a fetched remote state into this device.
    *
-   * Clean device → adopt wholesale. Unpushed local changes (or a remote row
-   * that suspiciously lost all progress while we have some) → task-level
-   * merge, then push the merged result so every device converges on the
-   * union. Either way the change flows through the existing sync pipeline.
+   * Clean device → adopt wholesale. A task-level merge happens instead when
+   * this device holds unpushed changes, when the remote row suspiciously
+   * lost all progress while we have some, or on this device's FIRST contact
+   * with the shared row while it still holds pre-Supabase history (the
+   * secondary-device migration promised in SUPABASE-SETUP §5). Either way
+   * the change flows through the existing sync pipeline.
    */
   private applyRemote(remote: PersistedTaskState): void {
+    // Anyone who has seen a populated table must never seed again, even if
+    // the row is deleted later (e.g. an explicit reset).
+    const firstContact = this.storage.getRaw(SEEDED_KEY) === null;
+    this.storage.setRaw(SEEDED_KEY, new Date().toISOString());
+
     const localState = this.local.load();
     if (!localState) {
       this.local.save(remote);
-      this.clearDirty();
+      this.storage.remove(DIRTY_KEY);
       this.sync.emitRemoteChange();
       return;
     }
 
-    const mustMerge = this.isDirty() || (hasProgress(localState) && !hasProgress(remote));
+    // A row written by a NEWER app schema must not be merged (we would strip
+    // fields we do not know) — adopt it read-only style and never push until
+    // this client is updated and saves again on its own.
+    if ((remote.schemaVersion ?? 1) > (localState.schemaVersion ?? 1)) {
+      console.warn('[tasks] remote state has a newer schema; adopting without push');
+      this.local.save(remote);
+      this.storage.remove(DIRTY_KEY);
+      this.sync.emitRemoteChange();
+      return;
+    }
+
+    const mustMerge =
+      this.isDirty() ||
+      (hasProgress(localState) && (!hasProgress(remote) || firstContact));
     if (mustMerge) {
       const merged = mergeStates(localState, remote);
       this.local.save(merged);
@@ -208,7 +237,6 @@ export class SupabaseTaskRepository implements TaskRepository {
       this.local.save(remote);
       this.sync.emitRemoteChange();
     }
-    this.clearDirty();
   }
 
   // ---- realtime -------------------------------------------------------------
@@ -219,6 +247,7 @@ export class SupabaseTaskRepository implements TaskRepository {
       .getClient()
       .then((client) => {
         if (this.channel || this.session.status() !== 'signed-in') return;
+        this.realtimeClient = client;
         this.channel = client
           .channel('fw-tasks-state')
           .on(
@@ -245,8 +274,18 @@ export class SupabaseTaskRepository implements TaskRepository {
 
   private teardownRealtime(): void {
     if (this.channel) {
-      void this.channel.unsubscribe();
+      // removeChannel (not just unsubscribe) drops the topic from the client
+      // registry, so a quick sign-out → sign-in gets a FRESH channel instead
+      // of the stale, half-closed instance client.channel() would return.
+      const staleChannel = this.channel;
       this.channel = null;
+      if (this.realtimeClient) {
+        void this.realtimeClient
+          .removeChannel(staleChannel)
+          .catch((err) => console.warn('[tasks] realtime channel removal failed', err));
+      } else {
+        void staleChannel.unsubscribe();
+      }
     }
     if (this.listenersAttached && typeof document !== 'undefined') {
       document.removeEventListener('visibilitychange', this.visibilityHandler);
@@ -282,18 +321,23 @@ export class SupabaseTaskRepository implements TaskRepository {
   }
 
   private async pushLatest(): Promise<void> {
-    if (!this.isDirty()) return;
+    // Capture the token BEFORE the state: if a save (this tab or a sibling
+    // tab of the same profile) lands in between, we push the newer state
+    // under the older token — compare-and-clear then leaves the marker in
+    // place and the follow-up push converges. The reverse order could clear
+    // a sibling tab's marker for a state that was never pushed.
+    const token = this.storage.getRaw(DIRTY_KEY);
+    if (token === null) return;
     const state = this.local.load();
     if (!state) return;
-    const revAtRead = this.rev;
     try {
       const client = await this.session.getClient();
       const { error } = await client
         .from(SUPABASE_CONFIG.table)
         .upsert(this.toRow(state), { onConflict: 'id' });
       if (error) throw error;
-      // Only clean when no newer local edit arrived while we were pushing.
-      if (this.rev === revAtRead) this.clearDirty();
+      // Only clean when no newer save (any tab) replaced the token meanwhile.
+      this.clearDirtyIfCurrent(token);
       if (this.retryTimer) {
         clearTimeout(this.retryTimer);
         this.retryTimer = null;
@@ -318,13 +362,18 @@ export class SupabaseTaskRepository implements TaskRepository {
     return this.ops;
   }
 
+  /**
+   * The dirty marker is a unique token, not a boolean: it is shared by all
+   * tabs of the profile, so clearing must be compare-and-clear — a pusher may
+   * only remove the exact token it captured, never a sibling tab's newer one.
+   */
   private markDirty(): void {
-    this.rev++;
-    this.storage.setRaw(DIRTY_KEY, '1');
+    this.dirtySeq++;
+    this.storage.setRaw(DIRTY_KEY, `${Date.now().toString(36)}_${this.tabId}_${this.dirtySeq}`);
   }
 
-  private clearDirty(): void {
-    this.storage.remove(DIRTY_KEY);
+  private clearDirtyIfCurrent(token: string): void {
+    if (this.storage.getRaw(DIRTY_KEY) === token) this.storage.remove(DIRTY_KEY);
   }
 
   private isDirty(): boolean {
@@ -412,9 +461,11 @@ export function mergeStates(
 const HISTORY_CAP = 200;
 
 function mergeTaskState(local: TaskMutableState, remote: TaskMutableState): TaskMutableState {
-  // Newer activity (completion or logged event) wins the scalar fields.
-  // Ties (including "no activity on either side") keep the local values.
-  const winner = activityStamp(remote) > activityStamp(local) ? remote : local;
+  // Completion scalars come from the side that truly completed last — never
+  // from a side whose only claim to recency is a logged trigger, which would
+  // regress lastCompletedAt/-By below a completion that survives in history.
+  const completionWinner =
+    (remote.lastCompletedAt ?? '') > (local.lastCompletedAt ?? '') ? remote : local;
 
   const byId = new Map<string, TaskMutableState['history'][number]>();
   for (const completion of [...(remote.history ?? []), ...(local.history ?? [])]) {
@@ -424,11 +475,30 @@ function mergeTaskState(local: TaskMutableState, remote: TaskMutableState): Task
     .sort((a, b) => (a.completedAt < b.completedAt ? 1 : a.completedAt > b.completedAt ? -1 : 0))
     .slice(0, HISTORY_CAP);
 
+  // Keep the newest trigger of either side, but only while no completion has
+  // consumed it (completing an event task clears its trigger).
+  const lt = local.openTrigger;
+  const rt = remote.openTrigger;
+  const newestTrigger = (rt?.triggeredAt ?? '') > (lt?.triggeredAt ?? '') ? rt : (lt ?? rt);
+  const openTrigger =
+    newestTrigger && newestTrigger.triggeredAt > (completionWinner.lastCompletedAt ?? '')
+      ? newestTrigger
+      : null;
+
+  // plannedDate has no own timestamp: take it from the side with the newer
+  // overall activity (accepted imprecision for ad-hoc planning).
+  const overallWinner = activityStamp(remote) > activityStamp(local) ? remote : local;
+
   return {
-    ...winner,
     taskId: local.taskId,
+    lastCompletedAt: completionWinner.lastCompletedAt,
+    lastCompletedBy: completionWinner.lastCompletedBy,
+    lastCompletedByName: completionWinner.lastCompletedByName,
+    lastAction: completionWinner.lastAction,
     history,
     rotationIndex: Math.max(local.rotationIndex ?? 0, remote.rotationIndex ?? 0),
+    plannedDate: overallWinner.plannedDate,
+    openTrigger,
     archived: local.archived || remote.archived,
   };
 }

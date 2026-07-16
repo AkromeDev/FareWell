@@ -117,6 +117,64 @@ describe('mergeStates', () => {
     expect(merged.tasks['t1'].history.length).toBe(2);
   });
 
+  it('keeps completion scalars from the last-completed side even when the other side has a newer trigger', () => {
+    const cLocal = completion('c-local', '2026-07-16T10:00:00Z');
+    const local = stateWith({
+      t1: {
+        ...createMutableState('t1'),
+        lastCompletedAt: cLocal.completedAt,
+        lastCompletedBy: 'mojo',
+        history: [cLocal],
+      },
+    });
+    // Remote only logged a NEW event afterwards — that must not regress the
+    // completion fields, but the fresh trigger must survive the merge.
+    const remote = stateWith({
+      t1: {
+        ...createMutableState('t1'),
+        lastCompletedAt: '2026-07-16T09:00:00Z',
+        lastCompletedBy: 'nicolita',
+        history: [completion('c-old', '2026-07-16T09:00:00Z', 'nicolita')],
+        openTrigger: {
+          id: 'trig1',
+          taskId: 't1',
+          event: 'client',
+          triggeredAt: '2026-07-16T10:30:00Z',
+          triggeredBy: 'nicolita',
+        },
+      },
+    });
+
+    const merged = mergeStates(local, remote);
+    expect(merged.tasks['t1'].lastCompletedAt).toBe(cLocal.completedAt);
+    expect(merged.tasks['t1'].lastCompletedBy).toBe('mojo');
+    expect(merged.tasks['t1'].openTrigger?.id).toBe('trig1');
+  });
+
+  it('drops an open trigger that a newer completion has consumed', () => {
+    const cLocal = completion('c-local', '2026-07-16T11:00:00Z');
+    const local = stateWith({
+      t1: { ...createMutableState('t1'), lastCompletedAt: cLocal.completedAt, history: [cLocal] },
+    });
+    // Remote still carries the trigger from BEFORE the completion.
+    const remote = stateWith({
+      t1: {
+        ...createMutableState('t1'),
+        openTrigger: {
+          id: 'trig-stale',
+          taskId: 't1',
+          event: 'client',
+          triggeredAt: '2026-07-16T10:00:00Z',
+          triggeredBy: 'nicolita',
+        },
+      },
+    });
+
+    const merged = mergeStates(local, remote);
+    expect(merged.tasks['t1'].openTrigger).toBeNull();
+    expect(merged.tasks['t1'].lastCompletedAt).toBe(cLocal.completedAt);
+  });
+
   it('takes the max rotationIndex and keeps archived sticky', () => {
     const local = stateWith({
       t1: { ...createMutableState('t1'), rotationIndex: 3, archived: false },

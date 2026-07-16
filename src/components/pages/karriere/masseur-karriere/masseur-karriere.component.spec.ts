@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { MasseurKarriereComponent } from './masseur-karriere.component';
 
@@ -8,7 +9,9 @@ describe('MasseurKarriereComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MasseurKarriereComponent]
+      imports: [MasseurKarriereComponent],
+      // The template uses routerLink; the spec needs a router context.
+      providers: [provideRouter([])]
     })
     .compileComponents();
 

@@ -99,7 +99,9 @@ changes use, so `TaskService` needed no changes. All remote work runs on one
 serial operation queue (no push/refetch interleaving). Conflict model: a
 clean device adopts newer remote state wholesale; a device with unpushed
 changes MERGES task-by-task instead (histories unioned, newer side wins per
-task), so completions are never lost to concurrent writes or offline gaps.
+task), so unpushed completions survive concurrent writes and offline gaps.
+(Accepted residual edge: pushes from two devices crossing within ~a second
+can still lose the earlier one — there is no server-side versioning.)
 Access control: one shared "household" auth user; staff enter its passphrase
 once per device (`TaskAuthGateComponent`), the dashboard stays gated until
 the first reconcile finishes, and Row Level Security (pinned to the household
