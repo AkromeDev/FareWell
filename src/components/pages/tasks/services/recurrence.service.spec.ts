@@ -14,7 +14,8 @@ const NOW = new Date('2026-07-16T10:00:00'); // local
 function def(recurrence: TaskRecurrence, overrides: Partial<TaskDefinition> = {}): TaskDefinition {
   return {
     id: 't1',
-    name: 'Test task',
+    nameDe: 'Testaufgabe',
+    nameEn: 'Test task',
     category: 'laserraum',
     type: 'general',
     eligibleUsers: ['mojo'],

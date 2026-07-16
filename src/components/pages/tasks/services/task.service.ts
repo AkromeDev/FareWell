@@ -32,7 +32,8 @@ import { TaskStorageService } from './task-storage.service';
 interface UndoSnapshot {
   taskId: string;
   previous: TaskMutableState;
-  taskName: string;
+  taskNameDe: string;
+  taskNameEn: string;
 }
 
 /** How long an interval waits before refreshing derived urgency (ms). */
@@ -124,7 +125,12 @@ export class TaskService implements OnDestroy {
 
     this.mutateTasks((tasks) => {
       const previous = tasks[taskId] ?? createMutableState(taskId);
-      this.undoSnapshot = { taskId, previous: clone(previous), taskName: def.name };
+      this.undoSnapshot = {
+        taskId,
+        previous: clone(previous),
+        taskNameDe: def.nameDe,
+        taskNameEn: def.nameEn,
+      };
 
       const nowIso = new Date().toISOString();
       const zone =
@@ -159,14 +165,14 @@ export class TaskService implements OnDestroy {
   }
 
   /** Restore the state captured before the last completion. */
-  undoLast(): { taskName: string } | null {
+  undoLast(): { taskNameDe: string; taskNameEn: string } | null {
     const snap = this.undoSnapshot;
     if (!snap) return null;
     this.mutateTasks((tasks) => {
       tasks[snap.taskId] = snap.previous;
     });
     this.undoSnapshot = null;
-    return { taskName: snap.taskName };
+    return { taskNameDe: snap.taskNameDe, taskNameEn: snap.taskNameEn };
   }
 
   canUndo(): boolean {

@@ -7,7 +7,7 @@
     aria-describedby="dlg-desc"
   >
     <h2 id="dlg-title" class="dialog__title">{{ lang.t('Aufgabe abschließen', 'Complete task') }}</h2>
-    <p id="dlg-desc" class="dialog__task">{{ record.def.name }}</p>
+    <p id="dlg-desc" class="dialog__task">{{ lang.t(record.def.nameDe, record.def.nameEn) }}</p>
 
     @if (record.computed.currentZone) {
       <p class="dialog__zone">{{ lang.t('Zone', 'Zone') }}: {{ record.computed.currentZone }}</p>

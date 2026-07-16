@@ -40,4 +40,16 @@ export class TaskCategoryComponent {
     const n = this.group.records.length;
     return this.lang.t(`${n} Aufgaben`, `${n} tasks`);
   }
+
+  /** Share of tasks NOT currently needing attention — the category "health". */
+  healthPercent(): number {
+    const total = this.group.records.length;
+    if (total === 0) return 100;
+    return Math.round(((total - this.group.urgentCount) / total) * 100);
+  }
+
+  /** Staggered card entrance, capped so long categories don't crawl in. */
+  cardDelay(index: number): number {
+    return Math.min(index, 8) * 40;
+  }
 }

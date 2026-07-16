@@ -20,21 +20,24 @@
       <ol class="feed__list">
         @for (entry of entries; track entry.id) {
           <li class="feed__item">
-            <span class="feed__dot" [attr.data-action]="entry.action" aria-hidden="true"></span>
+            <span class="feed__avatar" [attr.data-user]="entry.userId" aria-hidden="true">
+              {{ (entry.userName || '?').charAt(0) }}
+              <span class="feed__dot" [attr.data-action]="entry.action"></span>
+            </span>
             <div class="feed__body">
               <p class="feed__line">
                 <strong>{{ entry.userName }}</strong>
                 {{ actionText(entry) }}:
-                <span class="feed__task">{{ entry.taskName }}</span>
+                <span class="feed__task">{{ lang.t(entry.taskNameDe, entry.taskNameEn) }}</span>
               </p>
               <p class="feed__meta">
                 <span class="feed__cat">{{ categoryText(entry) }}</span>
                 <span class="feed__sep" aria-hidden="true">·</span>
                 <time [attr.datetime]="entry.at" [attr.title]="exact(entry)">{{ relative(entry) }}</time>
-                @if (entry.note) {
-                  <span class="feed__note">— {{ entry.note }}</span>
-                }
               </p>
+              @if (entry.note) {
+                <p class="feed__note">{{ quotedNote(entry.note) }}</p>
+              }
             </div>
           </li>
         }

@@ -1,46 +1,161 @@
 @if (isUnknownUser()) {
   <section class="unknown">
+    <p class="unknown__glyph" aria-hidden="true">🔒</p>
     <h1>{{ t('Unbekannter Bereich', 'Unknown area') }}</h1>
     <p>{{ t('Diese Aufgabenseite existiert nicht.', 'This task page does not exist.') }}</p>
   </section>
 } @else if (user(); as u) {
   <div class="dash">
-    <header class="dash__head">
-      <p class="dash__eyebrow">FareWell · {{ t('Aufgabenplan', 'Task plan') }}</p>
-      <h1 class="dash__title">{{ t('Aufgaben', 'Tasks') }} · {{ u.name }}</h1>
-      <p class="dash__subtitle">{{ subtitle(u) }}</p>
+    <header class="hero">
+      <div class="hero__top">
+        <div class="hero__id">
+          <span class="hero__avatar" aria-hidden="true">{{ initial(u) }}</span>
+          <div class="hero__names">
+            <p class="hero__eyebrow">FareWell · {{ t('Aufgabenplan', 'Task plan') }}</p>
+            <h1 class="hero__title">{{ greeting() }}, {{ u.name }}</h1>
+            <p class="hero__subtitle">{{ subtitle(u) }}</p>
+          </div>
+        </div>
+
+        <div class="seg" role="radiogroup" [attr.aria-label]="t('Ansicht wählen', 'Choose view')"
+          [class.seg--cal]="viewMode() === 'calendar'">
+          <span class="seg__thumb" aria-hidden="true"></span>
+          <button
+            type="button"
+            class="seg__btn"
+            role="radio"
+            [attr.aria-checked]="viewMode() === 'list'"
+            [class.seg__btn--active]="viewMode() === 'list'"
+            (click)="onViewChange('list', u)"
+          >
+            <svg class="seg__icon" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <path d="M5.5 4h8M5.5 8h8M5.5 12h8" />
+              <circle cx="2.4" cy="4" r="0.9" fill="currentColor" stroke="none" />
+              <circle cx="2.4" cy="8" r="0.9" fill="currentColor" stroke="none" />
+              <circle cx="2.4" cy="12" r="0.9" fill="currentColor" stroke="none" />
+            </svg>
+            {{ t('Liste', 'List') }}
+          </button>
+          <button
+            type="button"
+            class="seg__btn"
+            role="radio"
+            [attr.aria-checked]="viewMode() === 'calendar'"
+            [class.seg__btn--active]="viewMode() === 'calendar'"
+            (click)="onViewChange('calendar', u)"
+          >
+            <svg class="seg__icon" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <rect x="1.8" y="3" width="12.4" height="11" rx="1.6" />
+              <path d="M1.8 6.6h12.4M5.2 1.4v2.8M10.8 1.4v2.8" />
+            </svg>
+            {{ t('Kalender', 'Calendar') }}
+          </button>
+        </div>
+      </div>
+
+      <div class="hero__stats">
+        <button
+          type="button"
+          class="stat stat--overdue"
+          [class.stat--active]="filter() === 'overdue'"
+          [attr.aria-pressed]="filter() === 'overdue'"
+          (click)="onStatFilter('overdue', u)"
+        >
+          <span class="stat__num">{{ stats().overdue }}</span>
+          <span class="stat__label">{{ t('Überfällig', 'Overdue') }}</span>
+        </button>
+        <button
+          type="button"
+          class="stat stat--today"
+          [class.stat--active]="filter() === 'today'"
+          [attr.aria-pressed]="filter() === 'today'"
+          (click)="onStatFilter('today', u)"
+        >
+          <span class="stat__num">{{ stats().today }}</span>
+          <span class="stat__label">{{ t('Heute fällig', 'Due today') }}</span>
+        </button>
+        <button
+          type="button"
+          class="stat stat--done"
+          [class.stat--active]="filter() === 'done'"
+          [attr.aria-pressed]="filter() === 'done'"
+          (click)="onStatFilter('done', u)"
+        >
+          <span class="stat__num">{{ stats().done }}</span>
+          <span class="stat__label">{{ t('Heute erledigt', 'Done today') }}</span>
+        </button>
+
+        <div class="hero__progress">
+          <div class="hero__progress-head">
+            <span>{{ t('Tagesfortschritt', 'Daily progress') }}</span>
+            @if (stats().progress !== null) {
+              <strong>{{ progressPercent() }}%</strong>
+            } @else {
+              <strong>{{ t('Alles ruhig', 'All quiet') }}</strong>
+            }
+          </div>
+          <div
+            class="hero__bar"
+            role="progressbar"
+            [attr.aria-label]="t('Tagesfortschritt', 'Daily progress')"
+            [attr.aria-valuenow]="progressPercent()"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [attr.aria-valuetext]="progressValueText()"
+          >
+            <span class="hero__bar-fill" [style.width.%]="progressPercent()"></span>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <div class="dash__toolbar">
-      <farewell-toggle
-        [options]="viewOptions()"
-        [selected]="viewMode()"
-        theme="light"
-        (selectedChange)="onViewChange($event, u)"
-      />
-      @if (!isPersistent) {
-        <p class="dash__notice" role="note">
-          {{ t(
-            'Speicher nicht verfügbar – Änderungen bleiben nur bis zum Neuladen.',
-            'Storage unavailable – changes last only until reload.'
-          ) }}
-        </p>
-      }
-    </div>
+    @if (!isPersistent) {
+      <p class="dash__notice" role="note">
+        {{ t(
+          'Speicher nicht verfügbar. Änderungen bleiben nur bis zum Neuladen.',
+          'Storage unavailable. Changes last only until reload.'
+        ) }}
+      </p>
+    }
 
-    <div class="dash__body">
+    @if (filter() !== 'all' && viewMode() === 'list') {
+      <div class="filterbar">
+        <span class="filterbar__label">
+          @switch (filter()) {
+            @case ('overdue') { {{ t('Gefiltert: Überfällig', 'Filtered: overdue') }} }
+            @case ('today') { {{ t('Gefiltert: Heute fällig', 'Filtered: due today') }} }
+            @case ('done') { {{ t('Gefiltert: Heute erledigt', 'Filtered: done today') }} }
+          }
+        </span>
+        <button type="button" class="filterbar__reset" (click)="resetFilter()">
+          {{ t('Alle anzeigen', 'Show all') }}
+        </button>
+      </div>
+    }
+
+    <div class="dash__body" [class.dash__body--cal]="viewMode() === 'calendar'">
       <main class="dash__main" [attr.aria-label]="t('Aufgaben', 'Tasks')">
         @if (viewMode() === 'list') {
-          <app-task-list-view
-            [records]="records()"
-            [categories]="categories()"
-            [user]="u"
-            [now]="now()"
-            [collapsed]="collapsed()"
-            (toggleCategory)="onToggleCategory($event, u)"
-            (requestComplete)="onRequestComplete($event)"
-            (requestTrigger)="onRequestTrigger($event, u)"
-          />
+          @if (filteredRecords().length === 0 && filter() !== 'all') {
+            <div class="dash__filter-empty">
+              <p class="dash__filter-empty-glyph" aria-hidden="true">✨</p>
+              <p>{{ t('Nichts in dieser Auswahl. Gute Arbeit!', 'Nothing in this selection. Nice work!') }}</p>
+              <button type="button" class="filterbar__reset" (click)="resetFilter()">
+                {{ t('Alle Aufgaben anzeigen', 'Show all tasks') }}
+              </button>
+            </div>
+          } @else {
+            <app-task-list-view
+              [records]="filteredRecords()"
+              [categories]="categories()"
+              [user]="u"
+              [now]="now()"
+              [collapsed]="collapsed()"
+              (toggleCategory)="onToggleCategory($event, u)"
+              (requestComplete)="onRequestComplete($event)"
+              (requestTrigger)="onRequestTrigger($event, u)"
+            />
+          }
         } @else {
           <app-task-calendar-view
             [records]="records()"
@@ -78,14 +193,28 @@
       />
     }
 
+    @if (celebrate()) {
+      <div class="burst" aria-hidden="true">
+        @for (p of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]; track p) {
+          <span class="burst__p"></span>
+        }
+      </div>
+    }
+
     @if (toast(); as tst) {
       <div class="toast" role="status">
+        <span class="toast__check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path class="toast__check-path" d="M4.5 12.5l5 5 10-11" />
+          </svg>
+        </span>
         <span class="toast__msg">{{ tst.message }}</span>
         @if (tst.undoable) {
           <button type="button" class="toast__undo" (click)="onUndo()">
             {{ t('Rückgängig', 'Undo') }}
           </button>
         }
+        <span class="toast__timer" aria-hidden="true"></span>
       </div>
     }
   </div>

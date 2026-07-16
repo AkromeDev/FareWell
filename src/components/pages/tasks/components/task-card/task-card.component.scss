@@ -2,6 +2,7 @@
 
 :host {
   display: block;
+  height: 100%;
 }
 
 .sr-only {
@@ -21,21 +22,26 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 0.9rem 1rem 0.9rem 1.15rem;
+  height: 100%;
+  padding: 0.95rem 1rem 0.95rem 1.2rem;
   background: var(--surface, #fff);
   border: 1px solid var(--line, rgba(43, 51, 40, 0.12));
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 1px 2px rgba($black, 0.04), 0 6px 16px rgba($black, 0.05);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    box-shadow 0.25s var(--ease-out, ease-out),
+    transform 0.25s var(--ease-out, ease-out),
+    border-color 0.25s ease;
 
-  // Urgency accent stripe down the left edge.
+  // Urgency accent stripe down the left edge; widens on hover.
   &::before {
     content: '';
     position: absolute;
     inset: 0 auto 0 0;
     width: 4px;
-    border-radius: 12px 0 0 12px;
+    border-radius: 14px 0 0 14px;
     background: var(--u-color, transparent);
+    transition: width 0.25s var(--ease-out, ease-out);
   }
 
   &[data-urgency='critical'] { --u-color: var(--u-critical, #b4462f); }
@@ -46,11 +52,24 @@
   &[data-urgency='waiting'] { --u-color: var(--u-waiting, #8a8172); }
   &[data-urgency='seasonal'] { --u-color: var(--u-seasonal, #6f8494); }
 
-  &[data-urgency='completed'] { opacity: 0.86; }
-  &[data-urgency='seasonal'] { opacity: 0.7; }
+  // Recently completed tasks rest on a soft emerald tint.
+  &[data-urgency='completed'] {
+    background: color-mix(in srgb, var(--u-completed, #3e5a47) 5%, var(--surface, #fff));
+    opacity: 0.92;
+  }
+
+  &[data-urgency='seasonal'] { opacity: 0.72; }
 
   &:hover {
-    box-shadow: 0 2px 4px rgba($black, 0.06), 0 10px 24px rgba($black, 0.08);
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--u-color, #{$accent-1}) 40%, var(--line, rgba(43, 51, 40, 0.12)));
+    box-shadow: 0 3px 6px rgba($black, 0.06), 0 14px 30px rgba($black, 0.1);
+
+    &::before { width: 6px; }
+  }
+
+  &:focus-within {
+    border-color: color-mix(in srgb, #{$accent-1} 55%, var(--line, rgba(43, 51, 40, 0.12)));
   }
 }
 
@@ -64,7 +83,7 @@
 .task-card__title {
   font-size: 0.98rem;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.3;
   color: var(--ink, #2b3328);
 }
 
@@ -88,9 +107,13 @@
 
 .task-card__notes {
   margin: 0;
+  padding: 0.35rem 0.6rem;
   font-size: 0.78rem;
   font-style: italic;
   color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+  border-left: 2px solid color-mix(in srgb, #{$accent-1} 55%, transparent);
+  background: color-mix(in srgb, #{$accent-1} 6%, transparent);
+  border-radius: 0 8px 8px 0;
 }
 
 .task-card__meta {
@@ -98,6 +121,7 @@
   flex-direction: column;
   gap: 0.15rem;
   margin: 0;
+  margin-top: auto;
   font-size: 0.78rem;
   color: var(--ink-dim, rgba(43, 51, 40, 0.72));
 
@@ -117,18 +141,33 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
 }
 
 .task-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-family: inherit;
   font-size: 0.82rem;
   font-weight: 650;
   padding: 0.5rem 0.95rem;
-  border-radius: 8px;
+  border-radius: 999px;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.15s var(--ease-out, ease-out),
+    box-shadow 0.18s ease;
+
+  &:active:not(:disabled) { transform: scale(0.96); }
+
+  &:focus-visible {
+    outline: 2px solid $accent-1;
+    outline-offset: 2px;
+  }
 
   &:disabled {
     cursor: not-allowed;
@@ -136,11 +175,19 @@
   }
 }
 
+.task-card__btn-icon {
+  width: 0.9em;
+  height: 0.9em;
+}
+
 .task-card__btn--primary {
-  background: $dark-2;
+  background: linear-gradient(140deg, $dark-1, $dark-2);
   color: $light-1;
 
-  &:hover:not(:disabled) { background: $dark-1; }
+  &:hover:not(:disabled) {
+    box-shadow: 0 4px 14px color-mix(in srgb, #{$dark-2} 45%, transparent);
+    transform: translateY(-1px);
+  }
 }
 
 .task-card__btn--ghost {
@@ -149,7 +196,18 @@
   border-color: var(--line-strong, rgba(43, 51, 40, 0.18));
 
   &:hover:not(:disabled) {
-    background: rgba($dark-1, 0.08);
-    border-color: $dark-1;
+    background: color-mix(in srgb, #{$accent-1} 12%, transparent);
+    border-color: $accent-1;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .task-card,
+  .task-card::before,
+  .task-card__btn {
+    transition: none;
+  }
+
+  .task-card:hover { transform: none; }
+  .task-card__btn:active:not(:disabled) { transform: none; }
 }

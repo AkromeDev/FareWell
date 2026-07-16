@@ -4,6 +4,7 @@ import { TaskRecord, TaskUser } from '../../models';
 import { RecurrenceService } from '../../services/recurrence.service';
 import { UrgencyBadgeComponent } from '../urgency-badge/urgency-badge.component';
 import { formatDate, formatDateTime, relativeTime } from '../../utils/date.util';
+import { taskName, taskNotes } from '../../utils/task-labels';
 
 /**
  * A single task: name, urgency, recurrence, who/when last completed, next due,
@@ -33,6 +34,14 @@ export class TaskCardComponent {
 
   t(de: string, en: string): string {
     return this.lang.t(de, en);
+  }
+
+  name(): string {
+    return taskName(this.record.def, this.lang.lang());
+  }
+
+  notes(): string | undefined {
+    return taskNotes(this.record.def, this.lang.lang());
   }
 
   recurrenceText(): string {
@@ -82,8 +91,8 @@ export class TaskCardComponent {
 
   completeAriaLabel(): string {
     return this.t(
-      `${this.record.def.name} als erledigt markieren`,
-      `Mark ${this.record.def.name} as completed`,
+      `${this.record.def.nameDe} als erledigt markieren`,
+      `Mark ${this.record.def.nameEn} as completed`,
     );
   }
 }

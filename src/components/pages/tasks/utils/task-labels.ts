@@ -61,3 +61,16 @@ export const URGENCY_ORDER: UrgencyLevel[] = [
 export function stateLabel(state: TaskState, lang: 'de' | 'en'): string {
   return STATE_LABELS[state][lang];
 }
+
+/** Active-language name of a task definition. */
+export function taskName(def: { nameDe: string; nameEn: string }, lang: 'de' | 'en'): string {
+  return lang === 'de' ? def.nameDe : def.nameEn;
+}
+
+/** Active-language notes of a task definition (undefined when none). */
+export function taskNotes(
+  def: { notesDe?: string; notesEn?: string },
+  lang: 'de' | 'en',
+): string | undefined {
+  return lang === 'de' ? def.notesDe : def.notesEn;
+}

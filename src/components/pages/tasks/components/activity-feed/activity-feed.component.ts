@@ -39,6 +39,11 @@ export class ActivityFeedComponent {
     return relativeTime(entry.at, this.now, this.lang.lang());
   }
 
+  /** Note wrapped in the active language's quotation marks. */
+  quotedNote(note: string): string {
+    return this.lang.t(`„${note}“`, `“${note}”`);
+  }
+
   exact(entry: ActivityEntry): string {
     return formatDateTime(entry.at, this.lang.lang());
   }

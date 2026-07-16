@@ -14,9 +14,10 @@ export type TaskUserId = 'nicolita' | 'mojo' | 'nikkita' | 'annasun';
 export interface TaskDefinition {
   /** Stable id based on category + task (never an array index). */
   id: string;
-  /** Original wording from the plan (kept verbatim). */
-  name: string;
-  description?: string;
+  /** Task wording, German (the primary UI language). */
+  nameDe: string;
+  /** Task wording, English (derived from the plan's original wording). */
+  nameEn: string;
   /** Category id (a section/room from the plan). */
   category: string;
   type: TaskType;
@@ -25,7 +26,8 @@ export interface TaskDefinition {
   primaryOwner?: TaskUserId;
   recurrence: TaskRecurrence;
   active: boolean;
-  notes?: string;
+  notesDe?: string;
+  notesEn?: string;
   /** Preferred calendar weekday for otherwise unscheduled tasks. */
   preferredWeekday?: Weekday;
   /** Optional display order within a category. */
@@ -146,4 +148,6 @@ export interface TaskCategory {
   labelEn: string;
   type: TaskType;
   order: number;
+  /** Decorative glyph shown next to the category title. */
+  icon?: string;
 }

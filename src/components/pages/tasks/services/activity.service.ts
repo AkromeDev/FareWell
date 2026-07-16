@@ -17,7 +17,8 @@ export class ActivityService {
         entries.push({
           id: c.id,
           taskId: def.id,
-          taskName: def.name,
+          taskNameDe: def.nameDe,
+          taskNameEn: def.nameEn,
           category: def.category,
           type: def.type,
           userId: c.userId,

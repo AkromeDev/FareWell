@@ -29,7 +29,7 @@
           (click)="selectTask.emit(cell.record)"
         >
           <span class="chip__kind">{{ kindLabel(cell) }}</span>
-          <span class="chip__name">{{ cell.record.def.name }}</span>
+          <span class="chip__name">{{ lang.t(cell.record.def.nameDe, cell.record.def.nameEn) }}</span>
         </button>
       </li>
     } @empty {

@@ -18,7 +18,8 @@ function record(id: string, type: 'general' | 'massage', history: TaskCompletion
   return {
     def: {
       id,
-      name: id,
+      nameDe: id,
+      nameEn: id,
       category: type === 'massage' ? 'massageraum' : 'laserraum',
       type,
       eligibleUsers: ['mojo'],

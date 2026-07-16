@@ -17,7 +17,9 @@ export function sortByUrgency(records: TaskRecord[]): TaskRecord[] {
     const ao = a.def.displayOrder ?? 9999;
     const bo = b.def.displayOrder ?? 9999;
     if (ao !== bo) return ao - bo;
-    return a.def.name.localeCompare(b.def.name);
+    // German is the primary language; comparing one fixed language keeps the
+    // order stable across the DE/EN toggle.
+    return a.def.nameDe.localeCompare(b.def.nameDe, 'de');
   });
 }
 

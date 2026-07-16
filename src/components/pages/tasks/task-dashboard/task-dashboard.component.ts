@@ -14,8 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
-import { FarewellToggleComponent, FarewellToggleOption } from 'src/components/atoms/farewell-toggle/farewell-toggle.component';
-import { TaskRecord, TaskUser, TaskViewMode } from '../models';
+import { TaskRecord, TaskState, TaskUser, TaskViewMode } from '../models';
 import { TaskService } from '../services/task.service';
 import { UserContextService } from '../services/user-context.service';
 import { ActivityService } from '../services/activity.service';
@@ -26,21 +25,27 @@ import {
   CompletionResult,
   TaskCompletionDialogComponent,
 } from '../components/task-completion-dialog/task-completion-dialog.component';
+import { sameLocalDay } from '../utils/date.util';
+
+/** Quick status filter applied to the list view (session-only, not persisted). */
+export type TaskStatusFilter = 'all' | 'today' | 'overdue' | 'done';
+
+/** States counting as "due today" for the header stats and the quick filter. */
+const TODAY_STATES: ReadonlySet<TaskState> = new Set(['dueToday', 'checkDue', 'eventActionable']);
 
 /**
  * The single, configurable task dashboard behind all four routes
  * (/tasks/:user and /massage-tasks/:user). The active route determines the
  * user, and the access configuration determines visibility, permissions,
  * activity filtering and the massage-room schedule. Provides the list/calendar
- * toggle, the activity feed, completion + undo, and cross-tab sync — all driven
- * by the shared TaskService state.
+ * toggle, header stats with quick filters, the activity feed, completion +
+ * undo, and cross-tab sync — all driven by the shared TaskService state.
  */
 @Component({
   selector: 'app-task-dashboard',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    FarewellToggleComponent,
     TaskListViewComponent,
     TaskCalendarViewComponent,
     ActivityFeedComponent,
@@ -62,6 +67,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   private readonly resolved = signal(false);
   private paramSub?: Subscription;
   private toastTimer: ReturnType<typeof setTimeout> | null = null;
+  private celebrateTimer: ReturnType<typeof setTimeout> | null = null;
 
   readonly user = this.userSig.asReadonly();
   readonly now = this.taskService.now;
@@ -97,9 +103,48 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     return u ? this.activityService.entriesForUser(this.records(), u) : [];
   });
 
+  /** Session-only quick filter for the list view. */
+  readonly filter = signal<TaskStatusFilter>('all');
+
+  /** Header stats: what needs doing today and what the team already did. */
+  readonly stats = computed(() => {
+    const recs = this.records();
+    const now = this.now();
+    const overdue = recs.filter((r) => r.computed.state === 'overdue').length;
+    const today = recs.filter((r) => TODAY_STATES.has(r.computed.state)).length;
+    const done = recs.filter((r) => this.completedToday(r, now)).length;
+    const denominator = overdue + today + done;
+    return {
+      overdue,
+      today,
+      done,
+      /** 0..1 share of today's workload already completed, null when idle. */
+      progress: denominator > 0 ? done / denominator : null,
+    };
+  });
+
+  /** Records after the quick filter, feeding the list view. */
+  readonly filteredRecords = computed<TaskRecord[]>(() => {
+    const recs = this.records();
+    const f = this.filter();
+    const now = this.now();
+    switch (f) {
+      case 'today':
+        return recs.filter((r) => TODAY_STATES.has(r.computed.state));
+      case 'overdue':
+        return recs.filter((r) => r.computed.state === 'overdue');
+      case 'done':
+        return recs.filter((r) => this.completedToday(r, now));
+      default:
+        return recs;
+    }
+  });
+
   readonly dialogRecord = signal<TaskRecord | null>(null);
   readonly toast = signal<{ message: string; undoable: boolean } | null>(null);
   readonly announcement = signal<string>('');
+  /** Briefly true after a completion, drives the confetti burst. */
+  readonly celebrate = signal(false);
 
   constructor() {
     // Keep the (private, noindex) page title in sync with user + language.
@@ -135,6 +180,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.paramSub?.unsubscribe();
     if (this.toastTimer) clearTimeout(this.toastTimer);
+    if (this.celebrateTimer) clearTimeout(this.celebrateTimer);
   }
 
   t(de: string, en: string): string {
@@ -145,24 +191,59 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     return this.resolved() && this.userSig() === null;
   }
 
+  /** Time-of-day greeting, e.g. "Guten Morgen, Nicolita". */
+  greeting(): string {
+    const hour = this.now().getHours();
+    if (hour < 11) return this.t('Guten Morgen', 'Good morning');
+    if (hour < 18) return this.t('Hallo', 'Hello');
+    return this.t('Guten Abend', 'Good evening');
+  }
+
+  initial(u: TaskUser): string {
+    return u.name.charAt(0).toUpperCase();
+  }
+
   subtitle(u: TaskUser): string {
     if (u.overview) {
-      return this.t('Gesamtübersicht – alle Bereiche', 'Full overview – all areas');
+      return this.t('Gesamtübersicht über alle Bereiche', 'Full overview of all areas');
     }
     return u.visibleTypes.includes('massage')
       ? this.t('Massage-Aufgaben', 'Massage tasks')
       : this.t('Allgemeine Aufgaben', 'General tasks');
   }
 
-  viewOptions(): FarewellToggleOption[] {
-    return [
-      { label: this.t('Liste', 'List'), value: 'list' },
-      { label: this.t('Kalender', 'Calendar'), value: 'calendar' },
-    ];
+  progressPercent(): number {
+    const p = this.stats().progress;
+    return p === null ? 0 : Math.round(p * 100);
   }
 
-  onViewChange(value: string, u: TaskUser): void {
-    this.taskService.setViewMode(u.id, value === 'calendar' ? 'calendar' : 'list');
+  /** Spoken value for the progressbar; matches the visible "Alles ruhig". */
+  progressValueText(): string {
+    return this.stats().progress === null
+      ? this.t('Alles ruhig, nichts fällig', 'All quiet, nothing due')
+      : `${this.progressPercent()} %`;
+  }
+
+  /**
+   * Toggle a quick filter from the header stats. Selecting a stat while the
+   * calendar is open switches back to the list, where the filter applies.
+   */
+  onStatFilter(f: TaskStatusFilter, u: TaskUser): void {
+    this.filter.set(this.filter() === f ? 'all' : f);
+    if (this.filter() !== 'all' && this.viewMode() !== 'list') {
+      this.taskService.setViewMode(u.id, 'list');
+    }
+  }
+
+  resetFilter(): void {
+    this.filter.set('all');
+  }
+
+  onViewChange(value: TaskViewMode, u: TaskUser): void {
+    // The quick filter only applies to the list; drop it when leaving so a
+    // stat never claims an active filter the calendar ignores.
+    if (value === 'calendar') this.filter.set('all');
+    this.taskService.setViewMode(u.id, value);
   }
 
   onToggleCategory(categoryId: string, u: TaskUser): void {
@@ -180,7 +261,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   onRequestTrigger(record: TaskRecord, u: TaskUser): void {
     this.taskService.triggerEvent(record.def.id, u);
     this.setAnnounce(
-      this.t(`Ereignis eingetragen: ${record.def.name}`, `Event logged: ${record.def.name}`),
+      this.t(`Ereignis eingetragen: ${record.def.nameDe}`, `Event logged: ${record.def.nameEn}`),
     );
   }
 
@@ -188,9 +269,13 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     const record = this.dialogRecord();
     if (record) {
       this.taskService.complete(record.def.id, u, result.action, result.note);
-      const msg = this.t(`„${record.def.name}" erledigt`, `"${record.def.name}" completed`);
+      const msg = this.t(
+        `„${record.def.nameDe}“ erledigt`,
+        `“${record.def.nameEn}” completed`,
+      );
       this.showToast(msg, true);
       this.setAnnounce(msg);
+      this.startCelebration();
     }
     this.dialogRecord.set(null);
   }
@@ -202,17 +287,39 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   onUndo(): void {
     const undone = this.taskService.undoLast();
     if (undone) {
-      this.setAnnounce(this.t(`Rückgängig: ${undone.taskName}`, `Undone: ${undone.taskName}`));
+      this.setAnnounce(
+        this.t(`Rückgängig: ${undone.taskNameDe}`, `Undone: ${undone.taskNameEn}`),
+      );
     }
     this.clearToast();
   }
 
+  private completedToday(r: TaskRecord, now: Date): boolean {
+    const iso = r.state.lastCompletedAt;
+    return iso !== null && sameLocalDay(new Date(iso), now);
+  }
+
+  private startCelebration(): void {
+    if (!this.isBrowser) return;
+    // Restart cleanly so back-to-back completions burst again.
+    this.celebrate.set(false);
+    if (this.celebrateTimer) clearTimeout(this.celebrateTimer);
+    requestAnimationFrame(() => this.celebrate.set(true));
+    this.celebrateTimer = setTimeout(() => this.celebrate.set(false), 1400);
+  }
+
   private showToast(message: string, undoable: boolean): void {
-    this.toast.set({ message, undoable });
     if (this.toastTimer) clearTimeout(this.toastTimer);
-    if (this.isBrowser) {
-      this.toastTimer = setTimeout(() => this.toast.set(null), 7000);
+    if (!this.isBrowser) {
+      this.toast.set({ message, undoable });
+      return;
     }
+    // Clear first so back-to-back toasts recreate the view — the entrance,
+    // check-draw and countdown animations run once per DOM insertion and must
+    // restart alongside the fresh 7s dismiss timer.
+    this.toast.set(null);
+    requestAnimationFrame(() => this.toast.set({ message, undoable }));
+    this.toastTimer = setTimeout(() => this.toast.set(null), 7000);
   }
 
   private clearToast(): void {

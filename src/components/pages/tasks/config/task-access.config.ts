@@ -99,16 +99,16 @@ export const TASK_ACCESS_CONFIG: TaskAccessConfiguration = {
  * general (only Massageraum is massage, per the rules) unless a task overrides.
  */
 export const TASK_CATEGORIES: TaskCategory[] = [
-  { id: 'empfang', labelDe: 'Empfang & Wartebereich', labelEn: 'Reception & Waiting Area', type: 'general', order: 1 },
-  { id: 'flur', labelDe: 'Flur', labelEn: 'Hallway', type: 'general', order: 2 },
-  { id: 'laserraum', labelDe: 'Laserraum', labelEn: 'Laser Room', type: 'general', order: 3 },
-  { id: 'elektrolyseraum', labelDe: 'Elektrolyseraum', labelEn: 'Electrolysis Room', type: 'general', order: 4 },
-  { id: 'massageraum', labelDe: 'Massageraum', labelEn: 'Massage Room', type: 'massage', order: 5 },
-  { id: 'kueche', labelDe: 'Küche', labelEn: 'Kitchen', type: 'general', order: 6 },
-  { id: 'wc', labelDe: 'WC & Waschraum', labelEn: 'WC & Washroom', type: 'general', order: 7 },
-  { id: 'pflanzen', labelDe: 'Pflanzen', labelEn: 'Plants', type: 'general', order: 8 },
-  { id: 'salon', labelDe: 'Ganzer Salon', labelEn: 'Whole Salon', type: 'general', order: 9 },
-  { id: 'mehrwert', labelDe: 'Wertschöpfende Aufgaben', labelEn: 'Value-Adding Tasks', type: 'general', order: 10 },
+  { id: 'empfang', labelDe: 'Empfang & Wartebereich', labelEn: 'Reception & Waiting Area', type: 'general', order: 1, icon: '🛎️' },
+  { id: 'flur', labelDe: 'Flur', labelEn: 'Hallway', type: 'general', order: 2, icon: '🚪' },
+  { id: 'laserraum', labelDe: 'Laserraum', labelEn: 'Laser Room', type: 'general', order: 3, icon: '✨' },
+  { id: 'elektrolyseraum', labelDe: 'Elektrolyseraum', labelEn: 'Electrolysis Room', type: 'general', order: 4, icon: '⚡' },
+  { id: 'massageraum', labelDe: 'Massageraum', labelEn: 'Massage Room', type: 'massage', order: 5, icon: '💆' },
+  { id: 'kueche', labelDe: 'Küche', labelEn: 'Kitchen', type: 'general', order: 6, icon: '☕' },
+  { id: 'wc', labelDe: 'WC & Waschraum', labelEn: 'WC & Washroom', type: 'general', order: 7, icon: '🚿' },
+  { id: 'pflanzen', labelDe: 'Pflanzen', labelEn: 'Plants', type: 'general', order: 8, icon: '🌿' },
+  { id: 'salon', labelDe: 'Ganzer Salon', labelEn: 'Whole Salon', type: 'general', order: 9, icon: '🏡' },
+  { id: 'mehrwert', labelDe: 'Wertschöpfende Aufgaben', labelEn: 'Value-Adding Tasks', type: 'general', order: 10, icon: '💎' },
 ];
 
 const CATEGORY_BY_ID = new Map(TASK_CATEGORIES.map((c) => [c.id, c]));

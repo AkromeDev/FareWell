@@ -45,15 +45,24 @@ calendar render from the same `records()` signal, so a change in one appears in
 the other immediately. Every mutation persists (`TASK_REPOSITORY.save`) and
 broadcasts (`TaskSyncService`) for cross-tab sync.
 
+**Dashboard UX:** the hero header shows live stats (overdue / due today / done
+today) plus a daily progress bar; the stats double as quick filters for the
+list view (session-only, not persisted). The list/calendar switch is a custom
+segmented control. On desktop the task grid grows to three columns inside the
+1560px container, and calendar mode takes the full width (the activity feed
+drops below). Completions get a confetti burst + undo toast; all motion is
+disabled under `prefers-reduced-motion`.
+
 ## Editing / adding tasks
 
-Canonical task definitions live in `data/task-seed.data.ts`. To add or change a
-task, edit that file and **bump `SEED_VERSION`**. Stored history is merged by
-the stable `id`, so:
+Canonical task definitions live in `data/task-seed.data.ts`. Every task is
+bilingual: `nameDe` (primary, German) + `nameEn` (from the plan's original
+wording), same for `notesDe`/`notesEn`. To add or change a task, edit that file
+and **bump `SEED_VERSION`**. Stored history is merged by the stable `id`, so:
 
 - New tasks appear without touching existing history.
-- Renaming a task's `name` keeps its history (the `id` is stable — never derive
-  it from the name).
+- Renaming a task's `nameDe`/`nameEn` keeps its history (the `id` is stable —
+  never derive it from a name).
 - Removing a task archives its history rather than deleting it.
 
 Recurrence builders live in `models/recurrence.model.ts` (`rec.fixed`,

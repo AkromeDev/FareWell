@@ -34,8 +34,8 @@ export class CalendarDayComponent {
     const state = STATE_LABELS[cell.record.computed.state];
     const dateStr = formatDate(this.day.iso, this.lang.lang());
     return this.lang.t(
-      `${cell.record.def.name}, ${dateStr}, ${state.de}`,
-      `${cell.record.def.name}, ${dateStr}, ${state.en}`,
+      `${cell.record.def.nameDe}, ${dateStr}, ${state.de}`,
+      `${cell.record.def.nameEn}, ${dateStr}, ${state.en}`,
     );
   }
 

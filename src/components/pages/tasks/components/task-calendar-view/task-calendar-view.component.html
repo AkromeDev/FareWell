@@ -43,7 +43,7 @@
           <li>
             <button type="button" class="lanechip" [disabled]="!r.computed.actionable" (click)="requestComplete.emit(r)">
               <app-urgency-badge [state]="r.computed.state" [urgency]="r.computed.urgency" />
-              <span class="lanechip__name">{{ r.def.name }}</span>
+              <span class="lanechip__name">{{ lang.t(r.def.nameDe, r.def.nameEn) }}</span>
             </button>
           </li>
         }
@@ -72,7 +72,7 @@
           <li>
             <button type="button" class="lanechip" [disabled]="!r.computed.actionable" (click)="requestComplete.emit(r)">
               <app-urgency-badge [state]="r.computed.state" [urgency]="r.computed.urgency" />
-              <span class="lanechip__name">{{ r.def.name }}</span>
+              <span class="lanechip__name">{{ lang.t(r.def.nameDe, r.def.nameEn) }}</span>
             </button>
           </li>
         }

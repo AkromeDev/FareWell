@@ -9,7 +9,8 @@ export interface ActivityEntry {
   /** Equals the originating completion id. */
   id: string;
   taskId: string;
-  taskName: string;
+  taskNameDe: string;
+  taskNameEn: string;
   category: string;
   type: TaskType;
   userId: TaskUserId;

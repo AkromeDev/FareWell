@@ -42,7 +42,7 @@
   height: 1.4rem;
   padding: 0 0.4rem;
   border-radius: 999px;
-  background: rgba($dark-1, 0.12);
+  background: color-mix(in srgb, #{$accent-1} 18%, transparent);
   color: $dark-2;
   font-size: 0.74rem;
   font-weight: 700;
@@ -77,19 +77,46 @@
 
 .feed__item {
   display: flex;
-  gap: 0.55rem;
-  padding: 0.5rem 0.9rem;
+  gap: 0.6rem;
+  padding: 0.55rem 0.9rem;
   border-bottom: 1px solid var(--line, rgba(43, 51, 40, 0.07));
+  transition: background 0.18s ease;
+
+  &:hover { background: color-mix(in srgb, #{$accent-1} 5%, transparent); }
 
   &:last-child { border-bottom: 0; }
 }
 
-.feed__dot {
+// Initial avatar, tinted per teammate, with a small action dot on its corner.
+.feed__avatar {
+  position: relative;
   flex: 0 0 auto;
-  width: 8px;
-  height: 8px;
-  margin-top: 0.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-top: 0.1rem;
   border-radius: 50%;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: $light-1;
+  background: $dark-1;
+
+  &[data-user='nicolita'] { background: linear-gradient(140deg, #c7a65c, $accent-1); color: $dark-2; }
+  &[data-user='mojo'] { background: linear-gradient(140deg, $dark-1, $dark-2); }
+  &[data-user='nikkita'] { background: linear-gradient(140deg, #7e8e68, $accent-2); }
+  &[data-user='annasun'] { background: linear-gradient(140deg, #a08e6c, #8a8172); }
+}
+
+.feed__dot {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--surface, #fff);
   background: var(--u-completed, #3e5a47);
 
   &[data-action='corrective'] { background: var(--u-warning, #b07d1f); }
@@ -117,4 +144,17 @@
   align-items: baseline;
 }
 
-.feed__note { font-style: italic; }
+.feed__note {
+  margin: 0.25rem 0 0;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.76rem;
+  font-style: italic;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+  border-left: 2px solid color-mix(in srgb, #{$accent-1} 55%, transparent);
+  background: color-mix(in srgb, #{$accent-1} 6%, transparent);
+  border-radius: 0 6px 6px 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feed__item { transition: none; }
+}

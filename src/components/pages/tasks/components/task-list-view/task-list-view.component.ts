@@ -36,4 +36,9 @@ export class TaskListViewComponent {
   isCollapsed(categoryId: string): boolean {
     return this.collapsed[categoryId] === true;
   }
+
+  /** Staggered category entrance, capped so long lists don't crawl in. */
+  groupDelay(index: number): number {
+    return Math.min(index, 6) * 70;
+  }
 }
