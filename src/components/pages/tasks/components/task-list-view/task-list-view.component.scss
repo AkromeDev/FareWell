@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.list-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+}

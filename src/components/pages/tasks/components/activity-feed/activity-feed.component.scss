@@ -1,0 +1,120 @@
+@use 'themes/theme-entry' as *;
+
+:host {
+  display: block;
+}
+
+.feed {
+  border: 1px solid var(--line, rgba(43, 51, 40, 0.12));
+  border-radius: 14px;
+  background: var(--surface, #fff);
+  box-shadow: 0 1px 2px rgba($black, 0.04), 0 8px 22px rgba($black, 0.05);
+  overflow: hidden;
+}
+
+.feed__heading {
+  margin: 0;
+}
+
+.feed__toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--ink, #2b3328);
+}
+
+.feed__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.feed__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: rgba($dark-1, 0.12);
+  color: $dark-2;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.feed__chevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+}
+
+.feed__chevron--open { transform: rotate(180deg); }
+
+.feed__panel {
+  max-height: 22rem;
+  overflow-y: auto;
+  border-top: 1px solid var(--line, rgba(43, 51, 40, 0.1));
+}
+
+.feed__empty {
+  padding: 1rem 0.9rem;
+  margin: 0;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+  font-size: 0.85rem;
+}
+
+.feed__list {
+  margin: 0;
+  padding: 0.4rem 0;
+  list-style: none;
+}
+
+.feed__item {
+  display: flex;
+  gap: 0.55rem;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid var(--line, rgba(43, 51, 40, 0.07));
+
+  &:last-child { border-bottom: 0; }
+}
+
+.feed__dot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.4rem;
+  border-radius: 50%;
+  background: var(--u-completed, #3e5a47);
+
+  &[data-action='corrective'] { background: var(--u-warning, #b07d1f); }
+  &[data-action='checked-ok'] { background: var(--u-attention, #7d8a5f); }
+}
+
+.feed__body { min-width: 0; }
+
+.feed__line {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: var(--ink, #2b3328);
+}
+
+.feed__task { color: var(--ink, #2b3328); }
+
+.feed__meta {
+  margin: 0.1rem 0 0;
+  font-size: 0.74rem;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: baseline;
+}
+
+.feed__note { font-style: italic; }

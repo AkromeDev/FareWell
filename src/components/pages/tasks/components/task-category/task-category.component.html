@@ -1,0 +1,37 @@
+<section class="cat">
+  <h3 class="cat__heading">
+    <button
+      type="button"
+      class="cat__toggle"
+      [attr.aria-expanded]="!collapsed"
+      [attr.aria-controls]="panelId"
+      (click)="toggle.emit()"
+    >
+      <span class="cat__chevron" [class.cat__chevron--open]="!collapsed" aria-hidden="true">▸</span>
+      <span class="cat__title">{{ title() }}</span>
+      <span class="cat__count">{{ countLabel() }}</span>
+      @if (group.urgentCount > 0) {
+        <span class="cat__badge" [attr.aria-label]="lang.t(group.urgentCount + ' dringend', group.urgentCount + ' urgent')">
+          {{ group.urgentCount }}
+        </span>
+      }
+    </button>
+  </h3>
+
+  <div class="cat__panel" [id]="panelId" [hidden]="collapsed">
+    <ul class="cat__list">
+      @for (record of group.records; track record.def.id) {
+        <li class="cat__item">
+          <app-task-card
+            [record]="record"
+            [user]="user"
+            [now]="now"
+            [canComplete]="canComplete"
+            (requestComplete)="requestComplete.emit($event)"
+            (requestTrigger)="requestTrigger.emit($event)"
+          />
+        </li>
+      }
+    </ul>
+  </div>
+</section>

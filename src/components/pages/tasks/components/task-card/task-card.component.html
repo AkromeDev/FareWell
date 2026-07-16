@@ -1,0 +1,65 @@
+<article class="task-card" [attr.data-urgency]="record.computed.urgency">
+  <div class="task-card__head">
+    <h4 class="task-card__title">{{ record.def.name }}</h4>
+    <app-urgency-badge [state]="record.computed.state" [urgency]="record.computed.urgency" />
+  </div>
+
+  @if (record.computed.currentZone) {
+    <p class="task-card__zone">
+      <span class="task-card__zone-label">{{ t('Aktuelle Zone', 'Current zone') }}:</span>
+      {{ record.computed.currentZone }}
+    </p>
+  }
+
+  <p class="task-card__recurrence">{{ recurrenceText() }}</p>
+
+  @if (record.def.notes) {
+    <p class="task-card__notes">{{ record.def.notes }}</p>
+  }
+
+  <dl class="task-card__meta">
+    <div class="task-card__meta-row">
+      <dt class="sr-only">{{ t('Zuletzt erledigt', 'Last completed') }}</dt>
+      <dd>
+        <span
+          [attr.title]="lastCompletedExact()"
+          [attr.aria-label]="lastCompletedExact() || undefined"
+        >{{ lastCompletedText() }}</span>
+      </dd>
+    </div>
+    @if (nextDueText(); as nd) {
+      <div class="task-card__meta-row task-card__meta-row--due">
+        <dt class="sr-only">{{ t('Nächste Fälligkeit', 'Next due') }}</dt>
+        <dd>{{ nd }}</dd>
+      </div>
+    }
+    @if (ownerName(); as owner) {
+      <div class="task-card__meta-row">
+        <dt class="sr-only">{{ t('Zuständig', 'Owner') }}</dt>
+        <dd class="task-card__owner">{{ t('Zuständig', 'Owner') }}: {{ owner }}</dd>
+      </div>
+    }
+  </dl>
+
+  <div class="task-card__actions">
+    <button
+      type="button"
+      class="task-card__btn task-card__btn--primary"
+      [disabled]="!canComplete || isSeasonalInactive"
+      [attr.aria-label]="completeAriaLabel()"
+      (click)="requestComplete.emit(record)"
+    >
+      {{ t('Erledigt', 'Mark done') }}
+    </button>
+
+    @if (isEventTask && canComplete) {
+      <button
+        type="button"
+        class="task-card__btn task-card__btn--ghost"
+        (click)="requestTrigger.emit(record)"
+      >
+        {{ t('Ereignis eintragen', 'Log event') }}
+      </button>
+    }
+  </div>
+</article>

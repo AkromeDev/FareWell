@@ -1,0 +1,179 @@
+@use 'themes/theme-entry' as *;
+
+:host {
+  display: block;
+}
+
+.cal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.cal__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cal__nav {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0.35rem;
+}
+
+.cal__navbtn,
+.cal__today {
+  font-family: inherit;
+  font-weight: 650;
+  border: 1px solid var(--line-strong, rgba(43, 51, 40, 0.18));
+  background: var(--surface, #fff);
+  color: var(--ink, #2b3328);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover:not(:disabled) { background: rgba($dark-1, 0.08); }
+  &:disabled { opacity: 0.45; cursor: default; }
+}
+
+.cal__navbtn {
+  width: 2.25rem;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.cal__today {
+  padding: 0 0.9rem;
+  font-size: 0.82rem;
+}
+
+.cal__range {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--ink, #2b3328);
+}
+
+.cal__daypicker {
+  display: none;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scrollbar-width: thin;
+}
+
+.cal__pick {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  min-width: 3rem;
+  padding: 0.4rem 0.3rem;
+  border: 1px solid var(--line, rgba(43, 51, 40, 0.12));
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--ink, #2b3328);
+}
+
+.cal__pick--today { border-color: $accent-1; }
+
+.cal__pick--active {
+  background: $dark-2;
+  color: $light-1;
+}
+
+.cal__pick-wd {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.cal__pick-day {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.cal__pick-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: $accent-1;
+}
+
+.cal__grid {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.cal__lane {
+  border: 1px solid var(--line, rgba(43, 51, 40, 0.12));
+  border-radius: 12px;
+  padding: 0.6rem 0.75rem;
+  background: var(--surface-2, #f7f2e8);
+}
+
+.cal__lane--overdue {
+  border-color: color-mix(in srgb, var(--u-critical, #b4462f) 40%, transparent);
+  background: color-mix(in srgb, var(--u-critical, #b4462f) 7%, var(--surface-2, #f7f2e8));
+}
+
+.cal__lane-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+}
+
+.cal__lane-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lanechip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--line, rgba(43, 51, 40, 0.12));
+  background: var(--surface, #fff);
+  cursor: pointer;
+  font-family: inherit;
+  max-width: 100%;
+
+  &:hover:not(:disabled) { border-color: $dark-1; }
+  &:disabled { cursor: default; }
+}
+
+.lanechip__name {
+  font-size: 0.78rem;
+  color: var(--ink, #2b3328);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 16rem;
+}
+
+// --- Responsive ---------------------------------------------------------
+@media (max-width: 879px) {
+  .cal__daypicker { display: flex; }
+  .cal__grid { grid-template-columns: 1fr; }
+  .cal__day:not(.is-selected) { display: none; }
+}
+
+@media (min-width: 880px) {
+  .cal__grid { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .cal__day { display: flex; }
+}

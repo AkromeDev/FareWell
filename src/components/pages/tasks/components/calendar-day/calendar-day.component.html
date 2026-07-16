@@ -1,0 +1,39 @@
+<div class="day" [class.day--today]="day.isToday" [class.day--past]="day.isPast">
+  <div class="day__header">
+    @if (headingLevel === 'h3') {
+      <h3 class="day__title">
+        <span class="day__weekday">{{ header().weekday }}</span>
+        <span class="day__num">{{ header().day }}</span>
+      </h3>
+    } @else {
+      <h4 class="day__title">
+        <span class="day__weekday">{{ header().weekday }}</span>
+        <span class="day__num">{{ header().day }}</span>
+      </h4>
+    }
+    @if (day.isToday) {
+      <span class="day__today">{{ lang.t('Heute', 'Today') }}</span>
+    }
+  </div>
+
+  <ul class="day__list">
+    @for (cell of day.items; track cell.record.def.id + cell.kind) {
+      <li class="day__item">
+        <button
+          type="button"
+          class="chip"
+          [attr.data-urgency]="cell.record.computed.urgency"
+          [attr.data-kind]="cell.kind"
+          [disabled]="!isActionable(cell)"
+          [attr.aria-label]="chipAriaLabel(cell)"
+          (click)="selectTask.emit(cell.record)"
+        >
+          <span class="chip__kind">{{ kindLabel(cell) }}</span>
+          <span class="chip__name">{{ cell.record.def.name }}</span>
+        </button>
+      </li>
+    } @empty {
+      <li class="day__empty" aria-hidden="true">·</li>
+    }
+  </ul>
+</div>

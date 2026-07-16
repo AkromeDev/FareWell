@@ -1,0 +1,92 @@
+@if (isUnknownUser()) {
+  <section class="unknown">
+    <h1>{{ t('Unbekannter Bereich', 'Unknown area') }}</h1>
+    <p>{{ t('Diese Aufgabenseite existiert nicht.', 'This task page does not exist.') }}</p>
+  </section>
+} @else if (user(); as u) {
+  <div class="dash">
+    <header class="dash__head">
+      <p class="dash__eyebrow">FareWell · {{ t('Aufgabenplan', 'Task plan') }}</p>
+      <h1 class="dash__title">{{ t('Aufgaben', 'Tasks') }} · {{ u.name }}</h1>
+      <p class="dash__subtitle">{{ subtitle(u) }}</p>
+    </header>
+
+    <div class="dash__toolbar">
+      <farewell-toggle
+        [options]="viewOptions()"
+        [selected]="viewMode()"
+        theme="light"
+        (selectedChange)="onViewChange($event, u)"
+      />
+      @if (!isPersistent) {
+        <p class="dash__notice" role="note">
+          {{ t(
+            'Speicher nicht verfügbar – Änderungen bleiben nur bis zum Neuladen.',
+            'Storage unavailable – changes last only until reload.'
+          ) }}
+        </p>
+      }
+    </div>
+
+    <div class="dash__body">
+      <main class="dash__main" [attr.aria-label]="t('Aufgaben', 'Tasks')">
+        @if (viewMode() === 'list') {
+          <app-task-list-view
+            [records]="records()"
+            [categories]="categories()"
+            [user]="u"
+            [now]="now()"
+            [collapsed]="collapsed()"
+            (toggleCategory)="onToggleCategory($event, u)"
+            (requestComplete)="onRequestComplete($event)"
+            (requestTrigger)="onRequestTrigger($event, u)"
+          />
+        } @else {
+          <app-task-calendar-view
+            [records]="records()"
+            [user]="u"
+            [now]="now()"
+            (requestComplete)="onRequestComplete($event)"
+          />
+        }
+      </main>
+
+      <aside class="dash__aside" [attr.aria-label]="t('Aktivitäten', 'Activity')">
+        <app-activity-feed
+          [entries]="activity()"
+          [now]="now()"
+          [collapsed]="activityCollapsed()"
+          (toggle)="onToggleActivity(u)"
+        />
+        <p class="dash__hint">
+          {{ t(
+            'Nur dieses Gerät und dieser Browser. Kein geräteübergreifender Abgleich.',
+            'This device and browser only. No cross-device sync.'
+          ) }}
+        </p>
+      </aside>
+    </div>
+
+    <div class="sr-only" aria-live="polite" role="status">{{ announcement() }}</div>
+
+    @if (dialogRecord(); as rec) {
+      <app-task-completion-dialog
+        [record]="rec"
+        [userName]="u.name"
+        (confirm)="onDialogConfirm($event, u)"
+        (cancel)="onDialogCancel()"
+      />
+    }
+
+    @if (toast(); as tst) {
+      <div class="toast" role="status">
+        <span class="toast__msg">{{ tst.message }}</span>
+        @if (tst.undoable) {
+          <button type="button" class="toast__undo" (click)="onUndo()">
+            {{ t('Rückgängig', 'Undo') }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+}
