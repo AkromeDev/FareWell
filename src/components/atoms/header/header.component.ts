@@ -41,6 +41,11 @@ export class HeaderComponent implements OnInit {
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
   private closeTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
+  /** Interner Link in der aktiven Sprache (auf /en/-Seiten mit /en-Präfix). */
+  p(path: string): string {
+    return this.lang.localizePath(path);
+  }
+
   get treatments(): TreatmentCard[] {
     const t = (de: string, en: string) => this.lang.t(de, en);
     return [
@@ -50,7 +55,7 @@ export class HeaderComponent implements OnInit {
           'Permanente Haarentfernung mit Elektrolyse: präzise, zuverlässig, endgültig.',
           'Permanent hair removal with electrolysis: precise, reliable, final.'
         ),
-        route: '/behandlungen/nadelepilation',
+        route: this.p('/behandlungen/nadelepilation'),
         image: 'assets/images/treatment/nadelepilation.jpg'
       },
       {
@@ -59,7 +64,7 @@ export class HeaderComponent implements OnInit {
           'Dauerhafte Haarentfernung für viele Haut- & Haartypen, schnell und komfortabel.',
           'Long-lasting hair removal for many skin and hair types, fast and comfortable.'
         ),
-        route: '/behandlungen/diodenlaser-4-wellen',
+        route: this.p('/behandlungen/diodenlaser-4-wellen'),
         image: 'assets/images/treatment/diodenlaser.webp'
       },
       {
@@ -68,7 +73,7 @@ export class HeaderComponent implements OnInit {
           'Straffung & Hautbild: feine Nadeln + Wärme für ein glatteres Erscheinungsbild.',
           'Firming and skin texture: fine needles plus heat for a smoother appearance.'
         ),
-        route: '/behandlungen/microneedling-radiofrequenz',
+        route: this.p('/behandlungen/microneedling-radiofrequenz'),
         image: 'assets/images/treatment/microneedling.webp'
       },
       {
@@ -77,7 +82,7 @@ export class HeaderComponent implements OnInit {
           'Entspannung, Regeneration & neue Leichtigkeit mit wohltuenden Wellness-Massagen.',
           'Relaxation, recovery and new lightness with soothing wellness massages.'
         ),
-        route: '/behandlungen/wellness-massage',
+        route: this.p('/behandlungen/wellness-massage'),
         image: 'assets/images/treatment/massage-hero.jpg'
       },
       {
@@ -86,7 +91,7 @@ export class HeaderComponent implements OnInit {
           'Gezielte Behandlung bei Verspannungen, sportlicher Belastung & für individuelle Regeneration.',
           'Targeted work for tension, sports strain and individual recovery.'
         ),
-        route: '/behandlungen/therapeutische-massage',
+        route: this.p('/behandlungen/therapeutische-massage'),
         image: 'assets/images/massages/tm%20massaging.jpg'
       },
       {
@@ -95,7 +100,7 @@ export class HeaderComponent implements OnInit {
           'Ultraschall-Unterstützung zur Kontur: sanft, nicht-invasiv und effektiv.',
           'Ultrasound support for body contour: gentle, non-invasive and effective.'
         ),
-        route: '/behandlungen/kavitation',
+        route: this.p('/behandlungen/kavitation'),
         image: 'assets/images/treatment/kavitation.webp'
       }
     ];

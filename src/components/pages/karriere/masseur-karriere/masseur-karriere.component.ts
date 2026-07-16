@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import { SeoService } from 'src/services/seo.service';
+import { LanguageService } from 'src/services/language.service';
+
+const PAGE_PATH = '/karriere/masseur-nuernberg';
 
 @Component({
   standalone: true,
@@ -11,57 +13,48 @@ import { RouterLink } from '@angular/router';
   styleUrl: './masseur-karriere.component.scss'
 })
 export class MasseurKarriereComponent implements OnInit, OnDestroy {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
-  private readonly document = inject(DOCUMENT);
+  private readonly seo = inject(SeoService);
+  private readonly lang = inject(LanguageService);
 
-  private readonly jsonLdScriptId = 'masseur-jobposting-schema';
-  private readonly pageUrl = 'https://farewell.salon/karriere/masseur-nuernberg';
+  private readonly jsonLdId = 'masseur-jobposting-schema';
   private readonly imageUrl =
     'https://farewell.salon/assets/images/logo/android-chrome-512x512.png';
 
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.lang.localizePath(path);
+  }
+
   ngOnInit(): void {
-    this.setSeoTags();
+    this.seo.setPageSeo({
+      title: this.t(
+        'Masseur:in (m/w/d) in Nürnberg – freiberuflich | Karriere bei FareWell',
+        'Massage Therapist (m/f/d) in Nuremberg – Freelance | Careers at FareWell'
+      ),
+      description: this.t(
+        'FareWell Nürnberg sucht Masseur:in zur freiberuflichen Zusammenarbeit: moderner Salon im Zentrum, flexible Arbeitszeiten, Online-Buchungssystem und eigener Kundenstamm.',
+        'FareWell Nuremberg is looking for a freelance massage therapist: modern central salon, flexible hours, an online booking system and your own client base.'
+      ),
+      path: PAGE_PATH,
+      image: this.imageUrl,
+      imageAlt: 'FareWell Logo',
+    });
+
     this.setStructuredData();
   }
 
   ngOnDestroy(): void {
-    this.document.getElementById(this.jsonLdScriptId)?.remove();
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 
-  private setSeoTags(): void {
-    const pageTitle =
-      'Masseur:in (m/w/d) in Nürnberg – freiberuflich | Karriere bei FareWell';
-
-    const description =
-      'FareWell Nürnberg sucht Masseur:in zur freiberuflichen Zusammenarbeit: moderner Salon im Zentrum, flexible Arbeitszeiten, Online-Buchungssystem und eigener Kundenstamm.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.imageUrl });
-    this.meta.updateTag({ property: 'og:image:alt', content: 'FareWell Logo' });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
-
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.imageUrl });
-    this.meta.updateTag({ name: 'twitter:image:alt', content: 'FareWell Logo' });
-  }
-
-  // Anders als auf den übrigen Seiten wird das JSON-LD hier direkt in den <head>
-  // injiziert: <script>-Tags in Angular-Templates werden vom Compiler entfernt
-  // und landen daher nie im gerenderten HTML.
   private setStructuredData(): void {
-    const jobDescriptionHtml =
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+
+    const jobDescriptionHtmlDe =
       '<p>Für unseren modernen Salon FareWell im Zentrum von Nürnberg suchen wir eine Masseurin oder einen Masseur zur freiberuflichen Zusammenarbeit.</p>' +
       '<p>FareWell ist ein hochwertiger Beauty- und Ästhetik-Salon mit Fokus auf moderne Behandlungen. Unser Ziel ist es, qualifizierten Dienstleisterinnen und Dienstleistern eine professionelle Umgebung zu bieten, in der sie sich vollständig auf ihre Kundinnen und Kunden konzentrieren können.</p>' +
       '<p><strong>Ihre Aufgaben</strong></p>' +
@@ -69,20 +62,34 @@ export class MasseurKarriereComponent implements OnInit, OnDestroy {
       '<p><strong>Ihr Profil</strong></p>' +
       '<ul><li>Abgeschlossene Ausbildung als Masseur/in oder eine vergleichbare Qualifikation</li><li>Gültige Zertifizierungen und fachliche Nachweise</li><li>Selbständige und strukturierte Arbeitsweise</li><li>Verantwortungsbewusstsein und Zuverlässigkeit</li><li>Freundliches und gepflegtes Erscheinungsbild</li><li>Professioneller Umgang mit Kundinnen und Kunden</li></ul>' +
       '<p><strong>Wir bieten</strong></p>' +
-      '<ul><li>Modernen, voll ausgestatteten Salon in zentraler Lage in Nürnberg</li><li>Nutzung aller vorhandenen Räumlichkeiten und der gesamten Ausstattung</li><li>Transparentes Online-Buchungssystem mit mobiler Termineinsicht</li><li>Vollständig flexible Arbeitszeiten</li><li>Keine Anwesenheitspflicht ohne gebuchte Termine</li><li>Freie Wahl der Behandlungen</li><li>Persönliche Vorstellung auf unserer Webseite farewell.salon</li><li>Möglichkeit zur Teilnahme an Online-Marketing-Kampagnen</li><li>Reposts und Sichtbarkeit über unsere Instagram-Kanäle</li><li>Professionelles Umfeld ohne organisatorischen Aufwand</li></ul>';
+      '<ul><li>Modernen, voll ausgestatteten Salon in zentraler Lage in Nürnberg</li><li>Nutzung aller vorhandenen Räumlichkeiten und der gesamten Ausstattung</li><li>Transparentes Online-Buchungssystem mit mobiler Termineinsicht</li><li>Vollständig flexible Arbeitszeiten</li><li>Keine Anwesenheitspflicht ohne gebuchte Termine</li><li>Freie Wahl der Behandlungen, auch solche, die bei uns noch nicht im Angebot sind</li><li>Persönliche Vorstellung auf unserer Webseite farewell.salon</li><li>Möglichkeit zur Teilnahme an Online-Marketing-Kampagnen</li><li>Reposts und Sichtbarkeit über unsere Instagram-Kanäle</li><li>Professionelles Umfeld ohne organisatorischen Aufwand</li></ul>';
 
-    const jsonLd = {
+    const jobDescriptionHtmlEn =
+      '<p>For our modern salon FareWell in the centre of Nuremberg we are looking for a massage therapist (m/f/d) for a freelance collaboration.</p>' +
+      '<p>FareWell is a high-quality beauty and aesthetics salon with a focus on modern treatments. Our goal is to offer qualified service providers a professional environment in which they can focus fully on their clients.</p>' +
+      '<p><strong>Your responsibilities</strong></p>' +
+      '<ul><li>Performing massages and body-focused wellness treatments</li><li>Independent care of your clients</li><li>A professional and service-oriented manner</li><li>Adherence to hygiene and quality standards</li><li>Building and nurturing your own client base with the support of the salon</li></ul>' +
+      '<p><strong>Your profile</strong></p>' +
+      '<ul><li>Completed training as a massage therapist (m/f/d) or a comparable qualification</li><li>Valid certifications and professional credentials</li><li>An independent and structured way of working</li><li>A strong sense of responsibility and reliability</li><li>A friendly and well-groomed appearance</li><li>A professional approach with clients</li></ul>' +
+      '<p><strong>What we offer</strong></p>' +
+      '<ul><li>A modern, fully equipped salon in a central location in Nuremberg</li><li>Use of all available rooms and the entire equipment</li><li>A transparent online booking system with mobile appointment access</li><li>Fully flexible working hours</li><li>No obligation to be present without booked appointments</li><li>Free choice of treatments, including ones we do not yet offer</li><li>A personal profile on our website farewell.salon</li><li>The option to take part in online marketing campaigns</li><li>Reposts and visibility through our Instagram channels</li><li>A professional environment without any organizational effort</li></ul>';
+
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'JobPosting',
-          '@id': `${this.pageUrl}#jobposting`,
-          title: 'Masseur / Masseurin (m/w/d) – freiberufliche Zusammenarbeit',
-          description: jobDescriptionHtml,
+          '@id': `${pageUrl}#jobposting`,
+          title: this.t(
+            'Masseur / Masseurin (m/w/d): freiberufliche Zusammenarbeit',
+            'Massage therapist (m/f/d): freelance collaboration'
+          ),
+          description: this.t(jobDescriptionHtmlDe, jobDescriptionHtmlEn),
+          inLanguage: isEn ? 'en' : 'de',
           datePosted: '2026-07-07',
           employmentType: 'CONTRACTOR',
           directApply: true,
-          industry: 'Beauty und Wellness',
+          industry: this.t('Beauty und Wellness', 'Beauty and wellness'),
           hiringOrganization: {
             '@type': 'BeautySalon',
             '@id': 'https://farewell.salon/#organization',
@@ -107,44 +114,52 @@ export class MasseurKarriereComponent implements OnInit, OnDestroy {
           applicationContact: {
             '@type': 'ContactPoint',
             email: 'info@farewell.salon',
-            contactType: 'Bewerbung'
+            contactType: this.t('Bewerbung', 'Application')
           },
-          qualifications:
+          qualifications: this.t(
             'Abgeschlossene Ausbildung als Masseur/in oder eine vergleichbare Qualifikation, gültige Zertifizierungen und fachliche Nachweise',
-          workHours: 'Vollständig flexible Arbeitszeiten'
+            'Completed training as a massage therapist (m/f/d) or a comparable qualification, valid certifications and professional credentials'
+          ),
+          workHours: this.t('Vollständig flexible Arbeitszeiten', 'Fully flexible working hours')
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Masseur:in (m/w/d) in Nürnberg – freiberuflich | Karriere bei FareWell',
-          description:
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: this.t(
+            'Masseur:in (m/w/d) in Nürnberg: freiberuflich | Karriere bei FareWell',
+            'Massage Therapist (m/f/d) in Nuremberg: Freelance | Careers at FareWell'
+          ),
+          description: this.t(
             'FareWell Nürnberg sucht Masseur:in zur freiberuflichen Zusammenarbeit: moderner Salon im Zentrum, flexible Arbeitszeiten, Online-Buchungssystem und eigener Kundenstamm.',
+            'FareWell Nuremberg is looking for a freelance massage therapist: modern central salon, flexible hours, an online booking system and your own client base.'
+          ),
+          inLanguage: isEn ? 'en' : 'de',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
           about: {
-            '@id': `${this.pageUrl}#jobposting`
+            '@id': `${pageUrl}#jobposting`
           }
         },
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
-            { '@type': 'ListItem', position: 2, name: 'Karriere: Masseur:in', item: this.pageUrl }
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'FareWell',
+              item: isEn ? 'https://farewell.salon/en' : 'https://farewell.salon'
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: this.t('Karriere: Masseur:in', 'Careers: massage therapist'),
+              item: pageUrl
+            }
           ]
         }
       ]
-    };
-
-    if (this.document.getElementById(this.jsonLdScriptId)) {
-      return;
-    }
-
-    const script = this.document.createElement('script');
-    script.id = this.jsonLdScriptId;
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify(jsonLd);
-    this.document.head.appendChild(script);
+    });
   }
 }

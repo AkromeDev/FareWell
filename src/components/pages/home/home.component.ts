@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject, HostListener } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ParallaxComponent } from 'src/components/atoms/parallax/parallax.component';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
 import { ButtonItem } from 'src/models/ButtonItem';
 import { OpeningHoursComponent } from 'src/components/atoms/opening-hours/opening-hours.component';
 import { LanguageService } from 'src/services/language.service';
+import { SeoService } from 'src/services/seo.service';
+
+const PAGE_PATH = '/';
 
 @Component({
   selector: 'app-home',
@@ -21,18 +23,20 @@ import { LanguageService } from 'src/services/language.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class HomeComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
   readonly lang = inject(LanguageService);
+  private readonly jsonLdId = 'home-schema';
 
-  private readonly pageUrl = 'https://farewell.salon/';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/farewell/studio.webp';
-  private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
 
   t(de: string, en: string): string {
     return this.lang.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.lang.localizePath(path);
   }
 
   get paragraphText(): string {
@@ -56,8 +60,8 @@ Welcome to your new permanent freedom.
 
   get buttonList(): ButtonItem[] {
     return [
-      { label: this.t('Mehr erfahren', 'Learn more'), link: '/behandlung', theme: 'dark' },
-      { label: this.t('Unsere Preise', 'Our prices'), link: '/price', theme: 'dark' },
+      { label: this.t('Mehr erfahren', 'Learn more'), link: this.p('/behandlungen/nadelepilation'), theme: 'dark' },
+      { label: this.t('Unsere Preise', 'Our prices'), link: this.p('/price'), theme: 'dark' },
       {
         label: this.t('Termin buchen', 'Book now'),
         link: 'https://salonkee.de/salon/farewell?lang=de',
@@ -71,58 +75,38 @@ Welcome to your new permanent freedom.
   }
 
   activeTab: string = 'home';
-  structuredData = '';
 
   protected setActiveTab(tab: string) {
     this.activeTab = tab;
   }
 
-  constructor() {}
-
   ngOnInit(): void {
-    this.setSeoTags();
-    this.setStructuredData();
-  }
+    const pageTitle = this.t(
+      'FareWell Nürnberg | Permanente Haarentfernung & Beauty Studio',
+      'FareWell Nuremberg | Permanent Hair Removal & Beauty Studio'
+    );
+    const description = this.t(
+      'FareWell Nürnberg: spezialisiert auf Elektrolyse (permanente Haarentfernung), Laserbehandlungen, Microneedling und weitere Beauty Behandlungen.',
+      'FareWell in Nuremberg specialises in electrolysis (permanent hair removal), laser hair removal, RF microneedling and body treatments. Consultations in English, near the main station.'
+    );
+    const imageAlt = this.t(
+      'FareWell Studio in Nürnberg für permanente Haarentfernung und ästhetische Behandlungen',
+      'FareWell studio in Nuremberg for permanent hair removal and aesthetic treatments'
+    );
 
-  private setSeoTags(): void {
-    const pageTitle =
-      'Permanente Haarentfernung in Nürnberg | FareWell';
-
-    const description =
-      'FareWell in Nürnberg ist spezialisiert auf permanente Haarentfernung mit Elektrolyse. ' +
-      'Zusätzlich bieten wir Laser Haarentfernung, Radiofrequenz-Microneedling und Körperforming in moderner Studioatmosphäre.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für permanente Haarentfernung und ästhetische Behandlungen'
+    this.seo.setPageSeo({
+      title: pageTitle,
+      description: description,
+      path: PAGE_PATH,
+      image: this.heroImageUrl,
+      imageAlt: imageAlt,
+      largeImage: true
     });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
 
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      name: 'twitter:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für permanente Haarentfernung und ästhetische Behandlungen'
-    });
-  }
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = isEn ? 'https://farewell.salon/en' : 'https://farewell.salon/';
 
-  private setStructuredData(): void {
-    const jsonLd = {
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
@@ -150,11 +134,11 @@ Welcome to your new permanent freedom.
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Permanente Haarentfernung in Nürnberg | FareWell',
-          description:
-            'FareWell in Nürnberg ist spezialisiert auf permanente Haarentfernung mit Elektrolyse. Zusätzlich bieten wir Laser Haarentfernung, Radiofrequenz-Microneedling und Körperforming.',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: pageTitle,
+          description: description,
+          inLanguage: isEn ? 'en' : 'de',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
@@ -167,8 +151,10 @@ Welcome to your new permanent freedom.
           }
         }
       ]
-    };
+    });
+  }
 
-    this.structuredData = JSON.stringify(jsonLd);
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 }

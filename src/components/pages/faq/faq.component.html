@@ -5,7 +5,7 @@
     tagline="Für immer sanft."
     [lead]="
       t(
-        'Alles Wichtige zu Behandlungen, Terminen, Preisen, Kostenübernahme und Mehrwertsteuer­befreiung – ehrlich und verständlich beantwortet.',
+        'Alles Wichtige zu Behandlungen, Terminen, Preisen, Kostenübernahme und Mehrwertsteuer­befreiung, ehrlich und verständlich beantwortet.',
         'Everything you need to know about treatments, appointments, prices, insurance coverage and VAT exemption, answered honestly and in plain language.'
       )
     "
@@ -19,7 +19,7 @@
         <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
           <span class="lang de">
-            Hier findest du die Antworten, die wir in der Erstberatung am häufigsten geben – von
+            Hier findest du die Antworten, die wir in der Erstberatung am häufigsten geben, von
             der richtigen Methode bis zur Kostenübernahme durch die Krankenkasse.
           </span>
           <span class="lang en">
@@ -32,8 +32,8 @@
             Deine Frage ist nicht dabei? Schreib uns auf
             <a href="https://www.instagram.com/farewell.salon/" target="_blank" rel="noopener noreferrer">Instagram</a>
             oder buche direkt deine
-            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlose Erstberatung</a>
-            – wir nehmen uns Zeit.
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlose Erstberatung</a>.
+            Wir nehmen uns Zeit.
           </span>
           <span class="lang en">
             Cannot find your question? Write to us on
@@ -62,23 +62,23 @@
       >
         <p class="lang de">
           <strong>Permanent</strong> ist in Deutschland allein die
-          <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a>: Jede
-          Haarwurzel wird einzeln und endgültig verödet – die einzige rechtlich als permanent
+          <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse (Nadelepilation)</a>: Jede
+          Haarwurzel wird einzeln und endgültig verödet: die einzige rechtlich als permanent
           anerkannte Methode.
         </p>
         <p class="lang en">
-          In Germany, only <a routerLink="/behandlungen/nadelepilation">electrolysis (Nadelepilation)</a>
+          In Germany, only <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis (Nadelepilation)</a>
           is <strong>permanent</strong>: each hair root is deactivated individually and for good,
           the only method legally recognised as permanent.
         </p>
         <p class="lang de">
-          Der <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser</a> erreicht eine
+          Der <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser</a> erreicht eine
           <strong>dauerhafte</strong> Haarentfernung, also eine deutliche, langanhaltende
-          Reduktion – ideal für größere Zonen. Bei FareWell bekommst du beide Methoden und eine
+          Reduktion, ideal für größere Zonen. Bei FareWell bekommst du beide Methoden und eine
           ehrliche Empfehlung, was für dich passt.
         </p>
         <p class="lang en">
-          The <a routerLink="/behandlungen/diodenlaser-4-wellen">diode laser</a> achieves
+          The <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">diode laser</a> achieves
           <strong>long-lasting</strong> hair removal, meaning a significant, enduring reduction,
           ideal for larger areas. At FareWell you get both methods and an honest recommendation on
           what suits you.
@@ -90,40 +90,40 @@
       >
         <ul class="lang de">
           <li>
-            <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a> –
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse (Nadelepilation)</a>,
             permanente Haarentfernung
           </li>
           <li>
-            <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser (4 Wellen)</a> –
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser (4 Wellen)</a>,
             dauerhafte Haarentfernung
           </li>
           <li>
-            <a routerLink="/behandlungen/microneedling-radiofrequenz">Microneedling mit Radiofrequenz</a>
-            – Hautverjüngung
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">Microneedling mit Radiofrequenz</a>,
+            Hautverjüngung
           </li>
-          <li><a routerLink="/behandlungen/kavitation">Kavitation</a> – Körperformung</li>
+          <li><a [routerLink]="p('/behandlungen/kavitation')">Kavitation</a>, Körperformung</li>
           <li>
-            <a routerLink="/behandlungen/wellness-massage">Wellness-</a> und
-            <a routerLink="/behandlungen/therapeutische-massage">therapeutische Massagen</a>
+            <a [routerLink]="p('/behandlungen/wellness-massage')">Wellness-</a> und
+            <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutische Massagen</a>
           </li>
         </ul>
         <ul class="lang en">
           <li>
-            <a routerLink="/behandlungen/nadelepilation">Electrolysis (Nadelepilation)</a>,
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Electrolysis (Nadelepilation)</a>,
             permanent hair removal
           </li>
           <li>
-            <a routerLink="/behandlungen/diodenlaser-4-wellen">Diode laser (4 wavelengths)</a>,
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diode laser (4 wavelengths)</a>,
             long-lasting hair removal
           </li>
           <li>
-            <a routerLink="/behandlungen/microneedling-radiofrequenz">Microneedling with radio frequency</a>,
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">Microneedling with radio frequency</a>,
             skin rejuvenation
           </li>
-          <li><a routerLink="/behandlungen/kavitation">Cavitation</a>, body contouring</li>
+          <li><a [routerLink]="p('/behandlungen/kavitation')">Cavitation</a>, body contouring</li>
           <li>
-            <a routerLink="/behandlungen/wellness-massage">Wellness</a> and
-            <a routerLink="/behandlungen/therapeutische-massage">therapeutic massages</a>
+            <a [routerLink]="p('/behandlungen/wellness-massage')">Wellness</a> and
+            <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutic massages</a>
           </li>
         </ul>
       </app-faq-item>
@@ -155,18 +155,18 @@
 
       <app-faq-item [question]="t('Bietet FareWell auch IPL an?', 'Does FareWell offer IPL too?')">
         <p class="lang de">
-          Nein – und das aus gutem Grund. Statt IPL setzen wir auf den
-          <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a>: Er
+          Nein, und das aus gutem Grund. Statt IPL setzen wir auf den
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-Wellen-Diodenlaser</a>: Er
           erreicht eine dauerhafte Haarentfernung und arbeitet zuverlässiger bei mehr Haut-
           und Haartypen als klassische IPL-Geräte. Für die permanente Haarentfernung bieten
-          wir zusätzlich die <a routerLink="/behandlungen/nadelepilation">Elektrolyse</a> an.
+          wir zusätzlich die <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse</a> an.
         </p>
         <p class="lang en">
           No, and for good reason. Instead of IPL we rely on the
-          <a routerLink="/behandlungen/diodenlaser-4-wellen">four-wavelength diode laser</a>: it
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">four-wavelength diode laser</a>: it
           achieves long-lasting hair removal and works more reliably across more skin and hair
           types than classic IPL devices. For permanent hair removal we also offer
-          <a routerLink="/behandlungen/nadelepilation">electrolysis</a>.
+          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis</a>.
         </p>
         <p class="lang de">Welche Methode zu dir passt, klären wir in der kostenlosen Erstberatung.</p>
         <p class="lang en">Which method suits you is something we sort out in the free initial consultation.</p>
@@ -175,7 +175,7 @@
       <app-faq-item [question]="t('Wie viele Sitzungen brauche ich?', 'How many sessions do I need?')">
         <p class="lang de">
           Haare wachsen in Zyklen, und nur Haare in der Wachstumsphase lassen sich wirksam
-          behandeln – deshalb sind immer mehrere Sitzungen nötig. Wie viele genau, hängt von
+          behandeln. Deshalb sind immer mehrere Sitzungen nötig. Wie viele genau, hängt von
           Körperzone, Haardichte und Hormonlage ab. Eine realistische Einschätzung bekommst du
           in der kostenlosen Erstberatung.
         </p>
@@ -199,14 +199,14 @@
           Achte auf drei Dinge: geschultes Personal, ein zertifiziertes Gerät und eine
           ehrliche Beratung, die dir sagt, was realistisch ist. Bei FareWell arbeiten Nicole
           und Joé mit einem Gerät, das feine Nadeln mit
-          <a routerLink="/behandlungen/microneedling-radiofrequenz">Radiofrequenz</a>
+          <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">Radiofrequenz</a>
           verbindet, und wir besprechen vor jeder Behandlung Ablauf, Sitzungen und Kosten.
         </p>
         <p class="lang en">
           Look for three things: trained staff, a certified device and honest advice that tells
           you what is realistic. At FareWell, Nicole and Joé work with a device that combines fine
           needles with
-          <a routerLink="/behandlungen/microneedling-radiofrequenz">radio frequency</a>, and
+          <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">radio frequency</a>, and
           before every treatment we talk through the process, the sessions and the costs.
         </p>
       </app-faq-item>
@@ -218,14 +218,14 @@
       >
         <p class="lang de">
           In Deutschland ist die einzige rechtlich als permanent anerkannte Methode die
-          <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a>: Jede
+          <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse (Nadelepilation)</a>: Jede
           Haarwurzel wird einzeln und endgültig behandelt. Sie funktioniert bei jeder Haut- und
           Haarfarbe, auch bei feinen, hellen oder grauen Gesichtshaaren, die ein Laser nicht
           erfassen kann.
         </p>
         <p class="lang en">
           In Germany, the only method legally recognised as permanent is
-          <a routerLink="/behandlungen/nadelepilation">electrolysis (Nadelepilation)</a>:
+          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis (Nadelepilation)</a>:
           each hair root is treated individually and for good. It works on every skin and
           hair colour, including fine, light or grey facial hair that a laser cannot target.
         </p>
@@ -252,8 +252,8 @@
       >
         <p class="lang de">
           Am einfachsten online über
-          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>
-          – rund um die Uhr, mit sofortiger Bestätigung. Alternativ erreichst du uns per
+          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>,
+          rund um die Uhr, mit sofortiger Bestätigung. Alternativ erreichst du uns per
           <a href="https://www.instagram.com/farewell.salon/" target="_blank" rel="noopener noreferrer">Instagram-Nachricht</a>
           oder telefonisch unter <a href="tel:+4915757995694">+49 157 5799 5694</a>.
         </p>
@@ -277,16 +277,16 @@
         <p class="lang de">
           Direkt bei FareWell im Zentrum von Nürnberg, Frauentorgraben 5, wenige Gehminuten
           vom Hauptbahnhof.
-          <a routerLink="/behandlungen/microneedling-radiofrequenz">Radiofrequenz-Microneedling</a>
+          <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">Radiofrequenz-Microneedling</a>
           führen Nicole und Joé durch. Am einfachsten buchst du online über
-          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>
-          – rund um die Uhr und mit sofortiger Bestätigung. Die Erstberatung ist kostenlos
+          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>,
+          rund um die Uhr und mit sofortiger Bestätigung. Die Erstberatung ist kostenlos
           und unverbindlich.
         </p>
         <p class="lang en">
           Right at FareWell in the centre of Nuremberg, Frauentorgraben 5, a few minutes' walk
           from the main station.
-          <a routerLink="/behandlungen/microneedling-radiofrequenz">Radio-frequency microneedling</a>
+          <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">Radio-frequency microneedling</a>
           is carried out by Nicole and Joé. The easiest way to book is online via
           <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>,
           around the clock and with instant confirmation. The initial consultation is free and
@@ -297,12 +297,12 @@
       <app-faq-item [question]="t('Was kostet eine Behandlung?', 'How much does a treatment cost?')">
         <p class="lang de">
           Alle Preise stehen transparent je Körperzone auf
-          <a routerLink="/price">unserer Preisseite</a>. Die Erstberatung ist kostenlos, und
+          <a [routerLink]="p('/price')">unserer Preisseite</a>. Die Erstberatung ist kostenlos, und
           für den Kassenantrag erstellen wir dir einen schriftlichen Kostenvoranschlag.
         </p>
         <p class="lang en">
           All prices are listed transparently by body area on
-          <a routerLink="/price">our price page</a>. The initial consultation is free, and for
+          <a [routerLink]="p('/price')">our price page</a>. The initial consultation is free, and for
           your insurance application we prepare a written cost estimate.
         </p>
       </app-faq-item>
@@ -314,13 +314,13 @@
       >
         <p class="lang de">
           Die Preise richten sich nach der Körperzone und stehen alle auf
-          <a routerLink="/price">unserer Preisseite</a> – eine Achsel ist zum Beispiel
+          <a [routerLink]="p('/price')">unserer Preisseite</a>. Eine Achsel ist zum Beispiel
           günstiger als Beine oder Rücken. Angehörige der US-Streitkräfte erhalten mit dem
           Promo-Code <strong>USLASER</strong> 20% lebenslang.
         </p>
         <p class="lang en">
           Prices depend on the body area and are all listed on
-          <a routerLink="/price">our price page</a>. An underarm, for example, costs less than
+          <a [routerLink]="p('/price')">our price page</a>. An underarm, for example, costs less than
           the legs or the back. US Forces members get 20% off for life with the promo code
           <strong>USLASER</strong>.
         </p>
@@ -344,13 +344,13 @@
       >
         <p class="lang de">
           Alle Preise stehen transparent je Behandlung auf
-          <a routerLink="/price">unserer Preisseite</a>. In der kostenlosen Erstberatung
+          <a [routerLink]="p('/price')">unserer Preisseite</a>. In der kostenlosen Erstberatung
           schauen wir uns dein Hautbild an und sagen dir ehrlich, wie viele Sitzungen
-          sinnvoll sind und was sie kosten – ohne Verpflichtung.
+          sinnvoll sind und was sie kosten, ohne Verpflichtung.
         </p>
         <p class="lang en">
           All prices are listed transparently by treatment on
-          <a routerLink="/price">our price page</a>. In the free initial consultation we look at
+          <a [routerLink]="p('/price')">our price page</a>. In the free initial consultation we look at
           your skin and tell you honestly how many sessions make sense and what they cost, with
           no obligation.
         </p>
@@ -361,7 +361,7 @@
       >
         <p class="lang de">
           Ja. Wir schauen uns deine Haut- und Haarsituation an, besprechen Methode, Ablauf,
-          Sitzungsanzahl und Kosten – ohne Berechnung und ohne Verpflichtung.
+          Sitzungsanzahl und Kosten, ohne Berechnung und ohne Verpflichtung.
         </p>
         <p class="lang en">
           Yes. We look at your skin and hair, discuss the method, the process, the number of
@@ -400,12 +400,12 @@
         <p class="lang de">
           Wichtig: Der Antrag muss <strong>vor Behandlungsbeginn</strong> gestellt werden. Alle
           Schritte, Fristen und der Widerspruch stehen in unserem Leitfaden
-          <a routerLink="/ratgeber/epilation-krankenkasse">„Epilation über die Krankenkasse“</a>.
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">„Epilation über die Krankenkasse“</a>.
         </p>
         <p class="lang en">
           Important: the application must be submitted <strong>before treatment begins</strong>.
           Every step, deadline and appeal is explained in our
-          <a routerLink="/ratgeber/epilation-krankenkasse">guide on insurance-covered epilation (in German)</a>.
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">guide on insurance-covered epilation (in German)</a>.
         </p>
       </app-faq-item>
 
@@ -417,7 +417,7 @@
         <p class="lang de">
           Eine Ärztin delegiert die Epilationsbehandlung an unser geschultes Team und bleibt
           medizinisch verantwortlich. Dadurch zählt die Nadelepilation bei FareWell als
-          ärztlich delegierte Leistung – die Voraussetzung dafür, dass die Krankenkasse sie als
+          ärztlich delegierte Leistung: die Voraussetzung dafür, dass die Krankenkasse sie als
           Sachleistung übernehmen kann. Für deinen Antrag erstellen wir gemeinsam den
           Kostenvoranschlag.
         </p>
@@ -435,7 +435,7 @@
         "
       >
         <p class="lang de">
-          Ja – den Anteil, den du selbst trägst, kannst du als außergewöhnliche Belastung in
+          Ja. Den Anteil, den du selbst trägst, kannst du als außergewöhnliche Belastung in
           der Steuererklärung geltend machen, wenn die medizinische Notwendigkeit dokumentiert
           ist (z.&nbsp;B. bei Behandlungen im Zuge der Geschlechtsangleichung). Elektrolyse und
           Diodenlaser werden steuerlich gleich behandelt.
@@ -449,12 +449,12 @@
         <p class="lang de">
           Du brauchst drei Bausteine: den medizinischen Nachweis, ordentliche Rechnungen von
           FareWell und Zahlungsbelege. Die Details stehen in unserem
-          <a routerLink="/ratgeber/haarentfernung-steuer-absetzen">Steuer-Leitfaden</a>.
+          <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">Steuer-Leitfaden</a>.
         </p>
         <p class="lang en">
           You need three building blocks: the medical evidence, proper invoices from FareWell and
           proof of payment. The details are in our
-          <a routerLink="/ratgeber/haarentfernung-steuer-absetzen">tax guide (in German)</a>.
+          <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">tax guide (in German)</a>.
         </p>
       </app-faq-item>
 
@@ -466,7 +466,7 @@
         <p class="lang de">
           Die Diagnose (Geschlechtsdysphorie bzw. Geschlechtsinkongruenz, ICD F64.0) und eine
           Bescheinigung, dass die Haarentfernung zur Geschlechtsangleichung medizinisch
-          notwendig ist – idealerweise ausgestellt vor der ersten Sitzung. Für den Kassenantrag
+          notwendig ist, idealerweise ausgestellt vor der ersten Sitzung. Für den Kassenantrag
           kommt der ärztliche Bericht dazu.
         </p>
         <p class="lang en">
@@ -486,14 +486,14 @@
       <app-faq-item
         [question]="
           t(
-            'Ich gehöre zu den US-Streitkräften – kann ich ohne Mehrwertsteuer zahlen?',
+            'Ich gehöre zu den US-Streitkräften: Kann ich ohne Mehrwertsteuer zahlen?',
             'I am a member of the US Forces, can I pay without VAT?'
           )
         "
       >
         <p class="lang de">
           Ja. Dank des NATO-Truppenstatuts (SOFA) stellen wir dir mit einem NF1-Formular die
-          Behandlung ohne die deutsche Mehrwertsteuer von 19% aus – das Formular musst du
+          Behandlung ohne die deutsche Mehrwertsteuer von 19% aus. Das Formular musst du
           <strong>vor der Zahlung</strong> vorlegen. Alternativ zahlst du voll und holst dir
           die Mehrwertsteuer über die Remonon-App zurück.
         </p>
@@ -505,13 +505,13 @@
         </p>
         <p class="lang de">
           Beide Wege erklärt unser
-          <a routerLink="/ratgeber/mehrwertsteuer-us-streitkraefte">Leitfaden zur Mehrwertsteuerbefreiung</a>
-          – auch <a routerLink="/ratgeber/us-forces-vat-relief">auf Englisch</a>.
+          <a [routerLink]="'/ratgeber/mehrwertsteuer-us-streitkraefte'">Leitfaden zur Mehrwertsteuerbefreiung</a>,
+          auch <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">auf Englisch</a>.
         </p>
         <p class="lang en">
           Both routes are explained in our
-          <a routerLink="/ratgeber/mehrwertsteuer-us-streitkraefte">guide to VAT exemption</a>,
-          also available <a routerLink="/ratgeber/us-forces-vat-relief">in English</a>.
+          <a [routerLink]="'/ratgeber/mehrwertsteuer-us-streitkraefte'">guide to VAT exemption</a>,
+          also available <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">in English</a>.
         </p>
       </app-faq-item>
 
@@ -538,11 +538,11 @@
         </p>
         <p class="lang de">
           Alle Schritte erklärt unser englischer Leitfaden
-          <a routerLink="/ratgeber/us-forces-vat-relief">„US Forces VAT relief in Germany“</a>.
+          <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">„US Forces VAT relief in Germany“</a>.
         </p>
         <p class="lang en">
           Read our English guide
-          <a routerLink="/ratgeber/us-forces-vat-relief">“US Forces VAT relief in Germany”</a>
+          <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">“US Forces VAT relief in Germany”</a>
           for the full walkthrough.
         </p>
       </app-faq-item>
@@ -552,7 +552,7 @@
       >
         <p class="lang de">
           Ja: <strong>20% lebenslang</strong> auf Laser-Haarentfernung mit dem Promo-Code
-          <strong>USLASER</strong> – zusätzlich kombinierbar mit der Mehrwertsteuerbefreiung.
+          <strong>USLASER</strong>, zusätzlich kombinierbar mit der Mehrwertsteuerbefreiung.
           Eine Laserbehandlung von 150&nbsp;€ kostet so rund 100&nbsp;€, etwa ein Drittel
           weniger.
         </p>
@@ -572,8 +572,8 @@
       <app-faq-item [question]="t('Wo finde ich FareWell?', 'Where can I find FareWell?')">
         <p class="lang de">
           Im Zentrum von Nürnberg:
-          <a href="https://g.co/kgs/ycCwT2s" target="_blank" rel="noopener noreferrer">Frauentorgraben 5, 90443 Nürnberg</a>
-          – wenige Gehminuten vom Hauptbahnhof und Opernhaus entfernt.
+          <a href="https://g.co/kgs/ycCwT2s" target="_blank" rel="noopener noreferrer">Frauentorgraben 5, 90443 Nürnberg</a>,
+          wenige Gehminuten vom Hauptbahnhof und Opernhaus entfernt.
         </p>
         <p class="lang en">
           In the centre of Nuremberg:
@@ -605,7 +605,7 @@
     >
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
-          Für die großen Themen haben wir ausführliche Leitfaden-Seiten – Schritt für Schritt,
+          Für die großen Themen haben wir ausführliche Leitfaden-Seiten, Schritt für Schritt,
           mit allen Fristen, Formularen und Nachweisen.
         </span>
         <span class="lang en">
@@ -619,14 +619,14 @@
           [heading]="t('Epilation über die Krankenkasse', 'Insurance-covered epilation')"
         >
           <span class="lang de">
-            Für trans Personen: Wie die Haarentfernung im Gesicht zur Kassenleistung wird – mit
+            Für trans Personen: Wie die Haarentfernung im Gesicht zur Kassenleistung wird, mit
             ärztlicher Delegation bei FareWell.
           </span>
           <span class="lang en">
             For trans people: how facial hair removal becomes a covered benefit, with medical
             delegation at FareWell (guide in German).
           </span>
-          <a routerLink="/ratgeber/epilation-krankenkasse">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>
         <app-guide-card
           icon="🧾"
@@ -634,14 +634,14 @@
           [revealDelay]="60"
         >
           <span class="lang de">
-            Selbst getragene Kosten als außergewöhnliche Belastung geltend machen – welche
+            Selbst getragene Kosten als außergewöhnliche Belastung geltend machen: welche
             Nachweise das Finanzamt sehen will.
           </span>
           <span class="lang en">
             Claim out-of-pocket costs as an extraordinary burden, and see what evidence the tax
             office wants (guide in German).
           </span>
-          <a routerLink="/ratgeber/haarentfernung-steuer-absetzen">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+          <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>
         <app-guide-card
           icon="🇩🇪"
@@ -650,13 +650,13 @@
         >
           <span class="lang de">
             NF1-Formular oder Remonon-App: So funktioniert das Einkaufen ohne die deutsche
-            Mehrwertsteuer – auf Deutsch erklärt.
+            Mehrwertsteuer, auf Deutsch erklärt.
           </span>
           <span class="lang en">
             NF1 forms or the Remonon app: how to shop without the German VAT (explained in
             German).
           </span>
-          <a routerLink="/ratgeber/mehrwertsteuer-us-streitkraefte">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+          <a [routerLink]="'/ratgeber/mehrwertsteuer-us-streitkraefte'">{{ t('Zum Leitfaden', 'Read the guide (German)') }}</a>
         </app-guide-card>
         <app-guide-card
           icon="🇺🇸"
@@ -668,17 +668,17 @@
             lebenslanger USLASER-Rabatt.
           </span>
           <span class="lang en">
-            The English walkthrough: NF1 forms, the Remonon app, the five rules – and your
+            The English walkthrough: NF1 forms, the Remonon app, the five rules, and your
             lifelong USLASER discount.
           </span>
-          <a routerLink="/ratgeber/us-forces-vat-relief">{{ t('Zum Leitfaden (EN)', 'Read the guide') }}</a>
+          <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">{{ t('Zum Leitfaden (EN)', 'Read the guide') }}</a>
         </app-guide-card>
       </div>
     </app-guide-section>
 
     <app-guide-cta [heading]="t('Deine Frage war nicht dabei?', 'Still have a question?')">
       <span class="lang de">
-        Schreib uns auf Instagram oder buche direkt deine kostenlose Erstberatung – wir nehmen
+        Schreib uns auf Instagram oder buche direkt deine kostenlose Erstberatung. Wir nehmen
         uns Zeit für deine Fragen.
       </span>
       <span class="lang en">

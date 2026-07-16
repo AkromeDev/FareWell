@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
 import {
   GUIDE_COMPONENTS,
@@ -10,9 +11,9 @@ import {
 
 const PAGE_PATH = '/ratgeber/us-forces-vat-relief';
 const PAGE_URL = `https://farewell.salon${PAGE_PATH}`;
-const PAGE_TITLE = 'US Forces VAT Relief in Germany – NF1 Forms & Remonon Explained | FareWell Nürnberg';
+const PAGE_TITLE = 'US Forces VAT Relief in Germany: NF1 Forms & Remonon Explained | FareWell Nürnberg';
 const PAGE_DESCRIPTION =
-  'How US Forces members stop paying the 19% German VAT: NF1 and NF2 forms, the Remonon app, the five rules to keep it valid – plus 20% off laser hair removal for life.';
+  'How US Forces members stop paying the 19% German VAT: NF1 and NF2 forms, the Remonon app, the five rules to keep it valid, plus 20% off laser hair removal for life.';
 
 @Component({
   standalone: true,
@@ -22,7 +23,12 @@ const PAGE_DESCRIPTION =
 })
 export class UsForcesVatReliefComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
+  private readonly language = inject(LanguageService);
   private readonly jsonLdId = 'us-vat-relief-schema';
+
+  p(path: string): string {
+    return this.language.localizePath(path);
+  }
 
   readonly stats: GuideStat[] = [
     { value: '19%', label: 'German VAT you skip' },
@@ -49,12 +55,6 @@ export class UsForcesVatReliefComponent implements OnInit, OnDestroy {
       type: 'article',
       locale: 'en_US',
     });
-
-    this.seo.setAlternateLinks('vat-guide', [
-      { hreflang: 'de', href: 'https://farewell.salon/ratgeber/mehrwertsteuer-us-streitkraefte' },
-      { hreflang: 'en', href: 'https://farewell.salon/ratgeber/us-forces-vat-relief' },
-      { hreflang: 'x-default', href: 'https://farewell.salon/ratgeber/us-forces-vat-relief' },
-    ]);
 
     this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
@@ -88,8 +88,8 @@ export class UsForcesVatReliefComponent implements OnInit, OnDestroy {
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
-            { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://farewell.salon/faq' },
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon/en' },
+            { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://farewell.salon/en/faq' },
             { '@type': 'ListItem', position: 3, name: 'US Forces VAT relief', item: PAGE_URL },
           ],
         },
@@ -99,6 +99,5 @@ export class UsForcesVatReliefComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.seo.clearJsonLd(this.jsonLdId);
-    this.seo.clearAlternateLinks('vat-guide');
   }
 }

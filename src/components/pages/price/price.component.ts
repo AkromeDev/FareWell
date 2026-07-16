@@ -18,11 +18,15 @@ import {
 } from './price-data';
 
 const PAGE_PATH = '/price';
-const PAGE_URL = `https://farewell.salon${PAGE_PATH}`;
-const PAGE_TITLE =
+const ORIGIN = 'https://farewell.salon';
+const PAGE_TITLE_DE =
   'Preise Nürnberg: Laser-Haarentfernung, Nadelepilation & mehr | FareWell';
-const PAGE_DESCRIPTION =
+const PAGE_TITLE_EN =
+  'Prices Nuremberg: Laser Hair Removal, Electrolysis & More | FareWell';
+const PAGE_DESCRIPTION_DE =
   'Alle Preise bei FareWell Nürnberg: Laser-Haarentfernung ab 30 €, Nadelepilation ab 40 €, Microneedling ab 180 €, Massage ab 45 €. Erstberatung kostenlos.';
+const PAGE_DESCRIPTION_EN =
+  'All prices at FareWell Nuremberg: laser hair removal from €30, electrolysis from €40, RF microneedling from €180, massage from €45. Free initial consultation.';
 
 const ORGANIZATION_ID = 'https://farewell.salon/#organization';
 
@@ -68,7 +72,8 @@ export class PriceComponent implements OnInit, OnDestroy {
 
   /**
    * „Was kostet …?"-Fragen je Kategorie: sichtbar als Akkordeon in der
-   * jeweiligen Sektion und deckungsgleich im FAQPage-Schema (deutsche Fassung).
+   * jeweiligen Sektion und deckungsgleich im FAQPage-Schema (in der Sprache
+   * der aktiven Route).
    */
   readonly faqs: Record<string, PriceFaqEntry> = {
     nadelepilation: {
@@ -128,8 +133,8 @@ export class PriceComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.seo.setPageSeo({
-      title: PAGE_TITLE,
-      description: PAGE_DESCRIPTION,
+      title: this.t(PAGE_TITLE_DE, PAGE_TITLE_EN),
+      description: this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN),
       path: PAGE_PATH,
     });
 
@@ -149,6 +154,11 @@ export class PriceComponent implements OnInit, OnDestroy {
 
   t(de: string, en: string): string {
     return this.language.t(de, en);
+  }
+
+  /** Interner Link in der aktiven Sprache (auf /en/-Seiten das /en/-Gegenstück). */
+  p(path: string): string {
+    return this.language.localizePath(path);
   }
 
   price(row: PriceRow): string {
@@ -191,13 +201,17 @@ export class PriceComponent implements OnInit, OnDestroy {
   /**
    * JSON-LD-Graph der Preisseite: je Kategorie ein Service mit AggregateOffer
    * (alle Einzelpreise als Offer + UnitPriceSpecification), dazu FAQPage mit
-   * den „Was kostet …?"-Fragen und BreadcrumbList. Alles aus price-data.ts.
+   * den „Was kostet …?"-Fragen und BreadcrumbList. Alles aus price-data.ts,
+   * in der Sprache der aktiven Route (DE unter /price, EN unter /en/price).
    */
   private buildJsonLd(): object {
+    const isEn = this.language.lang() === 'en';
+    const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${PAGE_PATH}`;
+
     const services = PRICE_SERVICES.map((svc) => {
       const tables: PriceTable[] = svc.tables.map((key) => PRICE_TABLES[key]);
       const offers = tables.flatMap((table) =>
-        table.rows.map((row) => this.buildOffer(svc.anchor, table, row))
+        table.rows.map((row) => this.buildOffer(pageUrl, svc.anchor, table, row))
       );
       // lowPrice = günstigste buchbare Behandlung; Zusatzleistungen wie die
       // Betäubungscreme (addon) bleiben als Offer erhalten, drücken aber
@@ -208,13 +222,13 @@ export class PriceComponent implements OnInit, OnDestroy {
 
       return {
         '@type': 'Service',
-        '@id': `${PAGE_URL}#${svc.anchor}`,
-        name: svc.nameDe,
-        serviceType: svc.serviceTypeDe,
-        description: svc.descriptionDe,
-        url: `${PAGE_URL}#${svc.anchor}`,
+        '@id': `${pageUrl}#${svc.anchor}`,
+        name: this.t(svc.nameDe, svc.nameEn),
+        serviceType: this.t(svc.serviceTypeDe, svc.serviceTypeEn),
+        description: this.t(svc.descriptionDe, svc.descriptionEn),
+        url: `${pageUrl}#${svc.anchor}`,
         provider: { '@id': ORGANIZATION_ID },
-        areaServed: { '@type': 'City', name: 'Nürnberg' },
+        areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
         offers: {
           '@type': 'AggregateOffer',
           priceCurrency: 'EUR',
@@ -231,36 +245,50 @@ export class PriceComponent implements OnInit, OnDestroy {
       '@graph': [
         {
           '@type': 'FAQPage',
-          '@id': `${PAGE_URL}#faq`,
-          url: PAGE_URL,
-          name: PAGE_TITLE,
-          description: PAGE_DESCRIPTION,
-          inLanguage: 'de',
+          '@id': `${pageUrl}#faq`,
+          url: pageUrl,
+          name: this.t(PAGE_TITLE_DE, PAGE_TITLE_EN),
+          description: this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN),
+          inLanguage: isEn ? 'en' : 'de',
           mainEntity: this.faqOrder.map((key) => ({
             '@type': 'Question',
-            name: this.faqs[key].qDe,
-            acceptedAnswer: { '@type': 'Answer', text: this.faqs[key].aDe },
+            name: this.t(this.faqs[key].qDe, this.faqs[key].qEn),
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: this.t(this.faqs[key].aDe, this.faqs[key].aEn),
+            },
           })),
         },
         ...services,
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
-            { '@type': 'ListItem', position: 2, name: 'Preise', item: PAGE_URL },
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'FareWell',
+              item: isEn ? `${ORIGIN}/en` : ORIGIN,
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: this.t('Preise', 'Prices'),
+              item: pageUrl,
+            },
           ],
         },
       ],
     };
   }
 
-  private buildOffer(anchor: string, table: PriceTable, row: PriceRow): object {
-    const scope = table.de ? `${table.de}: ` : '';
+  private buildOffer(pageUrl: string, anchor: string, table: PriceTable, row: PriceRow): object {
+    const label = this.t(table.de, table.en);
+    const scope = label ? `${label}, ` : '';
     const price = row.price ?? 0;
     return {
       '@type': 'Offer',
-      name: `${scope}${row.de} (${row.minutes} Min.)`,
-      url: `${PAGE_URL}#${anchor}`,
+      name: `${scope}${this.t(row.de, row.en)} (${row.minutes} ${this.t('Min.', 'min')})`,
+      url: `${pageUrl}#${anchor}`,
       price,
       priceCurrency: 'EUR',
       priceSpecification: {

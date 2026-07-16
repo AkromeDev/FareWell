@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
 import {
   GUIDE_COMPONENTS,
@@ -10,9 +11,9 @@ import {
 
 const PAGE_PATH = '/ratgeber/mehrwertsteuer-us-streitkraefte';
 const PAGE_URL = `https://farewell.salon${PAGE_PATH}`;
-const PAGE_TITLE = "Mehrwertsteuerbefreiung für US-Streitkräfte (SOFA) – so funktioniert's | FareWell Nürnberg";
+const PAGE_TITLE = "Mehrwertsteuerbefreiung für US-Streitkräfte (SOFA): so funktioniert's | FareWell Nürnberg";
 const PAGE_DESCRIPTION =
-  'NF1-Formular oder Remonon-App: So kaufen Angehörige der US-Streitkräfte in Deutschland ohne die 19% Mehrwertsteuer ein – Schritt für Schritt, mit FareWell als Beispiel.';
+  'NF1-Formular oder Remonon-App: So kaufen Angehörige der US-Streitkräfte in Deutschland ohne die 19% Mehrwertsteuer ein. Schritt für Schritt, mit FareWell als Beispiel.';
 
 @Component({
   standalone: true,
@@ -22,7 +23,12 @@ const PAGE_DESCRIPTION =
 })
 export class MwstUsStreitkraefteComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
+  private readonly language = inject(LanguageService);
   private readonly jsonLdId = 'mwst-us-schema';
+
+  p(path: string): string {
+    return this.language.localizePath(path);
+  }
 
   readonly stats: GuideStat[] = [
     { value: '19%', label: 'Mehrwertsteuer gespart' },
@@ -48,12 +54,6 @@ export class MwstUsStreitkraefteComponent implements OnInit, OnDestroy {
       path: PAGE_PATH,
       type: 'article',
     });
-
-    this.seo.setAlternateLinks('vat-guide', [
-      { hreflang: 'de', href: 'https://farewell.salon/ratgeber/mehrwertsteuer-us-streitkraefte' },
-      { hreflang: 'en', href: 'https://farewell.salon/ratgeber/us-forces-vat-relief' },
-      { hreflang: 'x-default', href: 'https://farewell.salon/ratgeber/us-forces-vat-relief' },
-    ]);
 
     this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
@@ -103,6 +103,5 @@ export class MwstUsStreitkraefteComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.seo.clearJsonLd(this.jsonLdId);
-    this.seo.clearAlternateLinks('vat-guide');
   }
 }

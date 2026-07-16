@@ -1,9 +1,17 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
 import { LanguageService } from 'src/services/language.service';
+import { SeoService } from 'src/services/seo.service';
+
+const PAGE_PATH = '/behandlungen/microneedling-radiofrequenz';
+const DE_TITLE = 'Microneedling Radiofrequenz Nürnberg | FareWell';
+const DE_DESCRIPTION =
+  'Microneedling mit Radiofrequenz in Nürnberg: moderne Hautverjüngung, Faltenreduktion und Hautstraffung.';
+const EN_TITLE = 'RF Microneedling Nuremberg | FareWell';
+const EN_DESCRIPTION =
+  'Radiofrequency microneedling in Nuremberg: skin rejuvenation, scar treatment and firmer skin. Book online, free initial consultation in English.';
 
 @Component({
   selector: 'app-microneedling',
@@ -12,26 +20,27 @@ import { LanguageService } from 'src/services/language.service';
   templateUrl: './microneedling.html',
   styleUrl: './microneedling.scss'
 })
-export class MicroneedlingComponent implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class MicroneedlingComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
   readonly lang = inject(LanguageService);
+  private readonly jsonLdId = 'microneedling-schema';
 
-  private readonly pageUrl = 'https://farewell.salon/behandlungen/microneedling-radiofrequenz';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/microneedling2.webp';
 
-  constructor() {}
-
   t(de: string, en: string): string {
     return this.lang.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.lang.localizePath(path);
   }
 
   get paragraphText(): string {
     return this.t(
       `
     Microneedling mit Radiofrequenz kombiniert feine Mikro-Nadeln mit gezielter Wärme in der Tiefe.
-    Das Ergebnis: straffere Haut, ein verfeinertes Hautbild und ein frischer Glow – ganz ohne OP.
+    Das Ergebnis: straffere Haut, ein verfeinertes Hautbild und ein frischer Glow, ganz ohne OP.
 
     Alle wichtigen Infos zur Behandlung findest du weiter unten.
   `,
@@ -44,60 +53,39 @@ export class MicroneedlingComponent implements OnInit {
     );
   }
 
-  structuredData = '';
-
   ngOnInit(): void {
-    this.setSeoTags();
-    this.setStructuredData();
-  }
-
-  private setSeoTags(): void {
-    const pageTitle =
-      'Microneedling in Nürnberg | Radiofrequenz für Straffung & Hautbild | FareWell';
-
-    const description =
-      'Microneedling mit Radiofrequenz in Nürnberg bei FareWell: Behandlung für Hautstraffung, verfeinertes Hautbild, Poren, Aknenarben und mehr Spannkraft. Alle Infos zu Wirkung, Ausfallzeit und Sitzungen.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für Microneedling mit Radiofrequenz zur Hautstraffung und Hautbildverbesserung'
+    this.seo.setPageSeo({
+      title: this.t(DE_TITLE, EN_TITLE),
+      description: this.t(DE_DESCRIPTION, EN_DESCRIPTION),
+      path: PAGE_PATH,
+      image: this.heroImageUrl,
+      imageAlt: this.t(
+        'FareWell Studio in Nürnberg für Microneedling mit Radiofrequenz zur Hautstraffung und Hautbildverbesserung',
+        'FareWell studio in Nuremberg for radiofrequency microneedling for skin firming and a better complexion'
+      ),
+      largeImage: true,
     });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
 
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      name: 'twitter:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für Microneedling mit Radiofrequenz zur Hautstraffung und Hautbildverbesserung'
-    });
-  }
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+    const homeUrl = isEn ? 'https://farewell.salon/en' : 'https://farewell.salon';
+    const treatmentsUrl = `https://farewell.salon${isEn ? '/en' : ''}/behandlungen`;
 
-  private setStructuredData(): void {
-    const jsonLd = {
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Service',
-          '@id': `${this.pageUrl}#service`,
-          name: 'Microneedling mit Radiofrequenz in Nürnberg',
-          description:
+          '@id': `${pageUrl}#service`,
+          name: this.t(
+            'Microneedling mit Radiofrequenz in Nürnberg',
+            'Radiofrequency microneedling in Nuremberg'
+          ),
+          description: this.t(
             'RF-Microneedling bei FareWell in Nürnberg zur Hautstraffung, Hautbildverbesserung sowie zur Unterstützung bei Poren, Aknenarben und unruhiger Hautstruktur.',
-          serviceType: 'Radiofrequenz-Microneedling',
+            'RF microneedling at FareWell in Nuremberg for skin firming, a better complexion and support with enlarged pores, acne scars and uneven skin texture.'
+          ),
+          serviceType: this.t('Radiofrequenz-Microneedling', 'Radiofrequency microneedling'),
           areaServed: {
             '@type': 'City',
             name: 'Nürnberg'
@@ -118,16 +106,16 @@ export class MicroneedlingComponent implements OnInit {
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Microneedling in Nürnberg | Radiofrequenz für Straffung & Hautbild | FareWell',
-          description:
-            'Microneedling mit Radiofrequenz in Nürnberg bei FareWell: Behandlung für Hautstraffung, verfeinertes Hautbild, Poren, Aknenarben und mehr Spannkraft.',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: this.t(DE_TITLE, EN_TITLE),
+          description: this.t(DE_DESCRIPTION, EN_DESCRIPTION),
+          inLanguage: isEn ? 'en' : 'de',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
           about: {
-            '@id': `${this.pageUrl}#service`
+            '@id': `${pageUrl}#service`
           },
           primaryImageOfPage: {
             '@type': 'ImageObject',
@@ -137,14 +125,26 @@ export class MicroneedlingComponent implements OnInit {
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
-            { '@type': 'ListItem', position: 2, name: 'Behandlungen', item: 'https://farewell.salon/behandlungen' },
-            { '@type': 'ListItem', position: 3, name: 'Microneedling Radiofrequenz', item: this.pageUrl }
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: homeUrl },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: this.t('Behandlungen', 'Treatments'),
+              item: treatmentsUrl
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: this.t('Microneedling Radiofrequenz', 'RF Microneedling'),
+              item: pageUrl
+            }
           ]
         }
       ]
-    };
+    });
+  }
 
-    this.structuredData = JSON.stringify(jsonLd);
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 }

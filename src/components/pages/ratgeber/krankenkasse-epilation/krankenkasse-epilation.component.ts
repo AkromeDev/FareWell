@@ -11,10 +11,14 @@ import {
 } from 'src/components/molecules/guide';
 
 const PAGE_PATH = '/ratgeber/epilation-krankenkasse';
-const PAGE_URL = `https://farewell.salon${PAGE_PATH}`;
-const PAGE_TITLE = 'Epilation über die Krankenkasse – Leitfaden für trans Personen | FareWell Nürnberg';
-const PAGE_DESCRIPTION =
+const PAGE_TITLE_DE =
+  'Epilation über die Krankenkasse: Leitfaden für trans Personen | FareWell Nürnberg';
+const PAGE_TITLE_EN =
+  'Health Insurance Coverage for Hair Removal: a Guide for Trans People | FareWell Nuremberg';
+const PAGE_DESCRIPTION_DE =
   'So bekommst du deine Haarentfernung im Gesicht als Kassenleistung: Ärztevorbehalt, ärztliche Delegation bei FareWell, Antrag in 5 Schritten, Fristen und Widerspruch.';
+const PAGE_DESCRIPTION_EN =
+  'How facial hair removal becomes a covered benefit in Germany: the physician requirement, medical delegation at FareWell, the application in 5 steps, deadlines and objections.';
 
 @Component({
   standalone: true,
@@ -33,6 +37,10 @@ export class KrankenkasseEpilationComponent implements OnInit, OnDestroy {
 
   t(de: string, en: string): string {
     return this.language.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.language.localizePath(path);
   }
 
   get stats(): GuideStat[] {
@@ -68,9 +76,15 @@ export class KrankenkasseEpilationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    const isEn = this.language.lang() === 'en';
+    const title = this.t(PAGE_TITLE_DE, PAGE_TITLE_EN);
+    const description = this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN);
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+    const homeUrl = isEn ? 'https://farewell.salon/en' : 'https://farewell.salon';
+
     this.seo.setPageSeo({
-      title: PAGE_TITLE,
-      description: PAGE_DESCRIPTION,
+      title,
+      description,
       path: PAGE_PATH,
       type: 'article',
     });
@@ -80,10 +94,13 @@ export class KrankenkasseEpilationComponent implements OnInit, OnDestroy {
       '@graph': [
         {
           '@type': 'Article',
-          '@id': `${PAGE_URL}#article`,
-          headline: 'Epilation über die Krankenkasse',
-          description: PAGE_DESCRIPTION,
-          inLanguage: 'de',
+          '@id': `${pageUrl}#article`,
+          headline: this.t(
+            'Epilation über die Krankenkasse',
+            'Epilation covered by your statutory health insurer',
+          ),
+          description,
+          inLanguage: isEn ? 'en' : 'de',
           datePublished: '2026-07-15',
           dateModified: '2026-07-15',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
@@ -94,22 +111,35 @@ export class KrankenkasseEpilationComponent implements OnInit, OnDestroy {
             name: 'FareWell',
             url: 'https://farewell.salon',
           },
-          mainEntityOfPage: { '@id': `${PAGE_URL}#webpage` },
+          mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
         },
         {
           '@type': 'WebPage',
-          '@id': `${PAGE_URL}#webpage`,
-          url: PAGE_URL,
-          name: PAGE_TITLE,
-          description: PAGE_DESCRIPTION,
-          inLanguage: 'de',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: title,
+          description,
+          inLanguage: isEn ? 'en' : 'de',
         },
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
-            { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://farewell.salon/faq' },
-            { '@type': 'ListItem', position: 3, name: 'Epilation über die Krankenkasse', item: PAGE_URL },
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: homeUrl },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'FAQ',
+              item: `https://farewell.salon${this.p('/faq')}`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: this.t(
+                'Epilation über die Krankenkasse',
+                'Epilation covered by your statutory health insurer',
+              ),
+              item: pageUrl,
+            },
           ],
         },
       ],

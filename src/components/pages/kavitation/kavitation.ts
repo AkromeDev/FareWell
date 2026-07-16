@@ -1,10 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
 import { BookingCtaComponent } from "src/components/atoms/booking-cta/booking-cta";
 import { LanguageService } from 'src/services/language.service';
+import { SeoService } from 'src/services/seo.service';
+
+const PAGE_PATH = '/behandlungen/kavitation';
 
 @Component({
   selector: 'app-kavitation',
@@ -13,31 +15,27 @@ import { LanguageService } from 'src/services/language.service';
   templateUrl: './kavitation.html',
   styleUrls: ['./kavitation.scss']
 })
-export class KavitationComponent implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class KavitationComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
   readonly lang = inject(LanguageService);
+  private readonly jsonLdId = 'kavitation-schema';
 
-  private readonly pageUrl = 'https://farewell.salon/behandlungen/kavitation';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/kavitation2.webp';
-
-  constructor() {}
 
   t(de: string, en: string): string {
     return this.lang.t(de, en);
   }
 
-  ngOnInit(): void {
-    this.setSeoTags();
-    this.setStructuredData();
+  p(path: string): string {
+    return this.lang.localizePath(path);
   }
 
   get paragraphText(): string {
     return this.t(
       `
     Kavitation ist eine moderne, nicht-invasive Body-Treatment Methode mit Ultraschall.
-    Sie unterstützt die Kontur und kann das Hautbild glätten – sanft, komfortabel und ohne Ausfallzeit.
+    Sie unterstützt die Kontur und kann das Hautbild glätten: sanft, komfortabel und ohne Ausfallzeit.
 
     Alle wichtigen Infos zur Behandlung findest du weiter unten.
   `,
@@ -50,55 +48,43 @@ export class KavitationComponent implements OnInit {
     );
   }
 
-  structuredData = '';
+  ngOnInit(): void {
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
 
-  private setSeoTags(): void {
-    const pageTitle =
-      'Kavitation in Nürnberg | Ultraschall-Behandlung zur Kontur | FareWell';
+    const pageTitle = this.t(
+      'Kavitation Fettabbau Nürnberg | FareWell',
+      'Ultrasound Cavitation & Body Forming Nuremberg | FareWell'
+    );
+    const pageDescription = this.t(
+      'Ultraschall Kavitation in Nürnberg: nicht invasive Fettreduktion für Körperformung und Hautstraffung.',
+      'Non-invasive ultrasound cavitation in Nuremberg for body contouring and skin firming. Free consultation, English spoken.'
+    );
 
-    const description =
-      'Kavitation in Nürnberg bei FareWell: nicht-invasive Ultraschall-Behandlung zur Unterstützung der Körperkontur und Verbesserung des Hautbilds. Alle wichtigen Infos zu Wirkung, Eignung und Sitzungen.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für Kavitation und nicht-invasive Ultraschall-Behandlungen zur Kontur'
+    this.seo.setPageSeo({
+      title: pageTitle,
+      description: pageDescription,
+      path: PAGE_PATH,
+      image: this.heroImageUrl,
+      imageAlt: this.t(
+        'FareWell Studio in Nürnberg für Kavitation und nicht-invasive Ultraschall-Behandlungen zur Kontur',
+        'FareWell studio in Nuremberg for cavitation and non-invasive ultrasound contour treatments'
+      ),
+      largeImage: true
     });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
 
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      name: 'twitter:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für Kavitation und nicht-invasive Ultraschall-Behandlungen zur Kontur'
-    });
-  }
-
-  private setStructuredData(): void {
-    const jsonLd = {
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Service',
-          '@id': `${this.pageUrl}#service`,
-          name: 'Kavitation in Nürnberg',
-          description:
+          '@id': `${pageUrl}#service`,
+          name: this.t('Kavitation in Nürnberg', 'Cavitation in Nuremberg'),
+          description: this.t(
             'Nicht-invasive Ultraschall-Behandlung zur Unterstützung der Körperkontur und Verbesserung des Hautbilds bei FareWell in Nürnberg.',
-          serviceType: 'Kavitation',
+            'Non-invasive ultrasound treatment to support your body contour and improve the look of your skin at FareWell in Nuremberg.'
+          ),
+          serviceType: this.t('Kavitation', 'Cavitation'),
           areaServed: {
             '@type': 'City',
             name: 'Nürnberg'
@@ -119,16 +105,16 @@ export class KavitationComponent implements OnInit {
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Kavitation in Nürnberg | Ultraschall-Behandlung zur Kontur | FareWell',
-          description:
-            'Kavitation in Nürnberg bei FareWell: nicht-invasive Ultraschall-Behandlung zur Unterstützung der Körperkontur und Verbesserung des Hautbilds.',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: pageTitle,
+          description: pageDescription,
+          inLanguage: isEn ? 'en' : 'de',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
           about: {
-            '@id': `${this.pageUrl}#service`
+            '@id': `${pageUrl}#service`
           },
           primaryImageOfPage: {
             '@type': 'ImageObject',
@@ -138,14 +124,31 @@ export class KavitationComponent implements OnInit {
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
-            { '@type': 'ListItem', position: 2, name: 'Behandlungen', item: 'https://farewell.salon/behandlungen' },
-            { '@type': 'ListItem', position: 3, name: 'Kavitation', item: this.pageUrl }
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'FareWell',
+              item: isEn ? 'https://farewell.salon/en' : 'https://farewell.salon'
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: this.t('Behandlungen', 'Treatments'),
+              item: `https://farewell.salon${isEn ? '/en' : ''}/behandlungen`
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: this.t('Kavitation', 'Cavitation'),
+              item: pageUrl
+            }
           ]
         }
       ]
-    };
+    });
+  }
 
-    this.structuredData = JSON.stringify(jsonLd);
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 }

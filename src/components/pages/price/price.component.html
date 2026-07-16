@@ -37,12 +37,12 @@
           <span class="lang de">
             Quelle ist unser Buchungssystem
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>. Dort siehst du immer die aktuellen Preise und freien Termine. Die
-            <a routerLink="/price" fragment="beratung">Erstberatung</a> ist kostenlos.
+            <a [routerLink]="p('/price')" fragment="beratung">Erstberatung</a> ist kostenlos.
           </span>
           <span class="lang en">
             The source is our booking system
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>. It always shows the current prices and available appointments. The
-            <a routerLink="/price" fragment="beratung">initial consultation</a> is free.
+            <a [routerLink]="p('/price')" fragment="beratung">initial consultation</a> is free.
           </span>
         </p>
       </div>
@@ -95,12 +95,12 @@
           <span class="lang de">
             Für die Kostenübernahme durch die Krankenkasse erstellen wir dir einen schriftlichen
             Kostenvoranschlag. Alle Schritte erklärt unser
-            <a routerLink="/ratgeber/epilation-krankenkasse">Leitfaden „Epilation über die Krankenkasse"</a>.
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Leitfaden „Epilation über die Krankenkasse"</a>.
           </span>
           <span class="lang en">
             If your health insurance is to cover the treatment, we prepare a written cost
             estimate for your application. Our
-            <a routerLink="/ratgeber/epilation-krankenkasse">guide (in German)</a> explains every step.
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">guide (in German)</a> explains every step.
           </span>
         </app-guide-note>
       </div>
@@ -109,7 +109,7 @@
     <!-- 02 · Nadelepilation (Elektrolyse) -->
     <app-guide-section
       index="02"
-      [heading]="t('Nadelepilation (Elektrolyse) – Preise', 'Electrolysis prices')"
+      [heading]="t('Nadelepilation (Elektrolyse): Preise', 'Electrolysis prices')"
       sectionId="nadelepilation"
     >
       <p class="gd-lead-p gd-read" appReveal>
@@ -168,7 +168,7 @@
     <!-- 03 · Laser-Haarentfernung -->
     <app-guide-section
       index="03"
-      [heading]="t('Laser-Haarentfernung – Preise', 'Laser hair removal prices')"
+      [heading]="t('Laser-Haarentfernung: Preise', 'Laser hair removal prices')"
       sectionId="laser"
     >
       <p class="gd-lead-p gd-read" appReveal>
@@ -222,7 +222,7 @@
     <!-- 04 · Radiofrequenz-Microneedling -->
     <app-guide-section
       index="04"
-      [heading]="t('Radiofrequenz-Microneedling – Preise', 'RF microneedling prices')"
+      [heading]="t('Radiofrequenz-Microneedling: Preise', 'RF microneedling prices')"
       sectionId="microneedling"
     >
       <p class="gd-lead-p gd-read" appReveal>
@@ -270,7 +270,7 @@
     <!-- 05 · Cellulite-Behandlung -->
     <app-guide-section
       index="05"
-      [heading]="t('Cellulite-Behandlung – Preise', 'Cellulite treatment prices')"
+      [heading]="t('Cellulite-Behandlung: Preise', 'Cellulite treatment prices')"
       sectionId="cellulite"
     >
       <p class="gd-lead-p gd-read" appReveal>
@@ -329,7 +329,7 @@
     <!-- 06 · Ultraschall-Fettreduktion -->
     <app-guide-section
       index="06"
-      [heading]="t('Ultraschall-Fettreduktion – Preise', 'Ultrasonic fat reduction prices')"
+      [heading]="t('Ultraschall-Fettreduktion: Preise', 'Ultrasonic fat reduction prices')"
       sectionId="fettreduktion"
     >
       <p class="gd-lead-p gd-read" appReveal>
@@ -387,7 +387,7 @@
     <!-- 07 · Wellness-Massage -->
     <app-guide-section
       index="07"
-      [heading]="t('Wellness-Massage – Preise', 'Wellness massage prices')"
+      [heading]="t('Wellness-Massage: Preise', 'Wellness massage prices')"
       sectionId="wellness-massage"
     >
       <p class="gd-lead-p gd-read" appReveal>
@@ -437,7 +437,7 @@
     <!-- 08 · Therapeutische Massage -->
     <app-guide-section
       index="08"
-      [heading]="t('Therapeutische Massage – Preise', 'Therapeutic massage prices')"
+      [heading]="t('Therapeutische Massage: Preise', 'Therapeutic massage prices')"
       sectionId="therapeutische-massage"
     >
       <p class="gd-lead-p gd-read" appReveal>
@@ -445,12 +445,12 @@
           Für muskuläre Verspannungen, sportliche Belastung und Bewegungseinschränkungen: Im
           Ersttermin nehmen wir uns Zeit für Anamnese und Befundaufnahme, damit jede Massage
           gezielt auf dich abgestimmt ist. Das
-          <a routerLink="/price" fragment="beratung">Beratungsgespräch</a> ist kostenlos.
+          <a [routerLink]="p('/price')" fragment="beratung">Beratungsgespräch</a> ist kostenlos.
         </span>
         <span class="lang en">
           For muscular tension, athletic strain and restricted mobility: in the first
           appointment we take time for an intake and assessment so every massage is tailored to
-          you. The <a routerLink="/price" fragment="beratung">consultation</a> is free.
+          you. The <a [routerLink]="p('/price')" fragment="beratung">consultation</a> is free.
         </span>
       </p>
       <div
@@ -558,13 +558,13 @@
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
           Mehr zu den Methoden:
-          <a routerLink="/behandlungen/nadelepilation">Nadelepilation</a> ·
-          <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser (4 Wellen)</a>
+          <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation</a> ·
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser (4 Wellen)</a>
         </span>
         <span class="lang en">
           More about the methods:
-          <a routerLink="/behandlungen/nadelepilation">needle epilation</a> ·
-          <a routerLink="/behandlungen/diodenlaser-4-wellen">diode laser (4 wavelengths)</a>
+          <a [routerLink]="p('/behandlungen/nadelepilation')">needle epilation</a> ·
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">diode laser (4 wavelengths)</a>
         </span>
       </p>
       <div class="gd-cards gd-cards--2">
@@ -576,7 +576,7 @@
             Methods, appointments, how it works: the answers from our consultations, written
             down.
           </span>
-          <a routerLink="/faq">{{ t('Zu den FAQ', 'Read the FAQ') }}</a>
+          <a [routerLink]="p('/faq')">{{ t('Zu den FAQ', 'Read the FAQ') }}</a>
         </app-guide-card>
         <app-guide-card
           icon="🏥"
@@ -591,7 +591,7 @@
             For trans people: how facial hair removal becomes a covered benefit, with medical
             delegation at FareWell (guide in German).
           </span>
-          <a routerLink="/ratgeber/epilation-krankenkasse">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>
         <app-guide-card
           icon="🧾"
@@ -606,7 +606,7 @@
             Claim out-of-pocket costs as an extraordinary burden. We show what evidence the tax office
             wants to see (guide in German).
           </span>
-          <a routerLink="/ratgeber/haarentfernung-steuer-absetzen">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+          <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>
         <app-guide-card
           icon="🇺🇸"
@@ -621,7 +621,7 @@
             NF1 forms or the Remonon app: how to stop paying the 19% German VAT. Explained in
             English and German.
           </span>
-          <a routerLink="/ratgeber/us-forces-vat-relief">{{ t('Zum Leitfaden (EN)', 'Read the guide') }}</a>
+          <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">{{ t('Zum Leitfaden (EN)', 'Read the guide') }}</a>
         </app-guide-card>
       </div>
     </app-guide-section>

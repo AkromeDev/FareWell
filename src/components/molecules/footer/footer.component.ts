@@ -26,6 +26,11 @@ export class FooterComponent {
     return this.lang.t(de, en);
   }
 
+  /** Interner Link in der aktiven Sprache (auf /en/-Seiten mit /en-Präfix). */
+  p(path: string): string {
+    return this.lang.localizePath(path);
+  }
+
   trackBookingClick(event: MouseEvent): void {
     event.preventDefault();
 

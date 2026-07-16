@@ -15,7 +15,7 @@
     tagline="Für immer sanft."
     [lead]="
       t(
-        'Wie du deine Haarentfernung als Kassenleistung bezahlt bekommst – Schritt für Schritt erklärt, mit FareWell als Beispiel.',
+        'Wie du deine Haarentfernung als Kassenleistung bezahlt bekommst, Schritt für Schritt erklärt, mit FareWell als Beispiel.',
         'How to get your hair removal covered as an insurance benefit, explained step by step, with FareWell as the example.'
       )
     "
@@ -30,7 +30,7 @@
         <p class="gd-lede" appReveal [revealDelay]="60">
           <span class="lang de">
             Deine Krankenkasse kann die Epilation im Gesicht übernehmen. Der Knackpunkt ist der
-            Ärztevorbehalt – und genau der ist bei FareWell durch eine delegierende Ärztin gelöst.
+            Ärztevorbehalt, und genau der ist bei FareWell durch eine delegierende Ärztin gelöst.
           </span>
           <span class="lang en">
             Your statutory health insurer can cover facial epilation. The sticking point is the
@@ -83,7 +83,7 @@
           [revealDelay]="60"
         >
           <span class="lang de">
-            Die Behandlung muss als ärztliche Leistung zählen – deshalb scheitern Anträge sonst
+            Die Behandlung muss als ärztliche Leistung zählen; deshalb scheitern Anträge sonst
             oft an reinen Kosmetikstudios.
           </span>
           <span class="lang en">
@@ -111,15 +111,15 @@
           [revealDelay]="180"
         >
           <span class="lang de">
-            <a routerLink="/behandlungen/nadelepilation">Nadelepilation (Elektrolyse)</a> ist die
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a> ist die
             anerkannte permanente Methode.
-            <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser</a> (dauerhafte
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser</a> (dauerhafte
             Haarentfernung) bieten wir ergänzend an.
           </span>
           <span class="lang en">
-            <a routerLink="/behandlungen/nadelepilation">Electrolysis (Nadelepilation)</a> is the
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Electrolysis (Nadelepilation)</a> is the
             recognised permanent method. We also offer the
-            <a routerLink="/behandlungen/diodenlaser-4-wellen">diode laser</a> (long-lasting hair
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">diode laser</a> (long-lasting hair
             removal) as a complement.
           </span>
         </app-guide-card>
@@ -202,12 +202,12 @@
             <span class="lang de">
               <strong>Kostenvoranschlag bei FareWell.</strong> Wir erstellen dir einen
               Kostenvoranschlag für Nadelepilation und Diodenlaser im Rahmen der Delegation. Die
-              Preise je Zone findest du auf <a routerLink="/price">unserer Preisseite</a>.
+              Preise je Zone findest du auf <a [routerLink]="p('/price')">unserer Preisseite</a>.
             </span>
             <span class="lang en">
               <strong>Cost estimate from FareWell.</strong> We prepare a cost estimate for
               electrolysis (Nadelepilation) and the diode laser within the delegation. You will
-              find the prices per area on <a routerLink="/price">our price page</a>.
+              find the prices per area on <a [routerLink]="p('/price')">our price page</a>.
             </span>
           </li>
           <li>
@@ -364,11 +364,11 @@
           <span class="lang de">
             Den Anteil, den du selbst trägst, kannst du als außergewöhnliche Belastung geltend
             machen.
-            <a routerLink="/ratgeber/haarentfernung-steuer-absetzen">Zum Steuer-Leitfaden</a>
+            <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">Zum Steuer-Leitfaden</a>
           </span>
           <span class="lang en">
             You can claim the share you pay yourself as an extraordinary burden.
-            <a routerLink="/ratgeber/haarentfernung-steuer-absetzen">Read the tax guide</a>
+            <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">Read the tax guide</a>
           </span>
         </app-guide-card>
         <app-guide-card
@@ -377,12 +377,12 @@
           [revealDelay]="60"
         >
           <span class="lang de">
-            Antworten zu Methoden, Terminen, Preisen und Kostenübernahme – kompakt gesammelt.
-            <a routerLink="/faq">Zu den FAQ</a>
+            Antworten zu Methoden, Terminen, Preisen und Kostenübernahme, kompakt gesammelt.
+            <a [routerLink]="p('/faq')">Zu den FAQ</a>
           </span>
           <span class="lang en">
             Answers on methods, appointments, prices and coverage, gathered in one place.
-            <a routerLink="/faq">Read the FAQ</a>
+            <a [routerLink]="p('/faq')">Read the FAQ</a>
           </span>
         </app-guide-card>
       </div>

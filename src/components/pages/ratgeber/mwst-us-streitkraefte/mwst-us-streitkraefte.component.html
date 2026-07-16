@@ -3,7 +3,7 @@
     kicker="Kundenleitfaden · US Streitkräfte · SOFA"
     heading="Mehrwertsteuerbefreiung für US-Streitkräfte"
     tagline="Für immer sanft."
-    lead="So sparen Sie in Deutschland auf fast alles die Mehrwertsteuer – mit FareWell als Beispiel."
+    lead="So sparen Sie in Deutschland auf fast alles die Mehrwertsteuer, mit FareWell als Beispiel."
   />
 
   <app-guide-stats [stats]="stats" />
@@ -14,7 +14,7 @@
         <p class="gd-kick" appReveal>Kurz gesagt</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
           Dank des NATO-Truppenstatuts kaufen Sie die meisten Waren und Dienstleistungen ohne
-          die deutsche Mehrwertsteuer – mit einem Papierformular vorab oder per App im
+          die deutsche Mehrwertsteuer: mit einem Papierformular vorab oder per App im
           Nachhinein.
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
@@ -205,15 +205,15 @@
           <tbody>
             <tr>
               <td>Remonon-App: €150 zahlen, rund €21 Mehrwertsteuer kommen zurück</td>
-              <td class="num">≈ 129</td>
+              <td class="num">≈ 129 €</td>
             </tr>
             <tr>
               <td>NF1-Formular: wir stellen ohne Mehrwertsteuer aus</td>
-              <td class="num">126</td>
+              <td class="num">126 €</td>
             </tr>
             <tr class="total">
               <td>Zuerst Code USLASER (€120), dann die Mehrwertsteuer abziehen</td>
-              <td class="num">≈ 100</td>
+              <td class="num">≈ 100 €</td>
             </tr>
           </tbody>
         </table>
@@ -232,7 +232,7 @@
           <a routerLink="/ratgeber/us-forces-vat-relief" lang="en">Read this guide in English</a>
         </app-guide-card>
         <app-guide-card icon="💬" heading="Häufige Fragen" [revealDelay]="60">
-          <a routerLink="/faq">Zu den FAQ</a>
+          <a [routerLink]="p('/faq')">Zu den FAQ</a>
         </app-guide-card>
       </div>
     </app-guide-section>

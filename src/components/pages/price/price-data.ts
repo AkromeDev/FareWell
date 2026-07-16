@@ -66,8 +66,8 @@ export const PRICE_TABLES = {
   },
 
   laserDamenGesicht: {
-    de: 'Damen – Gesicht',
-    en: 'Women – face',
+    de: 'Damen: Gesicht',
+    en: 'Women: face',
     audience: 'damen',
     rows: [
       { de: 'Augenbraue', en: 'Eyebrows', minutes: 15, price: 40 },
@@ -82,8 +82,8 @@ export const PRICE_TABLES = {
   },
 
   laserDamenKoerper: {
-    de: 'Damen – Körper',
-    en: 'Women – body',
+    de: 'Damen: Körper',
+    en: 'Women: body',
     audience: 'damen',
     rows: [
       { de: 'Achseln', en: 'Underarms', minutes: 15, price: 60 },
@@ -104,8 +104,8 @@ export const PRICE_TABLES = {
   },
 
   laserDamenIntim: {
-    de: 'Damen – Intimbereich',
-    en: 'Women – intimate area',
+    de: 'Damen: Intimbereich',
+    en: 'Women: intimate area',
     audience: 'damen',
     rows: [
       { de: 'Bikinilinie', en: 'Bikini line', minutes: 15, price: 60 },
@@ -118,8 +118,8 @@ export const PRICE_TABLES = {
   },
 
   laserHerrenGesicht: {
-    de: 'Herren – Gesicht & Kopf',
-    en: 'Men – face & head',
+    de: 'Herren: Gesicht & Kopf',
+    en: 'Men: face & head',
     audience: 'herren',
     rows: [
       { de: 'Augenbraue', en: 'Eyebrows', minutes: 15, price: 40 },
@@ -137,8 +137,8 @@ export const PRICE_TABLES = {
   },
 
   laserHerrenKoerper: {
-    de: 'Herren – Körper',
-    en: 'Men – body',
+    de: 'Herren: Körper',
+    en: 'Men: body',
     audience: 'herren',
     rows: [
       { de: 'Schultern', en: 'Shoulders', minutes: 30, price: 50 },
@@ -161,8 +161,8 @@ export const PRICE_TABLES = {
   },
 
   laserHerrenIntim: {
-    de: 'Herren – Intimbereich',
-    en: 'Men – intimate area',
+    de: 'Herren: Intimbereich',
+    en: 'Men: intimate area',
     audience: 'herren',
     rows: [
       { de: 'Pofalte', en: 'Gluteal fold', minutes: 15, price: 60 },
@@ -249,8 +249,11 @@ export interface PriceService {
   /** Fragment für die @id und zugleich Anker der Sektion auf der Seite. */
   anchor: string;
   nameDe: string;
+  nameEn: string;
   serviceTypeDe: string;
+  serviceTypeEn: string;
   descriptionDe: string;
+  descriptionEn: string;
   tables: PriceTableKey[];
 }
 
@@ -258,25 +261,37 @@ export const PRICE_SERVICES: PriceService[] = [
   {
     anchor: 'beratung',
     nameDe: 'Kostenlose Erstberatung',
+    nameEn: 'Free initial consultation',
     serviceTypeDe: 'Beratung',
+    serviceTypeEn: 'Consultation',
     descriptionDe:
       'Kostenloser Beratungstermin bei FareWell Nürnberg: Anamnese, Methodenwahl und persönlicher Behandlungsplan, ganz ohne Verpflichtung.',
+    descriptionEn:
+      'Free consultation at FareWell Nuremberg: assessment, choice of method and a personal treatment plan, entirely without obligation.',
     tables: ['beratung'],
   },
   {
     anchor: 'nadelepilation',
     nameDe: 'Nadelepilation (Elektrolyse)',
+    nameEn: 'Needle epilation (electrolysis)',
     serviceTypeDe: 'Permanente Haarentfernung',
+    serviceTypeEn: 'Permanent hair removal',
     descriptionDe:
       'Elektrolyse ist die einzige Methode der permanenten Haarentfernung. Jedes Haar wird einzeln an der Wurzel deaktiviert, geeignet für alle Haarfarben und Hauttypen. Preise für Damen und Herren gleich.',
+    descriptionEn:
+      'Electrolysis is the only method of permanent hair removal. Each hair is deactivated individually at the root, suitable for all hair colours and skin types. Prices are the same for women and men.',
     tables: ['nadelepilation'],
   },
   {
     anchor: 'laser',
     nameDe: 'Laser-Haarentfernung (Diodenlaser)',
+    nameEn: 'Laser hair removal (diode laser)',
     serviceTypeDe: 'Dauerhafte Haarentfernung',
+    serviceTypeEn: 'Long-lasting hair removal',
     descriptionDe:
       'Dauerhafte Haarentfernung mit modernem 4-Wellen-Diodenlaser und KI-gestützter Hauttyp-Erkennung, für Gesicht, Körper und Intimbereich.',
+    descriptionEn:
+      'Long-lasting hair removal with a modern four-wavelength diode laser and AI-assisted skin-type detection, for the face, body and intimate area.',
     tables: [
       'laserDamenGesicht',
       'laserDamenKoerper',
@@ -289,41 +304,61 @@ export const PRICE_SERVICES: PriceService[] = [
   {
     anchor: 'microneedling',
     nameDe: 'Radiofrequenz-Microneedling',
+    nameEn: 'Radio-frequency microneedling',
     serviceTypeDe: 'Hautverjüngung',
+    serviceTypeEn: 'Skin rejuvenation',
     descriptionDe:
       'Hautverjüngung durch Microneedling mit Radiofrequenz: regt Kollagen und Elastin an, strafft die Haut, glättet Narben und verfeinert Poren.',
+    descriptionEn:
+      'Skin rejuvenation through microneedling with radio frequency: it stimulates collagen and elastin, firms the skin, smooths scars and refines pores.',
     tables: ['microneedling'],
   },
   {
     anchor: 'cellulite',
     nameDe: 'Cellulite-Behandlung',
+    nameEn: 'Cellulite treatment',
     serviceTypeDe: 'Body Forming',
+    serviceTypeEn: 'Body forming',
     descriptionDe:
       'Kosmetische Cellulite-Behandlung mit Ultraschall und Vakuumtechnik. Sie aktiviert das Gewebe, fördert die Durchblutung und verbessert das Hautbild.',
+    descriptionEn:
+      'Cosmetic cellulite treatment with ultrasound and vacuum technology. It activates the tissue, supports circulation and improves the appearance of the skin.',
     tables: ['cellulite'],
   },
   {
     anchor: 'fettreduktion',
     nameDe: 'Ultraschall-Fettreduktion (Kavitation)',
+    nameEn: 'Ultrasonic fat reduction (cavitation)',
     serviceTypeDe: 'Body Forming',
+    serviceTypeEn: 'Body forming',
     descriptionDe:
       'Kosmetische Fettreduktion mit 40-kHz-Ultraschall und Vakuumtechnik zur gezielten Behandlung lokaler Fettdepots.',
+    descriptionEn:
+      'Cosmetic fat reduction with 40 kHz ultrasound (cavitation) and vacuum technology for the targeted treatment of local fat deposits.',
     tables: ['fettreduktion'],
   },
   {
     anchor: 'wellness-massage',
     nameDe: 'Wellness-Massage',
+    nameEn: 'Wellness massage',
     serviceTypeDe: 'Massage',
+    serviceTypeEn: 'Massage',
     descriptionDe:
       'Wellness-Massagen bei FareWell Nürnberg: Rücken-Schulter-Nacken-Massage, Ganzkörpermassage mit Aromaölen und Teilkörpermassage.',
+    descriptionEn:
+      'Wellness massages at FareWell Nuremberg: back, shoulder & neck massage, full-body massage with aroma oils and partial-body massage.',
     tables: ['wellnessMassage'],
   },
   {
     anchor: 'therapeutische-massage',
     nameDe: 'Therapeutische Massage',
+    nameEn: 'Therapeutic massage',
     serviceTypeDe: 'Massage',
+    serviceTypeEn: 'Massage',
     descriptionDe:
       'Therapeutische Massagen: Sport- & Regenerationsmassage, medizinisch-funktionelle Massage sowie Ersttermin mit Anamnese & Befundaufnahme.',
+    descriptionEn:
+      'Therapeutic massages: sports & recovery massage, medical-functional massage, plus a first appointment with intake & assessment.',
     tables: ['therapeutischeMassage'],
   },
 ];

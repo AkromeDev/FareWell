@@ -3,7 +3,7 @@
     kicker="Client guide · US Forces · SOFA"
     heading="Your guide to US Forces VAT relief in Germany"
     tagline="Für immer sanft."
-    lead="How to stop paying the German VAT on almost everything – with FareWell as your example."
+    lead="How to stop paying the German VAT on almost everything, with FareWell as your example."
     imageAlt="The FareWell salon in Nuremberg, Germany"
   />
 
@@ -15,7 +15,7 @@
         <p class="gd-kick" appReveal>In short</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
           Under the Status of Forces Agreement you can buy most goods and services without the
-          German VAT – with a paper form up front, or through an app afterwards.
+          German VAT: with a paper form up front, or through an app afterwards.
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
           As a member of the US Forces stationed in Germany, the Status of Forces Agreement
@@ -201,7 +201,7 @@
           <a routerLink="/ratgeber/mehrwertsteuer-us-streitkraefte">Read this guide in German</a>
         </app-guide-card>
         <app-guide-card icon="💬" heading="Frequently asked questions" [revealDelay]="60">
-          <a routerLink="/faq">Browse the FAQ (German)</a>
+          <a [routerLink]="p('/faq')">Browse the FAQ</a>
         </app-guide-card>
       </div>
     </app-guide-section>

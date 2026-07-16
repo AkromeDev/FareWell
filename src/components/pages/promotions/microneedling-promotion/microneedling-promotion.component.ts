@@ -1,10 +1,18 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
 import { ButtonItem } from 'src/models/ButtonItem';
 import { LanguageService } from 'src/services/language.service';
+import { SeoService } from 'src/services/seo.service';
+
+const PAGE_PATH = '/microneedling-aktion-nuernberg';
+const DE_TITLE = 'Microneedling Aktion Nürnberg | FareWell';
+const DE_DESCRIPTION =
+  'Microneedling Sonderangebot in Nürnberg: Hautverjüngung und Hautverbesserung.';
+const EN_TITLE = 'RF Microneedling Offer Nuremberg | FareWell';
+const EN_DESCRIPTION =
+  'RF microneedling special offer in Nuremberg: skin rejuvenation and a better complexion. 50% off your first treatment.';
 
 @Component({
   standalone: true,
@@ -13,19 +21,20 @@ import { LanguageService } from 'src/services/language.service';
   templateUrl: './microneedling-promotion.component.html',
   styleUrl: './microneedling-promotion.component.scss'
 })
-export class MicroneedlingPromotionComponent implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class MicroneedlingPromotionComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
   readonly lang = inject(LanguageService);
-
-  private readonly pageUrl =
-    'https://farewell.salon/microneedling-aktion-nuernberg';
+  private readonly jsonLdId = 'microneedling-promo-schema';
 
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/microneedling.webp';
 
   t(de: string, en: string): string {
     return this.lang.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.lang.localizePath(path);
   }
 
   get paragraphText(): string {
@@ -47,7 +56,7 @@ export class MicroneedlingPromotionComponent implements OnInit {
 
   get buttonList(): ButtonItem[] {
     return [
-      { label: this.t('Unsere Preise', 'Our prices'), link: '/price', theme: 'dark' },
+      { label: this.t('Unsere Preise', 'Our prices'), link: this.p('/price'), theme: 'dark' },
       {
         label: this.t('Termin buchen', 'Book now'),
         link: 'https://salonkee.de/salon/farewell?lang=de',
@@ -60,62 +69,47 @@ export class MicroneedlingPromotionComponent implements OnInit {
     ];
   }
 
-  structuredData = '';
-
   ngOnInit(): void {
-    this.setSeoTags();
+    this.seo.setPageSeo({
+      title: this.t(DE_TITLE, EN_TITLE),
+      description: this.t(DE_DESCRIPTION, EN_DESCRIPTION),
+      path: PAGE_PATH,
+      image: this.heroImageUrl,
+      imageAlt: this.t(
+        'FareWell Studio in Nürnberg für professionelle Radiofrequenz-Microneedling Behandlungen zur Hautstraffung und Hautverjüngung',
+        'FareWell studio in Nuremberg for professional radiofrequency microneedling treatments for skin firming and rejuvenation'
+      ),
+      largeImage: true
+    });
+
     this.setStructuredData();
   }
 
-  private setSeoTags(): void {
-    const pageTitle =
-      'Microneedling in Nürnberg: 50 % Rabatt für Neukunden | FareWell';
-
-    const description =
-      'Radiofrequenz-Microneedling in Nürnberg bei FareWell für straffere, glattere und ebenmäßigere Haut. ' +
-      'Jetzt 50 % Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG sichern.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für professionelle Radiofrequenz-Microneedling Behandlungen zur Hautstraffung und Hautverjüngung'
-    });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
-
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      name: 'twitter:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für professionelle Radiofrequenz-Microneedling Behandlungen zur Hautstraffung und Hautverjüngung'
-    });
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 
   private setStructuredData(): void {
-    const jsonLd = {
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Service',
-          '@id': `${this.pageUrl}#service`,
-          name: 'Radiofrequenz-Microneedling für strahlende Haut in Nürnberg',
-          description:
+          '@id': `${pageUrl}#service`,
+          name: this.t(
+            'Radiofrequenz-Microneedling für strahlende Haut in Nürnberg',
+            'Radiofrequency microneedling for radiant skin in Nuremberg'
+          ),
+          description: this.t(
             'Radiofrequenz-Microneedling bei FareWell in Nürnberg für straffere, glattere und verjüngte Haut. ' +
-            '50 % Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.',
-          serviceType: 'Radiofrequenz-Microneedling',
+              '50 % Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.',
+            'Radiofrequency microneedling at FareWell in Nuremberg for firmer, smoother and rejuvenated skin. ' +
+              '50% off your first treatment for new clients with the code ERSTEBEHANDLUNG.'
+          ),
+          serviceType: this.t('Radiofrequenz-Microneedling', 'Radiofrequency microneedling'),
           areaServed: {
             '@type': 'City',
             name: 'Nürnberg'
@@ -135,30 +129,35 @@ export class MicroneedlingPromotionComponent implements OnInit {
           },
           offers: {
             '@type': 'Offer',
-            name: '50 % Rabatt auf die erste Radiofrequenz-Microneedling Behandlung',
-            description:
+            name: this.t(
+              '50 % Rabatt auf die erste Radiofrequenz-Microneedling Behandlung',
+              '50% off your first radiofrequency microneedling treatment'
+            ),
+            description: this.t(
               'Neukundenangebot für die erste Radiofrequenz-Microneedling Behandlung bei FareWell in Nürnberg.',
-            url: this.pageUrl,
+              'New client offer for the first radiofrequency microneedling treatment at FareWell in Nuremberg.'
+            ),
+            url: pageUrl,
             priceCurrency: 'EUR',
             availability: 'https://schema.org/InStock',
             eligibleCustomerType: {
               '@type': 'BusinessEntityType',
-              name: 'Neukunden'
+              name: this.t('Neukunden', 'New clients')
             }
           }
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Microneedling in Nürnberg: 50 % Rabatt für Neukunden | FareWell',
-          description:
-            'Radiofrequenz-Microneedling in Nürnberg bei FareWell für straffere, glattere und ebenmäßigere Haut. Jetzt 50 % Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG sichern.',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: this.t(DE_TITLE, EN_TITLE),
+          description: this.t(DE_DESCRIPTION, EN_DESCRIPTION),
+          inLanguage: isEn ? 'en' : 'de',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
           about: {
-            '@id': `${this.pageUrl}#service`
+            '@id': `${pageUrl}#service`
           },
           primaryImageOfPage: {
             '@type': 'ImageObject',
@@ -166,8 +165,6 @@ export class MicroneedlingPromotionComponent implements OnInit {
           }
         }
       ]
-    };
-
-    this.structuredData = JSON.stringify(jsonLd);
+    });
   }
 }

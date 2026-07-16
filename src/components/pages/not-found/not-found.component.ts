@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ImageHeroComponent } from '../../molecules/image-hero/image-hero.component';
 import { LanguageService } from 'src/services/language.service';
+import { SeoService } from 'src/services/seo.service';
 
 
 @Component({
@@ -13,10 +14,21 @@ import { LanguageService } from 'src/services/language.service';
 export class NotFoundComponent implements OnInit {
 
   readonly lang = inject(LanguageService);
+  private readonly seo = inject(SeoService);
 
   constructor() { }
 
   ngOnInit(): void {
+    this.seo.setPageSeo({
+      title: this.t('Seite nicht gefunden | FareWell Nürnberg', 'Page not found | FareWell Nuremberg'),
+      description: this.t(
+        'Diese Seite existiert nicht (mehr). Zur Startseite von FareWell Nürnberg.',
+        'This page does not exist (anymore). Back to the FareWell Nuremberg home page.'
+      ),
+      path: '/not-found',
+      noindex: true,
+      alternates: false,
+    });
   }
 
   t(de: string, en: string): string {

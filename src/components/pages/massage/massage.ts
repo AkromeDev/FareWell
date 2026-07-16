@@ -1,10 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
 import { BookingCtaComponent } from "src/components/atoms/booking-cta/booking-cta";
 import { LanguageService } from 'src/services/language.service';
+import { SeoService } from 'src/services/seo.service';
+
+const PAGE_PATH = '/behandlungen/wellness-massage';
 
 @Component({
   selector: 'app-wellness-massagen',
@@ -13,19 +15,20 @@ import { LanguageService } from 'src/services/language.service';
   templateUrl: './massage.html',
   styleUrls: ['./massage.scss']
 })
-export class MassageComponent implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class MassageComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
   readonly lang = inject(LanguageService);
+  private readonly jsonLdId = 'massage-schema';
 
-  private readonly pageUrl = 'https://farewell.salon/behandlungen/wellness-massage';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/massage-hero.jpg';
 
-  constructor() {}
-
   t(de: string, en: string): string {
     return this.lang.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.lang.localizePath(path);
   }
 
   get paragraphText(): string {
@@ -45,60 +48,46 @@ export class MassageComponent implements OnInit {
     );
   }
 
-  structuredData = '';
-
   ngOnInit(): void {
-    this.setSeoTags();
-    this.setStructuredData();
-  }
+    const pageTitle = this.t(
+      'Wellness Massage Nürnberg | FareWell',
+      'Wellness Massage Nuremberg | FareWell'
+    );
+    const description = this.t(
+      'Entspannende Wellness Massagen bei FareWell in Nürnberg: Rücken-Schulter-Nacken-Massage, Ganzkörpermassage mit Aromaölen und Teilkörpermassage.',
+      'Relaxing wellness massages at FareWell in Nuremberg: back, shoulder and neck massage, full-body massage with aroma oils, and partial-body massage. English spoken.'
+    );
 
-  private setSeoTags(): void {
-    const pageTitle =
-      'Wellness Massage Nürnberg | FareWell';
-
-    const description =
-      'Entspannende Wellness Massagen bei FareWell in Nürnberg: Rücken-Schulter-Nacken-Massage, Ganzkörpermassage mit Aromaölen und Teilkörpermassage.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für Wellness Massagen, Entspannung und Regeneration'
+    this.seo.setPageSeo({
+      title: pageTitle,
+      description,
+      path: PAGE_PATH,
+      image: this.heroImageUrl,
+      imageAlt: this.t(
+        'FareWell Studio in Nürnberg für Wellness Massagen, Entspannung und Regeneration',
+        'FareWell studio in Nuremberg for wellness massages, relaxation and recovery'
+      ),
+      largeImage: true,
     });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
 
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      name: 'twitter:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für Wellness Massagen, Entspannung und Regeneration'
-    });
-  }
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
 
-  private setStructuredData(): void {
-    const jsonLd = {
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Service',
-          '@id': `${this.pageUrl}#service`,
-          name: 'Wellness Massagen in Nürnberg',
-          description:
+          '@id': `${pageUrl}#service`,
+          name: this.t(
+            'Wellness Massagen in Nürnberg',
+            'Wellness massages in Nuremberg'
+          ),
+          description: this.t(
             'Wellness Massagen bei FareWell in Nürnberg für Entspannung, Regeneration und neue Leichtigkeit.',
-          serviceType: 'Wellness Massage',
+            'Wellness massages at FareWell in Nuremberg for relaxation, recovery and new lightness.'
+          ),
+          serviceType: this.t('Wellness Massage', 'Wellness massage'),
           areaServed: {
             '@type': 'City',
             name: 'Nürnberg'
@@ -118,13 +107,16 @@ export class MassageComponent implements OnInit {
           },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
-            name: 'Massage-Angebote',
+            name: this.t('Massage-Angebote', 'Massage options'),
             itemListElement: [
               {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Rücken-Schulter-Nacken-Massage'
+                  name: this.t(
+                    'Rücken-Schulter-Nacken-Massage',
+                    'Back, shoulder and neck massage'
+                  )
                 },
                 priceCurrency: 'EUR',
                 price: '58'
@@ -133,7 +125,10 @@ export class MassageComponent implements OnInit {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Ganzkörpermassage mit Aromaölen & Klangschale'
+                  name: this.t(
+                    'Ganzkörpermassage mit Aromaölen & Klangschale',
+                    'Full-body massage with aroma oils and singing bowl'
+                  )
                 },
                 priceCurrency: 'EUR',
                 price: '78'
@@ -142,26 +137,26 @@ export class MassageComponent implements OnInit {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Teilkörpermassage'
+                  name: this.t('Teilkörpermassage', 'Partial-body massage')
                 },
                 priceCurrency: 'EUR',
-                price: '25'
+                price: '45'
               }
             ]
           }
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Wellness Massage Nürnberg | FareWell',
-          description:
-            'Entspannende Wellness Massagen bei FareWell in Nürnberg: Rücken-Schulter-Nacken-Massage, Ganzkörpermassage mit Aromaölen und Teilkörpermassage.',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: pageTitle,
+          description,
+          inLanguage: isEn ? 'en' : 'de',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
           about: {
-            '@id': `${this.pageUrl}#service`
+            '@id': `${pageUrl}#service`
           },
           primaryImageOfPage: {
             '@type': 'ImageObject',
@@ -171,14 +166,31 @@ export class MassageComponent implements OnInit {
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
-            { '@type': 'ListItem', position: 2, name: 'Behandlungen', item: 'https://farewell.salon/behandlungen' },
-            { '@type': 'ListItem', position: 3, name: 'Wellness Massage', item: this.pageUrl }
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'FareWell',
+              item: isEn ? 'https://farewell.salon/en' : 'https://farewell.salon'
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: this.t('Behandlungen', 'Treatments'),
+              item: `https://farewell.salon${isEn ? '/en' : ''}/behandlungen`
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: this.t('Wellness Massage', 'Wellness massage'),
+              item: pageUrl
+            }
           ]
         }
       ]
-    };
+    });
+  }
 
-    this.structuredData = JSON.stringify(jsonLd);
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 }

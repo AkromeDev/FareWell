@@ -10,10 +10,12 @@ import {
 } from 'src/components/molecules/guide';
 
 const PAGE_PATH = '/faq';
-const PAGE_URL = `https://farewell.salon${PAGE_PATH}`;
-const PAGE_TITLE = 'FAQ – Häufige Fragen zu Haarentfernung & Behandlungen | FareWell Nürnberg';
-const PAGE_DESCRIPTION =
+const PAGE_TITLE_DE = 'FAQ – Häufige Fragen zu Haarentfernung & Behandlungen | FareWell Nürnberg';
+const PAGE_TITLE_EN = 'FAQ – Hair Removal & Treatments in Nuremberg | FareWell';
+const PAGE_DESCRIPTION_DE =
   'Antworten auf die häufigsten Fragen an FareWell Nürnberg: Elektrolyse vs. Diodenlaser, Termine & Preise, Kostenübernahme durch die Krankenkasse, Steuer und US-Forces-Mehrwertsteuerbefreiung.';
+const PAGE_DESCRIPTION_EN =
+  'Answers to the most common questions at FareWell Nuremberg: electrolysis vs. diode laser, appointments and prices, insurance coverage, tax, and US Forces VAT exemption.';
 
 interface FaqJsonLdEntry {
   question: string;
@@ -33,6 +35,11 @@ export class FaqComponent implements OnInit, OnDestroy {
 
   t(de: string, en: string): string {
     return this.lang.t(de, en);
+  }
+
+  /** Interner Link in der aktiven Sprache (auf /en/-Seiten das englische Gegenstück). */
+  p(path: string): string {
+    return this.lang.localizePath(path);
   }
 
   get stats(): GuideStat[] {
@@ -59,126 +66,232 @@ export class FaqComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Fragen und Antworten als Klartext für das FAQPage-Schema. Inhaltlich
-   * deckungsgleich mit dem sichtbaren Akkordeon im Template halten!
+   * Fragen und Antworten als Klartext für das FAQPage-Schema, in der Sprache
+   * der aktiven Route. Inhaltlich deckungsgleich mit dem sichtbaren Akkordeon
+   * im Template halten!
    */
-  private readonly faqEntries: FaqJsonLdEntry[] = [
-    {
-      question: 'Was ist der Unterschied zwischen permanenter und dauerhafter Haarentfernung?',
-      answer:
-        'Permanent ist in Deutschland allein die Elektrolyse (Nadelepilation): Jede Haarwurzel wird einzeln und endgültig verödet – die einzige rechtlich als permanent anerkannte Methode. Der Diodenlaser erreicht eine dauerhafte Haarentfernung, also eine deutliche, langanhaltende Reduktion, ideal für größere Zonen. Bei FareWell bekommst du beide Methoden und eine ehrliche Empfehlung, was für dich passt.',
-    },
-    {
-      question: 'Welche Behandlungen bietet FareWell an?',
-      answer:
-        'Elektrolyse (Nadelepilation) zur permanenten Haarentfernung, Diodenlaser (4 Wellen) zur dauerhaften Haarentfernung, Microneedling mit Radiofrequenz zur Hautverjüngung, Kavitation zur Körperformung sowie Wellness- und therapeutische Massagen.',
-    },
-    {
-      question: 'Welche Methode der Haarentfernung passt zu mir?',
-      answer:
-        'Als Faustregel: Helle, feine, rötliche oder vereinzelte Haare und kleine Zonen wie das Gesicht sprechen für die Elektrolyse. Dunklere Haare auf größeren Flächen wie Beinen, Rücken oder Achseln sprechen für den Diodenlaser. In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an und empfehlen dir die passende Methode.',
-    },
-    {
-      question: 'Bietet FareWell auch IPL an?',
-      answer:
-        'Nein – und das aus gutem Grund. Statt IPL setzen wir auf den 4-Wellen-Diodenlaser: Er erreicht eine dauerhafte Haarentfernung und arbeitet zuverlässiger bei mehr Haut- und Haartypen als klassische IPL-Geräte. Für die permanente Haarentfernung bieten wir zusätzlich die Elektrolyse an. Welche Methode zu dir passt, klären wir in der kostenlosen Erstberatung.',
-    },
-    {
-      question: 'Wie viele Sitzungen brauche ich?',
-      answer:
-        'Haare wachsen in Zyklen, und nur Haare in der Wachstumsphase lassen sich wirksam behandeln. Deshalb sind immer mehrere Sitzungen nötig. Wie viele genau, hängt von Körperzone, Haardichte und Hormonlage ab – eine realistische Einschätzung bekommst du in der kostenlosen Erstberatung.',
-    },
-    {
-      question: 'Wie finde ich den richtigen Anbieter für Radiofrequenz-Microneedling in Nürnberg?',
-      answer:
-        'Achte auf drei Dinge: geschultes Personal, ein zertifiziertes Gerät und eine ehrliche Beratung, die dir sagt, was realistisch ist. Bei FareWell arbeiten Nicole und Joé mit einem Gerät, das feine Nadeln mit Radiofrequenz verbindet, und wir besprechen vor jeder Behandlung Ablauf, Sitzungen und Kosten.',
-    },
-    {
-      question: 'How can I get rid of facial hair permanently?',
-      answer:
-        'In Germany, the only method legally recognised as permanent is electrolysis (Nadelepilation): each hair root is treated individually and for good. It works on every skin and hair colour, including fine, light or grey facial hair that a laser cannot target. At FareWell in Nürnberg you get a free consultation in English and an honest recommendation. You can book easily through our online booking system (salonkee.de/salon/farewell).',
-    },
-    {
-      question: 'Wie buche ich einen Termin bei FareWell?',
-      answer:
-        'Am einfachsten online über Salonkee (salonkee.de/salon/farewell) – rund um die Uhr, mit sofortiger Bestätigung. Alternativ erreichst du uns per Instagram-Nachricht (@farewell.salon) oder telefonisch unter +49 157 5799 5694.',
-    },
-    {
-      question: 'Wo kann ich Radiofrequenz-Microneedling in Nürnberg buchen?',
-      answer:
-        'Direkt bei FareWell im Zentrum von Nürnberg, Frauentorgraben 5, wenige Gehminuten vom Hauptbahnhof. Radiofrequenz-Microneedling führen Nicole und Joé durch. Am einfachsten buchst du online über Salonkee (salonkee.de/salon/farewell) – rund um die Uhr und mit sofortiger Bestätigung. Die Erstberatung ist kostenlos und unverbindlich.',
-    },
-    {
-      question: 'Was kostet eine Behandlung?',
-      answer:
-        'Alle Preise stehen transparent je Körperzone auf unserer Preisseite unter farewell.salon/price. Die Erstberatung ist kostenlos, und für den Kassenantrag erstellen wir dir einen schriftlichen Kostenvoranschlag.',
-    },
-    {
-      question: 'Was kostet Laser-Haarentfernung in Nürnberg?',
-      answer:
-        'Die Preise richten sich nach der Körperzone und stehen alle auf unserer Preisseite unter farewell.salon/price – eine Achsel ist zum Beispiel günstiger als Beine oder Rücken. Angehörige der US-Streitkräfte erhalten mit dem Promo-Code USLASER 20% lebenslang. Die kostenlose Erstberatung gibt dir eine realistische Einschätzung deiner Sitzungen und Kosten.',
-    },
-    {
-      question: 'Was kostet Radiofrequenz-Microneedling in Nürnberg?',
-      answer:
-        'Alle Preise stehen transparent je Behandlung auf unserer Preisseite unter farewell.salon/price. In der kostenlosen Erstberatung schauen wir uns dein Hautbild an und sagen dir ehrlich, wie viele Sitzungen sinnvoll sind und was sie kosten – ohne Verpflichtung.',
-    },
-    {
-      question: 'Ist die Erstberatung wirklich kostenlos?',
-      answer:
-        'Ja. Wir schauen uns deine Haut- und Haarsituation an, besprechen Methode, Ablauf, Sitzungsanzahl und Kosten – ohne Berechnung und ohne Verpflichtung.',
-    },
-    {
-      question: 'Übernimmt die Krankenkasse die Epilation bei Geschlechtsangleichung?',
-      answer:
-        'Ja, das ist möglich. Die Kasse übernimmt Epilation als Sachleistung, wenn sie medizinisch notwendig ist (§ 27 SGB V), etwa bei der Diagnose Geschlechtsinkongruenz (ICD F64.0). Der Knackpunkt ist der Ärztevorbehalt (§ 28 SGB V): Die Behandlung muss als ärztliche Leistung gelten. Weil FareWell mit einer delegierenden Ärztin arbeitet, ist genau das gelöst. Wichtig: Der Antrag muss vor Behandlungsbeginn gestellt werden. Alle Schritte erklärt unser Leitfaden „Epilation über die Krankenkasse“.',
-    },
-    {
-      question: 'Was bedeutet „ärztliche Delegation“ bei FareWell?',
-      answer:
-        'Eine Ärztin delegiert die Epilationsbehandlung an unser geschultes Team und bleibt medizinisch verantwortlich. Dadurch zählt die Nadelepilation bei FareWell als ärztlich delegierte Leistung – die Voraussetzung dafür, dass die Krankenkasse sie als Sachleistung übernehmen kann. Für deinen Antrag erstellen wir gemeinsam den Kostenvoranschlag.',
-    },
-    {
-      question: 'Kann ich die Behandlungskosten von der Steuer absetzen?',
-      answer:
-        'Ja – den Anteil, den du selbst trägst, kannst du als außergewöhnliche Belastung in der Steuererklärung geltend machen, wenn die medizinische Notwendigkeit dokumentiert ist (z. B. bei Behandlungen im Zuge der Geschlechtsangleichung). Elektrolyse und Diodenlaser werden steuerlich gleich behandelt. Du brauchst drei Bausteine: den medizinischen Nachweis, ordentliche Rechnungen von FareWell und Zahlungsbelege. Details stehen in unserem Steuer-Leitfaden.',
-    },
-    {
-      question: 'Was brauche ich von meiner Ärztin, bevor ich starte?',
-      answer:
-        'Die Diagnose (Geschlechtsdysphorie bzw. Geschlechtsinkongruenz, ICD F64.0) und eine Bescheinigung, dass die Haarentfernung zur Geschlechtsangleichung medizinisch notwendig ist – idealerweise ausgestellt vor der ersten Sitzung. Für den Kassenantrag kommt der ärztliche Bericht dazu.',
-    },
-    {
-      question: 'Ich gehöre zu den US-Streitkräften – kann ich ohne Mehrwertsteuer zahlen?',
-      answer:
-        'Ja. Dank des NATO-Truppenstatuts (SOFA) stellen wir dir mit einem NF1-Formular die Behandlung ohne die deutsche Mehrwertsteuer von 19% aus – das Formular musst du vor der Zahlung vorlegen. Alternativ zahlst du voll und holst dir die Mehrwertsteuer über die Remonon-App zurück. Beide Wege erklärt unser Leitfaden zur Mehrwertsteuerbefreiung, auf Deutsch und Englisch.',
-    },
-    {
-      question: 'Do you offer VAT-free treatments for US Forces members?',
-      answer:
-        "Yes. Under the Status of Forces Agreement, present your NF1 form before you pay and we bill you without the 19% German VAT. You can also pay in full and reclaim the VAT through the Remonon app. On top of that, US Forces members get 20% off laser hair removal for life with the promo code USLASER. Read our English guide 'US Forces VAT relief in Germany' for the full walkthrough.",
-    },
-    {
-      question: 'Gibt es einen Rabatt für US-Streitkräfte?',
-      answer:
-        'Ja: 20% lebenslang auf Laser-Haarentfernung mit dem Promo-Code USLASER – zusätzlich kombinierbar mit der Mehrwertsteuerbefreiung. Eine Laserbehandlung von 150 € kostet so rund 100 €, etwa ein Drittel weniger.',
-    },
-    {
-      question: 'Wo finde ich FareWell?',
-      answer:
-        'Im Zentrum von Nürnberg: Frauentorgraben 5, 90443 Nürnberg – wenige Gehminuten vom Hauptbahnhof und Opernhaus entfernt.',
-    },
-    {
-      question: 'Welche Öffnungszeiten hat FareWell?',
-      answer:
-        'Montag bis Freitag 10–20 Uhr, Samstag 8–17 Uhr. Termine vereinbarst du am besten online über Salonkee.',
-    },
-  ];
+  private get faqEntries(): FaqJsonLdEntry[] {
+    return [
+      {
+        question: this.t(
+          'Was ist der Unterschied zwischen permanenter und dauerhafter Haarentfernung?',
+          'What is the difference between permanent and long-lasting hair removal?'
+        ),
+        answer: this.t(
+          'Permanent ist in Deutschland allein die Elektrolyse (Nadelepilation): Jede Haarwurzel wird einzeln und endgültig verödet: die einzige rechtlich als permanent anerkannte Methode. Der Diodenlaser erreicht eine dauerhafte Haarentfernung, also eine deutliche, langanhaltende Reduktion, ideal für größere Zonen. Bei FareWell bekommst du beide Methoden und eine ehrliche Empfehlung, was für dich passt.',
+          'In Germany, only electrolysis (Nadelepilation) is permanent: each hair root is deactivated individually and for good, the only method legally recognised as permanent. The diode laser achieves long-lasting hair removal, meaning a significant, enduring reduction, ideal for larger areas. At FareWell you get both methods and an honest recommendation on what suits you.'
+        ),
+      },
+      {
+        question: this.t(
+          'Welche Behandlungen bietet FareWell an?',
+          'Which treatments does FareWell offer?'
+        ),
+        answer: this.t(
+          'Elektrolyse (Nadelepilation) zur permanenten Haarentfernung, Diodenlaser (4 Wellen) zur dauerhaften Haarentfernung, Microneedling mit Radiofrequenz zur Hautverjüngung, Kavitation zur Körperformung sowie Wellness- und therapeutische Massagen.',
+          'Electrolysis (Nadelepilation), permanent hair removal. Diode laser (4 wavelengths), long-lasting hair removal. Microneedling with radio frequency, skin rejuvenation. Cavitation, body contouring. Wellness and therapeutic massages.'
+        ),
+      },
+      {
+        question: this.t(
+          'Welche Methode der Haarentfernung passt zu mir?',
+          'Which hair removal method is right for me?'
+        ),
+        answer: this.t(
+          'Als Faustregel: Helle, feine, rötliche oder vereinzelte Haare und kleine Zonen wie das Gesicht sprechen für die Elektrolyse. Dunklere Haare auf größeren Flächen wie Beinen, Rücken oder Achseln sprechen für den Diodenlaser. In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an und empfehlen dir die passende Methode.',
+          'As a rule of thumb: light, fine, reddish or isolated hairs and small areas like the face point to electrolysis. Darker hairs on larger areas like the legs, back or underarms point to the diode laser. In the free initial consultation we look at your skin and hair together and recommend the method that suits you.'
+        ),
+      },
+      {
+        question: this.t('Bietet FareWell auch IPL an?', 'Does FareWell offer IPL too?'),
+        answer: this.t(
+          'Nein, und das aus gutem Grund. Statt IPL setzen wir auf den 4-Wellen-Diodenlaser: Er erreicht eine dauerhafte Haarentfernung und arbeitet zuverlässiger bei mehr Haut- und Haartypen als klassische IPL-Geräte. Für die permanente Haarentfernung bieten wir zusätzlich die Elektrolyse an. Welche Methode zu dir passt, klären wir in der kostenlosen Erstberatung.',
+          'No, and for good reason. Instead of IPL we rely on the four-wavelength diode laser: it achieves long-lasting hair removal and works more reliably across more skin and hair types than classic IPL devices. For permanent hair removal we also offer electrolysis. Which method suits you is something we sort out in the free initial consultation.'
+        ),
+      },
+      {
+        question: this.t('Wie viele Sitzungen brauche ich?', 'How many sessions do I need?'),
+        answer: this.t(
+          'Haare wachsen in Zyklen, und nur Haare in der Wachstumsphase lassen sich wirksam behandeln. Deshalb sind immer mehrere Sitzungen nötig. Wie viele genau, hängt von Körperzone, Haardichte und Hormonlage ab. Eine realistische Einschätzung bekommst du in der kostenlosen Erstberatung.',
+          'Hair grows in cycles, and only hairs in the growth phase can be treated effectively, so several sessions are always needed. Exactly how many depends on the body area, hair density and hormonal situation. You will get a realistic estimate in the free initial consultation.'
+        ),
+      },
+      {
+        question: this.t(
+          'Wie finde ich den richtigen Anbieter für Radiofrequenz-Microneedling in Nürnberg?',
+          'How do I find the right provider for radio-frequency microneedling in Nuremberg?'
+        ),
+        answer: this.t(
+          'Achte auf drei Dinge: geschultes Personal, ein zertifiziertes Gerät und eine ehrliche Beratung, die dir sagt, was realistisch ist. Bei FareWell arbeiten Nicole und Joé mit einem Gerät, das feine Nadeln mit Radiofrequenz verbindet, und wir besprechen vor jeder Behandlung Ablauf, Sitzungen und Kosten.',
+          'Look for three things: trained staff, a certified device and honest advice that tells you what is realistic. At FareWell, Nicole and Joé work with a device that combines fine needles with radio frequency, and before every treatment we talk through the process, the sessions and the costs.'
+        ),
+      },
+      {
+        question: this.t(
+          'Wie werde ich Gesichtsbehaarung dauerhaft los?',
+          'How can I get rid of facial hair permanently?'
+        ),
+        answer: this.t(
+          'In Deutschland ist die einzige rechtlich als permanent anerkannte Methode die Elektrolyse (Nadelepilation): Jede Haarwurzel wird einzeln und endgültig behandelt. Sie funktioniert bei jeder Haut- und Haarfarbe, auch bei feinen, hellen oder grauen Gesichtshaaren, die ein Laser nicht erfassen kann. Bei FareWell in Nürnberg bekommst du eine kostenlose Erstberatung und eine ehrliche Empfehlung. Am einfachsten buchst du über unser Online-Buchungssystem (salonkee.de/salon/farewell).',
+          'In Germany, the only method legally recognised as permanent is electrolysis (Nadelepilation): each hair root is treated individually and for good. It works on every skin and hair colour, including fine, light or grey facial hair that a laser cannot target. At FareWell in Nürnberg you get a free consultation in English and an honest recommendation. You can book easily through our online booking system (salonkee.de/salon/farewell).'
+        ),
+      },
+      {
+        question: this.t(
+          'Wie buche ich einen Termin bei FareWell?',
+          'How do I book an appointment at FareWell?'
+        ),
+        answer: this.t(
+          'Am einfachsten online über Salonkee (salonkee.de/salon/farewell), rund um die Uhr, mit sofortiger Bestätigung. Alternativ erreichst du uns per Instagram-Nachricht (@farewell.salon) oder telefonisch unter +49 157 5799 5694.',
+          'The easiest way is online via Salonkee (salonkee.de/salon/farewell), around the clock and with instant confirmation. You can also reach us by message on Instagram (@farewell.salon) or by phone at +49 157 5799 5694.'
+        ),
+      },
+      {
+        question: this.t(
+          'Wo kann ich Radiofrequenz-Microneedling in Nürnberg buchen?',
+          'Where can I book radio-frequency microneedling in Nuremberg?'
+        ),
+        answer: this.t(
+          'Direkt bei FareWell im Zentrum von Nürnberg, Frauentorgraben 5, wenige Gehminuten vom Hauptbahnhof. Radiofrequenz-Microneedling führen Nicole und Joé durch. Am einfachsten buchst du online über Salonkee (salonkee.de/salon/farewell), rund um die Uhr und mit sofortiger Bestätigung. Die Erstberatung ist kostenlos und unverbindlich.',
+          'Right at FareWell in the centre of Nuremberg, Frauentorgraben 5, a few minutes\' walk from the main station. Radio-frequency microneedling is carried out by Nicole and Joé. The easiest way to book is online via Salonkee, around the clock and with instant confirmation. The initial consultation is free and without obligation.'
+        ),
+      },
+      {
+        question: this.t('Was kostet eine Behandlung?', 'How much does a treatment cost?'),
+        answer: this.t(
+          'Alle Preise stehen transparent je Körperzone auf unserer Preisseite unter farewell.salon/price. Die Erstberatung ist kostenlos, und für den Kassenantrag erstellen wir dir einen schriftlichen Kostenvoranschlag.',
+          'All prices are listed transparently by body area on our price page. The initial consultation is free, and for your insurance application we prepare a written cost estimate.'
+        ),
+      },
+      {
+        question: this.t(
+          'Was kostet Laser-Haarentfernung in Nürnberg?',
+          'How much does laser hair removal cost in Nuremberg?'
+        ),
+        answer: this.t(
+          'Die Preise richten sich nach der Körperzone und stehen alle auf unserer Preisseite unter farewell.salon/price. Eine Achsel ist zum Beispiel günstiger als Beine oder Rücken. Angehörige der US-Streitkräfte erhalten mit dem Promo-Code USLASER 20% lebenslang. Die kostenlose Erstberatung gibt dir eine realistische Einschätzung deiner Sitzungen und Kosten.',
+          'Prices depend on the body area and are all listed on our price page. An underarm, for example, costs less than the legs or the back. US Forces members get 20% off for life with the promo code USLASER. The free initial consultation gives you a realistic estimate of your sessions and costs.'
+        ),
+      },
+      {
+        question: this.t(
+          'Was kostet Radiofrequenz-Microneedling in Nürnberg?',
+          'How much does radio-frequency microneedling cost in Nuremberg?'
+        ),
+        answer: this.t(
+          'Alle Preise stehen transparent je Behandlung auf unserer Preisseite unter farewell.salon/price. In der kostenlosen Erstberatung schauen wir uns dein Hautbild an und sagen dir ehrlich, wie viele Sitzungen sinnvoll sind und was sie kosten, ohne Verpflichtung.',
+          'All prices are listed transparently by treatment on our price page. In the free initial consultation we look at your skin and tell you honestly how many sessions make sense and what they cost, with no obligation.'
+        ),
+      },
+      {
+        question: this.t(
+          'Ist die Erstberatung wirklich kostenlos?',
+          'Is the initial consultation really free?'
+        ),
+        answer: this.t(
+          'Ja. Wir schauen uns deine Haut- und Haarsituation an, besprechen Methode, Ablauf, Sitzungsanzahl und Kosten, ohne Berechnung und ohne Verpflichtung.',
+          'Yes. We look at your skin and hair, discuss the method, the process, the number of sessions and the costs, with no charge and no obligation.'
+        ),
+      },
+      {
+        question: this.t(
+          'Übernimmt die Krankenkasse die Epilation bei Geschlechtsangleichung?',
+          'Does health insurance cover epilation for gender confirmation?'
+        ),
+        answer: this.t(
+          'Ja, das ist möglich. Die Kasse übernimmt Epilation als Sachleistung, wenn sie medizinisch notwendig ist (§ 27 SGB V), etwa bei der Diagnose Geschlechtsinkongruenz (ICD F64.0). Der Knackpunkt ist der Ärztevorbehalt (§ 28 SGB V): Die Behandlung muss als ärztliche Leistung gelten. Weil FareWell mit einer delegierenden Ärztin arbeitet, ist genau das gelöst. Wichtig: Der Antrag muss vor Behandlungsbeginn gestellt werden. Alle Schritte erklärt unser Leitfaden „Epilation über die Krankenkasse“.',
+          'Yes, that is possible. Your health insurer covers epilation as a benefit in kind when it is medically necessary (§ 27 SGB V), for example with a diagnosis of gender incongruence (ICD F64.0). The key point is the doctor\'s reservation (§ 28 SGB V): the treatment must count as a medical service. Because FareWell works with a delegating doctor, exactly this is taken care of. Important: the application must be submitted before treatment begins. Every step, deadline and appeal is explained in our guide on insurance-covered epilation (in German).'
+        ),
+      },
+      {
+        question: this.t(
+          'Was bedeutet „ärztliche Delegation“ bei FareWell?',
+          'What does “medical delegation” mean at FareWell?'
+        ),
+        answer: this.t(
+          'Eine Ärztin delegiert die Epilationsbehandlung an unser geschultes Team und bleibt medizinisch verantwortlich. Dadurch zählt die Nadelepilation bei FareWell als ärztlich delegierte Leistung: die Voraussetzung dafür, dass die Krankenkasse sie als Sachleistung übernehmen kann. Für deinen Antrag erstellen wir gemeinsam den Kostenvoranschlag.',
+          'A doctor delegates the epilation treatment to our trained team and remains medically responsible. This makes electrolysis at FareWell a medically delegated service, the condition for your health insurer to cover it as a benefit in kind. For your application we prepare the cost estimate together.'
+        ),
+      },
+      {
+        question: this.t(
+          'Kann ich die Behandlungskosten von der Steuer absetzen?',
+          'Can I deduct treatment costs from my taxes?'
+        ),
+        answer: this.t(
+          'Ja. Den Anteil, den du selbst trägst, kannst du als außergewöhnliche Belastung in der Steuererklärung geltend machen, wenn die medizinische Notwendigkeit dokumentiert ist (z. B. bei Behandlungen im Zuge der Geschlechtsangleichung). Elektrolyse und Diodenlaser werden steuerlich gleich behandelt. Du brauchst drei Bausteine: den medizinischen Nachweis, ordentliche Rechnungen von FareWell und Zahlungsbelege. Details stehen in unserem Steuer-Leitfaden.',
+          'Yes. The share you pay yourself can be claimed as an extraordinary burden on your tax return when the medical necessity is documented (for example for treatments as part of gender confirmation). Electrolysis and the diode laser are treated the same way for tax purposes. You need three building blocks: the medical evidence, proper invoices from FareWell and proof of payment. The details are in our tax guide (in German).'
+        ),
+      },
+      {
+        question: this.t(
+          'Was brauche ich von meiner Ärztin, bevor ich starte?',
+          'What do I need from my doctor before I start?'
+        ),
+        answer: this.t(
+          'Die Diagnose (Geschlechtsdysphorie bzw. Geschlechtsinkongruenz, ICD F64.0) und eine Bescheinigung, dass die Haarentfernung zur Geschlechtsangleichung medizinisch notwendig ist, idealerweise ausgestellt vor der ersten Sitzung. Für den Kassenantrag kommt der ärztliche Bericht dazu.',
+          'The diagnosis (gender dysphoria or gender incongruence, ICD F64.0) and a certificate confirming that the hair removal is medically necessary for gender confirmation, ideally issued before the first session. For the insurance application, the medical report is added.'
+        ),
+      },
+      {
+        question: this.t(
+          'Ich gehöre zu den US-Streitkräften: Kann ich ohne Mehrwertsteuer zahlen?',
+          'I am a member of the US Forces, can I pay without VAT?'
+        ),
+        answer: this.t(
+          'Ja. Dank des NATO-Truppenstatuts (SOFA) stellen wir dir mit einem NF1-Formular die Behandlung ohne die deutsche Mehrwertsteuer von 19% aus. Das Formular musst du vor der Zahlung vorlegen. Alternativ zahlst du voll und holst dir die Mehrwertsteuer über die Remonon-App zurück. Beide Wege erklärt unser Leitfaden zur Mehrwertsteuerbefreiung, auf Deutsch und Englisch.',
+          'Yes. Thanks to the NATO Status of Forces Agreement (SOFA), with an NF1 form we bill your treatment without the 19% German VAT. You must present the form before payment. Alternatively, you pay in full and reclaim the VAT through the Remonon app. Both routes are explained in our guide to VAT exemption, also available in English.'
+        ),
+      },
+      {
+        question: this.t(
+          'Bietet ihr für Angehörige der US-Streitkräfte mehrwertsteuerfreie Behandlungen an?',
+          'Do you offer VAT-free treatments for US Forces members?'
+        ),
+        answer: this.t(
+          'Ja. Dank des NATO-Truppenstatuts (SOFA) legst du vor der Zahlung dein NF1-Formular vor und wir stellen dir die Behandlung ohne die deutsche Mehrwertsteuer von 19% aus. Alternativ zahlst du voll und holst dir die Mehrwertsteuer über die Remonon-App zurück. Zusätzlich erhalten Angehörige der US-Streitkräfte mit dem Promo-Code USLASER 20% lebenslang auf Laser-Haarentfernung. Alle Schritte erklärt unser englischer Leitfaden „US Forces VAT relief in Germany“.',
+          'Yes. Under the Status of Forces Agreement, present your NF1 form before you pay and we bill you without the 19% German VAT. You can also pay in full and reclaim the VAT through the Remonon app. On top of that, US Forces members get 20% off laser hair removal for life with the promo code USLASER. Read our English guide “US Forces VAT relief in Germany” for the full walkthrough.'
+        ),
+      },
+      {
+        question: this.t(
+          'Gibt es einen Rabatt für US-Streitkräfte?',
+          'Is there a discount for US Forces?'
+        ),
+        answer: this.t(
+          'Ja: 20% lebenslang auf Laser-Haarentfernung mit dem Promo-Code USLASER, zusätzlich kombinierbar mit der Mehrwertsteuerbefreiung. Eine Laserbehandlung von 150 € kostet so rund 100 €, etwa ein Drittel weniger.',
+          'Yes: 20% for life on laser hair removal with the promo code USLASER, and it combines with the VAT exemption on top. A laser treatment of €150 then costs around €100, roughly a third less.'
+        ),
+      },
+      {
+        question: this.t('Wo finde ich FareWell?', 'Where can I find FareWell?'),
+        answer: this.t(
+          'Im Zentrum von Nürnberg: Frauentorgraben 5, 90443 Nürnberg, wenige Gehminuten vom Hauptbahnhof und Opernhaus entfernt.',
+          'In the centre of Nuremberg: Frauentorgraben 5, 90443 Nürnberg, a few minutes\' walk from the main station and the opera house.'
+        ),
+      },
+      {
+        question: this.t(
+          'Welche Öffnungszeiten hat FareWell?',
+          'What are the opening hours at FareWell?'
+        ),
+        answer: this.t(
+          'Montag bis Freitag 10–20 Uhr, Samstag 8–17 Uhr. Termine vereinbarst du am besten online über Salonkee.',
+          'Monday to Friday 10 am to 8 pm, Saturday 8 am to 5 pm. The best way to make an appointment is online via Salonkee.'
+        ),
+      },
+    ];
+  }
 
   ngOnInit(): void {
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+    const title = this.t(PAGE_TITLE_DE, PAGE_TITLE_EN);
+    const description = this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN);
+
     this.seo.setPageSeo({
-      title: PAGE_TITLE,
-      description: PAGE_DESCRIPTION,
+      title,
+      description,
       path: PAGE_PATH,
     });
 
@@ -187,11 +300,11 @@ export class FaqComponent implements OnInit, OnDestroy {
       '@graph': [
         {
           '@type': 'FAQPage',
-          '@id': `${PAGE_URL}#faq`,
-          url: PAGE_URL,
-          name: PAGE_TITLE,
-          description: PAGE_DESCRIPTION,
-          inLanguage: 'de',
+          '@id': `${pageUrl}#faq`,
+          url: pageUrl,
+          name: title,
+          description,
+          inLanguage: isEn ? 'en' : 'de',
           mainEntity: this.faqEntries.map((entry) => ({
             '@type': 'Question',
             name: entry.question,
@@ -204,8 +317,13 @@ export class FaqComponent implements OnInit, OnDestroy {
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
-            { '@type': 'ListItem', position: 2, name: 'FAQ', item: PAGE_URL },
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'FareWell',
+              item: isEn ? 'https://farewell.salon/en' : 'https://farewell.salon',
+            },
+            { '@type': 'ListItem', position: 2, name: 'FAQ', item: pageUrl },
           ],
         },
       ],

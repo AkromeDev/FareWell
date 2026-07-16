@@ -1,29 +1,33 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
 import { BookingCtaComponent } from 'src/components/atoms/booking-cta/booking-cta';
 import { LanguageService } from 'src/services/language.service';
+import { SeoService } from 'src/services/seo.service';
+
+const PAGE_PATH = '/behandlungen/diodenlaser-4-wellen';
 
 @Component({
   selector: 'app-diodenlaser',
   standalone: true,
-  imports: [RouterModule, ImageHeroComponent, ImageTextBlockComponent, BookingCtaComponent],
+  imports: [ImageHeroComponent, ImageTextBlockComponent, BookingCtaComponent],
   templateUrl: './diodenlaser.html',
   styleUrls: ['./diodenlaser.scss']
 })
-export class Diodenlaser implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class Diodenlaser implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
   readonly lang = inject(LanguageService);
+  private readonly jsonLdId = 'diodenlaser-schema';
 
-  private readonly pageUrl = 'https://farewell.salon/behandlungen/diodenlaser-4-wellen';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/laser.webp';
 
   t(de: string, en: string): string {
     return this.lang.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.lang.localizePath(path);
   }
 
   get paragraphText(): string {
@@ -45,60 +49,44 @@ export class Diodenlaser implements OnInit {
     );
   }
 
-  structuredData = '';
-
-  constructor() {}
-
   ngOnInit(): void {
-    this.setSeoTags();
-    this.setStructuredData();
-  }
-
-  private setSeoTags(): void {
-    const pageTitle =
-      'Diodenlaser Haarentfernung Nürnberg | 4-Wellen Laser | FareWell';
-
-    const description =
-      'Moderne Diodenlaser Haarentfernung in Nürnberg bei FareWell – effektive und schonende dauerhafte Haarreduktion mit dem 4-Wellen-Diodenlaser für viele Haut- und Haartypen.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content: '4-Wellen Diodenlaser Haarentfernung bei FareWell in Nürnberg'
+    this.seo.setPageSeo({
+      title: this.t(
+        'Diodenlaser Haarentfernung Nürnberg | FareWell',
+        'Laser Hair Removal Nuremberg (4-Wavelength Diode Laser) | FareWell'
+      ),
+      description: this.t(
+        'Moderne Diodenlaser Haarentfernung in Nürnberg: effektive und schonende dauerhafte Haarreduktion.',
+        'Modern diode laser hair removal in Nuremberg: effective, gentle, long-lasting hair reduction for larger body areas. Free consultation, English spoken.'
+      ),
+      path: PAGE_PATH,
+      image: this.heroImageUrl,
+      imageAlt: this.t(
+        '4-Wellen Diodenlaser Haarentfernung bei FareWell in Nürnberg',
+        '4-wavelength diode laser hair removal at FareWell in Nuremberg'
+      ),
+      largeImage: true
     });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
 
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      name: 'twitter:image:alt',
-      content: '4-Wellen Diodenlaser Haarentfernung bei FareWell in Nürnberg'
-    });
-  }
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+    const homeUrl = isEn ? 'https://farewell.salon/en' : 'https://farewell.salon';
 
-  private setStructuredData(): void {
-    const jsonLd = {
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Service',
-          '@id': `${this.pageUrl}#service`,
-          name: '4-Wellen Diodenlaser Haarentfernung in Nürnberg',
-          description:
-            'Dauerhafte Haarreduktion mit dem 4-Wellen-Diodenlaser bei FareWell in Nürnberg – effektiv, schonend und für viele Haut- und Haartypen geeignet.',
-          serviceType: 'Diodenlaser Haarentfernung',
+          '@id': `${pageUrl}#service`,
+          name: this.t(
+            '4-Wellen Diodenlaser Haarentfernung in Nürnberg',
+            '4-wavelength diode laser hair removal in Nuremberg'
+          ),
+          description: this.t(
+            'Dauerhafte Haarreduktion mit dem 4-Wellen-Diodenlaser bei FareWell in Nürnberg. Effektiv, schonend und für viele Haut- und Haartypen geeignet.',
+            'Long-lasting hair reduction with the 4-wavelength diode laser at FareWell in Nuremberg. Effective, gentle and suitable for many skin and hair types.'
+          ),
+          serviceType: this.t('Diodenlaser Haarentfernung', 'Diode laser hair removal'),
           areaServed: {
             '@type': 'City',
             name: 'Nürnberg'
@@ -119,16 +107,22 @@ export class Diodenlaser implements OnInit {
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Diodenlaser Haarentfernung Nürnberg | 4-Wellen Laser | FareWell',
-          description:
-            'Moderne Diodenlaser Haarentfernung in Nürnberg bei FareWell – effektive dauerhafte Haarreduktion mit dem 4-Wellen-Diodenlaser.',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: this.t(
+            'Diodenlaser Haarentfernung Nürnberg | FareWell',
+            'Laser Hair Removal Nuremberg (4-Wavelength Diode Laser) | FareWell'
+          ),
+          description: this.t(
+            'Moderne Diodenlaser Haarentfernung in Nürnberg: effektive und schonende dauerhafte Haarreduktion.',
+            'Modern diode laser hair removal in Nuremberg: effective, gentle, long-lasting hair reduction for larger body areas. Free consultation, English spoken.'
+          ),
+          inLanguage: isEn ? 'en' : 'de',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
           about: {
-            '@id': `${this.pageUrl}#service`
+            '@id': `${pageUrl}#service`
           },
           primaryImageOfPage: {
             '@type': 'ImageObject',
@@ -142,25 +136,27 @@ export class Diodenlaser implements OnInit {
               '@type': 'ListItem',
               position: 1,
               name: 'FareWell',
-              item: 'https://farewell.salon'
+              item: homeUrl
             },
             {
               '@type': 'ListItem',
               position: 2,
-              name: 'Behandlungen',
-              item: 'https://farewell.salon/behandlungen'
+              name: this.t('Behandlungen', 'Treatments'),
+              item: `https://farewell.salon${isEn ? '/en' : ''}/behandlungen`
             },
             {
               '@type': 'ListItem',
               position: 3,
-              name: 'Diodenlaser Haarentfernung',
-              item: this.pageUrl
+              name: this.t('Diodenlaser Haarentfernung', 'Diode laser hair removal'),
+              item: pageUrl
             }
           ]
         }
       ]
-    };
+    });
+  }
 
-    this.structuredData = JSON.stringify(jsonLd);
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 }

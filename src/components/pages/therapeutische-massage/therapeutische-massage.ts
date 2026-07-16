@@ -1,10 +1,19 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
 import { BookingCtaComponent } from 'src/components/atoms/booking-cta/booking-cta';
 import { LanguageService } from 'src/services/language.service';
+import { SeoService } from 'src/services/seo.service';
+
+const PAGE_PATH = '/behandlungen/therapeutische-massage';
+
+const TITLE_DE = 'Therapeutische Massage Nürnberg | FareWell';
+const TITLE_EN = 'Therapeutic Massage Nuremberg | FareWell';
+const DESCRIPTION_DE =
+  'Gezielte therapeutische Massagen in Nürnberg: Ersttermin mit Anamnese, Sport- & Regenerationsmassage sowie medizinisch-funktionelle Massage bei FareWell.';
+const DESCRIPTION_EN =
+  'Targeted therapeutic massages in Nuremberg: initial appointment with assessment, sports and recovery massage, and medical functional massage at FareWell.';
 
 @Component({
   selector: 'app-therapeutische-massage',
@@ -13,17 +22,20 @@ import { LanguageService } from 'src/services/language.service';
   templateUrl: './therapeutische-massage.html',
   styleUrls: ['./therapeutische-massage.scss']
 })
-export class TherapeutischeMassageComponent implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class TherapeutischeMassageComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
   readonly lang = inject(LanguageService);
+  private readonly jsonLdId = 'therapeutische-massage-schema';
 
-  private readonly pageUrl = 'https://farewell.salon/behandlungen/therapeutische-massage';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/massages/tm%20massaging.jpg';
 
   t(de: string, en: string): string {
     return this.lang.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.lang.localizePath(path);
   }
 
   get paragraphText(): string {
@@ -41,57 +53,46 @@ export class TherapeutischeMassageComponent implements OnInit {
     );
   }
 
-  structuredData = '';
-
   ngOnInit(): void {
-    this.setSeoTags();
-    this.setStructuredData();
+    this.seo.setPageSeo({
+      title: this.t(TITLE_DE, TITLE_EN),
+      description: this.t(DESCRIPTION_DE, DESCRIPTION_EN),
+      path: PAGE_PATH,
+      image: this.heroImageUrl,
+      imageAlt: this.t(
+        'Therapeutische Massage bei FareWell in Nürnberg',
+        'Therapeutic massage at FareWell in Nuremberg'
+      ),
+      largeImage: true
+    });
+
+    this.setJsonLd();
   }
 
-  private setSeoTags(): void {
-    const pageTitle = 'Therapeutische Massage Nürnberg | FareWell';
-
-    const description =
-      'Gezielte therapeutische Massagen in Nürnberg: Ersttermin mit Anamnese, Sport- & Regenerationsmassage sowie medizinisch-funktionelle Massage bei FareWell.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content: 'Therapeutische Massage bei FareWell in Nürnberg'
-    });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
-
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      name: 'twitter:image:alt',
-      content: 'Therapeutische Massage bei FareWell in Nürnberg'
-    });
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 
-  private setStructuredData(): void {
-    const jsonLd = {
+  private setJsonLd(): void {
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Service',
-          '@id': `${this.pageUrl}#service`,
-          name: 'Therapeutische Massagen in Nürnberg',
-          description:
+          '@id': `${pageUrl}#service`,
+          name: this.t(
+            'Therapeutische Massagen in Nürnberg',
+            'Therapeutic massages in Nuremberg'
+          ),
+          description: this.t(
             'Gezielte therapeutische Massagen bei FareWell in Nürnberg für Regeneration, muskuläre Entlastung und Wohlbefinden.',
-          serviceType: 'Therapeutische Massage',
+            'Targeted therapeutic massages at FareWell in Nuremberg for recovery, muscular relief and wellbeing.'
+          ),
+          serviceType: this.t('Therapeutische Massage', 'Therapeutic massage'),
+          inLanguage: isEn ? 'en' : 'de',
           areaServed: {
             '@type': 'City',
             name: 'Nürnberg'
@@ -111,13 +112,16 @@ export class TherapeutischeMassageComponent implements OnInit {
           },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
-            name: 'Therapeutische Massage-Angebote',
+            name: this.t(
+              'Therapeutische Massage-Angebote',
+              'Therapeutic massage offers'
+            ),
             itemListElement: [
               {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Massage Beratungsgespräch'
+                  name: this.t('Massage Beratungsgespräch', 'Massage consultation')
                 },
                 priceCurrency: 'EUR',
                 price: '0'
@@ -126,7 +130,10 @@ export class TherapeutischeMassageComponent implements OnInit {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Ersttermin mit Anamnese & Befundaufnahme'
+                  name: this.t(
+                    'Ersttermin mit Anamnese & Befundaufnahme',
+                    'Initial appointment with medical history and assessment'
+                  )
                 },
                 priceCurrency: 'EUR',
                 price: '99'
@@ -135,7 +142,7 @@ export class TherapeutischeMassageComponent implements OnInit {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Sport- & Regenerationsmassage'
+                  name: this.t('Sport- & Regenerationsmassage', 'Sports and recovery massage')
                 },
                 priceCurrency: 'EUR',
                 price: '50'
@@ -144,7 +151,7 @@ export class TherapeutischeMassageComponent implements OnInit {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: 'Medizinisch-funktionelle Massage'
+                  name: this.t('Medizinisch-funktionelle Massage', 'Medical functional massage')
                 },
                 priceCurrency: 'EUR',
                 price: '60'
@@ -154,16 +161,16 @@ export class TherapeutischeMassageComponent implements OnInit {
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Therapeutische Massage Nürnberg | FareWell',
-          description:
-            'Gezielte therapeutische Massagen in Nürnberg: Ersttermin mit Anamnese, Sport- & Regenerationsmassage sowie medizinisch-funktionelle Massage bei FareWell.',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: this.t(TITLE_DE, TITLE_EN),
+          description: this.t(DESCRIPTION_DE, DESCRIPTION_EN),
+          inLanguage: isEn ? 'en' : 'de',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
           about: {
-            '@id': `${this.pageUrl}#service`
+            '@id': `${pageUrl}#service`
           },
           primaryImageOfPage: {
             '@type': 'ImageObject',
@@ -173,14 +180,27 @@ export class TherapeutischeMassageComponent implements OnInit {
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
-            { '@type': 'ListItem', position: 2, name: 'Behandlungen', item: 'https://farewell.salon/behandlungen' },
-            { '@type': 'ListItem', position: 3, name: 'Therapeutische Massage', item: this.pageUrl }
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'FareWell',
+              item: isEn ? 'https://farewell.salon/en' : 'https://farewell.salon'
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: this.t('Behandlungen', 'Treatments'),
+              item: `https://farewell.salon${isEn ? '/en' : ''}/behandlungen`
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: this.t('Therapeutische Massage', 'Therapeutic Massage'),
+              item: pageUrl
+            }
           ]
         }
       ]
-    };
-
-    this.structuredData = JSON.stringify(jsonLd);
+    });
   }
 }

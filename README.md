@@ -17,6 +17,26 @@ The app reloads automatically on source changes.
   `tools/flatten-prerender.mjs` rewrites `route/index.html` → `route.html`.
 - `npm run watch` – development build that rebuilds on change.
 
+## English pages (/en/) and the indexing switch
+
+Every translated page has an English twin under `/en/` (same slug), rendered by
+the same component; the URL decides the language (`LanguageService`). The
+header toggle navigates between counterpart URLs. Special pair: the German VAT
+guide (`/ratgeber/mehrwertsteuer-us-streitkraefte`) and the English one
+(`/ratgeber/us-forces-vat-relief`) are hreflang counterparts on their own URLs.
+Legal pages stay German-only.
+
+The `/en/` pages currently carry `noindex,follow`. To launch English indexing:
+
+1. Set `EN_PREFIX_INDEXABLE = true` in `src/services/seo.service.ts`.
+2. Uncomment the prepared `/en/` block in `src/sitemap.xml` and refresh the
+   `lastmod` dates.
+3. Rebuild (`npm run prerender`), deploy, and resubmit the sitemap in Google
+   Search Console.
+
+hreflang link pairs (de / en / x-default) are already emitted on every
+bilingual page by `SeoService.setPageSeo` and need no change at launch.
+
 ## URL canonicalization (SEO)
 
 The canonical URL for every page is `https://farewell.salon/<route>` – no www,

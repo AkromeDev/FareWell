@@ -1,10 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
 import { ButtonItem } from 'src/models/ButtonItem';
 import { LanguageService } from 'src/services/language.service';
+import { SeoService } from 'src/services/seo.service';
+
+const PAGE_PATH = '/nadelepilation-angebot-nuernberg';
 
 @Component({
   standalone: true,
@@ -13,19 +15,21 @@ import { LanguageService } from 'src/services/language.service';
   templateUrl: './nadelepilation-promotion.component.html',
   styleUrl: './nadelepilation-promotion.component.scss'
 })
-export class NadelepilationPromotionComponent implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class NadelepilationPromotionComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
   readonly lang = inject(LanguageService);
 
-  private readonly pageUrl =
-    'https://farewell.salon/nadelepilation-angebot-nuernberg';
+  private readonly jsonLdId = 'nadelepilation-promo-schema';
 
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/nadel.jpg';
 
   t(de: string, en: string): string {
     return this.lang.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.lang.localizePath(path);
   }
 
   get paragraphText(): string {
@@ -47,7 +51,7 @@ export class NadelepilationPromotionComponent implements OnInit {
 
   get buttonList(): ButtonItem[] {
     return [
-      { label: this.t('Unsere Preise', 'Our prices'), link: '/price', theme: 'dark' },
+      { label: this.t('Unsere Preise', 'Our prices'), link: this.p('/price'), theme: 'dark' },
       {
         label: this.t('Termin buchen', 'Book now'),
         link: 'https://salonkee.de/salon/farewell?lang=de',
@@ -60,65 +64,49 @@ export class NadelepilationPromotionComponent implements OnInit {
     ];
   }
 
-  structuredData = '';
-
   ngOnInit(): void {
-    this.setSeoTags();
-    this.setStructuredData();
-  }
-
-  private setSeoTags(): void {
-    const pageTitle =
-      'Nadelepilation in Nürnberg: 50 % Rabatt für Neukunden | FareWell';
-
-    const description =
-      'Permanente Haarentfernung mit Nadelepilation (Elektrolyse) in Nürnberg bei FareWell. ' +
-      'Jetzt 50 % Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG sichern.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für permanente Haarentfernung mit Nadelepilation (Elektrolyse)'
+    this.seo.setPageSeo({
+      title: this.t(
+        'Nadelepilation Angebot Nürnberg | FareWell',
+        'Electrolysis (Nadelepilation) Offer Nuremberg | FareWell'
+      ),
+      description: this.t(
+        'Sonderangebot für Nadelepilation / Elektrolyse in Nürnberg.',
+        'Special offer for electrolysis (Nadelepilation) in Nuremberg: 50% off your first treatment for new clients.'
+      ),
+      path: PAGE_PATH,
+      image: this.heroImageUrl,
+      imageAlt: this.t(
+        'FareWell Studio in Nürnberg für permanente Haarentfernung mit Nadelepilation (Elektrolyse)',
+        'FareWell studio in Nuremberg for permanent hair removal with electrolysis (Nadelepilation)'
+      ),
+      largeImage: true
     });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
 
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      name: 'twitter:image:alt',
-      content:
-        'FareWell Studio in Nürnberg für permanente Haarentfernung mit Nadelepilation (Elektrolyse)'
-    });
-  }
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
 
-  private setStructuredData(): void {
-    const jsonLd = {
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Service',
-          '@id': `${this.pageUrl}#service`,
-          name: 'Nadelepilation: permanente Haarentfernung in Nürnberg',
-          description:
+          '@id': `${pageUrl}#service`,
+          name: this.t(
+            'Nadelepilation: permanente Haarentfernung in Nürnberg',
+            'Electrolysis (Nadelepilation): permanent hair removal in Nuremberg'
+          ),
+          description: this.t(
             'Permanente Haarentfernung mit Nadelepilation (Elektrolyse) bei FareWell in Nürnberg. ' +
-            '50 % Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.',
-          serviceType: 'Nadelepilation',
+              '50 % Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.',
+            'Permanent hair removal with electrolysis (Nadelepilation) at FareWell in Nuremberg. ' +
+              '50% off your first treatment for new clients with the code ERSTEBEHANDLUNG.'
+          ),
+          serviceType: this.t('Nadelepilation', 'Electrolysis (Nadelepilation)'),
+          inLanguage: isEn ? 'en' : 'de',
           areaServed: {
             '@type': 'City',
-            name: 'Nürnberg'
+            name: this.t('Nürnberg', 'Nuremberg')
           },
           provider: {
             '@type': 'BeautySalon',
@@ -135,30 +123,41 @@ export class NadelepilationPromotionComponent implements OnInit {
           },
           offers: {
             '@type': 'Offer',
-            name: '50 % Rabatt auf die erste Nadelepilation Behandlung',
-            description:
-              'Neukundenangebot für die erste Nadelepilation Behandlung bei FareWell in Nürnberg.',
-            url: this.pageUrl,
+            name: this.t(
+              '50 % Rabatt auf die erste Nadelepilationsbehandlung',
+              '50% off your first electrolysis treatment'
+            ),
+            description: this.t(
+              'Neukundenangebot für die erste Nadelepilationsbehandlung bei FareWell in Nürnberg.',
+              'New client offer for your first electrolysis treatment at FareWell in Nuremberg.'
+            ),
+            url: pageUrl,
             priceCurrency: 'EUR',
             availability: 'https://schema.org/InStock',
             eligibleCustomerType: {
               '@type': 'BusinessEntityType',
-              name: 'Neukunden'
+              name: this.t('Neukunden', 'New clients')
             }
           }
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Nadelepilation in Nürnberg: 50 % Rabatt für Neukunden | FareWell',
-          description:
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: this.t(
+            'Nadelepilation in Nürnberg: 50 % Rabatt für Neukunden | FareWell',
+            'Electrolysis (Nadelepilation) in Nuremberg: 50% off for new clients | FareWell'
+          ),
+          description: this.t(
             'Permanente Haarentfernung mit Nadelepilation (Elektrolyse) in Nürnberg bei FareWell. Jetzt 50 % Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG sichern.',
+            'Permanent hair removal with electrolysis (Nadelepilation) in Nuremberg at FareWell. Get 50% off your first treatment for new clients with the code ERSTEBEHANDLUNG.'
+          ),
+          inLanguage: isEn ? 'en' : 'de',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
           about: {
-            '@id': `${this.pageUrl}#service`
+            '@id': `${pageUrl}#service`
           },
           primaryImageOfPage: {
             '@type': 'ImageObject',
@@ -166,8 +165,10 @@ export class NadelepilationPromotionComponent implements OnInit {
           }
         }
       ]
-    };
+    });
+  }
 
-    this.structuredData = JSON.stringify(jsonLd);
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 }

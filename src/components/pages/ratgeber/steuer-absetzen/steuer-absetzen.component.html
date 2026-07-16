@@ -5,7 +5,7 @@
     tagline="Für immer sanft."
     [lead]="
       t(
-        'Wie du Laser und Nadelepilation als außergewöhnliche Belastung geltend machst – mit FareWell als Beispiel.',
+        'Wie du Laser und Nadelepilation als außergewöhnliche Belastung geltend machst, mit FareWell als Beispiel.',
         'How to claim laser and electrolysis as an extraordinary burden (außergewöhnliche Belastung) on your German tax return, with FareWell as the example.'
       )
     "
@@ -19,7 +19,7 @@
         <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
           <span class="lang de">
-            Die Haarentfernung im Zuge der Geschlechtsangleichung ist kein Luxus – das
+            Die Haarentfernung im Zuge der Geschlechtsangleichung ist kein Luxus. Das
             Steuerrecht erkennt sie als Krankheitskosten an. Den Anteil, den du selbst trägst,
             holst du dir teilweise zurück.
           </span>
@@ -92,16 +92,16 @@
         <app-guide-card icon="🔦" [heading]="t('Beide Methoden gleichgestellt', 'Both methods treated equally')" [revealDelay]="180">
           <span class="lang de">
             Ob permanente Haarentfernung mit
-            <a routerLink="/behandlungen/nadelepilation">Nadelepilation (Elektrolyse)</a> oder
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a> oder
             dauerhafte Haarentfernung mit
-            <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser</a>: steuerlich
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser</a>: steuerlich
             werden beide gleich behandelt.
           </span>
           <span class="lang en">
             Whether permanent hair removal with
-            <a routerLink="/behandlungen/nadelepilation">electrolysis (Elektrolyse)</a> or
+            <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis (Elektrolyse)</a> or
             long-lasting hair removal with the
-            <a routerLink="/behandlungen/diodenlaser-4-wellen">diode laser</a>: for tax purposes
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">diode laser</a>: for tax purposes
             both are treated the same.
           </span>
         </app-guide-card>
@@ -162,13 +162,13 @@
             Was die Kasse erstattet, kannst du nicht zusätzlich absetzen. Lehnt sie ab oder
             findet keine Praxis, stärkt genau das deinen Steuerantrag, weil die private
             Behandlung dann unvermeidbar war. Wie der Kassenantrag geht, steht im Leitfaden
-            <a routerLink="/ratgeber/epilation-krankenkasse">„Epilation über die Krankenkasse“</a>.
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">„Epilation über die Krankenkasse“</a>.
           </span>
           <span class="lang en">
             Whatever your insurer reimburses cannot also be deducted. If it refuses, or if no
             practice can be found, that actually strengthens your tax claim, because the private
             treatment was then unavoidable. Our guide
-            <a routerLink="/ratgeber/epilation-krankenkasse">"Epilation over health insurance" (in German)</a>
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">"Epilation through health insurance"</a>
             explains how the insurance application works.
           </span>
         </app-guide-note>
@@ -342,11 +342,11 @@
       sectionId="weiterlesen"
     >
       <div class="gd-cards gd-cards--2">
-        <app-guide-card icon="🏥" [heading]="t('Epilation über die Krankenkasse', 'Epilation over health insurance')">
-          <a routerLink="/ratgeber/epilation-krankenkasse">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+        <app-guide-card icon="🏥" [heading]="t('Epilation über die Krankenkasse', 'Epilation through health insurance')">
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>
         <app-guide-card icon="💬" [heading]="t('Häufige Fragen', 'Frequently asked questions')" [revealDelay]="60">
-          <a routerLink="/faq">{{ t('Zu den FAQ', 'Read the FAQ') }}</a>
+          <a [routerLink]="p('/faq')">{{ t('Zu den FAQ', 'Read the FAQ') }}</a>
         </app-guide-card>
       </div>
     </app-guide-section>

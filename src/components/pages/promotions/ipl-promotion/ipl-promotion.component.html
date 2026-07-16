@@ -3,7 +3,7 @@
   <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
   <app-guide-hero
-    kicker="FareWell · Nürnberg · Neukunden-Aktion"
+    [kicker]="t('FareWell · Nürnberg · Neukunden-Aktion', 'FareWell · Nuremberg · New-client offer')"
     [heading]="
       t(
         'IPL in Nürnberg gesucht? Entdecke die modernere Alternative',
@@ -42,13 +42,13 @@
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
           <span class="lang de">
             Was das Gerät genau kann, liest du auf der Seite zum
-            <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a>. Oder
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-Wellen-Diodenlaser</a>. Oder
             du überzeugst dich selbst, in der
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
           </span>
           <span class="lang en">
             You can read exactly what the device does on the page about the
-            <a routerLink="/behandlungen/diodenlaser-4-wellen">4-wavelength diode laser</a>. Or
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-wavelength diode laser</a>. Or
             see for yourself, in the
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
           </span>
@@ -67,7 +67,7 @@
         [headline]="t('50% auf deine erste Behandlung', '50% off your first treatment')"
         [sub]="
           t(
-            'Online buchen und den Code bei der Buchung angeben, gilt für Neukundinnen und Neukunden.',
+            'Online buchen und den Code bei der Buchung angeben. Gilt für Neukundinnen und Neukunden.',
             'Book online and enter the code when you book, valid for new clients.'
           )
         "
@@ -77,13 +77,13 @@
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
           Alle regulären Preise findest du je Körperzone auf
-          <a routerLink="/price">unserer Preisseite</a>, transparent und ohne versteckte
+          <a [routerLink]="p('/price')">unserer Preisseite</a>, transparent und ohne versteckte
           Kosten. So kannst du moderne Laser-Haarentfernung in Nürnberg besonders günstig
           kennenlernen.
         </span>
         <span class="lang en">
           You'll find all regular prices per body area on
-          <a routerLink="/price">our price page</a>, transparent and with no hidden costs.
+          <a [routerLink]="p('/price')">our price page</a>, transparent and with no hidden costs.
           That way you can try modern laser hair removal in Nuremberg at an especially good
           price.
         </span>
@@ -188,12 +188,12 @@
       <app-guide-note variant="tip" [label]="t('Gut zu wissen', 'Good to know')">
         <span class="lang de">
           Für helle, feine oder graue Haare, die weder Laser noch IPL erreichen, bieten wir
-          die <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a>,
+          die <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse (Nadelepilation)</a>,
           die einzige in Deutschland rechtlich als permanent anerkannte Methode.
         </span>
         <span class="lang en">
           For light, fine or grey hairs that neither laser nor IPL can reach, we offer
-          <a routerLink="/behandlungen/nadelepilation">electrolysis (needle epilation)</a>,
+          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis (needle epilation)</a>,
           the only method legally recognised as permanent in Germany.
         </span>
       </app-guide-note>
@@ -258,7 +258,7 @@
         <p class="lang de">
           Weil wir von der präziseren Technologie überzeugt sind: IPL arbeitet mit breit
           gestreutem Licht, der
-          <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a> mit
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-Wellen-Diodenlaser</a> mit
           gezielt abgestimmten Wellenlängen, die direkt auf das Haarfollikel wirken. Das
           macht die Behandlung kontrollierter, wirksamer und für mehr Haut- und Haartypen
           geeignet.
@@ -266,7 +266,7 @@
         <p class="lang en">
           Because we're convinced by the more precise technology: IPL works with broadly
           scattered light, while the
-          <a routerLink="/behandlungen/diodenlaser-4-wellen">4-wavelength diode laser</a> uses
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-wavelength diode laser</a> uses
           precisely tuned wavelengths that act directly on the hair follicle. That makes the
           treatment more controlled, more effective and suitable for more skin and hair types.
         </p>
@@ -326,13 +326,13 @@
         <p class="lang de">
           Mit dem Code <strong>ERSTEBEHANDLUNG</strong> zahlst du auf deine erste
           Behandlung nur die Hälfte des regulären Preises. Alle regulären Preise stehen je
-          Körperzone auf <a routerLink="/price">unserer Preisseite</a>. Die Erstberatung
+          Körperzone auf <a [routerLink]="p('/price')">unserer Preisseite</a>. Die Erstberatung
           ist kostenlos und unverbindlich.
         </p>
         <p class="lang en">
           With the code <strong>ERSTEBEHANDLUNG</strong> you pay only half the regular price
           for your first treatment. All regular prices are listed per body area on
-          <a routerLink="/price">our price page</a>. The initial consultation is free and
+          <a [routerLink]="p('/price')">our price page</a>. The initial consultation is free and
           without obligation.
         </p>
       </app-faq-item>

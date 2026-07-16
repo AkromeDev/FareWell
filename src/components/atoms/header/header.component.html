@@ -1,5 +1,5 @@
 <div [ngClass]="{ scrolled: scrolled }" class="nav-bar">
-  <a [routerLink]="'/'" class="nav-logo" (click)="setActiveTab('home')">FareWell</a>
+  <a [routerLink]="p('/')" class="nav-logo" (click)="setActiveTab('home')">FareWell</a>
 
   <!-- Burger Icon -->
   <div
@@ -63,7 +63,7 @@
     </div>
 
     <a
-      [routerLink]="'/zeit'"
+      [routerLink]="p('/zeit')"
       routerLinkActive="active"
       (click)="setActiveTab('zeit')"
       class="nav-link"
@@ -72,7 +72,7 @@
     </a>
 
     <a
-      [routerLink]="'/historie'"
+      [routerLink]="p('/historie')"
       routerLinkActive="active"
       (click)="setActiveTab('historie')"
       class="nav-link"
@@ -81,7 +81,7 @@
     </a>
 
     <a
-      [routerLink]="'/price'"
+      [routerLink]="p('/price')"
       routerLinkActive="active"
       (click)="setActiveTab('price')"
       class="nav-link"
@@ -90,7 +90,7 @@
     </a>
 
     <a
-      [routerLink]="'/faq'"
+      [routerLink]="p('/faq')"
       routerLinkActive="active"
       (click)="setActiveTab('faq')"
       class="nav-link"

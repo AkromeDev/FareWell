@@ -1,9 +1,19 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
 import { LanguageService } from 'src/services/language.service';
+import { SeoService } from 'src/services/seo.service';
+
+const PAGE_PATH = '/behandlungen/nadelepilation';
+const HERO_IMAGE_URL = 'https://farewell.salon/assets/images/treatment/nadel.jpg';
+
+const DE_TITLE = 'Elektrolyse / Nadelepilation in Nürnberg | FareWell';
+const EN_TITLE = 'Electrolysis (Nadelepilation) in Nuremberg | FareWell';
+const DE_DESCRIPTION =
+  'Professionelle Elektrolyse (Nadelepilation) in Nürnberg: die einzige wirklich permanente Haarentfernungsmethode.';
+const EN_DESCRIPTION =
+  'Professional electrolysis in Nuremberg: the only truly permanent hair removal method. Works on every hair colour and skin type. Free initial consultation in English.';
 
 @Component({
   selector: 'app-nadelepilation',
@@ -12,17 +22,17 @@ import { LanguageService } from 'src/services/language.service';
   templateUrl: './nadelepilation.component.html',
   styleUrl: './nadelepilation.component.scss'
 })
-export class NadelepilationComponent implements OnInit {
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+export class NadelepilationComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
   readonly lang = inject(LanguageService);
-
-  private readonly pageUrl = 'https://farewell.salon/behandlungen/nadelepilation';
-  private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/treatment/nadel.jpg';
+  private readonly jsonLdId = 'nadelepilation-schema';
 
   t(de: string, en: string): string {
     return this.lang.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.lang.localizePath(path);
   }
 
   get paragraphText(): string {
@@ -42,63 +52,41 @@ export class NadelepilationComponent implements OnInit {
     );
   }
 
-  structuredData = '';
-
-  constructor() {}
-
   ngOnInit(): void {
-    this.setSeoTags();
-    this.setStructuredData();
-  }
-
-  private setSeoTags(): void {
-    const pageTitle =
-      'Elektrolyse / Nadelepilation Nürnberg | Permanente Haarentfernung | FareWell';
-
-    const description =
-      'Professionelle Elektrolyse (Nadelepilation) in Nürnberg bei FareWell – die einzige wissenschaftlich anerkannte Methode zur dauerhaft permanenten Haarentfernung für alle Haut- und Haartypen.';
-
-    this.title.setTitle(pageTitle);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.meta.updateTag({ property: 'og:title', content: pageTitle });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: this.pageUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content: 'Elektrolyse / Nadelepilation bei FareWell in Nürnberg – permanente Haarentfernung'
+    this.seo.setPageSeo({
+      title: this.t(DE_TITLE, EN_TITLE),
+      description: this.t(DE_DESCRIPTION, EN_DESCRIPTION),
+      path: PAGE_PATH,
+      image: HERO_IMAGE_URL,
+      imageAlt: this.t(
+        'Elektrolyse / Nadelepilation bei FareWell in Nürnberg: permanente Haarentfernung',
+        'Electrolysis (Nadelepilation) at FareWell in Nuremberg: permanent hair removal'
+      ),
+      largeImage: true
     });
-    this.meta.updateTag({ property: 'og:locale', content: 'de_DE' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'FareWell' });
 
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.heroImageUrl });
-    this.meta.updateTag({
-      name: 'twitter:image:alt',
-      content: 'Elektrolyse / Nadelepilation bei FareWell in Nürnberg – permanente Haarentfernung'
-    });
-  }
+    const isEn = this.lang.lang() === 'en';
+    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+    const homeUrl = isEn ? 'https://farewell.salon/en' : 'https://farewell.salon';
 
-  private setStructuredData(): void {
-    const jsonLd = {
+    this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'Service',
-          '@id': `${this.pageUrl}#service`,
-          name: 'Elektrolyse / Nadelepilation in Nürnberg',
-          description:
-            'Permanente Haarentfernung mit Elektrolyse (Nadelepilation) bei FareWell in Nürnberg – wirksam für alle Haut- und Haartypen.',
-          serviceType: 'Elektrolyse / Nadelepilation',
+          '@id': `${pageUrl}#service`,
+          name: this.t(
+            'Elektrolyse / Nadelepilation in Nürnberg',
+            'Electrolysis (Nadelepilation) in Nuremberg'
+          ),
+          description: this.t(
+            'Permanente Haarentfernung mit Elektrolyse (Nadelepilation) bei FareWell in Nürnberg, wirksam für alle Haut- und Haartypen.',
+            'Permanent hair removal with electrolysis (Nadelepilation) at FareWell in Nuremberg, effective for all skin and hair types.'
+          ),
+          serviceType: this.t('Elektrolyse / Nadelepilation', 'Electrolysis (Nadelepilation)'),
           areaServed: {
             '@type': 'City',
-            name: 'Nürnberg'
+            name: this.t('Nürnberg', 'Nuremberg')
           },
           provider: {
             '@type': 'BeautySalon',
@@ -116,20 +104,20 @@ export class NadelepilationComponent implements OnInit {
         },
         {
           '@type': 'WebPage',
-          '@id': `${this.pageUrl}#webpage`,
-          url: this.pageUrl,
-          name: 'Elektrolyse / Nadelepilation Nürnberg | Permanente Haarentfernung | FareWell',
-          description:
-            'Professionelle Elektrolyse (Nadelepilation) in Nürnberg bei FareWell – permanente Haarentfernung für alle Haut- und Haartypen.',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: this.t(DE_TITLE, EN_TITLE),
+          description: this.t(DE_DESCRIPTION, EN_DESCRIPTION),
+          inLanguage: isEn ? 'en' : 'de',
           isPartOf: {
             '@id': 'https://farewell.salon/#website'
           },
           about: {
-            '@id': `${this.pageUrl}#service`
+            '@id': `${pageUrl}#service`
           },
           primaryImageOfPage: {
             '@type': 'ImageObject',
-            url: this.heroImageUrl
+            url: HERO_IMAGE_URL
           }
         },
         {
@@ -139,25 +127,27 @@ export class NadelepilationComponent implements OnInit {
               '@type': 'ListItem',
               position: 1,
               name: 'FareWell',
-              item: 'https://farewell.salon'
+              item: homeUrl
             },
             {
               '@type': 'ListItem',
               position: 2,
-              name: 'Behandlungen',
-              item: 'https://farewell.salon/behandlungen'
+              name: this.t('Behandlungen', 'Treatments'),
+              item: `https://farewell.salon${isEn ? '/en' : ''}/behandlungen`
             },
             {
               '@type': 'ListItem',
               position: 3,
-              name: 'Nadelepilation',
-              item: this.pageUrl
+              name: this.t('Nadelepilation', 'Electrolysis (Nadelepilation)'),
+              item: pageUrl
             }
           ]
         }
       ]
-    };
+    });
+  }
 
-    this.structuredData = JSON.stringify(jsonLd);
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
   }
 }

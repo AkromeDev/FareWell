@@ -149,4 +149,32 @@
     <priority>0.2</priority>
   </url>
 
+  <!--
+    Englische Seiten (/en/): vorbereitet, aber noch NICHT eingereicht.
+    Zum Livegang der englischen Indexierung:
+      1. In src/services/seo.service.ts EN_PREFIX_INDEXABLE auf true stellen.
+      2. Diesen Block einkommentieren und lastmod aktualisieren.
+      3. Neu bauen, deployen, Sitemap in der Search Console neu einreichen.
+
+  <url><loc>https://farewell.salon/en</loc><lastmod>2026-07-16</lastmod><priority>0.9</priority></url>
+  <url><loc>https://farewell.salon/en/behandlungen/nadelepilation</loc><lastmod>2026-07-16</lastmod><priority>0.9</priority></url>
+  <url><loc>https://farewell.salon/en/behandlungen/diodenlaser-4-wellen</loc><lastmod>2026-07-16</lastmod><priority>0.9</priority></url>
+  <url><loc>https://farewell.salon/en/behandlungen/microneedling-radiofrequenz</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://farewell.salon/en/behandlungen/kavitation</loc><lastmod>2026-07-16</lastmod><priority>0.6</priority></url>
+  <url><loc>https://farewell.salon/en/behandlungen/wellness-massage</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://farewell.salon/en/behandlungen/therapeutische-massage</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://farewell.salon/en/price</loc><lastmod>2026-07-16</lastmod><priority>0.8</priority></url>
+  <url><loc>https://farewell.salon/en/zeit</loc><lastmod>2026-07-16</lastmod><priority>0.5</priority></url>
+  <url><loc>https://farewell.salon/en/historie</loc><lastmod>2026-07-16</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/faq</loc><lastmod>2026-07-16</lastmod><priority>0.8</priority></url>
+  <url><loc>https://farewell.salon/en/ratgeber/epilation-krankenkasse</loc><lastmod>2026-07-16</lastmod><priority>0.5</priority></url>
+  <url><loc>https://farewell.salon/en/ratgeber/haarentfernung-steuer-absetzen</loc><lastmod>2026-07-16</lastmod><priority>0.5</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/masseur-nuernberg</loc><lastmod>2026-07-16</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/laser-haarentfernung-aktion-nuernberg</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://farewell.salon/en/ipl-dauerhafte-haarentfernung-aktion-nuernberg</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://farewell.salon/en/elektrolyse-permanente-haarentfernung-aktion-nuernberg</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://farewell.salon/en/microneedling-aktion-nuernberg</loc><lastmod>2026-07-16</lastmod><priority>0.6</priority></url>
+  <url><loc>https://farewell.salon/en/nadelepilation-angebot-nuernberg</loc><lastmod>2026-07-16</lastmod><priority>0.7</priority></url>
+  -->
+
 </urlset>

@@ -12,15 +12,19 @@ import {
 } from 'src/components/molecules/guide';
 
 const PAGE_PATH = '/karriere/masseur-nuernberg/onboarding';
-const PAGE_TITLE = 'Onboarding Massage – so arbeiten wir zusammen | FareWell Nürnberg';
-const PAGE_DESCRIPTION =
-  'Der Onboarding-Leitfaden für selbständige Masseur:innen bei FareWell Nürnberg: Probe-Session, Leistungen, 70/30-Abrechnung, Kundengewinnung und der geteilte Raum – auf Deutsch und Englisch.';
+const PAGE_TITLE_DE = 'Onboarding Massage – so arbeiten wir zusammen | FareWell Nürnberg';
+const PAGE_TITLE_EN = 'Massage Onboarding – How We Work Together | FareWell Nuremberg';
+const PAGE_DESCRIPTION_DE =
+  'Der Onboarding-Leitfaden für selbständige Masseur:innen bei FareWell Nürnberg: Probe-Session, Leistungen, 70/30-Abrechnung, Kundengewinnung und der geteilte Raum. Auf Deutsch und Englisch.';
+const PAGE_DESCRIPTION_EN =
+  'The onboarding guide for freelance massage therapists at FareWell Nuremberg: trial session, services, the 70/30 split, winning clients and the shared space. In German and English.';
 
 /**
  * Zweisprachige Onboarding-Seite für Masseur:innen. Kurze Texte laufen über
  * t(de, en)-Bindings, längere projizierte Inhalte über
  * <span class="lang de|en">-Paare, die das data-lang-Attribut des Wrappers
- * per CSS umschaltet. Sprache kommt aus ?lang=…, sonst aus localStorage.
+ * per CSS umschaltet. Die Sprache folgt der URL; ein ?lang=…-Parameter
+ * navigiert zusätzlich zur Gegenstück-URL.
  */
 @Component({
   standalone: true,
@@ -40,8 +44,8 @@ export class MasseurOnboardingComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.setPageSeo({
-      title: PAGE_TITLE,
-      description: PAGE_DESCRIPTION,
+      title: this.t(PAGE_TITLE_DE, PAGE_TITLE_EN),
+      description: this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN),
       path: PAGE_PATH,
     });
 
@@ -55,6 +59,11 @@ export class MasseurOnboardingComponent implements OnInit {
 
   t(de: string, en: string): string {
     return this.language.t(de, en);
+  }
+
+  /** Interner Link in der aktiven Sprache (deutscher Pfad rein, /en/-Twin raus). */
+  p(path: string): string {
+    return this.language.localizePath(path);
   }
 
   get stats(): GuideStat[] {

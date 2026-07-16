@@ -10,11 +10,15 @@ import {
   GuideTocItem,
 } from 'src/components/molecules/guide';
 
+const ORIGIN = 'https://farewell.salon';
 const PAGE_PATH = '/ratgeber/haarentfernung-steuer-absetzen';
-const PAGE_URL = `https://farewell.salon${PAGE_PATH}`;
-const PAGE_TITLE = 'Haarentfernung von der Steuer absetzen – Leitfaden für trans Personen | FareWell Nürnberg';
-const PAGE_DESCRIPTION =
+const PAGE_TITLE_DE =
+  'Haarentfernung von der Steuer absetzen: Leitfaden für trans Personen | FareWell Nürnberg';
+const PAGE_TITLE_EN = 'Deducting Hair Removal Costs from German Tax: a Guide | FareWell Nuremberg';
+const PAGE_DESCRIPTION_DE =
   'Laser und Nadelepilation als außergewöhnliche Belastung absetzen: welche Nachweise das Finanzamt verlangt, wie du vorgehst und was FareWell dir dafür ausstellt.';
+const PAGE_DESCRIPTION_EN =
+  'How to deduct laser and electrolysis costs as an extraordinary burden on your German tax return: required proof, the step-by-step process, and the documents FareWell provides.';
 
 @Component({
   standalone: true,
@@ -33,6 +37,10 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
 
   t(de: string, en: string): string {
     return this.language.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.language.localizePath(path);
   }
 
   get stats(): GuideStat[] {
@@ -59,9 +67,15 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    const isEn = this.language.lang() === 'en';
+    const base = isEn ? `${ORIGIN}/en` : ORIGIN;
+    const pageUrl = `${base}${PAGE_PATH}`;
+    const pageTitle = this.t(PAGE_TITLE_DE, PAGE_TITLE_EN);
+    const pageDescription = this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN);
+
     this.seo.setPageSeo({
-      title: PAGE_TITLE,
-      description: PAGE_DESCRIPTION,
+      title: pageTitle,
+      description: pageDescription,
       path: PAGE_PATH,
       type: 'article',
     });
@@ -71,10 +85,13 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
       '@graph': [
         {
           '@type': 'Article',
-          '@id': `${PAGE_URL}#article`,
-          headline: 'Behandlungskosten steuerlich absetzen',
-          description: PAGE_DESCRIPTION,
-          inLanguage: 'de',
+          '@id': `${pageUrl}#article`,
+          headline: this.t(
+            'Behandlungskosten steuerlich absetzen',
+            'Deducting treatment costs from your taxes'
+          ),
+          description: pageDescription,
+          inLanguage: isEn ? 'en' : 'de',
           datePublished: '2026-07-15',
           dateModified: '2026-07-15',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
@@ -85,22 +102,30 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
             name: 'FareWell',
             url: 'https://farewell.salon',
           },
-          mainEntityOfPage: { '@id': `${PAGE_URL}#webpage` },
+          mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
         },
         {
           '@type': 'WebPage',
-          '@id': `${PAGE_URL}#webpage`,
-          url: PAGE_URL,
-          name: PAGE_TITLE,
-          description: PAGE_DESCRIPTION,
-          inLanguage: 'de',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: pageTitle,
+          description: pageDescription,
+          inLanguage: isEn ? 'en' : 'de',
         },
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: 'https://farewell.salon' },
-            { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://farewell.salon/faq' },
-            { '@type': 'ListItem', position: 3, name: 'Behandlungskosten steuerlich absetzen', item: PAGE_URL },
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: base },
+            { '@type': 'ListItem', position: 2, name: 'FAQ', item: `${base}/faq` },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: this.t(
+                'Behandlungskosten steuerlich absetzen',
+                'Deducting treatment costs from your taxes'
+              ),
+              item: pageUrl,
+            },
           ],
         },
       ],

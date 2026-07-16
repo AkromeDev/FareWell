@@ -44,15 +44,15 @@
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
           <span class="lang de">
             Alle Details zur Technologie findest du auf der Seite zum
-            <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a>, alle
-            Preise je Körperzone auf <a routerLink="/price">unserer Preisseite</a>. Oder du
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-Wellen-Diodenlaser</a>, alle
+            Preise je Körperzone auf <a [routerLink]="p('/price')">unserer Preisseite</a>. Oder du
             startest direkt mit der
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
           </span>
           <span class="lang en">
             You'll find all the details about the technology on the page about the
-            <a routerLink="/behandlungen/diodenlaser-4-wellen">4-wavelength diode laser</a>, and
-            all prices per body area on <a routerLink="/price">our price page</a>. Or start right
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-wavelength diode laser</a>, and
+            all prices per body area on <a [routerLink]="p('/price')">our price page</a>. Or start right
             away with the
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
           </span>
@@ -88,12 +88,12 @@
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
           Alle regulären Preise stehen je Körperzone auf
-          <a routerLink="/price">unserer Preisseite</a>, ohne versteckte Kosten. Die
+          <a [routerLink]="p('/price')">unserer Preisseite</a>, ohne versteckte Kosten. Die
           Erstberatung ist immer kostenlos und unverbindlich.
         </span>
         <span class="lang en">
           All regular prices are listed per body area on
-          <a routerLink="/price">our price page</a>, with no hidden costs. The initial
+          <a [routerLink]="p('/price')">our price page</a>, with no hidden costs. The initial
           consultation is always free and without obligation.
         </span>
       </p>
@@ -221,12 +221,12 @@
         <span class="lang de">
           In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an. Mehr zur
           permanenten Methode liest du auf der Seite zur
-          <a routerLink="/behandlungen/nadelepilation">Nadelepilation (Elektrolyse)</a>.
+          <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a>.
         </span>
         <span class="lang en">
           In the free initial consultation we look at your skin and hair together. You can read
           more about the permanent method on the page about
-          <a routerLink="/behandlungen/nadelepilation">needle epilation (electrolysis)</a>.
+          <a [routerLink]="p('/behandlungen/nadelepilation')">needle epilation (electrolysis)</a>.
         </span>
       </app-guide-note>
     </app-guide-section>
@@ -291,11 +291,11 @@
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
           Vom kleinen Detail bis zur großen Fläche, für Frauen und Männer. Die Preise je Zone
-          findest du transparent auf <a routerLink="/price">unserer Preisseite</a>.
+          findest du transparent auf <a [routerLink]="p('/price')">unserer Preisseite</a>.
         </span>
         <span class="lang en">
           From the smallest detail to large areas, for women and men. You'll find the price for
-          each area transparently on <a routerLink="/price">our price page</a>.
+          each area transparently on <a [routerLink]="p('/price')">our price page</a>.
         </span>
       </p>
       <div class="gd-split">
@@ -343,13 +343,13 @@
       <app-guide-note variant="tip" [label]="t('Gut zu wissen', 'Good to know')">
         <span class="lang de">
           Bei hormonell bedingtem Haarwuchs, etwa durch PCOS, empfehlen wir die
-          <a routerLink="/behandlungen/nadelepilation">Elektrolyse</a>: Sie verödet jede
+          <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse</a>: Sie verödet jede
           Haarwurzel endgültig und wirkt unabhängig von Haarfarbe und Hormonlage. Wir beraten
           dich dazu ehrlich und einfühlsam, kostenlos und unverbindlich.
         </span>
         <span class="lang en">
           For hormone-related hair growth, for example due to PCOS, we recommend
-          <a routerLink="/behandlungen/nadelepilation">electrolysis</a>: it deactivates every
+          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis</a>: it deactivates every
           hair root for good and works independently of hair colour and hormones. We advise you
           on this honestly and with empathy, free and without obligation.
         </span>
@@ -415,14 +415,14 @@
           Am wirksamsten ist der Laser bei dunkleren Haaren. Durch die Kombination von vier
           Wellenlängen und die KI-gestützte Hauterkennung kann unser Gerät mehr Haut- und
           Haartypen behandeln als klassische IPL-Systeme. Für helle, feine oder graue Haare
-          empfehlen wir die <a routerLink="/behandlungen/nadelepilation">Elektrolyse</a>, sie
+          empfehlen wir die <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse</a>, sie
           wirkt unabhängig von der Haarfarbe.
         </p>
         <p class="lang en">
           The laser is most effective on darker hair. By combining four wavelengths with
           AI-assisted skin detection, our device can treat more skin and hair types than classic
           IPL systems. For light, fine or grey hair we recommend
-          <a routerLink="/behandlungen/nadelepilation">electrolysis</a>, which works
+          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis</a>, which works
           independently of hair colour.
         </p>
       </app-faq-item>
@@ -436,14 +436,14 @@
           Der Diodenlaser erreicht eine <strong>dauerhafte</strong> Haarentfernung, also
           eine deutliche, langanhaltende Reduktion des Haarwuchses.
           <strong>Permanent</strong> ist in Deutschland allein die
-          <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a>, die
+          <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse (Nadelepilation)</a>, die
           jede Haarwurzel einzeln und endgültig verödet. Bei FareWell bekommst du beide
-          Methoden, und eine ehrliche Empfehlung, was zu dir passt.
+          Methoden und eine ehrliche Empfehlung, was zu dir passt.
         </p>
         <p class="lang en">
           The diode laser achieves <strong>long-lasting</strong> hair removal, meaning a clear,
           enduring reduction of hair growth. In Germany, only
-          <a routerLink="/behandlungen/nadelepilation">electrolysis (needle epilation)</a> is
+          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis (needle epilation)</a> is
           <strong>permanent</strong>, deactivating every hair root individually and for good. At
           FareWell you get both methods, and an honest recommendation about what suits you.
         </p>
