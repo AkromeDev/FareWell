@@ -87,19 +87,25 @@ broader route permissions.
 ## Persistence & synchronisation
 
 Two modes, switched by `config/supabase.config.ts` (see
-`docs/putzplan-supabase-setup.md` for the one-time server setup):
+`SUPABASE-SETUP.md` in this directory for the one-time server setup):
 
 **Shared mode (Supabase configured):** `SupabaseTaskRepository` uses a single
 Postgres row (`tasks` table, id `main`) as the shared source of truth for all
 devices, wrapping the local repository as its synchronous cache/offline
-fallback. Saves are debounced whole-state upserts; a Realtime subscription is
-treated as a ping that refetches the row and feeds
-`TaskSyncService.emitRemoteChange()` — the same pipeline cross-tab changes
-use, so `TaskService` needed no changes. Access control: one shared
-"household" auth user; staff enter its passphrase once per device
-(`TaskAuthGateComponent`), Row Level Security rejects the bare anon key.
-First-run migration seeds an empty table from the first signed-in device that
-has history (insert-only, so an existing remote state can never be clobbered).
+fallback. Saves mark a persisted dirty flag and debounce-push the whole state
+row; a Realtime subscription is treated as a ping that refetches the row and
+feeds `TaskSyncService.emitRemoteChange()` — the same pipeline cross-tab
+changes use, so `TaskService` needed no changes. All remote work runs on one
+serial operation queue (no push/refetch interleaving). Conflict model: a
+clean device adopts newer remote state wholesale; a device with unpushed
+changes MERGES task-by-task instead (histories unioned, newer side wins per
+task), so completions are never lost to concurrent writes or offline gaps.
+Access control: one shared "household" auth user; staff enter its passphrase
+once per device (`TaskAuthGateComponent`), the dashboard stays gated until
+the first reconcile finishes, and Row Level Security (pinned to the household
+email) rejects the bare anon key. First-run migration seeds an empty table
+from the first signed-in device that has history (insert-only, so an existing
+remote state can never be clobbered).
 
 **Local mode (config empty — the fallback):** exactly the original behavior:
 - `localStorage` (key `fw_tasks_state_v1`) with an in-memory fallback if storage

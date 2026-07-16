@@ -176,10 +176,17 @@
           (toggle)="onToggleActivity(u)"
         />
         <p class="dash__hint">
-          {{ t(
-            'Nur dieses Gerät und dieser Browser. Kein geräteübergreifender Abgleich.',
-            'This device and browser only. No cross-device sync.'
-          ) }}
+          @if (syncActive()) {
+            {{ t(
+              'Wird live zwischen allen Geräten synchronisiert.',
+              'Synced live across all devices.'
+            ) }}
+          } @else {
+            {{ t(
+              'Nur dieses Gerät und dieser Browser. Kein geräteübergreifender Abgleich.',
+              'This device and browser only. No cross-device sync.'
+            ) }}
+          }
         </p>
       </aside>
     </div>

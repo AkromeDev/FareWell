@@ -1,4 +1,4 @@
-@if (session.status() === 'initializing') {
+@if (waiting) {
   <div class="gate gate--wait" role="status">
     <span class="gate__spinner" aria-hidden="true"></span>
     <p class="gate__wait-text">{{ t('Verbinden …', 'Connecting …') }}</p>

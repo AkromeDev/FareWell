@@ -43,6 +43,14 @@ export class SupabaseSessionService implements OnDestroy {
   /** Mirror of {@link status} for plain (non-Angular) consumers. */
   readonly statusChanges = new Subject<SupabaseSessionStatus>();
 
+  private readonly _firstSyncDone = signal(false);
+  /**
+   * Flips true once the repository's first post-sign-in reconcile attempt
+   * has finished (success or failure). The dashboard keeps its gate up until
+   * then, so no mutation can race the initial hydration.
+   */
+  readonly firstSyncDone = this._firstSyncDone.asReadonly();
+
   constructor() {
     if (this._status() === 'initializing') {
       // Fire and forget: restores a persisted session or lands on signed-out.
@@ -57,27 +65,39 @@ export class SupabaseSessionService implements OnDestroy {
     this.authSub?.unsubscribe();
   }
 
+  /** Called by the repository when the first reconcile attempt completes. */
+  markFirstSyncDone(): void {
+    this._firstSyncDone.set(true);
+  }
+
   /** The lazily created client. Rejects when remote persistence is disabled. */
   getClient(): Promise<SupabaseClient> {
     if (!this.isBrowser || !isSupabaseEnabled()) {
       return Promise.reject(new Error('[tasks] Supabase is not enabled'));
     }
-    this.clientPromise ??= import('@supabase/supabase-js').then(({ createClient }) => {
-      const client = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey, {
-        auth: { persistSession: true, autoRefreshToken: true },
+    this.clientPromise ??= import('@supabase/supabase-js')
+      .then(({ createClient }) => {
+        const client = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey, {
+          auth: { persistSession: true, autoRefreshToken: true },
+        });
+        const { data } = client.auth.onAuthStateChange((_event, session) => {
+          this.setStatus(session ? 'signed-in' : 'signed-out');
+        });
+        this.authSub = data.subscription;
+        return client;
+      })
+      .catch((err) => {
+        // Never cache a rejection: a flaky chunk load on first visit must not
+        // brick sign-in until a hard reload — the next call retries cleanly.
+        this.clientPromise = null;
+        throw err;
       });
-      const { data } = client.auth.onAuthStateChange((_event, session) => {
-        this.setStatus(session ? 'signed-in' : 'signed-out');
-      });
-      this.authSub = data.subscription;
-      return client;
-    });
     return this.clientPromise;
   }
 
   /**
    * Unlock this device with the shared passphrase. Resolves to an error
-   * message (already bilingual-neutral) or null on success.
+   * message or null on success.
    */
   async signIn(passphrase: string): Promise<string | null> {
     try {

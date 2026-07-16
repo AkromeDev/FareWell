@@ -111,13 +111,19 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   readonly filter = signal<TaskStatusFilter>('all');
 
   /**
-   * True while shared (Supabase) persistence needs the passphrase first —
-   * the dashboard then shows the unlock gate instead of any task data.
+   * True while shared (Supabase) persistence needs the passphrase, or while
+   * the first post-sign-in sync is still reconciling — the dashboard then
+   * shows the unlock gate instead of any task data, so no mutation can race
+   * the initial hydration.
    */
   readonly locked = computed(() => {
     const s = this.session.status();
-    return s === 'initializing' || s === 'signed-out';
+    if (s === 'initializing' || s === 'signed-out') return true;
+    return s === 'signed-in' && !this.session.firstSyncDone();
   });
+
+  /** Whether cross-device sync is live (drives the aside hint copy). */
+  readonly syncActive = computed(() => this.session.status() === 'signed-in');
 
   /** Header stats: what needs doing today and what the team already did. */
   readonly stats = computed(() => {

@@ -42,6 +42,12 @@ export class TaskAuthGateComponent implements AfterViewInit {
     return this.lang.t(de, en);
   }
 
+  /** Spinner state: restoring the session OR waiting for the first sync. */
+  get waiting(): boolean {
+    const s = this.session.status();
+    return s === 'initializing' || (s === 'signed-in' && !this.session.firstSyncDone());
+  }
+
   async submit(): Promise<void> {
     const value = this.passphrase.trim();
     if (!value || this.busy()) return;
