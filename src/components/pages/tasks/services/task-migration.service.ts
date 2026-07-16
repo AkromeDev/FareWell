@@ -11,6 +11,7 @@ import {
   createMutableState,
 } from '../models';
 import { parseIso } from '../utils/date.util';
+import { sanitiseEdits } from '../utils/task-edits';
 
 /**
  * Validates, migrates and merges persisted state.
@@ -37,6 +38,8 @@ export class TaskDataMigrationService {
       seedVersion: typeof raw.seedVersion === 'string' ? raw.seedVersion : seedVersion,
       tasks: this.sanitiseTasks(raw.tasks),
       prefs: this.sanitisePrefs(raw.prefs),
+      // v1 states have no edits section; sanitiseEdits returns an empty one.
+      edits: sanitiseEdits(raw.edits),
     };
 
     state = this.runSchemaMigrations(state);
@@ -45,8 +48,11 @@ export class TaskDataMigrationService {
   }
 
   /**
-   * Merge seed definitions into stored state by id. Missing tasks get a fresh
-   * empty state; stored tasks with no matching seed id are archived.
+   * Merge the EFFECTIVE definitions (seed + user-added tasks, overrides
+   * applied) into stored state by id. Missing tasks get a fresh empty state;
+   * stored tasks with no matching definition id are archived. Callers must
+   * pass effective definitions — passing only the seed would archive the
+   * history of user-added (`custom--…`) tasks on every load.
    */
   mergeSeed(
     state: PersistedTaskState,

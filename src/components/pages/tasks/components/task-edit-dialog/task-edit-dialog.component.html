@@ -1,0 +1,105 @@
+<div class="backdrop" (click)="onBackdrop($event)">
+  <div
+    class="dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="edit-title"
+  >
+    <h2 id="edit-title" class="dialog__title">
+      @if (isCreate) {
+        {{ t('Neue Aufgabe', 'New task') }}
+      } @else {
+        {{ t('Aufgabe bearbeiten', 'Edit task') }}
+      }
+    </h2>
+    <p class="dialog__hint">
+      {{ t(
+        'Auf Deutsch eintragen. Der Verlauf der Aufgabe bleibt erhalten.',
+        'Enter in German. The task keeps its history.'
+      ) }}
+    </p>
+
+    <form class="dialog__form" (ngSubmit)="submit()">
+      @if (isCreate) {
+        <label class="dialog__field">
+          <span class="dialog__label">{{ t('Bereich', 'Area') }}</span>
+          <select class="dialog__input" name="category" [(ngModel)]="category">
+            @for (cat of categories; track cat.id) {
+              <option [value]="cat.id">{{ lang.t(cat.labelDe, cat.labelEn) }}</option>
+            }
+          </select>
+        </label>
+      }
+
+      <label class="dialog__field">
+        <span class="dialog__label">{{ t('Aufgabe', 'Task') }} *</span>
+        <textarea
+          #nameInput
+          class="dialog__input"
+          name="name"
+          rows="2"
+          required
+          [(ngModel)]="name"
+        ></textarea>
+      </label>
+
+      <label class="dialog__field">
+        <span class="dialog__label">{{ t('Notiz (optional)', 'Note (optional)') }}</span>
+        <textarea class="dialog__input" name="notes" rows="2" [(ngModel)]="notes"></textarea>
+      </label>
+
+      <div class="dialog__row">
+        @if (intervalEditable) {
+          <label class="dialog__field dialog__field--half">
+            <span class="dialog__label">{{ t('Alle … Tage', 'Every … days') }} *</span>
+            <input
+              class="dialog__input"
+              type="number"
+              name="interval"
+              [min]="minInterval"
+              [max]="maxInterval"
+              step="0.5"
+              [(ngModel)]="interval"
+            />
+          </label>
+        } @else {
+          <p class="dialog__fixed-rhythm">
+            {{ t(
+              'Der Rhythmus dieser Aufgabe wird vom Plan verwaltet (z. B. nach Ereignis).',
+              'This task’s rhythm is managed by the plan (e.g. event-based).'
+            ) }}
+          </p>
+        }
+
+        <label class="dialog__field dialog__field--half">
+          <span class="dialog__label">{{ t('Zuständig', 'Responsible') }}</span>
+          <select class="dialog__input" name="owner" [(ngModel)]="owner">
+            <option value="">{{ t('Alle / niemand fest', 'Anyone / unassigned') }}</option>
+            @for (opt of ownerOptions(); track opt.id) {
+              <option [value]="opt.id">{{ opt.name }}</option>
+            }
+          </select>
+        </label>
+      </div>
+
+      <div class="dialog__actions">
+        @if (!isCreate) {
+          <button
+            type="button"
+            class="dialog__btn dialog__btn--danger"
+            (click)="archive.emit()"
+          >
+            {{ t('Archivieren', 'Archive') }}
+          </button>
+        }
+        <span class="dialog__spacer"></span>
+        <button type="button" class="dialog__btn dialog__btn--ghost" (click)="cancel.emit()">
+          {{ t('Abbrechen', 'Cancel') }}
+        </button>
+        <button type="submit" class="dialog__btn dialog__btn--primary" [disabled]="!valid">
+          {{ isCreate ? t('Hinzufügen', 'Add') : t('Speichern', 'Save') }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

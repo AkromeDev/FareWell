@@ -10,9 +10,12 @@
         [now]="now"
         [collapsed]="isCollapsed(group.category.id)"
         [panelId]="'cat-panel-' + group.category.id"
+        [editable]="editable"
         (toggle)="toggleCategory.emit(group.category.id)"
         (requestComplete)="requestComplete.emit($event)"
         (requestTrigger)="requestTrigger.emit($event)"
+        (requestEdit)="requestEdit.emit($event)"
+        (requestAdd)="requestAdd.emit($event)"
       />
     }
   </div>

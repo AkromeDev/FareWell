@@ -25,9 +25,12 @@ export class TaskCardComponent {
   @Input({ required: true }) now!: Date;
   /** Whether this route may complete this task type. */
   @Input() canComplete = true;
+  /** Edit mode (Mojo): shows the pencil that opens the edit dialog. */
+  @Input() editable = false;
 
   @Output() requestComplete = new EventEmitter<TaskRecord>();
   @Output() requestTrigger = new EventEmitter<TaskRecord>();
+  @Output() requestEdit = new EventEmitter<TaskRecord>();
 
   private readonly recurrence = inject(RecurrenceService);
   readonly lang = inject(LanguageService);

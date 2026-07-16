@@ -124,6 +124,50 @@
   color: rgba($light-1, 0.75);
 }
 
+.hero__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+// Edit-mode toggle (only rendered for the curating user).
+.hero__editbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba($light-1, 0.25);
+  background: rgba($light-1, 0.08);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: $light-1;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s var(--ease-out, ease-out);
+
+  svg { width: 0.85em; height: 0.85em; }
+
+  &:hover {
+    background: rgba($light-1, 0.16);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-1;
+    outline-offset: 2px;
+  }
+}
+
+.hero__editbtn--active {
+  background: linear-gradient(140deg, #d9bc7f, $accent-1);
+  border-color: transparent;
+  color: $dark-2;
+
+  &:hover { background: linear-gradient(140deg, #e2c88e, $accent-1); }
+}
+
 // --- View switcher (segmented control with sliding thumb) ------------------
 .seg {
   position: relative;
@@ -401,6 +445,76 @@
   font-size: 0.72rem;
   color: var(--ink-dim, rgba(43, 51, 40, 0.72));
   text-align: center;
+}
+
+// --- Archived tasks (edit mode) ---------------------------------------------
+.archived {
+  margin-top: 1.25rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  border: 1px dashed var(--line-strong, rgba(43, 51, 40, 0.18));
+  background: color-mix(in srgb, var(--surface-2, #f7f2e8) 70%, transparent);
+  animation: rise-in 0.3s var(--ease-out, ease-out) both;
+}
+
+.archived__title {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+}
+
+.archived__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.archived__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--line, rgba(43, 51, 40, 0.12));
+}
+
+.archived__name {
+  font-size: 0.84rem;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--ink-dim, #6f7d72) 45%, transparent);
+}
+
+.archived__restore {
+  flex: 0 0 auto;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, #{$accent-1} 50%, transparent);
+  background: color-mix(in srgb, #{$accent-1} 10%, transparent);
+  color: $dark-2;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+
+  &:hover {
+    background: color-mix(in srgb, #{$accent-1} 22%, transparent);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-1;
+    outline-offset: 2px;
+  }
 }
 
 .unknown {

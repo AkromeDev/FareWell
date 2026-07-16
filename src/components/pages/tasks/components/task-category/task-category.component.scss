@@ -23,10 +23,47 @@
   }
 }
 
+.cat__head-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .cat__heading {
+  flex: 1;
+  min-width: 0;
   margin: 0;
   font-size: inherit;
   font-weight: inherit;
+}
+
+.cat__add {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-right: 0.85rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, #{$accent-1} 45%, transparent);
+  background: color-mix(in srgb, #{$accent-1} 12%, transparent);
+  color: $dark-2;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.15s var(--ease-out, ease-out);
+
+  svg { width: 0.8rem; height: 0.8rem; }
+
+  &:hover {
+    background: color-mix(in srgb, #{$accent-1} 25%, transparent);
+    transform: scale(1.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-1;
+    outline-offset: 2px;
+  }
 }
 
 .cat__toggle {

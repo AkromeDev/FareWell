@@ -1,29 +1,43 @@
 <section class="cat">
-  <h3 class="cat__heading">
-    <button
-      type="button"
-      class="cat__toggle"
-      [attr.aria-expanded]="!collapsed"
-      [attr.aria-controls]="panelId"
-      (click)="toggle.emit()"
-    >
-      @if (group.category.icon; as icon) {
-        <span class="cat__icon" aria-hidden="true">{{ icon }}</span>
-      }
-      <span class="cat__title">{{ title() }}</span>
-      <span class="cat__count">{{ countLabel() }}</span>
-      @if (group.urgentCount > 0) {
-        <span class="cat__badge" [attr.aria-label]="lang.t(group.urgentCount + ' dringend', group.urgentCount + ' urgent')">
-          {{ group.urgentCount }}
+  <div class="cat__head-row">
+    <h3 class="cat__heading">
+      <button
+        type="button"
+        class="cat__toggle"
+        [attr.aria-expanded]="!collapsed"
+        [attr.aria-controls]="panelId"
+        (click)="toggle.emit()"
+      >
+        @if (group.category.icon; as icon) {
+          <span class="cat__icon" aria-hidden="true">{{ icon }}</span>
+        }
+        <span class="cat__title">{{ title() }}</span>
+        <span class="cat__count">{{ countLabel() }}</span>
+        @if (group.urgentCount > 0) {
+          <span class="cat__badge" [attr.aria-label]="lang.t(group.urgentCount + ' dringend', group.urgentCount + ' urgent')">
+            {{ group.urgentCount }}
+          </span>
+        }
+        <span class="cat__chevron" [class.cat__chevron--open]="!collapsed" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 4.5l3 3 3-3" />
+          </svg>
         </span>
-      }
-      <span class="cat__chevron" [class.cat__chevron--open]="!collapsed" aria-hidden="true">
-        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 4.5l3 3 3-3" />
+      </button>
+    </h3>
+    @if (editable) {
+      <button
+        type="button"
+        class="cat__add"
+        [attr.aria-label]="lang.t('Aufgabe hinzufügen: ' + title(), 'Add task: ' + title())"
+        (click)="requestAdd.emit(group.category.id)"
+      >
+        <svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M6 2.2v7.6M2.2 6h7.6" />
         </svg>
-      </span>
-    </button>
-  </h3>
+      </button>
+    }
+  </div>
 
   <div class="cat__health" aria-hidden="true">
     <span class="cat__health-fill" [style.width.%]="healthPercent()"></span>
@@ -39,8 +53,10 @@
               [user]="user"
               [now]="now"
               [canComplete]="canComplete"
+              [editable]="editable"
               (requestComplete)="requestComplete.emit($event)"
               (requestTrigger)="requestTrigger.emit($event)"
+              (requestEdit)="requestEdit.emit($event)"
             />
           </li>
         }

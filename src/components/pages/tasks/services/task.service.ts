@@ -18,11 +18,19 @@ import {
   TaskRecord,
   TaskTriggerOccurrence,
   TaskUser,
+  TaskUserId,
   TaskViewMode,
   createDefaultPrefs,
   createMutableState,
 } from '../models';
 import { SEED_VERSION, TASK_SEED, assertUniqueSeedIds } from '../data/task-seed.data';
+import {
+  buildEffectiveDefinitions,
+  clampInterval,
+  currentIntervalDays,
+  isIntervalEditable,
+  makeCustomTaskId,
+} from '../utils/task-edits';
 import { RecurrenceService } from './recurrence.service';
 import { TASK_REPOSITORY } from './task-repository';
 import { TaskDataMigrationService } from './task-migration.service';
@@ -56,10 +64,17 @@ export class TaskService implements OnDestroy {
   private readonly storage = inject(TaskStorageService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  private readonly definitions: TaskDefinition[] = assertUniqueSeedIds(TASK_SEED);
-  private readonly defById = new Map(this.definitions.map((d) => [d.id, d]));
+  private readonly seedDefinitions: TaskDefinition[] = assertUniqueSeedIds(TASK_SEED);
 
   private readonly _state = signal<PersistedTaskState>(this.load());
+
+  /** Seed + team edits, recomputed whenever the shared state changes. */
+  private readonly effective = computed(() =>
+    buildEffectiveDefinitions(this.seedDefinitions, this._state().edits),
+  );
+  private readonly defById = computed(
+    () => new Map(this.effective().all.map((d) => [d.id, d])),
+  );
   private readonly _now = signal<Date>(new Date());
   private nowTimer: ReturnType<typeof setInterval> | null = null;
   private undoSnapshot: UndoSnapshot | null = null;
@@ -77,11 +92,16 @@ export class TaskService implements OnDestroy {
   readonly records = computed<TaskRecord[]>(() => {
     const state = this._state();
     const now = this._now();
-    return this.definitions.map((def) => {
+    return this.effective().all.map((def) => {
       const st = state.tasks[def.id] ?? createMutableState(def.id);
       return { def, state: st, computed: this.recurrence.compute(def, st, now) };
     });
   });
+
+  /** User-archived tasks the given user may see (for the restore UI). */
+  userArchivedDefinitions(user: TaskUser): TaskDefinition[] {
+    return this.effective().userArchived.filter((d) => user.visibleTypes.includes(d.type));
+  }
 
   constructor() {
     this.syncSub = this.sync.changes$.subscribe(() => this.reloadFromStorage());
@@ -105,7 +125,7 @@ export class TaskService implements OnDestroy {
   }
 
   definition(taskId: string): TaskDefinition | undefined {
-    return this.defById.get(taskId);
+    return this.defById().get(taskId);
   }
 
   refreshNow(): void {
@@ -119,7 +139,7 @@ export class TaskService implements OnDestroy {
    * occurrence, persist and broadcast. The previous state is kept for undo.
    */
   complete(taskId: string, user: TaskUser, action: CompletionAction = 'completed', note?: string): void {
-    const def = this.defById.get(taskId);
+    const def = this.defById().get(taskId);
     if (!def) return;
     if (!user.visibleTypes.includes(def.type)) return; // permission guard
 
@@ -181,7 +201,7 @@ export class TaskService implements OnDestroy {
 
   /** Record an external event so an event-triggered task becomes actionable. */
   triggerEvent(taskId: string, user: TaskUser): void {
-    const def = this.defById.get(taskId);
+    const def = this.defById().get(taskId);
     if (!def) return;
     const event =
       def.recurrence.kind === 'eventTriggered' || def.recurrence.kind === 'eventWithFollowUp'
@@ -233,7 +253,130 @@ export class TaskService implements OnDestroy {
     this.mutatePrefs(userId, (p) => ({ ...p, activityCollapsed: collapsed }));
   }
 
+  // ---- plan editing (Mojo only, guarded here AND in the UI) ----------------
+
+  /**
+   * Change a task's wording, note, rhythm or responsible person. Stored as an
+   * override on top of the seed, so the id — and with it all history — stays.
+   */
+  updateTaskDefinition(
+    taskId: string,
+    user: TaskUser,
+    input: {
+      nameDe?: string;
+      notesDe?: string | null;
+      intervalDays?: number;
+      primaryOwner?: TaskUserId | null;
+    },
+  ): boolean {
+    if (!user.canEditTasks) return false;
+    const def = this.defById().get(taskId);
+    if (!def) return false;
+
+    // Record only fields that actually differ from the current EFFECTIVE
+    // definition. The dialog always submits the (German) name it was
+    // prefilled with — recording it unchanged would needlessly replace the
+    // task's English wording with German (renames intentionally do).
+    const previous = this._state().edits.overrides[taskId];
+    const next = { ...previous } as NonNullable<typeof previous>;
+    let changed = false;
+
+    const nameDe = input.nameDe?.trim();
+    if (nameDe && nameDe !== def.nameDe) {
+      next.nameDe = nameDe;
+      changed = true;
+    }
+    if (input.notesDe !== undefined) {
+      const cleaned =
+        input.notesDe === null || !input.notesDe.trim() ? null : input.notesDe.trim();
+      if (cleaned !== (def.notesDe ?? null)) {
+        next.notesDe = cleaned;
+        changed = true;
+      }
+    }
+    const interval = input.intervalDays !== undefined ? clampInterval(input.intervalDays) : null;
+    if (
+      interval !== null &&
+      isIntervalEditable(def.recurrence) &&
+      interval !== currentIntervalDays(def.recurrence)
+    ) {
+      next.intervalDays = interval;
+      changed = true;
+    }
+    if (input.primaryOwner !== undefined && (input.primaryOwner ?? undefined) !== def.primaryOwner) {
+      next.primaryOwner = input.primaryOwner;
+      changed = true;
+    }
+
+    if (!changed) return true; // nothing new to record
+    next.updatedAt = new Date().toISOString();
+    next.updatedBy = user.id;
+    this.mutateEdits((edits) => ({
+      ...edits,
+      overrides: { ...edits.overrides, [taskId]: next },
+    }));
+    return true;
+  }
+
+  /** Hide a task from the plan (history kept) or bring it back. */
+  setTaskArchived(taskId: string, user: TaskUser, archived: boolean): boolean {
+    if (!user.canEditTasks) return false;
+    if (!this.defById().get(taskId)) return false;
+    this.mutateEdits((edits) => {
+      const { archived: _drop, ...rest } = edits.overrides[taskId] ?? {};
+      const next = {
+        ...rest,
+        ...(archived ? { archived: true } : {}),
+        updatedAt: new Date().toISOString(),
+        updatedBy: user.id,
+      };
+      return { ...edits, overrides: { ...edits.overrides, [taskId]: next } };
+    });
+    return true;
+  }
+
+  /** Add a new every-X-days task to a category. Returns its id, or null. */
+  addCustomTask(
+    user: TaskUser,
+    input: {
+      nameDe: string;
+      notesDe?: string;
+      category: string;
+      intervalDays: number;
+      primaryOwner?: TaskUserId;
+    },
+  ): string | null {
+    if (!user.canEditTasks) return null;
+    const nameDe = input.nameDe.trim();
+    const interval = clampInterval(input.intervalDays);
+    if (!nameDe || interval === null) return null;
+
+    const id = makeCustomTaskId();
+    this.mutateEdits((edits) => ({
+      ...edits,
+      customTasks: [
+        ...edits.customTasks,
+        {
+          id,
+          nameDe,
+          notesDe: input.notesDe?.trim() || undefined,
+          category: input.category,
+          intervalDays: interval,
+          primaryOwner: input.primaryOwner,
+          createdAt: new Date().toISOString(),
+          createdBy: user.id,
+        },
+      ],
+    }));
+    return id;
+  }
+
   // ---- internals ---------------------------------------------------------
+
+  private mutateEdits(fn: (edits: PersistedTaskState['edits']) => PersistedTaskState['edits']): void {
+    const current = this._state();
+    this.commit({ ...current, edits: fn(current.edits) });
+  }
 
   private mutateTasks(fn: (tasks: Record<string, TaskMutableState>) => void): void {
     const current = this._state();
@@ -258,7 +401,10 @@ export class TaskService implements OnDestroy {
   private load(): PersistedTaskState {
     const raw = this.repo.load();
     const normalised = this.migration.normalise(raw, SEED_VERSION);
-    return this.migration.mergeSeed(normalised, this.definitions, SEED_VERSION);
+    // Merge against the EFFECTIVE definitions (seed + user-added tasks), so
+    // custom tasks' history is never mistaken for retired seed tasks.
+    const effective = buildEffectiveDefinitions(this.seedDefinitions, normalised.edits);
+    return this.migration.mergeSeed(normalised, effective.all, SEED_VERSION);
   }
 
   /** Reload after another tab changed the shared state (no re-broadcast). */

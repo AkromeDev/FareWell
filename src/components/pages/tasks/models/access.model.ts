@@ -17,6 +17,8 @@ export interface TaskUser {
   visibleTypes: TaskType[];
   /** Full overview of every category and all activity (Mojo). */
   overview: boolean;
+  /** May edit the plan from the UI: rename, rhythm, add, archive (Mojo). */
+  canEditTasks?: boolean;
 }
 
 /** Weekday schedule for the shared massage room. */

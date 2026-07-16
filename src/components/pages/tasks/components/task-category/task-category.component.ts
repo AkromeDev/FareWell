@@ -24,10 +24,14 @@ export class TaskCategoryComponent {
   @Input() collapsed = false;
   @Input() canComplete = true;
   @Input() panelId = '';
+  /** Edit mode (Mojo): shows per-card pencils and the add-task button. */
+  @Input() editable = false;
 
   @Output() toggle = new EventEmitter<void>();
   @Output() requestComplete = new EventEmitter<TaskRecord>();
   @Output() requestTrigger = new EventEmitter<TaskRecord>();
+  @Output() requestEdit = new EventEmitter<TaskRecord>();
+  @Output() requestAdd = new EventEmitter<string>();
 
   readonly lang = inject(LanguageService);
 

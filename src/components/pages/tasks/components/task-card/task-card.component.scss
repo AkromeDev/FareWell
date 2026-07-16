@@ -80,6 +80,40 @@
   gap: 0.6rem;
 }
 
+.task-card__head-side {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 0 0 auto;
+}
+
+.task-card__edit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, #{$accent-1} 40%, transparent);
+  background: color-mix(in srgb, #{$accent-1} 10%, transparent);
+  color: $dark-2;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.15s var(--ease-out, ease-out);
+
+  svg { width: 0.8rem; height: 0.8rem; }
+
+  &:hover {
+    background: color-mix(in srgb, #{$accent-1} 22%, transparent);
+    transform: scale(1.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-1;
+    outline-offset: 2px;
+  }
+}
+
 .task-card__title {
   font-size: 0.98rem;
   font-weight: 600;

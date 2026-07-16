@@ -48,6 +48,7 @@ export const TASK_USERS: TaskUser[] = [
     routeArea: 'tasks',
     visibleTypes: ['general', 'massage'],
     overview: true,
+    canEditTasks: true,
   },
   {
     id: 'nikkita',

@@ -14,12 +14,16 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
-import { TaskRecord, TaskState, TaskUser, TaskViewMode } from '../models';
+import { TaskDefinition, TaskRecord, TaskState, TaskUser, TaskViewMode } from '../models';
 import { TaskService } from '../services/task.service';
 import { UserContextService } from '../services/user-context.service';
 import { ActivityService } from '../services/activity.service';
 import { SupabaseSessionService } from '../services/supabase-session.service';
 import { TaskAuthGateComponent } from '../components/task-auth-gate/task-auth-gate.component';
+import {
+  TaskEditDialogComponent,
+  TaskEditResult,
+} from '../components/task-edit-dialog/task-edit-dialog.component';
 import { TaskListViewComponent } from '../components/task-list-view/task-list-view.component';
 import { TaskCalendarViewComponent } from '../components/task-calendar-view/task-calendar-view.component';
 import { ActivityFeedComponent } from '../components/activity-feed/activity-feed.component';
@@ -49,6 +53,7 @@ const TODAY_STATES: ReadonlySet<TaskState> = new Set(['dueToday', 'checkDue', 'e
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     TaskAuthGateComponent,
+    TaskEditDialogComponent,
     TaskListViewComponent,
     TaskCalendarViewComponent,
     ActivityFeedComponent,
@@ -157,6 +162,18 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       default:
         return recs;
     }
+  });
+
+  /** Edit mode (Mojo only): pencils on cards, add buttons, archived list. */
+  readonly editMode = signal(false);
+  /** The open edit/create dialog, or null. */
+  readonly editDialog = signal<
+    { kind: 'edit'; record: TaskRecord } | { kind: 'create'; categoryId: string } | null
+  >(null);
+  /** User-archived tasks offered for restoring (edit mode). */
+  readonly archivedTasks = computed<TaskDefinition[]>(() => {
+    const u = this.userSig();
+    return u?.canEditTasks ? this.taskService.userArchivedDefinitions(u) : [];
   });
 
   readonly dialogRecord = signal<TaskRecord | null>(null);
@@ -275,6 +292,78 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
 
   onRequestComplete(record: TaskRecord): void {
     this.dialogRecord.set(record);
+  }
+
+  // ---- plan editing (Mojo only) --------------------------------------------
+
+  toggleEditMode(u: TaskUser): void {
+    if (!u.canEditTasks) return;
+    this.editMode.set(!this.editMode());
+    if (!this.editMode()) this.editDialog.set(null);
+  }
+
+  onRequestEdit(record: TaskRecord): void {
+    this.editDialog.set({ kind: 'edit', record });
+  }
+
+  onRequestAdd(categoryId: string): void {
+    this.editDialog.set({ kind: 'create', categoryId });
+  }
+
+  onEditSave(result: TaskEditResult, u: TaskUser): void {
+    const dlg = this.editDialog();
+    if (!dlg) return;
+    if (dlg.kind === 'edit') {
+      const ok = this.taskService.updateTaskDefinition(dlg.record.def.id, u, {
+        nameDe: result.nameDe,
+        notesDe: result.notesDe,
+        intervalDays: result.intervalDays,
+        primaryOwner: result.primaryOwner,
+      });
+      if (ok) {
+        const msg = this.t('Aufgabe aktualisiert', 'Task updated');
+        this.showToast(msg, false);
+        this.setAnnounce(msg);
+      }
+    } else if (result.category) {
+      const id = this.taskService.addCustomTask(u, {
+        nameDe: result.nameDe,
+        notesDe: result.notesDe ?? undefined,
+        category: result.category,
+        intervalDays: result.intervalDays ?? 7,
+        primaryOwner: result.primaryOwner ?? undefined,
+      });
+      if (id) {
+        const msg = this.t(`„${result.nameDe}“ hinzugefügt`, `“${result.nameDe}” added`);
+        this.showToast(msg, false);
+        this.setAnnounce(msg);
+      }
+    }
+    this.editDialog.set(null);
+  }
+
+  onEditArchive(u: TaskUser): void {
+    const dlg = this.editDialog();
+    if (!dlg || dlg.kind !== 'edit') return;
+    if (this.taskService.setTaskArchived(dlg.record.def.id, u, true)) {
+      const msg = this.t(
+        `„${dlg.record.def.nameDe}“ archiviert (Verlauf bleibt erhalten)`,
+        `“${dlg.record.def.nameEn}” archived (history kept)`,
+      );
+      this.showToast(msg, false);
+      this.setAnnounce(msg);
+    }
+    this.editDialog.set(null);
+  }
+
+  onRestore(def: TaskDefinition, u: TaskUser): void {
+    if (this.taskService.setTaskArchived(def.id, u, false)) {
+      this.setAnnounce(this.t(`Wiederhergestellt: ${def.nameDe}`, `Restored: ${def.nameEn}`));
+    }
+  }
+
+  onEditCancel(): void {
+    this.editDialog.set(null);
   }
 
   onRequestTrigger(record: TaskRecord, u: TaskUser): void {

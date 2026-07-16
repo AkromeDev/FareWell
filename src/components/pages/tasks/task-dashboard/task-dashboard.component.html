@@ -19,6 +19,21 @@
           </div>
         </div>
 
+        <div class="hero__controls">
+        @if (u.canEditTasks) {
+          <button
+            type="button"
+            class="hero__editbtn"
+            [class.hero__editbtn--active]="editMode()"
+            [attr.aria-pressed]="editMode()"
+            (click)="toggleEditMode(u)"
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11.3 2.1l2.6 2.6L5.4 13.2l-3.2.6.6-3.2 8.5-8.5z" />
+            </svg>
+            {{ editMode() ? t('Fertig', 'Done') : t('Bearbeiten', 'Edit') }}
+          </button>
+        }
         <div class="seg" role="radiogroup" [attr.aria-label]="t('Ansicht wählen', 'Choose view')"
           [class.seg--cal]="viewMode() === 'calendar'">
           <span class="seg__thumb" aria-hidden="true"></span>
@@ -52,6 +67,7 @@
             </svg>
             {{ t('Kalender', 'Calendar') }}
           </button>
+        </div>
         </div>
       </div>
 
@@ -153,10 +169,29 @@
               [user]="u"
               [now]="now()"
               [collapsed]="collapsed()"
+              [editable]="editMode() && u.canEditTasks === true"
               (toggleCategory)="onToggleCategory($event, u)"
               (requestComplete)="onRequestComplete($event)"
               (requestTrigger)="onRequestTrigger($event, u)"
+              (requestEdit)="onRequestEdit($event)"
+              (requestAdd)="onRequestAdd($event)"
             />
+
+            @if (editMode() && archivedTasks().length > 0) {
+              <section class="archived" [attr.aria-label]="t('Archivierte Aufgaben', 'Archived tasks')">
+                <h3 class="archived__title">{{ t('Archivierte Aufgaben', 'Archived tasks') }}</h3>
+                <ul class="archived__list">
+                  @for (def of archivedTasks(); track def.id) {
+                    <li class="archived__item">
+                      <span class="archived__name">{{ lang.t(def.nameDe, def.nameEn) }}</span>
+                      <button type="button" class="archived__restore" (click)="onRestore(def, u)">
+                        {{ t('Wiederherstellen', 'Restore') }}
+                      </button>
+                    </li>
+                  }
+                </ul>
+              </section>
+            }
           }
         } @else {
           <app-task-calendar-view
@@ -199,6 +234,17 @@
         [userName]="u.name"
         (confirm)="onDialogConfirm($event, u)"
         (cancel)="onDialogCancel()"
+      />
+    }
+
+    @if (editDialog(); as dlg) {
+      <app-task-edit-dialog
+        [record]="dlg.kind === 'edit' ? dlg.record : null"
+        [categories]="categories()"
+        [categoryId]="dlg.kind === 'create' ? dlg.categoryId : ''"
+        (save)="onEditSave($event, u)"
+        (archive)="onEditArchive(u)"
+        (cancel)="onEditCancel()"
       />
     }
 

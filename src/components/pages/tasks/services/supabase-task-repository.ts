@@ -1,6 +1,8 @@
 import type { RealtimeChannel, SupabaseClient } from '@supabase/supabase-js';
 import type { PersistedTaskState, TaskMutableState } from '../models';
+import { STORAGE_SCHEMA_VERSION } from '../models';
 import { SUPABASE_CONFIG } from '../config/supabase.config';
+import { hasEdits, mergeEdits } from '../utils/task-edits';
 // Type-only: keeps the task-repository.ts ↔ this-file module cycle out of the
 // runtime graph (the factory there constructs this class).
 import type { LocalTaskRepository, TaskRepository } from './task-repository';
@@ -211,11 +213,14 @@ export class SupabaseTaskRepository implements TaskRepository {
     }
 
     // A row written by a NEWER app schema must not be merged (we would strip
-    // fields we do not know) — adopt it and drop any pending push. This only
-    // DEFERS the risk: the next local save on this outdated client still
+    // fields we do not know) — adopt it and drop any pending push. Compare
+    // against what THIS CODE understands, never the stored blob's stamp: a
+    // just-updated client still carrying an old-stamped blob must merge
+    // normally, or it would discard its own unpushed completions. This only
+    // DEFERS the risk: the next local save on a truly outdated client still
     // pushes a normalised (downgraded) state, so updating the app before
     // mutating is what actually resolves the situation.
-    if ((remote.schemaVersion ?? 1) > (localState.schemaVersion ?? 1)) {
+    if ((remote.schemaVersion ?? 1) > STORAGE_SCHEMA_VERSION) {
       console.warn('[tasks] remote state has a newer schema; adopting without push');
       this.local.save(remote);
       this.storage.remove(DIRTY_KEY);
@@ -225,7 +230,12 @@ export class SupabaseTaskRepository implements TaskRepository {
 
     const mustMerge =
       this.isDirty() ||
-      (hasProgress(localState) && (!hasProgress(remote) || firstContact));
+      (hasProgress(localState) && (!hasProgress(remote) || firstContact)) ||
+      // A stale pre-edits client can push rows WITHOUT the edits section
+      // (its normalise strips fields it does not know). Merge our edits back
+      // in instead of adopting the stripped row — the app never empties a
+      // non-empty edits section itself, so this cannot resurrect deletions.
+      (hasEdits(localState.edits) && !hasEdits(remote.edits));
     if (mustMerge) {
       const merged = mergeStates(localState, remote);
       this.local.save(merged);
@@ -417,6 +427,7 @@ function isDuplicateKey(code: string | undefined): boolean {
 
 /** Whether a state contains anything worth preserving beyond preferences. */
 export function hasProgress(state: PersistedTaskState): boolean {
+  if (hasEdits(state.edits)) return true;
   return Object.values(state.tasks ?? {}).some(
     (t) =>
       (t.history?.length ?? 0) > 0 ||
@@ -456,7 +467,9 @@ export function mergeStates(
   }
 
   const prefs = { ...(remote.prefs ?? {}), ...(local.prefs ?? {}) };
-  return { ...local, tasks, prefs };
+  // Plan edits: overrides win per task by newer updatedAt, added tasks union.
+  const edits = mergeEdits(local.edits, remote.edits);
+  return { ...local, tasks, prefs, edits };
 }
 
 /** History cap, mirrors TaskService's `.slice(0, 200)`. */

@@ -22,10 +22,14 @@ export class TaskListViewComponent {
   @Input({ required: true }) user!: TaskUser;
   @Input({ required: true }) now!: Date;
   @Input() collapsed: Record<string, boolean> = {};
+  /** Edit mode (Mojo): per-card pencils and per-category add buttons. */
+  @Input() editable = false;
 
   @Output() toggleCategory = new EventEmitter<string>();
   @Output() requestComplete = new EventEmitter<TaskRecord>();
   @Output() requestTrigger = new EventEmitter<TaskRecord>();
+  @Output() requestEdit = new EventEmitter<TaskRecord>();
+  @Output() requestAdd = new EventEmitter<string>();
 
   readonly lang = inject(LanguageService);
 

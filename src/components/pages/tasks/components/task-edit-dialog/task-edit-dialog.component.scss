@@ -1,0 +1,196 @@
+@use 'themes/theme-entry' as *;
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba($black, 0.5);
+  backdrop-filter: blur(5px);
+  animation: backdrop-in 0.25s ease-out both;
+}
+
+@keyframes backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dialog {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.35rem 1.35rem 1.25rem;
+  border-radius: 20px;
+  background: var(--surface, #fff);
+  box-shadow: var(--card-shadow-strong, 0 20px 60px rgba(0, 0, 0, 0.3));
+  animation: dialog-in 0.3s var(--ease-out, ease-out) both;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba($accent-1, 0.85), transparent);
+  }
+}
+
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+.dialog__title {
+  margin: 0 0 0.25rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink, #2b3328);
+}
+
+.dialog__hint {
+  margin: 0 0 0.9rem;
+  font-size: 0.8rem;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+}
+
+.dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dialog__field {
+  display: block;
+}
+
+.dialog__row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.dialog__field--half {
+  flex: 1 1 10rem;
+  min-width: 0;
+}
+
+.dialog__label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink, #2b3328);
+}
+
+.dialog__input {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  border: 1px solid var(--line-strong, rgba(43, 51, 40, 0.18));
+  border-radius: 10px;
+  resize: vertical;
+  background: var(--surface, #fff);
+  color: var(--ink, #2b3328);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus-visible {
+    outline: none;
+    border-color: $accent-1;
+    box-shadow: 0 0 0 3px color-mix(in srgb, #{$accent-1} 25%, transparent);
+  }
+}
+
+select.dialog__input {
+  appearance: auto;
+  resize: none;
+}
+
+.dialog__fixed-rhythm {
+  flex: 1 1 10rem;
+  margin: 0;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+  border-left: 2px solid color-mix(in srgb, #{$accent-1} 55%, transparent);
+  background: color-mix(in srgb, #{$accent-1} 6%, transparent);
+  border-radius: 0 8px 8px 0;
+}
+
+.dialog__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+
+.dialog__spacer {
+  flex: 1;
+}
+
+.dialog__btn {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 650;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.15s var(--ease-out, ease-out);
+
+  &:active:not(:disabled) { transform: scale(0.97); }
+
+  &:focus-visible {
+    outline: 2px solid $accent-1;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.dialog__btn--ghost {
+  background: transparent;
+  color: var(--ink, #2b3328);
+  border-color: var(--line-strong, rgba(43, 51, 40, 0.18));
+
+  &:hover { background: rgba($dark-1, 0.06); }
+}
+
+.dialog__btn--danger {
+  background: transparent;
+  color: var(--u-critical, #b4462f);
+  border-color: color-mix(in srgb, var(--u-critical, #b4462f) 40%, transparent);
+  padding: 0.55rem 0.9rem;
+
+  &:hover {
+    background: color-mix(in srgb, var(--u-critical, #b4462f) 10%, transparent);
+  }
+}
+
+.dialog__btn--primary {
+  background: linear-gradient(140deg, $dark-1, $dark-2);
+  color: $light-1;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 4px 14px color-mix(in srgb, #{$dark-2} 45%, transparent);
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .dialog {
+    animation: none;
+  }
+
+  .dialog__btn { transition: none; }
+}

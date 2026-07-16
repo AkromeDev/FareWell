@@ -1,8 +1,12 @@
 import { TaskViewMode } from './access.model';
+import { TaskEditsState, createEmptyEdits } from './edits.model';
 import { TaskMutableState } from './task.model';
 
-/** Current storage schema version. Bump when the persisted shape changes. */
-export const STORAGE_SCHEMA_VERSION = 1;
+/**
+ * Current storage schema version. Bump when the persisted shape changes.
+ * v2 (2026-07-16): added the `edits` section (team edits to the plan).
+ */
+export const STORAGE_SCHEMA_VERSION = 2;
 
 /** localStorage key holding the whole task state blob. */
 export const STORAGE_KEY = 'fw_tasks_state_v1';
@@ -28,6 +32,8 @@ export interface PersistedTaskState {
   seedVersion: string;
   tasks: Record<string, TaskMutableState>;
   prefs: Record<string, TaskPrefs>;
+  /** Team edits to the plan (overrides + added tasks), shared like tasks. */
+  edits: TaskEditsState;
 }
 
 export function createEmptyState(seedVersion: string): PersistedTaskState {
@@ -36,6 +42,7 @@ export function createEmptyState(seedVersion: string): PersistedTaskState {
     seedVersion,
     tasks: {},
     prefs: {},
+    edits: createEmptyEdits(),
   };
 }
 
