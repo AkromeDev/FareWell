@@ -2,8 +2,10 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { SeoService } from 'src/services/seo.service';
+import { LanguageService } from 'src/services/language.service';
 import {
   GUIDE_COMPONENTS,
+  GuideLang,
   GuideStat,
   GuideTocItem,
 } from 'src/components/molecules/guide';
@@ -22,23 +24,48 @@ const PAGE_DESCRIPTION =
 })
 export class KrankenkasseEpilationComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
+  private readonly language = inject(LanguageService);
   private readonly jsonLdId = 'krankenkasse-epilation-schema';
 
-  readonly stats: GuideStat[] = [
-    { value: '§ 27', label: 'SGB V · Sachleistung' },
-    { value: '5', label: 'Schritte zum Antrag' },
-    { value: '3 Wochen', label: 'Entscheidungsfrist der Kasse' },
-    { value: '1 Monat', label: 'Zeit für den Widerspruch' },
-  ];
+  get lang(): GuideLang {
+    return this.language.lang();
+  }
 
-  readonly toc: GuideTocItem[] = [
-    { id: 'warum', label: 'Warum die Kasse zahlen kann' },
-    { id: 'wissen', label: 'Was du wissen solltest' },
-    { id: 'schritte', label: 'In 5 Schritten zur Kostenübernahme' },
-    { id: 'gut-zu-wissen', label: 'Gut zu wissen' },
-    { id: 'termin', label: 'Was du zum Termin mitbringst' },
-    { id: 'weiterlesen', label: 'Weiterlesen' },
-  ];
+  t(de: string, en: string): string {
+    return this.language.t(de, en);
+  }
+
+  get stats(): GuideStat[] {
+    return [
+      { value: '§ 27', label: this.t('SGB V · Sachleistung', 'SGB V · benefit in kind') },
+      { value: '5', label: this.t('Schritte zum Antrag', 'Steps to your application') },
+      {
+        value: this.t('3 Wochen', '3 weeks'),
+        label: this.t('Entscheidungsfrist der Kasse', "Insurer's decision deadline"),
+      },
+      {
+        value: this.t('1 Monat', '1 month'),
+        label: this.t('Zeit für den Widerspruch', 'Time to object'),
+      },
+    ];
+  }
+
+  get toc(): GuideTocItem[] {
+    return [
+      { id: 'warum', label: this.t('Warum die Kasse zahlen kann', 'Why your insurer can pay') },
+      { id: 'wissen', label: this.t('Was du wissen solltest', 'What you should know') },
+      {
+        id: 'schritte',
+        label: this.t('In 5 Schritten zur Kostenübernahme', 'Coverage in 5 steps'),
+      },
+      { id: 'gut-zu-wissen', label: this.t('Gut zu wissen', 'Good to know') },
+      {
+        id: 'termin',
+        label: this.t('Was du zum Termin mitbringst', 'What to bring to your appointment'),
+      },
+      { id: 'weiterlesen', label: this.t('Weiterlesen', 'Further reading') },
+    ];
+  }
 
   ngOnInit(): void {
     this.seo.setPageSeo({

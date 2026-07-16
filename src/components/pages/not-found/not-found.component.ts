@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ImageHeroComponent } from '../../molecules/image-hero/image-hero.component';
+import { LanguageService } from 'src/services/language.service';
 
 
 @Component({
@@ -11,9 +12,15 @@ import { ImageHeroComponent } from '../../molecules/image-hero/image-hero.compon
 })
 export class NotFoundComponent implements OnInit {
 
+  readonly lang = inject(LanguageService);
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
   }
 
 }

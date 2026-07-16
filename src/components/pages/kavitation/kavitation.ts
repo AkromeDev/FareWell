@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
 import { BookingCtaComponent } from "src/components/atoms/booking-cta/booking-cta";
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   selector: 'app-kavitation',
@@ -15,6 +16,7 @@ import { BookingCtaComponent } from "src/components/atoms/booking-cta/booking-ct
 export class KavitationComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  readonly lang = inject(LanguageService);
 
   private readonly pageUrl = 'https://farewell.salon/behandlungen/kavitation';
   private readonly heroImageUrl =
@@ -22,17 +24,31 @@ export class KavitationComponent implements OnInit {
 
   constructor() {}
 
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
   ngOnInit(): void {
     this.setSeoTags();
     this.setStructuredData();
   }
 
-  paragraphText: string = `
+  get paragraphText(): string {
+    return this.t(
+      `
     Kavitation ist eine moderne, nicht-invasive Body-Treatment Methode mit Ultraschall.
     Sie unterstützt die Kontur und kann das Hautbild glätten – sanft, komfortabel und ohne Ausfallzeit.
 
     Alle wichtigen Infos zur Behandlung findest du weiter unten.
-  `;
+  `,
+      `
+    Cavitation is a modern, non-invasive body treatment that works with ultrasound.
+    It supports your contour and can smooth the look of your skin, gently, comfortably and with no downtime.
+
+    You will find all the key details about the treatment further down.
+  `
+    );
+  }
 
   structuredData = '';
 

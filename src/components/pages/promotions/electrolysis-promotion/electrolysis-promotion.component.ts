@@ -4,6 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
 import { ButtonItem } from 'src/models/ButtonItem';
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   standalone: true,
@@ -15,31 +16,48 @@ import { ButtonItem } from 'src/models/ButtonItem';
 export class ElectrolysisPromotionComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  readonly lang = inject(LanguageService);
 
   private readonly pageUrl =
     'https://www.farewell.salon/elektrolyse-permanente-haarentfernung-aktion-nuernberg';
   private readonly heroImageUrl =
     'https://www.farewell.salon/assets/images/treatment/nadel.jpg';
 
-  paragraphText: string = `
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  get paragraphText(): string {
+    return this.t(
+      `
     Permanente Haarentfernung mit Elektrolyse in Nürnberg bei FareWell.
 
     Diese Aktion gilt exklusiv für Neukundinnen und Neukunden und nur für kurze Zeit.
     Perfekt, um den Start in eine glattere und pflegeleichtere Zukunft zu setzen.
-  `;
+  `,
+      `
+    Permanent hair removal with electrolysis (Nadelepilation) in Nuremberg at FareWell.
 
-  buttonList: ButtonItem[] = [
-    { label: 'Unsere Preise', link: '/price', theme: 'dark' },
-    {
-      label: 'Termin buchen',
-      link: 'https://salonkee.de/salon/farewell?lang=de',
-      theme: 'dark',
-      external: true,
-      analyticsEvent: 'generate_lead',
-      analyticsLocation: 'electrolysis-page',
-      analyticsLabel: 'Termin Buchen Electrolysis Page'
-    }
-  ];
+    This offer is exclusively for new clients and only for a short time.
+    Perfect for starting your journey into a smoother, lower-maintenance future.
+  `
+    );
+  }
+
+  get buttonList(): ButtonItem[] {
+    return [
+      { label: this.t('Unsere Preise', 'Our prices'), link: '/price', theme: 'dark' },
+      {
+        label: this.t('Termin buchen', 'Book now'),
+        link: 'https://salonkee.de/salon/farewell?lang=de',
+        theme: 'dark',
+        external: true,
+        analyticsEvent: 'generate_lead',
+        analyticsLocation: 'electrolysis-page',
+        analyticsLabel: 'Termin Buchen Electrolysis Page'
+      }
+    ];
+  }
 
   structuredData = '';
 

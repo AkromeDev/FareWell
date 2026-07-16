@@ -1,12 +1,24 @@
-<div class="gd">
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
   <app-guide-progress />
-  <app-guide-top-button />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
   <app-guide-hero
-    kicker="FareWell · Nürnberg · Neukunden-Aktion"
-    heading="Laser-Haarentfernung in Nürnberg"
+    [kicker]="
+      t(
+        'FareWell · Nürnberg · Neukunden-Aktion',
+        'FareWell · Nuremberg · New-client offer'
+      )
+    "
+    [heading]="
+      t('Laser-Haarentfernung in Nürnberg', 'Laser hair removal in Nuremberg')
+    "
     tagline="Für immer sanft."
-    lead="Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser – präzise, schonend und für fast alle Körperzonen. Für Neukunden: 50% Rabatt auf die erste Behandlung mit dem Code FIRSTLASER."
+    [lead]="
+      t(
+        'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser, präzise, schonend und für fast alle Körperzonen. Für Neukunden: 50% Rabatt auf die erste Behandlung mit dem Code FIRSTLASER.',
+        'Long-lasting hair removal with the 4-wavelength diode laser, precise, gentle and suitable for almost every body area. For new clients: 50% off your first treatment with the code FIRSTLASER.'
+      )
+    "
     [image]="heroImage"
     [imageAlt]="heroImageAlt"
   />
@@ -16,182 +28,444 @@
   <div class="gd-wrap">
     <div class="gd-intro">
       <div class="gd-read">
-        <p class="gd-kick" appReveal>Kurz gesagt</p>
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
-          Du willst glatte Haut, ohne ständig zu rasieren, zu wachsen oder zu epilieren? Der
-          4-Wellen-Diodenlaser reduziert deinen Haarwuchs dauerhaft – und mit dem
-          Neukunden-Code kostet dich der Einstieg nur die Hälfte.
+          <span class="lang de">
+            Du willst glatte Haut, ohne ständig zu rasieren, zu wachsen oder zu epilieren? Der
+            4-Wellen-Diodenlaser reduziert deinen Haarwuchs dauerhaft, und mit dem Neukunden-Code
+            kostet dich der Einstieg nur die Hälfte.
+          </span>
+          <span class="lang en">
+            Want smooth skin without constantly shaving, waxing or epilating? The 4-wavelength
+            diode laser gives you long-lasting hair reduction, and with the new-client code your
+            first step costs only half.
+          </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
-          Alle Details zur Technologie findest du auf der Seite zum
-          <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a>, alle
-          Preise je Körperzone auf <a routerLink="/price">unserer Preisseite</a>. Oder du
-          startest direkt mit der
-          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          <span class="lang de">
+            Alle Details zur Technologie findest du auf der Seite zum
+            <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a>, alle
+            Preise je Körperzone auf <a routerLink="/price">unserer Preisseite</a>. Oder du
+            startest direkt mit der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            You'll find all the details about the technology on the page about the
+            <a routerLink="/behandlungen/diodenlaser-4-wellen">4-wavelength diode laser</a>, and
+            all prices per body area on <a routerLink="/price">our price page</a>. Or start right
+            away with the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
         </p>
       </div>
-      <app-guide-toc [items]="toc" />
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
     </div>
 
-    <app-guide-section index="01" heading="Preise &amp; Neukunden-Rabatt" sectionId="angebot">
+    <app-guide-section
+      index="01"
+      [heading]="t('Preise & Neukunden-Rabatt', 'Prices & new-client discount')"
+      sectionId="angebot"
+    >
       <app-guide-offer
-        eyebrow="Neukunden-Aktion · nur für kurze Zeit"
-        headline="50% auf deine erste Laser-Behandlung"
-        sub="Online buchen und den Code bei der Buchung angeben – gilt für Neukundinnen und Neukunden."
-        badgeLabel="Promo-Code"
+        [eyebrow]="
+          t(
+            'Neukunden-Aktion · nur für kurze Zeit',
+            'New-client offer · limited time only'
+          )
+        "
+        [headline]="
+          t('50% auf deine erste Laser-Behandlung', '50% off your first laser treatment')
+        "
+        [sub]="
+          t(
+            'Online buchen und den Code bei der Buchung angeben. Gilt für Neukundinnen und Neukunden.',
+            'Book online and enter the code when booking. Valid for new clients.'
+          )
+        "
+        [badgeLabel]="t('Promo-Code', 'Promo code')"
         badgeValue="FIRSTLASER"
       />
       <p class="gd-lead-p gd-read" appReveal>
-        Alle regulären Preise stehen je Körperzone auf
-        <a routerLink="/price">unserer Preisseite</a> – ohne versteckte Kosten. Die
-        Erstberatung ist immer kostenlos und unverbindlich.
+        <span class="lang de">
+          Alle regulären Preise stehen je Körperzone auf
+          <a routerLink="/price">unserer Preisseite</a>, ohne versteckte Kosten. Die
+          Erstberatung ist immer kostenlos und unverbindlich.
+        </span>
+        <span class="lang en">
+          All regular prices are listed per body area on
+          <a routerLink="/price">our price page</a>, with no hidden costs. The initial
+          consultation is always free and without obligation.
+        </span>
       </p>
     </app-guide-section>
 
-    <app-guide-section index="02" heading="Warum der 4-Wellen-Diodenlaser?" sectionId="vorteile">
+    <app-guide-section
+      index="02"
+      [heading]="t('Warum der 4-Wellen-Diodenlaser?', 'Why the 4-wavelength diode laser?')"
+      sectionId="vorteile"
+    >
       <p class="gd-lead-p gd-read" appReveal>
-        Bei FareWell arbeiten wir mit einem Diodenlaser der neuesten Generation. Er kombiniert
-        vier Wellenlängen in einem Gerät und erreicht damit unterschiedliche Tiefen und
-        Strukturen der Haarwurzel – für eine besonders wirksame und zugleich schonende
-        dauerhafte Haarentfernung.
+        <span class="lang de">
+          Bei FareWell arbeiten wir mit einem Diodenlaser der neuesten Generation. Er kombiniert
+          vier Wellenlängen in einem Gerät und erreicht damit unterschiedliche Tiefen und
+          Strukturen der Haarwurzel, für eine besonders wirksame und zugleich schonende
+          dauerhafte Haarentfernung.
+        </span>
+        <span class="lang en">
+          At FareWell we work with a diode laser of the latest generation. It combines four
+          wavelengths in a single device and reaches different depths and structures of the hair
+          root, for particularly effective yet gentle long-lasting hair removal.
+        </span>
       </p>
       <app-guide-checklist>
-        <li>Vier Wellenlängen erreichen unterschiedliche Haartiefen und Haarstrukturen in einer Sitzung</li>
-        <li>KI-gestützte Hauterkennung analysiert deinen Hauttyp und passt die Behandlung automatisch an</li>
-        <li>Größere Zonen wie Beine oder Rücken sind in kurzer Zeit behandelt</li>
-        <li>Individuelle Haut- und Haaranalyse vor jeder Behandlung – für ein sicheres, angepasstes Setting</li>
+        <li>
+          <span class="lang de">Vier Wellenlängen erreichen unterschiedliche Haartiefen und Haarstrukturen in einer Sitzung</span>
+          <span class="lang en">Four wavelengths reach different hair depths and structures in a single session</span>
+        </li>
+        <li>
+          <span class="lang de">KI-gestützte Hauterkennung analysiert deinen Hauttyp und passt die Behandlung automatisch an</span>
+          <span class="lang en">AI-assisted skin detection analyses your skin type and adjusts the treatment automatically</span>
+        </li>
+        <li>
+          <span class="lang de">Größere Zonen wie Beine oder Rücken sind in kurzer Zeit behandelt</span>
+          <span class="lang en">Larger areas like legs or back are treated in a short time</span>
+        </li>
+        <li>
+          <span class="lang de">Individuelle Haut- und Haaranalyse vor jeder Behandlung, für ein sicheres, angepasstes Setting</span>
+          <span class="lang en">Individual skin and hair analysis before every treatment, for a safe, tailored setting</span>
+        </li>
       </app-guide-checklist>
-      <app-guide-note variant="win" label="Dein Vorteil">
-        Wirksamer bei mehr Haut- und Haartypen als klassische IPL-Geräte – und deutlich
-        präziser, weil der Laser gezielt auf das Haarfollikel wirkt statt mit breit
-        gestreutem Licht.
+      <app-guide-note variant="win" [label]="t('Dein Vorteil', 'Your benefit')">
+        <span class="lang de">
+          Wirksamer bei mehr Haut- und Haartypen als klassische IPL-Geräte, und deutlich
+          präziser, weil der Laser gezielt auf das Haarfollikel wirkt statt mit breit
+          gestreutem Licht.
+        </span>
+        <span class="lang en">
+          More effective on more skin and hair types than classic IPL devices, and considerably
+          more precise, because the laser targets the hair follicle directly instead of using
+          broadly scattered light.
+        </span>
       </app-guide-note>
     </app-guide-section>
 
     <app-guide-section
       index="03"
-      heading="Dauerhaft oder permanent – was ist der Unterschied?"
+      [heading]="
+        t(
+          'Dauerhaft oder permanent, was ist der Unterschied?',
+          'Long-lasting or permanent, what is the difference?'
+        )
+      "
       sectionId="dauerhaft-permanent"
     >
       <p class="gd-lead-p gd-read" appReveal>
-        Ehrlichkeit gehört bei uns zur Beratung: <strong>Dauerhaft</strong> und
-        <strong>permanent</strong> sind nicht dasselbe. Beide Methoden bekommst du bei
-        FareWell – und wir sagen dir offen, welche zu dir passt.
+        <span class="lang de">
+          Ehrlichkeit gehört bei uns zur Beratung: <strong>Dauerhaft</strong> und
+          <strong>permanent</strong> sind nicht dasselbe. Beide Methoden bekommst du bei
+          FareWell, und wir sagen dir offen, welche zu dir passt.
+        </span>
+        <span class="lang en">
+          Honesty is part of our consultation: <strong>long-lasting</strong> and
+          <strong>permanent</strong> are not the same thing. You get both methods at FareWell,
+          and we tell you openly which one suits you.
+        </span>
       </p>
       <div class="gd-split">
-        <app-guide-panel heading="Diodenlaser – dauerhaft" tone="forest">
-          <li>Deutliche, langanhaltende Reduktion des Haarwuchses</li>
-          <li>Ideal für größere Zonen wie Beine, Rücken oder Achseln</li>
-          <li>Am wirksamsten bei dunkleren Haaren</li>
-          <li>Schnelle Sitzungen, gut planbar</li>
+        <app-guide-panel
+          [heading]="t('Diodenlaser, dauerhaft', 'Diode laser, long-lasting')"
+          tone="forest"
+        >
+          <li>
+            <span class="lang de">Deutliche, langanhaltende Reduktion des Haarwuchses</span>
+            <span class="lang en">Clear, long-lasting reduction of hair growth</span>
+          </li>
+          <li>
+            <span class="lang de">Ideal für größere Zonen wie Beine, Rücken oder Achseln</span>
+            <span class="lang en">Ideal for larger areas like legs, back or underarms</span>
+          </li>
+          <li>
+            <span class="lang de">Am wirksamsten bei dunkleren Haaren</span>
+            <span class="lang en">Most effective on darker hair</span>
+          </li>
+          <li>
+            <span class="lang de">Schnelle Sitzungen, gut planbar</span>
+            <span class="lang en">Fast sessions, easy to plan</span>
+          </li>
         </app-guide-panel>
-        <app-guide-panel heading="Elektrolyse – permanent" tone="sage" dots="sand" [revealDelay]="60">
-          <li>Die einzige in Deutschland rechtlich als permanent anerkannte Methode</li>
-          <li>Jede Haarwurzel wird einzeln und endgültig verödet</li>
-          <li>Wirkt bei jedem Haut- und Haartyp – auch bei hellen, feinen oder grauen Haaren</li>
-          <li>Ideal für Gesicht und kleinere Zonen</li>
+        <app-guide-panel
+          [heading]="t('Elektrolyse, permanent', 'Electrolysis, permanent')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Die einzige in Deutschland rechtlich als permanent anerkannte Methode</span>
+            <span class="lang en">The only method legally recognised as permanent in Germany</span>
+          </li>
+          <li>
+            <span class="lang de">Jede Haarwurzel wird einzeln und endgültig verödet</span>
+            <span class="lang en">Every hair root is deactivated individually and for good</span>
+          </li>
+          <li>
+            <span class="lang de">Wirkt bei jedem Haut- und Haartyp, auch bei hellen, feinen oder grauen Haaren</span>
+            <span class="lang en">Works on every skin and hair type, including light, fine or grey hair</span>
+          </li>
+          <li>
+            <span class="lang de">Ideal für Gesicht und kleinere Zonen</span>
+            <span class="lang en">Ideal for the face and smaller areas</span>
+          </li>
         </app-guide-panel>
       </div>
-      <app-guide-note variant="tip" label="Unsicher?">
-        In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an. Mehr zur
-        permanenten Methode liest du auf der Seite zur
-        <a routerLink="/behandlungen/nadelepilation">Nadelepilation (Elektrolyse)</a>.
+      <app-guide-note variant="tip" [label]="t('Unsicher?', 'Not sure?')">
+        <span class="lang de">
+          In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an. Mehr zur
+          permanenten Methode liest du auf der Seite zur
+          <a routerLink="/behandlungen/nadelepilation">Nadelepilation (Elektrolyse)</a>.
+        </span>
+        <span class="lang en">
+          In the free initial consultation we look at your skin and hair together. You can read
+          more about the permanent method on the page about
+          <a routerLink="/behandlungen/nadelepilation">needle epilation (electrolysis)</a>.
+        </span>
       </app-guide-note>
     </app-guide-section>
 
-    <app-guide-section index="04" heading="So läuft deine Behandlung ab" sectionId="ablauf">
+    <app-guide-section
+      index="04"
+      [heading]="t('So läuft deine Behandlung ab', 'How your treatment works')"
+      sectionId="ablauf"
+    >
       <app-guide-steps>
         <li>
-          <strong>Kostenlose Erstberatung.</strong> Wir analysieren Haut und Haare, erklären
-          dir realistisch, wie viele Sitzungen du brauchst, und erstellen dir auf Wunsch
-          einen schriftlichen Kostenvoranschlag.
+          <span class="lang de">
+            <strong>Kostenlose Erstberatung.</strong> Wir analysieren Haut und Haare, erklären
+            dir realistisch, wie viele Sitzungen du brauchst, und erstellen dir auf Wunsch
+            einen schriftlichen Kostenvoranschlag.
+          </span>
+          <span class="lang en">
+            <strong>Free initial consultation.</strong> We analyse your skin and hair, explain
+            realistically how many sessions you'll need, and on request prepare a written cost
+            estimate for you.
+          </span>
         </li>
         <li>
-          <strong>Dein Behandlungsplan.</strong> Zone, Intensität und Abstände werden auf
-          dich abgestimmt – die KI-gestützte Hauterkennung unterstützt das passende Setting.
+          <span class="lang de">
+            <strong>Dein Behandlungsplan.</strong> Zone, Intensität und Abstände werden auf
+            dich abgestimmt. Die KI-gestützte Hauterkennung unterstützt das passende Setting.
+          </span>
+          <span class="lang en">
+            <strong>Your treatment plan.</strong> Area, intensity and intervals are tailored to
+            you. The AI-assisted skin detection helps find the right setting.
+          </span>
         </li>
         <li>
-          <strong>Die Sitzungen.</strong> Haare wachsen in Zyklen, deshalb kommst du in
-          Abständen von einigen Wochen wieder – nur Haare in der Wachstumsphase reagieren
-          auf den Laser.
+          <span class="lang de">
+            <strong>Die Sitzungen.</strong> Haare wachsen in Zyklen, deshalb kommst du in
+            Abständen von einigen Wochen wieder. Nur Haare in der Wachstumsphase reagieren
+            auf den Laser.
+          </span>
+          <span class="lang en">
+            <strong>The sessions.</strong> Hair grows in cycles, so you come back every few
+            weeks. Only hair in the growth phase responds to the laser.
+          </span>
         </li>
         <li>
-          <strong>Das Ergebnis.</strong> Von Sitzung zu Sitzung wird der Haarwuchs sichtbar
-          feiner und lichter – bis du dir das Rasieren sparen kannst.
+          <span class="lang de">
+            <strong>Das Ergebnis.</strong> Von Sitzung zu Sitzung wird der Haarwuchs sichtbar
+            feiner und lichter, bis du dir das Rasieren sparen kannst.
+          </span>
+          <span class="lang en">
+            <strong>The result.</strong> From session to session the hair grows visibly finer
+            and sparser, until you can skip shaving altogether.
+          </span>
         </li>
       </app-guide-steps>
     </app-guide-section>
 
-    <app-guide-section index="05" heading="Alle Körperzonen" sectionId="zonen">
+    <app-guide-section
+      index="05"
+      [heading]="t('Alle Körperzonen', 'All body areas')"
+      sectionId="zonen"
+    >
       <p class="gd-lead-p gd-read" appReveal>
-        Vom kleinen Detail bis zur großen Fläche – für Frauen und Männer. Die Preise je Zone
-        findest du transparent auf <a routerLink="/price">unserer Preisseite</a>.
+        <span class="lang de">
+          Vom kleinen Detail bis zur großen Fläche, für Frauen und Männer. Die Preise je Zone
+          findest du transparent auf <a routerLink="/price">unserer Preisseite</a>.
+        </span>
+        <span class="lang en">
+          From the smallest detail to large areas, for women and men. You'll find the price for
+          each area transparently on <a routerLink="/price">our price page</a>.
+        </span>
       </p>
       <div class="gd-split">
-        <app-guide-panel heading="Beliebte Zonen">
-          <li>Beine und Achseln</li>
-          <li>Bikinizone und Intimbereich</li>
-          <li>Gesicht und Oberlippe</li>
-          <li>Arme und Hände</li>
+        <app-guide-panel [heading]="t('Beliebte Zonen', 'Popular areas')">
+          <li>
+            <span class="lang de">Beine und Achseln</span>
+            <span class="lang en">Legs and underarms</span>
+          </li>
+          <li>
+            <span class="lang de">Bikinizone und Intimbereich</span>
+            <span class="lang en">Bikini zone and intimate area</span>
+          </li>
+          <li>
+            <span class="lang de">Gesicht und Oberlippe</span>
+            <span class="lang en">Face and upper lip</span>
+          </li>
+          <li>
+            <span class="lang de">Arme und Hände</span>
+            <span class="lang en">Arms and hands</span>
+          </li>
         </app-guide-panel>
-        <app-guide-panel heading="Auch stark nachgefragt" dots="sand" [revealDelay]="60">
-          <li>Rücken und Schultern</li>
-          <li>Brust und Bauch</li>
-          <li>Nacken und Bartkontur bei Männern</li>
-          <li>Komplettpakete für mehrere Zonen</li>
+        <app-guide-panel
+          [heading]="t('Auch stark nachgefragt', 'Also in high demand')"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Rücken und Schultern</span>
+            <span class="lang en">Back and shoulders</span>
+          </li>
+          <li>
+            <span class="lang de">Brust und Bauch</span>
+            <span class="lang en">Chest and stomach</span>
+          </li>
+          <li>
+            <span class="lang de">Nacken und Bartkontur bei Männern</span>
+            <span class="lang en">Neck and beard contour for men</span>
+          </li>
+          <li>
+            <span class="lang de">Komplettpakete für mehrere Zonen</span>
+            <span class="lang en">Complete packages for several areas</span>
+          </li>
         </app-guide-panel>
       </div>
-      <app-guide-note variant="tip" label="Gut zu wissen">
-        Bei hormonell bedingtem Haarwuchs, etwa durch PCOS, empfehlen wir die
-        <a routerLink="/behandlungen/nadelepilation">Elektrolyse</a>: Sie verödet jede
-        Haarwurzel endgültig und wirkt unabhängig von Haarfarbe und Hormonlage. Wir beraten
-        dich dazu ehrlich und einfühlsam – kostenlos und unverbindlich.
+      <app-guide-note variant="tip" [label]="t('Gut zu wissen', 'Good to know')">
+        <span class="lang de">
+          Bei hormonell bedingtem Haarwuchs, etwa durch PCOS, empfehlen wir die
+          <a routerLink="/behandlungen/nadelepilation">Elektrolyse</a>: Sie verödet jede
+          Haarwurzel endgültig und wirkt unabhängig von Haarfarbe und Hormonlage. Wir beraten
+          dich dazu ehrlich und einfühlsam, kostenlos und unverbindlich.
+        </span>
+        <span class="lang en">
+          For hormone-related hair growth, for example due to PCOS, we recommend
+          <a routerLink="/behandlungen/nadelepilation">electrolysis</a>: it deactivates every
+          hair root for good and works independently of hair colour and hormones. We advise you
+          on this honestly and with empathy, free and without obligation.
+        </span>
       </app-guide-note>
     </app-guide-section>
 
-    <app-guide-section index="06" heading="Häufige Fragen zur Laser-Haarentfernung" sectionId="faq">
-      <app-faq-item question="Wie viele Sitzungen brauche ich beim Diodenlaser?">
-        <p>
-          Haare wachsen in Zyklen, und nur Haare in der Wachstumsphase reagieren auf den
-          Laser – deshalb sind immer mehrere Sitzungen im Abstand von einigen Wochen nötig.
-          Wie viele genau, hängt von Körperzone, Haardichte und Hormonlage ab. Eine
-          realistische Einschätzung bekommst du in der kostenlosen Erstberatung.
+    <app-guide-section
+      index="06"
+      [heading]="
+        t(
+          'Häufige Fragen zur Laser-Haarentfernung',
+          'Common questions about laser hair removal'
+        )
+      "
+      sectionId="faq"
+    >
+      <app-faq-item
+        [question]="
+          t(
+            'Wie viele Sitzungen brauche ich beim Diodenlaser?',
+            'How many sessions do I need with the diode laser?'
+          )
+        "
+      >
+        <p class="lang de">
+          Haare wachsen in Zyklen, und nur Haare in der Wachstumsphase reagieren auf den Laser.
+          Deshalb sind immer mehrere Sitzungen im Abstand von einigen Wochen nötig. Wie viele
+          genau, hängt von Körperzone, Haardichte und Hormonlage ab. Eine realistische
+          Einschätzung bekommst du in der kostenlosen Erstberatung.
+        </p>
+        <p class="lang en">
+          Hair grows in cycles, and only hair in the growth phase responds to the laser. That's
+          why several sessions a few weeks apart are always needed. Exactly how many depends on
+          the body area, hair density and hormones. You'll get a realistic estimate in the free
+          initial consultation.
         </p>
       </app-faq-item>
 
-      <app-faq-item question="Tut die Laser-Behandlung weh?">
-        <p>
-          Die meisten empfinden die Impulse als kurzes, warmes Zwicken – deutlich sanfter
-          als Wachsen oder Epilieren. Wir stimmen die Intensität individuell auf deine Haut
-          ab und tasten uns gemeinsam an das richtige Setting heran.
+      <app-faq-item
+        [question]="t('Tut die Laser-Behandlung weh?', 'Does the laser treatment hurt?')"
+      >
+        <p class="lang de">
+          Die meisten empfinden die Impulse als kurzes, warmes Zwicken, deutlich sanfter als
+          Wachsen oder Epilieren. Wir stimmen die Intensität individuell auf deine Haut ab und
+          tasten uns gemeinsam an das richtige Setting heran.
+        </p>
+        <p class="lang en">
+          Most people feel the pulses as a brief, warm pinch, much gentler than waxing or
+          epilating. We adjust the intensity individually to your skin and find the right
+          setting together.
         </p>
       </app-faq-item>
 
-      <app-faq-item question="Für welche Haut- und Haartypen eignet sich der Diodenlaser?">
-        <p>
+      <app-faq-item
+        [question]="
+          t(
+            'Für welche Haut- und Haartypen eignet sich der Diodenlaser?',
+            'Which skin and hair types is the diode laser suitable for?'
+          )
+        "
+      >
+        <p class="lang de">
           Am wirksamsten ist der Laser bei dunkleren Haaren. Durch die Kombination von vier
           Wellenlängen und die KI-gestützte Hauterkennung kann unser Gerät mehr Haut- und
           Haartypen behandeln als klassische IPL-Systeme. Für helle, feine oder graue Haare
-          empfehlen wir die <a routerLink="/behandlungen/nadelepilation">Elektrolyse</a> –
-          sie wirkt unabhängig von der Haarfarbe.
+          empfehlen wir die <a routerLink="/behandlungen/nadelepilation">Elektrolyse</a>, sie
+          wirkt unabhängig von der Haarfarbe.
+        </p>
+        <p class="lang en">
+          The laser is most effective on darker hair. By combining four wavelengths with
+          AI-assisted skin detection, our device can treat more skin and hair types than classic
+          IPL systems. For light, fine or grey hair we recommend
+          <a routerLink="/behandlungen/nadelepilation">electrolysis</a>, which works
+          independently of hair colour.
         </p>
       </app-faq-item>
 
-      <app-faq-item question="Ist das Ergebnis dauerhaft oder permanent?">
-        <p>
+      <app-faq-item
+        [question]="
+          t('Ist das Ergebnis dauerhaft oder permanent?', 'Is the result long-lasting or permanent?')
+        "
+      >
+        <p class="lang de">
           Der Diodenlaser erreicht eine <strong>dauerhafte</strong> Haarentfernung, also
           eine deutliche, langanhaltende Reduktion des Haarwuchses.
           <strong>Permanent</strong> ist in Deutschland allein die
           <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a>, die
           jede Haarwurzel einzeln und endgültig verödet. Bei FareWell bekommst du beide
-          Methoden – und eine ehrliche Empfehlung, was zu dir passt.
+          Methoden, und eine ehrliche Empfehlung, was zu dir passt.
+        </p>
+        <p class="lang en">
+          The diode laser achieves <strong>long-lasting</strong> hair removal, meaning a clear,
+          enduring reduction of hair growth. In Germany, only
+          <a routerLink="/behandlungen/nadelepilation">electrolysis (needle epilation)</a> is
+          <strong>permanent</strong>, deactivating every hair root individually and for good. At
+          FareWell you get both methods, and an honest recommendation about what suits you.
         </p>
       </app-faq-item>
     </app-guide-section>
 
-    <app-guide-cta heading="Sichere dir deine erste Behandlung zum halben Preis">
-      Buche online über Salonkee und gib den Code <strong>FIRSTLASER</strong> an – oder
-      starte mit der kostenlosen Erstberatung, wenn du erst Fragen klären möchtest.
+    <app-guide-cta
+      [heading]="
+        t(
+          'Sichere dir deine erste Behandlung zum halben Preis',
+          'Get your first treatment at half price'
+        )
+      "
+    >
+      <span class="lang de">
+        Buche online über Salonkee und gib den Code <strong>FIRSTLASER</strong> an, oder
+        starte mit der kostenlosen Erstberatung, wenn du erst Fragen klären möchtest.
+      </span>
+      <span class="lang en">
+        Book online via Salonkee and enter the code <strong>FIRSTLASER</strong>, or start with
+        the free initial consultation if you'd like to clear up some questions first.
+      </span>
     </app-guide-cta>
   </div>
 </div>

@@ -3,12 +3,14 @@ import {
   Component,
   Input,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  inject
 } from '@angular/core';
 import { BodyPart, BODY_PARTS, BodyPartKey, BodyParts } from '../body-selector/body-part.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from 'src/components/dropdown/dropdown.component';
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   selector: 'app-time-calculator',
@@ -20,24 +22,38 @@ import { DropdownComponent } from 'src/components/dropdown/dropdown.component';
 })
 export class TimeCalculatorComponent implements OnChanges {
   @Input() selectedPart!: BodyPart;
-  
+
+  private readonly lang = inject(LanguageService);
+
     userSizeCm = 170;
     density: 'low' | 'medium' | 'high' = 'medium';
     speedMultiplier: number = 1;
-  
-    speedOptions: { label: string; value: number }[] = [];
-  
+
     sessionDates: Date[] = [];
     recommendedSessions: number = 0;
     totalHours: number = 0;
-  
+
     waveCount: number = 0;
     sessionPlan: { date: Date; hours: number; label?: string }[] = [];
 
-  bodyPartOptions = BODY_PARTS.map(part => ({
-    label: part.label,
-    value: part.key
-  }));  
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  get bodyPartOptions(): { label: string; value: BodyPartKey }[] {
+    return BODY_PARTS.map(part => ({
+      label: this.t(part.label, part.labelEn),
+      value: part.key
+    }));
+  }
+
+  get speedOptions(): { label: string; value: number }[] {
+    const max = this.selectedPart?.maxMultiplier || 1;
+    return Array.from({ length: max }, (_, i) => i + 1).map(n => ({
+      label: `x${n} (${n === 1 ? this.t('Einzeln', 'single') : this.t(`${n} gleichzeitig`, `${n} at once`)})`,
+      value: n
+    }));
+  }
 
   selectedPartKey: BodyPartKey = 'armpits'; // default
 
@@ -57,11 +73,6 @@ export class TimeCalculatorComponent implements OnChanges {
 
   generateSpeedOptions(): void {
     const max = this.selectedPart?.maxMultiplier || 1;
-
-    this.speedOptions = Array.from({ length: max }, (_, i) => i + 1).map(n => ({
-      label: `x${n} (${n === 1 ? 'Einzeln' : `${n} gleichzeitig`})`,
-      value: n
-    }));
 
     if (this.speedMultiplier > max) {
       this.speedMultiplier = 1;

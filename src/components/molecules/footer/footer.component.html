@@ -1,7 +1,9 @@
 <div class="footer-section">
   <div class="footer-primary">
     <h2 class="back-to-top">
-      <a [appScrollTo]="'topSection'" class="footer-action no-underline">Back Home</a>
+      <a [appScrollTo]="'topSection'" class="footer-action no-underline"
+        ><span class="lang de">Zurück nach oben</span><span class="lang en">Back to top</span></a
+      >
     </h2>
 
     <div class="social-buttons">
@@ -65,7 +67,7 @@
         class="footer-action no-underline"
         (click)="trackBookingClick($event)"
       >
-        TERMIN BUCHEN
+        <span class="lang de">TERMIN BUCHEN</span><span class="lang en">BOOK NOW</span>
       </a>
     </h3>
   </div>
@@ -78,7 +80,7 @@
           href="https://g.co/kgs/ycCwT2s"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Öffnet Google Maps in einem neuen Tab oder in der App"
+          [attr.aria-label]="t('Öffnet Google Maps in einem neuen Tab oder in der App', 'Opens Google Maps in a new tab or in the app')"
         >
           Frauentorgraben 5<br />
           90443 Nürnberg
@@ -87,15 +89,26 @@
       <p><a href="tel:+4915757995694">tel: +49 157 5799 5694</a></p>
       <p><a href="mailto:info@farewell.salon">FareWellGmbH&#64;gmail.com</a></p>
       <p>
-        <a [routerLink]="['/karriere/masseur-nuernberg']">Karriere bei FareWell: Masseur:in</a>
+        <a [routerLink]="['/karriere/masseur-nuernberg']"
+          ><span class="lang de">Karriere bei FareWell: Masseur:in</span
+          ><span class="lang en">Careers at FareWell: massage therapist</span></a
+        >
       </p>
     </div>
 
     <div class="column links">
-      <a [routerLink]="['/faq']">FAQ & Ratgeber</a>
-      <a [routerLink]="['/impressum']">Impressum</a>
-      <a [routerLink]="['/datenschutz']">Datenschutz</a>
-      <a [routerLink]="['/agb']">AGB</a>
+      <a [routerLink]="['/faq']"
+        ><span class="lang de">FAQ &amp; Ratgeber</span><span class="lang en">FAQ &amp; guides</span></a
+      >
+      <a [routerLink]="['/impressum']"
+        ><span class="lang de">Impressum</span><span class="lang en">Imprint</span></a
+      >
+      <a [routerLink]="['/datenschutz']"
+        ><span class="lang de">Datenschutz</span><span class="lang en">Privacy</span></a
+      >
+      <a [routerLink]="['/agb']"
+        ><span class="lang de">AGB</span><span class="lang en">Terms</span></a
+      >
     </div>
   </div>
 </div>

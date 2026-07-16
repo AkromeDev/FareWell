@@ -1,9 +1,12 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { SeoService } from 'src/services/seo.service';
+import { LanguageService } from 'src/services/language.service';
 import {
   GUIDE_COMPONENTS,
+  GuideLang,
   GuideStat,
   GuideTocItem,
 } from 'src/components/molecules/guide';
@@ -31,29 +34,56 @@ interface FaqJsonLdEntry {
 })
 export class IplPromotionComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly language = inject(LanguageService);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly jsonLdId = 'ipl-promotion-schema';
 
   readonly heroImage = HERO_IMAGE;
   readonly heroImageAlt = HERO_IMAGE_ALT;
 
-  readonly stats: GuideStat[] = [
-    { value: '4', label: 'Wellenlängen statt breitem Streulicht' },
-    { value: 'KI', label: 'gestützte Hauterkennung' },
-    { value: '50%', label: 'Rabatt auf deine erste Behandlung' },
-    { value: 'gratis', label: 'Erstberatung mit Hautanalyse' },
-  ];
+  get lang(): GuideLang {
+    return this.language.lang();
+  }
 
-  readonly toc: GuideTocItem[] = [
-    { id: 'angebot', label: 'Neukunden-Angebot' },
-    { id: 'ipl-vs-laser', label: 'IPL vs. Diodenlaser' },
-    { id: 'warum-farewell', label: 'Warum FareWell' },
-    { id: 'ablauf', label: 'So läuft es ab' },
-    { id: 'faq', label: 'Häufige Fragen' },
-  ];
+  t(de: string, en: string): string {
+    return this.language.t(de, en);
+  }
+
+  get stats(): GuideStat[] {
+    return [
+      {
+        value: '4',
+        label: this.t('Wellenlängen statt breitem Streulicht', 'wavelengths instead of broad scattered light'),
+      },
+      {
+        value: this.t('KI', 'AI'),
+        label: this.t('gestützte Hauterkennung', 'assisted skin detection'),
+      },
+      {
+        value: '50%',
+        label: this.t('Rabatt auf deine erste Behandlung', 'off your first treatment'),
+      },
+      {
+        value: this.t('gratis', 'free'),
+        label: this.t('Erstberatung mit Hautanalyse', 'initial consultation with skin analysis'),
+      },
+    ];
+  }
+
+  get toc(): GuideTocItem[] {
+    return [
+      { id: 'angebot', label: this.t('Neukunden-Angebot', 'New-client offer') },
+      { id: 'ipl-vs-laser', label: this.t('IPL vs. Diodenlaser', 'IPL vs. diode laser') },
+      { id: 'warum-farewell', label: this.t('Warum FareWell', 'Why FareWell') },
+      { id: 'ablauf', label: this.t('So läuft es ab', 'How it works') },
+      { id: 'faq', label: this.t('Häufige Fragen', 'FAQ') },
+    ];
+  }
 
   /**
-   * Fragen und Antworten als Klartext für das FAQPage-Schema. Inhaltlich
-   * deckungsgleich mit dem sichtbaren Akkordeon im Template halten!
+   * Fragen und Antworten als Klartext für das FAQPage-Schema (deutsche Fassung).
+   * Inhaltlich deckungsgleich mit dem sichtbaren Akkordeon im Template halten!
    */
   private readonly faqEntries: FaqJsonLdEntry[] = [
     {
@@ -152,6 +182,13 @@ export class IplPromotionComponent implements OnInit, OnDestroy {
         },
       ],
     });
+
+    if (this.isBrowser) {
+      const fromQuery = this.route.snapshot.queryParamMap.get('lang');
+      if (fromQuery === 'de' || fromQuery === 'en') {
+        this.language.setLang(fromQuery);
+      }
+    }
   }
 
   ngOnDestroy(): void {

@@ -29,14 +29,6 @@ export class AppComponent {
         if (canonical) {
           canonical.href = `https://farewell.salon${e.urlAfterRedirects}`;
         }
-
-        // Dokumentsprache pro Route (z. B. englischer US-Forces-Ratgeber),
-        // damit <html lang> zu Inhalt, og:locale und hreflang passt.
-        let route = this.router.routerState.snapshot.root;
-        while (route.firstChild) {
-          route = route.firstChild;
-        }
-        this.document.documentElement.lang = (route.data['lang'] as string) ?? 'de';
       });
   }
 }

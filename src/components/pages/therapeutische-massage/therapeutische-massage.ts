@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
 import { BookingCtaComponent } from 'src/components/atoms/booking-cta/booking-cta';
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   selector: 'app-therapeutische-massage',
@@ -15,16 +16,30 @@ import { BookingCtaComponent } from 'src/components/atoms/booking-cta/booking-ct
 export class TherapeutischeMassageComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  readonly lang = inject(LanguageService);
 
   private readonly pageUrl = 'https://farewell.salon/behandlungen/therapeutische-massage';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/massages/tm%20massaging.jpg';
 
-  paragraphText: string = `
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  get paragraphText(): string {
+    return this.t(
+      `
     Bei FareWell verbinden wir achtsame Berührung mit funktionellem Blick auf deine Beschwerden,
     Belastungen und Ziele. Jede Behandlung wird individuell angepasst,
     für mehr Beweglichkeit, Regeneration und ein besseres Körpergefühl.
-  `;
+  `,
+      `
+    At FareWell we combine mindful touch with a functional eye on your discomfort,
+    strain and goals. Every treatment is tailored to you personally,
+    for more mobility, recovery and a better sense of your body.
+  `
+    );
+  }
 
   structuredData = '';
 

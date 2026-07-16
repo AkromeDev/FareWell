@@ -2,11 +2,11 @@
 <app-image-text-block
   id="dauer"
   theme="dark"
-  title="Wie berechnen wir deine Behandlungszeit?"
+  [title]="t('Wie berechnen wir deine Behandlungszeit?', 'How do we calculate your treatment time?')"
   [backgroundImage]="'assets/images/farewell/calculate.png'"
   imagePosition="left"
 >
-<section class="time-explanation">
+<section class="time-explanation lang de">
   <p>
     Die Elektrolyse wirkt nur, wenn sich das Haar in der <strong>Anagenphase</strong> befindet, der aktiven Wachstumsphase. 
     Da <strong>nicht alle Haare gleichzeitig</strong> in dieser Phase sind, sind mehrere Behandlungswellen notwendig.
@@ -55,8 +55,63 @@
 
   <p>
     <em>
-      Hinweis: Die hier verwendeten Werte basieren auf öffentlich verfügbaren Quellen und dienen zur Orientierung. 
+      Hinweis: Die hier verwendeten Werte basieren auf öffentlich verfügbaren Quellen und dienen zur Orientierung.
       Sie werden regelmäßig angepasst und mit realen Erfahrungswerten aktualisiert, sobald unser Salon <strong>FareWell</strong> offiziell eröffnet ist.
+    </em>
+  </p>
+</section>
+
+<section class="time-explanation lang en">
+  <p>
+    Electrolysis only works while the hair is in its <strong>anagen phase</strong>, the active growth phase.
+    Because <strong>not all hairs</strong> are in this phase at the same time, several waves of treatment are needed.
+  </p>
+
+  <h3>Example: underarms</h3>
+  <ul>
+    <li>On average <strong>60 %</strong> of the hairs can be treated per session</li>
+    <li>Reaching 100 % takes roughly <strong>2 treatment phases</strong></li>
+    <li>At the end we also recommend a <strong>clean-up session</strong></li>
+  </ul>
+
+  <h3>Other factors we take into account:</h3>
+  <ul>
+    <li><strong>Body size:</strong> more area means more time</li>
+    <li><strong>Hair density:</strong> denser hair means more time</li>
+    <li><strong>Speed factor:</strong> on larger areas several electrologists can work at the same time (for example the back)</li>
+  </ul>
+
+  <h3>Your personal schedule</h3>
+  <p>
+    Each session is spaced about <strong>10 weeks</strong> apart, so new hairs can move into the anagen phase.
+  </p>
+
+  <div class="example-box">
+    <p><strong>Example schedule:</strong></p>
+    <ul>
+      <li>Week of 23 July 2025: <strong>2.5 hours</strong></li>
+      <li>Week of 1 October 2025: <strong>2 hours</strong></li>
+      <li>Week of 10 December 2025: <strong>clean-up, 1 hour</strong></li>
+    </ul>
+    <p class="note">
+      💡 You do not have to do these hours <strong>in a single day</strong>, they can be spread across several appointments in the week.
+    </p>
+  </div>
+
+  <h3>In summary:</h3>
+  <p>
+    The total time is made up of:
+  </p>
+  <ul>
+    <li>The number of treatment phases needed</li>
+    <li>The additional clean-up session</li>
+    <li>Your size, hair density and the chosen speed</li>
+  </ul>
+
+  <p>
+    <em>
+      Note: the values used here are based on publicly available sources and serve as a guide.
+      They are reviewed regularly and updated with real world experience once our salon <strong>FareWell</strong> has officially opened.
     </em>
   </p>
 </section>

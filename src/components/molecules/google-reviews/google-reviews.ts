@@ -5,9 +5,11 @@ import {
   HostListener,
   OnChanges,
   SimpleChanges,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import googleReviewsJson from 'src/assets/data/google-reviews.json';
+import { LanguageService } from 'src/services/language.service';
 
 export interface GooglePlaceReviewsResponse {
   source: 'google' | 'cache';
@@ -54,7 +56,13 @@ type Vm = {
 export class GoogleReviewsComponent implements OnChanges {
   @Input() maxItems = 8;
 
+  readonly lang = inject(LanguageService);
+
   activeIndex = 0;
+
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
 
   private touchStartX: number | null = null;
   private perView = 1;

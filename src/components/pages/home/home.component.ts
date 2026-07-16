@@ -6,6 +6,7 @@ import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-he
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
 import { ButtonItem } from 'src/models/ButtonItem';
 import { OpeningHoursComponent } from 'src/components/atoms/opening-hours/opening-hours.component';
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   selector: 'app-home',
@@ -23,33 +24,51 @@ import { OpeningHoursComponent } from 'src/components/atoms/opening-hours/openin
 export class HomeComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  readonly lang = inject(LanguageService);
 
   private readonly pageUrl = 'https://farewell.salon/';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/farewell/studio.webp';
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
 
-  paragraphText: string = `
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  get paragraphText(): string {
+    return this.t(
+      `
 Der Beauty Salon FareWell ist spezialisiert auf Nadelepilation, die einzige Methode zur Haarentfernung, die von medizinischen Fachstellen als wirklich permanent anerkannt ist. Unabhängig von Haarfarbe oder Hauttyp.
 
 Ergänzend bieten wir Laser Haarentfernung zur dauerhaften Haarreduktion, Microneedling mit Radiofrequenz zur Hautverjüngung und Narbenbehandlung sowie Körperforming mit Ultraschall und Radiofrequenz zur Straffung und Behandlung von Cellulite an.
 
 Willkommen in deiner neuen permanenten Freiheit.
-`;
+`,
+      `
+The FareWell beauty salon specialises in electrolysis (Nadelepilation), the only hair removal method recognised by medical authorities as truly permanent, regardless of hair colour or skin type.
 
-  buttonList: ButtonItem[] = [
-    { label: 'Mehr erfahren', link: '/behandlung', theme: 'dark' },
-    { label: 'Unsere Preise', link: '/price', theme: 'dark' },
-    {
-      label: 'Termin buchen',
-      link: 'https://salonkee.de/salon/farewell?lang=de',
-      theme: 'dark',
-      external: true,
-      analyticsEvent: 'generate_lead',
-      analyticsLocation: 'home-page',
-      analyticsLabel: 'Termin Buchen Home Page'
+We also offer laser hair removal for long-lasting hair reduction, radiofrequency microneedling for skin rejuvenation and scar treatment, and body forming with ultrasound and radiofrequency to firm the skin and treat cellulite.
+
+Welcome to your new permanent freedom.
+`
+    );
   }
-  ];
+
+  get buttonList(): ButtonItem[] {
+    return [
+      { label: this.t('Mehr erfahren', 'Learn more'), link: '/behandlung', theme: 'dark' },
+      { label: this.t('Unsere Preise', 'Our prices'), link: '/price', theme: 'dark' },
+      {
+        label: this.t('Termin buchen', 'Book now'),
+        link: 'https://salonkee.de/salon/farewell?lang=de',
+        theme: 'dark',
+        external: true,
+        analyticsEvent: 'generate_lead',
+        analyticsLocation: 'home-page',
+        analyticsLabel: 'Termin Buchen Home Page'
+      }
+    ];
+  }
 
   activeTab: string = 'home';
   structuredData = '';

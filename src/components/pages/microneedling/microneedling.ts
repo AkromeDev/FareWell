@@ -3,6 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   selector: 'app-microneedling',
@@ -14,6 +15,7 @@ import { ImageTextBlockComponent } from 'src/components/molecules/image-text-blo
 export class MicroneedlingComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  readonly lang = inject(LanguageService);
 
   private readonly pageUrl = 'https://farewell.salon/behandlungen/microneedling-radiofrequenz';
   private readonly heroImageUrl =
@@ -21,12 +23,26 @@ export class MicroneedlingComponent implements OnInit {
 
   constructor() {}
 
-  paragraphText: string = `
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  get paragraphText(): string {
+    return this.t(
+      `
     Microneedling mit Radiofrequenz kombiniert feine Mikro-Nadeln mit gezielter Wärme in der Tiefe.
     Das Ergebnis: straffere Haut, ein verfeinertes Hautbild und ein frischer Glow – ganz ohne OP.
 
     Alle wichtigen Infos zur Behandlung findest du weiter unten.
-  `;
+  `,
+      `
+    Radiofrequency microneedling combines fine micro-needles with targeted warmth deep in the skin.
+    The result: firmer skin, a refined complexion and a fresh glow, all without surgery.
+
+    You will find all the key details about the treatment further down.
+  `
+    );
+  }
 
   structuredData = '';
 

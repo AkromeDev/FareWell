@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
 import { BookingCtaComponent } from 'src/components/atoms/booking-cta/booking-cta';
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   selector: 'app-diodenlaser',
@@ -15,18 +16,34 @@ import { BookingCtaComponent } from 'src/components/atoms/booking-cta/booking-ct
 export class Diodenlaser implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  readonly lang = inject(LanguageService);
 
   private readonly pageUrl = 'https://farewell.salon/behandlungen/diodenlaser-4-wellen';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/laser.webp';
 
-  paragraphText: string = `
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  get paragraphText(): string {
+    return this.t(
+      `
     Der 4-Wellen-Diodenlaser ist eine moderne Methode zur dauerhaften Haarentfernung.
     Durch mehrere Wellenlängen können verschiedene Haar- und Hauttypen effektiv behandelt werden,
     komfortabel, schnell und mit planbaren Intervallen.
 
     Alle wichtigen Infos zur Behandlung findest du weiter unten.
-  `;
+  `,
+      `
+    The 4-wavelength diode laser is a modern method for long-lasting hair removal.
+    Its multiple wavelengths treat a wide range of hair and skin types effectively,
+    comfortably, quickly and with predictable intervals.
+
+    You will find all the key information about the treatment further down.
+  `
+    );
+  }
 
   structuredData = '';
 

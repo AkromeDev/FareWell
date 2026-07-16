@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
+import { LanguageService } from 'src/services/language.service';
 
 declare global {
   interface Window {
@@ -17,7 +18,13 @@ declare global {
 })
 export class FooterComponent {
 
+  readonly lang = inject(LanguageService);
+
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
+
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
 
   trackBookingClick(event: MouseEvent): void {
     event.preventDefault();

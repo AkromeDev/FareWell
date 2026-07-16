@@ -8,7 +8,7 @@
   [backgroundImage]="'assets/images/treatment/massage-hero.jpg'"
   [shadow]="'dark'"
   [titleLevel]="'h1'"
-  [title]="'Wellness Massagen: Entspannung, Regeneration & neue Leichtigkeit'"
+  [title]="t('Wellness Massagen: Entspannung, Regeneration & neue Leichtigkeit', 'Wellness massages: relaxation, recovery and new lightness')"
   [titleType]="'blur'"
   [height]="'75'"
 >
@@ -16,23 +16,36 @@
 
 <app-image-text-block
   theme="light"
-  title="Massagen bei FareWell"
+  [title]="t('Massagen bei FareWell', 'Massages at FareWell')"
   [backgroundImage]="'assets/images/treatment/massage-intro.png'"
   imagePosition="right"
 >
-  <p>
+  <p class="lang de">
     Lass Verspannungen los und schenke dir eine regenerierende Massage.
     Ob nach einem langen Arbeitstag, intensiven Sporteinheiten oder einfach zur puren Entspannung.
     Unsere Massagen helfen dir, dich rundum wohlzufühlen.
   </p>
+  <p class="lang en">
+    Let go of tension and treat yourself to a restoring massage.
+    Whether after a long day at work, an intense workout or simply for pure relaxation.
+    Our massages help you feel good all over.
+  </p>
 
-  <p>
+  <p class="lang de">
     💚 Bei <strong>FareWell</strong> steht dein Wohlbefinden im Fokus: achtsame Berührung,
     gezielte Techniken und ein ruhiger Rahmen, damit du wirklich abschalten kannst.
   </p>
+  <p class="lang en">
+    💚 At <strong>FareWell</strong> your wellbeing is the focus: mindful touch,
+    targeted techniques and a calm setting, so you can truly switch off.
+  </p>
 
-  <p>
+  <p class="lang de">
     👉 Termin buchen:
+    <app-booking-cta location="massage-page"></app-booking-cta>
+  </p>
+  <p class="lang en">
+    👉 Book your appointment:
     <app-booking-cta location="massage-page"></app-booking-cta>
   </p>
 </app-image-text-block>
@@ -40,27 +53,49 @@
 <app-image-text-block
   id="ruecken"
   theme="dark"
-  title="Rücken-Schulter-Nacken-Massage"
+  [title]="t('Rücken-Schulter-Nacken-Massage', 'Back, shoulder and neck massage')"
   [backgroundImage]="'assets/images/treatment/massage-back.webp'"
   imagePosition="left"
 >
-  <p class="priceLine">
+  <p class="priceLine lang de">
     <strong>45 Min | 58€</strong> &nbsp;·&nbsp; <strong>60 Min | 78€</strong>
   </p>
+  <p class="priceLine lang en">
+    <strong>45 min | 58€</strong> &nbsp;·&nbsp; <strong>60 min | 78€</strong>
+  </p>
 
-  <p>
+  <p class="lang de">
     Diese wohltuende Kombination aus klassischer Rückenmassage und gezielter Schulter-Nacken-Arbeit
     gleicht typische Fehlhaltungen im Alltag aus. Mit einer Vielfalt an Streich-, Knet-, Druck- und
     Dehntechniken lösen wir Verspannungen gezielt und spürbar.
   </p>
+  <p class="lang en">
+    This soothing combination of a classic back massage and focused shoulder and neck work
+    balances out the typical postural strain of everyday life. With a wide range of stroking, kneading,
+    pressure and stretching techniques, we release tension precisely and noticeably.
+  </p>
 
-  <p>
+  <p class="lang de">
     Besonders, wenn du viel am Schreibtisch arbeitest oder immer die gleichen Bewegungen machst,
     ist diese Anwendung wie ein Reset für deinen Körper, für mehr Leichtigkeit, Aufrichtung und Wohlbefinden.
   </p>
+  <p class="lang en">
+    Especially if you spend a lot of time at a desk or repeat the same movements again and again,
+    this treatment feels like a reset for your body, for more lightness, better posture and wellbeing.
+  </p>
 
-  <p>
+  <p class="lang de">
     👉 Direkt buchen:
+    <a
+      href="https://salonkee.de/salon/farewell?lang=de"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Salonkee
+    </a>
+  </p>
+  <p class="lang en">
+    👉 Book directly:
     <a
       href="https://salonkee.de/salon/farewell?lang=de"
       target="_blank"
@@ -74,31 +109,56 @@
 <app-image-text-block
   id="ganzkoerper"
   theme="light"
-  title="Ganzkörpermassage mit Aromaölen & Klangschale"
+  [title]="t('Ganzkörpermassage mit Aromaölen & Klangschale', 'Full-body massage with aroma oils and singing bowl')"
   [backgroundImage]="'assets/images/treatment/massage-aroma.png'"
   imagePosition="right"
 >
-  <p class="priceLine">
+  <p class="priceLine lang de">
     <strong>60 Min | 78€</strong> &nbsp;·&nbsp; <strong>90 Min | 120€</strong>
   </p>
+  <p class="priceLine lang en">
+    <strong>60 min | 78€</strong> &nbsp;·&nbsp; <strong>90 min | 120€</strong>
+  </p>
 
-  <p>
+  <p class="lang de">
     In dieser Ganzkörpermassage hast du Zeit, tief zu entspannen. Der gesamte Körper,
     Rücken, Beine, Arme, Dekolleté und Nacken, wird mit warmem Öl massiert und sanft gelockert.
   </p>
+  <p class="lang en">
+    In this full-body massage you have time to relax deeply. Your whole body,
+    back, legs, arms, décolleté and neck, is massaged with warm oil and gently loosened.
+  </p>
 
-  <p>
+  <p class="lang de">
     Wohltuende Massagetechniken und ausgewählte Aromaöle unterstützen dich dabei,
     dein Nervensystem herunterzufahren, den Atem zu vertiefen und wieder aufzutauchen
     wie nach einem kleinen Retreat: geerdet, genährt und innerlich weiter.
   </p>
-
-  <p>
-    Als Basis für die Aromaöle nutzen wir ein naturreines Mandelöl.
+  <p class="lang en">
+    Soothing massage techniques and carefully chosen aroma oils help you
+    calm your nervous system, deepen your breath and resurface
+    as if after a little retreat: grounded, nourished and quietly further along.
   </p>
 
-  <p>
+  <p class="lang de">
+    Als Basis für die Aromaöle nutzen wir ein naturreines Mandelöl.
+  </p>
+  <p class="lang en">
+    As a base for the aroma oils we use a pure, natural almond oil.
+  </p>
+
+  <p class="lang de">
     👉 Direkt buchen:
+    <a
+      href="https://salonkee.de/salon/farewell?lang=de"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Salonkee
+    </a>
+  </p>
+  <p class="lang en">
+    👉 Book directly:
     <a
       href="https://salonkee.de/salon/farewell?lang=de"
       target="_blank"
@@ -112,28 +172,51 @@
 <app-image-text-block
   id="teilkoerper"
   theme="dark"
-  title="Teilkörpermassage"
+  [title]="t('Teilkörpermassage', 'Partial-body massage')"
   [backgroundImage]="'assets/images/treatment/massage-partial.webp'"
   imagePosition="left"
 >
-  <p class="priceLine">
+  <p class="priceLine lang de">
     <strong>30 Min | 45€</strong>
   </p>
+  <p class="priceLine lang en">
+    <strong>30 min | 45€</strong>
+  </p>
 
-  <p>
+  <p class="lang de">
     In dieser Teilkörpermassage widmen wir uns genau dem Bereich, der bei dir gerade am meisten Aufmerksamkeit braucht.
     Du entscheidest vor Ort, ob der Fokus auf deinem Rücken, deinen Beinen oder auf Armen & Nacken liegen darf.
   </p>
+  <p class="lang en">
+    In this partial-body massage we focus on exactly the area that needs the most attention right now.
+    You decide on the spot whether the focus should be on your back, your legs or on your arms and neck.
+  </p>
 
-  <p>
+  <p class="lang de">
     Mit warmem Öl und gezielten, wohltuenden Griffen werden verspannte Muskeln gelockert
     und dein Körper kann spürbar entspannen. Diese kürzere Anwendung ist ideal,
     wenn du dir im vollen Alltag eine kompakte Auszeit gönnen möchtest oder
     einen bestimmten Bereich ganz bewusst entlasten willst.
   </p>
+  <p class="lang en">
+    With warm oil and targeted, soothing movements, tense muscles are loosened
+    and your body can relax noticeably. This shorter treatment is ideal
+    when you want to give yourself a compact break in a busy day or
+    to consciously relieve one particular area.
+  </p>
 
-  <p>
+  <p class="lang de">
     👉 Direkt buchen:
+    <a
+      href="https://salonkee.de/salon/farewell?lang=de"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Salonkee
+    </a>
+  </p>
+  <p class="lang en">
+    👉 Book directly:
     <a
       href="https://salonkee.de/salon/farewell?lang=de"
       target="_blank"
@@ -147,18 +230,26 @@
 <app-image-text-block
   id="hinweise"
   theme="light"
-  title="Gut zu wissen"
+  [title]="t('Gut zu wissen', 'Good to know')"
   [backgroundImage]="'assets/images/treatment/hands.webp'"
   imagePosition="right"
 >
-  <ul>
+  <ul class="lang de">
     <li>✅ Bitte komm möglichst entspannt und ohne Zeitdruck.</li>
     <li>✅ Sag uns vorab, wo du Verspannungen spürst und welche Intensität du bevorzugst.</li>
     <li>✅ Nach der Massage: nimm dir, wenn möglich, einen ruhigen Moment zum Nachspüren.</li>
   </ul>
+  <ul class="lang en">
+    <li>✅ Please arrive as relaxed as possible and without any time pressure.</li>
+    <li>✅ Tell us in advance where you feel tension and what intensity you prefer.</li>
+    <li>✅ After the massage, take a quiet moment to let it settle in, if you can.</li>
+  </ul>
 
-  <p>
+  <p class="lang de">
     💚 Wenn du unsicher bist, welche Massage am besten zu dir passt, beraten wir dich gerne vor Ort.
+  </p>
+  <p class="lang en">
+    💚 If you are unsure which massage suits you best, we are happy to advise you in person.
   </p>
 </app-image-text-block>
 

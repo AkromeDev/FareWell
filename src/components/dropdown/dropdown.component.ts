@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   selector: 'app-dropdown',
@@ -19,6 +20,12 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 export class DropdownComponent implements ControlValueAccessor {
   @Input() options: { label: string; value: any }[] = [];
   @Input() theme: 'light' | 'dark' = 'light';
+
+  private readonly lang = inject(LanguageService);
+
+  get placeholder(): string {
+    return this.lang.t('Wähle...', 'Choose...');
+  }
 
   open = false;
   value: any;

@@ -3,6 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   selector: 'app-nadelepilation',
@@ -14,17 +15,32 @@ import { ImageTextBlockComponent } from 'src/components/molecules/image-text-blo
 export class NadelepilationComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  readonly lang = inject(LanguageService);
 
   private readonly pageUrl = 'https://farewell.salon/behandlungen/nadelepilation';
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/nadel.jpg';
 
-  paragraphText: string = `
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  get paragraphText(): string {
+    return this.t(
+      `
     Die Elektrolyse (Nadelepilation) ist eine medizinisch anerkannte Methode zur permanenten Haarentfernung.
     Sie ist für alle Hauttypen und Haarfarben geeignet und bietet eine sichere, effektive Lösung für unerwünschte Haare.
 
     Alle wichtigen Infos zur Elektrolyse findest du weiter unten.
-  `;
+  `,
+      `
+    Electrolysis is a medically recognised method for permanent hair removal.
+    It works for every skin type and hair colour, and gives you a safe, effective solution for unwanted hair.
+
+    Everything you need to know about electrolysis is waiting for you further down.
+  `
+    );
+  }
 
   structuredData = '';
 

@@ -25,7 +25,7 @@
   </header>
 
   @if (vm.reviews.length === 0) {
-    <p class="reviews__empty">Noch keine Bewertungen vorhanden.</p>
+    <p class="reviews__empty">{{ t('Noch keine Bewertungen vorhanden.', 'No reviews yet.') }}</p>
   } @else {
     <div
       class="carousel"
@@ -33,13 +33,13 @@
       (keydown)="onKeydown($event, vm.reviews.length)"
       (touchstart)="onTouchStart($event)"
       (touchend)="onTouchEnd($event, vm.reviews.length)"
-      aria-label="Google Bewertungen Karussell"
+      [attr.aria-label]="t('Google Bewertungen Karussell', 'Google reviews carousel')"
     >
       <button
         type="button"
         class="nav nav--left"
         (click)="prev(vm.reviews.length)"
-        aria-label="Vorherige Bewertung"
+        [attr.aria-label]="t('Vorherige Bewertung', 'Previous review')"
         [disabled]="pageCount(vm.reviews.length) <= 1"
       >
         ‹
@@ -55,7 +55,7 @@
 
               <div class="who">
                 <div class="who__name">
-                  {{ r.authorAttribution?.displayName ?? 'Anonym' }}
+                  {{ r.authorAttribution?.displayName ?? t('Anonym', 'Anonymous') }}
                 </div>
                 <div class="who__time">
                   {{ r.relativePublishTimeDescription ?? '' }}
@@ -78,7 +78,7 @@
                 (click)="toggleExpanded(r)"
                 [attr.aria-expanded]="isExpanded(r)"
               >
-                {{ isExpanded(r) ? 'Weniger' : 'Mehr lesen' }}
+                {{ isExpanded(r) ? t('Weniger', 'Show less') : t('Mehr lesen', 'Read more') }}
               </button>
             }
           </article>
@@ -89,7 +89,7 @@
         type="button"
         class="nav nav--right"
         (click)="next(vm.reviews.length)"
-        aria-label="Nächste Bewertung"
+        [attr.aria-label]="t('Nächste Bewertung', 'Next review')"
         [disabled]="pageCount(vm.reviews.length) <= 1"
       >
         ›

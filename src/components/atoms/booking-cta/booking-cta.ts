@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { LanguageService } from 'src/services/language.service';
 
 declare global {
   interface Window {
@@ -13,8 +14,15 @@ declare global {
   styleUrls: ['./booking-cta.scss']
 })
 export class BookingCtaComponent {
-  @Input() label: string = 'Termin buchen';
+  private readonly lang = inject(LanguageService);
+
+  /** Optional; ohne Angabe wird der zweisprachige Standard verwendet. */
+  @Input() label?: string;
   @Input() location: string = 'unknown';
+
+  get displayLabel(): string {
+    return this.label ?? this.lang.t('Termin buchen', 'Book now');
+  }
 
   readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
 
@@ -37,7 +45,7 @@ export class BookingCtaComponent {
     window.gtag('event', 'generate_lead', {
       event_category: 'engagement',
       event_label: `Termin Buchen ${this.location}`,
-      link_text: this.label,
+      link_text: this.displayLabel,
       location: this.location,
       destination: 'salonkee',
       event_callback: openBooking

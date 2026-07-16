@@ -2,8 +2,10 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { SeoService } from 'src/services/seo.service';
+import { LanguageService } from 'src/services/language.service';
 import {
   GUIDE_COMPONENTS,
+  GuideLang,
   GuideStat,
   GuideTocItem,
 } from 'src/components/molecules/guide';
@@ -22,22 +24,39 @@ const PAGE_DESCRIPTION =
 })
 export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
+  private readonly language = inject(LanguageService);
   private readonly jsonLdId = 'steuer-absetzen-schema';
 
-  readonly stats: GuideStat[] = [
-    { value: '3', label: 'Bausteine für den Nachweis' },
-    { value: '1–7%', label: 'Zumutbare Belastung vom Einkommen', animate: false },
-    { value: '2', label: 'Methoden, steuerlich gleichgestellt' },
-  ];
+  get lang(): GuideLang {
+    return this.language.lang();
+  }
 
-  readonly toc: GuideTocItem[] = [
-    { id: 'anerkannt', label: 'Warum das steuerlich anerkannt ist' },
-    { id: 'verwechselt', label: 'Zwei Dinge, die oft verwechselt werden' },
-    { id: 'nachweise', label: 'Welche Nachweise du brauchst' },
-    { id: 'vorgehen', label: 'So gehst du vor' },
-    { id: 'rechenbeispiel', label: 'Rechenbeispiel' },
-    { id: 'weiterlesen', label: 'Weiterlesen' },
-  ];
+  t(de: string, en: string): string {
+    return this.language.t(de, en);
+  }
+
+  get stats(): GuideStat[] {
+    return [
+      { value: '3', label: this.t('Bausteine für den Nachweis', 'Building blocks for your proof') },
+      {
+        value: '1–7%',
+        label: this.t('Zumutbare Belastung vom Einkommen', 'Reasonable burden, share of income'),
+        animate: false,
+      },
+      { value: '2', label: this.t('Methoden, steuerlich gleichgestellt', 'Methods, equal for tax') },
+    ];
+  }
+
+  get toc(): GuideTocItem[] {
+    return [
+      { id: 'anerkannt', label: this.t('Warum das steuerlich anerkannt ist', 'Why the tax office recognises this') },
+      { id: 'verwechselt', label: this.t('Zwei Dinge, die oft verwechselt werden', 'Two things people often confuse') },
+      { id: 'nachweise', label: this.t('Welche Nachweise du brauchst', 'Which proof you need') },
+      { id: 'vorgehen', label: this.t('So gehst du vor', 'How to go about it') },
+      { id: 'rechenbeispiel', label: this.t('Rechenbeispiel', 'Worked example') },
+      { id: 'weiterlesen', label: this.t('Weiterlesen', 'Read on') },
+    ];
+  }
 
   ngOnInit(): void {
     this.seo.setPageSeo({

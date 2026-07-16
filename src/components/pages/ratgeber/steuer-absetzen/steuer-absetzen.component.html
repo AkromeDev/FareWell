@@ -1,9 +1,14 @@
-<div class="gd">
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
   <app-guide-hero
-    kicker="Kundenleitfaden · Trans Personen · Steuer"
-    heading="Behandlungskosten steuerlich absetzen"
+    [kicker]="t('Kundenleitfaden · Trans Personen · Steuer', 'Customer guide · Trans people · Tax')"
+    [heading]="t('Behandlungskosten steuerlich absetzen', 'Deducting treatment costs from your taxes')"
     tagline="Für immer sanft."
-    lead="Wie du Laser und Nadelepilation als außergewöhnliche Belastung geltend machst – mit FareWell als Beispiel."
+    [lead]="
+      t(
+        'Wie du Laser und Nadelepilation als außergewöhnliche Belastung geltend machst – mit FareWell als Beispiel.',
+        'How to claim laser and electrolysis as an extraordinary burden (außergewöhnliche Belastung) on your German tax return, with FareWell as the example.'
+      )
+    "
   />
 
   <app-guide-stats [stats]="stats" />
@@ -11,173 +16,350 @@
   <div class="gd-wrap">
     <div class="gd-intro">
       <div class="gd-read">
-        <p class="gd-kick" appReveal>Kurz gesagt</p>
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
-          Die Haarentfernung im Zuge der Geschlechtsangleichung ist kein Luxus – das
-          Steuerrecht erkennt sie als Krankheitskosten an. Den Anteil, den du selbst trägst,
-          holst du dir teilweise zurück.
+          <span class="lang de">
+            Die Haarentfernung im Zuge der Geschlechtsangleichung ist kein Luxus – das
+            Steuerrecht erkennt sie als Krankheitskosten an. Den Anteil, den du selbst trägst,
+            holst du dir teilweise zurück.
+          </span>
+          <span class="lang en">
+            Hair removal as part of gender transition is not a luxury. Tax law recognises it as
+            medical expenses. You get part of the share you pay yourself back.
+          </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
-          Für viele trans Personen ist die Haarentfernung ein wichtiger Teil der
-          Geschlechtsangleichung. Das erkennt auch das deutsche Steuerrecht an: Den Anteil,
-          den du selbst trägst, kannst du als außergewöhnliche Belastung absetzen und einen
-          Teil zurückbekommen. Dieser Leitfaden zeigt dir, wie das geht, mit FareWell als
-          Beispiel.
+          <span class="lang de">
+            Für viele trans Personen ist die Haarentfernung ein wichtiger Teil der
+            Geschlechtsangleichung. Das erkennt auch das deutsche Steuerrecht an: Den Anteil,
+            den du selbst trägst, kannst du als außergewöhnliche Belastung absetzen und einen
+            Teil zurückbekommen. Dieser Leitfaden zeigt dir, wie das geht, mit FareWell als
+            Beispiel.
+          </span>
+          <span class="lang en">
+            For many trans people, hair removal is an important part of gender transition. German
+            tax law recognises this too: you can deduct the share you pay yourself as an
+            extraordinary burden (außergewöhnliche Belastung) and get part of it back. This guide
+            shows you how, with FareWell as the example.
+          </span>
         </p>
       </div>
-      <app-guide-toc [items]="toc" />
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
     </div>
 
-    <app-guide-section index="01" heading="Warum das steuerlich anerkannt ist" sectionId="anerkannt">
+    <app-guide-section
+      index="01"
+      [heading]="t('Warum das steuerlich anerkannt ist', 'Why the tax office recognises this')"
+      sectionId="anerkannt"
+    >
       <div class="gd-cards gd-cards--2">
-        <app-guide-card icon="⚖️" heading="Von Gerichten anerkannt">
-          Gerichte behandeln Transsexualität als eine einer Krankheit vergleichbare
-          Disposition. Behandlungen, die direkt zur Geschlechtsangleichung gehören, gelten
-          deshalb als Krankheitskosten (Finanzgericht München, 10 K 1088/03).
+        <app-guide-card icon="⚖️" [heading]="t('Von Gerichten anerkannt', 'Recognised by the courts')">
+          <span class="lang de">
+            Gerichte behandeln Transsexualität als eine einer Krankheit vergleichbare
+            Disposition. Behandlungen, die direkt zur Geschlechtsangleichung gehören, gelten
+            deshalb als Krankheitskosten (Finanzgericht München, 10 K 1088/03).
+          </span>
+          <span class="lang en">
+            Courts treat transsexuality as a disposition comparable to an illness. Treatments that
+            belong directly to gender transition therefore count as medical expenses (tax court
+            Finanzgericht München, ruling 10 K 1088/03).
+          </span>
         </app-guide-card>
-        <app-guide-card icon="🪒" heading="Haarentfernung zählt dazu" [revealDelay]="60">
-          Dazu zählt die Haarentfernung im Zuge der Angleichung, am eindeutigsten im Gesicht
-          und Bartbereich.
+        <app-guide-card icon="🪒" [heading]="t('Haarentfernung zählt dazu', 'Hair removal is included')" [revealDelay]="60">
+          <span class="lang de">
+            Dazu zählt die Haarentfernung im Zuge der Angleichung, am eindeutigsten im Gesicht
+            und Bartbereich.
+          </span>
+          <span class="lang en">
+            This includes hair removal as part of the transition, most clearly on the face and
+            beard area.
+          </span>
         </app-guide-card>
-        <app-guide-card icon="🏥" heading="Die Notwendigkeit zählt, nicht wer behandelt" [revealDelay]="120">
-          Es zählt die medizinische Notwendigkeit, nicht wer behandelt. Auch eine Behandlung
-          bei FareWell ist absetzbar, wenn die Indikation dokumentiert ist.
+        <app-guide-card
+          icon="🏥"
+          [heading]="t('Die Notwendigkeit zählt, nicht wer behandelt', 'What counts is the necessity, not who treats you')"
+          [revealDelay]="120"
+        >
+          <span class="lang de">
+            Es zählt die medizinische Notwendigkeit, nicht wer behandelt. Auch eine Behandlung
+            bei FareWell ist absetzbar, wenn die Indikation dokumentiert ist.
+          </span>
+          <span class="lang en">
+            What counts is the medical necessity, not who carries out the treatment. A treatment
+            at FareWell is deductible too, as long as the medical indication is documented.
+          </span>
         </app-guide-card>
-        <app-guide-card icon="🔦" heading="Beide Methoden gleichgestellt" [revealDelay]="180">
-          Ob permanente Haarentfernung mit
-          <a routerLink="/behandlungen/nadelepilation">Nadelepilation (Elektrolyse)</a> oder
-          dauerhafte Haarentfernung mit
-          <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser</a>: steuerlich
-          werden beide gleich behandelt.
+        <app-guide-card icon="🔦" [heading]="t('Beide Methoden gleichgestellt', 'Both methods treated equally')" [revealDelay]="180">
+          <span class="lang de">
+            Ob permanente Haarentfernung mit
+            <a routerLink="/behandlungen/nadelepilation">Nadelepilation (Elektrolyse)</a> oder
+            dauerhafte Haarentfernung mit
+            <a routerLink="/behandlungen/diodenlaser-4-wellen">Diodenlaser</a>: steuerlich
+            werden beide gleich behandelt.
+          </span>
+          <span class="lang en">
+            Whether permanent hair removal with
+            <a routerLink="/behandlungen/nadelepilation">electrolysis (Elektrolyse)</a> or
+            long-lasting hair removal with the
+            <a routerLink="/behandlungen/diodenlaser-4-wellen">diode laser</a>: for tax purposes
+            both are treated the same.
+          </span>
         </app-guide-card>
       </div>
     </app-guide-section>
 
-    <app-guide-section index="02" heading="Zwei Dinge, die oft verwechselt werden" sectionId="verwechselt">
+    <app-guide-section
+      index="02"
+      [heading]="t('Zwei Dinge, die oft verwechselt werden', 'Two things people often confuse')"
+      sectionId="verwechselt"
+    >
       <div class="gd-split">
-        <app-guide-panel heading="Krankenkasse · Erstattung" tone="forest">
-          <li>Übernimmt die Bartepilation grundsätzlich als Sachleistung.</li>
-          <li>Verlangt dafür normalerweise eine Behandlung durch eine Ärztin oder einen Arzt.</li>
+        <app-guide-panel [heading]="t('Krankenkasse · Erstattung', 'Health insurance · Reimbursement')" tone="forest">
           <li>
-            Weil kaum Praxen Elektrolyse anbieten, haben Gerichte Kassen auch bei privater
-            Behandlung zur Zahlung verpflichtet (Bundessozialgericht, 2023).
+            <span class="lang de">Übernimmt die Bartepilation grundsätzlich als Sachleistung.</span>
+            <span class="lang en">Covers beard hair removal in principle as a benefit in kind (Sachleistung).</span>
+          </li>
+          <li>
+            <span class="lang de">Verlangt dafür normalerweise eine Behandlung durch eine Ärztin oder einen Arzt.</span>
+            <span class="lang en">Normally requires the treatment to be carried out by a doctor.</span>
+          </li>
+          <li>
+            <span class="lang de">
+              Weil kaum Praxen Elektrolyse anbieten, haben Gerichte Kassen auch bei privater
+              Behandlung zur Zahlung verpflichtet (Bundessozialgericht, 2023).
+            </span>
+            <span class="lang en">
+              Because hardly any medical practices offer electrolysis, courts have obliged
+              insurers to pay even for private treatment (Federal Social Court, 2023).
+            </span>
           </li>
         </app-guide-panel>
-        <app-guide-panel heading="Finanzamt · Steuer" tone="sage" dots="sand" [revealDelay]="60">
-          <li>Hier spielt es keine Rolle, dass FareWell keine Arztpraxis ist.</li>
-          <li>Entscheidend ist allein die dokumentierte medizinische Notwendigkeit.</li>
+        <app-guide-panel [heading]="t('Finanzamt · Steuer', 'Tax office · Tax')" tone="sage" dots="sand" [revealDelay]="60">
           <li>
-            Absetzbar ist der Teil, den du selbst zahlst, oberhalb deiner zumutbaren
-            Belastung von etwa 1 bis 7% deines Einkommens.
+            <span class="lang de">Hier spielt es keine Rolle, dass FareWell keine Arztpraxis ist.</span>
+            <span class="lang en">Here it does not matter that FareWell is not a medical practice.</span>
+          </li>
+          <li>
+            <span class="lang de">Entscheidend ist allein die dokumentierte medizinische Notwendigkeit.</span>
+            <span class="lang en">All that matters is the documented medical necessity.</span>
+          </li>
+          <li>
+            <span class="lang de">
+              Absetzbar ist der Teil, den du selbst zahlst, oberhalb deiner zumutbaren
+              Belastung von etwa 1 bis 7% deines Einkommens.
+            </span>
+            <span class="lang en">
+              You can deduct the part you pay yourself, above your reasonable burden (zumutbare
+              Belastung) of roughly 1 to 7% of your income.
+            </span>
           </li>
         </app-guide-panel>
       </div>
 
       <div class="gd-read">
-        <app-guide-note variant="tip" label="Zuerst die Krankenkasse fragen">
-          Was die Kasse erstattet, kannst du nicht zusätzlich absetzen. Lehnt sie ab oder
-          findet keine Praxis, stärkt genau das deinen Steuerantrag, weil die private
-          Behandlung dann unvermeidbar war. Wie der Kassenantrag geht, steht im Leitfaden
-          <a routerLink="/ratgeber/epilation-krankenkasse">„Epilation über die Krankenkasse“</a>.
+        <app-guide-note variant="tip" [label]="t('Zuerst die Krankenkasse fragen', 'Ask your health insurer first')">
+          <span class="lang de">
+            Was die Kasse erstattet, kannst du nicht zusätzlich absetzen. Lehnt sie ab oder
+            findet keine Praxis, stärkt genau das deinen Steuerantrag, weil die private
+            Behandlung dann unvermeidbar war. Wie der Kassenantrag geht, steht im Leitfaden
+            <a routerLink="/ratgeber/epilation-krankenkasse">„Epilation über die Krankenkasse“</a>.
+          </span>
+          <span class="lang en">
+            Whatever your insurer reimburses cannot also be deducted. If it refuses, or if no
+            practice can be found, that actually strengthens your tax claim, because the private
+            treatment was then unavoidable. Our guide
+            <a routerLink="/ratgeber/epilation-krankenkasse">"Epilation over health insurance" (in German)</a>
+            explains how the insurance application works.
+          </span>
         </app-guide-note>
       </div>
     </app-guide-section>
 
-    <app-guide-section index="03" heading="Welche Nachweise du brauchst" sectionId="nachweise">
+    <app-guide-section
+      index="03"
+      [heading]="t('Welche Nachweise du brauchst', 'Which proof you need')"
+      sectionId="nachweise"
+    >
       <div class="gd-read">
-        <p class="gd-lead-p" appReveal>Damit das Finanzamt mitspielt, brauchst du drei Bausteine.</p>
+        <p class="gd-lead-p" appReveal>
+          <span class="lang de">Damit das Finanzamt mitspielt, brauchst du drei Bausteine.</span>
+          <span class="lang en">For the tax office to go along with it, you need three building blocks.</span>
+        </p>
         <app-guide-steps>
           <li>
-            <strong>Medizinischer Nachweis.</strong> Die Diagnose (Geschlechtsdysphorie oder
-            Geschlechtsinkongruenz) und dein Behandlungsplan, idealerweise mit einer
-            ärztlichen Bescheinigung, dass die Haarentfernung zur Geschlechtsangleichung
-            gehört. Am besten vor der ersten Sitzung ausgestellt.
+            <span class="lang de">
+              <strong>Medizinischer Nachweis.</strong> Die Diagnose (Geschlechtsdysphorie oder
+              Geschlechtsinkongruenz) und dein Behandlungsplan, idealerweise mit einer
+              ärztlichen Bescheinigung, dass die Haarentfernung zur Geschlechtsangleichung
+              gehört. Am besten vor der ersten Sitzung ausgestellt.
+            </span>
+            <span class="lang en">
+              <strong>Medical proof.</strong> The diagnosis (gender dysphoria or gender
+              incongruence) and your treatment plan, ideally with a medical certificate stating
+              that the hair removal is part of gender transition. Best issued before the first
+              session.
+            </span>
           </li>
           <li>
-            <strong>Rechnung von FareWell.</strong> Eine ordentliche Rechnung je Behandlung
-            mit Name, Adresse, Datum, Leistung und Betrag.
+            <span class="lang de">
+              <strong>Rechnung von FareWell.</strong> Eine ordentliche Rechnung je Behandlung
+              mit Name, Adresse, Datum, Leistung und Betrag.
+            </span>
+            <span class="lang en">
+              <strong>Invoice from FareWell.</strong> A proper invoice for each treatment with
+              name, address, date, service and amount.
+            </span>
           </li>
           <li>
-            <strong>Zahlungsnachweis.</strong> Am besten per Überweisung, weil das
-            automatisch belegt ist. Bei Barzahlung bekommst du eine Quittung.
+            <span class="lang de">
+              <strong>Zahlungsnachweis.</strong> Am besten per Überweisung, weil das
+              automatisch belegt ist. Bei Barzahlung bekommst du eine Quittung.
+            </span>
+            <span class="lang en">
+              <strong>Proof of payment.</strong> Best by bank transfer, because that is
+              documented automatically. If you pay in cash, you receive a receipt.
+            </span>
           </li>
         </app-guide-steps>
       </div>
     </app-guide-section>
 
-    <app-guide-section index="04" heading="So gehst du vor" sectionId="vorgehen">
+    <app-guide-section
+      index="04"
+      [heading]="t('So gehst du vor', 'How to go about it')"
+      sectionId="vorgehen"
+    >
       <div class="gd-split">
-        <app-guide-panel heading="1 · Deine Schritte" tone="forest">
-          <li>Diagnose und Behandlungsplan sichern (Psychotherapie oder Ärztin).</li>
-          <li>Vor Beginn der Sitzungen die medizinische Notwendigkeit bescheinigen lassen.</li>
-          <li>Bei der Krankenkasse Kostenübernahme beantragen.</li>
-          <li>Rechnungen und Zahlungsbelege eines Kalenderjahres sammeln.</li>
-          <li>In der Steuererklärung: Anlage Außergewöhnliche Belastungen.</li>
-        </app-guide-panel>
-        <app-guide-panel heading="2 · Das gibt dir FareWell" tone="sage" dots="sand" [revealDelay]="60">
-          <li>Eine ordentliche Rechnung mit allen Pflichtangaben.</li>
+        <app-guide-panel [heading]="t('1 · Deine Schritte', '1 · Your steps')" tone="forest">
           <li>
-            Klare Bezeichnung: permanente Haarentfernung (Nadelepilation) oder dauerhafte
-            Haarentfernung (Diodenlaser), mit Körperbereich.
+            <span class="lang de">Diagnose und Behandlungsplan sichern (Psychotherapie oder Ärztin).</span>
+            <span class="lang en">Secure your diagnosis and treatment plan (psychotherapy or doctor).</span>
           </li>
-          <li>Auf Wunsch Einzelbelege je Sitzung.</li>
-          <li>Diskretion: kein medizinischer Grund auf der Rechnung, nur die Leistung.</li>
-          <li>Zahlung per Überweisung für einen sauberen Nachweis.</li>
+          <li>
+            <span class="lang de">Vor Beginn der Sitzungen die medizinische Notwendigkeit bescheinigen lassen.</span>
+            <span class="lang en">Have the medical necessity certified before the sessions begin.</span>
+          </li>
+          <li>
+            <span class="lang de">Bei der Krankenkasse Kostenübernahme beantragen.</span>
+            <span class="lang en">Apply to your health insurer to cover the costs.</span>
+          </li>
+          <li>
+            <span class="lang de">Rechnungen und Zahlungsbelege eines Kalenderjahres sammeln.</span>
+            <span class="lang en">Collect the invoices and payment receipts from one calendar year.</span>
+          </li>
+          <li>
+            <span class="lang de">In der Steuererklärung: Anlage Außergewöhnliche Belastungen.</span>
+            <span class="lang en">On your tax return: the "Außergewöhnliche Belastungen" (extraordinary burdens) annex.</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel [heading]="t('2 · Das gibt dir FareWell', '2 · What FareWell gives you')" tone="sage" dots="sand" [revealDelay]="60">
+          <li>
+            <span class="lang de">Eine ordentliche Rechnung mit allen Pflichtangaben.</span>
+            <span class="lang en">A proper invoice with all the required details.</span>
+          </li>
+          <li>
+            <span class="lang de">
+              Klare Bezeichnung: permanente Haarentfernung (Nadelepilation) oder dauerhafte
+              Haarentfernung (Diodenlaser), mit Körperbereich.
+            </span>
+            <span class="lang en">
+              A clear description: permanent hair removal (electrolysis) or long-lasting hair
+              removal (diode laser), with the body area.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">Auf Wunsch Einzelbelege je Sitzung.</span>
+            <span class="lang en">Individual receipts per session on request.</span>
+          </li>
+          <li>
+            <span class="lang de">Diskretion: kein medizinischer Grund auf der Rechnung, nur die Leistung.</span>
+            <span class="lang en">Discretion: no medical reason on the invoice, only the service.</span>
+          </li>
+          <li>
+            <span class="lang de">Zahlung per Überweisung für einen sauberen Nachweis.</span>
+            <span class="lang en">Payment by bank transfer for clean proof.</span>
+          </li>
         </app-guide-panel>
       </div>
     </app-guide-section>
 
-    <app-guide-section index="05" heading="Rechenbeispiel" sectionId="rechenbeispiel">
+    <app-guide-section
+      index="05"
+      [heading]="t('Rechenbeispiel', 'Worked example')"
+      sectionId="rechenbeispiel"
+    >
       <div class="gd-read">
-        <div class="gd-table-wrap" appReveal tabindex="0" role="region" aria-label="Rechenbeispiel als Tabelle">
+        <div
+          class="gd-table-wrap"
+          appReveal
+          tabindex="0"
+          role="region"
+          [attr.aria-label]="t('Rechenbeispiel als Tabelle', 'Worked example as a table')"
+        >
           <table>
             <thead>
               <tr>
-                <th>Position</th>
+                <th>{{ t('Position', 'Item') }}</th>
                 <th class="num">€</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Selbst gezahlt für die Bartepilation in einem Jahr</td>
+                <td>{{ t('Selbst gezahlt für die Bartepilation in einem Jahr', 'Paid yourself for beard hair removal in one year') }}</td>
                 <td class="num">1.200</td>
               </tr>
               <tr>
-                <td>Zumutbare Belastung (Beispiel, je nach Einkommen und Familienstand)</td>
+                <td>{{ t('Zumutbare Belastung (Beispiel, je nach Einkommen und Familienstand)', 'Reasonable burden (example, depending on income and marital status)') }}</td>
                 <td class="num">− 700</td>
               </tr>
               <tr class="total">
-                <td>Absetzbar als außergewöhnliche Belastung</td>
+                <td>{{ t('Absetzbar als außergewöhnliche Belastung', 'Deductible as an extraordinary burden (außergewöhnliche Belastung)') }}</td>
                 <td class="num">500</td>
               </tr>
               <tr>
-                <td>Zurück je nach Steuersatz</td>
+                <td>{{ t('Zurück je nach Steuersatz', 'Refund depending on your tax rate') }}</td>
                 <td class="num">≈ 150</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p class="gd-fine">
-          Vereinfachtes Beispiel. Dieser Leitfaden ist eine allgemeine Information und keine
-          Steuerberatung. Im Einzelfall entscheidet dein Finanzamt oder deine Steuerberatung.
+          <span class="lang de">
+            Vereinfachtes Beispiel. Dieser Leitfaden ist eine allgemeine Information und keine
+            Steuerberatung. Im Einzelfall entscheidet dein Finanzamt oder deine Steuerberatung.
+          </span>
+          <span class="lang en">
+            Simplified example. This guide is general information and not tax advice. In each
+            individual case, your tax office or your tax adviser decides.
+          </span>
         </p>
       </div>
     </app-guide-section>
 
-    <app-guide-section index="06" heading="Weiterlesen" sectionId="weiterlesen">
+    <app-guide-section
+      index="06"
+      [heading]="t('Weiterlesen', 'Read on')"
+      sectionId="weiterlesen"
+    >
       <div class="gd-cards gd-cards--2">
-        <app-guide-card icon="🏥" heading="Epilation über die Krankenkasse">
-          <a routerLink="/ratgeber/epilation-krankenkasse">Zum Leitfaden</a>
+        <app-guide-card icon="🏥" [heading]="t('Epilation über die Krankenkasse', 'Epilation over health insurance')">
+          <a routerLink="/ratgeber/epilation-krankenkasse">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>
-        <app-guide-card icon="💬" heading="Häufige Fragen" [revealDelay]="60">
-          <a routerLink="/faq">Zu den FAQ</a>
+        <app-guide-card icon="💬" [heading]="t('Häufige Fragen', 'Frequently asked questions')" [revealDelay]="60">
+          <a routerLink="/faq">{{ t('Zu den FAQ', 'Read the FAQ') }}</a>
         </app-guide-card>
       </div>
     </app-guide-section>
 
-    <app-guide-cta heading="Bereit für deinen Termin?">
-      Buche deine kostenlose Erstberatung über Salonkee oder folge uns auf Instagram für
-      Angebote und Ergebnisse.
+    <app-guide-cta [heading]="t('Bereit für deinen Termin?', 'Ready for your appointment?')">
+      <span class="lang de">
+        Buche deine kostenlose Erstberatung über Salonkee oder folge uns auf Instagram für
+        Angebote und Ergebnisse.
+      </span>
+      <span class="lang en">
+        Book your free initial consultation via Salonkee, or follow us on Instagram for offers
+        and results.
+      </span>
     </app-guide-cta>
   </div>
 </div>

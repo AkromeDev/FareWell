@@ -1,14 +1,14 @@
 <app-image-hero
   id="topSection"
   [margin]="'large'"
-  title="- 50 % mit dem Code ERSTEBEHANDLUNG"
+  [title]="t('- 50 % mit dem Code ERSTEBEHANDLUNG', '50% off with the code ERSTEBEHANDLUNG')"
   titleType="soft"
   [paragraphText]="paragraphText"
   [paragraphAlign]="'center'"
   [paragraphWeight]="'bold'"
   [paragraphColor]="'light'"
   [backgroundImage]="'assets/images/treatment/nadel.jpg'"
-  [imageAlt]="'FareWell Studio in Nürnberg für permanente Haarentfernung mit Nadelepilation (Elektrolyse)'"
+  [imageAlt]="t('FareWell Studio in Nürnberg für permanente Haarentfernung mit Nadelepilation (Elektrolyse)', 'FareWell studio in Nuremberg for permanent hair removal with electrolysis (Nadelepilation)')"
   [shadow]="'dark'"
   [titleLevel]="'h1'"
   [buttonList]="buttonList">
@@ -16,44 +16,67 @@
 
 <app-text-block
   theme="light"
-  title="Nadelepilation: permanente Haarentfernung in Nürnberg"
+  [title]="t('Nadelepilation: permanente Haarentfernung in Nürnberg', 'Electrolysis (Nadelepilation): permanent hair removal in Nuremberg')"
   paragraphAlign="center"
   paragraphSize="medium"
   paragraphWeight="normal"
   paragraphMaxWidth="wide"
   titleType="simple">
 
-  <p>
+  <p class="lang de">
     Nadelepilation ist die klassische Form der Elektrolyse und gilt als
     einzige Methode der wirklich permanenten Haarentfernung. Über eine feine
     Sonde wird jedes Haar einzeln an der Wurzel behandelt, sodass die
     Haarfollikel gezielt zerstört werden und keine neuen Haare mehr nachwachsen.
   </p>
+  <p class="lang en">
+    Electrolysis is the classic, needle-based method and is considered the
+    only truly permanent form of hair removal. Using a fine probe, each hair
+    is treated individually at the root, so that the hair follicles are
+    precisely destroyed and no new hairs grow back.
+  </p>
 
-  <p>
+  <p class="lang de">
     Im Unterschied zu Laser oder IPL, die eine dauerhafte Reduktion des
     Haarwuchses ermöglichen, kann Nadelepilation auch sehr helle, graue
     oder feine Haare zuverlässig entfernen. Sie ist daher besonders geeignet
     für kleinere Areale, das Gesicht sowie hartnäckige Restbehaarung nach
     anderen Methoden.
   </p>
+  <p class="lang en">
+    Unlike laser or IPL, which allow a long-lasting reduction of hair growth,
+    electrolysis can also reliably remove very light, grey or fine hairs.
+    That makes it especially suitable for smaller areas, the face and stubborn
+    remaining hairs after other methods.
+  </p>
 
-  <h3>Ihre Vorteile bei FareWell in Nürnberg</h3>
+  <h3 class="lang de">Ihre Vorteile bei FareWell in Nürnberg</h3>
+  <h3 class="lang en">Your benefits at FareWell in Nuremberg</h3>
 
   <ul>
-    <li>Spezialisierung auf Nadelepilation und Elektrolyse für permanente Haarentfernung</li>
-    <li>Geeignet für fast alle Haarfarben und Hauttypen, auch für helle und graue Haare</li>
-    <li>Präzise Behandlung einzelner Haare, ideal für Gesicht und kleine Zonen</li>
-    <li>Zentrale Lage in Nürnberg, wenige Minuten vom Hauptbahnhof entfernt</li>
+    <li class="lang de">Spezialisierung auf Nadelepilation und Elektrolyse für permanente Haarentfernung</li>
+    <li class="lang en">Specialised in electrolysis for permanent hair removal</li>
+    <li class="lang de">Geeignet für fast alle Haarfarben und Hauttypen, auch für helle und graue Haare</li>
+    <li class="lang en">Suitable for almost all hair colours and skin types, including light and grey hair</li>
+    <li class="lang de">Präzise Behandlung einzelner Haare, ideal für Gesicht und kleine Zonen</li>
+    <li class="lang en">Precise treatment of individual hairs, ideal for the face and small areas</li>
+    <li class="lang de">Zentrale Lage in Nürnberg, wenige Minuten vom Hauptbahnhof entfernt</li>
+    <li class="lang en">Central location in Nuremberg, just a few minutes from the main station</li>
   </ul>
 
-  <h3>50 Prozent Rabatt für Neukunden</h3>
+  <h3 class="lang de">50 Prozent Rabatt für Neukunden</h3>
+  <h3 class="lang en">50% off for new clients</h3>
 
-  <p>
+  <p class="lang de">
     Mit dem Code <strong>ERSTEBEHANDLUNG</strong> erhalten Sie 50 Prozent Rabatt
     auf Ihre erste Nadelepilations Behandlung. Buchen Sie Ihren Termin direkt
     online oder lassen Sie sich persönlich zu den Möglichkeiten der permanenten
     Haarentfernung beraten.
+  </p>
+  <p class="lang en">
+    With the code <strong>ERSTEBEHANDLUNG</strong> you get 50% off your first
+    electrolysis treatment. Book your appointment directly online, or arrange a
+    personal consultation about your options for permanent hair removal.
   </p>
 
 </app-text-block>

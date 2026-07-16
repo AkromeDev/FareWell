@@ -6,7 +6,7 @@
     class="burger"
     [ngClass]="{ open: menuOpen }"
     (click)="toggleMenu()"
-    aria-label="Menu öffnen"
+    [attr.aria-label]="lang.t('Menü öffnen', 'Open menu')"
     role="button"
     tabindex="0"
   >
@@ -25,7 +25,7 @@
       id="terminBuchen"
       (click)="trackBookingClick($event)"
     >
-      Termin Buchen
+      <span class="lang de">Termin Buchen</span><span class="lang en">Book now</span>
     </a>
 
     <!-- Behandlungen -->
@@ -43,7 +43,7 @@
           [attr.aria-expanded]="behandlungenOpen"
           (click)="toggleBehandlungen($event)"
         >
-          Behandlungen
+          <span class="lang de">Behandlungen</span><span class="lang en">Treatments</span>
           <span class="chevron" [ngClass]="{ open: behandlungenOpen }">▾</span>
         </button>
       </div>
@@ -68,7 +68,7 @@
       (click)="setActiveTab('zeit')"
       class="nav-link"
     >
-      Elektrolyse-Zeitberechnung
+      <span class="lang de">Elektrolyse-Zeitberechnung</span><span class="lang en">Electrolysis time</span>
     </a>
 
     <a
@@ -77,7 +77,7 @@
       (click)="setActiveTab('historie')"
       class="nav-link"
     >
-      Historie
+      <span class="lang de">Historie</span><span class="lang en">History</span>
     </a>
 
     <a
@@ -86,7 +86,7 @@
       (click)="setActiveTab('price')"
       class="nav-link"
     >
-      Preis
+      <span class="lang de">Preis</span><span class="lang en">Prices</span>
     </a>
 
     <a
@@ -97,6 +97,14 @@
     >
       FAQ
     </a>
+
+    <!-- Sprachumschalter: letztes Element, auf Desktop rechts, auf Mobil unten -->
+    <div class="nav-lang">
+      <app-guide-lang-toggle
+        [lang]="lang.lang()"
+        (langChange)="lang.setLang($event)"
+      />
+    </div>
   </div>
 
   <div

@@ -4,6 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
 import { ButtonItem } from 'src/models/ButtonItem';
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   standalone: true,
@@ -15,6 +16,7 @@ import { ButtonItem } from 'src/models/ButtonItem';
 export class MicroneedlingPromotionComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  readonly lang = inject(LanguageService);
 
   private readonly pageUrl =
     'https://farewell.salon/microneedling-aktion-nuernberg';
@@ -22,25 +24,41 @@ export class MicroneedlingPromotionComponent implements OnInit {
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/microneedling.webp';
 
-  paragraphText: string = `
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  get paragraphText(): string {
+    return this.t(
+      `
     Radiofrequenz-Microneedling für Hautstraffung und Hautverjüngung in Nürnberg bei FareWell.
 
     Diese Aktion gilt exklusiv für Neukundinnen und Neukunden und nur für kurze Zeit.
     Ideal, um den Start in eine strahlendere, glattere und sichtbar verjüngte Haut zu setzen.
-  `;
+  `,
+      `
+    Radiofrequency microneedling for skin firming and skin rejuvenation in Nuremberg at FareWell.
 
-  buttonList: ButtonItem[] = [
-    { label: 'Unsere Preise', link: '/price', theme: 'dark' },
-    {
-      label: 'Termin buchen',
-      link: 'https://salonkee.de/salon/farewell?lang=de',
-      theme: 'dark',
-      external: true,
-      analyticsEvent: 'generate_lead',
-      analyticsLocation: 'microneedling-page',
-      analyticsLabel: 'Termin Buchen Microneedling Page'
+    This offer is exclusively for new clients and only for a short time.
+    Perfect for starting your journey to more radiant, smoother and visibly rejuvenated skin.
+  `
+    );
   }
-  ];
+
+  get buttonList(): ButtonItem[] {
+    return [
+      { label: this.t('Unsere Preise', 'Our prices'), link: '/price', theme: 'dark' },
+      {
+        label: this.t('Termin buchen', 'Book now'),
+        link: 'https://salonkee.de/salon/farewell?lang=de',
+        theme: 'dark',
+        external: true,
+        analyticsEvent: 'generate_lead',
+        analyticsLocation: 'microneedling-page',
+        analyticsLabel: 'Termin Buchen Microneedling Page'
+      }
+    ];
+  }
 
   structuredData = '';
 

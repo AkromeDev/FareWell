@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { SeoService } from 'src/services/seo.service';
+import { LanguageService } from 'src/services/language.service';
 import {
   GUIDE_COMPONENTS,
   GuideStat,
@@ -27,23 +28,35 @@ interface FaqJsonLdEntry {
 })
 export class FaqComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
+  readonly lang = inject(LanguageService);
   private readonly jsonLdId = 'faq-schema';
 
-  readonly stats: GuideStat[] = [
-    { value: '2', label: 'Methoden der Haarentfernung' },
-    { value: 'gratis', label: 'Erstberatung' },
-    { value: '6', label: 'Tage pro Woche geöffnet' },
-    { value: '4', label: 'Ratgeber zum Nachlesen' },
-  ];
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
 
-  readonly toc: GuideTocItem[] = [
-    { id: 'behandlungen', label: 'Behandlungen & Methoden' },
-    { id: 'termine', label: 'Termine, Beratung & Preise' },
-    { id: 'kostenuebernahme', label: 'Krankenkasse & Steuer' },
-    { id: 'us-forces', label: 'US Forces & Mehrwertsteuer' },
-    { id: 'kontakt', label: 'Kontakt & Öffnungszeiten' },
-    { id: 'ratgeber', label: 'Ratgeber zum Vertiefen' },
-  ];
+  get stats(): GuideStat[] {
+    return [
+      { value: '2', label: this.t('Methoden der Haarentfernung', 'Hair removal methods') },
+      { value: this.t('gratis', 'free'), label: this.t('Erstberatung', 'Initial consultation') },
+      { value: '6', label: this.t('Tage pro Woche geöffnet', 'Days open per week') },
+      { value: '4', label: this.t('Ratgeber zum Nachlesen', 'Guides to read') },
+    ];
+  }
+
+  get toc(): GuideTocItem[] {
+    return [
+      { id: 'behandlungen', label: this.t('Behandlungen & Methoden', 'Treatments & methods') },
+      {
+        id: 'termine',
+        label: this.t('Termine, Beratung & Preise', 'Appointments, consultation & prices'),
+      },
+      { id: 'kostenuebernahme', label: this.t('Krankenkasse & Steuer', 'Health insurance & tax') },
+      { id: 'us-forces', label: this.t('US Forces & Mehrwertsteuer', 'US Forces & VAT') },
+      { id: 'kontakt', label: this.t('Kontakt & Öffnungszeiten', 'Contact & opening hours') },
+      { id: 'ratgeber', label: this.t('Ratgeber zum Vertiefen', 'Guides to go deeper') },
+    ];
+  }
 
   /**
    * Fragen und Antworten als Klartext für das FAQPage-Schema. Inhaltlich

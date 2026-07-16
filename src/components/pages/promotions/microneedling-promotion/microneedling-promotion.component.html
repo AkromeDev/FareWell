@@ -1,14 +1,14 @@
 <app-image-hero
   id="topSection"
   [margin]="'large'"
-  title="- 50 % mit dem Code ERSTEBEHANDLUNG"
+  [title]="t('- 50 % mit dem Code ERSTEBEHANDLUNG', '50% off with the code ERSTEBEHANDLUNG')"
   titleType="soft"
   [paragraphText]="paragraphText"
   [paragraphAlign]="'center'"
   [paragraphWeight]="'bold'"
   [paragraphColor]="'light'"
   [backgroundImage]="'assets/images/treatment/microneedling.webp'"
-  [imageAlt]="'FareWell Studio in Nürnberg für professionelle Radiofrequenz-Microneedling Behandlungen zur Hautstraffung und Hautverjüngung'"
+  [imageAlt]="t('FareWell Studio in Nürnberg für professionelle Radiofrequenz-Microneedling Behandlungen zur Hautstraffung und Hautverjüngung', 'FareWell studio in Nuremberg for professional radiofrequency microneedling treatments for skin firming and rejuvenation')"
   [shadow]="'dark'"
   [titleLevel]="'h1'"
   [buttonList]="buttonList">
@@ -16,42 +16,67 @@
 
 <app-text-block
   theme="light"
-  title="Radiofrequenz-Microneedling für strahlende Haut in Nürnberg"
+  [title]="t('Radiofrequenz-Microneedling für strahlende Haut in Nürnberg', 'Radiofrequency microneedling for radiant skin in Nuremberg')"
   paragraphAlign="center"
   paragraphSize="medium"
   paragraphWeight="normal"
   paragraphMaxWidth="wide"
   titleType="simple">
 
-  <p>
+  <p class="lang de">
     Radiofrequenz-Microneedling kombiniert feine, kontrollierte Mikroverletzungen
     der Haut mit gezielter Wärme durch Radiofrequenzenergie. Dadurch wird die
     natürliche Kollagen- und Elastinproduktion angeregt und die Haut von innen
     heraus gestrafft und verfeinert.
   </p>
+  <p class="lang en">
+    Radiofrequency microneedling combines fine, controlled microinjuries to the
+    skin with targeted heat from radiofrequency energy. This stimulates your
+    natural collagen and elastin production and firms and refines the skin from
+    within.
+  </p>
 
-  <p>
+  <p class="lang de">
     Die Behandlung eignet sich besonders bei feinen Fältchen, Aknenarben,
     vergrößerten Poren und müdem, unruhigem Hautbild. Die Hautstruktur wirkt
     glatter, praller und gleichmäßiger – bei vergleichsweise kurzer Ausfallzeit.
   </p>
+  <p class="lang en">
+    The treatment is especially suited to fine lines, acne scars, enlarged pores
+    and a tired, uneven complexion. Your skin looks smoother, plumper and more
+    even, all with comparatively little downtime.
+  </p>
 
-  <h3>Ihre Vorteile bei FareWell in Nürnberg</h3>
+  <h3 class="lang de">Ihre Vorteile bei FareWell in Nürnberg</h3>
+  <h3 class="lang en">Your benefits at FareWell in Nuremberg</h3>
 
-  <ul>
+  <ul class="lang de">
     <li>Schonende Hautverjüngung mit moderner Radiofrequenz-Microneedling Technologie</li>
     <li>Individuell angepasste Einstellungen je nach Hauttyp und Hautzustand</li>
     <li>Verbesserung von Fältchen, Narben und Poren für ein ebenmäßigeres Hautbild</li>
     <li>Zentrales Studio in Nürnberg, gut erreichbar nahe dem Hauptbahnhof</li>
   </ul>
+  <ul class="lang en">
+    <li>Gentle skin rejuvenation with modern radiofrequency microneedling technology</li>
+    <li>Settings individually tailored to your skin type and skin condition</li>
+    <li>Improvement of fine lines, scars and pores for a more even complexion</li>
+    <li>Central studio in Nuremberg, easy to reach near the main train station</li>
+  </ul>
 
-  <h3>50 Prozent Rabatt für Neukunden</h3>
+  <h3 class="lang de">50 Prozent Rabatt für Neukunden</h3>
+  <h3 class="lang en">50 percent off for new clients</h3>
 
-  <p>
+  <p class="lang de">
     Mit dem Code <strong>ERSTEBEHANDLUNG</strong> erhalten Sie 50 Prozent Rabatt
     auf Ihre erste Radiofrequenz-Microneedling Behandlung. Buchen Sie Ihren Termin
     direkt online oder lassen Sie sich persönlich zu den Möglichkeiten der
     Hautverjüngung beraten.
+  </p>
+  <p class="lang en">
+    With the code <strong>ERSTEBEHANDLUNG</strong> you get 50 percent off your
+    first radiofrequency microneedling treatment. Book your appointment directly
+    online or come in for a personal consultation about the possibilities of skin
+    rejuvenation.
   </p>
 
 </app-text-block>

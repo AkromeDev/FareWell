@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { SeoService } from 'src/services/seo.service';
+import { LanguageService } from 'src/services/language.service';
 import {
   GUIDE_COMPONENTS,
   GuideLang,
@@ -14,8 +15,6 @@ const PAGE_PATH = '/karriere/masseur-nuernberg/onboarding';
 const PAGE_TITLE = 'Onboarding Massage – so arbeiten wir zusammen | FareWell Nürnberg';
 const PAGE_DESCRIPTION =
   'Der Onboarding-Leitfaden für selbständige Masseur:innen bei FareWell Nürnberg: Probe-Session, Leistungen, 70/30-Abrechnung, Kundengewinnung und der geteilte Raum – auf Deutsch und Englisch.';
-
-const LANG_STORAGE_KEY = 'fw_lang';
 
 /**
  * Zweisprachige Onboarding-Seite für Masseur:innen. Kurze Texte laufen über
@@ -32,9 +31,12 @@ const LANG_STORAGE_KEY = 'fw_lang';
 export class MasseurOnboardingComponent implements OnInit {
   private readonly seo = inject(SeoService);
   private readonly route = inject(ActivatedRoute);
+  private readonly language = inject(LanguageService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  lang: GuideLang = 'de';
+  get lang(): GuideLang {
+    return this.language.lang();
+  }
 
   ngOnInit(): void {
     this.seo.setPageSeo({
@@ -45,23 +47,14 @@ export class MasseurOnboardingComponent implements OnInit {
 
     if (this.isBrowser) {
       const fromQuery = this.route.snapshot.queryParamMap.get('lang');
-      const stored = localStorage.getItem(LANG_STORAGE_KEY);
-      const initial = fromQuery ?? stored;
-      if (initial === 'de' || initial === 'en') {
-        this.lang = initial;
+      if (fromQuery === 'de' || fromQuery === 'en') {
+        this.language.setLang(fromQuery);
       }
     }
   }
 
-  setLang(lang: GuideLang): void {
-    this.lang = lang;
-    if (this.isBrowser) {
-      localStorage.setItem(LANG_STORAGE_KEY, lang);
-    }
-  }
-
   t(de: string, en: string): string {
-    return this.lang === 'de' ? de : en;
+    return this.language.t(de, en);
   }
 
   get stats(): GuideStat[] {

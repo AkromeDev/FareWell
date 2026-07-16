@@ -8,7 +8,7 @@
   [paragraphType]="'dark'"
   [backgroundImage]="'assets/images/farewell/studio.webp'"
   [shadow]="'dark'"
-  [title]="'Permanente Haarentfernung in Nürnberg'"
+  [title]="t('Permanente Haarentfernung in Nürnberg', 'Permanent hair removal in Nuremberg')"
   [titleLevel]="'h1'"
   [titleColor]="'light'"
   [titleType]="'simple'"
@@ -18,11 +18,11 @@
 </app-image-hero>
 
 <app-text-block
-    [title]="'Echte Ergebnisse. Echtes Wohlbefinden. Dein Leben ohne störende Haare.'"
+    [title]="t('Echte Ergebnisse. Echtes Wohlbefinden. Dein Leben ohne störende Haare.', 'Real results. Real wellbeing. Your life without unwanted hair.')"
     [theme]="'light'"
     [paragraphAlign]="'justify'"
     >
-Bei FareWell erlebst du permanente & dauerhafte Haarentfernung auf einem neuen Niveau.
+<span class="lang de">Bei FareWell erlebst du permanente & dauerhafte Haarentfernung auf einem neuen Niveau.
 Unsere Kundinnen und Kunden schätzen vor allem die kompetente Beratung, die ruhige Atmosphäre und die professionelle Durchführung jeder Behandlung.
 <br>
 Wir begleiten dich von der ersten Beratung bis zum sichtbaren Ergebnis, individuell, offen und mit genau dem richtigen Maß an Zeit und Fürsorge. Viele berichten, dass sie sich von Anfang an wohlgefühlt haben und die Behandlungen fachlich und menschlich exzellent waren.
@@ -33,19 +33,30 @@ Warum FareWell?
 • Vertrauensvolle und ausführliche Beratung vor jeder Behandlung
 • Professionelle, sanfte und wirkungsvolle permanente Haarentfernung mittels Elektrolyse
 • Freundliches, einfühlsames Team, das auf deine Bedürfnisse eingeht
-• Saubere, entspannte Studioatmosphäre
+• Saubere, entspannte Studioatmosphäre</span><span class="lang en">At FareWell you experience permanent and long-lasting hair removal at a new level.
+Our clients value the expert advice, the calm atmosphere and the professional care behind every treatment.
+<br>
+We guide you from the first consultation to visible results, personally, openly and with just the right amount of time and attention. Many tell us they felt at ease from the very start and found the treatments excellent, both professionally and personally.
+<br>
+Our studio is modern, clean and creates an atmosphere where you can relax, far from rush and stress.
+<br>
+Why FareWell?
+• Trusted, thorough advice before every treatment
+• Professional, gentle and effective permanent hair removal with electrolysis
+• A friendly, caring team that listens to your needs
+• A clean, relaxed studio atmosphere</span>
 </app-text-block>
 
-<app-parallax 
+<app-parallax
     [imageSrc]="'assets/images/treatment/armpit.webp'"
-    [title]="'Values'">
+    [title]="t('Werte', 'Values')">
 </app-parallax>
 
-<app-text-block 
+<app-text-block
     [theme]="'dark'"
     [paragraphAlign]="'center'"
-    [title]="'Bester Mehrwert für unsere Kund:innen'">
-        Bei FareWell stehen dauerhafte Ergebnisse und echte Wahlfreiheit im Mittelpunkt.<br>
+    [title]="t('Bester Mehrwert für unsere Kund:innen', 'The best value for our clients')">
+        <span class="lang de">Bei FareWell stehen dauerhafte Ergebnisse und echte Wahlfreiheit im Mittelpunkt.<br>
         Wir bringen die Elektrolyse, die einzige wirklich permanente Haarentfernungsmethode, ins Rampenlicht.<br>
         Sie funktioniert bei <strong>jedem Hauttyp und an jeder Körperstelle</strong>, ganz ohne Einschränkungen.<br><br>
 
@@ -54,31 +65,52 @@ Warum FareWell?
         Keine eingewachsenen Haare, keine Schnitte, keine Schmerzen.<br>
         Nur Ruhe im Kopf und auf der Haut.<br><br>
 
-        <strong>FareWell, für alle, die sich nicht ein Leben lang rasieren wollen.</strong>
+        <strong>FareWell, für alle, die sich nicht ein Leben lang rasieren wollen.</strong></span><span class="lang en">At FareWell, lasting results and real freedom of choice are at the centre of everything.<br>
+        We put electrolysis, the only truly permanent hair removal method, in the spotlight.<br>
+        It works on <strong>every skin type and every part of the body</strong>, with no restrictions.<br><br>
+
+        Our clients choose not just against shaving, waxing or skin irritation,<br>
+        but for <strong>lifelong smoothness, confidence and freedom from constant upkeep</strong>.<br>
+        No ingrown hairs, no cuts, no pain.<br>
+        Just peace of mind and calm skin.<br><br>
+
+        <strong>FareWell, for everyone who does not want to shave for the rest of their life.</strong></span>
 </app-text-block>
 
-<app-text-block 
+<app-text-block
     [theme]="'light'"
     [paragraphAlign]="'center'"
-    [title]="'Nachhaltigkeit bei FareWell'">
-    Bei FareWell setzen wir auf echte, permanente Haarentfernung, und damit auch auf Umweltschutz. Durch Elektrolyse braucht es keine Klingen, Rasierschaum, Enthaarungscremes oder Einwegprodukte mehr. <br>
+    [title]="t('Nachhaltigkeit bei FareWell', 'Sustainability at FareWell')">
+    <span class="lang de">Bei FareWell setzen wir auf echte, permanente Haarentfernung, und damit auch auf Umweltschutz. Durch Elektrolyse braucht es keine Klingen, Rasierschaum, Enthaarungscremes oder Einwegprodukte mehr. <br>
     Weniger Müll, weniger Chemie, mehr Nachhaltigkeit.
 
-    Allein in den USA werden jährlich über 
+    Allein in den USA werden jährlich über
     <a href="https://css.washingtonpost.com/climate-solutions/2024/05/19/safety-razor-sustainability/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
     2 Milliarden Einwegrasierer
-    </a> 
+    </a>
     entsorgt.<br>
     Weltweit hochgerechnet sind es viele Milliarden Stück, das verursacht enorme Mengen an Plastik, und Metallmüll.<br>
     Und das betrifft nur Einwegrasierer. Die Haarentfernungsindustrie insgesamt verursacht noch deutlich mehr Abfall.<br><br>
     Lass uns gemeinsam dafür sorgen, dass diese Zahl kleiner wird.
 
-    Eine Entscheidung für FareWell ist auch eine Entscheidung für unsere Umwelt.    
+    Eine Entscheidung für FareWell ist auch eine Entscheidung für unsere Umwelt.</span><span class="lang en">At FareWell we believe in real, permanent hair removal, and with it in protecting the environment. With electrolysis there is no more need for blades, shaving foam, depilatory creams or single-use products. <br>
+    Less waste, fewer chemicals, more sustainability.
+
+    In the USA alone, more than
+    <a href="https://css.washingtonpost.com/climate-solutions/2024/05/19/safety-razor-sustainability/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+    2 billion disposable razors
+    </a>
+    are thrown away every year.<br>
+    Extrapolated worldwide, that is many billions of units, creating enormous amounts of plastic and metal waste.<br>
+    And that covers only disposable razors. The hair removal industry as a whole produces far more waste still.<br><br>
+    Let us work together to make that number smaller.
+
+    Choosing FareWell is also a choice for our environment.</span>
 </app-text-block>
 
-<app-parallax 
+<app-parallax
     [imageSrc]="'assets/images/farewell/calendar.jpg'"
-    [title]="'Öffnungzeiten'">
+    [title]="t('Öffnungszeiten', 'Opening hours')">
 </app-parallax>
 
 <app-opening-hours></app-opening-hours>

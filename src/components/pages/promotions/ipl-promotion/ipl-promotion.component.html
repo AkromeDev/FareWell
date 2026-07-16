@@ -1,12 +1,22 @@
-<div class="gd">
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
   <app-guide-progress />
-  <app-guide-top-button />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
   <app-guide-hero
     kicker="FareWell · Nürnberg · Neukunden-Aktion"
-    heading="IPL in Nürnberg gesucht? Entdecke die modernere Alternative"
+    [heading]="
+      t(
+        'IPL in Nürnberg gesucht? Entdecke die modernere Alternative',
+        'Looking for IPL in Nuremberg? Discover the more modern alternative'
+      )
+    "
     tagline="Für immer sanft."
-    lead="Statt IPL setzen wir bewusst auf den 4-Wellen-Diodenlaser: präziser, wirksamer und für mehr Haut- und Haartypen geeignet. Für Neukunden: 50% Rabatt auf die erste Behandlung mit dem Code ERSTEBEHANDLUNG."
+    [lead]="
+      t(
+        'Statt IPL setzen wir bewusst auf den 4-Wellen-Diodenlaser: präziser, wirksamer und für mehr Haut- und Haartypen geeignet. Für Neukunden: 50% Rabatt auf die erste Behandlung mit dem Code ERSTEBEHANDLUNG.',
+        'Instead of IPL we deliberately rely on the 4-wavelength diode laser: more precise, more effective and suitable for more skin and hair types. For new clients: 50% off your first treatment with the code ERSTEBEHANDLUNG.'
+      )
+    "
     [image]="heroImage"
     [imageAlt]="heroImageAlt"
   />
@@ -16,105 +26,236 @@
   <div class="gd-wrap">
     <div class="gd-intro">
       <div class="gd-read">
-        <p class="gd-kick" appReveal>Kurz gesagt</p>
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
-          Viele suchen nach IPL zur dauerhaften Haarentfernung in Nürnberg. Bei FareWell
-          findest du bewusst kein IPL – sondern eine Technologie, die einen Schritt weiter
-          ist: den 4-Wellen-Diodenlaser mit KI-gestützter Hauterkennung.
+          <span class="lang de">
+            Viele suchen nach IPL zur dauerhaften Haarentfernung in Nürnberg. Bei FareWell
+            findest du bewusst kein IPL, sondern eine Technologie, die einen Schritt weiter
+            ist: den 4-Wellen-Diodenlaser mit KI-gestützter Hauterkennung.
+          </span>
+          <span class="lang en">
+            Many people search for IPL for long-lasting hair removal in Nuremberg. At FareWell
+            you deliberately won't find IPL, but a technology that is one step ahead: the
+            4-wavelength diode laser with AI-assisted skin detection.
+          </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
-          Was das Gerät genau kann, liest du auf der Seite zum
-          <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a>. Oder
-          du überzeugst dich selbst – in der
-          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          <span class="lang de">
+            Was das Gerät genau kann, liest du auf der Seite zum
+            <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a>. Oder
+            du überzeugst dich selbst, in der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            You can read exactly what the device does on the page about the
+            <a routerLink="/behandlungen/diodenlaser-4-wellen">4-wavelength diode laser</a>. Or
+            see for yourself, in the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
         </p>
       </div>
-      <app-guide-toc [items]="toc" />
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
     </div>
 
-    <app-guide-section index="01" heading="Dein Neukunden-Angebot" sectionId="angebot">
+    <app-guide-section
+      index="01"
+      [heading]="t('Dein Neukunden-Angebot', 'Your new-client offer')"
+      sectionId="angebot"
+    >
       <app-guide-offer
-        eyebrow="Neukunden-Aktion · nur für kurze Zeit"
-        headline="50% auf deine erste Behandlung"
-        sub="Online buchen und den Code bei der Buchung angeben – gilt für Neukundinnen und Neukunden."
-        badgeLabel="Promo-Code"
+        [eyebrow]="t('Neukunden-Aktion · nur für kurze Zeit', 'New-client offer · for a short time only')"
+        [headline]="t('50% auf deine erste Behandlung', '50% off your first treatment')"
+        [sub]="
+          t(
+            'Online buchen und den Code bei der Buchung angeben, gilt für Neukundinnen und Neukunden.',
+            'Book online and enter the code when you book, valid for new clients.'
+          )
+        "
+        [badgeLabel]="t('Promo-Code', 'Promo code')"
         badgeValue="ERSTEBEHANDLUNG"
       />
       <p class="gd-lead-p gd-read" appReveal>
-        Alle regulären Preise findest du je Körperzone auf
-        <a routerLink="/price">unserer Preisseite</a> – transparent und ohne versteckte
-        Kosten. So kannst du moderne Laser-Haarentfernung in Nürnberg besonders günstig
-        kennenlernen.
+        <span class="lang de">
+          Alle regulären Preise findest du je Körperzone auf
+          <a routerLink="/price">unserer Preisseite</a>, transparent und ohne versteckte
+          Kosten. So kannst du moderne Laser-Haarentfernung in Nürnberg besonders günstig
+          kennenlernen.
+        </span>
+        <span class="lang en">
+          You'll find all regular prices per body area on
+          <a routerLink="/price">our price page</a>, transparent and with no hidden costs.
+          That way you can try modern laser hair removal in Nuremberg at an especially good
+          price.
+        </span>
       </p>
     </app-guide-section>
 
-    <app-guide-section index="02" heading="IPL vs. Diodenlaser" sectionId="ipl-vs-laser">
+    <app-guide-section
+      index="02"
+      [heading]="t('IPL vs. Diodenlaser', 'IPL vs. diode laser')"
+      sectionId="ipl-vs-laser"
+    >
       <p class="gd-lead-p gd-read" appReveal>
-        Beide Methoden arbeiten mit Licht – aber nicht gleich gut. Der entscheidende
-        Unterschied: IPL streut sein Licht breit über die Haut, der Diodenlaser bündelt
-        seine Energie gezielt auf das Haarfollikel.
+        <span class="lang de">
+          Beide Methoden arbeiten mit Licht, aber nicht gleich gut. Der entscheidende
+          Unterschied: IPL streut sein Licht breit über die Haut, der Diodenlaser bündelt
+          seine Energie gezielt auf das Haarfollikel.
+        </span>
+        <span class="lang en">
+          Both methods work with light, but not equally well. The decisive difference: IPL
+          scatters its light broadly across the skin, while the diode laser focuses its
+          energy directly on the hair follicle.
+        </span>
       </p>
       <div class="gd-split">
-        <app-guide-panel heading="Klassisches IPL" dots="sand">
-          <li>Breit gestreutes Licht statt gezielter Energie</li>
-          <li>Weniger präzise auf das Haarfollikel abgestimmt</li>
-          <li>Oft mehr Sitzungen für ein vergleichbares Ergebnis</li>
-          <li>Bei manchen Haut- und Haartypen nur eingeschränkt geeignet</li>
+        <app-guide-panel [heading]="t('Klassisches IPL', 'Classic IPL')" dots="sand">
+          <li>
+            <span class="lang de">Breit gestreutes Licht statt gezielter Energie</span>
+            <span class="lang en">Broadly scattered light instead of focused energy</span>
+          </li>
+          <li>
+            <span class="lang de">Weniger präzise auf das Haarfollikel abgestimmt</span>
+            <span class="lang en">Less precisely tuned to the hair follicle</span>
+          </li>
+          <li>
+            <span class="lang de">Oft mehr Sitzungen für ein vergleichbares Ergebnis</span>
+            <span class="lang en">Often more sessions for a comparable result</span>
+          </li>
+          <li>
+            <span class="lang de">Bei manchen Haut- und Haartypen nur eingeschränkt geeignet</span>
+            <span class="lang en">Only partially suitable for some skin and hair types</span>
+          </li>
         </app-guide-panel>
-        <app-guide-panel heading="4-Wellen-Diodenlaser" tone="forest" [revealDelay]="60">
-          <li>Vier gezielt abgestimmte Wellenlängen wirken direkt auf das Follikel</li>
-          <li>Erreicht unterschiedliche Haartiefen und Haarstrukturen gleichzeitig</li>
-          <li>KI-gestützte Hauterkennung passt die Behandlung deinem Hauttyp an</li>
-          <li>Kontrollierter, wirksamer und hautschonender</li>
+        <app-guide-panel [heading]="t('4-Wellen-Diodenlaser', '4-wavelength diode laser')" tone="forest" [revealDelay]="60">
+          <li>
+            <span class="lang de">Vier gezielt abgestimmte Wellenlängen wirken direkt auf das Follikel</span>
+            <span class="lang en">Four precisely tuned wavelengths act directly on the follicle</span>
+          </li>
+          <li>
+            <span class="lang de">Erreicht unterschiedliche Haartiefen und Haarstrukturen gleichzeitig</span>
+            <span class="lang en">Reaches different hair depths and hair structures at the same time</span>
+          </li>
+          <li>
+            <span class="lang de">KI-gestützte Hauterkennung passt die Behandlung deinem Hauttyp an</span>
+            <span class="lang en">AI-assisted skin detection adapts the treatment to your skin type</span>
+          </li>
+          <li>
+            <span class="lang de">Kontrollierter, wirksamer und hautschonender</span>
+            <span class="lang en">More controlled, more effective and gentler on the skin</span>
+          </li>
         </app-guide-panel>
       </div>
-      <app-guide-note variant="win" label="Deshalb kein IPL">
-        Wir haben uns bewusst gegen IPL entschieden: Für eine dauerhafte Haarreduktion
-        willst du die Energie dort, wo sie wirkt – an der Haarwurzel, nicht breit über der
-        Haut verteilt.
+      <app-guide-note variant="win" [label]="t('Deshalb kein IPL', 'That\'s why no IPL')">
+        <span class="lang de">
+          Wir haben uns bewusst gegen IPL entschieden: Für eine dauerhafte Haarreduktion
+          willst du die Energie dort, wo sie wirkt, an der Haarwurzel, nicht breit über der
+          Haut verteilt.
+        </span>
+        <span class="lang en">
+          We deliberately decided against IPL: for long-lasting hair reduction you want the
+          energy where it works, at the hair root, not spread broadly across the skin.
+        </span>
       </app-guide-note>
     </app-guide-section>
 
-    <app-guide-section index="03" heading="Warum FareWell in Nürnberg?" sectionId="warum-farewell">
+    <app-guide-section
+      index="03"
+      [heading]="t('Warum FareWell in Nürnberg?', 'Why FareWell in Nuremberg?')"
+      sectionId="warum-farewell"
+    >
       <app-guide-checklist>
-        <li>Spezialisierung auf Haarentfernung: Elektrolyse (permanent) und moderne Laser-Technologie (dauerhaft)</li>
-        <li>4-Wellen-Diodenlaser der neuesten Generation mit KI-unterstützter Hautanalyse</li>
-        <li>Individuelle Haut- und Haaranalyse für einen abgestimmten Behandlungsplan</li>
-        <li>4,9 Sterne bei Google – ehrliche Beratung statt Verkaufsdruck</li>
-        <li>Modernes Studio im Zentrum von Nürnberg, wenige Gehminuten vom Hauptbahnhof</li>
+        <li>
+          <span class="lang de">Spezialisierung auf Haarentfernung: Elektrolyse (permanent) und moderne Laser-Technologie (dauerhaft)</span>
+          <span class="lang en">Specialised in hair removal: electrolysis (permanent) and modern laser technology (long-lasting)</span>
+        </li>
+        <li>
+          <span class="lang de">4-Wellen-Diodenlaser der neuesten Generation mit KI-unterstützter Hautanalyse</span>
+          <span class="lang en">Latest-generation 4-wavelength diode laser with AI-assisted skin analysis</span>
+        </li>
+        <li>
+          <span class="lang de">Individuelle Haut- und Haaranalyse für einen abgestimmten Behandlungsplan</span>
+          <span class="lang en">Individual skin and hair analysis for a tailored treatment plan</span>
+        </li>
+        <li>
+          <span class="lang de">4,9 Sterne bei Google, ehrliche Beratung statt Verkaufsdruck</span>
+          <span class="lang en">4.9 stars on Google, honest advice instead of sales pressure</span>
+        </li>
+        <li>
+          <span class="lang de">Modernes Studio im Zentrum von Nürnberg, wenige Gehminuten vom Hauptbahnhof</span>
+          <span class="lang en">Modern studio in the centre of Nuremberg, a few minutes' walk from the main station</span>
+        </li>
       </app-guide-checklist>
-      <app-guide-note variant="tip" label="Gut zu wissen">
-        Für helle, feine oder graue Haare, die weder Laser noch IPL erreichen, bieten wir
-        die <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a> –
-        die einzige in Deutschland rechtlich als permanent anerkannte Methode.
+      <app-guide-note variant="tip" [label]="t('Gut zu wissen', 'Good to know')">
+        <span class="lang de">
+          Für helle, feine oder graue Haare, die weder Laser noch IPL erreichen, bieten wir
+          die <a routerLink="/behandlungen/nadelepilation">Elektrolyse (Nadelepilation)</a>,
+          die einzige in Deutschland rechtlich als permanent anerkannte Methode.
+        </span>
+        <span class="lang en">
+          For light, fine or grey hairs that neither laser nor IPL can reach, we offer
+          <a routerLink="/behandlungen/nadelepilation">electrolysis (needle epilation)</a>,
+          the only method legally recognised as permanent in Germany.
+        </span>
       </app-guide-note>
     </app-guide-section>
 
-    <app-guide-section index="04" heading="So läuft es ab" sectionId="ablauf">
+    <app-guide-section
+      index="04"
+      [heading]="t('So läuft es ab', 'How it works')"
+      sectionId="ablauf"
+    >
       <app-guide-steps>
         <li>
-          <strong>Kostenlose Erstberatung.</strong> Wir analysieren Haut und Haare – auch
-          wenn du schon IPL-Behandlungen hinter dir hast – und sagen dir ehrlich, was
-          realistisch ist.
+          <span class="lang de">
+            <strong>Kostenlose Erstberatung.</strong> Wir analysieren Haut und Haare, auch
+            wenn du schon IPL-Behandlungen hinter dir hast, und sagen dir ehrlich, was
+            realistisch ist.
+          </span>
+          <span class="lang en">
+            <strong>Free initial consultation.</strong> We analyse your skin and hair, even
+            if you've already had IPL treatments, and tell you honestly what is realistic.
+          </span>
         </li>
         <li>
-          <strong>Dein Behandlungsplan.</strong> Zonen, Sitzungen und Kosten besprechen wir
-          transparent, bevor es losgeht.
+          <span class="lang de">
+            <strong>Dein Behandlungsplan.</strong> Zonen, Sitzungen und Kosten besprechen wir
+            transparent, bevor es losgeht.
+          </span>
+          <span class="lang en">
+            <strong>Your treatment plan.</strong> We discuss areas, sessions and costs
+            transparently before we start.
+          </span>
         </li>
         <li>
-          <strong>Die Sitzungen.</strong> In Abständen von einigen Wochen, abgestimmt auf
-          den Wachstumszyklus deiner Haare.
+          <span class="lang de">
+            <strong>Die Sitzungen.</strong> In Abständen von einigen Wochen, abgestimmt auf
+            den Wachstumszyklus deiner Haare.
+          </span>
+          <span class="lang en">
+            <strong>The sessions.</strong> A few weeks apart, matched to the growth cycle of
+            your hair.
+          </span>
         </li>
         <li>
-          <strong>Das Ergebnis.</strong> Dauerhaft reduzierter Haarwuchs – Sitzung für
-          Sitzung feiner und lichter.
+          <span class="lang de">
+            <strong>Das Ergebnis.</strong> Dauerhaft reduzierter Haarwuchs, Sitzung für
+            Sitzung feiner und lichter.
+          </span>
+          <span class="lang en">
+            <strong>The result.</strong> Long-lasting reduced hair growth, finer and sparser
+            session by session.
+          </span>
         </li>
       </app-guide-steps>
     </app-guide-section>
 
-    <app-guide-section index="05" heading="Häufige Fragen" sectionId="faq">
-      <app-faq-item question="Warum bietet FareWell kein IPL an?">
-        <p>
+    <app-guide-section
+      index="05"
+      [heading]="t('Häufige Fragen', 'Frequently asked questions')"
+      sectionId="faq"
+    >
+      <app-faq-item [question]="t('Warum bietet FareWell kein IPL an?', 'Why doesn\'t FareWell offer IPL?')">
+        <p class="lang de">
           Weil wir von der präziseren Technologie überzeugt sind: IPL arbeitet mit breit
           gestreutem Licht, der
           <a routerLink="/behandlungen/diodenlaser-4-wellen">4-Wellen-Diodenlaser</a> mit
@@ -122,39 +263,90 @@
           macht die Behandlung kontrollierter, wirksamer und für mehr Haut- und Haartypen
           geeignet.
         </p>
+        <p class="lang en">
+          Because we're convinced by the more precise technology: IPL works with broadly
+          scattered light, while the
+          <a routerLink="/behandlungen/diodenlaser-4-wellen">4-wavelength diode laser</a> uses
+          precisely tuned wavelengths that act directly on the hair follicle. That makes the
+          treatment more controlled, more effective and suitable for more skin and hair types.
+        </p>
       </app-faq-item>
 
-      <app-faq-item question="Ist IPL oder Diodenlaser besser für dauerhafte Haarentfernung?">
-        <p>
+      <app-faq-item
+        [question]="
+          t(
+            'Ist IPL oder Diodenlaser besser für dauerhafte Haarentfernung?',
+            'Is IPL or a diode laser better for long-lasting hair removal?'
+          )
+        "
+      >
+        <p class="lang de">
           Der Diodenlaser gilt als die präzisere und meist wirksamere Methode: Er bündelt
           die Energie gezielt auf das Haarfollikel, während IPL-Geräte ihr Licht breit
           streuen. Unser 4-Wellen-Diodenlaser kombiniert zusätzlich mehrere Wellenlängen
           und passt sich per KI-Hauterkennung deinem Hauttyp an.
         </p>
+        <p class="lang en">
+          The diode laser is considered the more precise and usually more effective method:
+          it focuses the energy directly on the hair follicle, while IPL devices scatter
+          their light broadly. Our 4-wavelength diode laser also combines several wavelengths
+          and adapts to your skin type through AI-assisted skin detection.
+        </p>
       </app-faq-item>
 
-      <app-faq-item question="Ich habe schon IPL-Behandlungen hinter mir – kann ich zu FareWell wechseln?">
-        <p>
+      <app-faq-item
+        [question]="
+          t(
+            'Ich habe schon IPL-Behandlungen hinter mir, kann ich zu FareWell wechseln?',
+            'I\'ve already had IPL treatments, can I switch to FareWell?'
+          )
+        "
+      >
+        <p class="lang de">
           Ja, jederzeit. Bring am besten die Infos zu deinen bisherigen Behandlungen mit in
           die kostenlose Erstberatung. Wir analysieren Haut und Haare, schauen uns den
           aktuellen Stand an und erstellen dir einen ehrlichen Plan, wie es sinnvoll
           weitergeht.
         </p>
+        <p class="lang en">
+          Yes, any time. It's best to bring the details of your previous treatments to the
+          free initial consultation. We analyse your skin and hair, look at where things
+          stand and put together an honest plan for how to sensibly continue.
+        </p>
       </app-faq-item>
 
-      <app-faq-item question="Was kostet die erste Behandlung mit dem Neukunden-Code?">
-        <p>
+      <app-faq-item
+        [question]="
+          t(
+            'Was kostet die erste Behandlung mit dem Neukunden-Code?',
+            'How much does the first treatment cost with the new-client code?'
+          )
+        "
+      >
+        <p class="lang de">
           Mit dem Code <strong>ERSTEBEHANDLUNG</strong> zahlst du auf deine erste
           Behandlung nur die Hälfte des regulären Preises. Alle regulären Preise stehen je
           Körperzone auf <a routerLink="/price">unserer Preisseite</a>. Die Erstberatung
           ist kostenlos und unverbindlich.
         </p>
+        <p class="lang en">
+          With the code <strong>ERSTEBEHANDLUNG</strong> you pay only half the regular price
+          for your first treatment. All regular prices are listed per body area on
+          <a routerLink="/price">our price page</a>. The initial consultation is free and
+          without obligation.
+        </p>
       </app-faq-item>
     </app-guide-section>
 
-    <app-guide-cta heading="Überzeug dich selbst – zum halben Preis">
-      Buche online über Salonkee und gib den Code <strong>ERSTEBEHANDLUNG</strong> an –
-      oder starte mit der kostenlosen Erstberatung, wenn du erst vergleichen möchtest.
+    <app-guide-cta [heading]="t('Überzeug dich selbst, zum halben Preis', 'See for yourself, at half price')">
+      <span class="lang de">
+        Buche online über Salonkee und gib den Code <strong>ERSTEBEHANDLUNG</strong> an, oder
+        starte mit der kostenlosen Erstberatung, wenn du erst vergleichen möchtest.
+      </span>
+      <span class="lang en">
+        Book online via Salonkee and enter the code <strong>ERSTEBEHANDLUNG</strong>, or start
+        with the free initial consultation if you'd like to compare first.
+      </span>
     </app-guide-cta>
   </div>
 </div>

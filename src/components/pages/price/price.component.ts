@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { SeoService } from 'src/services/seo.service';
+import { LanguageService } from 'src/services/language.service';
 import {
   GUIDE_COMPONENTS,
   GuideLang,
@@ -23,7 +24,6 @@ const PAGE_TITLE =
 const PAGE_DESCRIPTION =
   'Alle Preise bei FareWell Nürnberg: Laser-Haarentfernung ab 30 €, Nadelepilation ab 40 €, Microneedling ab 180 €, Massage ab 45 €. Erstberatung kostenlos.';
 
-const LANG_STORAGE_KEY = 'fw_lang';
 const ORGANIZATION_ID = 'https://farewell.salon/#organization';
 
 interface PriceFaqEntry {
@@ -47,10 +47,13 @@ interface PriceFaqEntry {
 export class PriceComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
   private readonly route = inject(ActivatedRoute);
+  private readonly language = inject(LanguageService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly jsonLdId = 'price-schema';
 
-  lang: GuideLang = 'de';
+  get lang(): GuideLang {
+    return this.language.lang();
+  }
 
   readonly tables = PRICE_TABLES;
 
@@ -134,10 +137,8 @@ export class PriceComponent implements OnInit, OnDestroy {
 
     if (this.isBrowser) {
       const fromQuery = this.route.snapshot.queryParamMap.get('lang');
-      const stored = localStorage.getItem(LANG_STORAGE_KEY);
-      const initial = fromQuery ?? stored;
-      if (initial === 'de' || initial === 'en') {
-        this.lang = initial;
+      if (fromQuery === 'de' || fromQuery === 'en') {
+        this.language.setLang(fromQuery);
       }
     }
   }
@@ -146,15 +147,8 @@ export class PriceComponent implements OnInit, OnDestroy {
     this.seo.clearJsonLd(this.jsonLdId);
   }
 
-  setLang(lang: GuideLang): void {
-    this.lang = lang;
-    if (this.isBrowser) {
-      localStorage.setItem(LANG_STORAGE_KEY, lang);
-    }
-  }
-
   t(de: string, en: string): string {
-    return this.lang === 'de' ? de : en;
+    return this.language.t(de, en);
   }
 
   price(row: PriceRow): string {

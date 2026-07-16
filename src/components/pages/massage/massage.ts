@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { ImageTextBlockComponent } from 'src/components/molecules/image-text-block/image-text-block.component';
 import { BookingCtaComponent } from "src/components/atoms/booking-cta/booking-cta";
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   selector: 'app-wellness-massagen',
@@ -15,6 +16,7 @@ import { BookingCtaComponent } from "src/components/atoms/booking-cta/booking-ct
 export class MassageComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  readonly lang = inject(LanguageService);
 
   private readonly pageUrl = 'https://farewell.salon/behandlungen/wellness-massage';
   private readonly heroImageUrl =
@@ -22,12 +24,26 @@ export class MassageComponent implements OnInit {
 
   constructor() {}
 
-  paragraphText: string = `
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  get paragraphText(): string {
+    return this.t(
+      `
     Wellness Massagen bei FareWell sind deine Auszeit für Körper & Kopf:
     Verspannungen lösen, runterfahren und neue Leichtigkeit spüren.
 
     Unten findest du unsere Massage-Angebote inkl. Dauer & Preise.
-  `;
+  `,
+      `
+    Wellness massages at FareWell are your time out for body and mind:
+    release tension, wind down and feel a new lightness.
+
+    Below you will find our massage options, including duration and prices.
+  `
+    );
+  }
 
   structuredData = '';
 

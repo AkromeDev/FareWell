@@ -3,7 +3,7 @@
   <ul class="hours-list">
     <li *ngFor="let entry of openingHours" class="day-entry">
       <span class="day">{{ entry.day }}</span>
-      <span class="time" [class.closed]="entry.hours === 'Geschlossen'">{{ entry.hours }}</span>
+      <span class="time" [class.closed]="entry.closed">{{ entry.hours }}</span>
     </li>
   </ul>
 </section>

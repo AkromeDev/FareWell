@@ -2,8 +2,10 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { SeoService } from 'src/services/seo.service';
+import { LanguageService } from 'src/services/language.service';
 import {
   GUIDE_COMPONENTS,
+  GuideLang,
   GuideStat,
   GuideTocItem,
 } from 'src/components/molecules/guide';
@@ -31,26 +33,51 @@ interface FaqJsonLdEntry {
 })
 export class LaserPromotionComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
+  private readonly language = inject(LanguageService);
   private readonly jsonLdId = 'laser-promotion-schema';
 
   readonly heroImage = HERO_IMAGE;
   readonly heroImageAlt = HERO_IMAGE_ALT;
 
-  readonly stats: GuideStat[] = [
-    { value: '4', label: 'Wellenlängen in einem Laser' },
-    { value: '50%', label: 'Rabatt auf deine erste Behandlung' },
-    { value: 'gratis', label: 'Erstberatung mit Hautanalyse' },
-    { value: '6', label: 'Tage pro Woche geöffnet' },
-  ];
+  get lang(): GuideLang {
+    return this.language.lang();
+  }
 
-  readonly toc: GuideTocItem[] = [
-    { id: 'angebot', label: 'Preise & Neukunden-Rabatt' },
-    { id: 'vorteile', label: 'Warum der 4-Wellen-Diodenlaser' },
-    { id: 'dauerhaft-permanent', label: 'Dauerhaft oder permanent?' },
-    { id: 'ablauf', label: 'So läuft deine Behandlung ab' },
-    { id: 'zonen', label: 'Alle Körperzonen' },
-    { id: 'faq', label: 'Häufige Fragen' },
-  ];
+  t(de: string, en: string): string {
+    return this.language.t(de, en);
+  }
+
+  get stats(): GuideStat[] {
+    return [
+      { value: '4', label: this.t('Wellenlängen in einem Laser', 'Wavelengths in one laser') },
+      {
+        value: '50%',
+        label: this.t('Rabatt auf deine erste Behandlung', 'Discount on your first treatment'),
+      },
+      {
+        value: this.t('gratis', 'free'),
+        label: this.t('Erstberatung mit Hautanalyse', 'Initial consultation with skin analysis'),
+      },
+      { value: '6', label: this.t('Tage pro Woche geöffnet', 'Days open per week') },
+    ];
+  }
+
+  get toc(): GuideTocItem[] {
+    return [
+      { id: 'angebot', label: this.t('Preise & Neukunden-Rabatt', 'Prices & new-client discount') },
+      {
+        id: 'vorteile',
+        label: this.t('Warum der 4-Wellen-Diodenlaser', 'Why the 4-wavelength diode laser'),
+      },
+      {
+        id: 'dauerhaft-permanent',
+        label: this.t('Dauerhaft oder permanent?', 'Long-lasting or permanent?'),
+      },
+      { id: 'ablauf', label: this.t('So läuft deine Behandlung ab', 'How your treatment works') },
+      { id: 'zonen', label: this.t('Alle Körperzonen', 'All body areas') },
+      { id: 'faq', label: this.t('Häufige Fragen', 'Common questions') },
+    ];
+  }
 
   /**
    * Fragen und Antworten als Klartext für das FAQPage-Schema. Inhaltlich

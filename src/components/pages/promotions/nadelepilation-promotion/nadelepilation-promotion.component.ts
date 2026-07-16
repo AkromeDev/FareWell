@@ -4,6 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ImageHeroComponent } from 'src/components/molecules/image-hero/image-hero.component';
 import { TextBlockComponent } from 'src/components/molecules/text-block/text-block.component';
 import { ButtonItem } from 'src/models/ButtonItem';
+import { LanguageService } from 'src/services/language.service';
 
 @Component({
   standalone: true,
@@ -15,6 +16,7 @@ import { ButtonItem } from 'src/models/ButtonItem';
 export class NadelepilationPromotionComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  readonly lang = inject(LanguageService);
 
   private readonly pageUrl =
     'https://farewell.salon/nadelepilation-angebot-nuernberg';
@@ -22,25 +24,41 @@ export class NadelepilationPromotionComponent implements OnInit {
   private readonly heroImageUrl =
     'https://farewell.salon/assets/images/treatment/nadel.jpg';
 
-  paragraphText: string = `
+  t(de: string, en: string): string {
+    return this.lang.t(de, en);
+  }
+
+  get paragraphText(): string {
+    return this.t(
+      `
     Permanente Haarentfernung mit Nadelepilation (Elektrolyse) in Nürnberg bei FareWell.
 
     Diese Aktion gilt exklusiv für Neukundinnen und Neukunden und nur für kurze Zeit.
     Eine ideale Gelegenheit, um den Weg zu dauerhaft glatter und pflegeleichter Haut zu beginnen.
-  `;
+  `,
+      `
+    Permanent hair removal with electrolysis (Nadelepilation) in Nuremberg at FareWell.
 
-  buttonList: ButtonItem[] = [
-    { label: 'Unsere Preise', link: '/price', theme: 'dark' },
-    {
-      label: 'Termin buchen',
-      link: 'https://salonkee.de/salon/farewell?lang=de',
-      theme: 'dark',
-      external: true,
-      analyticsEvent: 'generate_lead',
-      analyticsLocation: 'nadelepilation-page',
-      analyticsLabel: 'Termin Buchen Nadelepilation Page'
+    This offer is exclusively for new clients and available for a short time only.
+    An ideal opportunity to begin your journey to lastingly smooth, low-maintenance skin.
+  `
+    );
   }
-  ];
+
+  get buttonList(): ButtonItem[] {
+    return [
+      { label: this.t('Unsere Preise', 'Our prices'), link: '/price', theme: 'dark' },
+      {
+        label: this.t('Termin buchen', 'Book now'),
+        link: 'https://salonkee.de/salon/farewell?lang=de',
+        theme: 'dark',
+        external: true,
+        analyticsEvent: 'generate_lead',
+        analyticsLocation: 'nadelepilation-page',
+        analyticsLabel: 'Termin Buchen Nadelepilation Page'
+      }
+    ];
+  }
 
   structuredData = '';
 

@@ -1,14 +1,14 @@
 <app-image-hero
   id="topSection"
   [margin]="'large'"
-  title="Elektrolyse in Nürnberg – permanente Haarentfernung"
+  [title]="t('Elektrolyse in Nürnberg – permanente Haarentfernung', 'Electrolysis in Nuremberg, permanent hair removal')"
   titleType="soft"
   [paragraphText]="paragraphText"
   [paragraphAlign]="'center'"
   [paragraphWeight]="'bold'"
   [paragraphColor]="'light'"
   [backgroundImage]="'assets/images/treatment/nadel.jpg'"
-  [imageAlt]="'Elektrolyse Behandlung bei FareWell in Nürnberg zur permanenten Haarentfernung'"
+  [imageAlt]="t('Elektrolyse Behandlung bei FareWell in Nürnberg zur permanenten Haarentfernung', 'Electrolysis treatment at FareWell in Nuremberg for permanent hair removal')"
   [shadow]="'dark'"
   [titleLevel]="'h1'"
   [buttonList]="buttonList">
@@ -16,35 +16,54 @@
 
 <app-text-block
   theme="light"
-  title="Warum Elektrolyse die wirklich permanente Haarentfernung ist"
+  [title]="t('Warum Elektrolyse die wirklich permanente Haarentfernung ist', 'Why electrolysis is the truly permanent hair removal method')"
   paragraphAlign="center"
   paragraphSize="medium"
   paragraphWeight="normal"
   paragraphMaxWidth="wide"
   titleType="simple"
 >
-  <p>
+  <p class="lang de">
     Im Unterschied zu Laser oder IPL, die nur dauerhaft reduzieren,
     zerstört die Elektrolyse die Haarwurzel endgültig.
     So erreichen Sie eine wirklich permanente Haarentfernung, selbst
     bei hellen, grauen oder sehr feinen Haaren.
   </p>
+  <p class="lang en">
+    Unlike laser or IPL, which only achieve long-lasting reduction,
+    electrolysis destroys the hair root for good.
+    That way you achieve truly permanent hair removal, even
+    on light, grey or very fine hairs.
+  </p>
 
-  <h2>Ihre Vorteile bei der Elektrolyse bei FareWell</h2>
+  <h2 class="lang de">Ihre Vorteile bei der Elektrolyse bei FareWell</h2>
+  <h2 class="lang en">Your benefits with electrolysis at FareWell</h2>
 
-  <ul>
+  <ul class="lang de">
     <li>Staatlich geprüfte Kosmetikerin mit Spezialisierung auf Elektrolyse</li>
     <li>Permanente Haarentfernung an Gesicht und Körper</li>
     <li>Transparente Beratung und individuelle Behandlungspläne</li>
     <li>Studio im Herzen von Nürnberg, Nähe Hauptbahnhof</li>
   </ul>
+  <ul class="lang en">
+    <li>State-certified beautician specialising in electrolysis</li>
+    <li>Permanent hair removal for face and body</li>
+    <li>Transparent advice and individual treatment plans</li>
+    <li>Studio in the heart of Nuremberg, close to the main station</li>
+  </ul>
 
-  <h3>50 % Rabatt für Neukunden</h3>
+  <h3 class="lang de">50 % Rabatt für Neukunden</h3>
+  <h3 class="lang en">50% discount for new clients</h3>
 
-  <p>
+  <p class="lang de">
     Mit dem Code <strong>ERSTEBEHANDLUNG</strong> erhalten Sie 50 % Rabatt
     auf Ihre erste Elektrolyse Behandlung. Buchen Sie Ihren Termin
     direkt online oder kontaktieren Sie uns für eine persönliche Beratung.
+  </p>
+  <p class="lang en">
+    With the code <strong>ERSTEBEHANDLUNG</strong> you get 50% discount
+    on your first electrolysis treatment. Book your appointment
+    directly online or contact us for a personal consultation.
   </p>
 </app-text-block>
 

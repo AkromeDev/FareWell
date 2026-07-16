@@ -2,6 +2,8 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, HostListener, ElementRef, PLATFORM_ID, inject } from '@angular/core';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { GuideLangToggleComponent } from 'src/components/molecules/guide/guide-lang-toggle/guide-lang-toggle.component';
+import { LanguageService } from 'src/services/language.service';
 
 declare global {
   interface Window {
@@ -19,7 +21,7 @@ type TreatmentCard = {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, GuideLangToggleComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
@@ -33,48 +35,71 @@ export class HeaderComponent implements OnInit {
 
   isBehandlungenRoute: boolean = false;
 
+  readonly lang = inject(LanguageService);
+
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
   private closeTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
-  treatments: TreatmentCard[] = [
-    {
-      title: 'Nadelepilation',
-      description: 'Permanente Haarentfernung mit Elektrolyse: präzise, zuverlässig, endgültig.',
-      route: '/behandlungen/nadelepilation',
-      image: 'assets/images/treatment/nadelepilation.jpg'
-    },
-    {
-      title: '4 Wellen Dioden Laser',
-      description: 'Dauerhafte Haarentfernung für viele Haut- & Haartypen, schnell und komfortabel.',
-      route: '/behandlungen/diodenlaser-4-wellen',
-      image: 'assets/images/treatment/diodenlaser.webp'
-    },
-    {
-      title: 'Microneedling Radio Frequenz',
-      description: 'Straffung & Hautbild: feine Nadeln + Wärme für ein glatteres Erscheinungsbild.',
-      route: '/behandlungen/microneedling-radiofrequenz',
-      image: 'assets/images/treatment/microneedling.webp'
-    },
-    {
-      title: 'Wellness Massage',
-      description: 'Entspannung, Regeneration & neue Leichtigkeit mit wohltuenden Wellness-Massagen.',
-      route: '/behandlungen/wellness-massage',
-      image: 'assets/images/treatment/massage-hero.jpg'
-    },
-    {
-      title: 'Therapeutische Massage',
-      description: 'Gezielte Behandlung bei Verspannungen, sportlicher Belastung & für individuelle Regeneration.',
-      route: '/behandlungen/therapeutische-massage',
-      image: 'assets/images/massages/tm%20massaging.jpg'
-    },
-    {
-      title: 'Kavitation',
-      description: 'Ultraschall-Unterstützung zur Kontur: sanft, nicht-invasiv und effektiv.',
-      route: '/behandlungen/kavitation',
-      image: 'assets/images/treatment/kavitation.webp'
-    }
-  ];
+  get treatments(): TreatmentCard[] {
+    const t = (de: string, en: string) => this.lang.t(de, en);
+    return [
+      {
+        title: t('Nadelepilation', 'Electrolysis'),
+        description: t(
+          'Permanente Haarentfernung mit Elektrolyse: präzise, zuverlässig, endgültig.',
+          'Permanent hair removal with electrolysis: precise, reliable, final.'
+        ),
+        route: '/behandlungen/nadelepilation',
+        image: 'assets/images/treatment/nadelepilation.jpg'
+      },
+      {
+        title: t('4 Wellen Dioden Laser', '4-Wavelength Diode Laser'),
+        description: t(
+          'Dauerhafte Haarentfernung für viele Haut- & Haartypen, schnell und komfortabel.',
+          'Long-lasting hair removal for many skin and hair types, fast and comfortable.'
+        ),
+        route: '/behandlungen/diodenlaser-4-wellen',
+        image: 'assets/images/treatment/diodenlaser.webp'
+      },
+      {
+        title: t('Microneedling Radio Frequenz', 'RF Microneedling'),
+        description: t(
+          'Straffung & Hautbild: feine Nadeln + Wärme für ein glatteres Erscheinungsbild.',
+          'Firming and skin texture: fine needles plus heat for a smoother appearance.'
+        ),
+        route: '/behandlungen/microneedling-radiofrequenz',
+        image: 'assets/images/treatment/microneedling.webp'
+      },
+      {
+        title: t('Wellness Massage', 'Wellness Massage'),
+        description: t(
+          'Entspannung, Regeneration & neue Leichtigkeit mit wohltuenden Wellness-Massagen.',
+          'Relaxation, recovery and new lightness with soothing wellness massages.'
+        ),
+        route: '/behandlungen/wellness-massage',
+        image: 'assets/images/treatment/massage-hero.jpg'
+      },
+      {
+        title: t('Therapeutische Massage', 'Therapeutic Massage'),
+        description: t(
+          'Gezielte Behandlung bei Verspannungen, sportlicher Belastung & für individuelle Regeneration.',
+          'Targeted work for tension, sports strain and individual recovery.'
+        ),
+        route: '/behandlungen/therapeutische-massage',
+        image: 'assets/images/massages/tm%20massaging.jpg'
+      },
+      {
+        title: t('Kavitation', 'Cavitation'),
+        description: t(
+          'Ultraschall-Unterstützung zur Kontur: sanft, nicht-invasiv und effektiv.',
+          'Ultrasound support for body contour: gentle, non-invasive and effective.'
+        ),
+        route: '/behandlungen/kavitation',
+        image: 'assets/images/treatment/kavitation.webp'
+      }
+    ];
+  }
 
   constructor(private eRef: ElementRef, private router: Router) {}
 

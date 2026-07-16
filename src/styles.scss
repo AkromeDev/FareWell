@@ -216,3 +216,77 @@ a[href]:not(.no-underline):not(.gd a) {
     scroll-behavior: auto;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Zweisprachigkeit (DE/EN) — global
+// ---------------------------------------------------------------------------
+// Die UI-Sprache steht als data-lang="de|en" auf <html> (LanguageService).
+// Inhalte liegen als Paare nebeneinander im DOM:
+//   <span class="lang de">Deutsch</span><span class="lang en">English</span>
+// und werden per CSS umgeschaltet. So sind beide Sprachen vorgerendert und der
+// Wechsel im Header ist sofort sichtbar, ohne Nachladen.
+[data-lang='de'] .lang.en {
+  display: none;
+}
+
+[data-lang='en'] .lang.de {
+  display: none;
+}
+
+// ---------------------------------------------------------------------------
+// DE/EN-Umschalter im Header (wiederverwendete .gd-lang-switch, aber inline
+// statt fixiert). Sitzt als letztes Element in der Navigation.
+// ---------------------------------------------------------------------------
+.nav-lang {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  .gd-lang-switch {
+    position: static;
+    inset: auto;
+    display: inline-flex;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    overflow: hidden;
+    background: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+
+    button {
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.85);
+      background: transparent;
+      border: 0;
+      padding: 6px 11px;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease;
+
+      // Aktive Sprache: Champagne-Gold (Marken-Akzent), damit sie wie die
+      // aktiven Nav-Punkte hervorsticht statt weiß zu sein.
+      &[aria-pressed='true'] {
+        background: #b8924a;
+        color: #1c2b24;
+      }
+
+      &:not([aria-pressed='true']):hover {
+        background: rgba(255, 255, 255, 0.16);
+        color: #fff;
+      }
+    }
+  }
+}
+
+// Desktop: den Umschalter etwas weiter nach rechts rücken und exakt auf die
+// vertikale Mitte der übrigen Header-Punkte ausrichten.
+@media (min-width: 769px) {
+  .nav-lang {
+    margin-left: clamp(0.5rem, 1.4vw, 1.1rem);
+    position: relative;
+    top: 1px;
+  }
+}

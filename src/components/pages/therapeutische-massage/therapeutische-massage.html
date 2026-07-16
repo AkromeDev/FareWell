@@ -8,7 +8,7 @@
   [backgroundImage]="'assets/images/massages/tm massaging.jpg'"
   [shadow]="'dark'"
   [titleLevel]="'h1'"
-  [title]="'Therapeutische Massage: Gezielte Entspannung, Regeneration & körperliche Entlastung'"
+  [title]="t('Therapeutische Massage: Gezielte Entspannung, Regeneration & körperliche Entlastung', 'Therapeutic Massage: Targeted Relaxation, Recovery and Physical Relief')"
   [titleType]="'blur'"
   [height]="'75'"
 >
@@ -16,57 +16,97 @@
 
 <app-image-text-block
   theme="light"
-  title="Therapeutische Massagen bei FareWell"
+  [title]="t('Therapeutische Massagen bei FareWell', 'Therapeutic massages at FareWell')"
   [backgroundImage]="'assets/images/massages/tm consultation.jpg'"
   imagePosition="right"
 >
-  <p>
+  <p class="lang de">
     Unsere therapeutischen Massagen richten sich an Menschen mit muskulären Verspannungen,
     einseitigen Belastungen, sportlicher Beanspruchung oder dem Wunsch nach gezielter Regeneration.
   </p>
+  <p class="lang en">
+    Our therapeutic massages are for people with muscular tension, one-sided strain,
+    physical strain from sport or simply the wish for focused recovery.
+  </p>
 
-  <p>
+  <p class="lang de">
     Jede Behandlung wird individuell auf deine Situation abgestimmt, mit Blick auf deine Beschwerden,
     Bewegungsgewohnheiten und persönlichen Ziele.
   </p>
+  <p class="lang en">
+    Every treatment is tailored to your situation, with an eye on your complaints,
+    your movement habits and your personal goals.
+  </p>
 
-  <p class="disclaimer">
+  <p class="disclaimer lang de">
     <em>
       Unsere therapeutischen Massagen dienen der Unterstützung von Wohlbefinden, Regeneration
       und muskulärer Entlastung. Sie ersetzen keine ärztliche Diagnose oder medizinische Therapie.
     </em>
   </p>
+  <p class="disclaimer lang en">
+    <em>
+      Our therapeutic massages are here to support your wellbeing, recovery and muscular relief.
+      They do not replace a medical diagnosis or medical therapy.
+    </em>
+  </p>
 
-  <p>
+  <p class="lang de">
     Termin buchen:
     <app-booking-cta location="therapeutische-massage-page"></app-booking-cta>
+  </p>
+  <p class="lang en">
+    Book an appointment:
+    <app-booking-cta location="therapeutische-massage-page" [label]="'Book now'"></app-booking-cta>
   </p>
 </app-image-text-block>
 
 <app-image-text-block
   id="beratung"
   theme="dark"
-  title="Massage Beratungsgespräch"
+  [title]="t('Massage Beratungsgespräch', 'Massage consultation')"
   [backgroundImage]="'assets/images/massages/tm Beratung.jpg'"
   imagePosition="left"
 >
-  <p class="priceLine">
+  <p class="priceLine lang de">
     <strong>kostenlos &nbsp;·&nbsp; 30 Min</strong>
   </p>
+  <p class="priceLine lang en">
+    <strong>free &nbsp;·&nbsp; 30 min</strong>
+  </p>
 
-  <p>
+  <p class="lang de">
     Du bist unsicher, welche therapeutische Massage zu deinen Beschwerden, Belastungen oder Zielen
     passt? Im kurzen Beratungsgespräch klären wir deine Fragen, besprechen deine Situation grob
     und empfehlen dir den passenden Einstieg.
   </p>
+  <p class="lang en">
+    Not sure which therapeutic massage suits your complaints, strain or goals? In a short
+    consultation we answer your questions, talk through your situation in broad terms and
+    recommend the right starting point for you.
+  </p>
 
-  <p>
+  <p class="lang de">
     Eine ausführliche Anamnese und Befundaufnahme erfolgt im Rahmen des Ersttermins
     oder einer gebuchten Behandlung.
   </p>
+  <p class="lang en">
+    A detailed medical history and assessment takes place during your initial appointment
+    or a booked treatment.
+  </p>
 
-  <p>
+  <p class="lang de">
     👉 Direkt buchen:
+    <a
+      href="https://salonkee.de/salon/farewell?lang=de"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Salonkee
+    </a>
+  </p>
+  <p class="lang en">
+    👉 Book directly:
     <a
       href="https://salonkee.de/salon/farewell?lang=de"
       target="_blank"
@@ -80,31 +120,56 @@
 <app-image-text-block
   id="ersttermin"
   theme="light"
-  title="Ersttermin mit Anamnese & Befundaufnahme"
+  [title]="t('Ersttermin mit Anamnese & Befundaufnahme', 'Initial appointment with medical history and assessment')"
   [backgroundImage]="'assets/images/massages/tm massaging 2.jpg'"
   imagePosition="right"
 >
-  <p class="priceLine">
+  <p class="priceLine lang de">
     <strong>99 € &nbsp;·&nbsp; 90 Min</strong>
   </p>
+  <p class="priceLine lang en">
+    <strong>99 € &nbsp;·&nbsp; 90 min</strong>
+  </p>
 
-  <p>
+  <p class="lang de">
     Der Ersttermin verbindet Anamnese, funktionelle Befundaufnahme und eine individuell
     angepasste Behandlung. Wir nehmen uns Zeit, deine Beschwerden, Belastungen,
     Bewegungsgewohnheiten und Ziele zu verstehen.
   </p>
+  <p class="lang en">
+    The initial appointment brings together your medical history, a functional assessment and a
+    treatment tailored just for you. We take the time to understand your complaints, strain,
+    movement habits and goals.
+  </p>
 
-  <p>
+  <p class="lang de">
     Anschließend wird die Massage gezielt auf deine Situation abgestimmt. Bei Bedarf erhältst du
     praktische Empfehlungen für Alltag, Training oder Regeneration.
   </p>
-
-  <p class="disclaimer">
-    <em>Hinweis: Die Behandlung ersetzt keine ärztliche oder physiotherapeutische Diagnose.</em>
+  <p class="lang en">
+    The massage is then focused precisely on your situation. Where it helps, you also receive
+    practical tips for everyday life, training or recovery.
   </p>
 
-  <p>
+  <p class="disclaimer lang de">
+    <em>Hinweis: Die Behandlung ersetzt keine ärztliche oder physiotherapeutische Diagnose.</em>
+  </p>
+  <p class="disclaimer lang en">
+    <em>Please note: this treatment does not replace a medical or physiotherapeutic diagnosis.</em>
+  </p>
+
+  <p class="lang de">
     👉 Direkt buchen:
+    <a
+      href="https://salonkee.de/salon/farewell?lang=de"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Salonkee
+    </a>
+  </p>
+  <p class="lang en">
+    👉 Book directly:
     <a
       href="https://salonkee.de/salon/farewell?lang=de"
       target="_blank"
@@ -118,30 +183,55 @@
 <app-image-text-block
   id="sport-regeneration"
   theme="dark"
-  title="Sport- & Regenerationsmassage"
+  [title]="t('Sport- & Regenerationsmassage', 'Sports and recovery massage')"
   [backgroundImage]="'assets/images/massages/tn flex.png'"
   imagePosition="left"
 >
-  <p class="priceLine">
+  <p class="priceLine lang de">
     <strong>30 Min | 50 €</strong> &nbsp;·&nbsp;
     <strong>60 Min | 90 €</strong> &nbsp;·&nbsp;
     <strong>90 Min | 120 €</strong>
   </p>
+  <p class="priceLine lang en">
+    <strong>30 min | 50 €</strong> &nbsp;·&nbsp;
+    <strong>60 min | 90 €</strong> &nbsp;·&nbsp;
+    <strong>90 min | 120 €</strong>
+  </p>
 
-  <p>
+  <p class="lang de">
     Ideal für Sportler:innen, aktive Menschen und alle, die ihrem Körper nach körperlicher Belastung
     etwas Gutes tun möchten. Die Behandlung unterstützt die Regeneration der Muskulatur,
     kann Verspannungen lösen, die Durchblutung fördern und das allgemeine Körpergefühl verbessern.
   </p>
+  <p class="lang en">
+    Ideal for athletes, active people and anyone who wants to do their body some good after physical
+    strain. The treatment supports the recovery of your muscles, can release tension, boost
+    circulation and improve how your body feels overall.
+  </p>
 
-  <p>
+  <p class="lang de">
     Besonders geeignet bei Muskelkater, schweren Beinen, sportlicher Überlastung, muskulären
     Verspannungen oder zur Vorbereitung und Nachsorge von Trainingseinheiten.
     Die Intensität der Massage wird individuell an deine Bedürfnisse angepasst.
   </p>
+  <p class="lang en">
+    Especially suited to sore muscles, heavy legs, sports overload, muscular tension or the
+    preparation and aftercare of your training sessions. The intensity of the massage is adjusted
+    individually to your needs.
+  </p>
 
-  <p>
+  <p class="lang de">
     👉 Direkt buchen:
+    <a
+      href="https://salonkee.de/salon/farewell?lang=de"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Salonkee
+    </a>
+  </p>
+  <p class="lang en">
+    👉 Book directly:
     <a
       href="https://salonkee.de/salon/farewell?lang=de"
       target="_blank"
@@ -155,30 +245,54 @@
 <app-image-text-block
   id="medizinisch-funktionell"
   theme="light"
-  title="Medizinisch-funktionelle Massage"
+  [title]="t('Medizinisch-funktionelle Massage', 'Medical functional massage')"
   [backgroundImage]="'assets/images/massages/tm flex 2.jpg'"
   imagePosition="right"
 >
-  <p class="priceLine">
+  <p class="priceLine lang de">
     <strong>30 Min | 60 €</strong> &nbsp;·&nbsp;
     <strong>60 Min | 100 €</strong> &nbsp;·&nbsp;
     <strong>90 Min | 135 €</strong>
   </p>
+  <p class="priceLine lang en">
+    <strong>30 min | 60 €</strong> &nbsp;·&nbsp;
+    <strong>60 min | 100 €</strong> &nbsp;·&nbsp;
+    <strong>90 min | 135 €</strong>
+  </p>
 
-  <p>
+  <p class="lang de">
     Diese Massage richtet sich an Menschen mit muskulären Verspannungen, einseitigen Belastungen
     und Bewegungseinschränkungen im Alltag oder Beruf. Der Fokus liegt auf Nacken, Schultern,
     Rücken und anderen beanspruchten Körperbereichen.
   </p>
+  <p class="lang en">
+    This massage is for people with muscular tension, one-sided strain and restricted movement in
+    everyday life or at work. The focus lies on the neck, shoulders, back and other overworked
+    areas of the body.
+  </p>
 
-  <p>
+  <p class="lang de">
     Durch gezielte Massagetechniken werden verspannte Strukturen bearbeitet, die Beweglichkeit
     gefördert und das allgemeine Körpergefühl verbessert. Jede Behandlung wird individuell
     auf deine Bedürfnisse abgestimmt.
   </p>
+  <p class="lang en">
+    Targeted massage techniques work on tense structures, encourage mobility and improve how your
+    body feels overall. Every treatment is tailored individually to your needs.
+  </p>
 
-  <p>
+  <p class="lang de">
     👉 Direkt buchen:
+    <a
+      href="https://salonkee.de/salon/farewell?lang=de"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Salonkee
+    </a>
+  </p>
+  <p class="lang en">
+    👉 Book directly:
     <a
       href="https://salonkee.de/salon/farewell?lang=de"
       target="_blank"
