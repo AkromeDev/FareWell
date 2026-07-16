@@ -86,26 +86,35 @@ broader route permissions.
 
 ## Persistence & synchronisation
 
+Two modes, switched by `config/supabase.config.ts` (see
+`docs/putzplan-supabase-setup.md` for the one-time server setup):
+
+**Shared mode (Supabase configured):** `SupabaseTaskRepository` uses a single
+Postgres row (`tasks` table, id `main`) as the shared source of truth for all
+devices, wrapping the local repository as its synchronous cache/offline
+fallback. Saves are debounced whole-state upserts; a Realtime subscription is
+treated as a ping that refetches the row and feeds
+`TaskSyncService.emitRemoteChange()` — the same pipeline cross-tab changes
+use, so `TaskService` needed no changes. Access control: one shared
+"household" auth user; staff enter its passphrase once per device
+(`TaskAuthGateComponent`), Row Level Security rejects the bare anon key.
+First-run migration seeds an empty table from the first signed-in device that
+has history (insert-only, so an existing remote state can never be clobbered).
+
+**Local mode (config empty — the fallback):** exactly the original behavior:
 - `localStorage` (key `fw_tasks_state_v1`) with an in-memory fallback if storage
   is unavailable; all access is SSR-safe (guarded by `isPlatformBrowser`).
 - Cross-tab sync via `BroadcastChannel` (channel `fw_tasks_sync`) with a
-  `storage`-event fallback.
-- **Limitation:** synchronises only across tabs of the *same browser profile* —
-  not across devices, browsers or profiles. The UI states this explicitly and
-  does not claim multi-device real-time collaboration.
+  `storage`-event fallback; same browser profile only.
 
-## Replacing the local store with a backend
+## Replacing the store with another backend
 
 The only seam is `TASK_REPOSITORY` (`services/task-repository.ts`) — an
 `InjectionToken<TaskRepository>` with `load()/save()/clear()`. Components never
-touch storage; only `TaskService` uses the repository. To move to Firebase /
-Supabase / a custom API:
-
-1. Implement `TaskRepository` against your backend.
-2. Override the `TASK_REPOSITORY` provider (root, or in the route `providers`).
-3. Optionally push real-time updates into `TaskSyncService.changes$`.
-
-No task components change.
+touch storage; only `TaskService` uses the repository.
+`SupabaseTaskRepository` is the reference implementation of the swap: wrap the
+local repository as a cache, replicate asynchronously, and push remote changes
+into `TaskSyncService.emitRemoteChange()`. No task components change.
 
 ## Testing
 

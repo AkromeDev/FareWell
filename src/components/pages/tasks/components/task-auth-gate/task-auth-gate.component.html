@@ -1,0 +1,46 @@
+@if (session.status() === 'initializing') {
+  <div class="gate gate--wait" role="status">
+    <span class="gate__spinner" aria-hidden="true"></span>
+    <p class="gate__wait-text">{{ t('Verbinden …', 'Connecting …') }}</p>
+  </div>
+} @else {
+  <div class="gate">
+    <div class="gate__card">
+      <span class="gate__icon" aria-hidden="true">🔐</span>
+      <h2 class="gate__title">{{ t('Putzplan entsperren', 'Unlock the task plan') }}</h2>
+      <p class="gate__hint">
+        {{ t(
+          'Einmal pro Gerät: Team-Passphrase eingeben, danach bleibt dieses Gerät angemeldet.',
+          'Once per device: enter the team passphrase and this device stays signed in.'
+        ) }}
+      </p>
+
+      <form class="gate__form" (ngSubmit)="submit()">
+        <label class="gate__label" for="gate-pass">{{ t('Passphrase', 'Passphrase') }}</label>
+        <input
+          #passInput
+          id="gate-pass"
+          class="gate__input"
+          type="password"
+          name="passphrase"
+          autocomplete="current-password"
+          [(ngModel)]="passphrase"
+          [disabled]="busy()"
+          [attr.aria-invalid]="error() ? true : null"
+          [attr.aria-describedby]="error() ? 'gate-error' : null"
+        />
+        <button type="submit" class="gate__btn" [disabled]="busy() || !passphrase.trim()">
+          @if (busy()) {
+            {{ t('Wird geprüft …', 'Checking …') }}
+          } @else {
+            {{ t('Entsperren', 'Unlock') }}
+          }
+        </button>
+      </form>
+
+      @if (error(); as err) {
+        <p id="gate-error" class="gate__error" role="alert">{{ err }}</p>
+      }
+    </div>
+  </div>
+}

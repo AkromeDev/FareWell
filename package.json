@@ -10,7 +10,6 @@
     "prerender": "ng run FareWell:prerender && node tools/flatten-prerender.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-
     "update:google-reviews": "node src/assets/scripts/update-google-reviews.mjs"
   },
   "dependencies": {
@@ -24,6 +23,7 @@
     "@angular/platform-server": "^20.3.15",
     "@angular/router": "^20.3.15",
     "@angular/ssr": "^20.3.13",
+    "@supabase/supabase-js": "^2.109.0",
     "express": "^5.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

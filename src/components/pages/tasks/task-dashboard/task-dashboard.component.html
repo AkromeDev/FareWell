@@ -4,6 +4,8 @@
     <h1>{{ t('Unbekannter Bereich', 'Unknown area') }}</h1>
     <p>{{ t('Diese Aufgabenseite existiert nicht.', 'This task page does not exist.') }}</p>
   </section>
+} @else if (locked()) {
+  <app-task-auth-gate />
 } @else if (user(); as u) {
   <div class="dash">
     <header class="hero">

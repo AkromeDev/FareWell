@@ -1,6 +1,10 @@
 import { InjectionToken, inject } from '@angular/core';
 import { PersistedTaskState, STORAGE_KEY } from '../models';
+import { isSupabaseEnabled } from '../config/supabase.config';
+import { SupabaseSessionService } from './supabase-session.service';
+import { SupabaseTaskRepository } from './supabase-task-repository';
 import { TaskStorageService } from './task-storage.service';
+import { TaskSyncService } from './task-sync.service';
 
 /**
  * Repository abstraction over persisted task state.
@@ -49,10 +53,23 @@ export class LocalTaskRepository implements TaskRepository {
 }
 
 /**
- * Root-provided repository token. To move to a backend, override this provider
- * with a class that implements {@link TaskRepository} against your API.
+ * Root-provided repository token.
+ *
+ * With Supabase configured ({@link isSupabaseEnabled}) the shared remote
+ * repository is used, wrapping the local one as its synchronous cache and
+ * offline fallback. With the config empty this is exactly the original
+ * localStorage-only behavior — that IS the fallback switch.
  */
 export const TASK_REPOSITORY = new InjectionToken<TaskRepository>('fw.TaskRepository', {
   providedIn: 'root',
-  factory: () => new LocalTaskRepository(inject(TaskStorageService)),
+  factory: () => {
+    const local = new LocalTaskRepository(inject(TaskStorageService));
+    if (!isSupabaseEnabled()) return local;
+    return new SupabaseTaskRepository(
+      local,
+      inject(SupabaseSessionService),
+      inject(TaskSyncService),
+      inject(TaskStorageService),
+    );
+  },
 });

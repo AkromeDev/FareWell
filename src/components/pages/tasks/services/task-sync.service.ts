@@ -60,6 +60,15 @@ export class TaskSyncService implements OnDestroy {
     }
   }
 
+  /**
+   * Feed an externally originated change (e.g. Supabase realtime) into the
+   * SAME pipeline other-tab changes use, so TaskService reload logic is
+   * reused unchanged. Unlike {@link notify} this emits in this tab.
+   */
+  emitRemoteChange(): void {
+    this._changes.next();
+  }
+
   ngOnDestroy(): void {
     try {
       this.channel?.close();

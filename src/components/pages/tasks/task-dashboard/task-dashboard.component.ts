@@ -18,6 +18,8 @@ import { TaskRecord, TaskState, TaskUser, TaskViewMode } from '../models';
 import { TaskService } from '../services/task.service';
 import { UserContextService } from '../services/user-context.service';
 import { ActivityService } from '../services/activity.service';
+import { SupabaseSessionService } from '../services/supabase-session.service';
+import { TaskAuthGateComponent } from '../components/task-auth-gate/task-auth-gate.component';
 import { TaskListViewComponent } from '../components/task-list-view/task-list-view.component';
 import { TaskCalendarViewComponent } from '../components/task-calendar-view/task-calendar-view.component';
 import { ActivityFeedComponent } from '../components/activity-feed/activity-feed.component';
@@ -46,6 +48,7 @@ const TODAY_STATES: ReadonlySet<TaskState> = new Set(['dueToday', 'checkDue', 'e
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    TaskAuthGateComponent,
     TaskListViewComponent,
     TaskCalendarViewComponent,
     ActivityFeedComponent,
@@ -61,6 +64,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   private readonly activityService = inject(ActivityService);
   private readonly seo = inject(SeoService);
   readonly lang = inject(LanguageService);
+  private readonly session = inject(SupabaseSessionService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   private readonly userSig = signal<TaskUser | null>(null);
@@ -105,6 +109,15 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
 
   /** Session-only quick filter for the list view. */
   readonly filter = signal<TaskStatusFilter>('all');
+
+  /**
+   * True while shared (Supabase) persistence needs the passphrase first —
+   * the dashboard then shows the unlock gate instead of any task data.
+   */
+  readonly locked = computed(() => {
+    const s = this.session.status();
+    return s === 'initializing' || s === 'signed-out';
+  });
 
   /** Header stats: what needs doing today and what the team already did. */
   readonly stats = computed(() => {
