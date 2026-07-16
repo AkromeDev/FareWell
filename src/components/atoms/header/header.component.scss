@@ -205,6 +205,12 @@ button {
   }
 }
 
+/* Sekundäre Links: auf Handy & Desktop reiner Layout-Passthrough (Kinder
+   liegen direkt im Nav-Container), auf Tablets das Burger-Dropdown. */
+.nav-secondary {
+  display: contents;
+}
+
 /* Behandlungen container */
 .nav-item.behandlungen {
   width: 100%;
@@ -603,6 +609,7 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .nav-bar,
   .nav-links-container,
+  .nav-secondary,
   .behandlungen-panel,
   .panel-inner,
   .card-image,
@@ -614,17 +621,72 @@ button {
     filter: none !important;
   }
 }
-/* Zwischenbreiten: seit dem sechsten Nav-Link (FAQ) brauchen die Desktop-Links
-   kompaktere Typografie, sonst überlappen die nowrap-Texte im schrumpfenden
-   Flex-Container. */
+/* Tablets: sechs Nav-Links passen nicht nebeneinander, ohne sich zu quetschen.
+   Nur "Termin Buchen" und "Behandlungen" bleiben in der Leiste; die übrigen
+   Links (.nav-secondary) wandern ins Burger-Menü wie auf Mobil. */
 @media (min-width: 769px) and (max-width: 1160px) {
-  .nav-bar .nav-links-container {
-    gap: 0.15rem;
+  .burger {
+    display: flex;
+    /* relativ statt absolut: als Flex-Item rechts neben den Links, bleibt
+       aber Anker für die absolut positionierten Balken-Spans */
+    position: relative;
+    right: auto;
+    order: 10;
+    flex: 0 0 auto;
+  }
 
-    .nav-link,
-    .nav-link-btn {
-      font-size: 0.82rem;
-      padding: 5px 0.28rem;
+  .nav-links-container {
+    .nav-secondary {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 110px;
+
+      background-color: rgba($black, 0.7);
+      backdrop-filter: blur(28px) saturate(145%);
+      -webkit-backdrop-filter: blur(28px) saturate(145%);
+
+      padding: 1rem;
+      transform-origin: top;
+      transform: scaleY(0);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 260ms ease, opacity 220ms ease;
+
+      .nav-link {
+        display: block;
+        width: 100%;
+        text-align: right;
+        font-size: 1.1rem;
+        padding: 0.55rem 0;
+        white-space: normal;
+
+        &::after {
+          content: none;
+        }
+      }
     }
+
+    /* Basis-Mobilregel neutralisieren: ein transform auf dem Container macht
+       ihn zum containing block des fixed Dropdowns, und sein overflow:hidden
+       würde das Dropdown komplett abschneiden. */
+    &.open {
+      transform: none;
+      padding: 0;
+    }
+
+    &.open .nav-secondary {
+      transform: scaleY(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  .nav-bar.scrolled .nav-links-container .nav-secondary {
+    top: 80px;
   }
 }

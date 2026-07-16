@@ -62,48 +62,51 @@
       </div>
     </div>
 
-    <a
-      [routerLink]="p('/zeit')"
-      routerLinkActive="active"
-      (click)="setActiveTab('zeit')"
-      class="nav-link"
-    >
-      <span class="lang de">Elektrolyse-Zeitberechnung</span><span class="lang en">Electrolysis time</span>
-    </a>
+    <!-- Sekundäre Links: auf Tablets im Burger-Menü, sonst Teil der Leiste -->
+    <div class="nav-secondary">
+      <a
+        [routerLink]="p('/zeit')"
+        routerLinkActive="active"
+        (click)="setActiveTab('zeit')"
+        class="nav-link"
+      >
+        <span class="lang de">Elektrolyse-Zeitberechnung</span><span class="lang en">Electrolysis time</span>
+      </a>
 
-    <a
-      [routerLink]="p('/historie')"
-      routerLinkActive="active"
-      (click)="setActiveTab('historie')"
-      class="nav-link"
-    >
-      <span class="lang de">Historie</span><span class="lang en">History</span>
-    </a>
+      <a
+        [routerLink]="p('/historie')"
+        routerLinkActive="active"
+        (click)="setActiveTab('historie')"
+        class="nav-link"
+      >
+        <span class="lang de">Historie</span><span class="lang en">History</span>
+      </a>
 
-    <a
-      [routerLink]="p('/price')"
-      routerLinkActive="active"
-      (click)="setActiveTab('price')"
-      class="nav-link"
-    >
-      <span class="lang de">Preis</span><span class="lang en">Prices</span>
-    </a>
+      <a
+        [routerLink]="p('/price')"
+        routerLinkActive="active"
+        (click)="setActiveTab('price')"
+        class="nav-link"
+      >
+        <span class="lang de">Preis</span><span class="lang en">Prices</span>
+      </a>
 
-    <a
-      [routerLink]="p('/faq')"
-      routerLinkActive="active"
-      (click)="setActiveTab('faq')"
-      class="nav-link"
-    >
-      FAQ
-    </a>
+      <a
+        [routerLink]="p('/faq')"
+        routerLinkActive="active"
+        (click)="setActiveTab('faq')"
+        class="nav-link"
+      >
+        FAQ
+      </a>
 
-    <!-- Sprachumschalter: letztes Element, auf Desktop rechts, auf Mobil unten -->
-    <div class="nav-lang">
-      <app-guide-lang-toggle
-        [lang]="lang.lang()"
-        (langChange)="lang.setLang($event)"
-      />
+      <!-- Sprachumschalter: letztes Element, auf Desktop rechts, auf Mobil unten -->
+      <div class="nav-lang">
+        <app-guide-lang-toggle
+          [lang]="lang.lang()"
+          (langChange)="lang.setLang($event)"
+        />
+      </div>
     </div>
   </div>
 
