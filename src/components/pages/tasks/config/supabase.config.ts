@@ -12,9 +12,10 @@
  */
 export const SUPABASE_CONFIG = {
   /** Project URL, e.g. 'https://abcdefghij.supabase.co'. */
-  url: '',
+  url: 'https://kpwiujyprexemkfmvjhk.supabase.co',
   /** The anon PUBLIC key (Project Settings → API). Safe to commit. */
-  anonKey: '',
+  anonKey:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtwd2l1anlwcmV4ZW1rZm12amhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyMTk2NjEsImV4cCI6MjA5OTc5NTY2MX0.9peB5dUCpeJKJAgGkU7WMX5xgqGxBfMDljOlPMjknKw',
   /**
    * Email of the single shared "household" auth user. The passphrase for it is
    * the shared secret staff enter once per device — it is never committed.
