@@ -36,7 +36,7 @@ const DEFAULT_IMAGE = `${ORIGIN}/assets/images/logo/android-chrome-512x512.png`;
  * englischen Seiten indexiert werden sollen. Bereits indexierte englische
  * Sonderseiten (z. B. /ratgeber/us-forces-vat-relief) sind davon ausgenommen.
  */
-const EN_PREFIX_INDEXABLE = false;
+const EN_PREFIX_INDEXABLE = true;
 
 /**
  * Zentraler SEO-Helfer: setzt Title/Meta/Open-Graph pro Seite und injiziert
