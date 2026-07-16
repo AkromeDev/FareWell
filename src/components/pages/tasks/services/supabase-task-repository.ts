@@ -160,6 +160,9 @@ export class SupabaseTaskRepository implements TaskRepository {
     try {
       const client = await this.session.getClient();
       const remote = await this.fetchRow(client);
+      // Token BEFORE state, mirroring pushLatest: a save landing in between
+      // then merely re-pushes instead of getting its marker cleared.
+      const token = this.storage.getRaw(DIRTY_KEY);
       const localState = this.local.load();
 
       if (remote) {
@@ -168,9 +171,6 @@ export class SupabaseTaskRepository implements TaskRepository {
       }
 
       if (localState && hasProgress(localState) && !this.storage.getRaw(SEEDED_KEY)) {
-        // Compare-and-clear token: a save() landing during the insert's
-        // round-trip must keep its marker (same guard pushLatest uses).
-        const token = this.storage.getRaw(DIRTY_KEY);
         const { error } = await client.from(SUPABASE_CONFIG.table).insert(this.toRow(localState));
         if (error && !isDuplicateKey(error.code)) throw error;
         this.storage.setRaw(SEEDED_KEY, new Date().toISOString());
@@ -211,8 +211,10 @@ export class SupabaseTaskRepository implements TaskRepository {
     }
 
     // A row written by a NEWER app schema must not be merged (we would strip
-    // fields we do not know) — adopt it read-only style and never push until
-    // this client is updated and saves again on its own.
+    // fields we do not know) — adopt it and drop any pending push. This only
+    // DEFERS the risk: the next local save on this outdated client still
+    // pushes a normalised (downgraded) state, so updating the app before
+    // mutating is what actually resolves the situation.
     if ((remote.schemaVersion ?? 1) > (localState.schemaVersion ?? 1)) {
       console.warn('[tasks] remote state has a newer schema; adopting without push');
       this.local.save(remote);
@@ -274,9 +276,9 @@ export class SupabaseTaskRepository implements TaskRepository {
 
   private teardownRealtime(): void {
     if (this.channel) {
-      // removeChannel (not just unsubscribe) drops the topic from the client
-      // registry, so a quick sign-out → sign-in gets a FRESH channel instead
-      // of the stale, half-closed instance client.channel() would return.
+      // removeChannel awaits the leave and tears the channel down (timers
+      // included), so a quick sign-out → sign-in gets a FRESH channel
+      // instead of the half-closed instance client.channel() could return.
       const staleChannel = this.channel;
       this.channel = null;
       if (this.realtimeClient) {
