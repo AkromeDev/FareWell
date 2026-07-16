@@ -1,0 +1,196 @@
+@use 'themes/theme-entry' as *;
+
+:host {
+  display: block;
+  animation: cat-in 0.45s var(--ease-out, ease-out) both;
+}
+
+@keyframes cat-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.cat {
+  border: 1px solid var(--line, rgba(43, 51, 40, 0.12));
+  border-radius: 18px;
+  background: var(--surface-2, #f7f2e8);
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, #{$accent-1} 45%, var(--line, rgba(43, 51, 40, 0.12)));
+    box-shadow: 0 6px 22px rgba($black, 0.07);
+  }
+}
+
+.cat__heading {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.cat__toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--ink, #2b3328);
+  transition: background 0.2s ease;
+
+  &:hover { background: rgba($dark-1, 0.05); }
+
+  &:focus-visible {
+    outline: 2px solid $accent-1;
+    outline-offset: -2px;
+    border-radius: 18px 18px 0 0;
+  }
+}
+
+.cat__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: color-mix(in srgb, #{$accent-1} 14%, var(--surface, #fff));
+  border: 1px solid color-mix(in srgb, #{$accent-1} 28%, transparent);
+  transition: transform 0.25s var(--ease-out, ease-out);
+}
+
+.cat__toggle:hover .cat__icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.cat__title {
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.cat__count {
+  font-size: 0.78rem;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.cat__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: var(--u-critical, #b4462f);
+  color: #fff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  animation: badge-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--u-critical, #b4462f) 45%, transparent); }
+  50% { box-shadow: 0 0 0 5px transparent; }
+}
+
+.cat__chevron {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  color: $accent-1;
+  background: color-mix(in srgb, #{$accent-1} 12%, transparent);
+  transition: transform 0.3s var(--ease-out, ease-out);
+
+  svg { width: 0.75rem; height: 0.75rem; }
+}
+
+.cat__chevron--open {
+  transform: rotate(180deg);
+}
+
+// Thin "health" bar: how much of the category is NOT urgent right now.
+.cat__health {
+  height: 3px;
+  margin: 0 1rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--u-critical, #b4462f) 22%, transparent);
+  overflow: hidden;
+}
+
+.cat__health-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, $dark-1, $accent-2);
+  transition: width 0.6s var(--ease-out, ease-out);
+}
+
+// Smooth expand/collapse via the grid-rows trick (content stays in the DOM).
+.cat__body {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.35s var(--ease-out, ease-out);
+}
+
+.cat__body--collapsed {
+  grid-template-rows: 0fr;
+
+  .cat__inner {
+    visibility: hidden;
+    // Hide only after the rows animation finished collapsing.
+    transition: visibility 0s 0.35s;
+  }
+}
+
+.cat__inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.cat__list {
+  display: grid;
+  // 1 column on phones, 2 on laptops, 3 on wide screens (with the 1560px
+  // dashboard the main column fits three ~350px cards).
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0.85rem;
+  list-style: none;
+}
+
+.cat__item {
+  margin: 0;
+  min-width: 0;
+  animation: card-in 0.4s var(--ease-out, ease-out) both;
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host { animation: none; }
+  .cat__item { animation: none; }
+  .cat__body { transition: none; }
+  // Without this the visibility change would lag 0.35s behind the (now
+  // instant) collapse, leaving hidden cards briefly focusable.
+  .cat__body--collapsed .cat__inner { transition: none; }
+  .cat__badge { animation: none; }
+  .cat__chevron,
+  .cat__icon,
+  .cat__health-fill { transition: none; }
+}

@@ -1,0 +1,47 @@
+<section class="feed" [attr.aria-label]="lang.t('Aktivitäten', 'Activity feed')">
+  <h2 class="feed__heading">
+    <button
+      type="button"
+      class="feed__toggle"
+      [attr.aria-expanded]="!collapsed"
+      aria-controls="activity-panel"
+      (click)="toggle.emit()"
+    >
+      <span class="feed__title">{{ lang.t('Aktivitäten', 'Activity') }}</span>
+      <span class="feed__count">{{ entries.length }}</span>
+      <span class="feed__chevron" [class.feed__chevron--open]="!collapsed" aria-hidden="true">▾</span>
+    </button>
+  </h2>
+
+  <div id="activity-panel" class="feed__panel" [hidden]="collapsed">
+    @if (entries.length === 0) {
+      <p class="feed__empty">{{ lang.t('Noch keine Aktivitäten.', 'No activity yet.') }}</p>
+    } @else {
+      <ol class="feed__list">
+        @for (entry of entries; track entry.id) {
+          <li class="feed__item">
+            <span class="feed__avatar" [attr.data-user]="entry.userId" aria-hidden="true">
+              {{ (entry.userName || '?').charAt(0) }}
+              <span class="feed__dot" [attr.data-action]="entry.action"></span>
+            </span>
+            <div class="feed__body">
+              <p class="feed__line">
+                <strong>{{ entry.userName }}</strong>
+                {{ actionText(entry) }}:
+                <span class="feed__task">{{ lang.t(entry.taskNameDe, entry.taskNameEn) }}</span>
+              </p>
+              <p class="feed__meta">
+                <span class="feed__cat">{{ categoryText(entry) }}</span>
+                <span class="feed__sep" aria-hidden="true">·</span>
+                <time [attr.datetime]="entry.at" [attr.title]="exact(entry)">{{ relative(entry) }}</time>
+              </p>
+              @if (entry.note) {
+                <p class="feed__note">{{ quotedNote(entry.note) }}</p>
+              }
+            </div>
+          </li>
+        }
+      </ol>
+    }
+  </div>
+</section>

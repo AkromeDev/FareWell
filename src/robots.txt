@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+# Interner Aufgaben-/Reinigungsplan (privat, kein SEO-Wert)
+Disallow: /tasks/
+Disallow: /massage-tasks/
 
 Sitemap: https://farewell.salon/sitemap.xml

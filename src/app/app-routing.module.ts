@@ -445,6 +445,32 @@ const routes: Routes = [
     }
   },
 
+  // Interner Aufgaben- & Reinigungsplan (privat, nicht indexiert, nicht in der
+  // Sitemap). Vier Routen teilen sich ein konfigurierbares Dashboard; der
+  // :user-Parameter bestimmt über die Access-Konfiguration Nutzer, Sichtbarkeit
+  // und Rechte. Bewusst NICHT unter /en/ gespiegelt (die Task-UI schaltet die
+  // Sprache intern über den bestehenden Umschalter).
+  {
+    path: 'tasks/:user',
+    loadComponent: () =>
+      import('../components/pages/tasks/task-dashboard/task-dashboard.component')
+        .then(m => m.TaskDashboardComponent),
+    data: {
+      title: 'Aufgaben | FareWell',
+      description: 'Interner Aufgaben- und Reinigungsplan für das FareWell-Team.'
+    }
+  },
+  {
+    path: 'massage-tasks/:user',
+    loadComponent: () =>
+      import('../components/pages/tasks/task-dashboard/task-dashboard.component')
+        .then(m => m.TaskDashboardComponent),
+    data: {
+      title: 'Massage-Aufgaben | FareWell',
+      description: 'Interner Aufgabenplan für den Massageraum bei FareWell.'
+    }
+  },
+
   {
     path: 'not-found',
     loadComponent: () =>

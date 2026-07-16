@@ -1,0 +1,184 @@
+@use 'themes/theme-entry' as *;
+
+:host {
+  display: flex;
+  min-width: 0;
+}
+
+.day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line, rgba(43, 51, 40, 0.12));
+  border-radius: 14px;
+  background: var(--surface, #fff);
+  overflow: hidden;
+  transition: box-shadow 0.25s var(--ease-out, ease-out), transform 0.25s var(--ease-out, ease-out);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($black, 0.08);
+  }
+}
+
+.day--today {
+  border-color: color-mix(in srgb, #{$accent-1} 65%, transparent);
+  box-shadow: 0 6px 18px color-mix(in srgb, #{$accent-1} 22%, transparent);
+
+  // Champagne ribbon along the top of today's column.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, $accent-1, #d9bc7f, $accent-1);
+  }
+
+  .day__header {
+    background: color-mix(in srgb, #{$accent-1} 10%, var(--surface, #fff));
+  }
+}
+
+.day--past {
+  background: color-mix(in srgb, var(--surface, #fff) 94%, #000 6%);
+
+  .day__list { opacity: 0.82; }
+}
+
+.day__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--line, rgba(43, 51, 40, 0.1));
+}
+
+.day__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink, #2b3328);
+}
+
+.day__weekday {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  color: var(--ink-dim, rgba(43, 51, 40, 0.72));
+}
+
+.day__num {
+  font-size: 1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.day__today {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  color: $dark-2;
+  background: linear-gradient(140deg, #d9bc7f, $accent-1);
+}
+
+.day__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.45rem;
+  margin: 0;
+  list-style: none;
+  flex: 1;
+  min-height: 2.5rem;
+}
+
+.day__item {
+  margin: 0;
+}
+
+.day__empty {
+  color: var(--line, rgba(43, 51, 40, 0.2));
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 0.4rem 0;
+}
+
+.chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  width: 100%;
+  padding: 0.42rem 0.55rem;
+  text-align: left;
+  font-family: inherit;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: color-mix(in srgb, var(--u-color, #6f7d72) 12%, var(--surface, #fff));
+  border-color: color-mix(in srgb, var(--u-color, #6f7d72) 34%, transparent);
+  border-left: 3px solid var(--u-color, #6f7d72);
+  transition:
+    filter 0.15s ease,
+    transform 0.18s var(--ease-out, ease-out),
+    box-shadow 0.2s ease;
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.98);
+    transform: translateX(3px);
+    box-shadow: 0 3px 10px rgba($black, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-1;
+    outline-offset: 1px;
+  }
+
+  &:disabled { cursor: default; }
+
+  &[data-urgency='critical'] { --u-color: var(--u-critical, #b4462f); }
+  &[data-urgency='warning'] { --u-color: var(--u-warning, #b07d1f); }
+  &[data-urgency='attention'] { --u-color: var(--u-attention, #7d8a5f); }
+  &[data-urgency='neutral'] { --u-color: var(--u-neutral, #9aa89b); }
+  &[data-urgency='completed'] { --u-color: var(--u-completed, #3e5a47); }
+  &[data-urgency='waiting'] { --u-color: var(--u-waiting, #8a8172); }
+  &[data-urgency='seasonal'] { --u-color: var(--u-seasonal, #6f8494); }
+
+  &[data-kind='completed'] {
+    text-decoration: line-through;
+    opacity: 0.75;
+  }
+}
+
+.chip__kind {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--u-color, #6f7d72);
+}
+
+.chip__name {
+  font-size: 0.75rem;
+  line-height: 1.25;
+  color: var(--ink, #2b3328);
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .day,
+  .chip {
+    transition: none;
+  }
+
+  .day:hover,
+  .chip:hover:not(:disabled) { transform: none; }
+}

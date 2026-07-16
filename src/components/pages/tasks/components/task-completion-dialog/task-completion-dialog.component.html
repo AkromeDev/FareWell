@@ -1,0 +1,51 @@
+<div class="backdrop" (click)="onBackdrop($event)">
+  <div
+    class="dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="dlg-title"
+    aria-describedby="dlg-desc"
+  >
+    <h2 id="dlg-title" class="dialog__title">{{ lang.t('Aufgabe abschließen', 'Complete task') }}</h2>
+    <p id="dlg-desc" class="dialog__task">{{ lang.t(record.def.nameDe, record.def.nameEn) }}</p>
+
+    @if (record.computed.currentZone) {
+      <p class="dialog__zone">{{ lang.t('Zone', 'Zone') }}: {{ record.computed.currentZone }}</p>
+    }
+
+    @if (isCheck) {
+      <fieldset class="dialog__choice">
+        <legend>{{ lang.t('Ergebnis der Kontrolle', 'Inspection result') }}</legend>
+        <label class="dialog__radio">
+          <input type="radio" name="action" value="checked-ok" [(ngModel)]="action" />
+          <span>{{ lang.t('Geprüft, alles in Ordnung', 'Checked, all fine') }}</span>
+        </label>
+        <label class="dialog__radio">
+          <input type="radio" name="action" value="corrective" [(ngModel)]="action" />
+          <span>{{ lang.t('Nachgebessert / Arbeit nötig', 'Corrective work done') }}</span>
+        </label>
+      </fieldset>
+    }
+
+    <label class="dialog__field">
+      <span class="dialog__label">{{ lang.t('Notiz (optional)', 'Note (optional)') }}</span>
+      <textarea
+        class="dialog__note"
+        rows="2"
+        [(ngModel)]="note"
+        [attr.placeholder]="lang.t('z. B. Material fast leer …', 'e.g. running low on supplies …')"
+      ></textarea>
+    </label>
+
+    <p class="dialog__who">{{ lang.t('Wird eingetragen als', 'Recorded as') }}: <strong>{{ userName }}</strong></p>
+
+    <div class="dialog__actions">
+      <button type="button" class="dialog__btn dialog__btn--ghost" (click)="cancel.emit()">
+        {{ lang.t('Abbrechen', 'Cancel') }}
+      </button>
+      <button #confirmBtn type="button" class="dialog__btn dialog__btn--primary" (click)="submit()">
+        {{ lang.t('Erledigt eintragen', 'Confirm done') }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="cal">
+  <div class="cal__toolbar">
+    <div class="cal__nav" role="group" [attr.aria-label]="lang.t('Wochennavigation', 'Week navigation')">
+      <button type="button" class="cal__navbtn" (click)="prevWeek()" [attr.aria-label]="lang.t('Vorherige Woche', 'Previous week')">‹</button>
+      <button
+        type="button"
+        class="cal__today"
+        (click)="thisWeek()"
+        [disabled]="isCurrentWeek()"
+      >{{ lang.t('Diese Woche', 'This week') }}</button>
+      <button type="button" class="cal__navbtn" (click)="nextWeek()" [attr.aria-label]="lang.t('Nächste Woche', 'Next week')">›</button>
+    </div>
+    <p class="cal__range" aria-live="polite">{{ weekLabel() }}</p>
+  </div>
+
+  <!-- Mobile day picker -->
+  <div class="cal__daypicker" role="tablist" [attr.aria-label]="lang.t('Tag auswählen', 'Select day')">
+    @for (pd of pickerDays(); track pd.index) {
+      <button
+        type="button"
+        class="cal__pick"
+        role="tab"
+        [class.cal__pick--active]="pd.index === selectedIndex"
+        [class.cal__pick--today]="pd.isToday"
+        [attr.aria-selected]="pd.index === selectedIndex"
+        (click)="selectDay(pd.index)"
+      >
+        <span class="cal__pick-wd">{{ pd.weekday }}</span>
+        <span class="cal__pick-day">{{ pd.day }}</span>
+        @if (pd.count > 0) {
+          <span class="cal__pick-dot" aria-hidden="true"></span>
+        }
+      </button>
+    }
+  </div>
+
+  <!-- Overdue lane -->
+  @if (week.overdue.length > 0) {
+    <section class="cal__lane cal__lane--overdue" [attr.aria-label]="lang.t('Überfällige Aufgaben', 'Overdue tasks')">
+      <h3 class="cal__lane-title">{{ lang.t('Überfällig', 'Overdue') }}</h3>
+      <ul class="cal__lane-list">
+        @for (r of week.overdue; track r.def.id) {
+          <li>
+            <button type="button" class="lanechip" [disabled]="!r.computed.actionable" (click)="requestComplete.emit(r)">
+              <app-urgency-badge [state]="r.computed.state" [urgency]="r.computed.urgency" />
+              <span class="lanechip__name">{{ lang.t(r.def.nameDe, r.def.nameEn) }}</span>
+            </button>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+
+  <!-- Weekly grid -->
+  <div class="cal__grid">
+    @for (day of week.days; track day.iso; let i = $index) {
+      <app-calendar-day
+        class="cal__day"
+        [class.is-selected]="i === selectedIndex"
+        [day]="day"
+        (selectTask)="requestComplete.emit($event)"
+      />
+    }
+  </div>
+
+  <!-- Event / optional lane -->
+  @if (week.flexible.length > 0) {
+    <section class="cal__lane cal__lane--flex" [attr.aria-label]="lang.t('Ereignis- und flexible Aufgaben', 'Event & optional tasks')">
+      <h3 class="cal__lane-title">{{ lang.t('Ereignis & flexibel', 'Event & optional') }}</h3>
+      <ul class="cal__lane-list">
+        @for (r of week.flexible; track r.def.id) {
+          <li>
+            <button type="button" class="lanechip" [disabled]="!r.computed.actionable" (click)="requestComplete.emit(r)">
+              <app-urgency-badge [state]="r.computed.state" [urgency]="r.computed.urgency" />
+              <span class="lanechip__name">{{ lang.t(r.def.nameDe, r.def.nameEn) }}</span>
+            </button>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+</div>

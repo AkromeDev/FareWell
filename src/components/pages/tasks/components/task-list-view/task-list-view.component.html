@@ -1,0 +1,19 @@
+@if (groups.length === 0) {
+  <p class="list-empty">{{ lang.t('Keine Aufgaben in dieser Ansicht.', 'No tasks in this view.') }}</p>
+} @else {
+  <div class="list">
+    @for (group of groups; track group.category.id; let i = $index) {
+      <app-task-category
+        [style.animation-delay.ms]="groupDelay(i)"
+        [group]="group"
+        [user]="user"
+        [now]="now"
+        [collapsed]="isCollapsed(group.category.id)"
+        [panelId]="'cat-panel-' + group.category.id"
+        (toggle)="toggleCategory.emit(group.category.id)"
+        (requestComplete)="requestComplete.emit($event)"
+        (requestTrigger)="requestTrigger.emit($event)"
+      />
+    }
+  </div>
+}
