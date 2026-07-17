@@ -138,10 +138,18 @@ export class TaskService implements OnDestroy {
    * Complete a task: record who/when, append immutable history, recalc the next
    * occurrence, persist and broadcast. The previous state is kept for undo.
    */
-  complete(taskId: string, user: TaskUser, action: CompletionAction = 'completed', note?: string): void {
+  complete(
+    taskId: string,
+    user: TaskUser,
+    action: CompletionAction = 'completed',
+    note?: string,
+  ): boolean {
     const def = this.defById().get(taskId);
-    if (!def) return;
-    if (!user.visibleTypes.includes(def.type)) return; // permission guard
+    if (!def) return false;
+    if (!user.visibleTypes.includes(def.type)) return false; // permission guard
+    // A stale dialog may confirm a task that was archived on another device
+    // a moment ago — never record against a task no longer in the plan.
+    if (!def.active) return false;
 
     this.mutateTasks((tasks) => {
       const previous = tasks[taskId] ?? createMutableState(taskId);
@@ -182,6 +190,7 @@ export class TaskService implements OnDestroy {
         plannedDate: def.recurrence.kind === 'adHoc' ? null : previous.plannedDate,
       };
     });
+    return true;
   }
 
   /** Restore the state captured before the last completion. */
@@ -200,14 +209,14 @@ export class TaskService implements OnDestroy {
   }
 
   /** Record an external event so an event-triggered task becomes actionable. */
-  triggerEvent(taskId: string, user: TaskUser): void {
+  triggerEvent(taskId: string, user: TaskUser): boolean {
     const def = this.defById().get(taskId);
-    if (!def) return;
+    if (!def || !def.active) return false;
     const event =
       def.recurrence.kind === 'eventTriggered' || def.recurrence.kind === 'eventWithFollowUp'
         ? def.recurrence.event
         : null;
-    if (!event) return;
+    if (!event) return false;
     const occurrence: TaskTriggerOccurrence = {
       id: makeId(),
       taskId,
@@ -219,6 +228,7 @@ export class TaskService implements OnDestroy {
       const previous = tasks[taskId] ?? createMutableState(taskId);
       tasks[taskId] = { ...previous, openTrigger: occurrence };
     });
+    return true;
   }
 
   /** Place an ad-hoc task on a specific calendar day (ISO date), or clear it. */

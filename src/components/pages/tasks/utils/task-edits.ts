@@ -248,14 +248,14 @@ function sanitiseCustomTask(raw: unknown): CustomTask | null {
 
 /**
  * Merge two edits sections: overrides win per task by newer `updatedAt`
- * (ties keep local), custom tasks are unioned by id. Nothing is ever
- * dropped by a merge — archiving is itself an override that wins by time.
+ * (ties keep local), custom tasks are unioned by id.
  *
  * Granularity is the WHOLE override per task: if the single editor edits
- * the same task on two devices within one sync window, the newer edit wins
- * entirely (accepted for a one-curator feature; field-level merging would
- * add version stamps per field for a scenario that requires the same person
- * racing themselves).
+ * the same task on two not-yet-synced devices, the newer edit wins entirely —
+ * including over a concurrent archive flag (a newer rename can resurrect a
+ * just-archived task). Accepted for a one-curator feature; field-level
+ * merging would add per-field version stamps for a scenario that requires
+ * the same person racing themselves across devices.
  */
 export function mergeEdits(
   local: TaskEditsState | undefined,
@@ -282,4 +282,24 @@ export function mergeEdits(
 export function hasEdits(edits: TaskEditsState | undefined): boolean {
   if (!edits) return false;
   return Object.keys(edits.overrides ?? {}).length > 0 || (edits.customTasks ?? []).length > 0;
+}
+
+/**
+ * True when `local` holds any override key or custom task the `remote`
+ * section lacks — i.e. adopting remote wholesale would LOSE an edit. The app
+ * never deletes entries from a non-empty edits section, so a missing key
+ * always means the remote row was stripped or diverged, never an intended
+ * removal; merging is therefore always the safe response.
+ */
+export function editsMissingFrom(
+  local: TaskEditsState | undefined,
+  remote: TaskEditsState | undefined,
+): boolean {
+  if (!local) return false;
+  const r = remote ?? createEmptyEdits();
+  const remoteCustomIds = new Set(r.customTasks.map((c) => c.id));
+  return (
+    Object.keys(local.overrides ?? {}).some((id) => !(id in (r.overrides ?? {}))) ||
+    (local.customTasks ?? []).some((c) => !remoteCustomIds.has(c.id))
+  );
 }

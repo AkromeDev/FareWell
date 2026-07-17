@@ -25,7 +25,6 @@
             type="button"
             class="hero__editbtn"
             [class.hero__editbtn--active]="editMode()"
-            [attr.aria-pressed]="editMode()"
             (click)="toggleEditMode(u)"
           >
             <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -184,7 +183,12 @@
                   @for (def of archivedTasks(); track def.id) {
                     <li class="archived__item">
                       <span class="archived__name">{{ lang.t(def.nameDe, def.nameEn) }}</span>
-                      <button type="button" class="archived__restore" (click)="onRestore(def, u)">
+                      <button
+                        type="button"
+                        class="archived__restore"
+                        [attr.aria-label]="t('Wiederherstellen: ' + def.nameDe, 'Restore: ' + def.nameEn)"
+                        (click)="onRestore(def, u)"
+                      >
                         {{ t('Wiederherstellen', 'Restore') }}
                       </button>
                     </li>

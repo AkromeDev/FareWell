@@ -113,6 +113,19 @@ export class TaskEditDialogComponent implements OnInit, AfterViewInit {
     }));
   }
 
+  /** Category switched (create mode): drop an owner no longer eligible. */
+  onCategoryChange(): void {
+    if (this.owner && !this.ownerOptions().some((o) => o.id === this.owner)) {
+      this.owner = '';
+    }
+  }
+
+  /** Enter in the name field saves instead of inserting a newline. */
+  onNameEnter(event: Event): void {
+    event.preventDefault();
+    this.submit();
+  }
+
   get valid(): boolean {
     if (!this.name.trim()) return false;
     if (this.isCreate && !this.category) return false;
@@ -123,11 +136,14 @@ export class TaskEditDialogComponent implements OnInit, AfterViewInit {
   submit(): void {
     if (!this.valid) return;
     const interval = this.intervalEditable ? clampInterval(this.interval) : null;
+    // Belt and braces for the owner (see onCategoryChange).
+    const owner = this.ownerOptions().some((o) => o.id === this.owner) ? this.owner : '';
     this.save.emit({
-      nameDe: this.name.trim(),
+      // Task names are single-line; interior newlines collapse to spaces.
+      nameDe: this.name.replace(/\s*\n+\s*/g, ' ').trim(),
       notesDe: this.notes.trim() ? this.notes.trim() : null,
       ...(interval !== null ? { intervalDays: interval } : {}),
-      primaryOwner: this.owner || null,
+      primaryOwner: owner || null,
       ...(this.isCreate ? { category: this.category } : {}),
     });
   }

@@ -2,7 +2,7 @@ import type { RealtimeChannel, SupabaseClient } from '@supabase/supabase-js';
 import type { PersistedTaskState, TaskMutableState } from '../models';
 import { STORAGE_SCHEMA_VERSION } from '../models';
 import { SUPABASE_CONFIG } from '../config/supabase.config';
-import { hasEdits, mergeEdits } from '../utils/task-edits';
+import { editsMissingFrom, hasEdits, mergeEdits } from '../utils/task-edits';
 // Type-only: keeps the task-repository.ts ↔ this-file module cycle out of the
 // runtime graph (the factory there constructs this class).
 import type { LocalTaskRepository, TaskRepository } from './task-repository';
@@ -231,11 +231,12 @@ export class SupabaseTaskRepository implements TaskRepository {
     const mustMerge =
       this.isDirty() ||
       (hasProgress(localState) && (!hasProgress(remote) || firstContact)) ||
-      // A stale pre-edits client can push rows WITHOUT the edits section
-      // (its normalise strips fields it does not know). Merge our edits back
-      // in instead of adopting the stripped row — the app never empties a
-      // non-empty edits section itself, so this cannot resurrect deletions.
-      (hasEdits(localState.edits) && !hasEdits(remote.edits));
+      // A stale pre-edits client can push rows with a stripped or partial
+      // edits section (its normalise drops fields it does not know). If the
+      // remote row lacks ANY edit we hold, merge ours back in instead of
+      // adopting — the app never deletes entries from the edits section, so
+      // this cannot resurrect an intended removal.
+      editsMissingFrom(localState.edits, remote.edits);
     if (mustMerge) {
       const merged = mergeStates(localState, remote);
       this.local.save(merged);

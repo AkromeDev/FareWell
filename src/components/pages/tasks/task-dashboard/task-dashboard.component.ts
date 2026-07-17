@@ -276,9 +276,13 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   }
 
   onViewChange(value: TaskViewMode, u: TaskUser): void {
-    // The quick filter only applies to the list; drop it when leaving so a
-    // stat never claims an active filter the calendar ignores.
-    if (value === 'calendar') this.filter.set('all');
+    // Quick filter and edit mode are list-only concepts; drop both when
+    // leaving so no control claims a state the calendar ignores.
+    if (value === 'calendar') {
+      this.filter.set('all');
+      this.editMode.set(false);
+      this.editDialog.set(null);
+    }
     this.taskService.setViewMode(u.id, value);
   }
 
@@ -367,23 +371,33 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   }
 
   onRequestTrigger(record: TaskRecord, u: TaskUser): void {
-    this.taskService.triggerEvent(record.def.id, u);
-    this.setAnnounce(
-      this.t(`Ereignis eingetragen: ${record.def.nameDe}`, `Event logged: ${record.def.nameEn}`),
-    );
+    if (this.taskService.triggerEvent(record.def.id, u)) {
+      this.setAnnounce(
+        this.t(`Ereignis eingetragen: ${record.def.nameDe}`, `Event logged: ${record.def.nameEn}`),
+      );
+    }
   }
 
   onDialogConfirm(result: CompletionResult, u: TaskUser): void {
     const record = this.dialogRecord();
     if (record) {
-      this.taskService.complete(record.def.id, u, result.action, result.note);
-      const msg = this.t(
-        `„${record.def.nameDe}“ erledigt`,
-        `“${record.def.nameEn}” completed`,
-      );
-      this.showToast(msg, true);
-      this.setAnnounce(msg);
-      this.startCelebration();
+      // Can fail when the task was archived on another device meanwhile.
+      if (this.taskService.complete(record.def.id, u, result.action, result.note)) {
+        const msg = this.t(
+          `„${record.def.nameDe}“ erledigt`,
+          `“${record.def.nameEn}” completed`,
+        );
+        this.showToast(msg, true);
+        this.setAnnounce(msg);
+        this.startCelebration();
+      } else {
+        const msg = this.t(
+          'Diese Aufgabe ist nicht mehr im Plan.',
+          'This task is no longer in the plan.',
+        );
+        this.showToast(msg, false);
+        this.setAnnounce(msg);
+      }
     }
     this.dialogRecord.set(null);
   }

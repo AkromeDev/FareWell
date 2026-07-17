@@ -13,17 +13,29 @@
       }
     </h2>
     <p class="dialog__hint">
-      {{ t(
-        'Auf Deutsch eintragen. Der Verlauf der Aufgabe bleibt erhalten.',
-        'Enter in German. The task keeps its history.'
-      ) }}
+      @if (isCreate) {
+        {{ t(
+          'Auf Deutsch eintragen. Die Aufgabe erscheint sofort bei allen.',
+          'Enter in German. The task appears for everyone right away.'
+        ) }}
+      } @else {
+        {{ t(
+          'Auf Deutsch eintragen. Der Verlauf der Aufgabe bleibt erhalten.',
+          'Enter in German. The task keeps its history.'
+        ) }}
+      }
     </p>
 
     <form class="dialog__form" (ngSubmit)="submit()">
       @if (isCreate) {
         <label class="dialog__field">
           <span class="dialog__label">{{ t('Bereich', 'Area') }}</span>
-          <select class="dialog__input" name="category" [(ngModel)]="category">
+          <select
+            class="dialog__input"
+            name="category"
+            [(ngModel)]="category"
+            (ngModelChange)="onCategoryChange()"
+          >
             @for (cat of categories; track cat.id) {
               <option [value]="cat.id">{{ lang.t(cat.labelDe, cat.labelEn) }}</option>
             }
@@ -40,6 +52,7 @@
           rows="2"
           required
           [(ngModel)]="name"
+          (keydown.enter)="onNameEnter($event)"
         ></textarea>
       </label>
 
@@ -74,7 +87,7 @@
         <label class="dialog__field dialog__field--half">
           <span class="dialog__label">{{ t('Zuständig', 'Responsible') }}</span>
           <select class="dialog__input" name="owner" [(ngModel)]="owner">
-            <option value="">{{ t('Alle / niemand fest', 'Anyone / unassigned') }}</option>
+            <option value="">{{ t('Keine feste Zuordnung', 'No fixed assignment') }}</option>
             @for (opt of ownerOptions(); track opt.id) {
               <option [value]="opt.id">{{ opt.name }}</option>
             }

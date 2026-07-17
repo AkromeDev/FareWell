@@ -55,15 +55,31 @@ disabled under `prefers-reduced-motion`.
 
 ## Editing / adding tasks
 
-Canonical task definitions live in `data/task-seed.data.ts`. Every task is
-bilingual: `nameDe` (primary, German) + `nameEn` (from the plan's original
-wording), same for `notesDe`/`notesEn`. To add or change a task, edit that file
-and **bump `SEED_VERSION`**. Stored history is merged by the stable `id`, so:
+**From the UI (preferred for day-to-day changes):** the curating user
+(`TaskUser.canEditTasks`, currently Mojo) gets a "Bearbeiten" toggle in the
+dashboard header. In edit mode every card has a pencil (rename, note,
+every-X-days rhythm, responsible person, archive), every category header has
+an add button, and an "Archivierte Aufgaben" panel restores archived tasks.
+Edits are stored as **overrides by task id** in the shared state
+(`PersistedTaskState.edits`, see `utils/task-edits.ts`) and sync/merge like
+completions (override wins per task by `updatedAt`; added `custom--…` tasks
+are unioned). Ids never change, so history always survives. Input is
+German-only: the EN toggle shows the edited German text. Tasks with
+non-interval rhythms (event/weekday-based) keep their rhythm plan-managed.
+
+**In code (baseline):** canonical definitions live in
+`data/task-seed.data.ts`. Every task is bilingual: `nameDe` (primary, German)
++ `nameEn`, same for `notesDe`/`notesEn`. To add or change seed tasks, edit
+that file and **bump `SEED_VERSION`**. Stored history is merged by the stable
+`id`, so:
 
 - New tasks appear without touching existing history.
 - Renaming a task's `nameDe`/`nameEn` keeps its history (the `id` is stable —
   never derive it from a name).
 - Removing a task archives its history rather than deleting it.
+- UI overrides layer on top of the seed: a seed wording change stays hidden
+  behind an existing UI rename of the same task until that override is
+  removed from the shared state.
 
 Recurrence builders live in `models/recurrence.model.ts` (`rec.fixed`,
 `rec.check`, `rec.event`, `rec.eventFollowUp`, `rec.weekdays`, `rec.seasonal`,
