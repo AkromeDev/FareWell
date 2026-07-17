@@ -31,7 +31,10 @@ export class HeaderComponent implements OnInit {
   menuOpen: boolean = false;
 
   behandlungenOpen: boolean = false;
+  /** Kompakte Kopfzeile (Burger sichtbar), rein fürs Layout-Housekeeping. */
   isMobile: boolean = false;
+  /** Echtes Zeigegerät (Maus/Trackpad), das hovern kann — sonst Touch. */
+  canHover: boolean = false;
 
   isBehandlungenRoute: boolean = false;
 
@@ -109,7 +112,7 @@ export class HeaderComponent implements OnInit {
   constructor(private eRef: ElementRef, private router: Router) {}
 
   ngOnInit(): void {
-    this.updateIsMobile();
+    this.updateInteractionMode();
     this.updateBehandlungenRouteState(this.router.url);
 
     this.router.events
@@ -142,13 +145,17 @@ export class HeaderComponent implements OnInit {
   }
 
   onBehandlungenEnter() {
-    if (this.isMobile) return;
+    // Nur echte Zeigegeräte öffnen per Hover. Auf Touch-Geräten (auch großen
+    // Tablets im Querformat) läuft das Öffnen über Klick/Tap, siehe
+    // toggleBehandlungen — sonst würde ein Tap synthetisches mouseenter
+    // (öffnet) UND click (toggelt wieder zu) auslösen und das Panel bliebe zu.
+    if (!this.canHover) return;
     this.clearCloseTimer();
     this.behandlungenOpen = true;
   }
 
   onBehandlungenLeave() {
-    if (this.isMobile) return;
+    if (!this.canHover) return;
     this.scheduleClose();
   }
 
@@ -201,15 +208,19 @@ export class HeaderComponent implements OnInit {
     this.clearCloseTimer();
   }
 
-  private updateIsMobile() {
+  private updateInteractionMode() {
     if (!this.isBrowser) return;
-    this.isMobile = window.matchMedia('(max-width: 768px)').matches;
+    // Kompakte Leiste (Burger) — muss mit dem CSS-Breakpoint übereinstimmen.
+    this.isMobile = window.matchMedia('(max-width: 1160px)').matches;
+    // Hover nur, wenn das Gerät wirklich hovern kann. Touch-Geräte melden
+    // (hover: none) / (pointer: coarse) und bedienen das Menü per Tap.
+    this.canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   }
 
   @HostListener('window:resize')
   onResize() {
     const wasMobile = this.isMobile;
-    this.updateIsMobile();
+    this.updateInteractionMode();
     if (wasMobile && !this.isMobile) this.closeAll();
   }
 

@@ -1,82 +1,369 @@
-<app-image-hero
-  id="topSection"
-  [margin]="'large'"
-  [title]="t('- 50 % mit dem Code ERSTEBEHANDLUNG', '50% off with the code ERSTEBEHANDLUNG')"
-  titleType="soft"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [backgroundImage]="'assets/images/treatment/nadel.jpg'"
-  [imageAlt]="t('FareWell Studio in Nürnberg für permanente Haarentfernung mit Nadelepilation (Elektrolyse)', 'FareWell studio in Nuremberg for permanent hair removal with electrolysis (Nadelepilation)')"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [buttonList]="buttonList">
-</app-image-hero>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
-<app-text-block
-  theme="light"
-  [title]="t('Nadelepilation: permanente Haarentfernung in Nürnberg', 'Electrolysis (Nadelepilation): permanent hair removal in Nuremberg')"
-  paragraphAlign="center"
-  paragraphSize="medium"
-  paragraphWeight="normal"
-  paragraphMaxWidth="wide"
-  titleType="simple">
+  <app-guide-hero
+    [kicker]="
+      t(
+        'FareWell · Nürnberg · Neukunden-Aktion',
+        'FareWell · Nuremberg · New-client offer'
+      )
+    "
+    [heading]="
+      t(
+        'Nadelepilation in Nürnberg: permanente Haarentfernung',
+        'Needle epilation in Nuremberg: permanent hair removal'
+      )
+    "
+    tagline="Für immer glatt."
+    [lead]="
+      t(
+        'Nadelepilation ist die klassische Form der Elektrolyse: Über eine feine Sonde wird jedes Haar einzeln an der Wurzel verödet, permanent und unabhängig von der Haarfarbe. Neugierig? Teste die Behandlung zum kleinen Preis: 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG.',
+        'Needle epilation is the classic form of electrolysis: using a fine probe, each hair is deactivated individually at the root, permanently and independently of hair colour. Curious? Try the treatment at a small price: 50% off your first treatment with the code ERSTEBEHANDLUNG.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <p class="lang de">
-    Nadelepilation ist die klassische Form der Elektrolyse und gilt als
-    einzige Methode der wirklich permanenten Haarentfernung. Über eine feine
-    Sonde wird jedes Haar einzeln an der Wurzel behandelt, sodass die
-    Haarfollikel gezielt zerstört werden und keine neuen Haare mehr nachwachsen.
-  </p>
-  <p class="lang en">
-    Electrolysis is the classic, needle-based method and is considered the
-    only truly permanent form of hair removal. Using a fine probe, each hair
-    is treated individually at the root, so that the hair follicles are
-    precisely destroyed and no new hairs grow back.
-  </p>
+  <app-guide-stats [stats]="stats" />
 
-  <p class="lang de">
-    Im Unterschied zu Laser oder IPL, die eine dauerhafte Reduktion des
-    Haarwuchses ermöglichen, kann Nadelepilation auch sehr helle, graue
-    oder feine Haare zuverlässig entfernen. Sie ist daher besonders geeignet
-    für kleinere Areale, das Gesicht sowie hartnäckige Restbehaarung nach
-    anderen Methoden.
-  </p>
-  <p class="lang en">
-    Unlike laser or IPL, which allow a long-lasting reduction of hair growth,
-    electrolysis can also reliably remove very light, grey or fine hairs.
-    That makes it especially suitable for smaller areas, the face and stubborn
-    remaining hairs after other methods.
-  </p>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Du suchst nach wirklich permanenter Haarentfernung, die auch feine und helle Haare
+            erwischt? Die Nadelepilation behandelt jedes Haar einzeln an der Wurzel, und mit dem
+            Neukunden-Code testest du sie jetzt zum kleinen Preis.
+          </span>
+          <span class="lang en">
+            Looking for truly permanent hair removal that also catches fine and light hair? Needle
+            epilation treats each hair individually at the root, and with the new-client code you
+            can try it now at a small price.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Alle Details zur Methode findest du auf der Seite zur
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a>, alle
+            Preise auf <a [routerLink]="p('/price')">unserer Preisseite</a>. Oder du startest direkt
+            mit der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            You'll find all the details about the method on the page about
+            <a [routerLink]="p('/behandlungen/nadelepilation')">needle epilation (electrolysis)</a>, and
+            all prices on <a [routerLink]="p('/price')">our price page</a>. Or start right away with the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
 
-  <h3 class="lang de">Ihre Vorteile bei FareWell in Nürnberg</h3>
-  <h3 class="lang en">Your benefits at FareWell in Nuremberg</h3>
+    <app-guide-section
+      class="gd-promo-section"
+      index="01"
+      [heading]="t('Preise & Neukunden-Rabatt', 'Prices & new-client discount')"
+      sectionId="angebot"
+    >
+      <app-guide-offer
+        [eyebrow]="
+          t(
+            'Neukunden-Aktion · nur für kurze Zeit',
+            'New-client offer · limited time only'
+          )
+        "
+        [headline]="
+          t('50% auf deine erste Nadelepilation', '50% off your first needle epilation')
+        "
+        [sub]="
+          t(
+            'Neugierig? Teste die permanente Haarentfernung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukundinnen und Neukunden.',
+            'Curious? Try permanent hair removal at a small price. Book online and enter the code when booking. Valid for new clients.'
+          )
+        "
+        [badgeLabel]="t('Promo-Code', 'Promo code')"
+        badgeValue="ERSTEBEHANDLUNG"
+        [copyLabel]="t('Code kopieren', 'Copy code')"
+        [copiedLabel]="t('Kopiert!', 'Copied!')"
+      />
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Nadelepilation wird nach Zeit abgerechnet, alle regulären Preise findest du transparent auf
+          <a [routerLink]="p('/price')">unserer Preisseite</a>. Die Erstberatung ist immer kostenlos
+          und unverbindlich.
+        </span>
+        <span class="lang en">
+          Needle epilation is billed by time; you'll find all regular prices transparently on
+          <a [routerLink]="p('/price')">our price page</a>. The initial consultation is always free
+          and without obligation.
+        </span>
+      </p>
+    </app-guide-section>
 
-  <ul>
-    <li class="lang de">Spezialisierung auf Nadelepilation und Elektrolyse für permanente Haarentfernung</li>
-    <li class="lang en">Specialised in electrolysis for permanent hair removal</li>
-    <li class="lang de">Geeignet für fast alle Haarfarben und Hauttypen, auch für helle und graue Haare</li>
-    <li class="lang en">Suitable for almost all hair colours and skin types, including light and grey hair</li>
-    <li class="lang de">Präzise Behandlung einzelner Haare, ideal für Gesicht und kleine Zonen</li>
-    <li class="lang en">Precise treatment of individual hairs, ideal for the face and small areas</li>
-    <li class="lang de">Zentrale Lage in Nürnberg, wenige Minuten vom Hauptbahnhof entfernt</li>
-    <li class="lang en">Central location in Nuremberg, just a few minutes from the main station</li>
-  </ul>
+    <app-guide-section
+      index="02"
+      [heading]="t('Was ist Nadelepilation?', 'What is needle epilation?')"
+      sectionId="methode"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Nadelepilation ist die ursprüngliche, nadelbasierte Form der Elektrolyse. Eine hauchfeine
+          Sonde wird entlang des Haares in den Follikelkanal geführt, ohne die Haut zu durchstechen,
+          und verödet die Haarwurzel mit einem kurzen Impuls. Genau dieses Haar wächst danach nicht
+          mehr nach.
+        </span>
+        <span class="lang en">
+          Needle epilation is the original, needle-based form of electrolysis. An ultra-fine probe is
+          guided along the hair into the follicle canal, without piercing the skin, and deactivates
+          the hair root with a short pulse. That specific hair no longer grows back afterwards.
+        </span>
+      </p>
+      <app-guide-checklist>
+        <li>
+          <span class="lang de">Wirklich permanent: die einzige rechtlich als permanent anerkannte Methode in Deutschland</span>
+          <span class="lang en">Truly permanent: the only method legally recognised as permanent in Germany</span>
+        </li>
+        <li>
+          <span class="lang de">Unabhängig von der Haarfarbe, auch helle, graue, rote und feine Haare</span>
+          <span class="lang en">Independent of hair colour, including light, grey, red and fine hair</span>
+        </li>
+        <li>
+          <span class="lang de">Höchste Präzision, jedes einzelne Haar wird gezielt behandelt</span>
+          <span class="lang en">Maximum precision, every single hair is treated in a targeted way</span>
+        </li>
+        <li>
+          <span class="lang de">Von einer staatlich geprüften, auf Elektrolyse spezialisierten Kosmetikerin durchgeführt</span>
+          <span class="lang en">Carried out by a state-certified beautician specialised in electrolysis</span>
+        </li>
+      </app-guide-checklist>
+      <app-guide-note variant="win" [label]="t('Dein Vorteil', 'Your benefit')">
+        <span class="lang de">
+          Weil die Nadelepilation nicht auf Farbpigmente angewiesen ist, wirkt sie dort, wo
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Laser</a> und IPL passen müssen,
+          bei hellen, feinen oder grauen Haaren und bei hormonell bedingtem Haarwuchs wie PCOS.
+        </span>
+        <span class="lang en">
+          Because needle epilation doesn't rely on colour pigment, it works where
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">laser</a> and IPL have to pass,
+          on light, fine or grey hair and with hormone-related hair growth such as PCOS.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <h3 class="lang de">50 Prozent Rabatt für Neukunden</h3>
-  <h3 class="lang en">50% off for new clients</h3>
+    <app-guide-section
+      index="03"
+      [heading]="t('Nadelepilation oder Laser?', 'Needle epilation or laser?')"
+      sectionId="vergleich"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Ehrlichkeit gehört bei uns zur Beratung. Beide Methoden bekommst du bei FareWell, und wir
+          sagen dir offen, welche zu deinem Haar, deiner Zone und deinem Ziel passt.
+        </span>
+        <span class="lang en">
+          Honesty is part of our consultation. You get both methods at FareWell, and we tell you
+          openly which one suits your hair, your area and your goal.
+        </span>
+      </p>
+      <div class="gd-split">
+        <app-guide-panel
+          [heading]="t('Nadelepilation, permanent', 'Needle epilation, permanent')"
+          tone="forest"
+        >
+          <li>
+            <span class="lang de">Jede Haarwurzel wird einzeln und endgültig verödet</span>
+            <span class="lang en">Every hair root is deactivated individually and for good</span>
+          </li>
+          <li>
+            <span class="lang de">Wirkt bei jeder Haarfarbe, auch hell, grau und fein</span>
+            <span class="lang en">Works on every hair colour, including light, grey and fine</span>
+          </li>
+          <li>
+            <span class="lang de">Ideal für Gesicht, Kontur und kleinere Zonen</span>
+            <span class="lang en">Ideal for the face, contours and smaller areas</span>
+          </li>
+          <li>
+            <span class="lang de">Die richtige Wahl bei hormonellem Haarwuchs</span>
+            <span class="lang en">The right choice for hormone-related hair growth</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Diodenlaser, dauerhaft', 'Diode laser, long-lasting')"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Deutliche, langanhaltende Reduktion des Haarwuchses</span>
+            <span class="lang en">Clear, long-lasting reduction of hair growth</span>
+          </li>
+          <li>
+            <span class="lang de">Ideal für große Zonen wie Beine, Rücken oder Achseln</span>
+            <span class="lang en">Ideal for large areas like legs, back or underarms</span>
+          </li>
+          <li>
+            <span class="lang de">Am wirksamsten bei dunkleren Haaren</span>
+            <span class="lang en">Most effective on darker hair</span>
+          </li>
+          <li>
+            <span class="lang de">Schnelle Sitzungen, gut planbar</span>
+            <span class="lang en">Fast sessions, easy to plan</span>
+          </li>
+        </app-guide-panel>
+      </div>
+      <app-guide-note variant="tip" [label]="t('Oft die beste Kombi', 'Often the best combo')">
+        <span class="lang de">
+          Große Flächen mit dunklem Haar schnell mit dem
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-Wellen-Diodenlaser</a>, den
+          feinen und hellen Rest permanent mit der Nadelepilation. Was für dich sinnvoll ist,
+          besprechen wir kostenlos und unverbindlich.
+        </span>
+        <span class="lang en">
+          Large areas with dark hair quickly with the
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-wavelength diode laser</a>, and
+          the fine, light rest permanently with needle epilation. We discuss what makes sense for you
+          free and without obligation.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <p class="lang de">
-    Mit dem Code <strong>ERSTEBEHANDLUNG</strong> erhalten Sie 50 Prozent Rabatt
-    auf Ihre erste Nadelepilations-Behandlung. Buchen Sie Ihren Termin direkt
-    online oder lassen Sie sich persönlich zu den Möglichkeiten der permanenten
-    Haarentfernung beraten.
-  </p>
-  <p class="lang en">
-    With the code <strong>ERSTEBEHANDLUNG</strong> you get 50% off your first
-    electrolysis treatment. Book your appointment directly online, or arrange a
-    personal consultation about your options for permanent hair removal.
-  </p>
+    <app-guide-section
+      index="04"
+      [heading]="t('So läuft deine Behandlung ab', 'How your treatment works')"
+      sectionId="ablauf"
+    >
+      <app-guide-steps>
+        <li>
+          <span class="lang de">
+            <strong>Kostenlose Erstberatung.</strong> Wir schauen uns Haut und Haare an, erklären
+            dir die Nadelepilation und sagen dir ehrlich, was realistisch ist.
+          </span>
+          <span class="lang en">
+            <strong>Free initial consultation.</strong> We look at your skin and hair, explain needle
+            epilation and tell you honestly what is realistic.
+          </span>
+        </li>
+        <li>
+          <span class="lang de">
+            <strong>Dein Behandlungsplan.</strong> Zone, Intensität und Abstände stimmen wir
+            individuell auf dich und deine Haut ab.
+          </span>
+          <span class="lang en">
+            <strong>Your treatment plan.</strong> We tailor area, intensity and intervals
+            individually to you and your skin.
+          </span>
+        </li>
+        <li>
+          <span class="lang de">
+            <strong>Die Sitzungen.</strong> Haar für Haar wird die Wurzel verödet. Weil Haare in
+            Zyklen wachsen, kommst du in Abständen von einigen Wochen wieder.
+          </span>
+          <span class="lang en">
+            <strong>The sessions.</strong> Hair by hair, the root is deactivated. Because hair grows
+            in cycles, you come back every few weeks.
+          </span>
+        </li>
+        <li>
+          <span class="lang de">
+            <strong>Das Ergebnis.</strong> Behandelte Follikel wachsen nicht mehr nach, Zone für
+            Zone wirst du dauerhaft und endgültig haarfrei.
+          </span>
+          <span class="lang en">
+            <strong>The result.</strong> Treated follicles no longer grow back, and area by area you
+            become permanently and definitively hair-free.
+          </span>
+        </li>
+      </app-guide-steps>
+    </app-guide-section>
 
-</app-text-block>
+    <app-guide-section
+      index="05"
+      [heading]="t('Häufige Fragen zur Nadelepilation', 'Common questions about needle epilation')"
+      sectionId="faq"
+    >
+      <app-faq-item
+        [question]="
+          t(
+            'Was ist der Unterschied zwischen Nadelepilation und Elektrolyse?',
+            'What is the difference between needle epilation and electrolysis?'
+          )
+        "
+      >
+        <p class="lang de">
+          Im Alltag meint beides dasselbe. Elektrolyse ist der Überbegriff für die permanente
+          Haarentfernung mit Strom, Nadelepilation die klassische, nadelbasierte Variante davon: Eine
+          feine Sonde wird an die Haarwurzel geführt und verödet sie gezielt.
+        </p>
+        <p class="lang en">
+          In everyday use both mean the same thing. Electrolysis is the umbrella term for permanent
+          hair removal using electric current; needle epilation is the classic, needle-based variant
+          of it: a fine probe is guided to the hair root and deactivates it precisely.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item [question]="t('Wie fühlt sich die Behandlung an?', 'How does the treatment feel?')">
+        <p class="lang de">
+          Pro Haar spürst du ein kurzes, warmes Prickeln. Die Sonde durchsticht die Haut nicht,
+          sondern gleitet in den natürlichen Follikelkanal. Wir stimmen die Intensität individuell
+          auf dich ab, damit es so angenehm wie möglich bleibt.
+        </p>
+        <p class="lang en">
+          Per hair you feel a brief, warm tingle. The probe doesn't pierce the skin but slides into
+          the natural follicle canal. We adjust the intensity individually to you so it stays as
+          comfortable as possible.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Für welche Zonen eignet sich Nadelepilation?', 'Which areas is needle epilation suitable for?')"
+      >
+        <p class="lang de">
+          Besonders für Gesicht, Oberlippe, Kinn, Augenbrauenkontur und andere kleine, präzise Zonen,
+          und überall dort, wo helle, feine oder graue Haare wachsen. Für große Flächen mit dunklem
+          Haar ist oft der <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser</a> die
+          schnellere Ergänzung.
+        </p>
+        <p class="lang en">
+          Especially for the face, upper lip, chin, eyebrow contour and other small, precise areas,
+          and everywhere light, fine or grey hair grows. For large areas with dark hair, the
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">diode laser</a> is often the faster
+          complement.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item [question]="t('Wie viele Sitzungen brauche ich?', 'How many sessions do I need?')">
+        <p class="lang de">
+          Weil jedes Haar einzeln behandelt wird und Haare in Zyklen wachsen, sind mehrere Sitzungen
+          im Abstand von einigen Wochen nötig. Wie viele genau, hängt von Zone, Haardichte und
+          Hormonlage ab. Eine realistische Einschätzung bekommst du in der kostenlosen Erstberatung.
+        </p>
+        <p class="lang en">
+          Because every hair is treated individually and hair grows in cycles, several sessions a few
+          weeks apart are needed. Exactly how many depends on the area, hair density and hormones.
+          You'll get a realistic estimate in the free initial consultation.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-cta
+      [heading]="
+        t(
+          'Sichere dir deine erste Behandlung zum kleinen Preis',
+          'Get your first treatment at a small price'
+        )
+      "
+    >
+      <span class="lang de">
+        Buche online über Salonkee und gib den Code <strong>ERSTEBEHANDLUNG</strong> an, oder
+        starte mit der kostenlosen Erstberatung, wenn du erst Fragen klären möchtest.
+      </span>
+      <span class="lang en">
+        Book online via Salonkee and enter the code <strong>ERSTEBEHANDLUNG</strong>, or start with
+        the free initial consultation if you'd like to clear up some questions first.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

@@ -1,82 +1,354 @@
-<app-image-hero
-  id="topSection"
-  [margin]="'large'"
-  [title]="t('- 50 % mit dem Code ERSTEBEHANDLUNG', '50% off with the code ERSTEBEHANDLUNG')"
-  titleType="soft"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [backgroundImage]="'assets/images/treatment/microneedling.webp'"
-  [imageAlt]="t('FareWell Studio in Nürnberg für professionelle Radiofrequenz-Microneedling Behandlungen zur Hautstraffung und Hautverjüngung', 'FareWell studio in Nuremberg for professional radiofrequency microneedling treatments for skin firming and rejuvenation')"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [buttonList]="buttonList">
-</app-image-hero>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
-<app-text-block
-  theme="light"
-  [title]="t('Radiofrequenz-Microneedling für strahlende Haut in Nürnberg', 'Radiofrequency microneedling for radiant skin in Nuremberg')"
-  paragraphAlign="center"
-  paragraphSize="medium"
-  paragraphWeight="normal"
-  paragraphMaxWidth="wide"
-  titleType="simple">
+  <app-guide-hero
+    [kicker]="
+      t(
+        'FareWell · Nürnberg · Neukunden-Aktion',
+        'FareWell · Nuremberg · New-client offer'
+      )
+    "
+    [heading]="
+      t(
+        'Radiofrequenz-Microneedling in Nürnberg',
+        'Radiofrequency microneedling in Nuremberg'
+      )
+    "
+    tagline="Strahlend schön."
+    [lead]="
+      t(
+        'Radiofrequenz-Microneedling regt deine natürliche Kollagenbildung an und strafft die Haut von innen, bei kurzer Ausfallzeit. Neugierig? Teste die Behandlung zum kleinen Preis: 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG.',
+        'Radiofrequency microneedling stimulates your natural collagen production and firms the skin from within, with little downtime. Curious? Try the treatment at a small price: 50% off your first treatment with the code ERSTEBEHANDLUNG.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <p class="lang de">
-    Radiofrequenz-Microneedling kombiniert feine, kontrollierte Mikroverletzungen
-    der Haut mit gezielter Wärme durch Radiofrequenzenergie. Dadurch wird die
-    natürliche Kollagen- und Elastinproduktion angeregt und die Haut von innen
-    heraus gestrafft und verfeinert.
-  </p>
-  <p class="lang en">
-    Radiofrequency microneedling combines fine, controlled microinjuries to the
-    skin with targeted heat from radiofrequency energy. This stimulates your
-    natural collagen and elastin production and firms and refines the skin from
-    within.
-  </p>
+  <app-guide-stats [stats]="stats" />
 
-  <p class="lang de">
-    Die Behandlung eignet sich besonders bei feinen Fältchen, Aknenarben,
-    vergrößerten Poren und müdem, unruhigem Hautbild. Die Hautstruktur wirkt
-    glatter, praller und gleichmäßiger, bei vergleichsweise kurzer Ausfallzeit.
-  </p>
-  <p class="lang en">
-    The treatment is especially suited to fine lines, acne scars, enlarged pores
-    and a tired, uneven complexion. Your skin looks smoother, plumper and more
-    even, all with comparatively little downtime.
-  </p>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Du wünschst dir glattere, festere und ebenmäßigere Haut, ohne großen Eingriff? Das
+            Radiofrequenz-Microneedling regt die Kollagen- und Elastinbildung an, und mit dem
+            Neukunden-Code testest du es jetzt zum kleinen Preis.
+          </span>
+          <span class="lang en">
+            Want smoother, firmer and more even skin without a major procedure? Radiofrequency
+            microneedling stimulates collagen and elastin production, and with the new-client code
+            you can try it now at a small price.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Alle Details zur Behandlung findest du auf der Seite zum
+            <a [routerLink]="p('/microneedling-radiofrequenz')">Radiofrequenz-Microneedling</a>, alle
+            Preise auf <a [routerLink]="p('/price')">unserer Preisseite</a>. Oder du startest direkt
+            mit der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            You'll find all the details about the treatment on the page about
+            <a [routerLink]="p('/microneedling-radiofrequenz')">radiofrequency microneedling</a>, and
+            all prices on <a [routerLink]="p('/price')">our price page</a>. Or start right away with the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
 
-  <h3 class="lang de">Ihre Vorteile bei FareWell in Nürnberg</h3>
-  <h3 class="lang en">Your benefits at FareWell in Nuremberg</h3>
+    <app-guide-section
+      class="gd-promo-section"
+      index="01"
+      [heading]="t('Preise & Neukunden-Rabatt', 'Prices & new-client discount')"
+      sectionId="angebot"
+    >
+      <app-guide-offer
+        [eyebrow]="
+          t(
+            'Neukunden-Aktion · nur für kurze Zeit',
+            'New-client offer · limited time only'
+          )
+        "
+        [headline]="
+          t('50% auf deine erste Microneedling-Behandlung', '50% off your first microneedling treatment')
+        "
+        [sub]="
+          t(
+            'Neugierig? Teste die Hautverjüngung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukundinnen und Neukunden.',
+            'Curious? Try skin rejuvenation at a small price. Book online and enter the code when booking. Valid for new clients.'
+          )
+        "
+        [badgeLabel]="t('Promo-Code', 'Promo code')"
+        badgeValue="ERSTEBEHANDLUNG"
+        [copyLabel]="t('Code kopieren', 'Copy code')"
+        [copiedLabel]="t('Kopiert!', 'Copied!')"
+      />
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Alle regulären Preise findest du transparent auf
+          <a [routerLink]="p('/price')">unserer Preisseite</a>, ohne versteckte Kosten. Die
+          Erstberatung mit Hautanalyse ist immer kostenlos und unverbindlich.
+        </span>
+        <span class="lang en">
+          You'll find all regular prices transparently on
+          <a [routerLink]="p('/price')">our price page</a>, with no hidden costs. The initial
+          consultation with skin analysis is always free and without obligation.
+        </span>
+      </p>
+    </app-guide-section>
 
-  <ul class="lang de">
-    <li>Schonende Hautverjüngung mit moderner Radiofrequenz-Microneedling Technologie</li>
-    <li>Individuell angepasste Einstellungen je nach Hauttyp und Hautzustand</li>
-    <li>Verbesserung von Fältchen, Narben und Poren für ein ebenmäßigeres Hautbild</li>
-    <li>Zentrales Studio in Nürnberg, gut erreichbar nahe dem Hauptbahnhof</li>
-  </ul>
-  <ul class="lang en">
-    <li>Gentle skin rejuvenation with modern radiofrequency microneedling technology</li>
-    <li>Settings individually tailored to your skin type and skin condition</li>
-    <li>Improvement of fine lines, scars and pores for a more even complexion</li>
-    <li>Central studio in Nuremberg, easy to reach near the main train station</li>
-  </ul>
+    <app-guide-section
+      index="02"
+      [heading]="t('Wie Radiofrequenz-Microneedling wirkt', 'How radiofrequency microneedling works')"
+      sectionId="wirkung"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Feine Nadeln setzen kontrollierte Mikrokanäle in die Haut und geben gleichzeitig
+          Radiofrequenz-Wärme in die tieferen Schichten ab. Dieser doppelte Reiz aktiviert die
+          natürliche Regeneration, die Haut baut neues Kollagen und Elastin auf und wirkt von innen
+          heraus straffer und frischer.
+        </span>
+        <span class="lang en">
+          Fine needles create controlled micro-channels in the skin while delivering radiofrequency
+          heat into the deeper layers. This double stimulus activates natural regeneration, the skin
+          builds new collagen and elastin and looks firmer and fresher from within.
+        </span>
+      </p>
+      <app-guide-checklist>
+        <li>
+          <span class="lang de">Regt Kollagen- und Elastinbildung an, für festere, elastischere Haut</span>
+          <span class="lang en">Stimulates collagen and elastin production for firmer, more elastic skin</span>
+        </li>
+        <li>
+          <span class="lang de">Verfeinert das Hautbild bei Fältchen, Poren und Aknenarben</span>
+          <span class="lang en">Refines the complexion with fine lines, pores and acne scars</span>
+        </li>
+        <li>
+          <span class="lang de">Individuell angepasste Eindringtiefe und Intensität je nach Hautzustand</span>
+          <span class="lang en">Individually adjusted needle depth and intensity depending on skin condition</span>
+        </li>
+        <li>
+          <span class="lang de">Vergleichsweise kurze Ausfallzeit, meist nur eine leichte Rötung</span>
+          <span class="lang en">Comparatively short downtime, usually only slight redness</span>
+        </li>
+      </app-guide-checklist>
+      <app-guide-note variant="win" [label]="t('Dein Vorteil', 'Your benefit')">
+        <span class="lang de">
+          Die Kombination aus Microneedling und Radiofrequenz wirkt tiefer als klassisches
+          Microneedling allein, für sichtbar mehr Straffung bei zugleich schonender Behandlung.
+        </span>
+        <span class="lang en">
+          The combination of microneedling and radiofrequency works deeper than classic microneedling
+          alone, for visibly more firming while keeping the treatment gentle.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <h3 class="lang de">50 Prozent Rabatt für Neukunden</h3>
-  <h3 class="lang en">50 percent off for new clients</h3>
+    <app-guide-section
+      index="03"
+      [heading]="t('Wobei Microneedling besonders hilft', 'What microneedling especially helps with')"
+      sectionId="anwendung"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Ob feine Linien, unruhiges Hautbild oder müde Haut, in der kostenlosen Erstberatung schauen
+          wir uns deine Haut an und stimmen die Behandlung genau auf dein Ziel ab.
+        </span>
+        <span class="lang en">
+          Whether fine lines, an uneven complexion or tired skin, in the free initial consultation we
+          look at your skin and tailor the treatment precisely to your goal.
+        </span>
+      </p>
+      <div class="gd-split">
+        <app-guide-panel [heading]="t('Ideal bei', 'Ideal for')" tone="forest">
+          <li>
+            <span class="lang de">Feinen Fältchen und ersten Linien</span>
+            <span class="lang en">Fine lines and first wrinkles</span>
+          </li>
+          <li>
+            <span class="lang de">Aknenarben und unebener Hautstruktur</span>
+            <span class="lang en">Acne scars and uneven skin texture</span>
+          </li>
+          <li>
+            <span class="lang de">Vergrößerten Poren</span>
+            <span class="lang en">Enlarged pores</span>
+          </li>
+          <li>
+            <span class="lang de">Müdem, fahlem und unruhigem Hautbild</span>
+            <span class="lang en">A tired, dull and uneven complexion</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Das Ergebnis', 'The result')"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Glattere, prallere und festere Haut</span>
+            <span class="lang en">Smoother, plumper and firmer skin</span>
+          </li>
+          <li>
+            <span class="lang de">Ebenmäßigeres, frischeres Hautbild</span>
+            <span class="lang en">A more even, fresher complexion</span>
+          </li>
+          <li>
+            <span class="lang de">Sichtbarer Glow, ideal auch vor Anlässen</span>
+            <span class="lang en">A visible glow, ideal before special occasions too</span>
+          </li>
+          <li>
+            <span class="lang de">Schöne Ergebnisse auch an Hals und Dekolleté</span>
+            <span class="lang en">Lovely results on the neck and décolleté as well</span>
+          </li>
+        </app-guide-panel>
+      </div>
+      <app-guide-note variant="tip" [label]="t('Gut zu wissen', 'Good to know')">
+        <span class="lang de">
+          Kollagen baut sich über Wochen auf, das Ergebnis entwickelt sich also nach und nach. Für
+          ein optimales Hautbild empfehlen wir meist eine kleine Serie von Sitzungen, die wir
+          gemeinsam auf dich abstimmen.
+        </span>
+        <span class="lang en">
+          Collagen builds up over weeks, so the result develops gradually. For an optimal complexion
+          we usually recommend a small series of sessions, which we plan together with you.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <p class="lang de">
-    Mit dem Code <strong>ERSTEBEHANDLUNG</strong> erhalten Sie 50 Prozent Rabatt
-    auf Ihre erste Radiofrequenz-Microneedling Behandlung. Buchen Sie Ihren Termin
-    direkt online oder lassen Sie sich persönlich zu den Möglichkeiten der
-    Hautverjüngung beraten.
-  </p>
-  <p class="lang en">
-    With the code <strong>ERSTEBEHANDLUNG</strong> you get 50 percent off your
-    first radiofrequency microneedling treatment. Book your appointment directly
-    online or come in for a personal consultation about the possibilities of skin
-    rejuvenation.
-  </p>
+    <app-guide-section
+      index="04"
+      [heading]="t('So läuft deine Behandlung ab', 'How your treatment works')"
+      sectionId="ablauf"
+    >
+      <app-guide-steps>
+        <li>
+          <span class="lang de">
+            <strong>Kostenlose Erstberatung.</strong> Wir analysieren deine Haut, klären deine Ziele
+            und sagen dir ehrlich, was realistisch ist.
+          </span>
+          <span class="lang en">
+            <strong>Free initial consultation.</strong> We analyse your skin, clarify your goals and
+            tell you honestly what is realistic.
+          </span>
+        </li>
+        <li>
+          <span class="lang de">
+            <strong>Vorbereitung.</strong> Die Haut wird gereinigt und eine beruhigende Creme
+            aufgetragen, damit die Behandlung angenehm bleibt.
+          </span>
+          <span class="lang en">
+            <strong>Preparation.</strong> The skin is cleansed and a soothing cream is applied so the
+            treatment stays comfortable.
+          </span>
+        </li>
+        <li>
+          <span class="lang de">
+            <strong>Die Behandlung.</strong> Mikrokanäle und Radiofrequenz-Wärme werden mit
+            individuell abgestimmter Tiefe und Intensität gesetzt.
+          </span>
+          <span class="lang en">
+            <strong>The treatment.</strong> Micro-channels and radiofrequency heat are applied with
+            individually tailored depth and intensity.
+          </span>
+        </li>
+        <li>
+          <span class="lang de">
+            <strong>Das Ergebnis.</strong> Nach einer kurzen Rötung entwickelt sich über die
+            folgenden Wochen ein glatteres, festeres und frischeres Hautbild.
+          </span>
+          <span class="lang en">
+            <strong>The result.</strong> After brief redness, a smoother, firmer and fresher
+            complexion develops over the following weeks.
+          </span>
+        </li>
+      </app-guide-steps>
+    </app-guide-section>
 
-</app-text-block>
+    <app-guide-section
+      index="05"
+      [heading]="t('Häufige Fragen zum Microneedling', 'Common questions about microneedling')"
+      sectionId="faq"
+    >
+      <app-faq-item
+        [question]="t('Tut Radiofrequenz-Microneedling weh?', 'Does radiofrequency microneedling hurt?')"
+      >
+        <p class="lang de">
+          Dank betäubender Creme empfinden die meisten die Behandlung als gut aushaltbar, spürbar,
+          aber nicht schmerzhaft. Wir stimmen Tiefe und Intensität individuell auf deine Haut und
+          dein Empfinden ab.
+        </p>
+        <p class="lang en">
+          Thanks to a numbing cream, most people find the treatment easily tolerable, noticeable but
+          not painful. We adjust depth and intensity individually to your skin and how you feel.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item [question]="t('Wie lange ist die Ausfallzeit?', 'How long is the downtime?')">
+        <p class="lang de">
+          Meist ist die Haut nur für ein bis zwei Tage leicht gerötet, ähnlich wie ein leichter
+          Sonnenbrand. Danach kannst du dein gewohntes Programm in der Regel wieder aufnehmen. Alle
+          Pflegehinweise bekommst du von uns mit.
+        </p>
+        <p class="lang en">
+          Usually the skin is only slightly red for one to two days, similar to a mild sunburn. After
+          that you can normally resume your usual routine. We give you all the aftercare tips you need.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Wie viele Sitzungen brauche ich?', 'How many sessions do I need?')"
+      >
+        <p class="lang de">
+          Für ein sichtbares, gleichmäßiges Ergebnis empfehlen wir meist eine kleine Serie von
+          Sitzungen im Abstand von einigen Wochen, weil sich Kollagen erst nach und nach aufbaut. Wie
+          viele genau, besprechen wir in der kostenlosen Erstberatung.
+        </p>
+        <p class="lang en">
+          For a visible, even result we usually recommend a small series of sessions a few weeks
+          apart, because collagen only builds up gradually. Exactly how many we discuss in the free
+          initial consultation.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Ab wann sieht man erste Ergebnisse?', 'When do first results become visible?')"
+      >
+        <p class="lang de">
+          Einen frischen Glow bemerken viele schon nach wenigen Tagen. Die eigentliche Straffung
+          durch neues Kollagen entwickelt sich über die folgenden Wochen und baut sich mit jeder
+          Sitzung weiter auf.
+        </p>
+        <p class="lang en">
+          Many notice a fresh glow after just a few days. The actual firming through new collagen
+          develops over the following weeks and continues to build with each session.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-cta
+      tagline="Strahlend schön."
+      [heading]="
+        t(
+          'Sichere dir deine erste Behandlung zum kleinen Preis',
+          'Get your first treatment at a small price'
+        )
+      "
+    >
+      <span class="lang de">
+        Buche online über Salonkee und gib den Code <strong>ERSTEBEHANDLUNG</strong> an, oder
+        starte mit der kostenlosen Erstberatung, wenn du erst Fragen klären möchtest.
+      </span>
+      <span class="lang en">
+        Book online via Salonkee and enter the code <strong>ERSTEBEHANDLUNG</strong>, or start with
+        the free initial consultation if you'd like to clear up some questions first.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

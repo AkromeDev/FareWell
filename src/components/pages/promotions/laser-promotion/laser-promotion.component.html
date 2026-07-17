@@ -15,8 +15,8 @@
     tagline="Für immer sanft."
     [lead]="
       t(
-        'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser, präzise, schonend und für fast alle Körperzonen. Für Neukunden: 50% Rabatt auf die erste Behandlung mit dem Code FIRSTLASER.',
-        'Long-lasting hair removal with the 4-wavelength diode laser, precise, gentle and suitable for almost every body area. For new clients: 50% off your first treatment with the code FIRSTLASER.'
+        'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser, präzise, schonend und für fast alle Körperzonen. Neugierig? Teste unsere Behandlung zum kleinen Preis: 75% Rabatt auf die erste Behandlung (max. 2 Zonen) mit dem Code FIRSTLASER, gültig bis 15.08.',
+        'Long-lasting hair removal with the 4-wavelength diode laser, precise, gentle and suitable for almost every body area. Curious? Try our treatment at a small price: 75% off your first treatment (max. 2 areas) with the code FIRSTLASER, valid until 15 Aug.'
       )
     "
     [image]="heroImage"
@@ -33,12 +33,12 @@
           <span class="lang de">
             Du willst glatte Haut, ohne ständig zu rasieren, zu wachsen oder zu epilieren? Der
             4-Wellen-Diodenlaser reduziert deinen Haarwuchs dauerhaft, und mit dem Neukunden-Code
-            kostet dich der Einstieg nur die Hälfte.
+            testest du die Behandlung jetzt zum kleinen Preis.
           </span>
           <span class="lang en">
             Want smooth skin without constantly shaving, waxing or epilating? The 4-wavelength
-            diode laser gives you long-lasting hair reduction, and with the new-client code your
-            first step costs only half.
+            diode laser gives you long-lasting hair reduction, and with the new-client code you
+            can try the treatment now at a small price.
           </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
@@ -62,6 +62,7 @@
     </div>
 
     <app-guide-section
+      class="gd-promo-section"
       index="01"
       [heading]="t('Preise & Neukunden-Rabatt', 'Prices & new-client discount')"
       sectionId="angebot"
@@ -69,21 +70,23 @@
       <app-guide-offer
         [eyebrow]="
           t(
-            'Neukunden-Aktion · nur für kurze Zeit',
-            'New-client offer · limited time only'
+            'Neukunden-Aktion · gültig bis 15.08',
+            'New-client offer · valid until 15 Aug'
           )
         "
         [headline]="
-          t('50% auf deine erste Laser-Behandlung', '50% off your first laser treatment')
+          t('75% auf deine erste Laser-Behandlung', '75% off your first laser treatment')
         "
         [sub]="
           t(
-            'Online buchen und den Code bei der Buchung angeben. Gilt für Neukundinnen und Neukunden.',
-            'Book online and enter the code when booking. Valid for new clients.'
+            'Neugierig? Teste unsere Behandlung zum kleinen Preis. Max. 2 Zonen, online buchen und den Code bei der Buchung angeben. Gilt für Neukundinnen und Neukunden.',
+            'Curious? Try our treatment at a small price. Max. 2 areas, book online and enter the code when booking. Valid for new clients.'
           )
         "
         [badgeLabel]="t('Promo-Code', 'Promo code')"
         badgeValue="FIRSTLASER"
+        [copyLabel]="t('Code kopieren', 'Copy code')"
+        [copiedLabel]="t('Kopiert!', 'Copied!')"
       />
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
@@ -453,8 +456,8 @@
     <app-guide-cta
       [heading]="
         t(
-          'Sichere dir deine erste Behandlung zum halben Preis',
-          'Get your first treatment at half price'
+          'Sichere dir deine erste Behandlung zum kleinen Preis',
+          'Get your first treatment at a small price'
         )
       "
     >

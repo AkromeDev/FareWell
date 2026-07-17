@@ -1,68 +1,366 @@
-<app-image-hero
-  id="topSection"
-  [margin]="'large'"
-  [title]="t('Elektrolyse in Nürnberg: permanente Haarentfernung', 'Electrolysis in Nuremberg, permanent hair removal')"
-  titleType="soft"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [backgroundImage]="'assets/images/treatment/nadel.jpg'"
-  [imageAlt]="t('Elektrolyse Behandlung bei FareWell in Nürnberg zur permanenten Haarentfernung', 'Electrolysis treatment at FareWell in Nuremberg for permanent hair removal')"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [buttonList]="buttonList">
-</app-image-hero>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
-<app-text-block
-  theme="light"
-  [title]="t('Warum Elektrolyse die wirklich permanente Haarentfernung ist', 'Why electrolysis is the truly permanent hair removal method')"
-  paragraphAlign="center"
-  paragraphSize="medium"
-  paragraphWeight="normal"
-  paragraphMaxWidth="wide"
-  titleType="simple"
->
-  <p class="lang de">
-    Im Unterschied zu Laser oder IPL, die nur dauerhaft reduzieren,
-    zerstört die Elektrolyse die Haarwurzel endgültig.
-    So erreichen Sie eine wirklich permanente Haarentfernung, selbst
-    bei hellen, grauen oder sehr feinen Haaren.
-  </p>
-  <p class="lang en">
-    Unlike laser or IPL, which only achieve long-lasting reduction,
-    electrolysis destroys the hair root for good.
-    That way you achieve truly permanent hair removal, even
-    on light, grey or very fine hairs.
-  </p>
+  <app-guide-hero
+    [kicker]="
+      t(
+        'FareWell · Nürnberg · Neukunden-Aktion',
+        'FareWell · Nuremberg · New-client offer'
+      )
+    "
+    [heading]="
+      t(
+        'Elektrolyse in Nürnberg: permanente Haarentfernung',
+        'Electrolysis in Nuremberg: permanent hair removal'
+      )
+    "
+    tagline="Für immer glatt."
+    [lead]="
+      t(
+        'Elektrolyse ist die einzige in Deutschland rechtlich als permanent anerkannte Methode: Jede Haarwurzel wird einzeln und endgültig verödet. Neugierig? Teste die Behandlung zum kleinen Preis: 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG.',
+        'Electrolysis is the only method legally recognised as permanent in Germany: every hair root is deactivated individually and for good. Curious? Try the treatment at a small price: 50% off your first treatment with the code ERSTEBEHANDLUNG.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <h2 class="lang de">Ihre Vorteile bei der Elektrolyse bei FareWell</h2>
-  <h2 class="lang en">Your benefits with electrolysis at FareWell</h2>
+  <app-guide-stats [stats]="stats" />
 
-  <ul class="lang de">
-    <li>Staatlich geprüfte Kosmetikerin mit Spezialisierung auf Elektrolyse</li>
-    <li>Permanente Haarentfernung an Gesicht und Körper</li>
-    <li>Transparente Beratung und individuelle Behandlungspläne</li>
-    <li>Studio im Herzen von Nürnberg, Nähe Hauptbahnhof</li>
-  </ul>
-  <ul class="lang en">
-    <li>State-certified beautician specialising in electrolysis</li>
-    <li>Permanent hair removal for face and body</li>
-    <li>Transparent advice and individual treatment plans</li>
-    <li>Studio in the heart of Nuremberg, close to the main station</li>
-  </ul>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Laser und IPL reduzieren den Haarwuchs dauerhaft, wirklich permanent ist in
+            Deutschland allein die Elektrolyse. Sie wirkt bei jedem Haar- und Hauttyp, und mit
+            dem Neukunden-Code testest du sie jetzt zum kleinen Preis.
+          </span>
+          <span class="lang en">
+            Laser and IPL reduce hair growth long-term, but in Germany only electrolysis is
+            truly permanent. It works on every hair and skin type, and with the new-client code
+            you can try it now at a small price.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Alle Details zur Methode findest du auf der Seite zur
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a>, alle
+            Preise auf <a [routerLink]="p('/price')">unserer Preisseite</a>. Oder du startest direkt
+            mit der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            You'll find all the details about the method on the page about
+            <a [routerLink]="p('/behandlungen/nadelepilation')">needle epilation (electrolysis)</a>, and
+            all prices on <a [routerLink]="p('/price')">our price page</a>. Or start right away with the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
 
-  <h3 class="lang de">50 % Rabatt für Neukunden</h3>
-  <h3 class="lang en">50% discount for new clients</h3>
+    <app-guide-section
+      class="gd-promo-section"
+      index="01"
+      [heading]="t('Preise & Neukunden-Rabatt', 'Prices & new-client discount')"
+      sectionId="angebot"
+    >
+      <app-guide-offer
+        [eyebrow]="
+          t(
+            'Neukunden-Aktion · nur für kurze Zeit',
+            'New-client offer · limited time only'
+          )
+        "
+        [headline]="
+          t('50% auf deine erste Elektrolyse-Behandlung', '50% off your first electrolysis treatment')
+        "
+        [sub]="
+          t(
+            'Neugierig? Teste die permanente Haarentfernung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukundinnen und Neukunden.',
+            'Curious? Try permanent hair removal at a small price. Book online and enter the code when booking. Valid for new clients.'
+          )
+        "
+        [badgeLabel]="t('Promo-Code', 'Promo code')"
+        badgeValue="ERSTEBEHANDLUNG"
+        [copyLabel]="t('Code kopieren', 'Copy code')"
+        [copiedLabel]="t('Kopiert!', 'Copied!')"
+      />
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Elektrolyse wird nach Zeit abgerechnet, alle regulären Preise findest du transparent auf
+          <a [routerLink]="p('/price')">unserer Preisseite</a>. Die Erstberatung ist immer kostenlos
+          und unverbindlich.
+        </span>
+        <span class="lang en">
+          Electrolysis is billed by time; you'll find all regular prices transparently on
+          <a [routerLink]="p('/price')">our price page</a>. The initial consultation is always free
+          and without obligation.
+        </span>
+      </p>
+    </app-guide-section>
 
-  <p class="lang de">
-    Mit dem Code <strong>ERSTEBEHANDLUNG</strong> erhalten Sie 50 % Rabatt
-    auf Ihre erste Elektrolyse Behandlung. Buchen Sie Ihren Termin
-    direkt online oder kontaktieren Sie uns für eine persönliche Beratung.
-  </p>
-  <p class="lang en">
-    With the code <strong>ERSTEBEHANDLUNG</strong> you get 50% discount
-    on your first electrolysis treatment. Book your appointment
-    directly online or contact us for a personal consultation.
-  </p>
-</app-text-block>
+    <app-guide-section
+      index="02"
+      [heading]="t('Warum Elektrolyse wirklich permanent ist', 'Why electrolysis is truly permanent')"
+      sectionId="permanent"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Bei der Elektrolyse wird eine feine Sonde entlang des Haares an die Wurzel geführt und
+          das Follikel gezielt verödet. Dadurch wächst genau dieses Haar nicht mehr nach, endgültig
+          und unabhängig von Haarfarbe oder Hormonlage.
+        </span>
+        <span class="lang en">
+          In electrolysis a fine probe is guided along the hair to the root and the follicle is
+          deactivated in a targeted way. That specific hair no longer grows back, for good and
+          independently of hair colour or hormones.
+        </span>
+      </p>
+      <app-guide-checklist>
+        <li>
+          <span class="lang de">Die einzige in Deutschland rechtlich als permanent anerkannte Methode der Haarentfernung</span>
+          <span class="lang en">The only hair removal method legally recognised as permanent in Germany</span>
+        </li>
+        <li>
+          <span class="lang de">Jede Haarwurzel wird einzeln und endgültig verödet</span>
+          <span class="lang en">Every hair root is deactivated individually and for good</span>
+        </li>
+        <li>
+          <span class="lang de">Wirkt bei jedem Haut- und Haartyp, auch bei hellen, feinen oder grauen Haaren</span>
+          <span class="lang en">Works on every skin and hair type, including light, fine or grey hair</span>
+        </li>
+        <li>
+          <span class="lang de">Präzise genug für Gesicht und kleinste Zonen</span>
+          <span class="lang en">Precise enough for the face and the smallest areas</span>
+        </li>
+      </app-guide-checklist>
+      <app-guide-note variant="win" [label]="t('Dein Vorteil', 'Your benefit')">
+        <span class="lang de">
+          Elektrolyse wirkt völlig unabhängig von Haarfarbe und Hormonlage, auch bei hormonell
+          bedingtem Haarwuchs wie durch PCOS. Genau da, wo Laser und IPL an ihre Grenzen kommen.
+        </span>
+        <span class="lang en">
+          Electrolysis works completely independently of hair colour and hormones, even with
+          hormone-related hair growth such as from PCOS, exactly where laser and IPL reach their
+          limits.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      [heading]="t('Für wen sich Elektrolyse besonders eignet', 'Who electrolysis is especially suited to')"
+      sectionId="geeignet"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Weil die Elektrolyse jedes Haar einzeln behandelt, ist sie unschlagbar präzise, ideal
+          überall dort, wo andere Methoden nicht ausreichen.
+        </span>
+        <span class="lang en">
+          Because electrolysis treats each hair individually, it is unbeatably precise, ideal
+          everywhere other methods fall short.
+        </span>
+      </p>
+      <div class="gd-split">
+        <app-guide-panel [heading]="t('Ideal bei', 'Ideal for')" tone="forest">
+          <li>
+            <span class="lang de">Hellen, grauen, roten oder sehr feinen Haaren</span>
+            <span class="lang en">Light, grey, red or very fine hair</span>
+          </li>
+          <li>
+            <span class="lang de">Gesicht, Oberlippe, Kinn und Augenbrauenkontur</span>
+            <span class="lang en">Face, upper lip, chin and eyebrow contour</span>
+          </li>
+          <li>
+            <span class="lang de">Hormonell bedingtem Haarwuchs, etwa durch PCOS</span>
+            <span class="lang en">Hormone-related hair growth, for example due to PCOS</span>
+          </li>
+          <li>
+            <span class="lang de">Einzelnen Härchen, die nach Laser oder IPL übrig bleiben</span>
+            <span class="lang en">Individual hairs that remain after laser or IPL</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Auch beliebt', 'Also popular')"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Feine Konturarbeit an den Augenbrauen</span>
+            <span class="lang en">Fine contour work on the eyebrows</span>
+          </li>
+          <li>
+            <span class="lang de">Kleine, präzise Zonen mit hartnäckigen Haaren</span>
+            <span class="lang en">Small, precise areas with stubborn hair</span>
+          </li>
+          <li>
+            <span class="lang de">Bartkontur und Halsbereich bei Männern</span>
+            <span class="lang en">Beard contour and neck area for men</span>
+          </li>
+          <li>
+            <span class="lang de">Der endgültige Feinschliff nach der Laser-Haarentfernung</span>
+            <span class="lang en">The final touch-up after laser hair removal</span>
+          </li>
+        </app-guide-panel>
+      </div>
+      <app-guide-note variant="tip" [label]="t('Gut kombinierbar', 'Combines well')">
+        <span class="lang de">
+          Große Flächen mit dunklem Haar gehen schnell mit dem
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-Wellen-Diodenlaser</a>, den
+          Rest übernimmt die Elektrolyse. In der kostenlosen Erstberatung finden wir gemeinsam die
+          passende Kombination, ehrlich und unverbindlich.
+        </span>
+        <span class="lang en">
+          Large areas with dark hair are quick with the
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-wavelength diode laser</a>, and
+          electrolysis handles the rest. In the free initial consultation we find the right
+          combination together, honestly and without obligation.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      [heading]="t('So läuft deine Behandlung ab', 'How your treatment works')"
+      sectionId="ablauf"
+    >
+      <app-guide-steps>
+        <li>
+          <span class="lang de">
+            <strong>Kostenlose Erstberatung.</strong> Wir schauen uns Haut und Haare an, erklären
+            dir die Methode und sagen dir ehrlich, was realistisch ist.
+          </span>
+          <span class="lang en">
+            <strong>Free initial consultation.</strong> We look at your skin and hair, explain the
+            method and tell you honestly what is realistic.
+          </span>
+        </li>
+        <li>
+          <span class="lang de">
+            <strong>Dein Behandlungsplan.</strong> Zone, Intensität und Abstände stimmen wir
+            individuell auf dich und deine Haut ab.
+          </span>
+          <span class="lang en">
+            <strong>Your treatment plan.</strong> We tailor area, intensity and intervals
+            individually to you and your skin.
+          </span>
+        </li>
+        <li>
+          <span class="lang de">
+            <strong>Die Sitzungen.</strong> Jedes Haar wird einzeln behandelt. Weil Haare in Zyklen
+            wachsen, sind mehrere Sitzungen im Abstand von einigen Wochen nötig.
+          </span>
+          <span class="lang en">
+            <strong>The sessions.</strong> Every hair is treated individually. Because hair grows in
+            cycles, several sessions a few weeks apart are needed.
+          </span>
+        </li>
+        <li>
+          <span class="lang de">
+            <strong>Das Ergebnis.</strong> Behandelte Follikel wachsen nicht mehr nach, Zone für
+            Zone wirst du dauerhaft und endgültig haarfrei.
+          </span>
+          <span class="lang en">
+            <strong>The result.</strong> Treated follicles no longer grow back, and area by area you
+            become permanently and definitively hair-free.
+          </span>
+        </li>
+      </app-guide-steps>
+    </app-guide-section>
+
+    <app-guide-section
+      index="05"
+      [heading]="t('Häufige Fragen zur Elektrolyse', 'Common questions about electrolysis')"
+      sectionId="faq"
+    >
+      <app-faq-item
+        [question]="t('Ist Elektrolyse wirklich permanent?', 'Is electrolysis really permanent?')"
+      >
+        <p class="lang de">
+          Ja. Elektrolyse ist die einzige in Deutschland rechtlich als permanent anerkannte Methode
+          der Haarentfernung. Jede behandelte Haarwurzel wird endgültig verödet und wächst nicht
+          mehr nach, im Unterschied zu Laser und IPL, die den Haarwuchs „nur" dauerhaft reduzieren.
+        </p>
+        <p class="lang en">
+          Yes. Electrolysis is the only hair removal method legally recognised as permanent in
+          Germany. Every treated hair root is deactivated for good and does not grow back, unlike
+          laser and IPL, which "only" reduce hair growth long-term.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item [question]="t('Tut die Elektrolyse weh?', 'Does electrolysis hurt?')">
+        <p class="lang de">
+          Die meisten empfinden pro Haar ein kurzes, warmes Prickeln. Wir stimmen die Intensität
+          individuell auf dich ab und tasten uns gemeinsam an ein angenehmes Setting heran, damit
+          die Behandlung so komfortabel wie möglich ist.
+        </p>
+        <p class="lang en">
+          Most people feel a brief, warm tingle per hair. We adjust the intensity individually to
+          you and find a comfortable setting together, so the treatment is as comfortable as
+          possible.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t(
+            'Für welche Haare und Hauttypen eignet sich Elektrolyse?',
+            'Which hair and skin types is electrolysis suitable for?'
+          )
+        "
+      >
+        <p class="lang de">
+          Für alle. Weil die Elektrolyse nicht auf Farbpigmente angewiesen ist, wirkt sie auch bei
+          hellen, grauen, roten oder sehr feinen Haaren und unabhängig von der Hormonlage, etwa bei
+          PCOS. Genau dort, wo <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Laser</a> und
+          IPL an ihre Grenzen kommen.
+        </p>
+        <p class="lang en">
+          For everyone. Because electrolysis doesn't rely on colour pigment, it also works on light,
+          grey, red or very fine hair and independently of hormones, for example with PCOS, exactly
+          where <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">laser</a> and IPL reach
+          their limits.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Wie viele Sitzungen brauche ich?', 'How many sessions do I need?')"
+      >
+        <p class="lang de">
+          Weil jedes Haar einzeln behandelt wird und Haare in Zyklen wachsen, sind mehrere Sitzungen
+          im Abstand von einigen Wochen nötig. Wie viele genau, hängt von Zone, Haardichte und
+          Hormonlage ab. Eine realistische Einschätzung bekommst du in der kostenlosen Erstberatung.
+        </p>
+        <p class="lang en">
+          Because every hair is treated individually and hair grows in cycles, several sessions a
+          few weeks apart are needed. Exactly how many depends on the area, hair density and
+          hormones. You'll get a realistic estimate in the free initial consultation.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-cta
+      [heading]="
+        t(
+          'Sichere dir deine erste Behandlung zum kleinen Preis',
+          'Get your first treatment at a small price'
+        )
+      "
+    >
+      <span class="lang de">
+        Buche online über Salonkee und gib den Code <strong>ERSTEBEHANDLUNG</strong> an, oder
+        starte mit der kostenlosen Erstberatung, wenn du erst Fragen klären möchtest.
+      </span>
+      <span class="lang en">
+        Book online via Salonkee and enter the code <strong>ERSTEBEHANDLUNG</strong>, or start with
+        the free initial consultation if you'd like to clear up some questions first.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

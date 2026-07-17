@@ -129,6 +129,30 @@
     }
   }
 
+  // Mobile: die Aktions-/Angebotssektion (Marker `.gd-promo-section`) rückt
+  // ÜBER die „Kurz gesagt"-Intro. Am Desktop bleibt die Reihenfolge unberührt
+  // (kein Flex → `order` wirkt nicht).
+  @media (max-width: 820px) {
+    .gd-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gd-wrap > app-guide-section.gd-promo-section {
+      order: 1;
+      margin-top: 1.6rem;
+    }
+
+    .gd-wrap > .gd-intro {
+      order: 2;
+    }
+
+    .gd-wrap > app-guide-section,
+    .gd-wrap > app-guide-cta {
+      order: 3;
+    }
+  }
+
   // ---------- table of contents ----------
   .gd-toc {
     background: var(--gd-surface);
@@ -1044,12 +1068,40 @@
     justify-content: space-between;
     gap: 1.4rem;
     flex-wrap: wrap;
+    width: 100%;
     margin-top: 1.3rem;
     padding: 1.6rem clamp(1.2rem, 4vw, 2.2rem);
     border-radius: 14px;
     background: linear-gradient(120deg, var(--gd-forest-2), var(--gd-forest-soft));
     color: var(--gd-sand-2);
     box-shadow: var(--gd-shadow-lg);
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+
+    // Die ganze Box ist zum Kopieren des Promo-Codes anklickbar.
+    &.is-copyable {
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(31, 40, 28, 0.16),
+          0 30px 60px rgba(31, 40, 28, 0.22);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      &:focus-visible {
+        outline: 3px solid var(--gd-sage);
+        outline-offset: 3px;
+      }
+    }
+  }
+
+  .gd-offer__body {
+    min-width: 0;
   }
 
   .gd-offer__eyebrow {
@@ -1100,12 +1152,127 @@
     color: var(--gd-sage-strong);
   }
 
+  .gd-offer__badge-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.15rem;
+  }
+
   .gd-offer__badge-value {
-    display: block;
     font-size: 24px;
     font-weight: 800;
     letter-spacing: 0.02em;
-    margin-top: 0.15rem;
+  }
+
+  // Kopier-Icon, das nach dem Kopieren zum Häkchen überblendet.
+  .gd-offer__badge-icon {
+    position: relative;
+    display: inline-flex;
+    width: 19px;
+    height: 19px;
+    flex: none;
+  }
+
+  .gd-offer__ic {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+
+  .gd-offer__ic--copy {
+    color: var(--gd-sage-strong);
+    opacity: 0.75;
+  }
+
+  .gd-offer__ic--check {
+    color: var(--gd-ok);
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  // Nur solange NICHT kopiert: Hover hebt das Kopier-Icon hervor. Das
+  // `:not(.is-copied)` ist wichtig — sonst gewinnt diese (spezifischere)
+  // Hover-Regel gegen den kopierten Zustand und das Icon bliebe sichtbar,
+  // während der Cursor/Tap noch auf der Box liegt.
+  .gd-offer.is-copyable:not(.is-copied):hover .gd-offer__ic--copy {
+    opacity: 1;
+  }
+
+  // Kurzhinweis unter dem Code, der zur „Kopiert!"-Meldung wechselt.
+  .gd-offer__hint {
+    display: block;
+    margin-top: 0.45rem;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .gd-offer__hint-default {
+    color: var(--gd-faint);
+  }
+
+  .gd-offer__hint-copied {
+    display: none;
+    color: var(--gd-ok);
+  }
+
+  // ---------- Zustand: Code kopiert ----------
+  .gd-offer.is-copied {
+    // Kopier-Icon blendet sauber aus (und beim Zurücksetzen wieder ein),
+    // statt nur zu schrumpfen.
+    .gd-offer__ic--copy {
+      opacity: 0;
+    }
+
+    .gd-offer__ic--check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .gd-offer__hint-default {
+      display: none;
+    }
+
+    .gd-offer__hint-copied {
+      display: inline;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .gd-offer__badge {
+        animation: gd-offer-pop 0.42s ease;
+      }
+    }
+  }
+
+  @keyframes gd-offer-pop {
+    0% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  // Nur für Screenreader (Live-Region für die Kopier-Rückmeldung).
+  .gd-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   // ---------- CTA ----------
