@@ -755,6 +755,55 @@
     }
   }
 
+  // ---------- timeline: Zeitstrahl ----------
+  .gd-timeline {
+    list-style: none;
+    margin: 1.7rem 0 0;
+    padding: 0;
+  }
+
+  .gd-timeline__item {
+    position: relative;
+    margin-left: 0.4rem;
+    padding: 0 0 1.5rem 2rem;
+    border-left: 2px solid var(--gd-line-strong);
+
+    &:last-child {
+      padding-bottom: 0.2rem;
+      border-left-color: transparent;
+    }
+
+    // Punkt auf der Linie.
+    &::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 3px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--gd-sage);
+      box-shadow: 0 0 0 4px var(--gd-bg), 0 0 0 6px var(--gd-line-strong);
+    }
+  }
+
+  .gd-timeline__year {
+    display: block;
+    font-family: var(--gd-font-head);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--gd-sage-strong);
+  }
+
+  .gd-timeline__text {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 16px;
+    color: var(--gd-muted);
+    text-wrap: pretty;
+  }
+
   // ---------- split panels + tick lists ----------
   .gd-split {
     display: grid;

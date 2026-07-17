@@ -1,17 +1,148 @@
-<app-image-hero
-  id="topSection"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [paragraphType]="'blur'"
-  [paragraphSize]="'large'"
-  [backgroundImage]="'assets/images/farewell/Historie-Washington-DC-Electrolysis.jpg'"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [title]="t('Die Elektrolyse existiert viel länger als ihr denkt.', 'Electrolysis has been around far longer than you think.')"
-  [titleType]="'blur'"
-  [height]="'75'"
-  >
-</app-image-hero>
-<app-epilation-history></app-epilation-history>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Geschichte', 'FareWell · Nuremberg · History')"
+    [heading]="t('Die Geschichte der Elektrolyse', 'The history of electrolysis')"
+    tagline="Seit 1875."
+    [lead]="
+      t(
+        'Viele denken, dauerhafte Haarentfernung sei neu, doch die Elektrolyse gibt es schon seit über einem Jahrhundert. Ihre Geschichte zeigt, wie bewährt und wirkungsvoll sie wirklich ist.',
+        'Many people think lasting hair removal is new, yet electrolysis has been around for over a century. Its history shows just how proven and effective it really is.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Dauerhafte Haarentfernung klingt modern, ist aber über 150 Jahre alt. Was 1875 mit
+            galvanischem Strom begann, ist bis heute die einzige wirklich permanente Methode.
+          </span>
+          <span class="lang en">
+            Long-lasting hair removal sounds modern, but it's over 150 years old. What began in 1875
+            with galvanic current is still the only truly permanent method today.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Wie diese Methode heute bei FareWell aussieht, liest du auf der Seite zur
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse / Nadelepilation</a>. Oder du
+            startest direkt mit der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            You can read what this method looks like at FareWell today on the page about
+            <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis (Nadelepilation)</a>. Or start
+            right away with the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Eine über 150 Jahre bewährte Methode', 'A method proven for over 150 years')"
+      sectionId="bewaehrt"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Während Laser und IPL vergleichsweise junge Technologien sind, verödet die Elektrolyse
+          bereits seit dem 19. Jahrhundert die Haarwurzel dauerhaft. Sie war schon damals so
+          etabliert, dass Salons offen damit warben.
+        </span>
+        <span class="lang en">
+          While laser and IPL are comparatively young technologies, electrolysis has been
+          deactivating the hair root permanently since the 19th century. It was so established even
+          then that salons advertised it openly.
+        </span>
+      </p>
+      <app-guide-figure
+        image="assets/images/farewell/Historie-Washington-DC-Electrolysis.jpg"
+        [imageAlt]="
+          t(
+            'Historisches Schaufenster eines Kosmetiksalons in Washington, D.C. mit der Aufschrift ELECTROLYSIS',
+            'Historic beauty salon shop window in Washington, D.C. with the sign ELECTROLYSIS'
+          )
+        "
+        [caption]="
+          t(
+            'Ein Schaufenster in Washington, D.C. der 1930er-Jahre wirbt prominent mit „ELECTROLYSIS“, die Methode war schon damals fester Bestandteil der Beauty-Welt.',
+            'A 1930s shop window in Washington, D.C. prominently advertising “ELECTROLYSIS” — the method was already a firm part of the beauty world.'
+          )
+        "
+        [wide]="true"
+      />
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      [heading]="t('Der Zeitstrahl der Elektrolyse', 'The electrolysis timeline')"
+      sectionId="zeitstrahl"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Von der ersten Behandlung bis zur ausgereiften Methode, die wichtigsten Meilensteine im
+          Überblick.
+        </span>
+        <span class="lang en">
+          From the very first treatment to the refined method it is today, the most important
+          milestones at a glance.
+        </span>
+      </p>
+      <app-guide-timeline [events]="timeline" />
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      [heading]="t('Von 1875 zu FareWell heute', 'From 1875 to FareWell today')"
+      sectionId="heute"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Das Grundprinzip ist bis heute dasselbe geblieben, die Technik ist nur präziser und
+          komfortabler geworden. Bei FareWell arbeiten wir mit moderner Elektrolyse, und weil bei uns
+          bis zu vier Kosmetikerinnen gleichzeitig behandeln, geht es deutlich schneller als früher.
+        </span>
+        <span class="lang en">
+          The basic principle is still the same today, the technique has only become more precise
+          and comfortable. At FareWell we work with modern electrolysis, and because up to four
+          aestheticians treat at the same time, it's considerably faster than it used to be.
+        </span>
+      </p>
+      <app-guide-note variant="win" [label]="t('Bewährt & permanent', 'Proven & permanent')">
+        <span class="lang de">
+          Nach über 150 Jahren bleibt die Elektrolyse die einzige in Deutschland rechtlich als
+          permanent anerkannte Methode der Haarentfernung. Wie sie bei dir abläuft, liest du auf der
+          Seite zur <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse / Nadelepilation</a>.
+        </span>
+        <span class="lang en">
+          After more than 150 years, electrolysis remains the only hair removal method legally
+          recognised as permanent in Germany. You can read how it works for you on the page about
+          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis (Nadelepilation)</a>.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-cta [heading]="t('Werde Teil dieser Geschichte', 'Become part of this history')">
+      <span class="lang de">
+        Buche deine erste Behandlung oder starte mit der kostenlosen Erstberatung, wir zeigen dir,
+        wie moderne Elektrolyse heute funktioniert.
+      </span>
+      <span class="lang en">
+        Book your first treatment or start with the free initial consultation, we'll show you how
+        modern electrolysis works today.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

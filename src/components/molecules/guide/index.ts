@@ -22,6 +22,10 @@ export {
   GuideGalleryComponent,
   type GuideGalleryItem,
 } from './guide-gallery/guide-gallery.component';
+export {
+  GuideTimelineComponent,
+  type GuideTimelineEvent,
+} from './guide-timeline/guide-timeline.component';
 export { FaqItemComponent } from './faq-item/faq-item.component';
 export { GuideProgressComponent } from './guide-progress/guide-progress.component';
 export { GuideTopButtonComponent } from './guide-top-button/guide-top-button.component';
@@ -45,6 +49,7 @@ import { GuideTocComponent } from './guide-toc/guide-toc.component';
 import { GuideMediaComponent } from './guide-media/guide-media.component';
 import { GuideFigureComponent } from './guide-figure/guide-figure.component';
 import { GuideGalleryComponent } from './guide-gallery/guide-gallery.component';
+import { GuideTimelineComponent } from './guide-timeline/guide-timeline.component';
 import { FaqItemComponent } from './faq-item/faq-item.component';
 import { GuideProgressComponent } from './guide-progress/guide-progress.component';
 import { GuideTopButtonComponent } from './guide-top-button/guide-top-button.component';
@@ -67,6 +72,7 @@ export const GUIDE_COMPONENTS = [
   GuideMediaComponent,
   GuideFigureComponent,
   GuideGalleryComponent,
+  GuideTimelineComponent,
   FaqItemComponent,
   GuideProgressComponent,
   GuideTopButtonComponent,
