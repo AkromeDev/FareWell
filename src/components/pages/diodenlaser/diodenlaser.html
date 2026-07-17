@@ -1,165 +1,322 @@
-<app-image-hero
-  id="topSection"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [paragraphType]="'blur'"
-  [backgroundImage]="'assets/images/treatment/laser.webp'"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [title]="t('4-Wellen Diodenlaser: Dauerhafte Haarentfernung', '4-Wavelength Diode Laser: Long-Lasting Hair Removal')"
-  [titleType]="'blur'"
-  [height]="'75'"
->
-</app-image-hero>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
-<app-image-text-block
-  theme="light"
-  [title]="t('Was ist ein 4-Wellen-Diodenlaser?', 'What is a 4-wavelength diode laser?')"
-  [backgroundImage]="'assets/images/machines/laser.png'"
-  imagePosition="right"
-  [resize]="true"
->
-  <p class="lang de">
-    Der <strong>4-Wellen-Diodenlaser</strong> arbeitet mit mehreren Wellenlängen,
-    um Haare in unterschiedlichen Tiefen zu erreichen.
-    Ziel ist eine <strong>dauerhafte Reduktion</strong> des Haarwachstums über mehrere Sitzungen.
-  </p>
-  <p class="lang en">
-    The <strong>4-wavelength diode laser</strong> works with several wavelengths
-    to reach hairs at different depths.
-    The aim is a <strong>long-lasting reduction</strong> in hair growth across several sessions.
-  </p>
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Behandlung', 'FareWell · Nuremberg · Treatment')"
+    [heading]="
+      t(
+        '4-Wellen-Diodenlaser in Nürnberg',
+        '4-Wavelength Diode Laser in Nuremberg'
+      )
+    "
+    [tagline]="t('Großflächig glatt.', 'Smooth over large areas.')"
+    [lead]="
+      t(
+        'Der 4-Wellen-Diodenlaser ist eine moderne Methode zur dauerhaften Haarentfernung. Durch mehrere Wellenlängen können verschiedene Haar- und Hauttypen effektiv behandelt werden – komfortabel, schnell und mit planbaren Intervallen.',
+        'The 4-wavelength diode laser is a modern method for long-lasting hair removal. Its multiple wavelengths treat a wide range of hair and skin types effectively – comfortably, quickly and with predictable intervals.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <p class="lang de">
-    Die Behandlung eignet sich besonders für <strong>größere Areale</strong> wie Beine,
-    Rücken oder Achseln und ist in der Regel <strong>schnell und gut verträglich</strong>.
-  </p>
-  <p class="lang en">
-    The treatment is especially suited to <strong>larger areas</strong> such as the legs,
-    back or underarms and is usually <strong>quick and well tolerated</strong>.
-  </p>
-</app-image-text-block>
+  <app-guide-stats [stats]="stats" />
 
-<app-image-text-block
-  id="wirkung"
-  theme="dark"
-  [title]="t('Wie funktioniert die Laser-Haarentfernung?', 'How does laser hair removal work?')"
-  [backgroundImage]="'assets/images/machines/laser-effect.png'"
-  imagePosition="left"
-  [resize]="true"
->
-  <p class="lang de">
-    Laserlicht wird vom <strong>Melanin</strong> im Haar aufgenommen und in Wärme umgewandelt.
-    Diese Wärme kann die Haarwurzel in ihrer Wachstumsfähigkeit beeinträchtigen.
-  </p>
-  <p class="lang en">
-    Laser light is absorbed by the <strong>melanin</strong> in the hair and turned into heat.
-    This heat can weaken the growth capacity of the hair root.
-  </p>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Der 4-Wellen-Diodenlaser reduziert deinen Haarwuchs dauerhaft und behandelt große Flächen
+            wie Beine, Rücken oder Achseln schnell. Am besten wirkt er bei dunklem Haar auf heller bis
+            mittlerer Haut.
+          </span>
+          <span class="lang en">
+            The 4-wavelength diode laser reduces your hair growth long-term and treats large areas
+            like the legs, back or underarms fast. It works best on dark hair on light to medium skin.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Laser reduziert dauerhaft, wirklich permanent entfernt nur die
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse</a>. Was besser zu deinem
+            Haar und deinem Areal passt, klären wir ehrlich in der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            Laser reduces long-term; only
+            <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis</a> removes hair truly
+            permanently. Which one suits your hair and your area better is something we clarify
+            honestly in the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
 
-  <p class="lang de">
-    Wichtig zu wissen: Laser führt zu einer <strong>dauerhaften Haarreduktion</strong>,
-    nicht zu einer permanenten Entfernung wie bei der Elektrolyse.
-    Das Ergebnis hängt stark von Haarfarbe, Hauttyp und Wachstumsphase ab.
-  </p>
-  <p class="lang en">
-    Good to know: laser leads to a <strong>long-lasting hair reduction</strong>,
-    not to permanent removal like electrolysis.
-    The result depends strongly on your hair colour, skin type and growth phase.
-  </p>
-</app-image-text-block>
+    <app-guide-section
+      index="01"
+      [heading]="t('Was ist ein 4-Wellen-Diodenlaser?', 'What is a 4-wavelength diode laser?')"
+      sectionId="was"
+    >
+      <app-guide-media
+        image="assets/images/machines/laser.png"
+        [contain]="true"
+        [imageAlt]="
+          t(
+            'Handstück des 4-Wellen-Diodenlasers, wie er bei FareWell für die Haarentfernung eingesetzt wird',
+            'Handpiece of the 4-wavelength diode laser used for hair removal at FareWell'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Der 4-Wellen-Diodenlaser bündelt mehrere Wellenlängen in einem Gerät. So erreicht er Haare
+          in unterschiedlichen Tiefen und passt sich verschiedenen Haut- und Haartypen an.
+        </p>
+        <p class="lang en">
+          The 4-wavelength diode laser combines several wavelengths in a single device. That lets it
+          reach hairs at different depths and adapt to a range of skin and hair types.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Arbeitet mit mehreren Wellenlängen, um Haare in <strong>unterschiedlichen Tiefen</strong> zu erreichen</span>
+            <span class="lang en">Works with several wavelengths to reach hairs at <strong>different depths</strong></span>
+          </li>
+          <li>
+            <span class="lang de">Ziel ist eine <strong>dauerhafte Reduktion</strong> des Haarwachstums über mehrere Sitzungen</span>
+            <span class="lang en">The aim is a <strong>long-lasting reduction</strong> in hair growth across several sessions</span>
+          </li>
+          <li>
+            <span class="lang de">Besonders geeignet für <strong>größere Areale</strong> wie Beine, Rücken oder Achseln</span>
+            <span class="lang en">Especially suited to <strong>larger areas</strong> such as the legs, back or underarms</span>
+          </li>
+          <li>
+            <span class="lang de">In der Regel schnell und gut verträglich</span>
+            <span class="lang en">Usually quick and well tolerated</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+    </app-guide-section>
 
-<app-image-text-block
-  id="geeignet"
-  theme="light"
-  [title]="t('Für wen ist der Diodenlaser geeignet?', 'Who is the diode laser right for?')"
-  [backgroundImage]="'assets/images/body/legs.png'"
-  imagePosition="right"
-  [resize]="true"
->
-  <ul class="lang de">
-    <li>✨ dunklere Haare auf heller bis mittlerer Haut</li>
-    <li>✨ Wunsch nach schneller Behandlung größerer Areale</li>
-    <li>✨ Ziel: sichtbare Reduktion des Haarwachstums</li>
-  </ul>
-  <ul class="lang en">
-    <li>✨ darker hair on light to medium skin</li>
-    <li>✨ you want fast treatment of larger areas</li>
-    <li>✨ your goal is a visible reduction in hair growth</li>
-  </ul>
+    <app-guide-section
+      index="02"
+      [heading]="t('Wie funktioniert die Laser-Haarentfernung?', 'How does laser hair removal work?')"
+      sectionId="funktion"
+    >
+      <app-guide-media
+        image="assets/images/machines/laser-effect.png"
+        [imageAlt]="
+          t(
+            'Illustration: Laserlicht wird vom Melanin im Haar aufgenommen und erwärmt die Haarwurzel',
+            'Illustration: laser light is absorbed by the melanin in the hair and heats the hair root'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Das Laserlicht sucht sich das Pigment im Haar und wird dort in Wärme umgewandelt. Diese
+          Wärme wirkt gezielt auf die Haarwurzel.
+        </p>
+        <p class="lang en">
+          The laser light targets the pigment in the hair and is turned into heat there. That heat
+          acts precisely on the hair root.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Laserlicht wird vom <strong>Melanin</strong> im Haar aufgenommen und in Wärme umgewandelt</span>
+            <span class="lang en">Laser light is absorbed by the <strong>melanin</strong> in the hair and turned into heat</span>
+          </li>
+          <li>
+            <span class="lang de">Diese Wärme kann die Haarwurzel in ihrer Wachstumsfähigkeit beeinträchtigen</span>
+            <span class="lang en">This heat can weaken the growth capacity of the hair root</span>
+          </li>
+          <li>
+            <span class="lang de">Das Ergebnis hängt stark von <strong>Haarfarbe, Hauttyp und Wachstumsphase</strong> ab</span>
+            <span class="lang en">The result depends strongly on <strong>hair colour, skin type and growth phase</strong></span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="rule" [label]="t('Ehrlich gesagt', 'To be honest')">
+        <span class="lang de">
+          Laser führt zu einer <strong>dauerhaften Haarreduktion</strong>, nicht zu einer permanenten
+          Entfernung wie bei der Elektrolyse. Wer wirklich jedes Haar endgültig loswerden möchte, ist
+          mit der <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation</a> besser beraten.
+        </span>
+        <span class="lang en">
+          Laser leads to a <strong>long-lasting hair reduction</strong>, not to permanent removal like
+          electrolysis. If you truly want every hair gone for good,
+          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis</a> is the better choice.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <p class="lang de">
-    💚 Bei <strong>FareWell</strong> sagen wir dir ehrlich,
-    ob Laser für dich sinnvoll ist oder ob Elektrolyse die bessere Wahl wäre.
-  </p>
-  <p class="lang en">
-    💚 At <strong>FareWell</strong> we tell you honestly
-    whether laser makes sense for you or whether electrolysis would be the better choice.
-  </p>
-</app-image-text-block>
+    <app-guide-section
+      index="03"
+      [heading]="t('Für wen ist der Diodenlaser geeignet?', 'Who is the diode laser right for?')"
+      sectionId="geeignet"
+    >
+      <app-guide-media
+        image="assets/images/body/legs.png"
+        [imageAlt]="
+          t(
+            'Beine als großes Behandlungsareal für die Diodenlaser-Haarentfernung',
+            'Legs as a large treatment area for diode laser hair removal'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Der Diodenlaser spielt seine Stärke dort aus, wo es um schnelle Ergebnisse auf großen
+          Flächen geht:
+        </p>
+        <p class="lang en">
+          The diode laser plays to its strengths wherever fast results on large areas are the goal:
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">✨ dunklere Haare auf heller bis mittlerer Haut</span>
+            <span class="lang en">✨ darker hair on light to medium skin</span>
+          </li>
+          <li>
+            <span class="lang de">✨ Wunsch nach schneller Behandlung größerer Areale</span>
+            <span class="lang en">✨ you want fast treatment of larger areas</span>
+          </li>
+          <li>
+            <span class="lang de">✨ Ziel: sichtbare Reduktion des Haarwachstums</span>
+            <span class="lang en">✨ your goal is a visible reduction in hair growth</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="win" [label]="t('Ehrlich beraten', 'Honest advice')">
+        <span class="lang de">
+          💚 Bei <strong>FareWell</strong> sagen wir dir ehrlich, ob Laser für dich sinnvoll ist oder
+          ob die Elektrolyse die bessere Wahl wäre.
+        </span>
+        <span class="lang en">
+          💚 At <strong>FareWell</strong> we tell you honestly whether laser makes sense for you or
+          whether electrolysis would be the better choice.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-<app-image-text-block
-  id="nebenwirkungen"
-  theme="dark"
-  [title]="t('Gibt es Nebenwirkungen?', 'Are there any side effects?')"
-  [backgroundImage]="'assets/images/body/chest.png'"
-  imagePosition="left"
->
-  <ul class="lang de">
-    <li>🔸 Rötung oder Wärmegefühl nach der Sitzung</li>
-    <li>🔸 leichte Schwellung um die Haarfollikel</li>
-    <li>🔸 selten Pigmentveränderungen bei Sonnenexposition</li>
-  </ul>
-  <ul class="lang en">
-    <li>🔸 redness or a feeling of warmth after the session</li>
-    <li>🔸 slight swelling around the hair follicles</li>
-    <li>🔸 rarely, pigment changes after sun exposure</li>
-  </ul>
+    <app-guide-section
+      index="04"
+      [heading]="t('Gibt es Nebenwirkungen?', 'Are there any side effects?')"
+      sectionId="nebenwirkungen"
+    >
+      <app-guide-media
+        image="assets/images/body/chest.png"
+        [imageAlt]="
+          t(
+            'Körperareal am Oberkörper, passend zum Thema mögliche Reaktionen nach der Laserbehandlung',
+            'Chest and body area, matching the topic of possible reactions after the laser treatment'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Die Behandlung ist gut verträglich. Möglich sind nur leichte, vorübergehende Reaktionen:
+        </p>
+        <p class="lang en">
+          The treatment is well tolerated. Only mild, temporary reactions can occur:
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">🔸 Rötung oder Wärmegefühl nach der Sitzung</span>
+            <span class="lang en">🔸 redness or a feeling of warmth after the session</span>
+          </li>
+          <li>
+            <span class="lang de">🔸 leichte Schwellung um die Haarfollikel</span>
+            <span class="lang en">🔸 slight swelling around the hair follicles</span>
+          </li>
+          <li>
+            <span class="lang de">🔸 selten Pigmentveränderungen bei Sonnenexposition</span>
+            <span class="lang en">🔸 rarely, pigment changes after sun exposure</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('UV-Schutz', 'UV protection')">
+        <span class="lang de">
+          Mit professioneller Durchführung und konsequentem <strong>UV-Schutz</strong> ist die
+          Behandlung sehr gut kontrollierbar.
+        </span>
+        <span class="lang en">
+          With professional care and consistent <strong>UV protection</strong>, the treatment stays
+          very well under control.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <p class="lang de">
-    Mit professioneller Durchführung und konsequentem <strong>UV-Schutz</strong>
-    ist die Behandlung sehr gut kontrollierbar.
-  </p>
-  <p class="lang en">
-    With professional care and consistent <strong>UV protection</strong>,
-    the treatment stays very well under control.
-  </p>
-</app-image-text-block>
+    <app-guide-section
+      index="05"
+      [heading]="t('Wie viele Sitzungen sind nötig?', 'How many sessions do you need?')"
+      sectionId="sitzungen"
+    >
+      <app-guide-media
+        image="assets/images/farewell/calendar2.png"
+        [contain]="true"
+        [imageAlt]="
+          t(
+            'Kalender-Grafik für den Sitzungsplan der Diodenlaser-Behandlung',
+            'Calendar graphic for the diode laser treatment session schedule'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Haare sind nur in der <strong>Anagenphase</strong> (der aktiven Wachstumsphase) effektiv
+          behandelbar. Deshalb sind mehrere Sitzungen notwendig, damit wir mit jedem Termin eine neue
+          Generation erwischen.
+        </p>
+        <p class="lang en">
+          Hair can only be treated effectively during the <strong>anagen phase</strong> (the active
+          growth phase). That's why several sessions are needed, so each appointment catches a fresh
+          generation.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Üblich sind <strong>6–10 Sitzungen</strong> mit Abständen von <strong>1–4 Wochen</strong></span>
+            <span class="lang en">Typically <strong>6 to 10 sessions</strong>, spaced <strong>1 to 4 weeks</strong> apart</span>
+          </li>
+          <li>
+            <span class="lang de">Anzahl und Abstand hängen von Körperregion und Haarstruktur ab</span>
+            <span class="lang en">The number and spacing depend on the body area and hair structure</span>
+          </li>
+          <li>
+            <span class="lang de">Der Plan wird individuell auf dich abgestimmt</span>
+            <span class="lang en">The schedule is tailored individually to you</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Planbar', 'Predictable')">
+        <span class="lang de">
+          Deinen persönlichen Sitzungsplan und die passenden Abstände legen wir gemeinsam in der
+          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a> fest.
+        </span>
+        <span class="lang en">
+          We set your personal session plan and the right intervals together in the
+          <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-<app-image-text-block
-  id="dauer"
-  theme="light"
-  [title]="t('Wie viele Sitzungen sind nötig?', 'How many sessions do you need?')"
-  [backgroundImage]="'assets/images/farewell/calendar2.png'"
-  imagePosition="right"
-  [resize]="true"
->
-  <p class="lang de">
-    Da Haare nur in der <strong>Anagenphase</strong> effektiv behandelbar sind,
-    sind mehrere Sitzungen notwendig.
-  </p>
-  <p class="lang en">
-    Because hair can only be treated effectively during the <strong>anagen phase</strong>
-    (the active growth phase), several sessions are needed.
-  </p>
-
-  <p class="lang de">
-    Üblich sind <strong>6–10 Sitzungen</strong> mit Abständen von
-    <strong>1–4 Wochen</strong>, abhängig von Körperregion und Haarstruktur.
-  </p>
-  <p class="lang en">
-    Typically you need <strong>6 to 10 sessions</strong>, spaced
-    <strong>1 to 4 weeks</strong> apart, depending on the body area and hair structure.
-  </p>
-
-  <p class="lang de">
-    👉 Termin buchen:
-    <app-booking-cta location="laser-page"></app-booking-cta>
-  </p>
-  <p class="lang en">
-    👉 Book your appointment:
-    <app-booking-cta location="laser-page" [label]="'Book now'"></app-booking-cta>
-  </p>
-</app-image-text-block>
+    <app-guide-cta
+      [heading]="t('Bereit für glatte Haut auf großen Flächen?', 'Ready for smooth skin over large areas?')"
+    >
+      <span class="lang de">
+        Buche deinen Termin direkt online oder klär in der kostenlosen Erstberatung, ob der
+        4-Wellen-Diodenlaser oder die permanente <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse</a>
+        besser zu dir passt. Je früher du beginnst, desto schneller siehst du Ergebnisse.
+      </span>
+      <span class="lang en">
+        Book your appointment directly online, or find out in the free initial consultation whether
+        the 4-wavelength diode laser or permanent <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis</a>
+        suits you better. The sooner you start, the sooner you see results.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

@@ -1,254 +1,249 @@
-<app-image-hero
-  id="topSection"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [paragraphType]="'blur'"
-  [backgroundImage]="'assets/images/treatment/massage-hero.jpg'"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [title]="t('Wellness Massagen: Entspannung, Regeneration & neue Leichtigkeit', 'Wellness massages: relaxation, recovery and new lightness')"
-  [titleType]="'blur'"
-  [height]="'75'"
->
-</app-image-hero>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
-<app-image-text-block
-  theme="light"
-  [title]="t('Massagen bei FareWell', 'Massages at FareWell')"
-  [backgroundImage]="'assets/images/treatment/massage-intro.png'"
-  imagePosition="right"
->
-  <p class="lang de">
-    Lass Verspannungen los und schenke dir eine regenerierende Massage.
-    Ob nach einem langen Arbeitstag, intensiven Sporteinheiten oder einfach zur puren Entspannung.
-    Unsere Massagen helfen dir, dich rundum wohlzufühlen.
-  </p>
-  <p class="lang en">
-    Let go of tension and treat yourself to a restoring massage.
-    Whether after a long day at work, an intense workout or simply for pure relaxation.
-    Our massages help you feel good all over.
-  </p>
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Behandlung', 'FareWell · Nuremberg · Treatment')"
+    [heading]="t('Wellness Massagen in Nürnberg', 'Wellness massages in Nuremberg')"
+    tagline="Zeit für dich."
+    [lead]="
+      t(
+        'Lass Verspannungen los und schenke dir eine regenerierende Massage, ob nach langem Arbeitstag, intensivem Sport oder einfach zur puren Entspannung. Achtsame Berührung in einem ruhigen Rahmen zum wirklichen Abschalten.',
+        'Let go of tension and treat yourself to a restoring massage, after a long day at work, an intense workout or simply for pure relaxation. Mindful touch in a calm setting so you can truly switch off.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <p class="lang de">
-    💚 Bei <strong>FareWell</strong> steht dein Wohlbefinden im Fokus: achtsame Berührung,
-    gezielte Techniken und ein ruhiger Rahmen, damit du wirklich abschalten kannst.
-  </p>
-  <p class="lang en">
-    💚 At <strong>FareWell</strong> your wellbeing is the focus: mindful touch,
-    targeted techniques and a calm setting, so you can truly switch off.
-  </p>
+  <app-guide-stats [stats]="stats" />
 
-  <p class="lang de">
-    👉 Termin buchen:
-    <app-booking-cta location="massage-page"></app-booking-cta>
-  </p>
-  <p class="lang en">
-    👉 Book your appointment:
-    <app-booking-cta location="massage-page"></app-booking-cta>
-  </p>
-</app-image-text-block>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Drei Massagen, ein Ziel: Verspannungen lösen, das Nervensystem herunterfahren und mit
+            neuer Leichtigkeit wieder auftauchen.
+          </span>
+          <span class="lang en">
+            Three massages, one goal: release tension, calm the nervous system and resurface with a
+            new lightness.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Du suchst gezielte Hilfe bei Beschwerden statt reiner Entspannung? Dann wirf einen Blick
+            auf unsere <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutischen Massagen</a>.
+            Alle Wellness-Massagen buchst du direkt über
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>.
+          </span>
+          <span class="lang en">
+            Looking for targeted help with specific complaints rather than pure relaxation? Then take
+            a look at our <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutic massages</a>.
+            You can book all wellness massages directly via
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
 
-<app-image-text-block
-  id="ruecken"
-  theme="dark"
-  [title]="t('Rücken-Schulter-Nacken-Massage', 'Back, shoulder and neck massage')"
-  [backgroundImage]="'assets/images/treatment/massage-back.webp'"
-  imagePosition="left"
->
-  <p class="priceLine lang de">
-    <strong>45 Min | 58€</strong> &nbsp;·&nbsp; <strong>60 Min | 78€</strong>
-  </p>
-  <p class="priceLine lang en">
-    <strong>45 min | 58€</strong> &nbsp;·&nbsp; <strong>60 min | 78€</strong>
-  </p>
-
-  <p class="lang de">
-    Diese wohltuende Kombination aus klassischer Rückenmassage und gezielter Schulter-Nacken-Arbeit
-    gleicht typische Fehlhaltungen im Alltag aus. Mit einer Vielfalt an Streich-, Knet-, Druck- und
-    Dehntechniken lösen wir Verspannungen gezielt und spürbar.
-  </p>
-  <p class="lang en">
-    This soothing combination of a classic back massage and focused shoulder and neck work
-    balances out the typical postural strain of everyday life. With a wide range of stroking, kneading,
-    pressure and stretching techniques, we release tension precisely and noticeably.
-  </p>
-
-  <p class="lang de">
-    Besonders, wenn du viel am Schreibtisch arbeitest oder immer die gleichen Bewegungen machst,
-    ist diese Anwendung wie ein Reset für deinen Körper, für mehr Leichtigkeit, Aufrichtung und Wohlbefinden.
-  </p>
-  <p class="lang en">
-    Especially if you spend a lot of time at a desk or repeat the same movements again and again,
-    this treatment feels like a reset for your body, for more lightness, better posture and wellbeing.
-  </p>
-
-  <p class="lang de">
-    👉 Direkt buchen:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+    <app-guide-section
+      index="01"
+      [heading]="t('Ankommen & abschalten', 'Arrive & switch off')"
+      sectionId="ankommen"
     >
-      Salonkee
-    </a>
-  </p>
-  <p class="lang en">
-    👉 Book directly:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+      <app-guide-media
+        image="assets/images/treatment/massage-intro.png"
+        [imageAlt]="
+          t(
+            'Entspannende Wellness-Massage bei FareWell in Nürnberg',
+            'Relaxing wellness massage at FareWell in Nuremberg'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Ob nach einem langen Arbeitstag, intensiven Sporteinheiten oder einfach zur puren
+          Entspannung, unsere Massagen helfen dir, dich rundum wohlzufühlen.
+        </p>
+        <p class="lang en">
+          Whether after a long day at work, an intense workout or simply for pure relaxation, our
+          massages help you feel good all over.
+        </p>
+        <p class="lang de">
+          💚 Bei <strong>FareWell</strong> steht dein Wohlbefinden im Fokus: achtsame Berührung,
+          gezielte Techniken und ein ruhiger Rahmen, damit du wirklich abschalten kannst.
+        </p>
+        <p class="lang en">
+          💚 At <strong>FareWell</strong> your wellbeing is the focus: mindful touch, targeted
+          techniques and a calm setting, so you can truly switch off.
+        </p>
+      </app-guide-media>
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      [heading]="t('Rücken-Schulter-Nacken-Massage', 'Back, shoulder and neck massage')"
+      sectionId="ruecken"
     >
-      Salonkee
-    </a>
-  </p>
-</app-image-text-block>
+      <app-guide-media
+        image="assets/images/treatment/massage-back.webp"
+        [imageAlt]="
+          t(
+            'Rücken-, Schulter- und Nackenmassage zur Lösung von Verspannungen',
+            'Back, shoulder and neck massage to release tension'
+          )
+        "
+        side="left"
+        [eyebrow]="t('45 Min · 58€ · 60 Min · 78€', '45 min · 58€ · 60 min · 78€')"
+      >
+        <p class="lang de">
+          Diese wohltuende Kombination aus klassischer Rückenmassage und gezielter Schulter-Nacken-
+          Arbeit gleicht typische Fehlhaltungen im Alltag aus. Mit Streich-, Knet-, Druck- und
+          Dehntechniken lösen wir Verspannungen gezielt und spürbar.
+        </p>
+        <p class="lang en">
+          This soothing combination of a classic back massage and focused shoulder and neck work
+          balances out the typical postural strain of everyday life. With stroking, kneading,
+          pressure and stretching techniques, we release tension precisely and noticeably.
+        </p>
+        <p class="lang de">
+          Besonders bei viel Schreibtischarbeit ist diese Anwendung wie ein Reset für deinen Körper,
+          für mehr Leichtigkeit, Aufrichtung und Wohlbefinden.
+        </p>
+        <p class="lang en">
+          Especially if you spend a lot of time at a desk, this treatment feels like a reset for your
+          body, for more lightness, better posture and wellbeing.
+        </p>
+      </app-guide-media>
+    </app-guide-section>
 
-<app-image-text-block
-  id="ganzkoerper"
-  theme="light"
-  [title]="t('Ganzkörpermassage mit Aromaölen & Klangschale', 'Full-body massage with aroma oils and singing bowl')"
-  [backgroundImage]="'assets/images/treatment/massage-aroma.png'"
-  imagePosition="right"
->
-  <p class="priceLine lang de">
-    <strong>60 Min | 78€</strong> &nbsp;·&nbsp; <strong>90 Min | 120€</strong>
-  </p>
-  <p class="priceLine lang en">
-    <strong>60 min | 78€</strong> &nbsp;·&nbsp; <strong>90 min | 120€</strong>
-  </p>
-
-  <p class="lang de">
-    In dieser Ganzkörpermassage hast du Zeit, tief zu entspannen. Der gesamte Körper,
-    Rücken, Beine, Arme, Dekolleté und Nacken, wird mit warmem Öl massiert und sanft gelockert.
-  </p>
-  <p class="lang en">
-    In this full-body massage you have time to relax deeply. Your whole body,
-    back, legs, arms, décolleté and neck, is massaged with warm oil and gently loosened.
-  </p>
-
-  <p class="lang de">
-    Wohltuende Massagetechniken und ausgewählte Aromaöle unterstützen dich dabei,
-    dein Nervensystem herunterzufahren, den Atem zu vertiefen und wieder aufzutauchen
-    wie nach einem kleinen Retreat: geerdet, genährt und innerlich weiter.
-  </p>
-  <p class="lang en">
-    Soothing massage techniques and carefully chosen aroma oils help you
-    calm your nervous system, deepen your breath and resurface
-    as if after a little retreat: grounded, nourished and quietly further along.
-  </p>
-
-  <p class="lang de">
-    Als Basis für die Aromaöle nutzen wir ein naturreines Mandelöl.
-  </p>
-  <p class="lang en">
-    As a base for the aroma oils we use a pure, natural almond oil.
-  </p>
-
-  <p class="lang de">
-    👉 Direkt buchen:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+    <app-guide-section
+      index="03"
+      [heading]="
+        t('Ganzkörpermassage mit Aromaölen & Klangschale', 'Full-body massage with aroma oils and singing bowl')
+      "
+      sectionId="ganzkoerper"
     >
-      Salonkee
-    </a>
-  </p>
-  <p class="lang en">
-    👉 Book directly:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+      <app-guide-media
+        image="assets/images/treatment/massage-aroma.png"
+        [imageAlt]="
+          t(
+            'Ganzkörpermassage mit warmen Aromaölen und Klangschale',
+            'Full-body massage with warm aroma oils and singing bowl'
+          )
+        "
+        side="right"
+        [eyebrow]="t('60 Min · 78€ · 90 Min · 120€', '60 min · 78€ · 90 min · 120€')"
+      >
+        <p class="lang de">
+          Hier hast du Zeit, tief zu entspannen. Der gesamte Körper, Rücken, Beine, Arme, Dekolleté
+          und Nacken, wird mit warmem Öl massiert und sanft gelockert.
+        </p>
+        <p class="lang en">
+          Here you have time to relax deeply. Your whole body, back, legs, arms, décolleté and neck,
+          is massaged with warm oil and gently loosened.
+        </p>
+        <p class="lang de">
+          Wohltuende Techniken und ausgewählte Aromaöle fahren dein Nervensystem herunter und
+          vertiefen den Atem, wie nach einem kleinen Retreat. Als Basis nutzen wir ein naturreines
+          Mandelöl.
+        </p>
+        <p class="lang en">
+          Soothing techniques and carefully chosen aroma oils calm your nervous system and deepen
+          your breath, like after a little retreat. We use a pure, natural almond oil as the base.
+        </p>
+      </app-guide-media>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      [heading]="t('Teilkörpermassage', 'Partial-body massage')"
+      sectionId="teilkoerper"
     >
-      Salonkee
-    </a>
-  </p>
-</app-image-text-block>
+      <app-guide-media
+        image="assets/images/treatment/massage-partial.webp"
+        [imageAlt]="
+          t(
+            'Teilkörpermassage mit Fokus auf einen gezielten Körperbereich',
+            'Partial-body massage focusing on one targeted area'
+          )
+        "
+        side="left"
+        [eyebrow]="t('30 Min · 45€', '30 min · 45€')"
+      >
+        <p class="lang de">
+          Wir widmen uns genau dem Bereich, der gerade am meisten Aufmerksamkeit braucht, du
+          entscheidest vor Ort: Rücken, Beine oder Arme & Nacken. Mit warmem Öl und gezielten Griffen
+          lockern wir verspannte Muskeln.
+        </p>
+        <p class="lang en">
+          We focus on exactly the area that needs the most attention right now, you decide on the
+          spot: back, legs or arms and neck. With warm oil and targeted movements we loosen tense
+          muscles.
+        </p>
+        <p class="lang de">
+          Ideal für eine kompakte Auszeit im vollen Alltag oder um einen bestimmten Bereich ganz
+          bewusst zu entlasten.
+        </p>
+        <p class="lang en">
+          Ideal for a compact break in a busy day or to consciously relieve one particular area.
+        </p>
+      </app-guide-media>
+    </app-guide-section>
 
-<app-image-text-block
-  id="teilkoerper"
-  theme="dark"
-  [title]="t('Teilkörpermassage', 'Partial-body massage')"
-  [backgroundImage]="'assets/images/treatment/massage-partial.webp'"
-  imagePosition="left"
->
-  <p class="priceLine lang de">
-    <strong>30 Min | 45€</strong>
-  </p>
-  <p class="priceLine lang en">
-    <strong>30 min | 45€</strong>
-  </p>
-
-  <p class="lang de">
-    In dieser Teilkörpermassage widmen wir uns genau dem Bereich, der bei dir gerade am meisten Aufmerksamkeit braucht.
-    Du entscheidest vor Ort, ob der Fokus auf deinem Rücken, deinen Beinen oder auf Armen & Nacken liegen darf.
-  </p>
-  <p class="lang en">
-    In this partial-body massage we focus on exactly the area that needs the most attention right now.
-    You decide on the spot whether the focus should be on your back, your legs or on your arms and neck.
-  </p>
-
-  <p class="lang de">
-    Mit warmem Öl und gezielten, wohltuenden Griffen werden verspannte Muskeln gelockert
-    und dein Körper kann spürbar entspannen. Diese kürzere Anwendung ist ideal,
-    wenn du dir im vollen Alltag eine kompakte Auszeit gönnen möchtest oder
-    einen bestimmten Bereich ganz bewusst entlasten willst.
-  </p>
-  <p class="lang en">
-    With warm oil and targeted, soothing movements, tense muscles are loosened
-    and your body can relax noticeably. This shorter treatment is ideal
-    when you want to give yourself a compact break in a busy day or
-    to consciously relieve one particular area.
-  </p>
-
-  <p class="lang de">
-    👉 Direkt buchen:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+    <app-guide-section
+      index="05"
+      [heading]="t('Gut zu wissen', 'Good to know')"
+      sectionId="hinweise"
     >
-      Salonkee
-    </a>
-  </p>
-  <p class="lang en">
-    👉 Book directly:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Salonkee
-    </a>
-  </p>
-</app-image-text-block>
+      <app-guide-media
+        image="assets/images/treatment/hands.webp"
+        [imageAlt]="
+          t('Massierende Hände, Hinweise für deinen Massagetermin', 'Massaging hands, tips for your massage appointment')
+        "
+        side="right"
+      >
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Komm möglichst entspannt und ohne Zeitdruck</span>
+            <span class="lang en">Arrive as relaxed as possible and without time pressure</span>
+          </li>
+          <li>
+            <span class="lang de">Sag uns vorab, wo du Verspannungen spürst und welche Intensität du bevorzugst</span>
+            <span class="lang en">Tell us in advance where you feel tension and what intensity you prefer</span>
+          </li>
+          <li>
+            <span class="lang de">Nach der Massage: nimm dir, wenn möglich, einen ruhigen Moment zum Nachspüren</span>
+            <span class="lang en">After the massage, take a quiet moment to let it settle in, if you can</span>
+          </li>
+        </app-guide-checklist>
+        <app-guide-note variant="tip" [label]="t('Unsicher?', 'Not sure?')">
+          <span class="lang de">
+            Wenn du unsicher bist, welche Massage am besten zu dir passt, beraten wir dich gerne vor
+            Ort.
+          </span>
+          <span class="lang en">
+            If you are unsure which massage suits you best, we are happy to advise you in person.
+          </span>
+        </app-guide-note>
+      </app-guide-media>
+    </app-guide-section>
 
-<app-image-text-block
-  id="hinweise"
-  theme="light"
-  [title]="t('Gut zu wissen', 'Good to know')"
-  [backgroundImage]="'assets/images/treatment/hands.webp'"
-  imagePosition="right"
->
-  <ul class="lang de">
-    <li>✅ Bitte komm möglichst entspannt und ohne Zeitdruck.</li>
-    <li>✅ Sag uns vorab, wo du Verspannungen spürst und welche Intensität du bevorzugst.</li>
-    <li>✅ Nach der Massage: nimm dir, wenn möglich, einen ruhigen Moment zum Nachspüren.</li>
-  </ul>
-  <ul class="lang en">
-    <li>✅ Please arrive as relaxed as possible and without any time pressure.</li>
-    <li>✅ Tell us in advance where you feel tension and what intensity you prefer.</li>
-    <li>✅ After the massage, take a quiet moment to let it settle in, if you can.</li>
-  </ul>
-
-  <p class="lang de">
-    💚 Wenn du unsicher bist, welche Massage am besten zu dir passt, beraten wir dich gerne vor Ort.
-  </p>
-  <p class="lang en">
-    💚 If you are unsure which massage suits you best, we are happy to advise you in person.
-  </p>
-</app-image-text-block>
+    <app-guide-cta [heading]="t('Bereit für deine Auszeit?', 'Ready for your time out?')">
+      <span class="lang de">
+        Buche deine Wellness-Massage direkt über Salonkee. Unsicher, welche Massage passt? Wir
+        beraten dich gerne, oder wirf einen Blick auf unsere
+        <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutischen Massagen</a>.
+      </span>
+      <span class="lang en">
+        Book your wellness massage directly via Salonkee. Not sure which massage fits? We're happy
+        to advise, or take a look at our
+        <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutic massages</a>.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

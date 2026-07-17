@@ -16,6 +16,12 @@ export { GuideChecklistComponent } from './guide-checklist/guide-checklist.compo
 export { GuideOfferComponent } from './guide-offer/guide-offer.component';
 export { GuideCtaComponent } from './guide-cta/guide-cta.component';
 export { GuideTocComponent, type GuideTocItem } from './guide-toc/guide-toc.component';
+export { GuideMediaComponent } from './guide-media/guide-media.component';
+export { GuideFigureComponent } from './guide-figure/guide-figure.component';
+export {
+  GuideGalleryComponent,
+  type GuideGalleryItem,
+} from './guide-gallery/guide-gallery.component';
 export { FaqItemComponent } from './faq-item/faq-item.component';
 export { GuideProgressComponent } from './guide-progress/guide-progress.component';
 export { GuideTopButtonComponent } from './guide-top-button/guide-top-button.component';
@@ -36,6 +42,9 @@ import { GuideChecklistComponent } from './guide-checklist/guide-checklist.compo
 import { GuideOfferComponent } from './guide-offer/guide-offer.component';
 import { GuideCtaComponent } from './guide-cta/guide-cta.component';
 import { GuideTocComponent } from './guide-toc/guide-toc.component';
+import { GuideMediaComponent } from './guide-media/guide-media.component';
+import { GuideFigureComponent } from './guide-figure/guide-figure.component';
+import { GuideGalleryComponent } from './guide-gallery/guide-gallery.component';
 import { FaqItemComponent } from './faq-item/faq-item.component';
 import { GuideProgressComponent } from './guide-progress/guide-progress.component';
 import { GuideTopButtonComponent } from './guide-top-button/guide-top-button.component';
@@ -55,6 +64,9 @@ export const GUIDE_COMPONENTS = [
   GuideOfferComponent,
   GuideCtaComponent,
   GuideTocComponent,
+  GuideMediaComponent,
+  GuideFigureComponent,
+  GuideGalleryComponent,
   FaqItemComponent,
   GuideProgressComponent,
   GuideTopButtonComponent,

@@ -1,284 +1,397 @@
-<app-image-hero
-  id="topSection"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [paragraphType]="'blur'"
-  [backgroundImage]="'assets/images/treatment/microneedling2.webp'"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [title]="t('Microneedling mit Radiofrequenz, Straffung & Hautbild', 'Radiofrequency microneedling, firming & complexion')"
-  [titleType]="'blur'"
-  [height]="'75'"
->
-</app-image-hero>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
-<app-image-text-block
-  theme="light"
-  [title]="t('Was ist Microneedling mit Radiofrequenz?', 'What is radiofrequency microneedling?')"
-  [backgroundImage]="'assets/images/treatment/microneedling.webp'"
-  imagePosition="right"
->
-  <p class="lang de">
-    <strong>RF-Microneedling</strong> (Microneedling mit Radiofrequenz) ist eine moderne Behandlung zur
-    <strong>Hautstraffung</strong> und <strong>Hautbildverbesserung</strong>.
-    Dabei werden <strong>feine, sterile Nadeln</strong> kontrolliert in die Haut geführt und geben gleichzeitig
-    <strong>Radiofrequenz-Energie</strong> (Wärme) in der Tiefe ab.
-  </p>
-  <p class="lang en">
-    <strong>RF microneedling</strong> (radiofrequency microneedling) is a modern treatment for
-    <strong>skin firming</strong> and <strong>a better complexion</strong>.
-    <strong>Fine, sterile needles</strong> are guided into the skin in a controlled way and, at the same time, release
-    <strong>radiofrequency energy</strong> (warmth) deep within.
-  </p>
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Behandlung', 'FareWell · Nuremberg · Treatment')"
+    [heading]="
+      t(
+        'Microneedling mit Radiofrequenz in Nürnberg',
+        'Radiofrequency microneedling in Nuremberg'
+      )
+    "
+    [tagline]="t('Frischer Glow von innen.', 'A fresh glow from within.')"
+    [lead]="
+      t(
+        'Microneedling mit Radiofrequenz kombiniert feine, sterile Mikro-Nadeln mit gezielter Radiofrequenz-Wärme in der Tiefe. Das Ergebnis: straffere Haut, ein verfeinertes Hautbild und ein frischer Glow, ganz ohne OP.',
+        'Radiofrequency microneedling combines fine, sterile micro-needles with targeted radiofrequency warmth deep in the skin. The result: firmer skin, a refined complexion and a fresh glow, all without surgery.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <p class="lang de">
-    Diese Kombination kann die körpereigene <strong>Kollagen- und Elastinproduktion</strong> anregen,
-    für ein glatteres Hautbild und mehr Spannkraft.
-  </p>
-  <p class="lang en">
-    This combination can stimulate your body's own <strong>collagen and elastin production</strong>,
-    for smoother skin and more firmness.
-  </p>
+  <app-guide-stats [stats]="stats" />
 
-  <p class="lang de">
-    Besonders geeignet ist RF-Microneedling für <strong>Gesicht</strong>, <strong>Hals</strong>, <strong>Dekolleté</strong>
-    sowie bestimmte Körperareale, wenn dort mehr Festigkeit oder ein gleichmäßigeres Hautbild gewünscht ist.
-  </p>
-  <p class="lang en">
-    RF microneedling is especially well suited to the <strong>face</strong>, <strong>neck</strong> and <strong>décolleté</strong>,
-    as well as certain areas of the body where you would like more firmness or a more even complexion.
-  </p>
-</app-image-text-block>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Feine Mikro-Nadeln und Radiofrequenz-Wärme in der Tiefe regen deine körpereigene
+            Kollagen- und Elastinbildung an, für straffere Haut und ein feineres Hautbild.
+            Ohne OP, dafür Schritt für Schritt.
+          </span>
+          <span class="lang en">
+            Fine micro-needles and radiofrequency warmth deep in the skin stimulate your body's own
+            collagen and elastin, for firmer skin and a refined complexion. No surgery, just step by
+            step.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Geht es dir um Körperkontur an Bauch, Taille oder Beinen, schauen wir uns gemeinsam die
+            <a [routerLink]="p('/behandlungen/kavitation')">Kavitation</a> an. Alle
+            <a [routerLink]="p('/price')">Preise</a> findest du transparent aufgelistet, und was für
+            deine Haut wirklich realistisch ist, klären wir ehrlich in der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            If it's your body contour at the belly, waist or legs you care about, we'll look at
+            <a [routerLink]="p('/behandlungen/kavitation')">cavitation</a> together. You'll find all
+            <a [routerLink]="p('/price')">prices</a> transparently listed, and what's realistic for
+            your skin we clarify honestly in the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
 
-<app-image-text-block
-  id="wirkung"
-  theme="dark"
-  [title]="t('Wie wirkt die Behandlung?', 'How does the treatment work?')"
-  [backgroundImage]="'assets/images/treatment/microneedling4.webp'"
-  imagePosition="left"
->
-  <p class="lang de">
-    Das Prinzip ist zweifach:
-  </p>
-  <p class="lang en">
-    The principle is twofold:
-  </p>
-
-  <ul class="lang de">
-    <li>🔸 <strong>Mikrokanäle</strong> durch die Nadeln: Impuls zur Regeneration</li>
-    <li>🔸 <strong>Radiofrequenz-Wärme</strong> in der Tiefe: gezielte Stimulation der Struktur</li>
-  </ul>
-  <ul class="lang en">
-    <li>🔸 <strong>Micro-channels</strong> created by the needles: a trigger for regeneration</li>
-    <li>🔸 <strong>Radiofrequency warmth</strong> deep in the skin: targeted stimulation of the structure</li>
-  </ul>
-
-  <p class="lang de">
-    Viele Kund:innen berichten nach einigen Wochen über:
-  </p>
-  <p class="lang en">
-    After a few weeks, many clients report:
-  </p>
-
-  <ul class="lang de">
-    <li>✅ sichtbar <strong>straffere</strong> Haut</li>
-    <li>✅ <strong>verfeinerte Poren</strong> und ebenmäßigeres Hautbild</li>
-    <li>✅ Reduktion von <strong>feinen Linien</strong> z. B. um Mund und Wangen</li>
-    <li>✅ Verbesserung bei <strong>Aknenarben</strong> und unruhiger Hautstruktur</li>
-    <li>✅ sichtbare <strong>Verbesserung von Narben</strong></li>
-    <li>✅ Milderung von <strong>Dehnungsstreifen</strong></li>
-    <li>✅ Ausgleich von <strong>Pigmentierungen</strong> und ungleichmäßigem Hautton</li>
-  </ul>
-  <ul class="lang en">
-    <li>✅ visibly <strong>firmer</strong> skin</li>
-    <li>✅ <strong>refined pores</strong> and a more even complexion</li>
-    <li>✅ a reduction in <strong>fine lines</strong>, for example around the mouth and cheeks</li>
-    <li>✅ improvement in <strong>acne scars</strong> and uneven skin texture</li>
-    <li>✅ a visible <strong>improvement in scars</strong></li>
-    <li>✅ softening of <strong>stretch marks</strong></li>
-    <li>✅ more even <strong>pigmentation</strong> and skin tone</li>
-  </ul>
-
-  <p class="lang de">
-    💚 Wichtig: Ergebnisse bauen sich typischerweise <strong>schrittweise</strong> auf, da Kollagen-Remodelling Zeit braucht.
-  </p>
-  <p class="lang en">
-    💚 Important: results typically build up <strong>gradually</strong>, because collagen remodelling takes time.
-  </p>
-</app-image-text-block>
-
-<app-image-text-block
-  id="geeignet"
-  theme="light"
-  [title]="t('Für wen ist RF-Microneedling geeignet?', 'Who is RF microneedling for?')"
-  [backgroundImage]="'assets/images/treatment/microneedling5.webp'"
-  imagePosition="right"
-  [resize]="true"
->
-  <p class="lang de">
-    RF-Microneedling eignet sich besonders, wenn du dir eine Behandlung wünschst, die:
-  </p>
-  <p class="lang en">
-    RF microneedling is especially suitable if you are looking for a treatment that can:
-  </p>
-
-  <ul class="lang de">
-    <li>✨ die Haut <strong>straffen</strong> und glätten kann</li>
-    <li>✨ das Hautbild bei <strong>Poren</strong> oder <strong>Texturunruhe</strong> verbessern kann</li>
-    <li>✨ bei <strong>Aknenarben</strong> / Narbenstruktur unterstützen kann</li>
-  </ul>
-  <ul class="lang en">
-    <li>✨ <strong>firm</strong> and smooth the skin</li>
-    <li>✨ improve your complexion where you have <strong>enlarged pores</strong> or <strong>uneven texture</strong></li>
-    <li>✨ support the skin with <strong>acne scars</strong> and scar texture</li>
-  </ul>
-
-  <p class="lang de">
-    Typische Behandlungszonen sind: <strong>Wangen</strong>, <strong>Kinnlinie</strong>, <strong>Stirn</strong>,
-    <strong>Hals</strong> und <strong>Dekolleté</strong>.
-  </p>
-  <p class="lang en">
-    Typical treatment areas are the <strong>cheeks</strong>, <strong>jawline</strong>, <strong>forehead</strong>,
-    <strong>neck</strong> and <strong>décolleté</strong>.
-  </p>
-
-  <p class="lang de">
-    Wenn du unsicher bist, ob es für deine Haut passt:
-    Wir schauen uns dein Hautbild bei <strong>FareWell</strong> an und beraten ehrlich, was realistisch ist.
-  </p>
-  <p class="lang en">
-    If you are not sure whether it is right for your skin:
-    at <strong>FareWell</strong> we take a close look at your complexion and give you honest advice on what is realistic.
-  </p>
-</app-image-text-block>
-
-<app-image-text-block
-  id="nebenwirkungen"
-  theme="dark"
-  [title]="t('Gibt es Nebenwirkungen oder Ausfallzeit?', 'Are there side effects or downtime?')"
-  [backgroundImage]="'assets/images/treatment/microneedling6.webp'"
-  imagePosition="left"
->
-  <p class="lang de">
-    RF-Microneedling gilt als <strong>sehr gut steuerbare</strong> Behandlung.
-    Dennoch sind <strong>vorübergehende Reaktionen</strong> normal:
-  </p>
-  <p class="lang en">
-    RF microneedling is considered a <strong>highly controllable</strong> treatment.
-    Even so, <strong>temporary reactions</strong> are normal:
-  </p>
-
-  <ul class="lang de">
-    <li>🔸 <strong>Rötung</strong> (ähnlich Sonnenbrand) für einige Stunden bis 1–2 Tage</li>
-    <li>🔸 <strong>leichte Schwellung</strong> oder Wärmegefühl</li>
-    <li>🔸 gelegentlich <strong>Trockenheit</strong> oder feine Krüstchen</li>
-  </ul>
-  <ul class="lang en">
-    <li>🔸 <strong>Redness</strong> (similar to sunburn) for a few hours up to one or two days</li>
-    <li>🔸 <strong>slight swelling</strong> or a feeling of warmth</li>
-    <li>🔸 occasionally <strong>dryness</strong> or fine flaking</li>
-  </ul>
-
-  <p class="lang de">
-    💚 Mit der richtigen Pflege (sanfte Reinigung, Feuchtigkeit, konsequenter SPF) regeneriert sich die Haut optimal.
-    Wir geben dir bei <strong>FareWell</strong> eine klare Nachsorge-Routine mit.
-  </p>
-  <p class="lang en">
-    💚 With the right care (gentle cleansing, moisture, consistent SPF) your skin regenerates beautifully.
-    At <strong>FareWell</strong> we send you home with a clear aftercare routine.
-  </p>
-</app-image-text-block>
-
-<app-image-text-block
-  id="dauer"
-  theme="light"
-  [title]="t('Wie viele Sitzungen sind sinnvoll?', 'How many sessions make sense?')"
-  [backgroundImage]="'assets/images/farewell/calendar2.png'"
-  imagePosition="right"
-  [resize]="true"
->
-  <p class="lang de">
-    Je nach Ziel (Poren, Narben, Straffung) sind häufig <strong>3–6 Sitzungen</strong> sinnvoll,
-    mit einem Abstand von etwa <strong>4–6 Wochen</strong>.
-  </p>
-  <p class="lang en">
-    Depending on your goal (pores, scars, firming), <strong>3 to 6 sessions</strong> are often sensible,
-    spaced roughly <strong>4 to 6 weeks</strong> apart.
-  </p>
-
-  <p class="lang de">
-    Warum? Die Haut braucht Zeit für die <strong>Kollagenneubildung</strong> und strukturelle Umbauprozesse.
-    Erste Effekte können schneller sichtbar sein, die “echte” Verbesserung entwickelt sich aber meist über Wochen.
-  </p>
-  <p class="lang en">
-    Why? Your skin needs time for <strong>new collagen to form</strong> and for structural remodelling.
-    First effects can show up sooner, but the “real” improvement usually develops over several weeks.
-  </p>
-
-  <p class="lang de">
-    Wenn du vorab planen möchtest, können wir dir einen groben Behandlungsplan erstellen
-    und ggf. mit anderen Anwendungen kombinieren (z. B. Pflege-Boost, LED, etc.).
-  </p>
-  <p class="lang en">
-    If you would like to plan ahead, we can put together a rough treatment plan for you
-    and, if useful, combine it with other applications (for example a care boost, LED, and so on).
-  </p>
-
-  <p class="lang de">
-    👉 Zur Terminbuchung geht es hier:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+    <app-guide-section
+      index="01"
+      [heading]="t('Was ist Microneedling mit Radiofrequenz?', 'What is radiofrequency microneedling?')"
+      sectionId="grundlagen"
     >
-      Salonkee
-    </a>
-  </p>
-  <p class="lang en">
-    👉 You can book your appointment here:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+      <app-guide-media
+        image="assets/images/treatment/microneedling.webp"
+        [imageAlt]="
+          t(
+            'Microneedling mit Radiofrequenz zur Hautstraffung im FareWell Studio',
+            'Radiofrequency microneedling for skin firming at FareWell studio'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          RF-Microneedling ist eine moderne Behandlung zur Hautstraffung und Hautbildverbesserung.
+          Feine, sterile Nadeln werden kontrolliert in die Haut geführt und geben gleichzeitig
+          Radiofrequenz-Wärme in der Tiefe ab.
+        </p>
+        <p class="lang en">
+          RF microneedling is a modern treatment for skin firming and a better complexion. Fine,
+          sterile needles are guided into the skin in a controlled way and, at the same time, release
+          radiofrequency warmth deep within.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Regt die körpereigene <strong>Kollagen- und Elastinproduktion</strong> an, für glatteres Hautbild und mehr Spannkraft</span>
+            <span class="lang en">Stimulates your body's own <strong>collagen and elastin production</strong>, for smoother skin and more firmness</span>
+          </li>
+          <li>
+            <span class="lang de">Besonders geeignet für <strong>Gesicht, Hals und Dekolleté</strong> sowie bestimmte Körperareale</span>
+            <span class="lang en">Especially suited to the <strong>face, neck and décolleté</strong> as well as certain body areas</span>
+          </li>
+          <li>
+            <span class="lang de">Ideal, wenn du dir mehr Festigkeit oder ein gleichmäßigeres Hautbild wünschst</span>
+            <span class="lang en">Ideal if you'd like more firmness or a more even complexion</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="win" [label]="t('Ohne OP', 'No surgery')">
+        <span class="lang de">
+          Die Straffung entsteht durch deinen eigenen <strong>Kollagen-Boost</strong>, nicht durch
+          einen Eingriff. Ein natürlicher Weg zu frischerer, festerer Haut.
+        </span>
+        <span class="lang en">
+          The firming comes from your own <strong>collagen boost</strong>, not from an operation. A
+          natural route to fresher, firmer skin.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      [heading]="t('Wie wirkt die Behandlung?', 'How does the treatment work?')"
+      sectionId="wirkung"
     >
-      Salonkee
-    </a>
-  </p>
-</app-image-text-block>
+      <app-guide-media
+        image="assets/images/treatment/microneedling4.webp"
+        [imageAlt]="
+          t(
+            'Wirkprinzip des RF-Microneedling: Mikrokanäle und Radiofrequenz-Wärme in der Tiefe',
+            'How RF microneedling works: micro-channels and radiofrequency warmth deep in the skin'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Das Prinzip ist zweifach: Mikrokanäle durch die Nadeln geben einen Impuls zur Regeneration,
+          und die Radiofrequenz-Wärme in der Tiefe stimuliert gezielt die Hautstruktur. Viele
+          Kund:innen berichten nach einigen Wochen von sichtbaren Verbesserungen.
+        </p>
+        <p class="lang en">
+          The principle is twofold: micro-channels from the needles trigger regeneration, and the
+          radiofrequency warmth deep in the skin targets and stimulates the skin structure. After a
+          few weeks many clients report visible improvements.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Sichtbar <strong>straffere Haut</strong>, verfeinerte Poren und ein ebenmäßigeres Hautbild</span>
+            <span class="lang en">Visibly <strong>firmer skin</strong>, refined pores and a more even complexion</span>
+          </li>
+          <li>
+            <span class="lang de">Reduktion feiner Linien, z. B. um Mund und Wangen</span>
+            <span class="lang en">A reduction in fine lines, for example around the mouth and cheeks</span>
+          </li>
+          <li>
+            <span class="lang de">Verbesserung bei <strong>Aknenarben</strong>, Narben und unruhiger Hautstruktur</span>
+            <span class="lang en">Improvement in <strong>acne scars</strong>, scars and uneven skin texture</span>
+          </li>
+          <li>
+            <span class="lang de">Milderung von <strong>Dehnungsstreifen</strong> und Ausgleich von Pigmentierungen</span>
+            <span class="lang en">Softening of <strong>stretch marks</strong> and more even pigmentation and tone</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Geduld zahlt sich aus', 'Patience pays off')">
+        <span class="lang de">
+          Ergebnisse bauen sich typischerweise <strong>schrittweise</strong> auf, denn
+          Kollagen-Remodelling braucht Zeit. Die „echte" Verbesserung entwickelt sich meist über
+          Wochen.
+        </span>
+        <span class="lang en">
+          Results typically build up <strong>gradually</strong>, because collagen remodelling takes
+          time. The "real" improvement usually develops over several weeks.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-<app-image-text-block
-  id="faq"
-  theme="dark"
-  [title]="t('Wichtige Hinweise vor der Behandlung', 'Important notes before your treatment')"
-  [backgroundImage]="'assets/images/treatment/microneedling7.webp'"
-  imagePosition="left"
->
-  <ul class="lang de">
-    <li>✅ 48h vorher keine aggressiven Peelings / Säuren (je nach Hautzustand)</li>
-    <li>✅ am Behandlungstag keine starke Sonne / Solarium</li>
-    <li>✅ nachher konsequent <strong>SPF</strong> und keine Sauna/Sport am selben Tag</li>
-  </ul>
-  <ul class="lang en">
-    <li>✅ no aggressive peels or acids for 48h beforehand (depending on your skin condition)</li>
-    <li>✅ no strong sun or tanning beds on the day of treatment</li>
-    <li>✅ afterwards, consistent <strong>SPF</strong> and no sauna or sport on the same day</li>
-  </ul>
+    <app-guide-section
+      index="03"
+      [heading]="t('Für wen ist RF-Microneedling geeignet?', 'Who is RF microneedling for?')"
+      sectionId="geeignet"
+    >
+      <app-guide-media
+        image="assets/images/treatment/microneedling5.webp"
+        [imageAlt]="
+          t(
+            'Behandlungszonen für RF-Microneedling: Wangen, Kinnlinie, Stirn, Hals und Dekolleté',
+            'Treatment areas for RF microneedling: cheeks, jawline, forehead, neck and décolleté'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          RF-Microneedling eignet sich besonders, wenn du dir eine Behandlung wünschst, die deine
+          Haut strafft und glättet, das Hautbild bei Poren oder Texturunruhe verbessert und bei
+          Aknenarben unterstützt.
+        </p>
+        <p class="lang en">
+          RF microneedling is especially suitable if you're looking for a treatment that firms and
+          smooths the skin, improves the complexion where you have enlarged pores or uneven texture,
+          and supports skin with acne scars.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Du möchtest die Haut <strong>straffen und glätten</strong></span>
+            <span class="lang en">You want to <strong>firm and smooth</strong> the skin</span>
+          </li>
+          <li>
+            <span class="lang de">Du willst das Hautbild bei <strong>Poren</strong> oder Texturunruhe verbessern</span>
+            <span class="lang en">You want to improve the complexion around <strong>pores</strong> or uneven texture</span>
+          </li>
+          <li>
+            <span class="lang de">Du suchst Unterstützung bei <strong>Aknenarben</strong> und Narbenstruktur</span>
+            <span class="lang en">You're looking for support with <strong>acne scars</strong> and scar texture</span>
+          </li>
+          <li>
+            <span class="lang de">Typische Zonen: <strong>Wangen, Kinnlinie, Stirn, Hals und Dekolleté</strong></span>
+            <span class="lang en">Typical areas: <strong>cheeks, jawline, forehead, neck and décolleté</strong></span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Ehrliche Beratung', 'Honest advice')">
+        <span class="lang de">
+          Bist du unsicher, ob es für deine Haut passt? Wir schauen uns dein Hautbild bei FareWell an
+          und beraten dich ehrlich, was realistisch ist.
+        </span>
+        <span class="lang en">
+          Not sure whether it's right for your skin? At FareWell we take a close look at your
+          complexion and give you honest advice on what's realistic.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <p class="lang de">
-    Falls du Medikamente nutzt (z. B. Isotretinoin) oder starke Entzündungen/aktive Akne hast,
-    beraten wir dich individuell, was sicher ist.
-  </p>
-  <p class="lang en">
-    If you take medication (for example isotretinoin) or have significant inflammation or active acne,
-    we will advise you individually on what is safe.
-  </p>
+    <app-guide-section
+      index="04"
+      [heading]="t('Gibt es Nebenwirkungen oder Ausfallzeit?', 'Are there side effects or downtime?')"
+      sectionId="sicherheit"
+    >
+      <app-guide-media
+        image="assets/images/treatment/microneedling6.webp"
+        [imageAlt]="
+          t(
+            'Nachsorge nach RF-Microneedling mit sanfter Pflege und konsequentem SPF',
+            'Aftercare following RF microneedling with gentle care and consistent SPF'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          RF-Microneedling gilt als sehr gut steuerbare Behandlung. Vorübergehende Reaktionen sind
+          normal und klingen in der Regel rasch wieder ab:
+        </p>
+        <p class="lang en">
+          RF microneedling is considered a highly controllable treatment. Temporary reactions are
+          normal and usually settle again quickly:
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Rötung (ähnlich Sonnenbrand) für einige Stunden bis 1–2 Tage</span>
+            <span class="lang en">Redness (similar to sunburn) for a few hours up to one or two days</span>
+          </li>
+          <li>
+            <span class="lang de">Leichte Schwellung oder ein Wärmegefühl</span>
+            <span class="lang en">Slight swelling or a feeling of warmth</span>
+          </li>
+          <li>
+            <span class="lang de">Gelegentlich Trockenheit oder feine Krüstchen</span>
+            <span class="lang en">Occasionally dryness or fine flaking</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Nachsorge', 'Aftercare')">
+        <span class="lang de">
+          Mit sanfter Reinigung, Feuchtigkeit und konsequentem <strong>SPF</strong> regeneriert sich
+          die Haut optimal. Wir geben dir eine klare Nachsorge-Routine mit nach Hause.
+        </span>
+        <span class="lang en">
+          With gentle cleansing, moisture and consistent <strong>SPF</strong> the skin regenerates
+          beautifully. We send you home with a clear aftercare routine.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <p class="lang de">
-    💚 Unser Ziel bei <strong>FareWell</strong>: hochwertige Ergebnisse mit sicherer, sauberer Nachsorge.
-  </p>
-  <p class="lang en">
-    💚 Our goal at <strong>FareWell</strong>: high-quality results with safe, clean aftercare.
-  </p>
-</app-image-text-block>
+    <app-guide-section
+      index="05"
+      [heading]="t('Wie viele Sitzungen sind sinnvoll?', 'How many sessions make sense?')"
+      sectionId="sitzungen"
+    >
+      <app-guide-media
+        image="assets/images/farewell/calendar2.png"
+        [contain]="true"
+        [imageAlt]="
+          t(
+            'Kalender-Illustration für die Planung von 3–6 Microneedling-Sitzungen im Abstand von 4–6 Wochen',
+            'Calendar illustration for planning 3–6 microneedling sessions spaced 4–6 weeks apart'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Je nach Ziel (Poren, Narben, Straffung) sind häufig <strong>3–6 Sitzungen</strong> sinnvoll,
+          mit einem Abstand von etwa <strong>4–6 Wochen</strong>. So bekommt deine Haut Zeit für die
+          Kollagenneubildung.
+        </p>
+        <p class="lang en">
+          Depending on your goal (pores, scars, firming), <strong>3 to 6 sessions</strong> are often
+          sensible, spaced roughly <strong>4 to 6 weeks</strong> apart. That gives your skin time to
+          form new collagen.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Die Haut braucht Zeit für Kollagenneubildung und strukturelle Umbauprozesse</span>
+            <span class="lang en">The skin needs time for new collagen to form and for structural remodelling</span>
+          </li>
+          <li>
+            <span class="lang de">Erste Effekte zeigen sich schneller, die echte Verbesserung entwickelt sich über Wochen</span>
+            <span class="lang en">First effects show sooner, the real improvement develops over several weeks</span>
+          </li>
+          <li>
+            <span class="lang de">Wir erstellen dir gern einen <strong>groben Behandlungsplan</strong></span>
+            <span class="lang en">We're happy to put together a <strong>rough treatment plan</strong> for you</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Gut kombinierbar', 'Easy to combine')">
+        <span class="lang de">
+          Auf Wunsch kombinieren wir das Microneedling mit anderen Anwendungen wie
+          <strong>Pflege-Boost</strong> oder <strong>LED</strong>, passend zu deinem Hautziel.
+        </span>
+        <span class="lang en">
+          If useful, we combine the microneedling with other applications such as a
+          <strong>care boost</strong> or <strong>LED</strong>, to match your skin goal.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="06"
+      [heading]="t('Wichtige Hinweise vor der Behandlung', 'Important notes before your treatment')"
+      sectionId="vorbereitung"
+    >
+      <app-guide-media
+        image="assets/images/treatment/microneedling7.webp"
+        [imageAlt]="
+          t(
+            'Wichtige Hinweise vor dem RF-Microneedling: Peelings meiden, Sonne meiden, SPF',
+            'Important notes before RF microneedling: avoid peels, avoid sun, use SPF'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Damit dein Ergebnis hochwertig und die Nachsorge sicher bleibt, gibt es ein paar einfache
+          Regeln rund um deinen Termin:
+        </p>
+        <p class="lang en">
+          So that your result stays high-quality and your aftercare stays safe, there are a few simple
+          rules around your appointment:
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">48 h vorher keine aggressiven Peelings oder Säuren (je nach Hautzustand)</span>
+            <span class="lang en">No aggressive peels or acids for 48 h beforehand (depending on your skin condition)</span>
+          </li>
+          <li>
+            <span class="lang de">Am Behandlungstag keine starke Sonne und kein Solarium</span>
+            <span class="lang en">No strong sun or tanning beds on the day of treatment</span>
+          </li>
+          <li>
+            <span class="lang de">Danach konsequent <strong>SPF</strong> und keine Sauna oder Sport am selben Tag</span>
+            <span class="lang en">Afterwards, consistent <strong>SPF</strong> and no sauna or sport on the same day</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="rule" [label]="t('Sicherheit zuerst', 'Safety first')">
+        <span class="lang de">
+          Bei Medikamenten wie <strong>Isotretinoin</strong> oder bei starken Entzündungen / aktiver
+          Akne beraten wir dich individuell, was sicher ist. RF-Microneedling ist eine kosmetische
+          Behandlung und <strong>ersetzt keine ärztliche Diagnose</strong>.
+        </span>
+        <span class="lang en">
+          If you take medication such as <strong>isotretinoin</strong> or have significant
+          inflammation or active acne, we'll advise you individually on what's safe. RF microneedling
+          is a cosmetic treatment and <strong>does not replace a medical diagnosis</strong>.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-cta
+      [heading]="t('Bereit für straffere, frischere Haut?', 'Ready for firmer, fresher skin?')"
+    >
+      <span class="lang de">
+        Buche deinen Termin ganz einfach online über Salonkee. In der kostenlosen Erstberatung
+        schauen wir uns dein Hautbild an und erstellen dir einen realistischen Behandlungsplan, ehrlich
+        und ganz auf deine Haut abgestimmt.
+      </span>
+      <span class="lang en">
+        Book your appointment easily online via Salonkee. In the free initial consultation we take a
+        look at your complexion and put together a realistic treatment plan, honest and tailored to
+        your skin.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

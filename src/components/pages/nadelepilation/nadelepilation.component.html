@@ -1,187 +1,236 @@
-<app-image-hero
-  id="topSection"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [paragraphType]="'blur'"
-  [backgroundImage]="'assets/images/treatment/nadel.jpg'"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [title]="t('Lernen Sie alles über die Elektrolyse (Nadelepilation)', 'Learn everything about electrolysis (Nadelepilation)')"
-  [titleType]="'blur'"
-  [height]="'50'"
->
-</app-image-hero>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
-<app-image-text-block
-  theme="light"
-  [title]="t('Wie funktioniert die Elektrolyse?', 'How does electrolysis work?')"
-  [backgroundImage]="'assets/images/treatment/apilis.webp'"
-  imagePosition="right"
->
-  <p class="lang de">
-    Die Elektrolyse ist die einzige <strong>wissenschaftlich anerkannte Methode</strong><br>
-    zur <strong>permanenten Haarentfernung</strong>.
-  </p>
-  <p class="lang en">
-    Electrolysis is the only <strong>scientifically recognised method</strong><br>
-    for <strong>permanent hair removal</strong>.
-  </p>
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Behandlung', 'FareWell · Nuremberg · Treatment')"
+    [heading]="
+      t(
+        'Elektrolyse / Nadelepilation in Nürnberg',
+        'Electrolysis / Nadelepilation in Nuremberg'
+      )
+    "
+    tagline="Für immer glatt."
+    [lead]="
+      t(
+        'Die Elektrolyse (Nadelepilation) ist die einzige medizinisch anerkannte Methode zur wirklich permanenten Haarentfernung, für alle Hauttypen und Haarfarben. Sicher, präzise und endgültig.',
+        'Electrolysis (Nadelepilation) is the only medically recognised method for truly permanent hair removal, for every skin type and hair colour. Safe, precise and final.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <p class="lang de">
-    Dabei wird eine feine Sonde in den Haarfollikel eingeführt,<br>
-    ohne die Haut zu durchdringen. Über diese Sonde wird ein<br>
-    schwacher Stromimpuls abgegeben, der die Haarwurzel gezielt zerstört,<br>
-    <strong>dauerhaft und wirksam</strong>.
-  </p>
-  <p class="lang en">
-    A fine probe is gently guided into the hair follicle<br>
-    without piercing the skin. Through this probe a<br>
-    mild electrical pulse is released that precisely destroys the hair root,<br>
-    <strong>permanently and effectively</strong>.
-  </p>
+  <app-guide-stats [stats]="stats" />
 
-  <p class="lang de">
-    Die Elektrolyse wirkt zuverlässig bei <strong>allen Haar- und Hauttypen</strong>,<br>
-    auch bei <strong>sehr feinen Härchen (Duvet-Haar)</strong> sowie bei hellen, grauen oder roten Haaren.
-  </p>
-  <p class="lang en">
-    Electrolysis works reliably on <strong>all hair and skin types</strong>,<br>
-    including <strong>very fine hairs (vellus hair)</strong> as well as light, grey or red hair.
-  </p>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Laser und IPL reduzieren den Haarwuchs, wirklich permanent ist allein die Elektrolyse:
+            Jede Haarwurzel wird einzeln und endgültig verödet, unabhängig von Haarfarbe und Hauttyp.
+          </span>
+          <span class="lang en">
+            Laser and IPL reduce hair growth, but only electrolysis is truly permanent: every hair
+            root is deactivated individually and for good, independent of hair colour and skin type.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Wie lange deine Behandlung dauert, schätzt du vorab mit unserem
+            <a [routerLink]="p('/zeit')">Zeit-Rechner</a>. Für große Flächen mit dunklem Haar kann
+            der <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-Wellen-Diodenlaser</a> die
+            schnellere Ergänzung sein, das klären wir ehrlich in der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            You can estimate how long your treatment will take in advance with our
+            <a [routerLink]="p('/zeit')">time calculator</a>. For large areas with dark hair the
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-wavelength diode laser</a> can
+            be the faster complement, we clarify that honestly in the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
 
-  <p class="lang de">
-    Im Gegensatz zu anderen Methoden wie Laser oder IPL,<br>
-    die lediglich eine <strong>dauerhafte Reduktion</strong> versprechen,<br>
-    zielt die Elektrolyse auf eine <strong>vollständige Zerstörung</strong> der Wachstumszellen ab.<br>
-    Das bedeutet: <strong>Das behandelte Haar wächst nie wieder nach.</strong>
-  </p>
-  <p class="lang en">
-    Unlike other methods such as laser or IPL,<br>
-    which promise only a <strong>long-lasting reduction</strong>,<br>
-    electrolysis aims for the <strong>complete destruction</strong> of the growth cells.<br>
-    This means: <strong>the treated hair never grows back.</strong>
-  </p>
-</app-image-text-block>
+    <app-guide-section
+      index="01"
+      [heading]="t('Wie funktioniert die Elektrolyse?', 'How does electrolysis work?')"
+      sectionId="funktion"
+    >
+      <app-guide-media
+        image="assets/images/treatment/apilis.webp"
+        [imageAlt]="
+          t(
+            'Illustration: feine Sonde im Haarfollikel gibt einen Stromimpuls ab, der die Haarwurzel zerstört',
+            'Illustration: a fine probe in the hair follicle delivering an electrical pulse that destroys the hair root'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Eine hauchfeine Sonde wird entlang des Haares in den Follikel geführt, ohne die Haut zu
+          durchstechen. Ein sanfter Stromimpuls verödet die Haarwurzel gezielt, das behandelte Haar
+          wächst nicht mehr nach.
+        </p>
+        <p class="lang en">
+          An ultra-fine probe is guided along the hair into the follicle without piercing the skin.
+          A gentle electrical pulse deactivates the hair root precisely, and the treated hair no
+          longer grows back.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Die einzige wissenschaftlich anerkannte Methode zur permanenten Haarentfernung</span>
+            <span class="lang en">The only scientifically recognised method for permanent hair removal</span>
+          </li>
+          <li>
+            <span class="lang de">Wirkt bei <strong>allen</strong> Haar- und Hauttypen, auch bei feinem Duvet-Haar sowie hellen, grauen und roten Haaren</span>
+            <span class="lang en">Works on <strong>all</strong> hair and skin types, including fine vellus hair as well as light, grey and red hair</span>
+          </li>
+          <li>
+            <span class="lang de">Zielt auf die vollständige Verödung der Wachstumszellen, nicht nur auf Reduktion wie Laser oder IPL</span>
+            <span class="lang en">Aims to deactivate the growth cells completely, not just reduce them like laser or IPL</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="win" [label]="t('Der Unterschied', 'The difference')">
+        <span class="lang de">
+          Laser und IPL sind auf das Pigment im Haar angewiesen und reduzieren dauerhaft.
+          Die Elektrolyse wirkt unabhängig von der Haarfarbe und ist als einzige Methode in
+          Deutschland rechtlich als <strong>permanent</strong> anerkannt.
+        </span>
+        <span class="lang en">
+          Laser and IPL rely on the pigment in the hair and reduce hair long-term. Electrolysis
+          works independently of hair colour and is the only method legally recognised as
+          <strong>permanent</strong> in Germany.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-<app-image-text-block
-  id="gesund"
-  theme="dark"
-  [title]="t('Gibt es Nebenwirkungen bei der Elektrolyse?', 'Are there any side effects with electrolysis?')"
-  [backgroundImage]="'assets/images/treatment/chin.webp'"
-  imagePosition="left"
->
-  <p class="lang de">
-    Die Elektrolyse ist ein <strong>sehr sicheres und bewährtes Verfahren</strong>.<br>
-    Dennoch kann es, wie bei jeder Hautbehandlung, zu <strong>leichten, vorübergehenden Reaktionen</strong> kommen.<br>
-    Dazu gehören:
-  </p>
-  <p class="lang en">
-    Electrolysis is a <strong>very safe and well-proven procedure</strong>.<br>
-    Even so, as with any skin treatment, <strong>mild, temporary reactions</strong> can occur.<br>
-    These include:
-  </p>
+    <app-guide-section
+      index="02"
+      [heading]="t('Sanft & sicher: mögliche Reaktionen', 'Gentle & safe: possible reactions')"
+      sectionId="sicherheit"
+    >
+      <app-guide-media
+        image="assets/images/treatment/chin.webp"
+        [imageAlt]="
+          t(
+            'Nahaufnahme einer Elektrolyse-Behandlung am Kinn mit Sonde und Pinzette',
+            'Close-up of an electrolysis treatment on the chin with probe and tweezers'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Die Elektrolyse ist ein sehr sicheres, bewährtes Verfahren. Wie bei jeder Hautbehandlung
+          sind nur leichte, vorübergehende Reaktionen möglich:
+        </p>
+        <p class="lang en">
+          Electrolysis is a very safe, well-proven procedure. As with any skin treatment, only mild,
+          temporary reactions can occur:
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Rötungen oder leichte Schwellungen direkt nach der Behandlung</span>
+            <span class="lang en">Redness or slight swelling right after the treatment</span>
+          </li>
+          <li>
+            <span class="lang de">Ein Wärme- oder Spannungsgefühl an der behandelten Stelle</span>
+            <span class="lang en">A feeling of warmth or tightness at the treated area</span>
+          </li>
+          <li>
+            <span class="lang de">Selten kleine Krusten, die sich nach wenigen Tagen von selbst lösen</span>
+            <span class="lang en">Rarely small crusts that fall away on their own after a few days</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Nachsorge', 'Aftercare')">
+        <span class="lang de">
+          Alle Reaktionen sind harmlos und klingen in der Regel schnell ab. Wir beraten dich
+          ausführlich zur Nachsorge und passen die Behandlung individuell an deine Haut an, damit
+          sie sich optimal regeneriert.
+        </span>
+        <span class="lang en">
+          All reactions are harmless and usually settle quickly. We advise you thoroughly on
+          aftercare and tailor every treatment individually to your skin, so it regenerates
+          beautifully.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <ul class="lang de">
-    <li>🔸 <strong>Rötungen</strong> oder <strong>leichte Schwellungen</strong> direkt nach der Behandlung</li>
-    <li>🔸 Ein <strong>Wärme- oder Spannungsgefühl</strong> an der behandelten Stelle</li>
-    <li>🔸 In seltenen Fällen <strong>kleine Krusten</strong>, die sich nach wenigen Tagen von selbst lösen</li>
-  </ul>
-  <ul class="lang en">
-    <li>🔸 <strong>Redness</strong> or <strong>slight swelling</strong> right after the treatment</li>
-    <li>🔸 A <strong>feeling of warmth or tightness</strong> at the treated area</li>
-    <li>🔸 In rare cases <strong>small crusts</strong> that fall away on their own after a few days</li>
-  </ul>
+    <app-guide-section
+      index="03"
+      [heading]="t('Wie lange dauert es?', 'How long does it take?')"
+      sectionId="dauer"
+    >
+      <app-guide-media
+        image="assets/images/treatment/cycles.webp"
+        [imageAlt]="
+          t(
+            'Infografik Haarwachstumszyklus: Anagen, Katagen, Telogen und frühe Anagenphase',
+            'Infographic of the hair growth cycle: anagen, catagen, telogen and early anagen phase'
+          )
+        "
+        side="right"
+        [contain]="true"
+      >
+        <p class="lang de">
+          Haare wachsen in Zyklen, und nur Haare in der aktiven Wachstumsphase (Anagen) sind wirksam
+          behandelbar, im Schnitt rund 60 % der sichtbaren Haare. Deshalb kommst du in Abständen von
+          etwa 10 Wochen wieder, so erwischen wir mit jeder Sitzung eine neue Generation.
+        </p>
+        <p class="lang en">
+          Hair grows in cycles, and only hair in the active growth phase (anagen) can be treated
+          effectively, on average around 60 % of the visible hairs. That's why you come back roughly
+          every 10 weeks, so each session catches a fresh generation.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Bei FareWell arbeiten <strong>1 bis 4 Kosmetikerinnen gleichzeitig</strong>, das verkürzt die Sitzung um das Zwei- bis Vierfache</span>
+            <span class="lang en">At FareWell <strong>1 to 4 aestheticians work at the same time</strong>, cutting the session by two to four times</span>
+          </li>
+          <li>
+            <span class="lang de">Die genaue Dauer hängt von Areal, Haardichte und Körpergröße ab</span>
+            <span class="lang en">The exact length depends on the area, hair density and body size</span>
+          </li>
+          <li>
+            <span class="lang de">Je früher du beginnst, desto schneller siehst du Ergebnisse</span>
+            <span class="lang en">The sooner you start, the sooner you see results</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Persönliche Einschätzung', 'Personal estimate')">
+        <span class="lang de">
+          Eine realistische Einschätzung deiner Behandlungszeit bekommst du in Sekunden mit unserem
+          <a [routerLink]="p('/zeit')">Zeit-Rechner</a>, oder ganz persönlich in der kostenlosen
+          Erstberatung.
+        </span>
+        <span class="lang en">
+          You'll get a realistic estimate of your treatment time in seconds with our
+          <a [routerLink]="p('/zeit')">time calculator</a>, or in person in the free initial
+          consultation.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <p class="lang de">
-    Diese Effekte sind <strong>harmlos und klingen in der Regel schnell ab</strong>.<br>
-    Mit der richtigen Pflege, die du nach deiner Behandlung bei <strong>FareWell</strong> erhältst,<br>
-    regeneriert sich deine Haut optimal und ohne Rückstände.
-  </p>
-  <p class="lang en">
-    These effects are <strong>harmless and usually settle quickly</strong>.<br>
-    With the right aftercare that you receive after your treatment at <strong>FareWell</strong>,<br>
-    your skin regenerates beautifully and leaves nothing behind.
-  </p>
-
-  <p class="lang de">
-    💚 <strong>Wichtig:</strong> Unsere Expertinnen beraten dich ausführlich zur Nachsorge<br>
-    und passen die Behandlung individuell an deine Haut an.
-  </p>
-  <p class="lang en">
-    💚 <strong>Important:</strong> Our specialists advise you thoroughly on aftercare<br>
-    and tailor every treatment individually to your skin.
-  </p>
-</app-image-text-block>
-
-<app-image-text-block
-  id="dauer"
-  theme="light"
-  [title]="t('Wie lang dauert eine Behandlung?', 'How long does a treatment take?')"
-  [backgroundImage]="'assets/images/treatment/cycles.webp'"
-  imagePosition="right"
-  [resize]="true"
->
-  <p class="lang de">
-    Bei <strong>FareWell</strong> sind wir auf <strong>Elektrolyse</strong> spezialisiert, die einzige Methode zur <strong>permanenten Haarentfernung</strong>.<br>
-    Um den Prozess für dich deutlich zu beschleunigen, bieten wir die Möglichkeit, dass <strong>1 bis 4 Kosmetikerinnen gleichzeitig</strong> an einer Sitzung arbeiten.
-    Dadurch kann sich die Behandlungsdauer um das Zwei- bis Vierfache verkürzen.
-  </p>
-  <p class="lang en">
-    At <strong>FareWell</strong> we specialise in <strong>electrolysis</strong>, the only method for <strong>permanent hair removal</strong>.<br>
-    To speed the process up considerably for you, we offer the option of having <strong>1 to 4 aestheticians work at the same time</strong> during a single session.
-    This can cut the treatment time by two to four times.
-  </p>
-
-  <p class="lang de">
-    Um zu verstehen, wie lange eine vollständige Behandlung dauert, ist es wichtig, den <strong>natürlichen Haarwachstumszyklus</strong> zu kennen:<br>
-    Haare durchlaufen vier Phasen: <strong>Anagen (Wachstum)</strong>, <strong>Katagen (Übergang)</strong>, <strong>Telogen (Ruhe)</strong> und <strong>Frühes Anagen (Neubeginn)</strong>.<br>
-    Nur Haare in der <strong>Anagenphase</strong> können durch Elektrolyse effektiv behandelt werden, das sind durchschnittlich etwa <strong>60 % der sichtbaren Haare</strong>.
-  </p>
-  <p class="lang en">
-    To understand how long a complete treatment takes, it helps to know the <strong>natural hair growth cycle</strong>:<br>
-    Hair moves through four phases: <strong>anagen (growth)</strong>, <strong>catagen (transition)</strong>, <strong>telogen (rest)</strong> and <strong>early anagen (new start)</strong>.<br>
-    Only hairs in the <strong>anagen phase</strong> can be treated effectively with electrolysis, and that is on average about <strong>60 % of the visible hairs</strong>.
-  </p>
-
-  <p class="lang de">
-    Um sicherzustellen, dass bei jeder Sitzung möglichst viele Haare in der richtigen Phase sind,<br>
-    empfehlen wir einen Abstand von etwa <strong>10 Wochen</strong> zwischen den Terminen.<br>
-    So wird bei jeder Sitzung eine <strong>neue Generation wachsender Haare</strong> erfasst, das bedeutet für dich <strong>weniger Sitzungen und bessere Resultate</strong>.
-  </p>
-  <p class="lang en">
-    To make sure that as many hairs as possible are in the right phase at each session,<br>
-    we recommend a gap of around <strong>10 weeks</strong> between appointments.<br>
-    This way each session catches a <strong>new generation of growing hairs</strong>, which means <strong>fewer sessions and better results</strong> for you.
-  </p>
-
-  <p class="lang de">
-    Die genaue Dauer einer Behandlung hängt jedoch von mehreren Faktoren ab:<br>
-    <strong>Behandlungsareal</strong>, <strong>Haardichte</strong> und <strong>Körpergröße</strong> spielen eine wichtige Rolle.<br>
-    Deshalb ist eine pauschale Angabe schwierig, aber keine Sorge:<br>
-    Mit unserem praktischen
-    <a [routerLink]="p('/zeit')">
-      Online-Tool
-    </a>
-    kannst du <strong>deine persönliche Einschätzung</strong> ganz einfach berechnen.
-  </p>
-  <p class="lang en">
-    The exact length of a treatment does depend on several factors, though.<br>
-    Your <strong>treatment area</strong>, <strong>hair density</strong> and <strong>body size</strong> all play an important role.<br>
-    That makes a one-size-fits-all figure tricky, but no worries.<br>
-    With our handy
-    <a [routerLink]="p('/zeit')">
-      online tool
-    </a>
-    you can easily work out <strong>your own personal estimate</strong>.
-  </p>
-
-  <p class="lang de">
-    💚 <strong>Tipp:</strong> Je früher du beginnst, desto schneller siehst du Ergebnisse, wir beraten dich gerne individuell!
-  </p>
-  <p class="lang en">
-    💚 <strong>Tip:</strong> The sooner you start, the sooner you see results, and we are always happy to advise you personally.
-  </p>
-</app-image-text-block>
-
+    <app-guide-cta
+      [heading]="t('Bereit für dauerhaft glatte Haut?', 'Ready for permanently smooth skin?')"
+    >
+      <span class="lang de">
+        Berechne deine persönliche Einschätzung mit dem <a [routerLink]="p('/zeit')">Zeit-Rechner</a>
+        oder buche direkt online. Je früher du beginnst, desto schneller siehst du Ergebnisse, wir
+        beraten dich gerne individuell.
+      </span>
+      <span class="lang en">
+        Work out your personal estimate with the <a [routerLink]="p('/zeit')">time calculator</a> or
+        book directly online. The sooner you start, the sooner you see results, and we're always
+        happy to advise you personally.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

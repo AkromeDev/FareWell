@@ -1,304 +1,280 @@
-<app-image-hero
-  id="topSection"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [paragraphType]="'blur'"
-  [backgroundImage]="'assets/images/massages/tm massaging.jpg'"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [title]="t('Therapeutische Massage: Gezielte Entspannung, Regeneration & körperliche Entlastung', 'Therapeutic Massage: Targeted Relaxation, Recovery and Physical Relief')"
-  [titleType]="'blur'"
-  [height]="'75'"
->
-</app-image-hero>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
-<app-image-text-block
-  theme="light"
-  [title]="t('Therapeutische Massagen bei FareWell', 'Therapeutic massages at FareWell')"
-  [backgroundImage]="'assets/images/massages/tm consultation.jpg'"
-  imagePosition="right"
->
-  <p class="lang de">
-    Unsere therapeutischen Massagen richten sich an Menschen mit muskulären Verspannungen,
-    einseitigen Belastungen, sportlicher Beanspruchung oder dem Wunsch nach gezielter Regeneration.
-  </p>
-  <p class="lang en">
-    Our therapeutic massages are for people with muscular tension, one-sided strain,
-    physical strain from sport or simply the wish for focused recovery.
-  </p>
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Behandlung', 'FareWell · Nuremberg · Treatment')"
+    [heading]="t('Therapeutische Massage in Nürnberg', 'Therapeutic massage in Nuremberg')"
+    tagline="Zurück in Balance."
+    [lead]="
+      t(
+        'Therapeutische Massagen bei FareWell verbinden achtsame Berührung mit einem funktionellen Blick auf deine Beschwerden, Belastungen und Ziele. Jede Behandlung wird individuell abgestimmt, für mehr Beweglichkeit, Regeneration und ein besseres Körpergefühl.',
+        'Therapeutic massages at FareWell combine mindful touch with a functional eye on your discomfort, strain and goals. Every treatment is tailored to you personally, for more mobility, recovery and a better sense of your body.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <p class="lang de">
-    Jede Behandlung wird individuell auf deine Situation abgestimmt, mit Blick auf deine Beschwerden,
-    Bewegungsgewohnheiten und persönlichen Ziele.
-  </p>
-  <p class="lang en">
-    Every treatment is tailored to your situation, with an eye on your complaints,
-    your movement habits and your personal goals.
-  </p>
+  <app-guide-stats [stats]="stats" />
 
-  <p class="disclaimer lang de">
-    <em>
-      Unsere therapeutischen Massagen dienen der Unterstützung von Wohlbefinden, Regeneration
-      und muskulärer Entlastung. Sie ersetzen keine ärztliche Diagnose oder medizinische Therapie.
-    </em>
-  </p>
-  <p class="disclaimer lang en">
-    <em>
-      Our therapeutic massages are here to support your wellbeing, recovery and muscular relief.
-      They do not replace a medical diagnosis or medical therapy.
-    </em>
-  </p>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Vier Wege zu weniger Verspannung: vom kostenlosen Beratungsgespräch über den Ersttermin
+            mit Befund bis zur Sport- und medizinisch-funktionellen Massage, immer gezielt auf deinen
+            Körper abgestimmt.
+          </span>
+          <span class="lang en">
+            Four routes to less tension: from a free consultation and an initial appointment with
+            assessment to sports and medical functional massage, always focused precisely on your
+            body.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Du suchst reine Entspannung statt gezielter Hilfe? Dann wirf einen Blick auf unsere
+            <a [routerLink]="p('/behandlungen/wellness-massage')">Wellness-Massagen</a>. Unsicher, wo
+            du starten sollst? Beginne mit dem
+            <a [href]="p('/behandlungen/therapeutische-massage') + '#beratung'">kostenlosen Beratungsgespräch</a>.
+            Alle Behandlungen buchst du direkt über
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>.
+          </span>
+          <span class="lang en">
+            Looking for pure relaxation rather than targeted help? Then take a look at our
+            <a [routerLink]="p('/behandlungen/wellness-massage')">wellness massages</a>. Not sure
+            where to start? Begin with the
+            <a [href]="p('/behandlungen/therapeutische-massage') + '#beratung'">free consultation</a>.
+            You can book every treatment directly via
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">Salonkee</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
 
-  <p class="lang de">
-    Termin buchen:
-    <app-booking-cta location="therapeutische-massage-page"></app-booking-cta>
-  </p>
-  <p class="lang en">
-    Book an appointment:
-    <app-booking-cta location="therapeutische-massage-page" [label]="'Book now'"></app-booking-cta>
-  </p>
-</app-image-text-block>
-
-<app-image-text-block
-  id="beratung"
-  theme="dark"
-  [title]="t('Massage Beratungsgespräch', 'Massage consultation')"
-  [backgroundImage]="'assets/images/massages/tm Beratung.jpg'"
-  imagePosition="left"
->
-  <p class="priceLine lang de">
-    <strong>kostenlos &nbsp;·&nbsp; 30 Min</strong>
-  </p>
-  <p class="priceLine lang en">
-    <strong>free &nbsp;·&nbsp; 30 min</strong>
-  </p>
-
-  <p class="lang de">
-    Du bist unsicher, welche therapeutische Massage zu deinen Beschwerden, Belastungen oder Zielen
-    passt? Im kurzen Beratungsgespräch klären wir deine Fragen, besprechen deine Situation grob
-    und empfehlen dir den passenden Einstieg.
-  </p>
-  <p class="lang en">
-    Not sure which therapeutic massage suits your complaints, strain or goals? In a short
-    consultation we answer your questions, talk through your situation in broad terms and
-    recommend the right starting point for you.
-  </p>
-
-  <p class="lang de">
-    Eine ausführliche Anamnese und Befundaufnahme erfolgt im Rahmen des Ersttermins
-    oder einer gebuchten Behandlung.
-  </p>
-  <p class="lang en">
-    A detailed medical history and assessment takes place during your initial appointment
-    or a booked treatment.
-  </p>
-
-  <p class="lang de">
-    👉 Direkt buchen:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+    <app-guide-section
+      index="01"
+      [heading]="t('Therapeutische Massagen bei FareWell', 'Therapeutic massages at FareWell')"
+      sectionId="ueberblick"
     >
-      Salonkee
-    </a>
-  </p>
-  <p class="lang en">
-    👉 Book directly:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+      <app-guide-media
+        image="assets/images/massages/tm%20consultation.jpg"
+        [imageAlt]="
+          t(
+            'Beratung und Gespräch vor einer therapeutischen Massage bei FareWell',
+            'Consultation and conversation before a therapeutic massage at FareWell'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Unsere therapeutischen Massagen richten sich an Menschen mit muskulären Verspannungen,
+          einseitigen Belastungen, sportlicher Beanspruchung oder dem Wunsch nach gezielter
+          Regeneration.
+        </p>
+        <p class="lang en">
+          Our therapeutic massages are for people with muscular tension, one-sided strain, physical
+          strain from sport or simply the wish for focused recovery.
+        </p>
+        <p class="lang de">
+          💚 Jede Behandlung wird individuell auf deine Situation abgestimmt, mit Blick auf deine
+          Beschwerden, Bewegungsgewohnheiten und persönlichen Ziele.
+        </p>
+        <p class="lang en">
+          💚 Every treatment is tailored to your situation, with an eye on your complaints, your
+          movement habits and your personal goals.
+        </p>
+        <app-guide-note variant="rule" [label]="t('Bitte beachten', 'Please note')">
+          <span class="lang de">
+            Unsere therapeutischen Massagen dienen der Unterstützung von Wohlbefinden, Regeneration
+            und muskulärer Entlastung. Sie ersetzen keine ärztliche Diagnose oder medizinische
+            Therapie.
+          </span>
+          <span class="lang en">
+            Our therapeutic massages support your wellbeing, recovery and muscular relief. They do
+            not replace a medical diagnosis or medical therapy.
+          </span>
+        </app-guide-note>
+      </app-guide-media>
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      [heading]="t('Massage Beratungsgespräch', 'Massage consultation')"
+      sectionId="beratung"
     >
-      Salonkee
-    </a>
-  </p>
-</app-image-text-block>
+      <app-guide-media
+        image="assets/images/massages/tm%20Beratung.jpg"
+        [imageAlt]="
+          t(
+            'Kostenloses Massage-Beratungsgespräch bei FareWell',
+            'Free massage consultation at FareWell'
+          )
+        "
+        side="left"
+        [eyebrow]="t('kostenlos · 30 Min', 'free · 30 min')"
+      >
+        <p class="lang de">
+          Du bist unsicher, welche therapeutische Massage zu deinen Beschwerden, Belastungen oder
+          Zielen passt? Im kurzen Beratungsgespräch klären wir deine Fragen, besprechen deine
+          Situation grob und empfehlen dir den passenden Einstieg.
+        </p>
+        <p class="lang en">
+          Not sure which therapeutic massage suits your complaints, strain or goals? In a short
+          consultation we answer your questions, talk through your situation in broad terms and
+          recommend the right starting point for you.
+        </p>
+        <p class="lang de">
+          Eine ausführliche Anamnese und Befundaufnahme erfolgt erst im Rahmen des Ersttermins oder
+          einer gebuchten Behandlung.
+        </p>
+        <p class="lang en">
+          A detailed medical history and assessment only takes place during your initial appointment
+          or a booked treatment.
+        </p>
+      </app-guide-media>
+    </app-guide-section>
 
-<app-image-text-block
-  id="ersttermin"
-  theme="light"
-  [title]="t('Ersttermin mit Anamnese & Befundaufnahme', 'Initial appointment with medical history and assessment')"
-  [backgroundImage]="'assets/images/massages/tm massaging 2.jpg'"
-  imagePosition="right"
->
-  <p class="priceLine lang de">
-    <strong>99 € &nbsp;·&nbsp; 90 Min</strong>
-  </p>
-  <p class="priceLine lang en">
-    <strong>99 € &nbsp;·&nbsp; 90 min</strong>
-  </p>
-
-  <p class="lang de">
-    Der Ersttermin verbindet Anamnese, funktionelle Befundaufnahme und eine individuell
-    angepasste Behandlung. Wir nehmen uns Zeit, deine Beschwerden, Belastungen,
-    Bewegungsgewohnheiten und Ziele zu verstehen.
-  </p>
-  <p class="lang en">
-    The initial appointment brings together your medical history, a functional assessment and a
-    treatment tailored just for you. We take the time to understand your complaints, strain,
-    movement habits and goals.
-  </p>
-
-  <p class="lang de">
-    Anschließend wird die Massage gezielt auf deine Situation abgestimmt. Bei Bedarf erhältst du
-    praktische Empfehlungen für Alltag, Training oder Regeneration.
-  </p>
-  <p class="lang en">
-    The massage is then focused precisely on your situation. Where it helps, you also receive
-    practical tips for everyday life, training or recovery.
-  </p>
-
-  <p class="disclaimer lang de">
-    <em>Hinweis: Die Behandlung ersetzt keine ärztliche oder physiotherapeutische Diagnose.</em>
-  </p>
-  <p class="disclaimer lang en">
-    <em>Please note: this treatment does not replace a medical or physiotherapeutic diagnosis.</em>
-  </p>
-
-  <p class="lang de">
-    👉 Direkt buchen:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+    <app-guide-section
+      index="03"
+      [heading]="
+        t('Ersttermin mit Anamnese & Befundaufnahme', 'Initial appointment with medical history and assessment')
+      "
+      sectionId="ersttermin"
     >
-      Salonkee
-    </a>
-  </p>
-  <p class="lang en">
-    👉 Book directly:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+      <app-guide-media
+        image="assets/images/massages/tm%20massaging%202.jpg"
+        [imageAlt]="
+          t(
+            'Ersttermin mit Anamnese, Befundaufnahme und individueller Massage',
+            'Initial appointment with medical history, assessment and individual massage'
+          )
+        "
+        side="right"
+        [eyebrow]="t('99€ · 90 Min', '99€ · 90 min')"
+      >
+        <p class="lang de">
+          Der Ersttermin verbindet Anamnese, funktionelle Befundaufnahme und eine individuell
+          angepasste Behandlung. Wir nehmen uns Zeit, deine Beschwerden, Belastungen,
+          Bewegungsgewohnheiten und Ziele zu verstehen.
+        </p>
+        <p class="lang en">
+          The initial appointment brings together your medical history, a functional assessment and
+          a treatment tailored just for you. We take the time to understand your complaints, strain,
+          movement habits and goals.
+        </p>
+        <p class="lang de">
+          Anschließend wird die Massage gezielt auf deine Situation abgestimmt. Bei Bedarf erhältst
+          du praktische Empfehlungen für Alltag, Training oder Regeneration.
+        </p>
+        <p class="lang en">
+          The massage is then focused precisely on your situation. Where it helps, you also receive
+          practical tips for everyday life, training or recovery.
+        </p>
+        <app-guide-note variant="rule" [label]="t('Hinweis', 'Please note')">
+          <span class="lang de">
+            Die Behandlung ersetzt keine ärztliche oder physiotherapeutische Diagnose.
+          </span>
+          <span class="lang en">
+            This treatment does not replace a medical or physiotherapeutic diagnosis.
+          </span>
+        </app-guide-note>
+      </app-guide-media>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      [heading]="t('Sport- & Regenerationsmassage', 'Sports and recovery massage')"
+      sectionId="sport-regeneration"
     >
-      Salonkee
-    </a>
-  </p>
-</app-image-text-block>
+      <app-guide-media
+        image="assets/images/massages/tn%20flex.png"
+        [imageAlt]="
+          t(
+            'Sport- und Regenerationsmassage für Sportler und aktive Menschen',
+            'Sports and recovery massage for athletes and active people'
+          )
+        "
+        side="left"
+        [eyebrow]="t('30 Min · 50€ · 60 Min · 90€ · 90 Min · 120€', '30 min · 50€ · 60 min · 90€ · 90 min · 120€')"
+      >
+        <p class="lang de">
+          Ideal für Sportler:innen, aktive Menschen und alle, die ihrem Körper nach körperlicher
+          Belastung etwas Gutes tun möchten. Die Behandlung unterstützt die Regeneration der
+          Muskulatur, kann Verspannungen lösen, die Durchblutung fördern und das allgemeine
+          Körpergefühl verbessern.
+        </p>
+        <p class="lang en">
+          Ideal for athletes, active people and anyone who wants to do their body some good after
+          physical strain. The treatment supports the recovery of your muscles, can release tension,
+          boost circulation and improve how your body feels overall.
+        </p>
+        <p class="lang de">
+          Besonders geeignet bei Muskelkater, schweren Beinen, sportlicher Überlastung, muskulären
+          Verspannungen oder zur Vorbereitung und Nachsorge von Trainingseinheiten. Die Intensität
+          der Massage wird individuell an deine Bedürfnisse angepasst.
+        </p>
+        <p class="lang en">
+          Especially suited to sore muscles, heavy legs, sports overload, muscular tension or the
+          preparation and aftercare of your training sessions. The intensity of the massage is
+          adjusted individually to your needs.
+        </p>
+      </app-guide-media>
+    </app-guide-section>
 
-<app-image-text-block
-  id="sport-regeneration"
-  theme="dark"
-  [title]="t('Sport- & Regenerationsmassage', 'Sports and recovery massage')"
-  [backgroundImage]="'assets/images/massages/tn flex.png'"
-  imagePosition="left"
->
-  <p class="priceLine lang de">
-    <strong>30 Min | 50 €</strong> &nbsp;·&nbsp;
-    <strong>60 Min | 90 €</strong> &nbsp;·&nbsp;
-    <strong>90 Min | 120 €</strong>
-  </p>
-  <p class="priceLine lang en">
-    <strong>30 min | 50 €</strong> &nbsp;·&nbsp;
-    <strong>60 min | 90 €</strong> &nbsp;·&nbsp;
-    <strong>90 min | 120 €</strong>
-  </p>
-
-  <p class="lang de">
-    Ideal für Sportler:innen, aktive Menschen und alle, die ihrem Körper nach körperlicher Belastung
-    etwas Gutes tun möchten. Die Behandlung unterstützt die Regeneration der Muskulatur,
-    kann Verspannungen lösen, die Durchblutung fördern und das allgemeine Körpergefühl verbessern.
-  </p>
-  <p class="lang en">
-    Ideal for athletes, active people and anyone who wants to do their body some good after physical
-    strain. The treatment supports the recovery of your muscles, can release tension, boost
-    circulation and improve how your body feels overall.
-  </p>
-
-  <p class="lang de">
-    Besonders geeignet bei Muskelkater, schweren Beinen, sportlicher Überlastung, muskulären
-    Verspannungen oder zur Vorbereitung und Nachsorge von Trainingseinheiten.
-    Die Intensität der Massage wird individuell an deine Bedürfnisse angepasst.
-  </p>
-  <p class="lang en">
-    Especially suited to sore muscles, heavy legs, sports overload, muscular tension or the
-    preparation and aftercare of your training sessions. The intensity of the massage is adjusted
-    individually to your needs.
-  </p>
-
-  <p class="lang de">
-    👉 Direkt buchen:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
+    <app-guide-section
+      index="05"
+      [heading]="t('Medizinisch-funktionelle Massage', 'Medical functional massage')"
+      sectionId="medizinisch-funktionell"
     >
-      Salonkee
-    </a>
-  </p>
-  <p class="lang en">
-    👉 Book directly:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Salonkee
-    </a>
-  </p>
-</app-image-text-block>
+      <app-guide-media
+        image="assets/images/massages/tm%20flex%202.jpg"
+        [imageAlt]="
+          t(
+            'Medizinisch-funktionelle Massage für Nacken, Schultern und Rücken',
+            'Medical functional massage for neck, shoulders and back'
+          )
+        "
+        side="right"
+        [eyebrow]="t('30 Min · 60€ · 60 Min · 100€ · 90 Min · 135€', '30 min · 60€ · 60 min · 100€ · 90 min · 135€')"
+      >
+        <p class="lang de">
+          Diese Massage richtet sich an Menschen mit muskulären Verspannungen, einseitigen
+          Belastungen und Bewegungseinschränkungen im Alltag oder Beruf. Der Fokus liegt auf Nacken,
+          Schultern, Rücken und anderen beanspruchten Körperbereichen.
+        </p>
+        <p class="lang en">
+          This massage is for people with muscular tension, one-sided strain and restricted movement
+          in everyday life or at work. The focus lies on the neck, shoulders, back and other
+          overworked areas of the body.
+        </p>
+        <p class="lang de">
+          Durch gezielte Massagetechniken werden verspannte Strukturen bearbeitet, die Beweglichkeit
+          gefördert und das allgemeine Körpergefühl verbessert. Jede Behandlung wird individuell auf
+          deine Bedürfnisse abgestimmt.
+        </p>
+        <p class="lang en">
+          Targeted massage techniques work on tense structures, encourage mobility and improve how
+          your body feels overall. Every treatment is tailored individually to your needs.
+        </p>
+      </app-guide-media>
+    </app-guide-section>
 
-<app-image-text-block
-  id="medizinisch-funktionell"
-  theme="light"
-  [title]="t('Medizinisch-funktionelle Massage', 'Medical functional massage')"
-  [backgroundImage]="'assets/images/massages/tm flex 2.jpg'"
-  imagePosition="right"
->
-  <p class="priceLine lang de">
-    <strong>30 Min | 60 €</strong> &nbsp;·&nbsp;
-    <strong>60 Min | 100 €</strong> &nbsp;·&nbsp;
-    <strong>90 Min | 135 €</strong>
-  </p>
-  <p class="priceLine lang en">
-    <strong>30 min | 60 €</strong> &nbsp;·&nbsp;
-    <strong>60 min | 100 €</strong> &nbsp;·&nbsp;
-    <strong>90 min | 135 €</strong>
-  </p>
-
-  <p class="lang de">
-    Diese Massage richtet sich an Menschen mit muskulären Verspannungen, einseitigen Belastungen
-    und Bewegungseinschränkungen im Alltag oder Beruf. Der Fokus liegt auf Nacken, Schultern,
-    Rücken und anderen beanspruchten Körperbereichen.
-  </p>
-  <p class="lang en">
-    This massage is for people with muscular tension, one-sided strain and restricted movement in
-    everyday life or at work. The focus lies on the neck, shoulders, back and other overworked
-    areas of the body.
-  </p>
-
-  <p class="lang de">
-    Durch gezielte Massagetechniken werden verspannte Strukturen bearbeitet, die Beweglichkeit
-    gefördert und das allgemeine Körpergefühl verbessert. Jede Behandlung wird individuell
-    auf deine Bedürfnisse abgestimmt.
-  </p>
-  <p class="lang en">
-    Targeted massage techniques work on tense structures, encourage mobility and improve how your
-    body feels overall. Every treatment is tailored individually to your needs.
-  </p>
-
-  <p class="lang de">
-    👉 Direkt buchen:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Salonkee
-    </a>
-  </p>
-  <p class="lang en">
-    👉 Book directly:
-    <a
-      href="https://salonkee.de/salon/farewell?lang=de"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Salonkee
-    </a>
-  </p>
-</app-image-text-block>
+    <app-guide-cta [heading]="t('Bereit für deine Massage?', 'Ready for your massage?')">
+      <span class="lang de">
+        Buche deine therapeutische Massage direkt über Salonkee, oder starte mit einem kostenlosen
+        Beratungsgespräch. Du möchtest lieber pur entspannen? Dann schau dir unsere
+        <a [routerLink]="p('/behandlungen/wellness-massage')">Wellness-Massagen</a> an.
+      </span>
+      <span class="lang en">
+        Book your therapeutic massage directly via Salonkee, or start with a free consultation.
+        Prefer to simply unwind? Then take a look at our
+        <a [routerLink]="p('/behandlungen/wellness-massage')">wellness massages</a>.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

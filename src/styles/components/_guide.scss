@@ -593,6 +593,168 @@
     font-size: 15px;
   }
 
+  // ---------- media: Bild neben Text ----------
+  .gd-media {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(1.4rem, 4vw, 3rem);
+    margin-top: 1.9rem;
+
+    // Standard: Bild rechts (fig = Spalte 2), Text links.
+    .gd-media__fig {
+      order: 2;
+    }
+    .gd-media__body {
+      order: 1;
+    }
+
+    // side="left": Bild links.
+    &.gd-media--flip .gd-media__fig {
+      order: 1;
+    }
+    &.gd-media--flip .gd-media__body {
+      order: 2;
+    }
+
+    @media (max-width: 760px) {
+      grid-template-columns: 1fr;
+      gap: 1.15rem;
+
+      // Am Handy immer Bild zuerst, dann Text.
+      .gd-media__fig,
+      &.gd-media--flip .gd-media__fig {
+        order: 0;
+      }
+      .gd-media__body,
+      &.gd-media--flip .gd-media__body {
+        order: 1;
+      }
+    }
+  }
+
+  .gd-media__fig {
+    margin: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--gd-shadow-lg);
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+    }
+
+    &:hover img {
+      transform: scale(1.04);
+    }
+  }
+
+  // Grafiken/Infografiken/Produktfotos: vollständig auf dezentem Panel zeigen,
+  // statt sie wie ein Foto zu beschneiden.
+  .gd-media--contain .gd-media__fig {
+    aspect-ratio: 4 / 3;
+    background: var(--gd-surface-2);
+    border: 1px solid var(--gd-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(0.9rem, 2.2vw, 1.6rem);
+
+    img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      aspect-ratio: auto;
+      object-fit: contain;
+    }
+  }
+
+  .gd-media__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gd-sage-strong);
+    margin: 0 0 0.15rem;
+  }
+
+  .gd-media__head {
+    font-family: var(--gd-font-head);
+    font-size: clamp(22px, 3vw, 29px);
+    font-weight: 560;
+    line-height: 1.12;
+    color: var(--gd-forest);
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+
+  // ---------- figure: einzelnes Schaubild ----------
+  .gd-figure {
+    margin: 1.9rem 0 0;
+    max-width: 760px;
+
+    &.gd-figure--wide {
+      max-width: 100%;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: var(--gd-shadow-lg);
+    }
+  }
+
+  .gd-figure__cap {
+    margin-top: 0.7rem;
+    font-size: 14px;
+    color: var(--gd-faint);
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  // ---------- gallery: Bildraster ----------
+  .gd-gallery {
+    margin-top: 1.9rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--gd-gallery-min, 220px), 1fr));
+    gap: 14px;
+  }
+
+  .gd-gallery__item {
+    margin: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: var(--gd-shadow);
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+    }
+
+    &:hover img {
+      transform: scale(1.04);
+    }
+
+    figcaption {
+      margin-top: 0.45rem;
+      font-size: 13px;
+      color: var(--gd-faint);
+    }
+  }
+
   // ---------- split panels + tick lists ----------
   .gd-split {
     display: grid;

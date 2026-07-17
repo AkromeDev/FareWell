@@ -1,224 +1,381 @@
-<app-image-hero
-  id="topSection"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [paragraphType]="'dark'"
-  [backgroundImage]="'assets/images/treatment/kavitation2.webp'"
-  [shadow]="'dark'"
-  [titleLevel]="'h1'"
-  [title]="t('Kavitation: Ultraschall zur Fettreduktion und Körperformung', 'Cavitation: ultrasound for fat reduction and body forming')"
-  [titleType]="'blur'"
-  [height]="'75'"
->
-</app-image-hero>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 
-<app-image-text-block
-  theme="light"
-  [title]="t('Was ist Kavitation?', 'What is cavitation?')"
-  [backgroundImage]="'assets/images/treatment/kavitation3.webp'"
-  imagePosition="right"
->
-  <p class="lang de">
-    <strong>Kavitation</strong> ist eine nicht-invasive Behandlung, die mit <strong>Ultraschall</strong> arbeitet.
-    Ziel ist es, die <strong>Körperkontur</strong> zu unterstützen und das Hautbild zu verbessern.
-    Die Behandlung ist sanft, angenehm und kommt ohne Nadeln oder OP aus.
-  </p>
-  <p class="lang en">
-    <strong>Cavitation</strong> is a non-invasive treatment that works with <strong>ultrasound</strong>.
-    The goal is to support your <strong>body contour</strong> and improve the look of your skin.
-    The treatment is gentle, comfortable and needs no needles or surgery.
-  </p>
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Behandlung', 'FareWell · Nuremberg · Treatment')"
+    [heading]="t('Kavitation in Nürnberg', 'Cavitation in Nuremberg')"
+    [tagline]="t('Sanft in Form.', 'Softly sculpted.')"
+    [lead]="
+      t(
+        'Kavitation ist eine nicht-invasive Ultraschall-Behandlung, die die Körperkontur unterstützt und das Hautbild glättet: sanft, komfortabel und ohne Ausfallzeit. Ein kosmetisches Body-Treatment, keine Abnehmbehandlung.',
+        'Cavitation is a non-invasive ultrasound treatment that supports your body contour and smooths the look of your skin: gentle, comfortable and with no downtime. A cosmetic body treatment, not a weight-loss treatment.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
 
-  <p class="lang de">
-    Häufig wird Kavitation als Body-Treatment gewählt, wenn man sich eine
-    <strong>glattere Optik</strong> und eine unterstützende Kontur-Behandlung wünscht, besonders an Zonen,
-    die trotz Sport & Ernährung „hartnäckig“ wirken.
-  </p>
-  <p class="lang en">
-    Cavitation is often chosen as a body treatment when you want a
-    <strong>smoother look</strong> and supportive contour work, especially in areas
-    that feel stubborn despite exercise and a balanced diet.
-  </p>
+  <app-guide-stats [stats]="stats" />
 
-  <p class="lang de">
-    💚 Bei <strong>FareWell</strong> kombinieren wir auf Wunsch die Behandlung mit passenden Pflege- und Nachsorge-Empfehlungen,
-    um den Effekt optimal zu unterstützen.
-  </p>
-  <p class="lang en">
-    💚 At <strong>FareWell</strong>, if you like, we pair the treatment with matching care and aftercare recommendations,
-    so the effect is supported at its best.
-  </p>
-</app-image-text-block>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Kavitation formt sanft mit Ultraschall, ganz ohne Nadeln, OP oder Ausfallzeit. Ein
+            kosmetisches Body-Treatment für eine glattere Optik an hartnäckigen Zonen, keine
+            Abnehmbehandlung.
+          </span>
+          <span class="lang en">
+            Cavitation shapes gently with ultrasound, entirely without needles, surgery or downtime.
+            A cosmetic body treatment for a smoother look in stubborn areas, not a weight-loss
+            treatment.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Für Straffung und Hautbild im Gesicht ist das
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">RF-Microneedling</a> die
+            passende Ergänzung. Ob Kavitation wirklich zu deinem Ziel passt, klären wir ehrlich in der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            For firming and complexion work on the face,
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">RF microneedling</a> is
+            the fitting complement. Whether cavitation really suits your goal, we clarify honestly in
+            the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
 
-<app-image-text-block
-  id="wirkung"
-  theme="dark"
-  [title]="t('Wie funktioniert Kavitation?', 'How does cavitation work?')"
-  [backgroundImage]="'assets/images/treatment/kavitationExplained.webp'"
-  imagePosition="left"
-  [resize]="true"
->
-  <p class="lang de">
-    Bei der Behandlung werden Ultraschallwellen gezielt in das Gewebe abgegeben.
-    Dabei entstehen Mikro-Impulse im Gewebe, die den gewünschten Effekt unterstützen.
-  </p>
-  <p class="lang en">
-    During the treatment, ultrasound waves are directed precisely into the tissue.
-    This creates micro-impulses in the tissue that support the desired effect.
-  </p>
+    <app-guide-section
+      index="01"
+      [heading]="t('Was ist Kavitation?', 'What is cavitation?')"
+      sectionId="was"
+    >
+      <app-guide-media
+        image="assets/images/treatment/kavitation3.webp"
+        [imageAlt]="
+          t(
+            'Nicht-invasive Ultraschall-Kavitation als Body-Treatment bei FareWell in Nürnberg',
+            'Non-invasive ultrasound cavitation as a body treatment at FareWell in Nuremberg'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Kavitation ist eine nicht-invasive Behandlung, die mit Ultraschall arbeitet. Ziel ist es,
+          die Körperkontur zu unterstützen und das Hautbild zu verbessern, sanft und angenehm, ganz
+          ohne Nadeln oder OP.
+        </p>
+        <p class="lang en">
+          Cavitation is a non-invasive treatment that works with ultrasound. The goal is to support
+          your body contour and improve the look of your skin, gently and comfortably, entirely
+          without needles or surgery.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Nicht-invasive Methode, die mit Ultraschall arbeitet</span>
+            <span class="lang en">A non-invasive method that works with ultrasound</span>
+          </li>
+          <li>
+            <span class="lang de">Ziel: die <strong>Körperkontur</strong> unterstützen und das Hautbild verbessern</span>
+            <span class="lang en">Goal: support the <strong>body contour</strong> and improve the look of the skin</span>
+          </li>
+          <li>
+            <span class="lang de">Beliebt als Body-Treatment an Zonen, die trotz Sport &amp; Ernährung hartnäckig wirken</span>
+            <span class="lang en">Popular as a body treatment for areas that feel stubborn despite exercise &amp; diet</span>
+          </li>
+          <li>
+            <span class="lang de">Auf Wunsch mit passenden Pflege- und Nachsorge-Empfehlungen kombiniert</span>
+            <span class="lang en">Optionally paired with matching care and aftercare recommendations</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="win" [label]="t('Ohne OP', 'No surgery')">
+        <span class="lang de">
+          Sanft, angenehm und ganz ohne Nadeln oder Skalpell, mit <strong>null Ausfallzeit</strong>.
+          Du gehst direkt nach dem Termin wieder deinem Tag nach.
+        </span>
+        <span class="lang en">
+          Gentle, comfortable and completely without needles or a scalpel, with
+          <strong>zero downtime</strong>. You get straight back to your day after the appointment.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <p class="lang de">
-    Wichtig: Kavitation ist ein <strong>kosmetisches</strong> Verfahren.
-    Es ersetzt keine medizinische Therapie und ist keine „Abnehmbehandlung“,
-    kann aber im Rahmen eines gesunden Lebensstils die <strong>Kontur</strong> unterstützen.
-  </p>
-  <p class="lang en">
-    Important: cavitation is a <strong>cosmetic</strong> procedure.
-    It does not replace medical therapy and is not a weight-loss treatment,
-    though as part of a healthy lifestyle it can support your <strong>contour</strong>.
-  </p>
-</app-image-text-block>
+    <app-guide-section
+      index="02"
+      [heading]="t('Wie funktioniert Kavitation?', 'How does cavitation work?')"
+      sectionId="wirkung"
+    >
+      <app-guide-media
+        image="assets/images/treatment/kavitationExplained.webp"
+        [contain]="true"
+        [imageAlt]="
+          t(
+            'Illustration: gezielte Ultraschallwellen erzeugen Mikro-Impulse im Gewebe',
+            'Illustration: targeted ultrasound waves create micro-impulses in the tissue'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Bei der Behandlung werden Ultraschallwellen gezielt in das Gewebe abgegeben. Dabei
+          entstehen Mikro-Impulse, die den gewünschten Effekt unterstützen.
+        </p>
+        <p class="lang en">
+          During the treatment, ultrasound waves are directed precisely into the tissue. This creates
+          micro-impulses that support the desired effect.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Ultraschallwellen werden gezielt in das Gewebe abgegeben</span>
+            <span class="lang en">Ultrasound waves are directed precisely into the tissue</span>
+          </li>
+          <li>
+            <span class="lang de">Mikro-Impulse im Gewebe unterstützen den gewünschten Effekt</span>
+            <span class="lang en">Micro-impulses in the tissue support the desired effect</span>
+          </li>
+          <li>
+            <span class="lang de">Kann im Rahmen eines gesunden Lebensstils die Kontur unterstützen</span>
+            <span class="lang en">As part of a healthy lifestyle it can support the contour</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="rule" [label]="t('Ehrlich gesagt', 'To be honest')">
+        <span class="lang de">
+          Kavitation ist ein <strong>kosmetisches</strong> Verfahren, keine Abnehmbehandlung und kein
+          Ersatz für eine medizinische Therapie. Als Teil eines gesunden Lebensstils kann sie die
+          Kontur unterstützen, mehr verspricht sie ehrlich nicht.
+        </span>
+        <span class="lang en">
+          Cavitation is a <strong>cosmetic</strong> procedure, not a weight-loss treatment and no
+          replacement for medical therapy. As part of a healthy lifestyle it can support your
+          contour, and honestly it promises nothing more.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-<app-image-text-block
-  id="geeignet"
-  theme="light"
-  [title]="t('Für wen ist Kavitation geeignet?', 'Who is cavitation right for?')"
-  [backgroundImage]="'assets/images/treatment/kavitation4.webp'"
-  imagePosition="right"
-  [resize]="true"
->
-  <p class="lang de">
-    Kavitation eignet sich besonders, wenn du:
-  </p>
-  <p class="lang en">
-    Cavitation is especially suited to you if you:
-  </p>
+    <app-guide-section
+      index="03"
+      [heading]="t('Für wen ist Kavitation geeignet?', 'Who is cavitation right for?')"
+      sectionId="geeignet"
+    >
+      <app-guide-media
+        image="assets/images/treatment/kavitation4.webp"
+        [imageAlt]="
+          t(
+            'Typische Kavitations-Zonen: Bauch, Taille, Hüfte, Oberschenkel und Po',
+            'Typical cavitation areas: belly, waist, hips, thighs and bottom'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Kavitation eignet sich besonders, wenn du eine nicht-invasive Kontur-Unterstützung ohne
+          Ausfallzeit suchst und die Hautoptik an bestimmten Zonen verbessern möchtest.
+        </p>
+        <p class="lang en">
+          Cavitation is especially suited to you if you are looking for non-invasive contour support
+          with no downtime and want to improve how your skin looks in certain areas.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Du möchtest eine <strong>nicht-invasive</strong> Kontur-Unterstützung</span>
+            <span class="lang en">You want <strong>non-invasive</strong> contour support</span>
+          </li>
+          <li>
+            <span class="lang de">Du willst die Hautoptik an bestimmten Zonen verbessern</span>
+            <span class="lang en">You want to improve how your skin looks in certain areas</span>
+          </li>
+          <li>
+            <span class="lang de">Du bevorzugst ein Treatment <strong>ohne Ausfallzeit</strong></span>
+            <span class="lang en">You prefer a treatment with <strong>no downtime</strong></span>
+          </li>
+          <li>
+            <span class="lang de">Häufige Zonen: Bauch, Taille, Hüfte, Oberschenkel oder Po</span>
+            <span class="lang en">Common areas: belly, waist, hips, thighs or bottom</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Ehrliche Beratung', 'Honest advice')">
+        <span class="lang de">
+          Wir schauen uns dein Ziel genau an und sagen dir offen, ob Kavitation dazu passt oder ob
+          eine andere Behandlung sinnvoller ist.
+        </span>
+        <span class="lang en">
+          We take a close look at your goal and tell you openly whether cavitation fits it or whether
+          another treatment makes more sense.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <ul class="lang de">
-    <li>✨ eine <strong>nicht-invasive</strong> Kontur-Unterstützung möchtest</li>
-    <li>✨ die Hautoptik an bestimmten Zonen verbessern willst</li>
-    <li>✨ ein Treatment ohne Ausfallzeit bevorzugst</li>
-  </ul>
-  <ul class="lang en">
-    <li>✨ want <strong>non-invasive</strong> contour support</li>
-    <li>✨ want to improve how your skin looks in certain areas</li>
-    <li>✨ prefer a treatment with no downtime</li>
-  </ul>
+    <app-guide-section
+      index="04"
+      [heading]="t('Gibt es Nebenwirkungen?', 'Are there any side effects?')"
+      sectionId="nebenwirkungen"
+    >
+      <app-guide-media
+        image="assets/images/treatment/cellulite.webp"
+        [imageAlt]="
+          t(
+            'Nahaufnahme der Hautoberfläche im Kontext der Kavitations-Behandlung',
+            'Close-up of the skin surface in the context of the cavitation treatment'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Kavitation wird meist als sehr angenehm empfunden. Wie bei jeder Body-Behandlung sind nur
+          leichte, vorübergehende Reaktionen möglich:
+        </p>
+        <p class="lang en">
+          Cavitation is usually experienced as very pleasant. As with any body treatment, only mild,
+          temporary reactions can occur:
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Leichtes Wärmegefühl während oder kurz nach der Behandlung</span>
+            <span class="lang en">A mild feeling of warmth during or shortly after the treatment</span>
+          </li>
+          <li>
+            <span class="lang de">Gelegentlich eine milde Rötung</span>
+            <span class="lang en">Occasionally a slight redness</span>
+          </li>
+          <li>
+            <span class="lang de">Bei manchen ein leises Piepen im Ohr (ultraschallbedingt), das schnell wieder verschwindet</span>
+            <span class="lang en">For some people a soft ringing in the ear (caused by the ultrasound) that quickly fades again</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Sicher & angenehm', 'Safe & comfortable')">
+        <span class="lang de">
+          Wir arbeiten mit professionellen Einstellungen und geben dir klare Nachsorge-Hinweise, damit
+          alles sicher und angenehm bleibt.
+        </span>
+        <span class="lang en">
+          We work with professional settings and give you clear aftercare guidance, so everything
+          stays safe and comfortable.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <p class="lang de">
-    Häufige Zonen sind z. B. <strong>Bauch</strong>, <strong>Taille</strong>, <strong>Hüfte</strong>,
-    <strong>Oberschenkel</strong> oder <strong>Po</strong>.
-  </p>
-  <p class="lang en">
-    Common areas include the <strong>belly</strong>, <strong>waist</strong>, <strong>hips</strong>,
-    <strong>thighs</strong> or <strong>bottom</strong>.
-  </p>
+    <app-guide-section
+      index="05"
+      [heading]="t('Wie viele Sitzungen sind sinnvoll?', 'How many sessions make sense?')"
+      sectionId="sitzungen"
+    >
+      <app-guide-media
+        image="assets/images/farewell/calendar2.png"
+        [contain]="true"
+        [imageAlt]="
+          t(
+            'Kalender-Illustration für einen Kavitations-Kurs mit 4–8 Sitzungen im Abstand von 1–2 Wochen',
+            'Calendar illustration for a cavitation course of 4–8 sessions spaced 1–2 weeks apart'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Je nach Ziel und Zone sind oft <strong>4–8 Sitzungen</strong> sinnvoll, mit einem Abstand
+          von etwa <strong>1–2 Wochen</strong>. So bekommt die Haut Zeit zwischen den Terminen.
+        </p>
+        <p class="lang en">
+          Depending on your goal and the area, <strong>4–8 sessions</strong> often make sense, spaced
+          about <strong>1–2 weeks</strong> apart. That gives the skin time between appointments.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Häufig 4–8 Sitzungen, je nach Ziel und Zone</span>
+            <span class="lang en">Often 4–8 sessions, depending on goal and area</span>
+          </li>
+          <li>
+            <span class="lang de">Abstand von etwa 1–2 Wochen zwischen den Terminen</span>
+            <span class="lang en">A gap of around 1–2 weeks between appointments</span>
+          </li>
+          <li>
+            <span class="lang de">Der Effekt ist individuell und hängt von deiner Unterstützung ab</span>
+            <span class="lang en">The effect is individual and depends on how you support it</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Dein Anteil', 'Your part')">
+        <span class="lang de">
+          Viel <strong>trinken</strong>, etwas <strong>Bewegung</strong> und eine passende Pflege
+          unterstützen das Ergebnis spürbar, du bist ein aktiver Teil der Behandlung.
+        </span>
+        <span class="lang en">
+          Plenty of <strong>water</strong>, a little <strong>movement</strong> and suitable care
+          noticeably support the result, you are an active part of the treatment.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
 
-  <p class="lang de">
-    Wir beraten dich bei <strong>FareWell</strong> ehrlich, ob Kavitation zu deinem Ziel passt
-    oder ob eine andere Behandlung sinnvoller ist.
-  </p>
-  <p class="lang en">
-    At <strong>FareWell</strong> we advise you honestly on whether cavitation fits your goal
-    or whether another treatment makes more sense.
-  </p>
-</app-image-text-block>
+    <app-guide-section
+      index="06"
+      [heading]="t('Wichtige Hinweise vor & nach der Behandlung', 'Important tips before & after your treatment')"
+      sectionId="hinweise"
+    >
+      <app-guide-media
+        image="assets/images/treatment/hands.webp"
+        [imageAlt]="
+          t(
+            'Pflegende Hände als Symbol für Nachsorge und individuelle Beratung bei FareWell',
+            'Caring hands symbolising aftercare and individual advice at FareWell'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Ein paar einfache Dinge helfen, das Ergebnis optimal zu unterstützen:
+        </p>
+        <p class="lang en">
+          A few simple things help to support your result at its best:
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Vor &amp; nach der Behandlung ausreichend <strong>Wasser trinken</strong></span>
+            <span class="lang en">Drink enough <strong>water</strong> before &amp; after the treatment</span>
+          </li>
+          <li>
+            <span class="lang de">Am selben Tag gerne <strong>leichte Bewegung</strong> (z. B. Spaziergang)</span>
+            <span class="lang en">Enjoy some <strong>light movement</strong> the same day (for example a walk)</span>
+          </li>
+          <li>
+            <span class="lang de">Keine extremen Hitzeanwendungen (Sauna) am selben Tag</span>
+            <span class="lang en">No extreme heat (such as a sauna) on the same day</span>
+          </li>
+          <li>
+            <span class="lang de">Eine passende Pflege-Routine für die Haut wird empfohlen</span>
+            <span class="lang en">A suitable skincare routine is recommended</span>
+          </li>
+          <li>
+            <span class="lang de">Bei Fragen oder Unsicherheit immer individuelle Beratung</span>
+            <span class="lang en">For any questions or doubts, always personal advice</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+    </app-guide-section>
 
-<app-image-text-block
-  id="nebenwirkungen"
-  theme="dark"
-  [title]="t('Gibt es Nebenwirkungen?', 'Are there any side effects?')"
-  [backgroundImage]="'assets/images/treatment/cellulite.webp'"
-  imagePosition="left"
->
-  <p class="lang de">
-    Kavitation wird meist als sehr angenehm empfunden.
-    Typische, vorübergehende Reaktionen können sein:
-  </p>
-  <p class="lang en">
-    Cavitation is usually experienced as very pleasant.
-    Typical, temporary reactions can include:
-  </p>
-
-  <ul class="lang de">
-    <li>🔸 leichtes Wärmegefühl während oder kurz nach der Behandlung</li>
-    <li>🔸 gelegentlich eine milde Rötung</li>
-    <li>🔸 bei manchen ein leises „Piepen“ im Ohr (ultraschallbedingt), das schnell wieder verschwindet</li>
-  </ul>
-  <ul class="lang en">
-    <li>🔸 a mild feeling of warmth during or shortly after the treatment</li>
-    <li>🔸 occasionally a slight redness</li>
-    <li>🔸 for some people a soft ringing in the ear (caused by the ultrasound) that quickly fades again</li>
-  </ul>
-
-  <p class="lang de">
-    💚 Wir arbeiten mit professionellen Einstellungen und geben dir klare Hinweise zur Nachsorge,
-    damit alles sicher und angenehm bleibt.
-  </p>
-  <p class="lang en">
-    💚 We work with professional settings and give you clear aftercare guidance,
-    so everything stays safe and comfortable.
-  </p>
-</app-image-text-block>
-
-<app-image-text-block
-  id="dauer"
-  theme="light"
-  [title]="t('Wie viele Sitzungen sind sinnvoll?', 'How many sessions make sense?')"
-  [backgroundImage]="'assets/images/farewell/calendar2.png'"
-  imagePosition="right"
-  [resize]="true"
->
-  <p class="lang de">
-    Je nach Ziel und Zone sind oft <strong>4–8 Sitzungen</strong> sinnvoll, mit einem Abstand von etwa
-    <strong>1–2 Wochen</strong>.
-  </p>
-  <p class="lang en">
-    Depending on your goal and the area, <strong>4 to 8 sessions</strong> often make sense, spaced about
-    <strong>1 to 2 weeks</strong> apart.
-  </p>
-
-  <p class="lang de">
-    Der Effekt ist individuell und hängt auch davon ab, wie gut du die Behandlung durch
-    <strong>Trinken</strong>, <strong>Bewegung</strong> und passende Pflege unterstützt.
-  </p>
-  <p class="lang en">
-    The effect is individual and also depends on how well you support the treatment through
-    <strong>drinking water</strong>, <strong>movement</strong> and suitable care.
-  </p>
-
-  <p>
-    👉 <span class="lang de">Termin buchen:</span><span class="lang en">Book your appointment:</span>
-    <app-booking-cta location="kavitation-page" [label]="t('Termin buchen', 'Book now')"></app-booking-cta>
-  </p>
-</app-image-text-block>
-
-<app-image-text-block
-  id="faq"
-  theme="dark"
-  [title]="t('Wichtige Hinweise vor & nach der Behandlung', 'Important tips before and after your treatment')"
-  [backgroundImage]="'assets/images/treatment/hands.webp'"
-  imagePosition="left"
->
-  <ul class="lang de">
-    <li>✅ vor & nach der Behandlung ausreichend <strong>Wasser trinken</strong></li>
-    <li>✅ am selben Tag gerne <strong>leichte Bewegung</strong> (z. B. Spaziergang)</li>
-    <li>✅ nach dem Treatment keine extremen Hitzeanwendungen (Sauna) am selben Tag</li>
-    <li>✅ wir empfehlen eine passende Pflege-Routine für die Haut</li>
-  </ul>
-  <ul class="lang en">
-    <li>✅ drink enough <strong>water</strong> before and after the treatment</li>
-    <li>✅ enjoy some <strong>light movement</strong> on the same day (for example a walk)</li>
-    <li>✅ no extreme heat (such as a sauna) on the same day as your treatment</li>
-    <li>✅ we recommend a suitable skincare routine for your skin</li>
-  </ul>
-
-  <p class="lang de">
-    💚 Bei Fragen oder Unsicherheit beraten wir dich immer individuell.
-  </p>
-  <p class="lang en">
-    💚 If you have any questions or doubts, we always advise you personally.
-  </p>
-</app-image-text-block>
+    <app-guide-cta
+      [heading]="t('Bereit für sanftes Body Forming?', 'Ready for gentle body forming?')"
+      [bookingLabel]="t('Termin buchen', 'Book now')"
+      [tagline]="t('Sanft in Form.', 'Softly sculpted.')"
+    >
+      <span class="lang de">
+        Buche deinen Termin direkt online. Vorab beraten wir dich ehrlich, ob Kavitation zu deinem
+        Ziel passt, kosmetisch, nicht-invasiv und ohne Ausfallzeit.
+      </span>
+      <span class="lang en">
+        Book your appointment directly online. Beforehand we advise you honestly on whether cavitation
+        fits your goal, cosmetic, non-invasive and with no downtime.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>
