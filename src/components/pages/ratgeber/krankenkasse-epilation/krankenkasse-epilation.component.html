@@ -29,13 +29,15 @@
         <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
           <span class="lang de">
-            Deine Krankenkasse kann die Epilation im Gesicht übernehmen. Der Knackpunkt ist der
-            Ärztevorbehalt, und genau der ist bei FareWell durch eine delegierende Ärztin gelöst.
+            Deine Krankenkasse kann die Epilation im Gesicht übernehmen. Der Knackpunkt ist meist
+            der Ärztevorbehalt, und dafür bietet FareWell eine delegierende Ärztin an. Ob deine
+            Kasse das anerkennt, ist von Fall zu Fall verschieden, aber es ist ein Versuch wert.
           </span>
           <span class="lang en">
-            Your statutory health insurer can cover facial epilation. The sticking point is the
-            physician requirement (Ärztevorbehalt), and that is exactly what a delegating doctor at
-            FareWell solves.
+            Your statutory health insurer can cover facial epilation. The sticking point is usually
+            the physician requirement (Ärztevorbehalt), and for that FareWell offers a delegating
+            doctor. Whether your insurer accepts this varies from case to case, but it is worth a
+            try.
           </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
@@ -93,16 +95,20 @@
         </app-guide-card>
         <app-guide-card
           icon="🤝"
-          [heading]="t('Die Delegation löst genau das', 'Delegation solves exactly that')"
+          [heading]="t('Wie die Delegation helfen kann', 'How delegation can help')"
           [revealDelay]="120"
         >
           <span class="lang de">
             Eine Ärztin delegiert die Behandlung an unser geschultes Team und bleibt
-            verantwortlich. So zählt deine Nadelepilation als ärztlich delegierte Leistung.
+            verantwortlich. So kann deine Nadelepilation als ärztlich delegierte Leistung zählen.
+            Manche Kassen erkennen die Delegation an, andere bestehen auf einer ärztlichen Praxis,
+            das ist von Kasse zu Kasse verschieden.
           </span>
           <span class="lang en">
             A doctor delegates the treatment to our trained team and stays responsible. That way
-            your electrolysis (Nadelepilation) counts as a medically delegated service.
+            your electrolysis (Nadelepilation) can count as a medically delegated service. Some
+            insurers accept delegation, others insist on a medical practice, it varies from insurer
+            to insurer.
           </span>
         </app-guide-card>
         <app-guide-card
@@ -137,8 +143,14 @@
           tone="forest"
         >
           <li>
-            <span class="lang de">Epilation im Gesicht und Bartbereich als medizinische Leistung.</span>
-            <span class="lang en">Epilation of the face and beard area as a medical service.</span>
+            <span class="lang de">
+              Epilation im Gesicht und Bartbereich als medizinische Leistung, bei entsprechender
+              Indikation teils auch weitere Bereiche wie Handrücken oder Brust.
+            </span>
+            <span class="lang en">
+              Epilation of the face and beard area as a medical service, and with a corresponding
+              indication sometimes further areas such as the backs of the hands or chest.
+            </span>
           </li>
           <li>
             <span class="lang de">
@@ -150,8 +162,12 @@
             </span>
           </li>
           <li>
-            <span class="lang de">Der Antrag muss vor Behandlungsbeginn gestellt werden.</span>
-            <span class="lang en">The application must be submitted before the treatment begins.</span>
+            <span class="lang de">
+              Antrag stellen und die Bewilligung abwarten, bevor die Behandlung beginnt.
+            </span>
+            <span class="lang en">
+              Submit the application and wait for approval before the treatment begins.
+            </span>
           </li>
         </app-guide-panel>
         <app-guide-panel
@@ -249,12 +265,14 @@
 
         <app-guide-note variant="rule" [label]="t('Wichtig', 'Please note')">
           <span class="lang de">
-            Erst beantragen, dann behandeln. Halte alles schriftlich fest, auch Telefonate, und
-            akzeptiere keine mündliche Ablehnung.
+            Warte mit der Behandlung, bis die Bewilligung da ist. Kosten, die vor dem
+            Bewilligungsdatum entstehen, kann die Kasse ablehnen. Halte alles schriftlich fest,
+            auch Telefonate, und akzeptiere keine mündliche Ablehnung.
           </span>
           <span class="lang en">
-            Apply first, then treat. Keep a written record of everything, including phone calls,
-            and do not accept a verbal denial.
+            Wait to start treatment until the approval is in. Costs that arise before the approval
+            date can be refused by your insurer. Keep a written record of everything, including
+            phone calls, and do not accept a verbal denial.
           </span>
         </app-guide-note>
       </div>
@@ -278,11 +296,14 @@
         <ul class="gd-ticks" appReveal>
           <li>
             <span class="lang de">
-              Nadelepilation wird von den Kassen am ehesten anerkannt, Laser ist häufiger strittig.
+              Welche Methode anerkannt wird, hängt stark von deiner Kasse ab. Manche bewilligen nur
+              Laser, manche nur Nadelepilation, manche beides, mit oder ohne Delegation. Versprechen
+              lässt sich nichts, aber der Antrag ist einen Versuch wert.
             </span>
             <span class="lang en">
-              Electrolysis (Nadelepilation) is the most likely to be recognised by insurers, laser
-              is more often disputed.
+              Which method gets recognised depends a lot on your insurer. Some approve only laser,
+              some only electrolysis, some both, with or without delegation. Nothing can be
+              promised, but the application is worth a try.
             </span>
           </li>
           <li>
