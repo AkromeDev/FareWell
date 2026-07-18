@@ -47,7 +47,7 @@ export const PRICE_TABLES = {
     en: '',
     audience: 'alle',
     rows: [
-      { de: 'Beratungstermin für Neukunden', en: 'Consultation for new clients', minutes: 30, price: null },
+      { de: 'Beratungstermin für Neukund:innen', en: 'Consultation for new clients', minutes: 30, price: null },
       { de: 'Massage Beratungsgespräch', en: 'Massage consultation', minutes: 30, price: null },
     ],
   },

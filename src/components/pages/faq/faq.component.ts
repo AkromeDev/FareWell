@@ -195,7 +195,7 @@ export class FaqComponent implements OnInit, OnDestroy {
       },
       {
         question: this.t(
-          'Übernimmt die Krankenkasse die Epilation bei Geschlechtsangleichung?',
+          'Übernimmt die Krankenkasse die Epilation bei der Transition?',
           'Does health insurance cover epilation for gender confirmation?'
         ),
         answer: this.t(
@@ -219,7 +219,7 @@ export class FaqComponent implements OnInit, OnDestroy {
           'Can I deduct treatment costs from my taxes?'
         ),
         answer: this.t(
-          'Ja. Den Anteil, den du selbst trägst, kannst du als außergewöhnliche Belastung in der Steuererklärung geltend machen, wenn die medizinische Notwendigkeit dokumentiert ist (z. B. bei Behandlungen im Zuge der Geschlechtsangleichung). Elektrolyse und Diodenlaser werden steuerlich gleich behandelt. Du brauchst drei Bausteine: den medizinischen Nachweis, ordentliche Rechnungen von FareWell und Zahlungsbelege. Details stehen in unserem Steuer-Leitfaden.',
+          'Ja. Den Anteil, den du selbst trägst, kannst du als außergewöhnliche Belastung in der Steuererklärung geltend machen, wenn die medizinische Notwendigkeit dokumentiert ist (z. B. bei Behandlungen im Zuge der Transition). Elektrolyse und Diodenlaser werden steuerlich gleich behandelt. Du brauchst drei Bausteine: den medizinischen Nachweis, ordentliche Rechnungen von FareWell und Zahlungsbelege. Details stehen in unserem Steuer-Leitfaden.',
           'Yes. The share you pay yourself can be claimed as an extraordinary burden on your tax return when the medical necessity is documented (for example for treatments as part of gender confirmation). Electrolysis and the diode laser are treated the same way for tax purposes. You need three building blocks: the medical evidence, proper invoices from FareWell and proof of payment. The details are in our tax guide (in German).'
         ),
       },
@@ -229,7 +229,7 @@ export class FaqComponent implements OnInit, OnDestroy {
           'What do I need from my doctor before I start?'
         ),
         answer: this.t(
-          'Die Diagnose (Geschlechtsdysphorie bzw. Geschlechtsinkongruenz, ICD F64.0) und eine Bescheinigung, dass die Haarentfernung zur Geschlechtsangleichung medizinisch notwendig ist, idealerweise ausgestellt vor der ersten Sitzung. Für den Kassenantrag kommt der ärztliche Bericht dazu.',
+          'Die Diagnose (Geschlechtsdysphorie bzw. Geschlechtsinkongruenz, ICD F64.0) und eine Bescheinigung, dass die Haarentfernung zur Transition medizinisch notwendig ist, idealerweise ausgestellt vor der ersten Sitzung. Für den Kassenantrag kommt der ärztliche Bericht dazu.',
           'The diagnosis (gender dysphoria or gender incongruence, ICD F64.0) and a certificate confirming that the hair removal is medically necessary for gender confirmation, ideally issued before the first session. For the insurance application, the medical report is added.'
         ),
       },

@@ -444,7 +444,7 @@ export class RecurrenceService {
 
   private describeEvent(event: string, de: boolean): string {
     const map: Record<string, { de: string; en: string }> = {
-      client: { de: 'Nach jedem Kunden', en: 'After each client' },
+      client: { de: 'Nach jeder Kund:in', en: 'After each client' },
       use: { de: 'Nach jeder Nutzung', en: 'After each use' },
       treatment: { de: 'Nach jeder Behandlung', en: 'After each treatment' },
     };

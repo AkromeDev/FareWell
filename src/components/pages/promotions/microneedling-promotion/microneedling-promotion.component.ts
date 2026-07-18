@@ -14,7 +14,7 @@ const PAGE_PATH = '/microneedling-aktion-nuernberg';
 const PAGE_TITLE_DE = 'Microneedling Aktion Nürnberg: Hautverjüngung mit Radiofrequenz | FareWell';
 const PAGE_TITLE_EN = 'Microneedling Offer Nuremberg: RF Skin Rejuvenation | FareWell';
 const PAGE_DESCRIPTION_DE =
-  'Radiofrequenz-Microneedling in Nürnberg: Hautstraffung und Faltenreduktion. 50% Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.';
+  'Radiofrequenz-Microneedling in Nürnberg: Hautstraffung und Faltenreduktion. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG.';
 const PAGE_DESCRIPTION_EN =
   'Radiofrequency microneedling in Nuremberg: skin firming and fewer fine lines. 50% off your first treatment for new clients with the code ERSTEBEHANDLUNG.';
 const HERO_IMAGE = 'assets/images/treatment/microneedling.webp';
@@ -156,7 +156,7 @@ export class MicroneedlingPromotionComponent implements OnInit, OnDestroy {
             'Radiofrequency microneedling in Nuremberg'
           ),
           description: this.t(
-            'Hautverjüngung mit Radiofrequenz-Microneedling bei FareWell in Nürnberg: strafft die Haut und verfeinert das Hautbild. 50% Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.',
+            'Hautverjüngung mit Radiofrequenz-Microneedling bei FareWell in Nürnberg: strafft die Haut und verfeinert das Hautbild. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG.',
             'Skin rejuvenation with radiofrequency microneedling at FareWell in Nuremberg: firms the skin and refines the complexion. 50% off the first treatment for new clients with the code ERSTEBEHANDLUNG.'
           ),
           serviceType: this.t('Radiofrequenz-Microneedling', 'Radiofrequency microneedling'),
@@ -189,7 +189,7 @@ export class MicroneedlingPromotionComponent implements OnInit, OnDestroy {
             availability: 'https://schema.org/InStock',
             eligibleCustomerType: {
               '@type': 'BusinessEntityType',
-              name: this.t('Neukunden', 'New clients'),
+              name: this.t('Neukund:innen', 'New clients'),
             },
           },
         },

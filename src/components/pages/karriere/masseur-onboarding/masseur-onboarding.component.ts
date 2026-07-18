@@ -69,8 +69,8 @@ export class MasseurOnboardingComponent implements OnInit {
   get stats(): GuideStat[] {
     return [
       { value: '70%', label: this.t('Dein Anteil', 'Your share') },
-      { value: '3', label: this.t('Wege zu Kunden', 'Ways to win clients') },
-      { value: '20%', label: this.t('Vorteil für Kunden', 'Lifelong client perk') },
+      { value: '3', label: this.t('Wege zu Kund:innen', 'Ways to win clients') },
+      { value: '20%', label: this.t('Vorteil für Kund:innen', 'Lifelong client perk') },
       {
         value: this.t('selbständig', 'freelance'),
         label: this.t('Dein Status', 'Your status'),
@@ -84,7 +84,7 @@ export class MasseurOnboardingComponent implements OnInit {
       { id: 's2', label: this.t('Deine Probe Session', 'Your trial session') },
       { id: 's3', label: this.t('Deine Leistungen festlegen', 'Define your services') },
       { id: 's4', label: this.t('Bezahlung und dein Anteil', 'Payment and your share') },
-      { id: 's5', label: this.t('Kunden gewinnen', 'Getting clients') },
+      { id: 's5', label: this.t('Kund:innen gewinnen', 'Getting clients') },
       { id: 's6', label: this.t('Dein eigenes Google Profil', 'Your own Google profile') },
       { id: 's7', label: this.t('Der 20% Vorteil', 'The 20% client perk') },
       { id: 's8', label: this.t('Das Salon Angebot kennen', 'Know the salon') },

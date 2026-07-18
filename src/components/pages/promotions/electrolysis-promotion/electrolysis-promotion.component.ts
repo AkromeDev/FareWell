@@ -14,7 +14,7 @@ const PAGE_PATH = '/elektrolyse-permanente-haarentfernung-aktion-nuernberg';
 const PAGE_TITLE_DE = 'Elektrolyse Aktion Nürnberg: permanente Haarentfernung | FareWell';
 const PAGE_TITLE_EN = 'Electrolysis Offer Nuremberg: Permanent Hair Removal | FareWell';
 const PAGE_DESCRIPTION_DE =
-  'Permanente Haarentfernung mit Elektrolyse in Nürnberg. 50% Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.';
+  'Permanente Haarentfernung mit Elektrolyse in Nürnberg. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG.';
 const PAGE_DESCRIPTION_EN =
   'Permanent hair removal with electrolysis in Nuremberg. 50% off your first treatment for new clients with the code ERSTEBEHANDLUNG.';
 const HERO_IMAGE = 'assets/images/treatment/nadel.jpg';
@@ -156,7 +156,7 @@ export class ElectrolysisPromotionComponent implements OnInit, OnDestroy {
             'Electrolysis: permanent hair removal in Nuremberg'
           ),
           description: this.t(
-            'Permanente Haarentfernung mit Elektrolyse bei FareWell in Nürnberg, die einzige wirklich permanente Methode. 50% Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.',
+            'Permanente Haarentfernung mit Elektrolyse bei FareWell in Nürnberg, die einzige wirklich permanente Methode. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG.',
             'Permanent hair removal with electrolysis at FareWell in Nuremberg, the only truly permanent method. 50% off the first treatment for new clients with the code ERSTEBEHANDLUNG.'
           ),
           serviceType: this.t('Elektrolyse Haarentfernung', 'Electrolysis hair removal'),
@@ -189,7 +189,7 @@ export class ElectrolysisPromotionComponent implements OnInit, OnDestroy {
             availability: 'https://schema.org/InStock',
             eligibleCustomerType: {
               '@type': 'BusinessEntityType',
-              name: this.t('Neukunden', 'New clients'),
+              name: this.t('Neukund:innen', 'New clients'),
             },
           },
         },

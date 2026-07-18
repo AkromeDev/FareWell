@@ -168,7 +168,7 @@ export class IplPromotionComponent implements OnInit, OnDestroy {
             'Long-lasting hair removal in Nuremberg: the more modern alternative to IPL'
           ),
           description: this.t(
-            'Dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser statt IPL bei FareWell in Nürnberg. 75% Rabatt auf die erste Behandlung (max. 2 Zonen) für Neukunden mit dem Code ERSTEBEHANDLUNG, gültig bis 15.08.',
+            'Dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser statt IPL bei FareWell in Nürnberg. 75% Rabatt auf die erste Behandlung (max. 2 Zonen) für Neukund:innen mit dem Code ERSTEBEHANDLUNG, gültig bis 15.08.',
             'Long-lasting hair reduction with the 4-wavelength diode laser instead of IPL at FareWell in Nuremberg. 75% off the first treatment (max. 2 areas) for new clients with the code ERSTEBEHANDLUNG, valid until 15 Aug.'
           ),
           serviceType: this.t('Dauerhafte Haarentfernung', 'Long-lasting hair removal'),
@@ -202,7 +202,7 @@ export class IplPromotionComponent implements OnInit, OnDestroy {
             availability: 'https://schema.org/InStock',
             eligibleCustomerType: {
               '@type': 'BusinessEntityType',
-              name: this.t('Neukunden', 'New clients'),
+              name: this.t('Neukund:innen', 'New clients'),
             },
           },
         },

@@ -14,7 +14,7 @@ const PAGE_PATH = '/nadelepilation-angebot-nuernberg';
 const PAGE_TITLE_DE = 'Nadelepilation Angebot Nürnberg: permanente Haarentfernung | FareWell';
 const PAGE_TITLE_EN = 'Needle Epilation Offer Nuremberg: Permanent Hair Removal | FareWell';
 const PAGE_DESCRIPTION_DE =
-  'Permanente Haarentfernung mit Nadelepilation (Elektrolyse) in Nürnberg. 50% Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.';
+  'Permanente Haarentfernung mit Nadelepilation (Elektrolyse) in Nürnberg. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG.';
 const PAGE_DESCRIPTION_EN =
   'Permanent hair removal with needle epilation (electrolysis) in Nuremberg. 50% off your first treatment for new clients with the code ERSTEBEHANDLUNG.';
 const HERO_IMAGE = 'assets/images/treatment/nadel.jpg';
@@ -159,7 +159,7 @@ export class NadelepilationPromotionComponent implements OnInit, OnDestroy {
             'Needle epilation: permanent hair removal in Nuremberg'
           ),
           description: this.t(
-            'Permanente Haarentfernung mit Nadelepilation (Elektrolyse) bei FareWell in Nürnberg, jedes Haar einzeln an der Wurzel verödet. 50% Rabatt auf die erste Behandlung für Neukunden mit dem Code ERSTEBEHANDLUNG.',
+            'Permanente Haarentfernung mit Nadelepilation (Elektrolyse) bei FareWell in Nürnberg, jedes Haar einzeln an der Wurzel verödet. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG.',
             'Permanent hair removal with needle epilation (electrolysis) at FareWell in Nuremberg, every hair deactivated individually at the root. 50% off the first treatment for new clients with the code ERSTEBEHANDLUNG.'
           ),
           serviceType: this.t('Nadelepilation Haarentfernung', 'Needle epilation hair removal'),
@@ -192,7 +192,7 @@ export class NadelepilationPromotionComponent implements OnInit, OnDestroy {
             availability: 'https://schema.org/InStock',
             eligibleCustomerType: {
               '@type': 'BusinessEntityType',
-              name: this.t('Neukunden', 'New clients'),
+              name: this.t('Neukund:innen', 'New clients'),
             },
           },
         },
