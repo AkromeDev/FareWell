@@ -1649,3 +1649,23 @@
     transform: scale(1.14) translateY(-10px);
   }
 }
+
+// Keyboard keys — for app/support pages (e.g. MojoClipboard) that spell out
+// shortcuts like ⌃⌘V. The scope has no default <kbd> styling otherwise.
+.gd kbd {
+  display: inline-block;
+  min-width: 1.7em;
+  padding: 0.12em 0.5em;
+  border: 1px solid var(--gd-line-strong);
+  border-bottom-width: 2px;
+  border-radius: 7px;
+  background: var(--gd-surface);
+  box-shadow: var(--gd-shadow);
+  color: var(--gd-ink);
+  font-family: var(--gd-font-sans);
+  font-size: 0.86em;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  white-space: nowrap;
+}

@@ -1,0 +1,180 @@
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { SeoService } from 'src/services/seo.service';
+import { LanguageService } from 'src/services/language.service';
+import {
+  GUIDE_COMPONENTS,
+  GuideLang,
+  GuideStat,
+  GuideTocItem,
+} from 'src/components/molecules/guide';
+
+const ORIGIN = 'https://farewell.salon';
+const PAGE_PATH = '/mojoclipboard-support';
+const PAGE_TITLE_DE =
+  'MojoClipboard – Support & Anleitung | Zwischenablage-Verlauf für den Mac';
+const PAGE_TITLE_EN = 'MojoClipboard – Support & Guide | Clipboard History for Mac';
+const PAGE_DESCRIPTION_DE =
+  'Support für MojoClipboard, die kostenlose macOS-Menüleisten-App für den Zwischenablage-Verlauf (macOS 14 Sonoma+). Drück ⌃⌘V, um den Verlauf zu öffnen. Datenschutz-first: keine Daten, nichts verlässt dein Gerät.';
+const PAGE_DESCRIPTION_EN =
+  'Support for MojoClipboard, the free macOS menu-bar clipboard-history app (macOS 14 Sonoma+). Press ⌃⌘V to open your history. Privacy-first: no data collected, nothing leaves your device.';
+
+interface Faq {
+  id: string;
+  q_de: string;
+  q_en: string;
+  a_de: string;
+  a_en: string;
+}
+
+@Component({
+  standalone: true,
+  selector: 'app-mojoclipboard-support',
+  imports: [...GUIDE_COMPONENTS, RevealOnScrollDirective],
+  templateUrl: './mojoclipboard-support.component.html',
+})
+export class MojoClipboardSupportComponent implements OnInit, OnDestroy {
+  private readonly seo = inject(SeoService);
+  private readonly language = inject(LanguageService);
+  private readonly jsonLdId = 'mojoclipboard-support-schema';
+
+  get lang(): GuideLang {
+    return this.language.lang();
+  }
+
+  t(de: string, en: string): string {
+    return this.language.t(de, en);
+  }
+
+  get stats(): GuideStat[] {
+    return [
+      { value: this.t('Gratis', 'Free'), label: this.t('Preis, für immer', 'Price, forever'), animate: false },
+      { value: '0', label: this.t('Daten, die die App sammelt', 'Data the app collects') },
+      { value: 'macOS 14+', label: this.t('Sonoma oder neuer', 'Sonoma or later'), animate: false },
+    ];
+  }
+
+  get toc(): GuideTocItem[] {
+    return [
+      { id: 'was', label: this.t('Was die App macht', 'What it does') },
+      { id: 'so-gehts', label: this.t('So benutzt du es', 'How to use it') },
+      { id: 'funktionen', label: this.t('Funktionen', 'Features') },
+      { id: 'datenschutz', label: this.t('Datenschutz', 'Privacy') },
+      { id: 'faq', label: this.t('Häufige Fragen', 'FAQ') },
+      { id: 'kontakt', label: this.t('Kontakt', 'Contact') },
+    ];
+  }
+
+  // Drives both the visible FAQ accordion and the FAQPage JSON-LD below —
+  // keep the two in sync by editing here only.
+  readonly faqs: Faq[] = [
+    {
+      id: 'passwords',
+      q_de: 'Warum tauchen meine Passwörter nicht im Verlauf auf?',
+      q_en: "Why don't my passwords show up in history?",
+      a_de: 'Das ist Absicht. MojoClipboard überspringt automatisch Kopien aus Passwort-Managern und als flüchtig markierte Inhalte. Solche Einträge landen gar nicht erst im Verlauf.',
+      a_en: 'That is by design. MojoClipboard automatically skips copies from password managers and items marked as transient. Such entries never enter the history in the first place.',
+    },
+    {
+      id: 'images-files',
+      q_de: 'Funktioniert es mit Bildern und Dateien?',
+      q_en: 'Does it work with images and files?',
+      a_de: 'Ja. Neben Text merkt sich MojoClipboard auch Bilder und Dateien. Du wählst sie genauso im Verlauf aus und fügst sie mit ⌘V wieder ein.',
+      a_en: 'Yes. Alongside text, MojoClipboard also remembers images and files. You pick them from the history the same way and paste them back with ⌘V.',
+    },
+    {
+      id: 'storage',
+      q_de: 'Wo wird mein Verlauf gespeichert?',
+      q_en: 'Where is my history stored?',
+      a_de: 'Nur im Arbeitsspeicher. Nichts wird auf die Festplatte geschrieben, und der Verlauf wird gelöscht, sobald du die App beendest.',
+      a_en: 'In memory only. Nothing is written to disk, and the history clears as soon as you quit the app.',
+    },
+    {
+      id: 'settings',
+      q_de: 'Wie ändere ich das Tastenkürzel oder die Verlaufslänge?',
+      q_en: 'How do I change the shortcut or history length?',
+      a_de: 'Klick auf das MojoClipboard-Symbol in der Menüleiste und öffne die Einstellungen. Dort passt du das Tastenkürzel, die Verlaufslänge und das Größenlimit pro Eintrag an – und aktivierst bei Bedarf „Beim Anmelden starten“.',
+      a_en: 'Click the MojoClipboard icon in the menu bar and open the settings. There you can change the shortcut, the history length and the per-item size limit — and turn on “Launch at Login” if you like.',
+    },
+    {
+      id: 'requirements',
+      q_de: 'Welche macOS-Version brauche ich?',
+      q_en: 'Which macOS version do I need?',
+      a_de: 'macOS 14 (Sonoma) oder neuer.',
+      a_en: 'macOS 14 (Sonoma) or later.',
+    },
+    {
+      id: 'price',
+      q_de: 'Was kostet MojoClipboard?',
+      q_en: 'How much does MojoClipboard cost?',
+      a_de: 'Nichts. MojoClipboard ist kostenlos.',
+      a_en: 'Nothing. MojoClipboard is free.',
+    },
+  ];
+
+  ngOnInit(): void {
+    const isEn = this.language.lang() === 'en';
+    const base = isEn ? `${ORIGIN}/en` : ORIGIN;
+    const pageUrl = `${base}${PAGE_PATH}`;
+    const pageTitle = this.t(PAGE_TITLE_DE, PAGE_TITLE_EN);
+    const pageDescription = this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN);
+
+    this.seo.setPageSeo({
+      title: pageTitle,
+      description: pageDescription,
+      path: PAGE_PATH,
+      type: 'article',
+    });
+
+    this.seo.setJsonLd(this.jsonLdId, {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'SoftwareApplication',
+          '@id': `${pageUrl}#app`,
+          name: 'MojoClipboard',
+          applicationCategory: 'UtilitiesApplication',
+          operatingSystem: 'macOS 14 Sonoma or later',
+          description: pageDescription,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+          publisher: { '@id': 'https://farewell.salon/#organization' },
+          url: pageUrl,
+        },
+        {
+          '@type': 'FAQPage',
+          '@id': `${pageUrl}#faq`,
+          inLanguage: isEn ? 'en' : 'de',
+          mainEntity: this.faqs.map(f => ({
+            '@type': 'Question',
+            name: this.t(f.q_de, f.q_en),
+            acceptedAnswer: { '@type': 'Answer', text: this.t(f.a_de, f.a_en) },
+          })),
+        },
+        {
+          '@type': 'WebPage',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: pageTitle,
+          description: pageDescription,
+          inLanguage: isEn ? 'en' : 'de',
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: base },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: this.t('MojoClipboard Support', 'MojoClipboard support'),
+              item: pageUrl,
+            },
+          ],
+        },
+      ],
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.clearJsonLd(this.jsonLdId);
+  }
+}

@@ -284,6 +284,23 @@ function localizedRoutes(lang: PageLang): Routes {
     },
 
     {
+      path: 'mojoclipboard-support',
+      loadComponent: () =>
+        import('../components/pages/mojoclipboard-support/mojoclipboard-support.component')
+          .then(m => m.MojoClipboardSupportComponent),
+      data: d(
+        {
+          title: 'MojoClipboard – Support & Anleitung | Zwischenablage-Verlauf für den Mac',
+          description: 'Support für MojoClipboard, die kostenlose macOS-Menüleisten-App für den Zwischenablage-Verlauf (macOS 14+). ⌃⌘V öffnet den Verlauf. Datenschutz-first: keine Daten, nichts verlässt dein Gerät.'
+        },
+        {
+          title: 'MojoClipboard – Support & Guide | Clipboard History for Mac',
+          description: 'Support for MojoClipboard, the free macOS menu-bar clipboard-history app (macOS 14+). Press ⌃⌘V to open your history. Privacy-first: no data collected, nothing leaves your device.'
+        }
+      )
+    },
+
+    {
       path: 'karriere/masseur-nuernberg/onboarding',
       loadComponent: () =>
         import('../components/pages/karriere/masseur-onboarding/masseur-onboarding.component')
