@@ -1,13 +1,10 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { SeoService } from 'src/services/seo.service';
 import { LanguageService } from 'src/services/language.service';
-import {
-  GUIDE_COMPONENTS,
-  GuideLang,
-  GuideStat,
-  GuideTocItem,
-} from 'src/components/molecules/guide';
+
+type PageLang = 'de' | 'en';
 
 const ORIGIN = 'https://farewell.salon';
 const PAGE_PATH = '/mojoclipboard-support';
@@ -18,6 +15,19 @@ const PAGE_DESCRIPTION_DE =
   'Support für MojoClipboard, die kostenlose macOS-Menüleisten-App für den Zwischenablage-Verlauf (macOS 14 Sonoma+). Drück ⌃⌘V, um den Verlauf zu öffnen. Datenschutz-first: keine Daten, nichts verlässt dein Gerät.';
 const PAGE_DESCRIPTION_EN =
   'Support for MojoClipboard, the free macOS menu-bar clipboard-history app (macOS 14 Sonoma+). Press ⌃⌘V to open your history. Privacy-first: no data collected, nothing leaves your device.';
+
+interface Stat {
+  value_de: string;
+  value_en: string;
+  label_de: string;
+  label_en: string;
+}
+
+interface Feature {
+  icon: string;
+  de: string;
+  en: string;
+}
 
 interface Faq {
   id: string;
@@ -30,40 +40,39 @@ interface Faq {
 @Component({
   standalone: true,
   selector: 'app-mojoclipboard-support',
-  imports: [...GUIDE_COMPONENTS, RevealOnScrollDirective],
+  imports: [RevealOnScrollDirective, ScrollToDirective],
   templateUrl: './mojoclipboard-support.component.html',
+  styleUrl: './mojoclipboard-support.component.scss',
 })
 export class MojoClipboardSupportComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
   private readonly language = inject(LanguageService);
   private readonly jsonLdId = 'mojoclipboard-support-schema';
 
-  get lang(): GuideLang {
-    return this.language.lang();
+  get lang(): PageLang {
+    return this.language.lang() === 'en' ? 'en' : 'de';
   }
 
   t(de: string, en: string): string {
     return this.language.t(de, en);
   }
 
-  get stats(): GuideStat[] {
-    return [
-      { value: this.t('Gratis', 'Free'), label: this.t('Preis, für immer', 'Price, forever'), animate: false },
-      { value: '0', label: this.t('Daten, die die App sammelt', 'Data the app collects') },
-      { value: 'macOS 14+', label: this.t('Sonoma oder neuer', 'Sonoma or later'), animate: false },
-    ];
-  }
+  readonly stats: Stat[] = [
+    { value_de: 'Gratis', value_en: 'Free', label_de: 'Preis, für immer', label_en: 'Price, forever' },
+    { value_de: '0', value_en: '0', label_de: 'gesammelte Daten', label_en: 'data collected' },
+    { value_de: 'macOS 14+', value_en: 'macOS 14+', label_de: 'Sonoma oder neuer', label_en: 'Sonoma or later' },
+  ];
 
-  get toc(): GuideTocItem[] {
-    return [
-      { id: 'was', label: this.t('Was die App macht', 'What it does') },
-      { id: 'so-gehts', label: this.t('So benutzt du es', 'How to use it') },
-      { id: 'funktionen', label: this.t('Funktionen', 'Features') },
-      { id: 'datenschutz', label: this.t('Datenschutz', 'Privacy') },
-      { id: 'faq', label: this.t('Häufige Fragen', 'FAQ') },
-      { id: 'kontakt', label: this.t('Kontakt', 'Contact') },
-    ];
-  }
+  readonly features: Feature[] = [
+    { icon: '📋', de: 'Verlauf für Text, Bilder und Dateien', en: 'History for text, images and files' },
+    { icon: '⌨️', de: 'Vollständige Tastaturnavigation, ganz ohne Maus', en: 'Full keyboard navigation, no mouse needed' },
+    { icon: '⚡', de: 'Globales Kürzel ⌃⌘V, überall verfügbar', en: 'Global ⌃⌘V shortcut, available everywhere' },
+    { icon: '📏', de: 'Einstellbare Verlaufslänge und Größenlimit pro Eintrag', en: 'Adjustable history length and per-item size limit' },
+    { icon: '🚀', de: 'Optional „Beim Anmelden starten“', en: 'Optional “Launch at Login”' },
+    { icon: '🛡️', de: 'Überspringt automatisch Passwort-Manager- und flüchtige Kopien', en: 'Automatically skips password-manager and transient copies' },
+    { icon: '🪶', de: 'Leichtgewichtig und unaufdringlich in der Menüleiste', en: 'Lightweight and unobtrusive in the menu bar' },
+    { icon: '🆓', de: 'Kostenlos', en: 'Free' },
+  ];
 
   // Drives both the visible FAQ accordion and the FAQPage JSON-LD below —
   // keep the two in sync by editing here only.

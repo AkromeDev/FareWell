@@ -1,323 +1,327 @@
-<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
-  <app-guide-progress />
-
-  <!-- Der Hero erbt sonst das Salon-Foto (studio.webp). Bis ein app-eigenes Bild
-       vorliegt, bleibt es dekorativer Marken-Hintergrund mit leerem alt.
-       TODO: Für einen MojoClipboard-Screenshot [image]="'assets/images/mojoclipboard/hero.webp'"
-       und [imageAlt]="t('…','…')" setzen. -->
-  <app-guide-hero
-    [kicker]="t('Kostenlose macOS App · Support', 'Free macOS app · Support')"
-    heading="MojoClipboard"
-    [tagline]="t('Zwischenablage-Verlauf für deinen Mac.', 'Clipboard history for your Mac.')"
-    [lead]="
-      t(
-        'Drück überall ⌃⌘V, sieh deine zuletzt kopierten Inhalte, wähl einen aus – und füg ihn mit ⌘V ein.',
-        'Press ⌃⌘V anywhere, see what you recently copied, pick one — and paste it with ⌘V.'
-      )
-    "
-    [imageAlt]="''"
-  />
-
-  <app-guide-stats [stats]="stats" />
-
-  <div class="gd-wrap">
-    <div class="gd-intro">
-      <div class="gd-read">
-        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
-        <p class="gd-lede" appReveal [revealDelay]="60">
-          <span class="lang de">
-            Wie <kbd>Win</kbd> + <kbd>V</kbd> unter Windows, aber für den Mac – und ohne dass je
-            etwas dein Gerät verlässt.
-          </span>
-          <span class="lang en">
-            Like <kbd>Win</kbd> + <kbd>V</kbd> on Windows, but for the Mac — and without anything
-            ever leaving your device.
-          </span>
-        </p>
+<div class="mojo" [attr.data-lang]="lang" [attr.lang]="lang">
+  <!-- ===================== HERO ===================== -->
+  <header class="mojo-hero">
+    <div class="mojo-hero__glow" aria-hidden="true"></div>
+    <div class="mojo-shell mojo-hero__inner">
+      <span class="mojo-eyebrow" appReveal>{{ t('Kostenlose macOS-App · Support', 'Free macOS app · Support') }}</span>
+      <h1 class="mojo-hero__title" appReveal [revealDelay]="80">MojoClipboard</h1>
+      <p class="mojo-hero__tagline" appReveal [revealDelay]="140">
+        <span class="lang de">Zwischenablage-Verlauf für deinen Mac.</span>
+        <span class="lang en">Clipboard history for your Mac.</span>
+      </p>
+      <p class="mojo-hero__lead" appReveal [revealDelay]="200">
+        <span class="lang de">
+          Drück überall <kbd>⌃⌘V</kbd>, sieh deine zuletzt kopierten Inhalte, wähl einen aus – und
+          füg ihn mit <kbd>⌘V</kbd> ein.
+        </span>
+        <span class="lang en">
+          Press <kbd>⌃⌘V</kbd> anywhere, see what you recently copied, pick one — and paste it with
+          <kbd>⌘V</kbd>.
+        </span>
+      </p>
+      <div class="mojo-hero__cta" appReveal [revealDelay]="260">
+        <!-- TODO: href durch die echte Mac-App-Store-URL (inkl. App-ID) ersetzen. -->
+        <a class="mojo-btn mojo-btn--primary" href="#TODO-mac-app-store-url">
+          <span class="lang de">Im Mac App Store laden</span>
+          <span class="lang en">Download on the Mac App Store</span>
+        </a>
+        <a class="mojo-btn mojo-btn--ghost" href="#funktionen" appScrollTo="funktionen">
+          <span class="lang de">Funktionen ansehen</span>
+          <span class="lang en">See the features</span>
+        </a>
       </div>
-      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
     </div>
 
-    <app-guide-section
-      index="01"
-      [heading]="t('Was die App macht', 'What it does')"
-      sectionId="was"
-    >
-      <div class="gd-read">
-        <p appReveal>
-          <span class="lang de">
-            MojoClipboard ist eine leichtgewichtige Menüleisten-App für macOS 14 (Sonoma) und
-            neuer. Drück überall <kbd>⌃⌘V</kbd> (Control-Command-V), und ein schwebendes Fenster
-            zeigt deine zuletzt kopierten Einträge.
-          </span>
-          <span class="lang en">
-            MojoClipboard is a lightweight menu-bar app for macOS 14 (Sonoma) and later. Press
-            <kbd>⌃⌘V</kbd> (Control-Command-V) anywhere and a floating panel shows your recently
-            copied items.
-          </span>
-        </p>
-        <p appReveal [revealDelay]="60">
-          <span class="lang de">
-            Wähl einen Eintrag aus, und er liegt sofort auf deiner Zwischenablage – bereit zum
-            Einfügen mit <kbd>⌘V</kbd>. Text, Bilder und Dateien werden gleichermaßen unterstützt.
-          </span>
-          <span class="lang en">
-            Pick an item and it is placed on your clipboard right away — ready to paste with
-            <kbd>⌘V</kbd>. Text, images and files are all supported.
-          </span>
-        </p>
-      </div>
-    </app-guide-section>
-
-    <app-guide-section
-      index="02"
-      [heading]="t('So benutzt du es', 'How to use it')"
-      sectionId="so-gehts"
-    >
-      <div class="gd-read">
-        <app-guide-steps>
-          <li>
-            <span class="lang de">
-              <strong>Installieren & starten.</strong> Lade MojoClipboard aus dem Mac App Store
-              und starte es. Ein kleines Symbol erscheint oben rechts in der Menüleiste. Optional
-              aktivierst du „Beim Anmelden starten“.
-            </span>
-            <span class="lang en">
-              <strong>Install & launch.</strong> Get MojoClipboard from the Mac App Store and
-              launch it. A small icon appears in the menu bar, top right. Optionally turn on
-              “Launch at Login”.
-            </span>
-          </li>
-          <li>
-            <span class="lang de">
-              <strong>Verlauf öffnen.</strong> Drück überall <kbd>⌃⌘V</kbd> (Control-Command-V).
-              Ein schwebendes Fenster mit deinen letzten Kopien öffnet sich.
-            </span>
-            <span class="lang en">
-              <strong>Open your history.</strong> Press <kbd>⌃⌘V</kbd> (Control-Command-V) anywhere.
-              A floating panel of your recent copies opens.
-            </span>
-          </li>
-          <li>
-            <span class="lang de">
-              <strong>Navigieren.</strong> Blättere mit den Pfeiltasten <kbd>↑</kbd> <kbd>↓</kbd>
-              durch die Einträge.
-            </span>
-            <span class="lang en">
-              <strong>Navigate.</strong> Move through the items with the <kbd>↑</kbd> <kbd>↓</kbd>
-              arrow keys.
-            </span>
-          </li>
-          <li>
-            <span class="lang de">
-              <strong>Auswählen.</strong> Drück <kbd>Return</kbd>, um einen Eintrag zu wählen – er
-              landet auf deiner Zwischenablage.
-            </span>
-            <span class="lang en">
-              <strong>Choose.</strong> Press <kbd>Return</kbd> to pick an item — it is placed on
-              your clipboard.
-            </span>
-          </li>
-          <li>
-            <span class="lang de">
-              <strong>Einfügen.</strong> Füg ihn wie gewohnt mit <kbd>⌘V</kbd> ein.
-            </span>
-            <span class="lang en">
-              <strong>Paste.</strong> Paste it as usual with <kbd>⌘V</kbd>.
-            </span>
-          </li>
-        </app-guide-steps>
-
-        <app-guide-note variant="tip" [label]="t('Einstellungen', 'Settings')">
-          <span class="lang de">
-            Über das Menüleisten-Symbol erreichst du alle Einstellungen: Tastenkürzel,
-            Verlaufslänge, Größenlimit pro Eintrag und „Beim Anmelden starten“.
-          </span>
-          <span class="lang en">
-            The menu-bar icon opens every setting: the shortcut, history length, per-item size
-            limit and “Launch at Login”.
-          </span>
-        </app-guide-note>
-      </div>
-    </app-guide-section>
-
-    <app-guide-section
-      index="03"
-      [heading]="t('Funktionen', 'Features')"
-      sectionId="funktionen"
-    >
-      <div class="gd-read">
-        <ul class="gd-ticks" appReveal>
-          <li>
-            <span class="lang de">Verlauf für Text, Bilder und Dateien.</span>
-            <span class="lang en">History for text, images and files.</span>
-          </li>
-          <li>
-            <span class="lang de">Vollständige Tastaturnavigation – ganz ohne Maus.</span>
-            <span class="lang en">Full keyboard navigation — no mouse needed.</span>
-          </li>
-          <li>
-            <span class="lang de">Globales Kürzel <kbd>⌃⌘V</kbd>, überall verfügbar.</span>
-            <span class="lang en">Global <kbd>⌃⌘V</kbd> shortcut, available everywhere.</span>
-          </li>
-          <li>
-            <span class="lang de">Einstellbare Verlaufslänge und Größenlimit pro Eintrag.</span>
-            <span class="lang en">Adjustable history length and per-item size limit.</span>
-          </li>
-          <li>
-            <span class="lang de">Optional „Beim Anmelden starten“.</span>
-            <span class="lang en">Optional “Launch at Login”.</span>
-          </li>
-          <li>
-            <span class="lang de">Überspringt automatisch Passwort-Manager- und flüchtige Kopien.</span>
-            <span class="lang en">Automatically skips password-manager and transient copies.</span>
-          </li>
-          <li>
-            <span class="lang de">Leichtgewichtig und unaufdringlich in der Menüleiste.</span>
-            <span class="lang en">Lightweight and unobtrusive in the menu bar.</span>
-          </li>
-          <li>
-            <span class="lang de">Kostenlos.</span>
-            <span class="lang en">Free.</span>
-          </li>
-        </ul>
-      </div>
-    </app-guide-section>
-
-    <app-guide-section
-      index="04"
-      [heading]="t('Datenschutz', 'Privacy')"
-      sectionId="datenschutz"
-    >
-      <div class="gd-read">
-        <app-guide-note variant="win" [label]="t('Datenschutz zuerst', 'Privacy first')">
-          <span class="lang de">
-            Deine Zwischenablage bleibt nur im Arbeitsspeicher. Nichts wird auf die Festplatte
-            geschrieben, nichts über ein Netzwerk gesendet.
-          </span>
-          <span class="lang en">
-            Your clipboard stays in memory only. Nothing is written to disk, nothing is sent over
-            any network.
-          </span>
-        </app-guide-note>
-
-        <ul class="gd-ticks" appReveal>
-          <li>
-            <span class="lang de">
-              Inhalte leben nur im Arbeitsspeicher und werden nie auf die Festplatte geschrieben.
-            </span>
-            <span class="lang en">
-              Contents live in memory only and are never written to disk.
-            </span>
-          </li>
-          <li>
-            <span class="lang de">
-              Nichts verlässt dein Gerät: keine Server, keine Cloud, keine Netzwerkverbindungen.
-            </span>
-            <span class="lang en">
-              Nothing leaves your device: no servers, no cloud, no network connections.
-            </span>
-          </li>
-          <li>
-            <span class="lang de">Kein Tracking und keine Analyse.</span>
-            <span class="lang en">No tracking and no analytics.</span>
-          </li>
-          <li>
-            <span class="lang de">Der Verlauf wird gelöscht, sobald du die App beendest.</span>
-            <span class="lang en">The history clears the moment you quit the app.</span>
-          </li>
-          <li>
-            <span class="lang de">
-              Passwort-Manager- und flüchtige Kopien werden automatisch übersprungen.
-            </span>
-            <span class="lang en">
-              Password-manager and transient copies are skipped automatically.
-            </span>
-          </li>
-          <li>
-            <span class="lang de"><strong>MojoClipboard sammelt keinerlei Daten.</strong></span>
-            <span class="lang en"><strong>MojoClipboard collects no data whatsoever.</strong></span>
-          </li>
-        </ul>
-
-        <p class="gd-fine" appReveal>
-          <span class="lang de">
-            Kein Konto, keine Registrierung – nur der Zugriff auf die Zwischenablage, den die App
-            zum Funktionieren braucht.
-          </span>
-          <span class="lang en">
-            No account, no sign-up — just the clipboard access the app needs to work.
-          </span>
-        </p>
-      </div>
-    </app-guide-section>
-
-    <app-guide-section
-      index="05"
-      [heading]="t('Häufige Fragen', 'Frequently asked questions')"
-      sectionId="faq"
-    >
-      @for (f of faqs; track f.id) {
-        <app-faq-item [question]="t(f.q_de, f.q_en)" [open]="$first">
-          <p class="lang de">{{ f.a_de }}</p>
-          <p class="lang en">{{ f.a_en }}</p>
-        </app-faq-item>
+    <div class="mojo-shell mojo-trust" appReveal [revealDelay]="140">
+      @for (s of stats; track s.label_en) {
+        <div class="mojo-trust__item">
+          <span class="mojo-trust__n">{{ t(s.value_de, s.value_en) }}</span>
+          <span class="mojo-trust__l">{{ t(s.label_de, s.label_en) }}</span>
+        </div>
       }
-    </app-guide-section>
+    </div>
+  </header>
 
-    <app-guide-section
-      index="06"
-      [heading]="t('Kontakt', 'Contact')"
-      sectionId="kontakt"
-    >
-      <div class="gd-read">
-        <p appReveal>
-          <span class="lang de">
-            Fragen, Feedback oder ein Problem? Schreib uns – wir helfen gern weiter.
-          </span>
-          <span class="lang en">
-            Questions, feedback or a problem? Get in touch — we are happy to help.
-          </span>
-        </p>
-        <p appReveal [revealDelay]="60">
-          <span class="lang de">
-            E-Mail: <a href="mailto:farewellgmbh@gmail.com">farewellgmbh&#64;gmail.com</a>
-          </span>
-          <span class="lang en">
-            Email: <a href="mailto:farewellgmbh@gmail.com">farewellgmbh&#64;gmail.com</a>
-          </span>
-        </p>
+  <main>
+    <!-- ===================== WHAT IT DOES ===================== -->
+    <section class="mojo-section" id="was">
+      <div class="mojo-shell mojo-split">
+        <div class="mojo-split__copy">
+          <span class="mojo-kicker" appReveal>{{ t('Überblick', 'Overview') }}</span>
+          <h2 appReveal [revealDelay]="40">{{ t('Was die App macht', 'What it does') }}</h2>
+          <p appReveal [revealDelay]="80">
+            <span class="lang de">
+              MojoClipboard ist eine leichtgewichtige Menüleisten-App für macOS 14 (Sonoma) und
+              neuer. Drück überall <kbd>⌃⌘V</kbd>, und ein schwebendes Fenster zeigt deine zuletzt
+              kopierten Einträge.
+            </span>
+            <span class="lang en">
+              MojoClipboard is a lightweight menu-bar app for macOS 14 (Sonoma) and later. Press
+              <kbd>⌃⌘V</kbd> anywhere and a floating panel shows your recently copied items.
+            </span>
+          </p>
+          <p appReveal [revealDelay]="120">
+            <span class="lang de">
+              Wähl einen aus, und er liegt sofort auf deiner Zwischenablage – bereit zum Einfügen
+              mit <kbd>⌘V</kbd>. Text, Bilder und Dateien werden gleichermaßen unterstützt.
+            </span>
+            <span class="lang en">
+              Pick one and it is placed on your clipboard right away — ready to paste with
+              <kbd>⌘V</kbd>. Text, images and files are all supported.
+            </span>
+          </p>
+        </div>
 
-        <app-guide-note variant="tip" [label]="t('Entwicklung unterstützen', 'Support development')">
-          <span class="lang de">
-            MojoClipboard ist kostenlos und bleibt es. Wenn dir die App den Alltag erleichtert,
-            kannst du die Weiterentwicklung mit einer kleinen Spende unterstützen:
-            <!-- TODO: href durch deinen echten Spendenlink ersetzen (z. B. Ko-fi, Buy Me a Coffee, PayPal.me). -->
-            <a href="#TODO-spendenlink" target="_blank" rel="noopener noreferrer">jetzt spenden</a>.
-          </span>
-          <span class="lang en">
-            MojoClipboard is free and always will be. If it makes your day easier, you can support
-            its development with a small donation:
-            <!-- TODO: replace the href with your real donation link (e.g. Ko-fi, Buy Me a Coffee, PayPal.me). -->
-            <a href="#TODO-donation-link" target="_blank" rel="noopener noreferrer">donate here</a>.
-          </span>
-        </app-guide-note>
+        <div class="mojo-mock" appReveal="right" [revealDelay]="120" aria-hidden="true">
+          <div class="mojo-mock__bar"><span></span><span></span><span></span></div>
+          <div class="mojo-mock__title">MojoClipboard · ⌃⌘V</div>
+          <div class="mojo-mock__row mojo-mock__row--sel"><i>📝</i> Meeting notes — „Let's ship Tuesday…"</div>
+          <div class="mojo-mock__row"><i>🔗</i> https://farewell.salon</div>
+          <div class="mojo-mock__row"><i>🖼️</i> Screenshot 2026-07-18.png</div>
+          <div class="mojo-mock__row"><i>📄</i> invoice-mojo.pdf</div>
+        </div>
       </div>
-    </app-guide-section>
+    </section>
 
-    <!-- TODO: instagramHref durch die echte Mac-App-Store-URL (inkl. App-ID) ersetzen. -->
-    <app-guide-cta
-      [heading]="t('Noch Fragen?', 'Still have questions?')"
-      [bookingLabel]="t('E-Mail an den Support', 'Email support')"
-      bookingHref="mailto:farewellgmbh@gmail.com"
-      [instagramLabel]="t('Im Mac App Store ansehen', 'View on the Mac App Store')"
-      instagramHref="#TODO-mac-app-store-url"
-      tagline=""
-    >
-      <span class="lang de">Schreib uns jederzeit – wir helfen dir gern weiter.</span>
-      <span class="lang en">Reach out any time — we are happy to help.</span>
-    </app-guide-cta>
-  </div>
+    <!-- ===================== HOW TO USE ===================== -->
+    <section class="mojo-section mojo-section--alt" id="so-gehts">
+      <div class="mojo-shell">
+        <div class="mojo-sec-head" appReveal>
+          <span class="mojo-kicker">{{ t('Einrichtung', 'Set-up') }}</span>
+          <h2>{{ t('So benutzt du es', 'How to use it') }}</h2>
+          <p>
+            <span class="lang de">Von der Installation bis zum ersten Einfügen – in fünf Schritten.</span>
+            <span class="lang en">From install to your first paste — in five steps.</span>
+          </p>
+        </div>
 
-  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+        <div class="mojo-steps">
+          <div class="mojo-step" appReveal>
+            <div class="mojo-step__body">
+              <span class="lang de">
+                <strong>Installieren &amp; starten.</strong> Lade MojoClipboard aus dem Mac App Store
+                und starte es. Ein kleines Symbol erscheint oben rechts in der Menüleiste.
+              </span>
+              <span class="lang en">
+                <strong>Install &amp; launch.</strong> Get MojoClipboard from the Mac App Store and
+                launch it. A small icon appears in the menu bar, top right.
+              </span>
+            </div>
+          </div>
+          <div class="mojo-step" appReveal [revealDelay]="60">
+            <div class="mojo-step__body">
+              <span class="lang de">
+                <strong>Verlauf öffnen.</strong> Drück überall <kbd>⌃⌘V</kbd> (Control-Command-V). Ein
+                schwebendes Fenster mit deinen letzten Kopien öffnet sich.
+              </span>
+              <span class="lang en">
+                <strong>Open your history.</strong> Press <kbd>⌃⌘V</kbd> (Control-Command-V) anywhere.
+                A floating panel of your recent copies opens.
+              </span>
+            </div>
+          </div>
+          <div class="mojo-step" appReveal [revealDelay]="120">
+            <div class="mojo-step__body">
+              <span class="lang de">
+                <strong>Navigieren.</strong> Blättere mit den Pfeiltasten <kbd>↑</kbd> <kbd>↓</kbd>
+                durch die Einträge.
+              </span>
+              <span class="lang en">
+                <strong>Navigate.</strong> Move through the items with the <kbd>↑</kbd> <kbd>↓</kbd>
+                arrow keys.
+              </span>
+            </div>
+          </div>
+          <div class="mojo-step" appReveal [revealDelay]="180">
+            <div class="mojo-step__body">
+              <span class="lang de">
+                <strong>Auswählen.</strong> Drück <kbd>Return</kbd>, um einen Eintrag zu wählen – er
+                landet auf deiner Zwischenablage.
+              </span>
+              <span class="lang en">
+                <strong>Choose.</strong> Press <kbd>Return</kbd> to pick an item — it is placed on
+                your clipboard.
+              </span>
+            </div>
+          </div>
+          <div class="mojo-step" appReveal [revealDelay]="240">
+            <div class="mojo-step__body">
+              <span class="lang de">
+                <strong>Einfügen.</strong> Füg ihn wie gewohnt mit <kbd>⌘V</kbd> ein.
+              </span>
+              <span class="lang en">
+                <strong>Paste.</strong> Paste it as usual with <kbd>⌘V</kbd>.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mojo-note" appReveal>
+          <span class="lang de">
+            <b>Einstellungen:</b> Über das Menüleisten-Symbol erreichst du alle Einstellungen –
+            Tastenkürzel, Verlaufslänge, Größenlimit pro Eintrag und „Beim Anmelden starten“.
+          </span>
+          <span class="lang en">
+            <b>Settings:</b> The menu-bar icon opens every setting — the shortcut, history length,
+            per-item size limit and “Launch at Login”.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section class="mojo-section" id="funktionen">
+      <div class="mojo-shell">
+        <div class="mojo-sec-head" appReveal>
+          <span class="mojo-kicker">{{ t('Funktionen', 'Features') }}</span>
+          <h2>{{ t('Alles dabei, nichts zu viel', 'Everything you need, nothing you don’t') }}</h2>
+        </div>
+        <div class="mojo-features">
+          @for (f of features; track f.en; let i = $index) {
+            <div class="mojo-feature" appReveal [revealDelay]="(i % 4) * 60">
+              <div class="mojo-feature__ico" aria-hidden="true">{{ f.icon }}</div>
+              <p>{{ t(f.de, f.en) }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRIVACY ===================== -->
+    <section class="mojo-section mojo-section--alt" id="datenschutz">
+      <div class="mojo-shell">
+        <div class="mojo-privacy" appReveal="scale">
+          <div class="mojo-privacy__head">
+            <span class="mojo-lock" aria-hidden="true">🔒</span>
+            <h3>
+              <span class="lang de">Datenschutz zuerst</span>
+              <span class="lang en">Privacy first</span>
+            </h3>
+          </div>
+          <p class="mojo-privacy__lead">
+            <span class="lang de">
+              Deine Zwischenablage bleibt nur im Arbeitsspeicher. Nichts wird auf die Festplatte
+              geschrieben, nichts über ein Netzwerk gesendet.
+            </span>
+            <span class="lang en">
+              Your clipboard stays in memory only. Nothing is written to disk, nothing is sent over
+              any network.
+            </span>
+          </p>
+          <ul class="mojo-privacy__list">
+            <li>
+              <span class="lang de">Inhalte leben nur im Arbeitsspeicher und werden nie auf die Festplatte geschrieben.</span>
+              <span class="lang en">Contents live in memory only and are never written to disk.</span>
+            </li>
+            <li>
+              <span class="lang de">Nichts verlässt dein Gerät: keine Server, keine Cloud, keine Netzwerkverbindungen.</span>
+              <span class="lang en">Nothing leaves your device: no servers, no cloud, no network connections.</span>
+            </li>
+            <li>
+              <span class="lang de">Kein Tracking und keine Analyse.</span>
+              <span class="lang en">No tracking and no analytics.</span>
+            </li>
+            <li>
+              <span class="lang de">Der Verlauf wird gelöscht, sobald du die App beendest.</span>
+              <span class="lang en">The history clears the moment you quit the app.</span>
+            </li>
+            <li>
+              <span class="lang de">Passwort-Manager- und flüchtige Kopien werden automatisch übersprungen.</span>
+              <span class="lang en">Password-manager and transient copies are skipped automatically.</span>
+            </li>
+            <li>
+              <span class="lang de"><b>MojoClipboard sammelt keinerlei Daten.</b></span>
+              <span class="lang en"><b>MojoClipboard collects no data whatsoever.</b></span>
+            </li>
+          </ul>
+          <p class="mojo-privacy__fine">
+            <span class="lang de">Kein Konto, keine Registrierung – nur der Zugriff auf die Zwischenablage, den die App zum Funktionieren braucht.</span>
+            <span class="lang en">No account, no sign-up — just the clipboard access the app needs to work.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="mojo-section" id="faq">
+      <div class="mojo-shell">
+        <div class="mojo-sec-head" appReveal>
+          <span class="mojo-kicker">FAQ</span>
+          <h2>{{ t('Häufige Fragen', 'Frequently asked questions') }}</h2>
+        </div>
+        <div class="mojo-faq">
+          @for (f of faqs; track f.id) {
+            <details class="mojo-faq__item" [open]="$first">
+              <summary>{{ t(f.q_de, f.q_en) }}</summary>
+              <div class="mojo-faq__body">
+                <p class="lang de">{{ f.a_de }}</p>
+                <p class="lang en">{{ f.a_en }}</p>
+              </div>
+            </details>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT + SUPPORT ===================== -->
+    <section class="mojo-section mojo-section--alt" id="kontakt">
+      <div class="mojo-shell">
+        <div class="mojo-sec-head" appReveal>
+          <span class="mojo-kicker">{{ t('Kontakt', 'Contact') }}</span>
+          <h2>{{ t('Melde dich', 'Get in touch') }}</h2>
+        </div>
+        <div class="mojo-contact">
+          <div class="mojo-panel" appReveal>
+            <h3>{{ t('Support', 'Support') }}</h3>
+            <p>
+              <span class="lang de">Fragen, Feedback oder ein Problem? Schreib uns – wir helfen gern weiter.</span>
+              <span class="lang en">Questions, feedback or a problem? Get in touch — we are happy to help.</span>
+            </p>
+            <p class="mojo-mail"><a href="mailto:farewellgmbh@gmail.com">farewellgmbh&#64;gmail.com</a></p>
+          </div>
+          <div class="mojo-panel mojo-panel--accent" appReveal [revealDelay]="80">
+            <h3>
+              <span class="lang de">Entwicklung unterstützen</span>
+              <span class="lang en">Support development</span>
+            </h3>
+            <p>
+              <span class="lang de">MojoClipboard ist kostenlos und bleibt es. Wenn dir die App den Alltag erleichtert, kannst du die Weiterentwicklung mit einer kleinen Spende unterstützen.</span>
+              <span class="lang en">MojoClipboard is free and always will be. If it makes your day easier, you can support its development with a small donation.</span>
+            </p>
+            <!-- TODO: href durch deinen echten Spendenlink ersetzen (Ko-fi, Buy Me a Coffee, PayPal.me). -->
+            <a class="mojo-btn mojo-btn--ghost" href="#TODO-spendenlink" target="_blank" rel="noopener noreferrer">
+              <span class="lang de">Jetzt spenden</span>
+              <span class="lang en">Donate</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CLOSING CTA ===================== -->
+    <section class="mojo-cta">
+      <div class="mojo-cta__glow" aria-hidden="true"></div>
+      <div class="mojo-shell mojo-cta__inner">
+        <h2 appReveal>
+          <span class="lang de">Nie wieder verlieren, was du kopiert hast.</span>
+          <span class="lang en">Never lose what you copied again.</span>
+        </h2>
+        <p appReveal [revealDelay]="60">
+          <span class="lang de">Hol dir den Zwischenablage-Verlauf, den macOS vermissen lässt – kostenlos und datenschutzfreundlich.</span>
+          <span class="lang en">Get the clipboard history macOS is missing — free and privacy-friendly.</span>
+        </p>
+        <div class="mojo-cta__actions" appReveal [revealDelay]="120">
+          <!-- TODO: href durch die echte Mac-App-Store-URL ersetzen. -->
+          <a class="mojo-btn mojo-btn--primary" href="#TODO-mac-app-store-url">
+            <span class="lang de">Im Mac App Store laden</span>
+            <span class="lang en">Download on the Mac App Store</span>
+          </a>
+          <a class="mojo-btn mojo-btn--ghost" href="mailto:farewellgmbh@gmail.com">
+            <span class="lang de">Support kontaktieren</span>
+            <span class="lang en">Contact support</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </div>
