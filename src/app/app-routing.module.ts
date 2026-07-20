@@ -341,11 +341,11 @@ function localizedRoutes(lang: PageLang): Routes {
       data: d(
         {
           title: 'Laser-Haarentfernung in Nürnberg: 75% Rabatt für Neukund:innen | FareWell',
-          description: 'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 75% Rabatt auf die erste Laser-Behandlung (max. 2 Zonen) mit dem Code FIRSTLASER, gültig bis 15.08.'
+          description: 'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 75% Rabatt auf die erste Laser-Behandlung (max. 2 Zonen) mit dem Code FIRSTLASER75, gültig bis 15.08.'
         },
         {
           title: 'Laser Hair Removal in Nuremberg: 75% Off for New Clients | FareWell',
-          description: 'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg. 75% off your first laser treatment (max. 2 areas) with the code FIRSTLASER, valid until 15 Aug.'
+          description: 'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg. 75% off your first laser treatment (max. 2 areas) with the code FIRSTLASER75, valid until 15 Aug.'
         }
       )
     },
