@@ -32,7 +32,10 @@
 
   position: relative;
   isolation: isolate;
-  overflow: hidden; // contain the hero glows, no horizontal scroll
+  // Glows einfangen, ohne einen Scroll-Container zu erzeugen: `hidden` würde
+  // position:sticky in der Statistik-Sektion lahmlegen, `clip` nicht.
+  overflow: hidden;
+  overflow: clip;
   background: var(--m-bg);
   color: var(--m-text);
   font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
@@ -339,6 +342,11 @@
     margin: 1rem 0 0;
     font-size: 1.1rem;
     color: var(--m-text);
+  }
+
+  // In der gepinnten Statistik-Sektion übernimmt deren Flex-Gap den Abstand.
+  &--stats {
+    margin-bottom: 0;
   }
 }
 

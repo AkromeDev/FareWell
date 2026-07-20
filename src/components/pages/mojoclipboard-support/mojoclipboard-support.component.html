@@ -186,6 +186,17 @@
       </div>
     </section>
 
+    <!-- ===================== STATS (Fathom-style pinned scroll) ===================== -->
+    <app-stats-scroll [theme]="'dark'" [gridColors]="statsGridColors" [items]="statsScrollItems">
+      <div class="mojo-sec-head mojo-sec-head--stats" statsScrollHead>
+        <span class="mojo-kicker">{{ t('Warum MojoClipboard', 'Why MojoClipboard') }}</span>
+        <h2>
+          <span class="lang de">Kopieren ohne Kompromisse</span>
+          <span class="lang en">Copy without compromise</span>
+        </h2>
+      </div>
+    </app-stats-scroll>
+
     <!-- ===================== PRIVACY ===================== -->
     <section class="mojo-section mojo-section--alt" id="datenschutz">
       <div class="mojo-shell">

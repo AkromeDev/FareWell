@@ -502,7 +502,12 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'enabled'
+      scrollPositionRestoration: 'enabled',
+      // Fragment-Deeplinks (…#datenschutz) sollen zur Sektion springen statt
+      // an den Seitenanfang. Offset entspricht dem festen Header (vgl.
+      // scroll-padding-top/-margin-top im CSS).
+      anchorScrolling: 'enabled',
+      scrollOffset: [0, 96]
     })
   ],
   exports: [RouterModule]

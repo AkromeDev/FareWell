@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
+import { StatsScrollComponent, StatsScrollItem } from 'src/components/molecules/stats-scroll/stats-scroll.component';
 import { SeoService } from 'src/services/seo.service';
 import { LanguageService } from 'src/services/language.service';
 
@@ -40,7 +41,7 @@ interface Faq {
 @Component({
   standalone: true,
   selector: 'app-mojoclipboard-support',
-  imports: [RevealOnScrollDirective, ScrollToDirective],
+  imports: [RevealOnScrollDirective, ScrollToDirective, StatsScrollComponent],
   templateUrl: './mojoclipboard-support.component.html',
   styleUrl: './mojoclipboard-support.component.scss',
 })
@@ -62,6 +63,38 @@ export class MojoClipboardSupportComponent implements OnInit, OnDestroy {
     { value_de: '0', value_en: '0', label_de: 'gesammelte Daten', label_en: 'data collected' },
     { value_de: 'macOS 14+', value_en: 'macOS 14+', label_de: 'Sonoma oder neuer', label_en: 'Sonoma or later' },
   ];
+
+  /** Farbverlauf des Hover-Rasters in der Statistik-Sektion (Seitenpalette). */
+  readonly statsGridColors = ['#7d6bff', '#4f9bff', '#4ad6a0', '#7d6bff'];
+
+  get statsScrollItems(): StatsScrollItem[] {
+    return [
+      {
+        value: this.t('Gratis', 'Free'),
+        caption: this.t(
+          'für immer – ohne Abo und ohne In-App-Käufe',
+          'forever — no subscription, no in-app purchases'
+        ),
+        color: 'violet',
+      },
+      {
+        value: this.t('0 Daten', '0 data'),
+        caption: this.t(
+          'gesammelt – nichts verlässt jemals dein Gerät',
+          'collected — nothing ever leaves your device'
+        ),
+        color: 'sky',
+      },
+      {
+        value: '⌃⌘V',
+        caption: this.t(
+          'ein Kürzel für deinen ganzen Zwischenablage-Verlauf',
+          'one shortcut for your whole clipboard history'
+        ),
+        color: 'mint',
+      },
+    ];
+  }
 
   readonly features: Feature[] = [
     { icon: '📋', de: 'Verlauf für Text, Bilder und Dateien', en: 'History for text, images and files' },

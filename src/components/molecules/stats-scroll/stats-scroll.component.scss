@@ -1,0 +1,300 @@
+@use 'themes/theme-entry' as *;
+
+// Ohne .is-animated (SSR, kein JS, reduced motion, kleine Screens) rendert die
+// Sektion als normaler Block im Endzustand. Die Klasse schaltet auf das
+// gepinnte Layout um: 300vh Scrollstrecke, Inhalt klebt einen Viewport lang.
+
+// Kreisdurchmesser (Desktop/Tablet) — auch der Schweif-Überlapp und die
+// Höhenreserve unten hängen davon ab.
+$circle-max: 13.5rem;
+$circle-size: min(26vw, #{$circle-max});
+// Halber Durchmesser: Überlappung Kreis↔Schweif und Reserve in den Höhen-
+// Formeln. Muss die Hälfte von $circle-max sein.
+$circle-half: 6.75rem;
+// Abgedunkeltes $accent-2: Sage selbst schafft mit Ivory-Text kein WCAG AA.
+$sage-deep: #5C6B4A;
+
+// Dunkles Theme (MojoClipboard-Seite): Akzentkreise mit dunkler Schrift —
+// alle drei Kombinationen erfüllen WCAG AA für den Fließtext im Kreis.
+$mojo-ink: #080b15;
+$mojo-violet: #7d6bff;
+$mojo-sky: #4f9bff;
+$mojo-mint: #4ad6a0;
+
+:host {
+  display: block;
+}
+
+.stats-scroll {
+  position: relative;
+  background-color: $light-1;
+  padding: 4rem 1rem 5rem;
+
+  &.is-animated {
+    height: 300vh;
+    padding: 0;
+  }
+
+  // Auf dunklen Seiten scheint der Seitenhintergrund durch.
+  &--dark {
+    background-color: transparent;
+  }
+}
+
+.stats-scroll__sticky {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+
+  .is-animated & {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    padding: calc(70px + 2rem) 1rem clamp(2.5rem, 9vh, 5rem);
+  }
+}
+
+.stats-scroll__grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.stats-scroll__head {
+  position: relative;
+  z-index: 1;
+}
+
+.stats-scroll__row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(1.25rem, 4vw, 2.875rem);
+  width: 100%;
+}
+
+.stats-scroll__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: $circle-size;
+}
+
+.stats-scroll__circle {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 1;
+  will-change: transform, opacity;
+}
+
+.stats-scroll__bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem 1.1rem;
+  border-radius: 50%;
+  text-align: center;
+  transition: transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 350ms ease;
+
+  &:hover {
+    transform: scale(1.06);
+    box-shadow: 0 18px 40px rgba(21, 37, 27, 0.18);
+  }
+}
+
+.stats-scroll__value {
+  margin: 0;
+  font-size: clamp(1.2rem, 0.9rem + 1vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.stats-scroll__caption {
+  margin: 0;
+  font-size: clamp(0.83rem, 0.7rem + 0.4vw, 0.95rem);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+// Der Schweif hängt unter dem Kreis (halbe Kreishöhe überlappt) und läuft
+// transparent aus; die Farbe kommt per Custom Property aus der Farbklasse,
+// weil der Verlauf auf schmalen Screens die Richtung wechselt.
+.stats-scroll__trail {
+  z-index: 1;
+  width: 100%;
+  margin-top: calc(#{$circle-size} * -0.5);
+  opacity: 0.31;
+  transform-origin: center bottom;
+  background: linear-gradient(to bottom, var(--trail-color), transparent);
+}
+
+// Gestaffelte Schweifhöhen nach Position (links → rechts ansteigend). Ziel:
+// der höchste Stapel erreicht ~70 % des gepinnten Viewports; der
+// 100dvh-Abzug deckelt gegen den Kopfbereich (Padding + Titel + Gap), damit
+// bei niedrigen Fenstern nichts abgeschnitten wird. Erste height-Zeile ist
+// der vh-Fallback für Browser ohne dvh.
+@media (min-width: 640px) {
+  .stats-scroll__item:nth-child(1) .stats-scroll__trail {
+    height: clamp(7rem, calc(40vh - #{$circle-half}), 32rem);
+    height: clamp(7rem, min(calc(40dvh - #{$circle-half}), calc(100dvh - 35rem)), 32rem);
+  }
+
+  .stats-scroll__item:nth-child(2) .stats-scroll__trail {
+    height: clamp(10rem, calc(55vh - #{$circle-half}), 43rem);
+    height: clamp(10rem, min(calc(55dvh - #{$circle-half}), calc(100dvh - 32rem)), 43rem);
+  }
+
+  .stats-scroll__item:nth-child(3) .stats-scroll__trail {
+    height: clamp(13rem, calc(70vh - #{$circle-half}), 54rem);
+    height: clamp(13rem, min(calc(70dvh - #{$circle-half}), calc(100dvh - 29rem)), 54rem);
+  }
+}
+
+.is-gold {
+  --trail-color: #{$accent-1};
+
+  .stats-scroll__bubble {
+    background-color: $accent-1;
+    color: $black;
+  }
+}
+
+.is-sage {
+  --trail-color: #{$accent-2};
+
+  .stats-scroll__bubble {
+    background-color: $sage-deep;
+    color: $light-1;
+  }
+}
+
+.is-emerald {
+  --trail-color: #{$dark-1};
+
+  .stats-scroll__bubble {
+    background-color: $dark-1;
+    color: $light-1;
+  }
+}
+
+.is-violet {
+  --trail-color: #{$mojo-violet};
+
+  .stats-scroll__bubble {
+    background-color: $mojo-violet;
+    color: $mojo-ink;
+  }
+}
+
+.is-sky {
+  --trail-color: #{$mojo-sky};
+
+  .stats-scroll__bubble {
+    background-color: $mojo-sky;
+    color: $mojo-ink;
+  }
+}
+
+.is-mint {
+  --trail-color: #{$mojo-mint};
+
+  .stats-scroll__bubble {
+    background-color: $mojo-mint;
+    color: $mojo-ink;
+  }
+}
+
+.stats-scroll--dark .stats-scroll__bubble:hover {
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+}
+
+// Schmale Screens: Kugel rechts, Schweif als horizontaler Balken dahinter
+// (wie das Original auf Mobil); die Kugeln fliegen von links ein.
+// 639.98px statt 639px, damit keine Bruchteil-Lücke zur Desktop-Query bleibt.
+@media (max-width: 639.98px) {
+  .stats-scroll {
+    padding: 3rem 1rem 3.5rem;
+  }
+
+  // Enger gepackt, damit Kopf + drei Kugeln in 100dvh passen.
+  .is-animated .stats-scroll__sticky {
+    padding: calc(70px + 1rem) 1rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  // Im Pin die Reihe den Restplatz füllen lassen und die Kugeln gleichmäßig
+  // verteilen, statt allen Überschuss als eine Lücke unter dem Kopf zu sammeln.
+  .is-animated .stats-scroll__row {
+    flex: 1 1 auto;
+    justify-content: space-evenly;
+  }
+
+  .stats-scroll__row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+    width: min(100%, 24rem);
+    margin-inline: auto;
+  }
+
+  .stats-scroll__item {
+    position: relative;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: 1.5rem;
+  }
+
+  .stats-scroll__circle {
+    width: 9rem;
+  }
+
+  .stats-scroll__trail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    // Polster + halbe Kugel: der Balken endet unter der Kugelmitte.
+    right: 6rem;
+    height: auto;
+    margin-top: 0;
+    transform-origin: left center;
+    background: linear-gradient(to left, var(--trail-color), transparent);
+  }
+
+  .stats-scroll__item:nth-child(1) .stats-scroll__trail {
+    width: 45%;
+  }
+
+  .stats-scroll__item:nth-child(2) .stats-scroll__trail {
+    width: 65%;
+  }
+
+  .stats-scroll__item:nth-child(3) .stats-scroll__trail {
+    width: 85%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stats-scroll__bubble {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
