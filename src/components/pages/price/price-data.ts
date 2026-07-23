@@ -220,6 +220,8 @@ export const PRICE_TABLES = {
     rows: [
       { de: 'Rücken-Schulter-Nacken-Massage', en: 'Back, shoulder & neck massage', minutes: 45, price: 58 },
       { de: 'Rücken-Schulter-Nacken-Massage', en: 'Back, shoulder & neck massage', minutes: 60, price: 78 },
+      { de: 'Aromaöl-Massage für Rücken, Schulter & Nacken', en: 'Aroma-oil massage for back, shoulder & neck', minutes: 45, price: 78 },
+      { de: 'Aromaöl-Massage für Rücken, Schulter & Nacken', en: 'Aroma-oil massage for back, shoulder & neck', minutes: 60, price: 90 },
       { de: 'Ganzkörpermassage mit Aromaölen', en: 'Full-body massage with aroma oils', minutes: 60, price: 78 },
       { de: 'Ganzkörpermassage mit Aromaölen', en: 'Full-body massage with aroma oils', minutes: 90, price: 120 },
       { de: 'Teilkörpermassage', en: 'Partial-body massage', minutes: 30, price: 45 },

@@ -109,8 +109,8 @@ export class PriceComponent implements OnInit, OnDestroy {
     wellnessMassage: {
       qDe: 'Was kostet eine Wellness-Massage in Nürnberg?',
       qEn: 'How much does a wellness massage cost in Nuremberg?',
-      aDe: 'Wellness-Massagen kosten bei FareWell in Nürnberg ab 45 €: Teilkörpermassage 45 € (30 Min.), Rücken-Schulter-Nacken-Massage 58 € (45 Min.) oder 78 € (60 Min.), Ganzkörpermassage mit Aromaölen 78 € (60 Min.) oder 120 € (90 Min.).',
-      aEn: 'Wellness massages at FareWell in Nuremberg start at €45: partial-body massage €45 (30 min), back, shoulder & neck massage €58 (45 min) or €78 (60 min), full-body massage with aroma oils €78 (60 min) or €120 (90 min).',
+      aDe: 'Wellness-Massagen kosten bei FareWell in Nürnberg ab 45 €: Teilkörpermassage 45 € (30 Min.), Rücken-Schulter-Nacken-Massage 58 € (45 Min.) oder 78 € (60 Min.), Aromaöl-Massage für Rücken, Schulter & Nacken 78 € (45 Min.) oder 90 € (60 Min.), Ganzkörpermassage mit Aromaölen 78 € (60 Min.) oder 120 € (90 Min.).',
+      aEn: 'Wellness massages at FareWell in Nuremberg start at €45: partial-body massage €45 (30 min), back, shoulder & neck massage €58 (45 min) or €78 (60 min), aroma-oil back, shoulder & neck massage €78 (45 min) or €90 (60 min), full-body massage with aroma oils €78 (60 min) or €120 (90 min).',
     },
     therapeutischeMassage: {
       qDe: 'Was kostet eine therapeutische Massage in Nürnberg?',
