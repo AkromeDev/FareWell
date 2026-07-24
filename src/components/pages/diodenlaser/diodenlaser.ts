@@ -85,6 +85,7 @@ export class Diodenlaser implements OnInit, OnDestroy {
 
   get toc(): GuideTocItem[] {
     return [
+      { id: 'angebot', label: this.t('Aktuelle Aktion', 'Current offer') },
       { id: 'was', label: this.t('Was ist ein 4-Wellen-Diodenlaser?', 'What it is') },
       { id: 'funktion', label: this.t('Wie funktioniert es?', 'How it works') },
       { id: 'geeignet', label: this.t('Für wen geeignet?', 'Who it suits') },

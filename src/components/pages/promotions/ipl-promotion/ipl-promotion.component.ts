@@ -15,9 +15,9 @@ const PAGE_PATH = '/ipl-dauerhafte-haarentfernung-aktion-nuernberg';
 const PAGE_TITLE_DE = 'IPL-Haarentfernung in Nürnberg? Die modernere Alternative | FareWell';
 const PAGE_TITLE_EN = 'IPL Hair Removal in Nuremberg? The More Modern Alternative | FareWell';
 const PAGE_DESCRIPTION_DE =
-  'Statt IPL: dauerhafte Haarentfernung mit dem präziseren 4-Wellen-Diodenlaser in Nürnberg. 75% Rabatt auf die erste Behandlung (max. 2 Zonen) mit dem Code ERSTEBEHANDLUNG, gültig bis 15.08.';
+  'Statt IPL: dauerhafte Haarentfernung mit dem präziseren 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG, gültig bis 31.08.2026. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.';
 const PAGE_DESCRIPTION_EN =
-  'Instead of IPL: long-lasting hair removal with the more precise 4-wavelength diode laser in Nuremberg. 75% off your first treatment (max. 2 areas) with the code ERSTEBEHANDLUNG, valid until 15 Aug.';
+  'Instead of IPL: long-lasting hair removal with the more precise 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG, valid until 31 Aug 2026. Up to 30% ongoing discount, the more areas you book.';
 const HERO_IMAGE = 'assets/images/treatment/laser2.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 const HERO_IMAGE_ALT_DE =
@@ -72,7 +72,7 @@ export class IplPromotionComponent implements OnInit, OnDestroy {
         label: this.t('gestützte Hauterkennung', 'assisted skin detection'),
       },
       {
-        value: '75%',
+        value: '50%',
         label: this.t('Rabatt auf deine erste Behandlung', 'off your first treatment'),
       },
       {
@@ -135,8 +135,8 @@ export class IplPromotionComponent implements OnInit, OnDestroy {
           'How much does the first treatment cost with the new-client code?'
         ),
         answer: this.t(
-          'Mit dem Code ERSTEBEHANDLUNG sparst du 75% auf deine erste Behandlung (max. 2 Zonen), gültig bis 15.08. Alle regulären Preise stehen je Körperzone auf unserer Preisseite. Die Erstberatung ist kostenlos und unverbindlich.',
-          'With the code ERSTEBEHANDLUNG you save 75% on your first treatment (max. 2 areas), valid until 15 Aug. All regular prices are listed per body area on our price page. The initial consultation is free and without obligation.'
+          'Mit dem Code ERSTEBEHANDLUNG sparst du 50% auf deine erste Behandlung, gültig bis 31.08.2026. Buchst du mehrere Zonen, bekommst du dauerhaft zusätzlich Rabatt: 10% ab 3 Zonen, 20% ab 4 Zonen und 30% ab 5 Zonen (nicht mit dem Neukunden-Rabatt kombinierbar). Alle regulären Preise stehen je Körperzone auf unserer Preisseite. Die Erstberatung ist kostenlos und unverbindlich.',
+          'With the code ERSTEBEHANDLUNG you save 50% on your first treatment, valid until 31 Aug 2026. If you book several areas, you get an ongoing extra discount: 10% from 3 areas, 20% from 4 areas and 30% from 5 areas (not combinable with the new-client discount). All regular prices are listed per body area on our price page. The initial consultation is free and without obligation.'
         ),
       },
     ];
@@ -168,8 +168,8 @@ export class IplPromotionComponent implements OnInit, OnDestroy {
             'Long-lasting hair removal in Nuremberg: the more modern alternative to IPL'
           ),
           description: this.t(
-            'Dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser statt IPL bei FareWell in Nürnberg. 75% Rabatt auf die erste Behandlung (max. 2 Zonen) für Neukund:innen mit dem Code ERSTEBEHANDLUNG, gültig bis 15.08.',
-            'Long-lasting hair reduction with the 4-wavelength diode laser instead of IPL at FareWell in Nuremberg. 75% off the first treatment (max. 2 areas) for new clients with the code ERSTEBEHANDLUNG, valid until 15 Aug.'
+            'Dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser statt IPL bei FareWell in Nürnberg. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG, gültig bis 31.08.2026. Dauerhaft bis zu 30% Rabatt, je mehr Zonen gebucht werden.',
+            'Long-lasting hair reduction with the 4-wavelength diode laser instead of IPL at FareWell in Nuremberg. 50% off the first treatment for new clients with the code ERSTEBEHANDLUNG, valid until 31 Aug 2026. Up to 30% ongoing discount, the more areas you book.'
           ),
           serviceType: this.t('Dauerhafte Haarentfernung', 'Long-lasting hair removal'),
           areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
@@ -189,16 +189,16 @@ export class IplPromotionComponent implements OnInit, OnDestroy {
           offers: {
             '@type': 'Offer',
             name: this.t(
-              '75% Rabatt auf die erste Behandlung',
-              '75% off your first treatment'
+              '50% Rabatt auf die erste Behandlung',
+              '50% off your first treatment'
             ),
             description: this.t(
-              'Neukundenangebot für die erste Behandlung zur dauerhaften Haarentfernung bei FareWell in Nürnberg, max. 2 Zonen. Code: ERSTEBEHANDLUNG.',
-              'New-client offer for the first long-lasting hair removal treatment at FareWell in Nuremberg, max. 2 areas. Code: ERSTEBEHANDLUNG.'
+              'Neukundenangebot für die erste Behandlung zur dauerhaften Haarentfernung bei FareWell in Nürnberg. Code: ERSTEBEHANDLUNG.',
+              'New-client offer for the first long-lasting hair removal treatment at FareWell in Nuremberg. Code: ERSTEBEHANDLUNG.'
             ),
             url: pageUrl,
             priceCurrency: 'EUR',
-            priceValidUntil: '2026-08-15',
+            priceValidUntil: '2026-08-31',
             availability: 'https://schema.org/InStock',
             eligibleCustomerType: {
               '@type': 'BusinessEntityType',

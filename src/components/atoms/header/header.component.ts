@@ -33,8 +33,6 @@ export class HeaderComponent implements OnInit {
   behandlungenOpen: boolean = false;
   /** Kompakte Kopfzeile (Burger sichtbar), rein fürs Layout-Housekeeping. */
   isMobile: boolean = false;
-  /** Echtes Zeigegerät (Maus/Trackpad), das hovern kann — sonst Touch. */
-  canHover: boolean = false;
 
   isBehandlungenRoute: boolean = false;
   /** Startseite: Header liegt transparent über dem dunklen Hero. */
@@ -169,18 +167,20 @@ export class HeaderComponent implements OnInit {
     this.behandlungenOpen = !this.behandlungenOpen;
   }
 
-  onBehandlungenEnter() {
-    // Nur echte Zeigegeräte öffnen per Hover. Auf Touch-Geräten (auch großen
-    // Tablets im Querformat) läuft das Öffnen über Klick/Tap, siehe
-    // toggleBehandlungen — sonst würde ein Tap synthetisches mouseenter
-    // (öffnet) UND click (toggelt wieder zu) auslösen und das Panel bliebe zu.
-    if (!this.canHover) return;
+  onBehandlungenEnter(event: PointerEvent) {
+    // Nur echtes Hovern mit der Maus öffnet das Panel. Ein Finger-Tap löst
+    // zwar auch pointerenter aus, danach aber ein click → toggleBehandlungen;
+    // würden wir hier bei Touch öffnen, schlösse der folgende Klick sofort
+    // wieder (das berüchtigte „zweimal tippen“-Verhalten). pointerType ist
+    // pro Event zuverlässig — anders als ein globaler (hover)-Media-Query,
+    // der auf Hybrid-Geräten den Stift/Trackpad statt den tippenden Finger meldet.
+    if (event.pointerType === 'touch') return;
     this.clearCloseTimer();
     this.behandlungenOpen = true;
   }
 
-  onBehandlungenLeave() {
-    if (!this.canHover) return;
+  onBehandlungenLeave(event: PointerEvent) {
+    if (event.pointerType === 'touch') return;
     this.scheduleClose();
   }
 
@@ -237,9 +237,6 @@ export class HeaderComponent implements OnInit {
     if (!this.isBrowser) return;
     // Kompakte Leiste (Burger) — muss mit dem CSS-Breakpoint übereinstimmen.
     this.isMobile = window.matchMedia('(max-width: 1160px)').matches;
-    // Hover nur, wenn das Gerät wirklich hovern kann. Touch-Geräte melden
-    // (hover: none) / (pointer: coarse) und bedienen das Menü per Tap.
-    this.canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   }
 
   @HostListener('window:resize')

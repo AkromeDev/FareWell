@@ -59,7 +59,16 @@
     </div>
 
     <app-guide-section
+      class="gd-promo-section"
       index="01"
+      [heading]="t('Aktuelle Aktion', 'Current offer')"
+      sectionId="angebot"
+    >
+      <app-guide-zone-rechner />
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
       [heading]="t('Was ist ein 4-Wellen-Diodenlaser?', 'What is a 4-wavelength diode laser?')"
       sectionId="was"
     >
@@ -104,7 +113,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="02"
+      index="03"
       [heading]="t('Wie funktioniert die Laser-Haarentfernung?', 'How does laser hair removal work?')"
       sectionId="funktion"
     >
@@ -156,7 +165,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="03"
+      index="04"
       [heading]="t('Für wen ist der Diodenlaser geeignet?', 'Who is the diode laser right for?')"
       sectionId="geeignet"
     >
@@ -205,7 +214,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="04"
+      index="05"
       [heading]="t('Gibt es Nebenwirkungen?', 'Are there any side effects?')"
       sectionId="nebenwirkungen"
     >
@@ -253,7 +262,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="05"
+      index="06"
       [heading]="t('Wie viele Sitzungen sind nötig?', 'How many sessions do you need?')"
       sectionId="sitzungen"
     >

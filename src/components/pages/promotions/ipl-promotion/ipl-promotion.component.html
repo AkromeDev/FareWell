@@ -13,8 +13,8 @@
     tagline="Für immer sanft."
     [lead]="
       t(
-        'Statt IPL setzen wir bewusst auf den 4-Wellen-Diodenlaser: präziser, wirksamer und für mehr Haut- und Haartypen geeignet. Neugierig? Teste unsere Behandlung zum kleinen Preis: 75% Rabatt auf die erste Behandlung (max. 2 Zonen) mit dem Code ERSTEBEHANDLUNG, gültig bis 15.08.',
-        'Instead of IPL we deliberately rely on the 4-wavelength diode laser: more precise, more effective and suitable for more skin and hair types. Curious? Try our treatment at a small price: 75% off your first treatment (max. 2 areas) with the code ERSTEBEHANDLUNG, valid until 15 Aug.'
+        'Statt IPL setzen wir bewusst auf den 4-Wellen-Diodenlaser: präziser, wirksamer und für mehr Haut- und Haartypen geeignet. Neugierig? Teste unsere Behandlung zum kleinen Preis: 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG, gültig bis 31.08.2026. Und dauerhaft mehr Rabatt, je mehr Zonen du buchst.',
+        'Instead of IPL we deliberately rely on the 4-wavelength diode laser: more precise, more effective and suitable for more skin and hair types. Curious? Try our treatment at a small price: 50% off your first treatment with the code ERSTEBEHANDLUNG, valid until 31 Aug 2026. Plus an ongoing discount, the more areas you book.'
       )
     "
     [image]="heroImage"
@@ -63,20 +63,8 @@
       [heading]="t('Dein Neukunden-Angebot', 'Your new-client offer')"
       sectionId="angebot"
     >
-      <app-guide-offer
-        [eyebrow]="t('Neukunden-Aktion · gültig bis 15.08', 'New-client offer · valid until 15 Aug')"
-        [headline]="t('75% auf deine erste Behandlung', '75% off your first treatment')"
-        [sub]="
-          t(
-            'Neugierig? Teste unsere Behandlung zum kleinen Preis. Max. 2 Zonen, online buchen und den Code bei der Buchung angeben. Gilt für Neukund:innen.',
-            'Curious? Try our treatment at a small price. Max. 2 areas, book online and enter the code when booking. Valid for new clients.'
-          )
-        "
-        [badgeLabel]="t('Promo-Code', 'Promo code')"
-        badgeValue="ERSTEBEHANDLUNG"
-        [copyLabel]="t('Code kopieren', 'Copy code')"
-        [copiedLabel]="t('Kopiert!', 'Copied!')"
-      />
+      <app-guide-zone-rechner />
+
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
           Alle regulären Preise findest du je Körperzone auf
@@ -327,14 +315,18 @@
         "
       >
         <p class="lang de">
-          Mit dem Code <strong>ERSTEBEHANDLUNG</strong> sparst du 75% auf deine erste
-          Behandlung (max. 2 Zonen), gültig bis 15.08. Alle regulären Preise stehen je
-          Körperzone auf <a [routerLink]="p('/price')">unserer Preisseite</a>. Die Erstberatung
-          ist kostenlos und unverbindlich.
+          Mit dem Code <strong>ERSTEBEHANDLUNG</strong> sparst du 50% auf deine erste
+          Behandlung, gültig bis 31.08.2026. Buchst du mehrere Zonen, bekommst du dauerhaft
+          zusätzlich Rabatt: 10% ab 3 Zonen, 20% ab 4 Zonen und 30% ab 5 Zonen (nicht mit dem
+          Neukunden-Rabatt kombinierbar). Alle regulären Preise stehen je Körperzone auf
+          <a [routerLink]="p('/price')">unserer Preisseite</a>. Die Erstberatung ist kostenlos
+          und unverbindlich.
         </p>
         <p class="lang en">
-          With the code <strong>ERSTEBEHANDLUNG</strong> you save 75% on your first treatment
-          (max. 2 areas), valid until 15 Aug. All regular prices are listed per body area on
+          With the code <strong>ERSTEBEHANDLUNG</strong> you save 50% on your first treatment,
+          valid until 31 Aug 2026. If you book several areas, you get an ongoing extra discount:
+          10% from 3 areas, 20% from 4 areas and 30% from 5 areas (not combinable with the
+          new-client discount). All regular prices are listed per body area on
           <a [routerLink]="p('/price')">our price page</a>. The initial consultation is free and
           without obligation.
         </p>

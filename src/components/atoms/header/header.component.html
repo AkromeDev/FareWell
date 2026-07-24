@@ -45,8 +45,8 @@
       <!-- Desktop: tight hover trigger -->
       <div
         class="behandlungen-trigger"
-        (mouseenter)="onBehandlungenEnter()"
-        (mouseleave)="onBehandlungenLeave()"
+        (pointerenter)="onBehandlungenEnter($event)"
+        (pointerleave)="onBehandlungenLeave($event)"
       >
         <button
           type="button"
@@ -125,8 +125,8 @@
   <div
     class="behandlungen-panel"
     [ngClass]="{ open: behandlungenOpen }"
-    (mouseenter)="onBehandlungenEnter()"
-    (mouseleave)="onBehandlungenLeave()"
+    (pointerenter)="onBehandlungenEnter($event)"
+    (pointerleave)="onBehandlungenLeave($event)"
   >
     <div class="panel-inner">
       <a

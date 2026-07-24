@@ -14,6 +14,7 @@ export { GuideNoteComponent } from './guide-note/guide-note.component';
 export { GuideStepsComponent } from './guide-steps/guide-steps.component';
 export { GuideChecklistComponent } from './guide-checklist/guide-checklist.component';
 export { GuideOfferComponent } from './guide-offer/guide-offer.component';
+export { GuideZoneRechnerComponent } from './guide-zone-rechner/guide-zone-rechner.component';
 export { GuideCtaComponent } from './guide-cta/guide-cta.component';
 export { GuideTocComponent, type GuideTocItem } from './guide-toc/guide-toc.component';
 export { GuideMediaComponent } from './guide-media/guide-media.component';
@@ -44,6 +45,7 @@ import { GuideNoteComponent } from './guide-note/guide-note.component';
 import { GuideStepsComponent } from './guide-steps/guide-steps.component';
 import { GuideChecklistComponent } from './guide-checklist/guide-checklist.component';
 import { GuideOfferComponent } from './guide-offer/guide-offer.component';
+import { GuideZoneRechnerComponent } from './guide-zone-rechner/guide-zone-rechner.component';
 import { GuideCtaComponent } from './guide-cta/guide-cta.component';
 import { GuideTocComponent } from './guide-toc/guide-toc.component';
 import { GuideMediaComponent } from './guide-media/guide-media.component';
@@ -67,6 +69,7 @@ export const GUIDE_COMPONENTS = [
   GuideStepsComponent,
   GuideChecklistComponent,
   GuideOfferComponent,
+  GuideZoneRechnerComponent,
   GuideCtaComponent,
   GuideTocComponent,
   GuideMediaComponent,

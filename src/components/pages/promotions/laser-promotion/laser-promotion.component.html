@@ -15,8 +15,8 @@
     tagline="Für immer sanft."
     [lead]="
       t(
-        'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser, präzise, schonend und für fast alle Körperzonen. Neugierig? Teste unsere Behandlung zum kleinen Preis: 75% Rabatt auf die erste Behandlung (max. 2 Zonen) mit dem Code FIRSTLASER75, gültig bis 15.08.',
-        'Long-lasting hair removal with the 4-wavelength diode laser, precise, gentle and suitable for almost every body area. Curious? Try our treatment at a small price: 75% off your first treatment (max. 2 areas) with the code FIRSTLASER75, valid until 15 Aug.'
+        'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser, präzise, schonend und für fast alle Körperzonen. Neugierig? Teste unsere Behandlung zum kleinen Preis: 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG, gültig bis 31.08.2026. Und dauerhaft mehr Rabatt, je mehr Zonen du buchst.',
+        'Long-lasting hair removal with the 4-wavelength diode laser, precise, gentle and suitable for almost every body area. Curious? Try our treatment at a small price: 50% off your first treatment with the code ERSTEBEHANDLUNG, valid until 31 Aug 2026. Plus an ongoing discount, the more areas you book.'
       )
     "
     [image]="heroImage"
@@ -67,27 +67,8 @@
       [heading]="t('Preise & Neukunden-Rabatt', 'Prices & new-client discount')"
       sectionId="angebot"
     >
-      <app-guide-offer
-        [eyebrow]="
-          t(
-            'Neukunden-Aktion · gültig bis 15.08',
-            'New-client offer · valid until 15 Aug'
-          )
-        "
-        [headline]="
-          t('75% auf deine erste Laser-Behandlung', '75% off your first laser treatment')
-        "
-        [sub]="
-          t(
-            'Neugierig? Teste unsere Behandlung zum kleinen Preis. Max. 2 Zonen, online buchen und den Code bei der Buchung angeben. Gilt für Neukund:innen.',
-            'Curious? Try our treatment at a small price. Max. 2 areas, book online and enter the code when booking. Valid for new clients.'
-          )
-        "
-        [badgeLabel]="t('Promo-Code', 'Promo code')"
-        badgeValue="FIRSTLASER75"
-        [copyLabel]="t('Code kopieren', 'Copy code')"
-        [copiedLabel]="t('Kopiert!', 'Copied!')"
-      />
+      <app-guide-zone-rechner />
+
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
           Alle regulären Preise stehen je Körperzone auf
@@ -462,11 +443,11 @@
       "
     >
       <span class="lang de">
-        Buche online über Salonkee und gib den Code <strong>FIRSTLASER75</strong> an, oder
+        Buche online über Salonkee und gib den Code <strong>ERSTEBEHANDLUNG</strong> an, oder
         starte mit der kostenlosen Erstberatung, wenn du erst Fragen klären möchtest.
       </span>
       <span class="lang en">
-        Book online via Salonkee and enter the code <strong>FIRSTLASER75</strong>, or start with
+        Book online via Salonkee and enter the code <strong>ERSTEBEHANDLUNG</strong>, or start with
         the free initial consultation if you'd like to clear up some questions first.
       </span>
     </app-guide-cta>

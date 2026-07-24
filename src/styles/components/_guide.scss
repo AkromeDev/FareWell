@@ -1498,6 +1498,491 @@
     white-space: nowrap;
   }
 
+  // ---------- Zonen-Rabatt-Rechner (kombinierte Laser-Aktion) ----------
+  .gd-rechner {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--gd-shadow-lg);
+    margin-top: 1.3rem;
+
+    @media (max-width: 760px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Interne Buttons neutralisieren (nur neutrale Eigenschaften, damit die
+  // hintergrund-/rahmenspezifischen Regeln der einzelnen Klassen gewinnen).
+  .gd-rechner__chip-x,
+  .gd-rechner__toggle,
+  .gd-rechner__pill,
+  .gd-rechner__code {
+    font: inherit;
+    cursor: pointer;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus-visible {
+      outline: 3px solid var(--gd-sage);
+      outline-offset: 2px;
+    }
+  }
+
+  // ----- Linke Spalte: Zonen zusammenstellen -----
+  .gd-rechner__calc {
+    background: var(--gd-surface);
+    border: 1px solid var(--gd-line);
+    border-right: none;
+    padding: 32px clamp(20px, 4vw, 36px) 36px;
+    // Grid-Kind darf schmaler werden als sein Inhalt — sonst drückt z. B.
+    // eine nowrap-Zeile den Karten-Track über den Viewport hinaus.
+    min-width: 0;
+
+    @media (max-width: 760px) {
+      border-right: 1px solid var(--gd-line);
+      border-bottom: none;
+    }
+  }
+
+  .gd-rechner__eyebrow {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gd-sage-strong);
+  }
+
+  .gd-rechner__title {
+    margin: 8px 0 0;
+    font-family: var(--gd-font-head);
+    font-size: clamp(26px, 3.4vw, 34px);
+    font-weight: 560;
+    line-height: 1.1;
+    color: var(--gd-forest);
+  }
+
+  .gd-rechner__desc {
+    margin: 8px 0 0;
+    font-size: 15px;
+    color: var(--gd-muted);
+  }
+
+  .gd-rechner__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    align-items: center;
+    margin-top: 22px;
+  }
+
+  .gd-rechner__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 9px 10px 9px 16px;
+    font-size: 14.5px;
+    font-weight: 600;
+    background: var(--gd-sage-strong);
+    color: var(--gd-surface);
+  }
+
+  .gd-rechner__chip-price {
+    opacity: 0.7;
+    font-weight: 500;
+  }
+
+  .gd-rechner__chip-x {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    color: var(--gd-surface);
+    background: rgba(251, 250, 245, 0.18);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    line-height: 1;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: rgba(251, 250, 245, 0.36);
+    }
+  }
+
+  .gd-rechner__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 9px 18px;
+    font-size: 14.5px;
+    font-weight: 700;
+    border: 1.5px dashed var(--gd-sage-strong);
+    background: rgba(138, 154, 117, 0.1);
+    color: var(--gd-sage-strong);
+    transition: background 0.15s ease, transform 0.15s ease;
+
+    &:hover {
+      background: rgba(138, 154, 117, 0.22);
+      transform: translateY(-1px);
+    }
+  }
+
+  .gd-rechner__picker {
+    margin-top: 16px;
+    background: var(--gd-surface-2);
+    border: 1px solid var(--gd-line);
+    border-radius: 12px;
+    padding: 6px 18px 18px;
+  }
+
+  .gd-rechner__group {
+    margin-top: 12px;
+  }
+
+  .gd-rechner__group-name {
+    margin: 0 0 8px;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gd-faint);
+  }
+
+  .gd-rechner__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .gd-rechner__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1.5px solid var(--gd-line-strong);
+    background: var(--gd-surface);
+    color: var(--gd-ink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+      border-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(31, 40, 28, 0.12);
+    }
+
+    &.is-on {
+      border-color: var(--gd-sage-strong);
+      background: var(--gd-sage-strong);
+      color: var(--gd-surface);
+    }
+  }
+
+  .gd-rechner__pill-price {
+    opacity: 0.6;
+    font-weight: 500;
+  }
+
+  .gd-rechner__progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .gd-rechner__bar {
+    flex: 1;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--gd-sand-2);
+    overflow: hidden;
+  }
+
+  .gd-rechner__bar-fill {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--gd-sage), var(--gd-sage-strong));
+    transition: width 0.35s ease;
+  }
+
+  .gd-rechner__tier {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gd-sage-strong);
+    white-space: nowrap;
+  }
+
+  // ----- Rechte Spalte: Live-Ergebnis -----
+  .gd-rechner__result {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg, var(--gd-forest-2), var(--gd-forest));
+    color: var(--gd-sand-2);
+    padding: 32px clamp(20px, 4vw, 36px) 36px;
+    min-width: 0;
+  }
+
+  .gd-rechner__result-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .gd-rechner__result-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gd-sand);
+  }
+
+  .gd-rechner__badge {
+    border-radius: 999px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .gd-rechner__badge--first {
+    background: var(--gd-sand);
+    color: var(--gd-forest);
+    font-size: 12px;
+    padding: 3px 11px;
+  }
+
+  .gd-rechner__badge--tier {
+    background: var(--gd-sage);
+    color: var(--gd-forest);
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+
+  .gd-rechner__price-row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .gd-rechner__price {
+    font-family: var(--gd-font-head);
+    font-size: clamp(52px, 9vw, 76px);
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .gd-rechner__price-old {
+    font-size: 22px;
+    color: var(--gd-sage);
+    text-decoration: line-through;
+  }
+
+  .gd-rechner__price-note {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: var(--gd-sand);
+
+    strong {
+      color: #fff;
+    }
+  }
+
+  .gd-rechner__code {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // Auf sehr schmalen Screens rutscht der „Kopieren“-Hinweis unter den
+    // Code, statt die Box (und damit die ganze Karte) zu verbreitern.
+    flex-wrap: wrap;
+    gap: 12px;
+    row-gap: 4px;
+    width: 100%;
+    text-align: left;
+    margin-top: 16px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    background: var(--gd-sand);
+    color: var(--gd-forest);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, background 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      background: var(--gd-sand-2);
+    }
+  }
+
+  .gd-rechner__code-body {
+    min-width: 0;
+  }
+
+  .gd-rechner__code-label {
+    display: block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gd-sage-strong);
+  }
+
+  .gd-rechner__code-value {
+    display: block;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+
+  .gd-rechner__code-hint {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gd-muted);
+    white-space: nowrap;
+
+    &.is-ok {
+      color: var(--gd-ok);
+    }
+  }
+
+  .gd-rechner__after {
+    border-top: 1px solid rgba(138, 154, 117, 0.35);
+    margin-top: 22px;
+    padding-top: 16px;
+  }
+
+  .gd-rechner__after-label {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gd-sage);
+  }
+
+  .gd-rechner__after-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .gd-rechner__after-price {
+    font-family: var(--gd-font-head);
+    font-size: 30px;
+    color: #fff;
+  }
+
+  .gd-rechner__after-save {
+    font-size: 13.5px;
+    color: var(--gd-sand);
+  }
+
+  .gd-rechner__empty {
+    margin: 16px 0 0;
+    font-family: var(--gd-font-head);
+    font-size: clamp(22px, 3vw, 26px);
+    line-height: 1.25;
+    color: var(--gd-sand-2);
+  }
+
+  .gd-rechner__fineprint {
+    margin: 0;
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: 12px;
+    color: var(--gd-sage);
+  }
+
+  // Schmale Screens: kompakter und mit kleinerer Schrift — der Rechner muss
+  // ohne Seitwärts-Scrollen komplett in den Viewport passen.
+  @media (max-width: 520px) {
+    .gd-rechner__calc,
+    .gd-rechner__result {
+      padding: 24px 18px 28px;
+    }
+
+    .gd-rechner__title {
+      font-size: 24px;
+    }
+
+    .gd-rechner__desc {
+      font-size: 14px;
+    }
+
+    .gd-rechner__chip {
+      font-size: 13px;
+      padding: 8px 9px 8px 13px;
+    }
+
+    .gd-rechner__toggle {
+      font-size: 13px;
+      padding: 8px 14px;
+    }
+
+    .gd-rechner__picker {
+      padding: 4px 12px 14px;
+    }
+
+    .gd-rechner__pill {
+      font-size: 12.5px;
+    }
+
+    // Balken über die volle Breite, der Stufen-Hinweis rutscht darunter
+    // (statt nowrap daneben, was die Karte über den Viewport hinausdrückt).
+    .gd-rechner__progress {
+      flex-wrap: wrap;
+      row-gap: 6px;
+    }
+
+    .gd-rechner__bar {
+      flex: 1 1 100%;
+    }
+
+    .gd-rechner__tier {
+      white-space: normal;
+    }
+
+    .gd-rechner__price {
+      font-size: clamp(38px, 11.5vw, 46px);
+    }
+
+    .gd-rechner__price-old {
+      font-size: 16px;
+    }
+
+    .gd-rechner__code {
+      padding: 12px 16px;
+    }
+
+    .gd-rechner__code-value {
+      font-size: 17px;
+    }
+
+    .gd-rechner__after-price {
+      font-size: 24px;
+    }
+
+    .gd-rechner__empty {
+      font-size: 20px;
+    }
+  }
+
   // ---------- CTA ----------
   .gd-cta {
     margin-top: 3.4rem;
