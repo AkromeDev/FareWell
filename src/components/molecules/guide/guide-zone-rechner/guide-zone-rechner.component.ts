@@ -90,10 +90,12 @@ const CATALOG: ZoneGroupDef[] = [
           {{ t('Stell deine Zonen zusammen.', 'Build your set of areas.') }}
         </p>
         <p class="gd-rechner__desc">
+          {{ t('Ab', 'From') }}
+          <strong class="gd-rechner__desc-em">{{ t('3 Zonen', '3 areas') }}</strong>
           {{
             t(
-              'Ab 3 Zonen sparst du dauerhaft bei jeder Laserbehandlung — je mehr Zonen, desto mehr.',
-              'From 3 areas you save on every laser treatment, ongoing — the more areas, the more you save.'
+              'sparst du dauerhaft bei jeder Laserbehandlung, je mehr Zonen, desto mehr.',
+              'you save on every laser treatment, ongoing, the more areas, the more you save.'
             )
           }}
         </p>
@@ -204,8 +206,8 @@ const CATALOG: ZoneGroupDef[] = [
           <p class="gd-rechner__empty">
             {{
               t(
-                'Wähle links deine Zonen — wir rechnen live mit.',
-                'Pick your areas on the left — we calculate live.'
+                'Wähle links deine Zonen, wir rechnen live mit.',
+                'Pick your areas on the left, and we calculate live.'
               )
             }}
           </p>

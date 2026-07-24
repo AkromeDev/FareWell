@@ -91,6 +91,7 @@ export class Diodenlaser implements OnInit, OnDestroy {
       { id: 'geeignet', label: this.t('Für wen geeignet?', 'Who it suits') },
       { id: 'nebenwirkungen', label: this.t('Nebenwirkungen', 'Side effects') },
       { id: 'sitzungen', label: this.t('Wie viele Sitzungen?', 'How many sessions') },
+      { id: 'vorbereitung', label: this.t('Vorbereitung & Nachsorge', 'Preparation & aftercare') },
     ];
   }
 

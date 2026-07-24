@@ -1,0 +1,319 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-hero
+    [kicker]="t('Ratgeber · Körper · Ultraschall', 'Guide · Body · Ultrasound')"
+    [heading]="t('Kavitation & Ultraschall-Fettreduktion', 'Cavitation & ultrasound fat reduction')"
+    [tagline]="t('Sanft in Form.', 'Softly sculpted.')"
+    [lead]="
+      t(
+        'Kavitation, Ultraschall-Fettreduktion und Cellulite-Behandlung arbeiten alle mit Ultraschall am Körper, sanft, nicht-invasiv und ohne Ausfallzeit. Hier erfährst du, wie sie wirken, wie oft du kommst und für wen sie nicht geeignet sind.',
+        'Cavitation, ultrasound fat reduction and cellulite treatment all work with ultrasound on the body, gentle, non-invasive and with no downtime. Here you learn how they work, how often you come and who they are not suitable for.'
+      )
+    "
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Diese Behandlungen sind ein kosmetisches Body-Treatment, keine Abnehmbehandlung. Als Kur
+            über mehrere Sitzungen im Abstand von 2–4 Tagen können sie die Kontur unterstützen und das
+            Hautbild glätten, ehrlich gesagt versprechen sie nicht mehr.
+          </span>
+          <span class="lang en">
+            These treatments are a cosmetic body treatment, not a weight-loss treatment. As a course
+            over several sessions spaced 2–4 days apart, they can support your contour and smooth the
+            look of your skin, and honestly they promise nothing more.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Alle Details zur Behandlung selbst stehen auf der
+            <a [routerLink]="p('/behandlungen/kavitation')">Kavitations-Seite</a>. Ob sie zu deinem
+            Ziel passt, klären wir ehrlich in der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            All the details on the treatment itself are on the
+            <a [routerLink]="p('/behandlungen/kavitation')">cavitation page</a>. Whether it fits your
+            goal, we clarify honestly in the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Was dahintersteckt', 'What is behind it')"
+      sectionId="was"
+    >
+      <div class="gd-read">
+        <p appReveal>
+          <span class="lang de">
+            Bei allen drei Anwendungen werden gezielt Ultraschallwellen in das Gewebe abgegeben. Dabei
+            entstehen feine Mikro-Impulse, die den gewünschten Effekt unterstützen. Das Ganze ist
+            nicht-invasiv: ganz ohne Nadeln, OP oder Ausfallzeit.
+          </span>
+          <span class="lang en">
+            In all three applications, ultrasound waves are directed precisely into the tissue. This
+            creates fine micro-impulses that support the desired effect. The whole thing is
+            non-invasive: entirely without needles, surgery or downtime.
+          </span>
+        </p>
+        <app-guide-note variant="rule" [label]="t('Ehrlich gesagt', 'To be honest')">
+          <span class="lang de">
+            Es ist ein <strong>kosmetisches</strong> Verfahren und kein Ersatz für Ernährung,
+            Bewegung oder eine medizinische Therapie. Als Teil eines gesunden Lebensstils kann es die
+            Kontur unterstützen, mehr verspricht es nicht.
+          </span>
+          <span class="lang en">
+            It is a <strong>cosmetic</strong> procedure and no substitute for diet, exercise or
+            medical therapy. As part of a healthy lifestyle it can support your contour, and it
+            promises nothing more.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      [heading]="t('Drei Schwerpunkte', 'Three focuses')"
+      sectionId="schwerpunkte"
+    >
+      <div class="gd-cards gd-cards--3">
+        <app-guide-card
+          icon="💧"
+          [heading]="t('Ultraschall-Fettreduktion', 'Ultrasound fat reduction')"
+        >
+          <span class="lang de">
+            Zielt auf hartnäckige Fettdepots an Bauch, Taille, Hüfte oder Oberschenkeln, dort, wo
+            Zonen trotz Sport und Ernährung hartnäckig wirken.
+          </span>
+          <span class="lang en">
+            Targets stubborn fat deposits on the belly, waist, hips or thighs, where areas feel
+            stubborn despite exercise and diet.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🌸"
+          [heading]="t('Cellulite-Behandlung', 'Cellulite treatment')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Setzt auf ein glatteres, ebenmäßigeres Hautbild und unterstützt Durchblutung und
+            Lymphfluss im behandelten Bereich.
+          </span>
+          <span class="lang en">
+            Focuses on a smoother, more even skin appearance and supports circulation and lymphatic
+            flow in the treated area.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="〰️"
+          [heading]="t('Kavitation', 'Cavitation')"
+          [revealDelay]="120"
+        >
+          <span class="lang de">
+            Ist das Ultraschall-Verfahren hinter beiden: die Technik, mit der wir sanft an der Kontur
+            und am Hautbild arbeiten.
+          </span>
+          <span class="lang en">
+            Is the ultrasound technique behind both: the method with which we gently work on the
+            contour and the skin's appearance.
+          </span>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      [heading]="t('Ablauf & Rhythmus', 'Process & rhythm')"
+      sectionId="ablauf"
+    >
+      <div class="gd-read">
+        <p appReveal>
+          <span class="lang de">
+            Am wirksamsten ist die Behandlung als <strong>Kur</strong>: Weil sich das Gewebe
+            schrittweise verändert, sind mehrere Sitzungen nötig, oft 4–8. Zwischen zwei Terminen
+            sollten etwa <strong>2–4 Tage</strong> liegen, damit Lymphe und Stoffwechsel die gelösten
+            Stoffe abtransportieren können.
+          </span>
+          <span class="lang en">
+            The treatment is most effective as a <strong>course</strong>: because the tissue changes
+            gradually, several sessions are needed, often 4–8. Leave about <strong>2–4 days</strong>
+            between appointments so your lymphatic system and metabolism can carry away what has been
+            released.
+          </span>
+        </p>
+      </div>
+      <div class="gd-split">
+        <app-guide-panel [heading]="t('So bereitest du dich vor', 'How to prepare')" tone="forest">
+          <li>
+            <span class="lang de">Trink schon vor dem Termin ausreichend Wasser, das unterstützt den Lymphfluss.</span>
+            <span class="lang en">Drink plenty of water before your appointment; it supports lymphatic flow.</span>
+          </li>
+          <li>
+            <span class="lang de">Am Behandlungstag bitte keinen Alkohol.</span>
+            <span class="lang en">Please no alcohol on the day of treatment.</span>
+          </li>
+          <li>
+            <span class="lang de">Komm ohne Bodylotion, Öl oder Creme auf den zu behandelnden Zonen.</span>
+            <span class="lang en">Come without body lotion, oil or cream on the areas to be treated.</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Direkt danach', 'Right afterwards')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Leichte Bewegung wie ein Spaziergang unterstützt den Abtransport.</span>
+            <span class="lang en">Light movement such as a walk supports the drainage.</span>
+          </li>
+          <li>
+            <span class="lang de">Leichte Rötung, Wärmegefühl oder ein Kribbeln sind normal und klingen rasch ab.</span>
+            <span class="lang en">Slight redness, a feeling of warmth or tingling are normal and fade quickly.</span>
+          </li>
+          <li>
+            <span class="lang de">Weiter viel trinken hilft dem Körper, die Ergebnisse zu unterstützen.</span>
+            <span class="lang en">Keep drinking plenty of water to help your body support the results.</span>
+          </li>
+        </app-guide-panel>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      [heading]="t('Für wen die Behandlung nicht geeignet ist', 'Who the treatment is not suitable for')"
+      sectionId="kontraindikationen"
+    >
+      <div class="gd-read">
+        <app-guide-note variant="rule" [label]="t('Kontraindikationen', 'Contraindications')">
+          <span class="lang de">
+            In diesen Fällen behandeln wir nicht bzw. nur nach ärztlicher Rücksprache:
+          </span>
+          <span class="lang en">
+            In these cases we don't treat, or only after consulting your doctor:
+          </span>
+        </app-guide-note>
+        <ul class="gd-ticks" appReveal>
+          <li>
+            <span class="lang de">Während der Schwangerschaft.</span>
+            <span class="lang en">During pregnancy.</span>
+          </li>
+          <li>
+            <span class="lang de">Bei Herzschrittmacher, schweren Herz-Kreislauf-Erkrankungen oder akuten Entzündungen.</span>
+            <span class="lang en">With a pacemaker, severe cardiovascular conditions or acute inflammation.</span>
+          </li>
+          <li>
+            <span class="lang de">Bei akuten Infekten, Fieber, offenen Wunden, Hautentzündungen oder frischen Narben im Bereich.</span>
+            <span class="lang en">With acute infections, fever, open wounds, skin inflammation or fresh scars in the area.</span>
+          </li>
+          <li>
+            <span class="lang de">Bei schweren Leber- oder Nierenerkrankungen.</span>
+            <span class="lang en">With severe liver or kidney disease.</span>
+          </li>
+          <li>
+            <span class="lang de">Bei einer Krebserkrankung oder in der Nachsorge nur nach ärztlicher Rücksprache.</span>
+            <span class="lang en">With a cancer diagnosis or during aftercare, only after consulting your doctor.</span>
+          </li>
+        </ul>
+        <p class="gd-fine">
+          <span class="lang de">
+            Bitte informiere uns vorab über gesundheitliche Veränderungen, damit wir sicher planen
+            können. Dieser Ratgeber ist eine allgemeine Information und ersetzt keine ärztliche
+            Beratung.
+          </span>
+          <span class="lang en">
+            Please tell us about any changes to your health in advance, so we can plan safely. This
+            guide is general information and does not replace medical advice.
+          </span>
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="05" [heading]="t('Nachsorge', 'Aftercare')" sectionId="nachsorge">
+      <div class="gd-read">
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Für mindestens 24 Stunden auf heiße Bäder und Saunagänge verzichten.</span>
+            <span class="lang en">Avoid hot baths and saunas for at least 24 hours.</span>
+          </li>
+          <li>
+            <span class="lang de">Ab dem Folgetag können Wärme, Sauna oder warme Bäder den Lymphfluss sogar unterstützen.</span>
+            <span class="lang en">From the next day, warmth, sauna or warm baths can even support the lymphatic flow.</span>
+          </li>
+          <li>
+            <span class="lang de">Ausgewogene Ernährung, ausreichend Flüssigkeit und ein aktiver Lebensstil unterstützen das Ergebnis.</span>
+            <span class="lang en">A balanced diet, enough fluids and an active lifestyle support the result.</span>
+          </li>
+        </app-guide-checklist>
+        <app-guide-note variant="tip" [label]="t('Individuell', 'Individual')">
+          <span class="lang de">
+            Die Ergebnisse variieren und hängen unter anderem von Stoffwechsel, Lebensstil und der
+            Ausgangssituation ab. Wir sagen dir ehrlich, was realistisch ist.
+          </span>
+          <span class="lang en">
+            Results vary and depend on things like your metabolism, lifestyle and starting point. We
+            tell you honestly what is realistic.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="06"
+      [heading]="t('Weiterlesen', 'Further reading')"
+      sectionId="weiterlesen"
+    >
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card
+          icon="〰️"
+          [heading]="t('Kavitation als Behandlung', 'Cavitation as a treatment')"
+        >
+          <span class="lang de">
+            Ablauf, Wirkung und typische Zonen im Detail.
+            <a [routerLink]="p('/behandlungen/kavitation')">Zur Behandlung</a>
+          </span>
+          <span class="lang en">
+            Process, effect and typical areas in detail.
+            <a [routerLink]="p('/behandlungen/kavitation')">See the treatment</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="✨"
+          [heading]="t('RF-Microneedling', 'RF microneedling')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Für Straffung und Hautbild im Gesicht die passende Ergänzung.
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">Zur Behandlung</a>
+          </span>
+          <span class="lang en">
+            The fitting complement for firming and complexion on the face.
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">See the treatment</a>
+          </span>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta
+      [heading]="t('Bereit für sanftes Body Forming?', 'Ready for gentle body forming?')"
+    >
+      <span class="lang de">
+        Buche deinen Termin direkt online. Vorab beraten wir dich ehrlich, ob Kavitation zu deinem
+        Ziel passt, kosmetisch, nicht-invasiv und ohne Ausfallzeit.
+      </span>
+      <span class="lang en">
+        Book your appointment directly online. Beforehand we advise you honestly on whether cavitation
+        fits your goal, cosmetic, non-invasive and with no downtime.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

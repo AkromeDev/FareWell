@@ -244,6 +244,348 @@
 
     <app-guide-section
       index="02"
+      [heading]="t('Vorbereitung, Nachsorge & Sicherheit', 'Preparation, aftercare & safety')"
+      sectionId="vorbereitung"
+    >
+      <app-faq-item
+        [question]="
+          t(
+            'Wie bereite ich mich auf meine Laser-Haarentfernung vor?',
+            'How do I prepare for laser hair removal?'
+          )
+        "
+      >
+        <p class="lang de">
+          Rasiere das Areal am besten etwa zwei Tage vor dem Termin, denn die Haarwurzel muss in der
+          Haut bleiben, also bitte nicht zupfen oder wachsen. Mindestens sechs Wochen vorher solltest
+          du nicht epilieren, und Sonne oder Solarium meidest du vor und nach der Behandlung; je
+          heller die Haut, desto besser wirkt der Laser. Am Behandlungstag kommst du ohne Deo, Creme
+          oder Parfum im Bereich.
+        </p>
+        <p class="lang en">
+          Shave the area ideally about two days before, because the hair root has to stay in the skin,
+          so please don't pluck or wax. Don't epilate for at least six weeks beforehand, and avoid sun
+          or tanning beds before and after; the lighter the skin, the better the laser works. On the
+          day, come without deodorant, cream or perfume on the area.
+        </p>
+        <p class="lang de">
+          Alle Details stehen im Abschnitt
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')" fragment="vorbereitung">Vorbereitung &amp; Nachsorge auf der Diodenlaser-Seite</a>.
+        </p>
+        <p class="lang en">
+          Every detail is in the
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')" fragment="vorbereitung">preparation &amp; aftercare section of the diode laser page</a>.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t(
+            'Nach der Laserbehandlung fallen Haare aus und es wirken kurz mehr, ist das normal?',
+            'After laser, hairs shed and there briefly seem to be more, is that normal?'
+          )
+        "
+      >
+        <p class="lang de">
+          Ja. In den ersten rund zwei Wochen nach einer Sitzung stoßen die behandelten Haare ab, das
+          sieht aus wie Nachwachsen, tatsächlich fallen sie aus. Und nach der dritten bis vierten
+          Sitzung können kurzzeitig mehr Haare sichtbar sein, weil ruhende Follikel aktiviert werden
+          und erst dann mitbehandelt werden können. Beides gehört zum normalen Verlauf.
+        </p>
+        <p class="lang en">
+          Yes. Over the first couple of weeks after a session the treated hairs shed, which looks like
+          regrowth but is actually them falling out. And after the third to fourth session you may
+          briefly see more hairs, because dormant follicles get activated and can only then be treated
+          too. Both are part of the normal process.
+        </p>
+        <p class="lang de">
+          Mehr dazu auf der
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')" fragment="vorbereitung">Diodenlaser-Seite</a>.
+        </p>
+        <p class="lang en">
+          More on this on the
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')" fragment="vorbereitung">diode laser page</a>.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t(
+            'Wie bereite ich mich auf die Nadelepilation vor?',
+            'How do I prepare for electrolysis (Nadelepilation)?'
+          )
+        "
+      >
+        <p class="lang de">
+          Lass die Haare auf etwa 2 bis 5 mm wachsen, damit sie gut erfasst werden können, also vier
+          bis sechs Wochen vorher nicht zupfen, wachsen oder epilieren; Rasieren oder Schneiden
+          zwischen den Terminen ist in Ordnung. Komm mit sauberer Haut ohne Make-up, Deo oder Öl und
+          verzichte kurz vorher möglichst auf Kaffee, Energydrinks und Alkohol, weil sie die Haut
+          empfindlicher machen.
+        </p>
+        <p class="lang en">
+          Let the hair grow to about 2 to 5 mm so it can be grasped well, so don't pluck, wax or
+          epilate for four to six weeks beforehand; shaving or trimming between appointments is fine.
+          Come with clean skin, free of make-up, deodorant or oil, and ideally avoid coffee, energy
+          drinks and alcohol just before, as they make the skin more sensitive.
+        </p>
+        <p class="lang de">
+          Die vollständige Checkliste findest du im Abschnitt
+          <a [routerLink]="p('/behandlungen/nadelepilation')" fragment="vorbereitung">Vorbereitung &amp; Nachsorge der Nadelepilation</a>.
+        </p>
+        <p class="lang en">
+          You'll find the full checklist in the
+          <a [routerLink]="p('/behandlungen/nadelepilation')" fragment="vorbereitung">preparation &amp; aftercare section for electrolysis</a>.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t(
+            'Kann ich mich mit Tattoos oder Permanent Make-up behandeln lassen?',
+            'Can I be treated if I have tattoos or permanent make-up?'
+          )
+        "
+      >
+        <p class="lang de">
+          Beim <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser</a> nicht: Über
+          Tattoos, Permanent Make-up, Microblading oder Henna kann das Gerät Farbpartikel nicht von
+          Haarpigment unterscheiden, es besteht Verbrennungsgefahr. Die
+          <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse (Nadelepilation)</a> arbeitet
+          dagegen mit Strom statt Licht und lässt sich in der Regel auch auf tätowierter Haut oder in
+          Bereichen mit Permanent Make-up einsetzen, sie ist hier die Methode der Wahl.
+        </p>
+        <p class="lang en">
+          Not with the <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">diode laser</a>: over
+          tattoos, permanent make-up, microblading or henna the device can't tell ink from hair
+          pigment, so there's a risk of burns.
+          <a [routerLink]="p('/behandlungen/nadelepilation')">Electrolysis (Nadelepilation)</a>, on the
+          other hand, works with current instead of light and can usually be used even on tattooed
+          skin or areas with permanent make-up, it's the method of choice here.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t(
+            'Kann ich mich in der Schwangerschaft oder Stillzeit behandeln lassen?',
+            'Can I be treated during pregnancy or breastfeeding?'
+          )
+        "
+      >
+        <p class="lang de">
+          In der Schwangerschaft führen wir weder Nadelepilation noch Laser oder Kavitation durch. In
+          der Stillzeit kann die Haut empfindlicher reagieren, deshalb entscheiden wir individuell.
+          Bitte informiere uns in beiden Fällen vorab, dann finden wir gemeinsam den sichersten Weg.
+        </p>
+        <p class="lang en">
+          During pregnancy we don't perform electrolysis, laser or cavitation. During breastfeeding
+          the skin can react more sensitively, so we decide individually. Please tell us in advance in
+          either case, and we'll find the safest way together.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Welche Pflege empfehlt ihr nach der Behandlung?', 'What aftercare do you recommend?')"
+      >
+        <p class="lang de">
+          Fass die behandelten Stellen möglichst wenig an, kühle bei Bedarf sanft und verzichte 24 bis
+          48 Stunden auf Sauna, Solarium, Schwimmbad und intensiven Sport. Für die Pflege empfehlen wir
+          Aloe Vera Gel (99&nbsp;%), Bepanthen Wund- und Heilsalbe sowie einen hohen Sonnenschutz für
+          empfindliche Haut. Deine genaue Nachsorge-Routine besprechen wir mit dir beim Termin.
+        </p>
+        <p class="lang en">
+          Touch the treated areas as little as possible, cool them gently if needed, and avoid sauna,
+          tanning beds, swimming pools and intense sport for 24 to 48 hours. For care we recommend Aloe
+          Vera gel (99%), Bepanthen wound and healing ointment and a high sunscreen for sensitive skin.
+          We'll go through your exact aftercare routine with you at your appointment.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t(
+            'Ich nehme Medikamente oder habe eine Hauterkrankung, kann ich behandelt werden?',
+            'I take medication or have a skin condition, can I still be treated?'
+          )
+        "
+      >
+        <p class="lang de">
+          Sag uns das bitte vorab. Manche Medikamente (etwa Blutverdünner, Kortison, Aknemittel wie
+          Isotretinoin oder Antibiotika) und Erkrankungen (z.&nbsp;B. Diabetes, Herpes, aktive Akne,
+          Schuppenflechte oder Lichtempfindlichkeit) beeinflussen, ob und wie wir behandeln. Wir
+          schätzen das individuell ein und bitten dich im Zweifel, es vorher ärztlich abklären zu
+          lassen. Bei akuten Infekten, Fieber, frischem Sonnenbrand oder offenen Wunden verschieben
+          wir den Termin.
+        </p>
+        <p class="lang en">
+          Please tell us in advance. Some medication (such as blood thinners, cortisone, acne
+          medication like isotretinoin, or antibiotics) and conditions (e.g. diabetes, herpes, active
+          acne, psoriasis or light sensitivity) affect whether and how we treat. We assess this
+          individually and, if in doubt, ask you to clarify it with your doctor first. With acute
+          infections, fever, fresh sunburn or open wounds we postpone the appointment.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Wie bereite ich mich auf Microneedling vor?', 'How do I prepare for microneedling?')"
+      >
+        <p class="lang de">
+          Komm ungeschminkt und mit sauberer Haut; drei bis fünf Tage vorher bitte keine Peelings,
+          kein Retinol, keine Fruchtsäuren und keinen Selbstbräuner. Zwischen Botox und
+          RF-Microneedling sollten mindestens zwei Wochen liegen.
+        </p>
+        <p class="lang en">
+          Come without make-up and with clean skin; for three to five days beforehand please avoid
+          peels, retinol, fruit acids and self-tanner. Leave at least two weeks between Botox and RF
+          microneedling.
+        </p>
+        <p class="lang de">
+          Alle Punkte stehen im Abschnitt
+          <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')" fragment="vorbereitung">Wichtige Hinweise auf der Microneedling-Seite</a>.
+        </p>
+        <p class="lang en">
+          Every point is in the
+          <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')" fragment="vorbereitung">important notes on the microneedling page</a>.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      [heading]="t('Körper & Massage', 'Body & massage')"
+      sectionId="koerper-massage"
+    >
+      <app-faq-item
+        [question]="
+          t(
+            'Wie läuft eine Kavitation ab und wie oft sollte ich kommen?',
+            'How does cavitation work and how often should I come?'
+          )
+        "
+      >
+        <p class="lang de">
+          Die <a [routerLink]="p('/behandlungen/kavitation')">Kavitation</a> wirkt am besten als
+          Kur: Weil sich das Gewebe schrittweise verändert, sind mehrere Sitzungen nötig. Zwischen
+          zwei Terminen sollten etwa zwei bis vier Tage liegen, damit Lymphe und Stoffwechsel die
+          gelösten Stoffe abtransportieren können.
+        </p>
+        <p class="lang en">
+          <a [routerLink]="p('/behandlungen/kavitation')">Cavitation</a> works best as a course of
+          treatments: because the tissue changes gradually, several sessions are needed. Leave about
+          two to four days between appointments so your lymphatic system and metabolism can carry
+          away what has been released.
+        </p>
+        <p class="lang de">
+          Trink schon vorher ausreichend Wasser, komm ohne Bodylotion oder Öl auf der Haut, und ein
+          Spaziergang nach der Behandlung unterstützt den Abtransport zusätzlich.
+        </p>
+        <p class="lang en">
+          Drink plenty of water beforehand, come without body lotion or oil on the skin, and a walk
+          after the treatment further supports the drainage.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Für wen ist eine Kavitation nicht geeignet?', 'Who is cavitation not suitable for?')"
+      >
+        <p class="lang de">
+          Bitte nicht während der Schwangerschaft, bei Herzschrittmacher, schweren
+          Herz-Kreislauf-Erkrankungen oder akuten Entzündungen. Auch bei akuten Infekten, Fieber,
+          offenen Wunden oder frischen Narben im Bereich sowie bei schweren Leber- oder
+          Nierenerkrankungen behandeln wir nicht. Bei einer Krebserkrankung oder in der Nachsorge nur
+          nach ärztlicher Rücksprache. Am Behandlungstag bitte keinen Alkohol.
+        </p>
+        <p class="lang en">
+          Please not during pregnancy, with a pacemaker, severe cardiovascular conditions or acute
+          inflammation. We also don't treat with acute infections, fever, open wounds or fresh scars
+          in the area, or with severe liver or kidney disease. With a cancer diagnosis or during
+          aftercare, only after consulting your doctor. Please avoid alcohol on the day of treatment.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t(
+            'Kavitation, Ultraschall-Fettreduktion, Cellulite-Behandlung: Was ist der Unterschied?',
+            'Cavitation, ultrasound fat reduction, cellulite treatment: what is the difference?'
+          )
+        "
+      >
+        <p class="lang de">
+          Alle drei arbeiten mit Ultraschall am Körper, setzen aber unterschiedliche Schwerpunkte:
+          Die Ultraschall-Fettreduktion zielt auf hartnäckige Fettdepots, die Cellulite-Behandlung
+          auf ein glatteres Hautbild, und die Kavitation ist das Verfahren dahinter. Welche
+          Kombination für dich sinnvoll ist, klären wir in der kostenlosen Erstberatung. Mehr dazu im
+          <a [routerLink]="p('/ratgeber/kavitation-ultraschall-fettreduktion')">Ratgeber zu den Körperbehandlungen</a>.
+        </p>
+        <p class="lang en">
+          All three use ultrasound on the body but with different emphases: ultrasound fat reduction
+          targets stubborn fat deposits, the cellulite treatment a smoother skin appearance, and
+          cavitation is the technique behind them. Which combination makes sense for you is something
+          we clarify in the free initial consultation. More in our
+          <a [routerLink]="p('/ratgeber/kavitation-ultraschall-fettreduktion')">guide to body treatments</a>.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Was soll ich zur Massage anziehen, und wie läuft sie ab?', 'What should I wear to a massage, and how does it work?')"
+      >
+        <p class="lang de">
+          Während der gesamten <a [routerLink]="p('/behandlungen/wellness-massage')">Massage</a>
+          bleibt die Unterwäsche an, und Intimbereiche bleiben jederzeit bedeckt. Trag am besten
+          bequeme Kleidung, trink vorher ausreichend Wasser und komm möglichst ohne Bodylotion oder
+          Öl, damit die Massageöle wirken können. Am Behandlungstag solltest du möglichst auf Alkohol
+          verzichten.
+        </p>
+        <p class="lang en">
+          Throughout the whole <a [routerLink]="p('/behandlungen/wellness-massage')">massage</a> your
+          underwear stays on, and intimate areas remain covered at all times. Wear comfortable
+          clothing, drink enough water beforehand and come without body lotion or oil if you can, so
+          the massage oils can work. Try to avoid alcohol on the day of your appointment.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Für wen ist eine Wellness-Massage nicht geeignet?', 'Who is a wellness massage not suitable for?')"
+      >
+        <p class="lang de">
+          Bei akuten Infekten, Fieber oder starker Erkältung bitte nicht. Bei schweren
+          Herz-Kreislauf-Erkrankungen oder akuten Entzündungen nur nach ärztlicher Rücksprache. Bei
+          frischen Verletzungen, offenen Wunden oder akuten Schmerzen im Bereich sowie nach frischen
+          Operationen verzichten wir auf die Massage. In der Schwangerschaft passen wir die
+          Behandlung individuell an, bitte informiere uns vorab.
+        </p>
+        <p class="lang en">
+          Please not with acute infections, fever or a heavy cold. With severe cardiovascular
+          conditions or acute inflammation, only after consulting your doctor. With fresh injuries,
+          open wounds or acute pain in the area, or after recent surgery, we don't massage. During
+          pregnancy we adapt the treatment individually, so please tell us in advance.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Wellness- oder therapeutische Massage: Was passt zu mir?', 'Wellness or therapeutic massage: which is right for me?')"
+      >
+        <p class="lang de">
+          Die <a [routerLink]="p('/behandlungen/wellness-massage')">Wellness-Massage</a> dient
+          Entspannung, Regeneration und Wohlbefinden. Die
+          <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutische Massage</a>
+          arbeitet gezielt an Verspannungen und Beschwerden, mit einer kurzen Anamnese zu Beginn. Im
+          Zweifel beraten wir dich vor Ort, welche Variante zu dir passt.
+        </p>
+        <p class="lang en">
+          The <a [routerLink]="p('/behandlungen/wellness-massage')">wellness massage</a> is for
+          relaxation, recovery and wellbeing. The
+          <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutic massage</a> works
+          specifically on tension and complaints, with a short assessment at the start. If in doubt,
+          we'll advise you in person which option suits you.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
       [heading]="t('Termine, Beratung & Preise', 'Appointments, consultation & prices')"
       sectionId="termine"
     >
@@ -371,7 +713,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="03"
+      index="05"
       [heading]="t('Krankenkasse & Steuer', 'Health insurance & tax')"
       sectionId="kostenuebernahme"
     >
@@ -479,7 +821,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="04"
+      index="06"
       [heading]="t('US Forces & Mehrwertsteuer', 'US Forces & VAT')"
       sectionId="us-forces"
     >
@@ -565,7 +907,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="05"
+      index="07"
       [heading]="t('Kontakt & Öffnungszeiten', 'Contact & opening hours')"
       sectionId="kontakt"
     >
@@ -599,21 +941,50 @@
     </app-guide-section>
 
     <app-guide-section
-      index="06"
+      index="08"
       [heading]="t('Ratgeber zum Vertiefen', 'Guides to go deeper')"
       sectionId="ratgeber"
     >
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
-          Für die großen Themen haben wir ausführliche Leitfaden-Seiten, Schritt für Schritt,
-          mit allen Fristen, Formularen und Nachweisen.
+          Für die großen Themen haben wir ausführliche
+          <a [routerLink]="p('/ratgeber')">Leitfaden-Seiten</a>, Schritt für Schritt, mit allen
+          Fristen, Formularen und Nachweisen.
         </span>
         <span class="lang en">
-          For the big topics we have detailed guide pages, step by step, with every deadline,
-          form and piece of evidence.
+          For the big topics we have detailed <a [routerLink]="p('/ratgeber')">guide pages</a>, step
+          by step, with every deadline, form and piece of evidence.
         </span>
       </p>
       <div class="gd-cards gd-cards--2">
+        <app-guide-card
+          icon="⚖️"
+          [heading]="t('Elektrolyse oder Laser?', 'Electrolysis or laser?')"
+        >
+          <span class="lang de">
+            Permanent oder dauerhaft, welche Methode zu deiner Haut, deinen Haaren und deiner Zone
+            passt, ehrlich verglichen.
+          </span>
+          <span class="lang en">
+            Permanent or long-lasting, which method suits your skin, hair and area, compared honestly.
+          </span>
+          <a [routerLink]="p('/ratgeber/elektrolyse-oder-laser')">{{ t('Zum Vergleich', 'Read the comparison') }}</a>
+        </app-guide-card>
+        <app-guide-card
+          icon="〰️"
+          [heading]="t('Kavitation & Ultraschall-Fettreduktion', 'Cavitation & ultrasound fat reduction')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Wie die Körperbehandlungen wirken, der Rhythmus als Kur, Vorbereitung, Nachsorge und
+            Kontraindikationen.
+          </span>
+          <span class="lang en">
+            How the body treatments work, the course rhythm, preparation, aftercare and
+            contraindications.
+          </span>
+          <a [routerLink]="p('/ratgeber/kavitation-ultraschall-fettreduktion')">{{ t('Zum Ratgeber', 'Read the guide') }}</a>
+        </app-guide-card>
         <app-guide-card
           icon="🏥"
           [heading]="t('Epilation über die Krankenkasse', 'Insurance-covered epilation')"

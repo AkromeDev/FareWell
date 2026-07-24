@@ -88,6 +88,7 @@ export class NadelepilationComponent implements OnInit, OnDestroy {
       { id: 'funktion', label: this.t('Wie funktioniert die Elektrolyse?', 'How electrolysis works') },
       { id: 'sicherheit', label: this.t('Sanft & sicher', 'Gentle & safe') },
       { id: 'dauer', label: this.t('Wie lange dauert es?', 'How long it takes') },
+      { id: 'vorbereitung', label: this.t('Vorbereitung & Nachsorge', 'Preparation & aftercare') },
     ];
   }
 

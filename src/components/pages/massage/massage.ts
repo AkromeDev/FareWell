@@ -65,7 +65,7 @@ export class MassageComponent implements OnInit, OnDestroy {
       { id: 'ruecken', label: this.t('Rücken-Schulter-Nacken', 'Back, shoulder & neck') },
       { id: 'ganzkoerper', label: this.t('Ganzkörper mit Aromaölen', 'Full-body with aroma oils') },
       { id: 'teilkoerper', label: this.t('Teilkörpermassage', 'Partial-body massage') },
-      { id: 'hinweise', label: this.t('Gut zu wissen', 'Good to know') },
+      { id: 'hinweise', label: this.t('Vorbereitung & Hinweise', 'Preparation & tips') },
     ];
   }
 

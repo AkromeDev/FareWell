@@ -25,6 +25,7 @@
   --gd-sand: #E1D6C0;
   --gd-sand-2: #EDE6D6;
   --gd-sand-tint: rgba(225, 214, 192, 0.4);
+  --gd-gold: #B8924A;        // Champagne-Gold (Marken-Akzent) für Preis-Highlights
   --gd-ink: #282C24;
   --gd-muted: #5C6154;
   // Dunkler als das Onboarding-Original (#8B8F80), damit Kleintext (Labels,
@@ -1565,8 +1566,14 @@
 
   .gd-rechner__desc {
     margin: 8px 0 0;
-    font-size: 15px;
+    font-size: 16.5px;
+    line-height: 1.5;
     color: var(--gd-muted);
+  }
+
+  .gd-rechner__desc-em {
+    font-weight: 700;
+    color: var(--gd-gold);
   }
 
   .gd-rechner__chips {
@@ -1785,8 +1792,8 @@
   }
 
   .gd-rechner__price-old {
-    font-size: 22px;
-    color: var(--gd-sage);
+    font-size: 26px;
+    color: var(--gd-gold);
     text-decoration: line-through;
   }
 
@@ -1922,7 +1929,7 @@
     }
 
     .gd-rechner__desc {
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .gd-rechner__chip {
@@ -1963,7 +1970,7 @@
     }
 
     .gd-rechner__price-old {
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .gd-rechner__code {

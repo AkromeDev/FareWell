@@ -45,6 +45,8 @@
             <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse</a>. Was besser zu deinem
             Haar und deinem Areal passt, klären wir ehrlich in der
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+            Beide Methoden im direkten
+            <a [routerLink]="p('/ratgeber/elektrolyse-oder-laser')">Vergleich</a>.
           </span>
           <span class="lang en">
             Laser reduces long-term; only
@@ -52,6 +54,8 @@
             permanently. Which one suits your hair and your area better is something we clarify
             honestly in the
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+            See both methods in a direct
+            <a [routerLink]="p('/ratgeber/elektrolyse-oder-laser')">comparison</a>.
           </span>
         </p>
       </div>
@@ -310,6 +314,97 @@
         <span class="lang en">
           We set your personal session plan and the right intervals together in the
           <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="07"
+      [heading]="t('Vorbereitung & Nachsorge', 'Preparation & aftercare')"
+      sectionId="vorbereitung"
+    >
+      <app-guide-media
+        image="assets/images/treatment/laser2.webp"
+        [imageAlt]="
+          t(
+            'Vorbereitung auf die Laser-Haarentfernung: Areal rasieren, Sonne meiden, ohne Deo und Creme kommen',
+            'Preparing for laser hair removal: shave the area, avoid the sun, come without deodorant or cream'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Mit der richtigen Vorbereitung wirkt der Laser am besten und deine Haut bleibt geschützt:
+        </p>
+        <p class="lang en">
+          With the right preparation the laser works best and your skin stays protected:
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de"><strong>Rasieren statt zupfen</strong>: Rasiere das Areal idealerweise zwei Tage vorher. Die Wurzel muss in der Haut bleiben, also bitte nicht wachsen oder epilieren</span>
+            <span class="lang en"><strong>Shave, don't pluck</strong>: shave the area ideally two days before. The root has to stay in the skin, so please don't wax or epilate</span>
+          </li>
+          <li>
+            <span class="lang de">Mindestens <strong>sechs Wochen</strong> vorher nicht zupfen, wachsen oder epilieren</span>
+            <span class="lang en">Don't pluck, wax or epilate for at least <strong>six weeks</strong> beforehand</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Sonne &amp; Solarium meiden</strong>, vor und nach der Behandlung: je heller die Haut, desto besser das Ergebnis</span>
+            <span class="lang en"><strong>Avoid sun &amp; tanning beds</strong> before and after: the lighter the skin, the better the result</span>
+          </li>
+          <li>
+            <span class="lang de">Am Behandlungstag <strong>ohne Deo, Creme oder Parfum</strong> im Bereich kommen</span>
+            <span class="lang en">Come <strong>without deodorant, cream or perfume</strong> on the area on the day</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Was danach normal ist', 'What is normal afterwards')">
+        <span class="lang de">
+          Leichte Rötungen klingen nach wenigen Tagen ab. In den ersten rund zwei Wochen stoßen die
+          behandelten Haare ab, das sieht aus wie Nachwachsen, tatsächlich fallen sie aus. Nach der
+          dritten bis vierten Sitzung können kurzzeitig mehr Haare sichtbar sein, weil ruhende
+          Follikel aktiviert werden: auch das gehört zum normalen Verlauf.
+        </span>
+        <span class="lang en">
+          Mild redness settles within a few days. Over the first couple of weeks the treated hairs
+          shed, which looks like regrowth but is actually them falling out. After the third to fourth
+          session you may briefly see more hairs, because dormant follicles get activated, which is
+          part of the normal process too.
+        </span>
+      </app-guide-note>
+      <app-guide-note variant="rule" [label]="t('Wann Laser nicht geeignet ist', 'When laser is not suitable')">
+        <span class="lang de">
+          <strong>Nicht über Tattoos, Permanent Make-up, Microblading oder Henna</strong>: Der Laser
+          kann Farbpartikel nicht von Haarpigment unterscheiden, es besteht Verbrennungsgefahr. Hier
+          ist die <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation</a> die richtige
+          Wahl. Ebenfalls nicht geeignet: in der Schwangerschaft sowie bei Lichtkrankheiten. Bei
+          Diabetes oder lichtempfindlich machenden Medikamenten (z.&nbsp;B. Johanniskraut, Kortison,
+          Antibiotika) klären wir vorab, was sicher ist. Zu Beginn empfehlen wir eine
+          Hautkrebsvorsorge beim Hautarzt.
+        </span>
+        <span class="lang en">
+          <strong>Not over tattoos, permanent make-up, microblading or henna</strong>: the laser
+          can't tell ink from hair pigment, so there's a risk of burns. Here
+          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis</a> is the right choice.
+          Also not suitable: during pregnancy or with photosensitivity disorders. With diabetes or
+          photosensitising medication (e.g. St John's wort, cortisone, antibiotics) we clarify in
+          advance what's safe. At the start we recommend a skin-cancer check with a dermatologist.
+        </span>
+      </app-guide-note>
+      <app-guide-note variant="tip" [label]="t('Pflege-Empfehlung', 'Care recommendation')">
+        <span class="lang de">
+          Für die Nachsorge empfehlen wir
+          <a href="https://www.amazon.de/Aloe-Vera-Gel-99-Bio/dp/B07NGMKQH5" target="_blank" rel="noopener noreferrer">Aloe Vera Gel (99&nbsp;%)</a>,
+          <a href="https://www.bepanthen.de/wund-und-heilsalbe" target="_blank" rel="noopener noreferrer">Bepanthen Wund- und Heilsalbe</a>
+          und einen hohen Sonnenschutz für empfindliche Haut wie
+          <a href="https://www.larocheposay.de/anthelios/anthelios-uvmune-400-invisible-fluid-lsf-50plus" target="_blank" rel="noopener noreferrer">La Roche Posay Anthelios LSF&nbsp;50+</a>.
+        </span>
+        <span class="lang en">
+          For aftercare we recommend
+          <a href="https://www.amazon.de/Aloe-Vera-Gel-99-Bio/dp/B07NGMKQH5" target="_blank" rel="noopener noreferrer">Aloe Vera gel (99%)</a>,
+          <a href="https://www.bepanthen.de/wund-und-heilsalbe" target="_blank" rel="noopener noreferrer">Bepanthen wound and healing ointment</a>
+          and a high sunscreen for sensitive skin such as
+          <a href="https://www.larocheposay.de/anthelios/anthelios-uvmune-400-invisible-fluid-lsf-50plus" target="_blank" rel="noopener noreferrer">La Roche Posay Anthelios SPF&nbsp;50+</a>.
         </span>
       </app-guide-note>
     </app-guide-section>

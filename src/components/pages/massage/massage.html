@@ -197,7 +197,7 @@
 
     <app-guide-section
       index="05"
-      [heading]="t('Gut zu wissen', 'Good to know')"
+      [heading]="t('Vorbereitung & gute Hinweise', 'Preparation & good to know')"
       sectionId="hinweise"
     >
       <app-guide-media
@@ -231,6 +231,76 @@
           </span>
         </app-guide-note>
       </app-guide-media>
+
+      <app-guide-note variant="rule" [label]="t('Respektvoller Rahmen', 'A respectful setting')">
+        <span class="lang de">
+          Während der gesamten Massage bleibt die Unterwäsche an, und Intimbereiche bleiben jederzeit
+          bedeckt. Sollte das nicht respektiert werden oder es zu unangemessenem Verhalten kommen,
+          brechen wir die Massage sofort ab; der Termin wird in diesem Fall dennoch vollständig
+          berechnet.
+        </span>
+        <span class="lang en">
+          Throughout the whole massage your underwear stays on, and intimate areas remain covered at
+          all times. If this is not respected, or any inappropriate behaviour occurs, we stop the
+          massage immediately; in that case the appointment is still charged in full.
+        </span>
+      </app-guide-note>
+
+      <div class="gd-split">
+        <app-guide-panel [heading]="t('So bereitest du dich vor', 'How to prepare')" tone="forest">
+          <li>
+            <span class="lang de">Trink vorher ausreichend Wasser, damit dein Körper gut entspannen kann.</span>
+            <span class="lang en">Drink enough water beforehand so your body can relax well.</span>
+          </li>
+          <li>
+            <span class="lang de">Am Behandlungstag möglichst keinen Alkohol, er belastet den Kreislauf zusätzlich.</span>
+            <span class="lang en">Avoid alcohol on the day if you can; it puts extra strain on your circulation.</span>
+          </li>
+          <li>
+            <span class="lang de">Komm möglichst ohne Bodylotion oder Öl auf der Haut, damit die Massageöle wirken können.</span>
+            <span class="lang en">Come without body lotion or oil on the skin if possible, so the massage oils can work.</span>
+          </li>
+          <li>
+            <span class="lang de">Trag bequeme Kleidung, in der du dich vor und nach der Massage wohlfühlst.</span>
+            <span class="lang en">Wear comfortable clothing you feel good in before and after.</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Nach der Massage', 'After the massage')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Gönn dir etwas Ruhe und vermeide direkt danach starke körperliche Belastung.</span>
+            <span class="lang en">Give yourself some rest and avoid heavy physical exertion right afterwards.</span>
+          </li>
+          <li>
+            <span class="lang de">Trink ausreichend Wasser und verzichte einige Stunden auf viel Alkohol oder schwere Mahlzeiten.</span>
+            <span class="lang en">Drink plenty of water and, for a few hours, go easy on alcohol and heavy meals.</span>
+          </li>
+          <li>
+            <span class="lang de">Leichte Müdigkeit, Wärmegefühl oder tiefe Entspannung sind danach ganz normal.</span>
+            <span class="lang en">Mild tiredness, a feeling of warmth or deep relaxation afterwards are completely normal.</span>
+          </li>
+        </app-guide-panel>
+      </div>
+
+      <app-guide-note variant="rule" [label]="t('Bitte vorher Bescheid geben', 'Please tell us in advance')">
+        <span class="lang de">
+          Bei akuten Infekten, Fieber oder starker Erkältung, bei frischen Verletzungen, offenen
+          Wunden oder akuten Schmerzen im Bereich sowie nach frischen Operationen verzichten wir auf
+          die Massage. Bei schweren Herz-Kreislauf-Erkrankungen oder akuten Entzündungen massieren
+          wir nur nach ärztlicher Rücksprache. In der Schwangerschaft passen wir die Behandlung
+          individuell an, informiere uns dazu bitte vorab.
+        </span>
+        <span class="lang en">
+          With acute infections, fever or a heavy cold, with fresh injuries, open wounds or acute
+          pain in the area, or after recent surgery, we don't massage. With severe cardiovascular
+          conditions or acute inflammation we only massage after you have checked with your doctor.
+          During pregnancy we adapt the treatment individually, so please tell us in advance.
+        </span>
+      </app-guide-note>
     </app-guide-section>
 
     <app-guide-cta [heading]="t('Bereit für deine Auszeit?', 'Ready for your time out?')">

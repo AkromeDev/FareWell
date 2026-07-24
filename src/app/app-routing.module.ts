@@ -23,7 +23,19 @@ function localizedRoutes(lang: PageLang): Routes {
     {
       path: '',
       pathMatch: 'full',
-      redirectTo: lang === 'de' ? '/faq' : '/en/faq',
+      loadComponent: () =>
+        import('../components/pages/ratgeber/ratgeber-hub/ratgeber-hub.component')
+          .then(m => m.RatgeberHubComponent),
+      data: d(
+        {
+          title: 'Ratgeber: Haarentfernung, Körper & Kostenübernahme | FareWell Nürnberg',
+          description: 'Alle Ratgeber von FareWell Nürnberg an einem Ort: Elektrolyse oder Laser, Körperbehandlungen mit Ultraschall, Kostenübernahme durch die Krankenkasse, Steuer und Mehrwertsteuerbefreiung für US-Streitkräfte.'
+        },
+        {
+          title: 'Guides: Hair Removal, Body & Coverage | FareWell Nuremberg',
+          description: "FareWell Nuremberg's guides in one place: electrolysis or laser, ultrasound body treatments, insurance coverage, tax deductions and VAT exemption for US Forces."
+        }
+      )
     },
     {
       path: 'epilation-krankenkasse',
@@ -54,6 +66,38 @@ function localizedRoutes(lang: PageLang): Routes {
         {
           title: 'Deducting Hair Removal Costs from German Tax: a Guide | FareWell Nuremberg',
           description: 'How to deduct laser and electrolysis costs as an extraordinary burden on your German tax return: required proof, the step-by-step process, and the documents FareWell provides.'
+        }
+      )
+    },
+    {
+      path: 'elektrolyse-oder-laser',
+      loadComponent: () =>
+        import('../components/pages/ratgeber/elektrolyse-laser/elektrolyse-laser.component')
+          .then(m => m.ElektrolyseLaserComponent),
+      data: d(
+        {
+          title: 'Elektrolyse oder Laser? Der ehrliche Vergleich zur Haarentfernung | FareWell Nürnberg',
+          description: 'Elektrolyse (Nadelepilation) oder Diodenlaser? Permanent vs. dauerhaft, Haut- und Haartypen, Zonen, Sitzungen und Kosten, ehrlich verglichen, mit einer klaren Empfehlung für deine Situation.'
+        },
+        {
+          title: 'Electrolysis or Laser? An Honest Hair-Removal Comparison | FareWell Nuremberg',
+          description: 'Electrolysis (Nadelepilation) or the diode laser? Permanent vs. long-lasting, skin and hair types, areas, sessions and cost, compared honestly, with a clear recommendation for your situation.'
+        }
+      )
+    },
+    {
+      path: 'kavitation-ultraschall-fettreduktion',
+      loadComponent: () =>
+        import('../components/pages/ratgeber/koerperbehandlungen/koerperbehandlungen.component')
+          .then(m => m.KoerperbehandlungenComponent),
+      data: d(
+        {
+          title: 'Kavitation, Ultraschall-Fettreduktion & Cellulite: der Ratgeber | FareWell Nürnberg',
+          description: 'Kavitation, Ultraschall-Fettreduktion und Cellulite-Behandlung in Nürnberg: wie sie wirken, der Rhythmus als Kur (alle 2–4 Tage), Vorbereitung, Nachsorge und für wen sie nicht geeignet sind.'
+        },
+        {
+          title: 'Cavitation, Ultrasound Fat Reduction & Cellulite: the Guide | FareWell Nuremberg',
+          description: 'Cavitation, ultrasound fat reduction and cellulite treatment in Nuremberg: how they work, the course rhythm (every 2–4 days), preparation, aftercare and who they are not suitable for.'
         }
       )
     },
@@ -340,12 +384,12 @@ function localizedRoutes(lang: PageLang): Routes {
           .then(m => m.LaserPromotionComponent),
       data: d(
         {
-          title: 'Laser-Haarentfernung in Nürnberg: 75% Rabatt für Neukund:innen | FareWell',
-          description: 'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 75% Rabatt auf die erste Laser-Behandlung (max. 2 Zonen) mit dem Code FIRSTLASER75, gültig bis 15.08.'
+          title: 'Laser-Haarentfernung in Nürnberg: 50% Rabatt auf die erste Behandlung | FareWell',
+          description: 'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG, gültig bis 31.08.2026. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.'
         },
         {
-          title: 'Laser Hair Removal in Nuremberg: 75% Off for New Clients | FareWell',
-          description: 'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg. 75% off your first laser treatment (max. 2 areas) with the code FIRSTLASER75, valid until 15 Aug.'
+          title: 'Laser Hair Removal in Nuremberg: 50% Off Your First Treatment | FareWell',
+          description: 'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG, valid until 31 Aug 2026. Up to 30% ongoing discount, the more areas you book.'
         }
       )
     },
@@ -357,11 +401,11 @@ function localizedRoutes(lang: PageLang): Routes {
       data: d(
         {
           title: 'IPL-Haarentfernung in Nürnberg? Die modernere Alternative | FareWell',
-          description: 'Statt IPL: dauerhafte Haarentfernung mit dem präziseren 4-Wellen-Diodenlaser in Nürnberg. 75% Rabatt auf die erste Behandlung (max. 2 Zonen) mit dem Code ERSTEBEHANDLUNG, gültig bis 15.08.'
+          description: 'Statt IPL: dauerhafte Haarentfernung mit dem präziseren 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG, gültig bis 31.08.2026. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.'
         },
         {
           title: 'IPL Hair Removal in Nuremberg? The More Modern Alternative | FareWell',
-          description: 'Instead of IPL: long-lasting hair removal with the more precise 4-wavelength diode laser in Nuremberg. 75% off your first treatment (max. 2 areas) with the code ERSTEBEHANDLUNG, valid until 15 Aug.'
+          description: 'Instead of IPL: long-lasting hair removal with the more precise 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG, valid until 31 Aug 2026. Up to 30% ongoing discount, the more areas you book.'
         }
       )
     },

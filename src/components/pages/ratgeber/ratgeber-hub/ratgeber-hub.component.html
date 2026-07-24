@@ -1,0 +1,179 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-hero
+    kicker="FareWell · Nürnberg · Ratgeber"
+    [heading]="t('Ratgeber', 'Guides')"
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Für die großen Themen haben wir ausführliche Leitfäden geschrieben: von der richtigen Methode über die Körperbehandlungen bis zur Kostenübernahme durch die Krankenkasse. Alle an einem Ort, ehrlich und verständlich.',
+        'For the big topics we have written detailed guides: from choosing the right method and body treatments to getting the cost covered by your health insurer. All in one place, honest and easy to follow.'
+      )
+    "
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Hier sammeln wir alles zum Nachlesen: Schritt für Schritt, mit Fristen, Formularen und
+            ehrlichen Empfehlungen. Für schnelle Antworten gibt es zusätzlich unsere
+            <a [routerLink]="p('/faq')">Häufigen Fragen</a>.
+          </span>
+          <span class="lang en">
+            Here we gather everything to read up on: step by step, with deadlines, forms and honest
+            recommendations. For quick answers there are also our
+            <a [routerLink]="p('/faq')">frequently asked questions</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Behandlungen & Methoden', 'Treatments & methods')"
+      sectionId="behandlungen"
+    >
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card
+          icon="⚖️"
+          [heading]="t('Elektrolyse oder Laser?', 'Electrolysis or laser?')"
+        >
+          <span class="lang de">
+            Permanent vs. dauerhaft, Haut- und Haartypen, Zonen, Sitzungen und Kosten, ehrlich
+            verglichen.
+            <a [routerLink]="p('/ratgeber/elektrolyse-oder-laser')">Zum Vergleich</a>
+          </span>
+          <span class="lang en">
+            Permanent vs. long-lasting, skin and hair types, areas, sessions and cost, compared
+            honestly.
+            <a [routerLink]="p('/ratgeber/elektrolyse-oder-laser')">Read the comparison</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="〰️"
+          [heading]="t('Kavitation & Ultraschall-Fettreduktion', 'Cavitation & ultrasound fat reduction')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Wie die Körperbehandlungen wirken, der Rhythmus als Kur, Vorbereitung, Nachsorge und
+            Kontraindikationen.
+            <a [routerLink]="p('/ratgeber/kavitation-ultraschall-fettreduktion')">Zum Ratgeber</a>
+          </span>
+          <span class="lang en">
+            How the body treatments work, the course rhythm, preparation, aftercare and
+            contraindications.
+            <a [routerLink]="p('/ratgeber/kavitation-ultraschall-fettreduktion')">Read the guide</a>
+          </span>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      [heading]="t('Kosten & Recht', 'Cost & rights')"
+      sectionId="kosten-recht"
+    >
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card
+          icon="🏥"
+          [heading]="t('Epilation über die Krankenkasse', 'Insurance-covered epilation')"
+        >
+          <span class="lang de">
+            Für trans Personen: Wie die Haarentfernung im Gesicht zur Kassenleistung wird, mit
+            ärztlicher Delegation bei FareWell.
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Zum Leitfaden</a>
+          </span>
+          <span class="lang en">
+            For trans people: how facial hair removal becomes a covered benefit, with medical
+            delegation at FareWell (guide in German).
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Read the guide</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🧾"
+          [heading]="t('Behandlungskosten steuerlich absetzen', 'Tax-deductible treatments')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Selbst getragene Kosten als außergewöhnliche Belastung geltend machen: welche Nachweise
+            das Finanzamt sehen will.
+            <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">Zum Leitfaden</a>
+          </span>
+          <span class="lang en">
+            Claim out-of-pocket costs as an extraordinary burden, and see what evidence the tax office
+            wants (guide in German).
+            <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">Read the guide</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🇩🇪"
+          [heading]="t('Mehrwertsteuerbefreiung für US-Streitkräfte', 'VAT exemption for US Forces')"
+          [revealDelay]="120"
+        >
+          <span class="lang de">
+            NF1-Formular oder Remonon-App: So funktioniert das Einkaufen ohne die deutsche
+            Mehrwertsteuer, auf Deutsch erklärt.
+            <a [routerLink]="'/ratgeber/mehrwertsteuer-us-streitkraefte'">Zum Leitfaden</a>
+          </span>
+          <span class="lang en">
+            NF1 forms or the Remonon app: how to shop without the German VAT (explained in German).
+            <a [routerLink]="'/ratgeber/mehrwertsteuer-us-streitkraefte'">Read the guide (German)</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🇺🇸"
+          [heading]="t('US Forces VAT relief in Germany', 'US Forces VAT relief in Germany')"
+          [revealDelay]="180"
+        >
+          <span class="lang de">
+            Der englische Leitfaden: NF1-Formulare, die Remonon-App, die fünf Regeln und dein
+            lebenslanger USLASER-Rabatt.
+            <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">Zum Leitfaden (EN)</a>
+          </span>
+          <span class="lang en">
+            The English walkthrough: NF1 forms, the Remonon app, the five rules, and your lifelong
+            USLASER discount.
+            <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">Read the guide</a>
+          </span>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      [heading]="t('Häufige Fragen', 'Frequently asked questions')"
+      sectionId="faq"
+    >
+      <div class="gd-read">
+        <p appReveal>
+          <span class="lang de">
+            Du suchst eine schnelle Antwort statt eines ganzen Leitfadens? In unseren
+            <a [routerLink]="p('/faq')">Häufigen Fragen</a> beantworten wir kompakt alles zu
+            Methoden, Vorbereitung, Terminen, Preisen, Krankenkasse und Mehrwertsteuer.
+          </span>
+          <span class="lang en">
+            Looking for a quick answer rather than a whole guide? In our
+            <a [routerLink]="p('/faq')">FAQ</a> we answer everything about methods, preparation,
+            appointments, prices, health insurance and VAT in a compact way.
+          </span>
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta [heading]="t('Deine Frage war nicht dabei?', 'Still have a question?')">
+      <span class="lang de">
+        Schreib uns auf Instagram oder buche direkt deine kostenlose Erstberatung. Wir nehmen uns
+        Zeit für deine Fragen.
+      </span>
+      <span class="lang en">
+        Write to us on Instagram or book your free initial consultation directly. We will take our
+        time for your questions.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

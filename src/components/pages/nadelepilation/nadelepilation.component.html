@@ -44,6 +44,8 @@
             der <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-Wellen-Diodenlaser</a> die
             schnellere Ergänzung sein, das klären wir ehrlich in der
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+            Beide Methoden im direkten
+            <a [routerLink]="p('/ratgeber/elektrolyse-oder-laser')">Vergleich</a>.
           </span>
           <span class="lang en">
             You can estimate how long your treatment will take in advance with our
@@ -51,6 +53,8 @@
             <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">4-wavelength diode laser</a> can
             be the faster complement, we clarify that honestly in the
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+            See both methods in a direct
+            <a [routerLink]="p('/ratgeber/elektrolyse-oder-laser')">comparison</a>.
           </span>
         </p>
       </div>
@@ -214,6 +218,101 @@
           You'll get a realistic estimate of your treatment time in seconds with our
           <a [routerLink]="p('/zeit')">time calculator</a>, or in person in the free initial
           consultation.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      [heading]="t('Vorbereitung & Nachsorge', 'Preparation & aftercare')"
+      sectionId="vorbereitung"
+    >
+      <app-guide-media
+        image="assets/images/treatment/hands.webp"
+        [imageAlt]="
+          t(
+            'Vorbereitung und Nachsorge der Nadelepilation: Haare 2 bis 5 mm, saubere Haut, sanfte Pflege',
+            'Preparing for and caring after electrolysis: hair 2 to 5 mm, clean skin, gentle aftercare'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Ein paar einfache Dinge machen deine Sitzung angenehmer und das Ergebnis besser:
+        </p>
+        <p class="lang en">
+          A few simple things make your session more comfortable and the result better:
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Haare auf <strong>2 bis 5 mm</strong> wachsen lassen, damit sie gut erfasst werden können</span>
+            <span class="lang en">Let the hair grow to <strong>2 to 5 mm</strong> so it can be grasped well</span>
+          </li>
+          <li>
+            <span class="lang de">Vier bis sechs Wochen vorher <strong>nicht zupfen, wachsen oder epilieren</strong>; Rasieren oder Schneiden zwischendurch ist in Ordnung</span>
+            <span class="lang en">Don't <strong>pluck, wax or epilate</strong> for four to six weeks beforehand; shaving or trimming in between is fine</span>
+          </li>
+          <li>
+            <span class="lang de">Mit <strong>sauberer Haut</strong> ohne Make-up, Deo, Creme oder Öl kommen</span>
+            <span class="lang en">Come with <strong>clean skin</strong>, free of make-up, deodorant, cream or oil</span>
+          </li>
+          <li>
+            <span class="lang de">Kurz vorher möglichst <strong>keinen Kaffee, Energydrink oder Alkohol</strong>, sie machen die Haut empfindlicher</span>
+            <span class="lang en">Ideally <strong>no coffee, energy drinks or alcohol</strong> just before, they make the skin more sensitive</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Nach der Behandlung', 'After the treatment')">
+        <span class="lang de">
+          Leichte Rötungen, kleine Schwellungen oder punktförmige Krüstchen sind normal und klingen
+          meist nach ein bis drei Tagen ab: bitte nicht kratzen und Krusten nicht abziehen. In den
+          ersten 24 bis 48 Stunden auf Sauna, Solarium, Schwimmbad, starkes Schwitzen und intensiven
+          Sport verzichten, die Haut nur sanft reinigen und direkte Sonne meiden. Für die Pflege
+          eignen sich
+          <a href="https://www.amazon.de/Aloe-Vera-Gel-99-Bio/dp/B07NGMKQH5" target="_blank" rel="noopener noreferrer">Aloe Vera Gel (99&nbsp;%)</a>,
+          <a href="https://www.bepanthen.de/wund-und-heilsalbe" target="_blank" rel="noopener noreferrer">Bepanthen</a>
+          und ein hoher
+          <a href="https://www.larocheposay.de/anthelios/anthelios-uvmune-400-invisible-fluid-lsf-50plus" target="_blank" rel="noopener noreferrer">Sonnenschutz</a>.
+        </span>
+        <span class="lang en">
+          Mild redness, small swelling or pinpoint crusts are normal and usually settle within one to
+          three days: please don't scratch or pick the crusts. For the first 24 to 48 hours avoid
+          sauna, tanning beds, swimming pools, heavy sweating and intense sport, cleanse the skin only
+          gently and avoid direct sun. For care,
+          <a href="https://www.amazon.de/Aloe-Vera-Gel-99-Bio/dp/B07NGMKQH5" target="_blank" rel="noopener noreferrer">Aloe Vera gel (99%)</a>,
+          <a href="https://www.bepanthen.de/wund-und-heilsalbe" target="_blank" rel="noopener noreferrer">Bepanthen</a>
+          and a high
+          <a href="https://www.larocheposay.de/anthelios/anthelios-uvmune-400-invisible-fluid-lsf-50plus" target="_blank" rel="noopener noreferrer">sunscreen</a>
+          work well.
+        </span>
+      </app-guide-note>
+      <app-guide-note variant="win" [label]="t('Auch auf tätowierter Haut', 'Even on tattooed skin')">
+        <span class="lang de">
+          Weil die Elektrolyse mit <strong>Strom statt Licht</strong> arbeitet, können wir in der Regel
+          auch auf tätowierter Haut oder in Bereichen mit Permanent Make-up und Henna behandeln, wo
+          der <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Laser</a> nicht eingesetzt
+          werden darf.
+        </span>
+        <span class="lang en">
+          Because electrolysis works with <strong>current, not light</strong>, we can usually treat
+          even tattooed skin or areas with permanent make-up and henna, where the
+          <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">laser</a> can't be used.
+        </span>
+      </app-guide-note>
+      <app-guide-note variant="rule" [label]="t('Bitte vorab sagen', 'Please tell us in advance')">
+        <span class="lang de">
+          In der <strong>Schwangerschaft</strong> behandeln wir nicht, in der Stillzeit entscheiden
+          wir individuell. Sag uns außerdem vorab Bescheid bei Medikamenten (z.&nbsp;B. Blutverdünner,
+          Kortison, Aknemittel) oder Erkrankungen wie Diabetes, Herzrhythmusstörungen oder Epilepsie.
+          Bei akuten Infekten, Fieber, frischem Sonnenbrand oder Herpes verschieben wir den Termin,
+          und auffällige Muttermale lassen wir vorher lieber hautärztlich abklären.
+        </span>
+        <span class="lang en">
+          We don't treat during <strong>pregnancy</strong>, and during breastfeeding we decide
+          individually. Please also tell us in advance about medication (e.g. blood thinners,
+          cortisone, acne medication) or conditions such as diabetes, cardiac arrhythmia or epilepsy.
+          With acute infections, fever, fresh sunburn or herpes we postpone the appointment, and we
+          prefer to have any suspicious moles checked by a dermatologist first.
         </span>
       </app-guide-note>
     </app-guide-section>

@@ -13,9 +13,9 @@ const PAGE_PATH = '/faq';
 const PAGE_TITLE_DE = 'FAQ: Häufige Fragen zu Haarentfernung & Behandlungen | FareWell Nürnberg';
 const PAGE_TITLE_EN = 'FAQ: Hair Removal & Treatments in Nuremberg | FareWell';
 const PAGE_DESCRIPTION_DE =
-  'Antworten auf die häufigsten Fragen an FareWell Nürnberg: Elektrolyse vs. Diodenlaser, Termine & Preise, Kostenübernahme durch die Krankenkasse, Steuer und US-Forces-Mehrwertsteuerbefreiung.';
+  'Antworten auf die häufigsten Fragen an FareWell Nürnberg: Elektrolyse vs. Diodenlaser, Vorbereitung & Nachsorge, Termine & Preise, Kostenübernahme durch die Krankenkasse, Steuer und US-Forces-Mehrwertsteuerbefreiung.';
 const PAGE_DESCRIPTION_EN =
-  'Answers to the most common questions at FareWell Nuremberg: electrolysis vs. diode laser, appointments and prices, insurance coverage, tax, and US Forces VAT exemption.';
+  'Answers to the most common questions at FareWell Nuremberg: electrolysis vs. diode laser, how to prepare and aftercare, appointments and prices, insurance coverage, tax, and US Forces VAT exemption.';
 
 interface FaqJsonLdEntry {
   question: string;
@@ -47,13 +47,18 @@ export class FaqComponent implements OnInit, OnDestroy {
       { value: '2', label: this.t('Methoden der Haarentfernung', 'Hair removal methods') },
       { value: this.t('gratis', 'free'), label: this.t('Erstberatung', 'Initial consultation') },
       { value: '6', label: this.t('Tage pro Woche geöffnet', 'Days open per week') },
-      { value: '4', label: this.t('Ratgeber zum Nachlesen', 'Guides to read') },
+      { value: '6', label: this.t('Ratgeber zum Nachlesen', 'Guides to read') },
     ];
   }
 
   get toc(): GuideTocItem[] {
     return [
       { id: 'behandlungen', label: this.t('Behandlungen & Methoden', 'Treatments & methods') },
+      {
+        id: 'vorbereitung',
+        label: this.t('Vorbereitung & Nachsorge', 'Preparation & aftercare'),
+      },
+      { id: 'koerper-massage', label: this.t('Körper & Massage', 'Body & massage') },
       {
         id: 'termine',
         label: this.t('Termine, Beratung & Preise', 'Appointments, consultation & prices'),
@@ -278,6 +283,146 @@ export class FaqComponent implements OnInit, OnDestroy {
         answer: this.t(
           'Montag bis Freitag 10–20 Uhr, Samstag 8–17 Uhr. Termine vereinbarst du am besten online über Salonkee.',
           'Monday to Friday 10 am to 8 pm, Saturday 8 am to 5 pm. The best way to make an appointment is online via Salonkee.'
+        ),
+      },
+      {
+        question: this.t(
+          'Wie bereite ich mich auf meine Laser-Haarentfernung vor?',
+          'How do I prepare for laser hair removal?'
+        ),
+        answer: this.t(
+          'Rasiere das Areal am besten etwa zwei Tage vor dem Termin, denn die Haarwurzel muss in der Haut bleiben, also bitte nicht zupfen oder wachsen. Mindestens sechs Wochen vorher solltest du nicht epilieren, und Sonne oder Solarium meidest du vor und nach der Behandlung; je heller die Haut, desto besser wirkt der Laser. Am Behandlungstag kommst du ohne Deo, Creme oder Parfum im Bereich. Alle Details stehen im Abschnitt „Vorbereitung & Nachsorge“ auf der Diodenlaser-Seite.',
+          'Shave the area ideally about two days before, because the hair root has to stay in the skin, so please don\'t pluck or wax. Don\'t epilate for at least six weeks beforehand, and avoid sun or tanning beds before and after; the lighter the skin, the better the laser works. On the day, come without deodorant, cream or perfume on the area. Every detail is in the preparation & aftercare section of the diode laser page.'
+        ),
+      },
+      {
+        question: this.t(
+          'Nach der Laserbehandlung fallen Haare aus und es wirken kurz mehr, ist das normal?',
+          'After laser, hairs shed and there briefly seem to be more, is that normal?'
+        ),
+        answer: this.t(
+          'Ja. In den ersten rund zwei Wochen nach einer Sitzung stoßen die behandelten Haare ab, das sieht aus wie Nachwachsen, tatsächlich fallen sie aus. Und nach der dritten bis vierten Sitzung können kurzzeitig mehr Haare sichtbar sein, weil ruhende Follikel aktiviert werden und erst dann mitbehandelt werden können. Beides gehört zum normalen Verlauf.',
+          'Yes. Over the first couple of weeks after a session the treated hairs shed, which looks like regrowth but is actually them falling out. And after the third to fourth session you may briefly see more hairs, because dormant follicles get activated and can only then be treated too. Both are part of the normal process.'
+        ),
+      },
+      {
+        question: this.t(
+          'Wie bereite ich mich auf die Nadelepilation vor?',
+          'How do I prepare for electrolysis (Nadelepilation)?'
+        ),
+        answer: this.t(
+          'Lass die Haare auf etwa 2 bis 5 mm wachsen, damit sie gut erfasst werden können, also vier bis sechs Wochen vorher nicht zupfen, wachsen oder epilieren; Rasieren oder Schneiden zwischen den Terminen ist in Ordnung. Komm mit sauberer Haut ohne Make-up, Deo oder Öl und verzichte kurz vorher möglichst auf Kaffee, Energydrinks und Alkohol, weil sie die Haut empfindlicher machen. Die vollständige Checkliste findest du im Abschnitt „Vorbereitung & Nachsorge“ der Nadelepilation.',
+          'Let the hair grow to about 2 to 5 mm so it can be grasped well, so don\'t pluck, wax or epilate for four to six weeks beforehand; shaving or trimming between appointments is fine. Come with clean skin, free of make-up, deodorant or oil, and ideally avoid coffee, energy drinks and alcohol just before, as they make the skin more sensitive. You will find the full checklist in the preparation & aftercare section for electrolysis.'
+        ),
+      },
+      {
+        question: this.t(
+          'Kann ich mich mit Tattoos oder Permanent Make-up behandeln lassen?',
+          'Can I be treated if I have tattoos or permanent make-up?'
+        ),
+        answer: this.t(
+          'Beim Diodenlaser nicht: Über Tattoos, Permanent Make-up, Microblading oder Henna kann das Gerät Farbpartikel nicht von Haarpigment unterscheiden, es besteht Verbrennungsgefahr. Die Elektrolyse (Nadelepilation) arbeitet dagegen mit Strom statt Licht und lässt sich in der Regel auch auf tätowierter Haut oder in Bereichen mit Permanent Make-up einsetzen, sie ist hier die Methode der Wahl.',
+          'Not with the diode laser: over tattoos, permanent make-up, microblading or henna the device cannot tell ink from hair pigment, so there is a risk of burns. Electrolysis (Nadelepilation), on the other hand, works with current instead of light and can usually be used even on tattooed skin or areas with permanent make-up, it is the method of choice here.'
+        ),
+      },
+      {
+        question: this.t(
+          'Kann ich mich in der Schwangerschaft oder Stillzeit behandeln lassen?',
+          'Can I be treated during pregnancy or breastfeeding?'
+        ),
+        answer: this.t(
+          'In der Schwangerschaft führen wir weder Nadelepilation noch Laser oder Kavitation durch. In der Stillzeit kann die Haut empfindlicher reagieren, deshalb entscheiden wir individuell. Bitte informiere uns in beiden Fällen vorab, dann finden wir gemeinsam den sichersten Weg.',
+          'During pregnancy we do not perform electrolysis, laser or cavitation. During breastfeeding the skin can react more sensitively, so we decide individually. Please tell us in advance in either case, and we will find the safest way together.'
+        ),
+      },
+      {
+        question: this.t(
+          'Welche Pflege empfehlt ihr nach der Behandlung?',
+          'What aftercare do you recommend?'
+        ),
+        answer: this.t(
+          'Fass die behandelten Stellen möglichst wenig an, kühle bei Bedarf sanft und verzichte 24 bis 48 Stunden auf Sauna, Solarium, Schwimmbad und intensiven Sport. Für die Pflege empfehlen wir Aloe Vera Gel (99 %), Bepanthen Wund- und Heilsalbe sowie einen hohen Sonnenschutz für empfindliche Haut. Deine genaue Nachsorge-Routine besprechen wir mit dir beim Termin.',
+          'Touch the treated areas as little as possible, cool them gently if needed, and avoid sauna, tanning beds, swimming pools and intense sport for 24 to 48 hours. For care we recommend Aloe Vera gel (99%), Bepanthen wound and healing ointment and a high sunscreen for sensitive skin. We will go through your exact aftercare routine with you at your appointment.'
+        ),
+      },
+      {
+        question: this.t(
+          'Ich nehme Medikamente oder habe eine Hauterkrankung, kann ich behandelt werden?',
+          'I take medication or have a skin condition, can I still be treated?'
+        ),
+        answer: this.t(
+          'Sag uns das bitte vorab. Manche Medikamente (etwa Blutverdünner, Kortison, Aknemittel wie Isotretinoin oder Antibiotika) und Erkrankungen (z. B. Diabetes, Herpes, aktive Akne, Schuppenflechte oder Lichtempfindlichkeit) beeinflussen, ob und wie wir behandeln. Wir schätzen das individuell ein und bitten dich im Zweifel, es vorher ärztlich abklären zu lassen. Bei akuten Infekten, Fieber, frischem Sonnenbrand oder offenen Wunden verschieben wir den Termin.',
+          'Please tell us in advance. Some medication (such as blood thinners, cortisone, acne medication like isotretinoin, or antibiotics) and conditions (e.g. diabetes, herpes, active acne, psoriasis or light sensitivity) affect whether and how we treat. We assess this individually and, if in doubt, ask you to clarify it with your doctor first. With acute infections, fever, fresh sunburn or open wounds we postpone the appointment.'
+        ),
+      },
+      {
+        question: this.t(
+          'Wie bereite ich mich auf Microneedling vor?',
+          'How do I prepare for microneedling?'
+        ),
+        answer: this.t(
+          'Komm ungeschminkt und mit sauberer Haut; drei bis fünf Tage vorher bitte keine Peelings, kein Retinol, keine Fruchtsäuren und keinen Selbstbräuner. Zwischen Botox und RF-Microneedling sollten mindestens zwei Wochen liegen. Alle Punkte stehen im Abschnitt „Wichtige Hinweise“ auf der Microneedling-Seite.',
+          'Come without make-up and with clean skin; for three to five days beforehand please avoid peels, retinol, fruit acids and self-tanner. Leave at least two weeks between Botox and RF microneedling. Every point is in the important notes on the microneedling page.'
+        ),
+      },
+      {
+        question: this.t(
+          'Wie läuft eine Kavitation ab und wie oft sollte ich kommen?',
+          'How does cavitation work and how often should I come?'
+        ),
+        answer: this.t(
+          'Die Kavitation wirkt am besten als Kur: Weil sich das Gewebe schrittweise verändert, sind mehrere Sitzungen nötig. Zwischen zwei Terminen sollten etwa zwei bis vier Tage liegen, damit Lymphe und Stoffwechsel die gelösten Stoffe abtransportieren können. Trink schon vorher ausreichend Wasser, komm ohne Bodylotion oder Öl auf der Haut, und ein Spaziergang nach der Behandlung unterstützt den Abtransport zusätzlich.',
+          'Cavitation works best as a course of treatments: because the tissue changes gradually, several sessions are needed. Leave about two to four days between appointments so your lymphatic system and metabolism can carry away what has been released. Drink plenty of water beforehand, come without body lotion or oil on the skin, and a walk after the treatment further supports the drainage.'
+        ),
+      },
+      {
+        question: this.t(
+          'Für wen ist eine Kavitation nicht geeignet?',
+          'Who is cavitation not suitable for?'
+        ),
+        answer: this.t(
+          'Bitte nicht während der Schwangerschaft, bei Herzschrittmacher, schweren Herz-Kreislauf-Erkrankungen oder akuten Entzündungen. Auch bei akuten Infekten, Fieber, offenen Wunden oder frischen Narben im Bereich sowie bei schweren Leber- oder Nierenerkrankungen behandeln wir nicht. Bei einer Krebserkrankung oder in der Nachsorge nur nach ärztlicher Rücksprache. Am Behandlungstag bitte keinen Alkohol.',
+          "Please not during pregnancy, with a pacemaker, severe cardiovascular conditions or acute inflammation. We also don't treat with acute infections, fever, open wounds or fresh scars in the area, or with severe liver or kidney disease. With a cancer diagnosis or during aftercare, only after consulting your doctor. Please avoid alcohol on the day of treatment."
+        ),
+      },
+      {
+        question: this.t(
+          'Kavitation, Ultraschall-Fettreduktion, Cellulite-Behandlung: Was ist der Unterschied?',
+          'Cavitation, ultrasound fat reduction, cellulite treatment: what is the difference?'
+        ),
+        answer: this.t(
+          'Alle drei arbeiten mit Ultraschall am Körper, setzen aber unterschiedliche Schwerpunkte: Die Ultraschall-Fettreduktion zielt auf hartnäckige Fettdepots, die Cellulite-Behandlung auf ein glatteres Hautbild, und die Kavitation ist das Verfahren dahinter. Welche Kombination für dich sinnvoll ist, klären wir in der kostenlosen Erstberatung.',
+          'All three use ultrasound on the body but with different emphases: ultrasound fat reduction targets stubborn fat deposits, the cellulite treatment a smoother skin appearance, and cavitation is the technique behind them. Which combination makes sense for you is something we clarify in the free initial consultation.'
+        ),
+      },
+      {
+        question: this.t(
+          'Was soll ich zur Massage anziehen, und wie läuft sie ab?',
+          'What should I wear to a massage, and how does it work?'
+        ),
+        answer: this.t(
+          'Während der gesamten Massage bleibt die Unterwäsche an, und Intimbereiche bleiben jederzeit bedeckt. Trag am besten bequeme Kleidung, trink vorher ausreichend Wasser und komm möglichst ohne Bodylotion oder Öl, damit die Massageöle wirken können. Am Behandlungstag solltest du möglichst auf Alkohol verzichten.',
+          'Throughout the whole massage your underwear stays on, and intimate areas remain covered at all times. Wear comfortable clothing, drink enough water beforehand and come without body lotion or oil if you can, so the massage oils can work. Try to avoid alcohol on the day of your appointment.'
+        ),
+      },
+      {
+        question: this.t(
+          'Für wen ist eine Wellness-Massage nicht geeignet?',
+          'Who is a wellness massage not suitable for?'
+        ),
+        answer: this.t(
+          'Bei akuten Infekten, Fieber oder starker Erkältung bitte nicht. Bei schweren Herz-Kreislauf-Erkrankungen oder akuten Entzündungen nur nach ärztlicher Rücksprache. Bei frischen Verletzungen, offenen Wunden oder akuten Schmerzen im Bereich sowie nach frischen Operationen verzichten wir auf die Massage. In der Schwangerschaft passen wir die Behandlung individuell an, bitte informiere uns vorab.',
+          "Please not with acute infections, fever or a heavy cold. With severe cardiovascular conditions or acute inflammation, only after consulting your doctor. With fresh injuries, open wounds or acute pain in the area, or after recent surgery, we don't massage. During pregnancy we adapt the treatment individually, so please tell us in advance."
+        ),
+      },
+      {
+        question: this.t(
+          'Wellness- oder therapeutische Massage: Was passt zu mir?',
+          'Wellness or therapeutic massage: which is right for me?'
+        ),
+        answer: this.t(
+          'Die Wellness-Massage dient Entspannung, Regeneration und Wohlbefinden. Die therapeutische Massage arbeitet gezielt an Verspannungen und Beschwerden, mit einer kurzen Anamnese zu Beginn. Im Zweifel beraten wir dich vor Ort, welche Variante zu dir passt.',
+          "The wellness massage is for relaxation, recovery and wellbeing. The therapeutic massage works specifically on tension and complaints, with a short assessment at the start. If in doubt, we'll advise you in person which option suits you."
         ),
       },
     ];

@@ -1,0 +1,379 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-hero
+    [kicker]="t('Ratgeber · Haarentfernung · Methodenvergleich', 'Guide · Hair removal · Method comparison')"
+    [heading]="t('Elektrolyse oder Laser?', 'Electrolysis or laser?')"
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Beide Methoden entfernen Haare zuverlässig, aber nicht auf die gleiche Weise. Hier vergleichen wir Elektrolyse und Diodenlaser ehrlich, damit du weißt, was zu deiner Haut, deinen Haaren und deinem Ziel passt.',
+        'Both methods remove hair reliably, but not in the same way. Here we compare electrolysis and the diode laser honestly, so you know what fits your skin, your hair and your goal.'
+      )
+    "
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Willst du einzelne, helle oder feine Haare für immer los, vor allem im Gesicht, ist die
+            Elektrolyse die Wahl. Geht es um dunklere Haare auf größeren Flächen, spielt der
+            Diodenlaser seine Stärke aus. Oft ist die Kombination am sinnvollsten.
+          </span>
+          <span class="lang en">
+            If you want to get rid of individual, light or fine hairs for good, especially on the
+            face, electrolysis is the choice. For darker hairs on larger areas, the diode laser plays
+            to its strengths. Often the combination makes the most sense.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Bei FareWell in Nürnberg bekommst du beide Methoden unter einem Dach und eine ehrliche
+            Empfehlung, welche zu dir passt. Am schnellsten klären wir das in der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+          </span>
+          <span class="lang en">
+            At FareWell in Nuremberg you get both methods under one roof and an honest recommendation
+            on which suits you. The quickest way to sort it out is the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Permanent oder dauerhaft?', 'Permanent or long-lasting?')"
+      sectionId="unterschied"
+    >
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card
+          icon="🪡"
+          [heading]="t('Elektrolyse = permanent', 'Electrolysis = permanent')"
+        >
+          <span class="lang de">
+            Die <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse (Nadelepilation)</a>
+            ist in Deutschland die einzige rechtlich als <strong>permanent</strong> anerkannte
+            Methode. Jede Haarwurzel wird einzeln über eine feine Sonde verödet, endgültig.
+          </span>
+          <span class="lang en">
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Electrolysis (Nadelepilation)</a> is
+            the only method legally recognised as <strong>permanent</strong> in Germany. Each hair
+            root is deactivated individually via a fine probe, for good.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="⚡"
+          [heading]="t('Diodenlaser = dauerhaft', 'Diode laser = long-lasting')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Der <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser</a> erreicht
+            eine <strong>dauerhafte</strong> Haarentfernung: eine deutliche, langanhaltende
+            Reduktion. Ein Teil der Haare kann über die Zeit nachwachsen, meist feiner und heller.
+          </span>
+          <span class="lang en">
+            The <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">diode laser</a> achieves
+            <strong>long-lasting</strong> hair removal: a significant, enduring reduction. Some hair
+            can grow back over time, usually finer and lighter.
+          </span>
+        </app-guide-card>
+      </div>
+      <app-guide-note variant="tip" [label]="t('Warum das zählt', 'Why it matters')">
+        <span class="lang de">
+          „Permanent“ und „dauerhaft“ klingen gleich, sind es aber nicht. Nur die Elektrolyse darf in
+          Deutschland als permanent beworben werden. Wer dir bei Laser „100 % für immer“ verspricht,
+          verspricht zu viel.
+        </span>
+        <span class="lang en">
+          "Permanent" and "long-lasting" sound the same but are not. Only electrolysis may be
+          advertised as permanent in Germany. Anyone promising you "100% forever" with laser is
+          promising too much.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      [heading]="t('Der direkte Vergleich', 'Side by side')"
+      sectionId="vergleich"
+    >
+      <div class="gd-split">
+        <app-guide-panel
+          [heading]="t('Elektrolyse (Nadelepilation)', 'Electrolysis (Nadelepilation)')"
+          tone="forest"
+        >
+          <li>
+            <span class="lang de"><strong>Prinzip:</strong> feiner Strom über eine Sonde, Haar für Haar.</span>
+            <span class="lang en"><strong>Principle:</strong> a fine current via a probe, hair by hair.</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Haut &amp; Haare:</strong> jede Farbe, auch hell, grau, rötlich oder fein.</span>
+            <span class="lang en"><strong>Skin &amp; hair:</strong> every colour, including light, grey, reddish or fine.</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Zonen:</strong> ideal für kleine, präzise Bereiche wie Gesicht.</span>
+            <span class="lang en"><strong>Areas:</strong> ideal for small, precise areas like the face.</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Ergebnis:</strong> permanent, die behandelte Wurzel ist erledigt.</span>
+            <span class="lang en"><strong>Result:</strong> permanent, the treated root is done.</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Tattoos &amp; PMU:</strong> in der Regel möglich, es wird Strom statt Licht genutzt.</span>
+            <span class="lang en"><strong>Tattoos &amp; PMU:</strong> usually possible, it uses current, not light.</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Diodenlaser (4 Wellen)', 'Diode laser (4 wavelengths)')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de"><strong>Prinzip:</strong> Lichtimpulse, die vom Haarpigment aufgenommen werden.</span>
+            <span class="lang en"><strong>Principle:</strong> light pulses absorbed by the hair pigment.</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Haut &amp; Haare:</strong> am besten bei dunklerem Haar; braucht Pigment als Ziel.</span>
+            <span class="lang en"><strong>Skin &amp; hair:</strong> best with darker hair; needs pigment as a target.</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Zonen:</strong> stark auf größeren Flächen wie Beine, Rücken, Achseln.</span>
+            <span class="lang en"><strong>Areas:</strong> strong on larger areas like legs, back, underarms.</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Ergebnis:</strong> dauerhafte, deutliche Reduktion; Auffrischungen möglich.</span>
+            <span class="lang en"><strong>Result:</strong> long-lasting, significant reduction; refreshers possible.</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Tattoos &amp; PMU:</strong> nicht über tätowierter Haut, Verbrennungsgefahr.</span>
+            <span class="lang en"><strong>Tattoos &amp; PMU:</strong> not over tattooed skin, risk of burns.</span>
+          </li>
+        </app-guide-panel>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      [heading]="t('Wann Elektrolyse die richtige Wahl ist', 'When electrolysis is the right choice')"
+      sectionId="elektrolyse"
+    >
+      <div class="gd-read">
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Helle, graue, rötliche oder sehr feine Haare, die ein Laser nicht erfasst.</span>
+            <span class="lang en">Light, grey, reddish or very fine hairs that a laser can't target.</span>
+          </li>
+          <li>
+            <span class="lang de">Kleine, klar umrissene Zonen, etwa Kinn, Oberlippe oder Augenbrauen.</span>
+            <span class="lang en">Small, clearly defined areas, such as the chin, upper lip or brows.</span>
+          </li>
+          <li>
+            <span class="lang de">Der Wunsch nach einem wirklich permanenten Ergebnis, Wurzel für Wurzel.</span>
+            <span class="lang en">The wish for a truly permanent result, root by root.</span>
+          </li>
+          <li>
+            <span class="lang de">Behandlung auf tätowierter Haut oder in Bereichen mit Permanent Make-up.</span>
+            <span class="lang en">Treatment on tattooed skin or areas with permanent make-up.</span>
+          </li>
+        </app-guide-checklist>
+        <app-guide-note variant="win" [label]="t('Für die Transition', 'For gender confirmation')">
+          <span class="lang de">
+            Für viele trans Personen ist die Elektrolyse im Gesicht die Methode der Wahl, und sie kann
+            über die Krankenkasse laufen. Wie das geht, steht im
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Leitfaden zur Kostenübernahme</a>.
+          </span>
+          <span class="lang en">
+            For many trans people, facial electrolysis is the method of choice, and it can be covered
+            by health insurance. How that works is in our
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">guide to insurance coverage</a>.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      [heading]="t('Wann der Diodenlaser passt', 'When the diode laser fits')"
+      sectionId="laser"
+    >
+      <div class="gd-read">
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Dunklere Haare mit genug Pigment als Ziel für das Licht.</span>
+            <span class="lang en">Darker hairs with enough pigment as a target for the light.</span>
+          </li>
+          <li>
+            <span class="lang de">Größere Flächen wie Beine, Rücken, Brust oder Achseln, zügig behandelt.</span>
+            <span class="lang en">Larger areas like legs, back, chest or underarms, treated quickly.</span>
+          </li>
+          <li>
+            <span class="lang de">Du möchtest eine deutliche, langanhaltende Reduktion in wenigen Sitzungen sehen.</span>
+            <span class="lang en">You want to see a clear, long-lasting reduction within a few sessions.</span>
+          </li>
+          <li>
+            <span class="lang de">Keine Tattoos oder Permanent Make-up in der Behandlungszone.</span>
+            <span class="lang en">No tattoos or permanent make-up in the treatment area.</span>
+          </li>
+        </app-guide-checklist>
+        <app-guide-note variant="rule" [label]="t('Statt IPL', 'Instead of IPL')">
+          <span class="lang de">
+            Wir setzen bewusst auf den 4-Wellen-Diodenlaser statt auf IPL: Er arbeitet zuverlässiger
+            bei mehr Haut- und Haartypen. Warum, liest du auf der
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser-Seite</a>.
+          </span>
+          <span class="lang en">
+            We deliberately use the four-wavelength diode laser instead of IPL: it works more
+            reliably across more skin and hair types. Why is explained on the
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">diode laser page</a>.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="05"
+      [heading]="t('Beides kombinieren', 'Combining both')"
+      sectionId="kombi"
+    >
+      <div class="gd-read">
+        <p appReveal>
+          <span class="lang de">
+            Oft ist die Kombination am sinnvollsten: Der Diodenlaser nimmt zügig die Masse dunkler
+            Haare auf großen Flächen weg, und die Elektrolyse holt anschließend die hellen, feinen
+            oder einzelnen Haare, die der Laser nicht erfasst. So ergänzen sich Tempo und
+            Gründlichkeit.
+          </span>
+          <span class="lang en">
+            Often the combination makes the most sense: the diode laser quickly clears the bulk of
+            dark hair on large areas, and electrolysis then picks up the light, fine or individual
+            hairs the laser can't target. Speed and thoroughness complement each other.
+          </span>
+        </p>
+        <app-guide-note variant="tip" [label]="t('Unser Vorgehen', 'How we approach it')">
+          <span class="lang de">
+            In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an und legen fest,
+            welche Methode wo am meisten bringt, ohne dir etwas aufzuschwatzen.
+          </span>
+          <span class="lang en">
+            In the free initial consultation we look at your skin and hair together and decide which
+            method helps most where, without talking you into anything.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="06"
+      [heading]="t('Sitzungen & Kosten', 'Sessions & cost')"
+      sectionId="kosten"
+    >
+      <div class="gd-read">
+        <p appReveal>
+          <span class="lang de">
+            Beide Methoden brauchen mehrere Sitzungen, weil nur Haare in der Wachstumsphase wirksam
+            behandelt werden. Wie viele, hängt von Zone, Haardichte und Hormonlage ab. Die Preise
+            stehen transparent je Körperzone auf <a [routerLink]="p('/price')">unserer Preisseite</a>.
+          </span>
+          <span class="lang en">
+            Both methods need several sessions, because only hairs in the growth phase can be treated
+            effectively. How many depends on the area, hair density and hormonal situation. Prices are
+            listed transparently by body area on <a [routerLink]="p('/price')">our price page</a>.
+          </span>
+        </p>
+        <app-guide-note variant="win" [label]="t('US Forces', 'US Forces')">
+          <span class="lang de">
+            Angehörige der US-Streitkräfte erhalten mit dem Code <strong>USLASER</strong> 20 %
+            lebenslang auf Laser-Haarentfernung, zusätzlich zur
+            <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">Mehrwertsteuerbefreiung</a>.
+          </span>
+          <span class="lang en">
+            US Forces members get 20% off laser hair removal for life with the code
+            <strong>USLASER</strong>, on top of the
+            <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">VAT exemption</a>.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="07"
+      [heading]="t('Weiterlesen', 'Further reading')"
+      sectionId="weiterlesen"
+    >
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card
+          icon="🪡"
+          [heading]="t('Elektrolyse (Nadelepilation)', 'Electrolysis (Nadelepilation)')"
+        >
+          <span class="lang de">
+            Die permanente Methode im Detail, mit Vorbereitung und Nachsorge.
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Zur Behandlung</a>
+          </span>
+          <span class="lang en">
+            The permanent method in detail, with preparation and aftercare.
+            <a [routerLink]="p('/behandlungen/nadelepilation')">See the treatment</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="⚡"
+          [heading]="t('Diodenlaser (4 Wellen)', 'Diode laser (4 wavelengths)')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Die dauerhafte Haarentfernung für größere Zonen, schonend und zügig.
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Zur Behandlung</a>
+          </span>
+          <span class="lang en">
+            Long-lasting hair removal for larger areas, gentle and quick.
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">See the treatment</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🏥"
+          [heading]="t('Epilation über die Krankenkasse', 'Insurance-covered epilation')"
+          [revealDelay]="120"
+        >
+          <span class="lang de">
+            Für trans Personen: Wie die Haarentfernung im Gesicht zur Kassenleistung wird.
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Zum Leitfaden</a>
+          </span>
+          <span class="lang en">
+            For trans people: how facial hair removal becomes a covered benefit.
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Read the guide</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="💬"
+          [heading]="t('Häufige Fragen', 'Frequently asked questions')"
+          [revealDelay]="180"
+        >
+          <span class="lang de">
+            Antworten zu Methoden, Terminen, Preisen und Kostenübernahme.
+            <a [routerLink]="p('/faq')">Zu den FAQ</a>
+          </span>
+          <span class="lang en">
+            Answers on methods, appointments, prices and coverage.
+            <a [routerLink]="p('/faq')">Read the FAQ</a>
+          </span>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta [heading]="t('Noch unsicher, was zu dir passt?', 'Still unsure what suits you?')">
+      <span class="lang de">
+        Buche deine kostenlose Erstberatung über Salonkee oder schreib uns auf Instagram. Wir schauen
+        uns Haut und Haare an und empfehlen dir ehrlich die passende Methode.
+      </span>
+      <span class="lang en">
+        Book your free initial consultation via Salonkee or message us on Instagram. We look at your
+        skin and hair and honestly recommend the method that suits you.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>
