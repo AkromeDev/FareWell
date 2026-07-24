@@ -37,6 +37,10 @@ export class HeaderComponent implements OnInit {
   canHover: boolean = false;
 
   isBehandlungenRoute: boolean = false;
+  /** Startseite: Header liegt transparent über dem dunklen Hero. */
+  isHome: boolean = false;
+  /** Lesefortschritt der Seite in Prozent (Goldbalken über dem Header). */
+  progress: number = 0;
 
   readonly lang = inject(LanguageService);
 
@@ -49,7 +53,24 @@ export class HeaderComponent implements OnInit {
     return this.lang.localizePath(path);
   }
 
+  /** Pro Sprache gecacht: sonst zerstört NgFor die Menü-Karten bei jedem
+   *  Change-Detection-Lauf (Scroll/Klick/Taste) und baut sie neu auf. */
+  private treatmentsCache: { lang: string; items: TreatmentCard[] } | null =
+    null;
+
   get treatments(): TreatmentCard[] {
+    const activeLang = this.lang.lang();
+    if (this.treatmentsCache?.lang !== activeLang) {
+      this.treatmentsCache = { lang: activeLang, items: this.buildTreatments() };
+    }
+    return this.treatmentsCache.items;
+  }
+
+  trackTreatment(_index: number, treatment: TreatmentCard): string {
+    return treatment.route;
+  }
+
+  private buildTreatments(): TreatmentCard[] {
     const t = (de: string, en: string) => this.lang.t(de, en);
     return [
       {
@@ -113,17 +134,21 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateInteractionMode();
-    this.updateBehandlungenRouteState(this.router.url);
+    this.updateRouteState(this.router.url);
 
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe((e) => {
-        this.updateBehandlungenRouteState(e.urlAfterRedirects);
+        this.updateRouteState(e.urlAfterRedirects);
       });
   }
 
-  private updateBehandlungenRouteState(url: string) {
-    this.isBehandlungenRoute = url.startsWith('/behandlungen');
+  private updateRouteState(url: string) {
+    const path = url.split('?')[0].split('#')[0].replace(/\/+$/, '') || '/';
+    // /en-Präfix abstreifen, damit EN-Seiten dieselben Zustände bekommen.
+    const basePath = path.replace(/^\/en(?=\/|$)/, '') || '/';
+    this.isBehandlungenRoute = basePath.startsWith('/behandlungen');
+    this.isHome = basePath === '/';
   }
 
   setActiveTab(tab: string) {
@@ -226,7 +251,11 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:scroll')
   onWindowScroll() {
-    this.scrolled = window.scrollY > 110;
+    this.scrolled = window.scrollY > 40;
+    const scrollable =
+      document.documentElement.scrollHeight - window.innerHeight;
+    this.progress =
+      scrollable > 0 ? Math.min(100, (window.scrollY / scrollable) * 100) : 0;
     this.closeAll();
   }
 

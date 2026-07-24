@@ -353,6 +353,18 @@
     }
   }
 
+  // Modifier (per app-guide-hero [mobileCrop]="'top'"): auf Mobil/Tablet das
+  // Bild unten verankern und höher aufziehen — der obere Bildbereich (z. B.
+  // ein Gesicht) wandert aus dem sichtbaren Ausschnitt, das Bild rutscht
+  // optisch nach oben. Desktop bleibt unverändert.
+  @media (max-width: 1023px) {
+    .gd-hero__img--crop-top {
+      top: auto;
+      bottom: 0;
+      height: 165%;
+    }
+  }
+
   .gd-hero::after {
     content: '';
     position: absolute;

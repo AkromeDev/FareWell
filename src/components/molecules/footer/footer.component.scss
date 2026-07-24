@@ -1,146 +1,189 @@
 @use 'themes/theme-entry' as *;
 
+/* Schmales Footer-Band (Emerald Immersive): Marke, Socials und Buchungs-Pill
+   links, alle Links rechts in zwei Zeilen. Auf Mobil zentriert gestapelt. */
 .footer-section {
-  background-color: $black;
-  color: $light-1;
-  text-align: center;
-  padding: 3rem 1rem 2.5rem;
+  background-color: $emerald-abyss;
+  color: $cream;
+  padding: 2.75rem 1.5rem;
   line-height: 1.5;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba($gold, 0.18);
 
   a {
-    color: $light-1;
-    font-weight: 700;
+    color: $cream;
     text-decoration: none;
-    transition:
-      color 0.3s ease,
-      transform 0.3s ease;
-  }
-
-  .footer-primary {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .back-to-top,
-  .footer-booking {
-    margin: 0;
-    font-size: 1.2rem;
-    line-height: 1.2;
-    letter-spacing: 0.15rem;
-    text-transform: uppercase;
-  }
-
-  .footer-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    min-height: 1.5em;
-
-    &:hover {
-      color: $accent-1;
-    }
+    transition: color 0.25s ease;
 
     &:focus-visible {
-      outline: 2px solid $accent-1;
+      outline: 2px solid $gold;
       outline-offset: 4px;
       border-radius: 0.25rem;
     }
   }
+}
 
-  .social-buttons {
-    display: flex;
-    justify-content: center;
+.footer-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  text-align: center;
+}
+
+/* Mobil stapeln die Kinder direkt im zentrierten Footer-Stapel (Marke,
+   Socials, Pill, Links); auf Desktop wird daraus die linke Gruppe. */
+.footer-left {
+  display: contents;
+}
+
+.footer-brand {
+  order: 1;
+}
+
+.social-buttons {
+  order: 2;
+}
+
+.booking-pill {
+  order: 3;
+}
+
+.footer-links {
+  order: 4;
+}
+
+.footer-brand {
+  margin: 0;
+  /* Signatur-Schriftzug wie auf der Studio-Theke. */
+  font-family: $font-script;
+  font-weight: 400;
+  font-size: 2.2rem;
+  line-height: 1.1;
+
+  .brand-dot {
+    color: $gold;
+  }
+}
+
+.social-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  a {
+    display: inline-flex;
+    border-radius: 50%;
+  }
+
+  img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  a:hover img {
+    transform: scale(1.08);
+  }
+}
+
+/* Muss die Farbregel .footer-section a überstimmen — Angulars [_ngcontent]
+   zählt pro Teil-Selektor, daher gleicher Aufbau + eigene Klasse. */
+.footer-section a.booking-pill {
+  display: inline-flex;
+  align-items: center;
+  background: $gold;
+  color: $emerald-deep;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba($gold, 0.25);
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &:hover {
+    background: $gold-bright;
+    color: $emerald-deep;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba($gold, 0.32);
+  }
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.links-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  column-gap: 1.4rem;
+  row-gap: 0.5rem;
+}
+
+.contact-row a {
+  font-size: 0.92rem;
+  color: rgba($cream, 0.82);
+  white-space: nowrap;
+
+  &:hover {
+    color: $gold;
+  }
+}
+
+.legal-row a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba($cream, 0.72);
+  white-space: nowrap;
+
+  &:hover {
+    color: $gold;
+  }
+}
+
+/* Desktop: einzeiliges Band, Links rechtsbündig in zwei Zeilen. */
+@media (min-width: 1024px) {
+  .footer-section {
+    padding: 2.75rem clamp(20px, 4vw, 56px);
+  }
+
+  .footer-inner {
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1.5rem;
-
-    a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      flex: 0 0 40px;
-    }
-
-    img {
-      display: block;
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      transition: transform 0.3s ease;
-    }
-
-    a:hover img {
-      transform: scale(1.08);
-    }
+    gap: 2rem;
+    text-align: left;
   }
 
-  .footer-content {
+  /* Drei Zonen wie im Mockup: Marke + Pill links, Socials mittig,
+     Links rechts. */
+  .footer-left {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 2.5rem;
-    margin-top: 3rem;
-
-    .column {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 0.75rem;
-      max-width: 28rem;
-
-      p,
-      a {
-        margin: 0;
-        font-size: 0.95rem;
-        line-height: 1.5;
-      }
-
-      &.contact {
-        text-wrap: pretty;
-      }
-
-      &.links {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1.5rem;
-
-        a {
-          white-space: nowrap;
-          display: inline-block;
-        }
-      }
-    }
+    gap: 1.6rem;
   }
 
-  @media (min-width: 768px) {
-    padding: 3rem 1rem;
+  .footer-links {
+    align-items: flex-end;
+  }
 
-    .footer-primary {
-      gap: 2.25rem;
-    }
-
-    .back-to-top,
-    .footer-booking {
-      font-size: 1.3rem;
-    }
-
-    .footer-content {
-      gap: 3rem;
-
-      .column {
-        p,
-        a {
-          font-size: 1rem;
-        }
-      }
-    }
+  .links-row {
+    justify-content: flex-end;
   }
 }

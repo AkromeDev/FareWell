@@ -10,8 +10,8 @@ type PageLang = 'de' | 'en';
 const ORIGIN = 'https://farewell.salon';
 const PAGE_PATH = '/mojoclipboard-support';
 const PAGE_TITLE_DE =
-  'MojoClipboard – Support & Anleitung | Zwischenablage-Verlauf für den Mac';
-const PAGE_TITLE_EN = 'MojoClipboard – Support & Guide | Clipboard History for Mac';
+  'MojoClipboard: Support & Anleitung | Zwischenablage-Verlauf für den Mac';
+const PAGE_TITLE_EN = 'MojoClipboard: Support & Guide | Clipboard History for Mac';
 const PAGE_DESCRIPTION_DE =
   'Support für MojoClipboard, die kostenlose macOS-Menüleisten-App für den Zwischenablage-Verlauf (macOS 14 Sonoma+). Drück ⌃⌘V, um den Verlauf zu öffnen. Datenschutz-first: keine Daten, nichts verlässt dein Gerät.';
 const PAGE_DESCRIPTION_EN =
@@ -72,16 +72,16 @@ export class MojoClipboardSupportComponent implements OnInit, OnDestroy {
       {
         value: this.t('Gratis', 'Free'),
         caption: this.t(
-          'für immer – ohne Abo und ohne In-App-Käufe',
-          'forever — no subscription, no in-app purchases'
+          'für immer, ohne Abo und ohne In-App-Käufe',
+          'forever, no subscription, no in-app purchases'
         ),
         color: 'violet',
       },
       {
         value: this.t('0 Daten', '0 data'),
         caption: this.t(
-          'gesammelt – nichts verlässt jemals dein Gerät',
-          'collected — nothing ever leaves your device'
+          'gesammelt, nichts verlässt jemals dein Gerät',
+          'collected, and nothing ever leaves your device'
         ),
         color: 'sky',
       },
@@ -135,8 +135,8 @@ export class MojoClipboardSupportComponent implements OnInit, OnDestroy {
       id: 'settings',
       q_de: 'Wie ändere ich das Tastenkürzel oder die Verlaufslänge?',
       q_en: 'How do I change the shortcut or history length?',
-      a_de: 'Klick auf das MojoClipboard-Symbol in der Menüleiste und öffne die Einstellungen. Dort passt du das Tastenkürzel, die Verlaufslänge und das Größenlimit pro Eintrag an – und aktivierst bei Bedarf „Beim Anmelden starten“.',
-      a_en: 'Click the MojoClipboard icon in the menu bar and open the settings. There you can change the shortcut, the history length and the per-item size limit — and turn on “Launch at Login” if you like.',
+      a_de: 'Klick auf das MojoClipboard-Symbol in der Menüleiste und öffne die Einstellungen. Dort passt du das Tastenkürzel, die Verlaufslänge und das Größenlimit pro Eintrag an und aktivierst bei Bedarf „Beim Anmelden starten“.',
+      a_en: 'Click the MojoClipboard icon in the menu bar and open the settings. There you can change the shortcut, the history length and the per-item size limit, and turn on “Launch at Login” if you like.',
     },
     {
       id: 'requirements',

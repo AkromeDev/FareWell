@@ -10,8 +10,8 @@ import {
 } from 'src/components/molecules/guide';
 
 const PAGE_PATH = '/faq';
-const PAGE_TITLE_DE = 'FAQ – Häufige Fragen zu Haarentfernung & Behandlungen | FareWell Nürnberg';
-const PAGE_TITLE_EN = 'FAQ – Hair Removal & Treatments in Nuremberg | FareWell';
+const PAGE_TITLE_DE = 'FAQ: Häufige Fragen zu Haarentfernung & Behandlungen | FareWell Nürnberg';
+const PAGE_TITLE_EN = 'FAQ: Hair Removal & Treatments in Nuremberg | FareWell';
 const PAGE_DESCRIPTION_DE =
   'Antworten auf die häufigsten Fragen an FareWell Nürnberg: Elektrolyse vs. Diodenlaser, Termine & Preise, Kostenübernahme durch die Krankenkasse, Steuer und US-Forces-Mehrwertsteuerbefreiung.';
 const PAGE_DESCRIPTION_EN =

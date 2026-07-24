@@ -1,116 +1,469 @@
-<app-image-hero
-  id="topSection"
-  [margin]="'large'"
-  [paragraphText]="paragraphText"
-  [paragraphAlign]="'center'"
-  [paragraphWeight]="'bold'"
-  [paragraphColor]="'light'"
-  [paragraphType]="'dark'"
-  [backgroundImage]="'assets/images/farewell/studio.webp'"
-  [shadow]="'dark'"
-  [title]="t('Permanente Haarentfernung in Nürnberg', 'Permanent hair removal in Nuremberg')"
-  [titleLevel]="'h1'"
-  [titleColor]="'light'"
-  [titleType]="'simple'"
-  [buttonList]="buttonList"
-  [googleReviews]="true"
-  >
-</app-image-hero>
+<!-- ======================================================================= -->
+<!-- Hero — Vollbild über dem Studio-Foto                                    -->
+<!-- ======================================================================= -->
+<section class="hero" id="topSection">
+  <img
+    class="hero-bg"
+    src="assets/images/farewell/studio.webp"
+    [alt]="t(
+      'FareWell Studio in Nürnberg für permanente Haarentfernung',
+      'FareWell studio in Nuremberg for permanent hair removal'
+    )"
+    fetchpriority="high"
+    decoding="async"
+  />
+  <div class="hero-scrim" aria-hidden="true"></div>
 
-<app-text-block
-    [title]="t('Echte Ergebnisse. Echtes Wohlbefinden. Dein Leben ohne störende Haare.', 'Real results. Real wellbeing. Your life without unwanted hair.')"
-    [theme]="'light'"
-    [paragraphAlign]="'justify'"
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="hero-eyebrow" appReveal
+        ><span class="lang de">Permanente Haarentfernung · Nürnberg</span
+        ><span class="lang en">Permanent hair removal · Nuremberg</span></span
+      >
+      <span class="hero-line" appReveal [revealDelay]="80"
+        ><span class="lang de">Nie wieder</span
+        ><span class="lang en">Never shave</span></span
+      >
+      <span class="hero-line hero-line--accent" appReveal [revealDelay]="200"
+        ><span class="lang de">rasieren.</span
+        ><span class="lang en">again.</span></span
+      >
+    </h1>
+
+    <p class="hero-sub" appReveal [revealDelay]="340">
+      <span class="lang de"
+        >Elektrolyse ist die einzige wirklich permanente
+        Haarentfernungsmethode: bei jedem Hauttyp, an jeder Körperstelle.
+        FareWell bringt sie ins Rampenlicht.</span
+      ><span class="lang en"
+        >Electrolysis is the only truly permanent hair removal method: for
+        every skin type, on every part of the body. FareWell puts it in the
+        spotlight.</span
+      >
+    </p>
+
+    <div class="hero-ctas" appReveal [revealDelay]="460">
+      <a
+        class="btn-gold no-underline"
+        href="https://salonkee.de/salon/farewell?lang=de"
+        target="_blank"
+        rel="noopener noreferrer"
+        (click)="trackBookingClick($event, 'home-hero', 'Termin Buchen Home Hero')"
+        ><span class="lang de">Termin buchen</span
+        ><span class="lang en">Book now</span></a
+      >
+      <a
+        class="btn-outline no-underline"
+        href="#manifest"
+        [appScrollTo]="'manifest'"
+        ><span class="lang de">Warum FareWell</span
+        ><span class="lang en">Why FareWell</span></a
+      >
+    </div>
+
+    <div class="hero-rating" appReveal="fade" [revealDelay]="600">
+      <img
+        src="assets/images/icons/google.svg"
+        alt="Google"
+        width="20"
+        height="20"
+        loading="lazy"
+        decoding="async"
+      />
+      <span class="rating-stars" aria-hidden="true">★★★★★</span>
+      <strong
+        ><span class="lang de">{{ ratingDe }}</span
+        ><span class="lang en">{{ ratingEn }}</span></strong
+      >
+      <span class="rating-count"
+        >· {{ ratingCount }}
+        <span class="lang de">Bewertungen</span
+        ><span class="lang en">reviews</span></span
+      >
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span class="cue-label">Scroll</span>
+    <span class="cue-line"></span>
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+<!-- Manifest — Scroll-Highlight Wort für Wort                               -->
+<!-- ======================================================================= -->
+<section class="manifest" id="manifest">
+  <p class="eyebrow" appReveal>
+    <span class="lang de">Das FareWell-Manifest</span
+    ><span class="lang en">The FareWell manifesto</span>
+  </p>
+  <p class="manifest-copy lang de">
+    Wir glauben: Niemand sollte ein Leben lang rasieren müssen. Keine
+    eingewachsenen Haare, keine Schnitte, keine ständige Pflege, sondern
+    <em>lebenslange Glätte</em>, Selbstbewusstsein und Ruhe. Im Kopf und auf
+    der Haut.
+  </p>
+  <p class="manifest-copy lang en">
+    We believe no one should have to shave for a lifetime. No ingrown hairs,
+    no cuts, no constant upkeep, but <em>lifelong smoothness</em>, confidence
+    and calm. In your mind and on your skin.
+  </p>
+</section>
+
+<!-- ======================================================================= -->
+<!-- Behandlungen — horizontaler Karten-Rail                                 -->
+<!-- ======================================================================= -->
+<section class="rail-section" id="behandlungen">
+  <div class="rail-head">
+    <h2 class="section-title">
+      <span class="lang de">Behandlungen<br /><em>im Überblick</em></span
+      ><span class="lang en">Treatments<br /><em>at a glance</em></span>
+    </h2>
+    <div class="rail-nav">
+      <button
+        type="button"
+        (click)="scrollRail(-1)"
+        [attr.aria-label]="t('Behandlungen zurück scrollen', 'Scroll treatments back')"
+      >
+        ←
+      </button>
+      <button
+        type="button"
+        (click)="scrollRail(1)"
+        [attr.aria-label]="t('Behandlungen weiter scrollen', 'Scroll treatments forward')"
+      >
+        →
+      </button>
+    </div>
+
+    <p class="rail-intro" appReveal>
+      <span class="lang de"
+        >Permanente Haarentfernung mit Nadelepilation, dauerhafte
+        Laser-Haarentfernung mit dem 4-Wellen-Diodenlaser, Microneedling RF,
+        Massagen und Kavitation: alles in unserem Studio in Nürnberg, zwei
+        Minuten vom Hauptbahnhof. Welche Behandlung zu dir passt, klären wir
+        ehrlich in deiner kostenlosen Erstberatung.</span
+      ><span class="lang en"
+        >Permanent hair removal with electrolysis, long-lasting laser hair
+        removal with the 4-wavelength diode laser, RF microneedling, massages
+        and cavitation: all in our Nuremberg studio, two minutes from the main
+        station. Which treatment suits you best is something we clarify
+        honestly in your free initial consultation.</span
+      >
+    </p>
+  </div>
+
+  <div class="rail-track" #railTrack>
+    <a
+      class="service-card no-underline"
+      *ngFor="let svc of services"
+      [routerLink]="p(svc.path)"
     >
-<span class="lang de">Bei FareWell erlebst du permanente & dauerhafte Haarentfernung auf einem neuen Niveau.
-Unsere Kund:innen schätzen vor allem die kompetente Beratung, die ruhige Atmosphäre und die professionelle Durchführung jeder Behandlung.
-<br>
-Wir begleiten dich von der ersten Beratung bis zum sichtbaren Ergebnis, individuell, offen und mit genau dem richtigen Maß an Zeit und Fürsorge. Viele berichten, dass sie sich von Anfang an wohlgefühlt haben und die Behandlungen fachlich und menschlich exzellent waren.
-<br>
-Unser Studio ist modern, sauber und schafft eine Atmosphäre, in der du dich entspannen kannst, fernab von Hektik und Stress.
-<br>
-Warum FareWell?
-• Vertrauensvolle und ausführliche Beratung vor jeder Behandlung
-• Professionelle, sanfte und wirkungsvolle permanente Haarentfernung mittels Elektrolyse
-• Freundliches, einfühlsames Team, das auf deine Bedürfnisse eingeht
-• Saubere, entspannte Studioatmosphäre</span><span class="lang en">At FareWell you experience permanent and long-lasting hair removal at a new level.
-Our clients value the expert advice, the calm atmosphere and the professional care behind every treatment.
-<br>
-We guide you from the first consultation to visible results, personally, openly and with just the right amount of time and attention. Many tell us they felt at ease from the very start and found the treatments excellent, both professionally and personally.
-<br>
-Our studio is modern, clean and creates an atmosphere where you can relax, far from rush and stress.
-<br>
-Why FareWell?
-• Trusted, thorough advice before every treatment
-• Professional, gentle and effective permanent hair removal with electrolysis
-• A friendly, caring team that listens to your needs
-• A clean, relaxed studio atmosphere</span>
-</app-text-block>
-
-<app-parallax
-    [imageSrc]="'assets/images/treatment/armpit.webp'"
-    [title]="t('Werte', 'Values')">
-</app-parallax>
-
-<app-text-block
-    [theme]="'dark'"
-    [paragraphAlign]="'center'"
-    [title]="t('Bester Mehrwert für unsere Kund:innen', 'The best value for our clients')">
-        <span class="lang de">Bei FareWell stehen dauerhafte Ergebnisse und echte Wahlfreiheit im Mittelpunkt.<br>
-        Wir bringen die Elektrolyse, die einzige wirklich permanente Haarentfernungsmethode, ins Rampenlicht.<br>
-        Sie funktioniert bei <strong>jedem Hauttyp und an jeder Körperstelle</strong>, ganz ohne Einschränkungen.<br><br>
-
-        Unsere Kund:innen entscheiden sich nicht nur gegen Rasur, Waxing oder Hautirritationen,<br>
-        sondern für <strong>lebenslange Glätte, Selbstbewusstsein und Freiheit von ständiger Pflege</strong>.<br>
-        Keine eingewachsenen Haare, keine Schnitte, keine Schmerzen.<br>
-        Nur Ruhe im Kopf und auf der Haut.<br><br>
-
-        <strong>FareWell, für alle, die sich nicht ein Leben lang rasieren wollen.</strong></span><span class="lang en">At FareWell, lasting results and real freedom of choice are at the centre of everything.<br>
-        We put electrolysis, the only truly permanent hair removal method, in the spotlight.<br>
-        It works on <strong>every skin type and every part of the body</strong>, with no restrictions.<br><br>
-
-        Our clients choose not just against shaving, waxing or skin irritation,<br>
-        but for <strong>lifelong smoothness, confidence and freedom from constant upkeep</strong>.<br>
-        No ingrown hairs, no cuts, no pain.<br>
-        Just peace of mind and calm skin.<br><br>
-
-        <strong>FareWell, for everyone who does not want to shave for the rest of their life.</strong></span>
-</app-text-block>
-
-<app-text-block
-    [theme]="'light'"
-    [paragraphAlign]="'center'"
-    [title]="t('Nachhaltigkeit bei FareWell', 'Sustainability at FareWell')">
-    <span class="lang de">Bei FareWell setzen wir auf echte, permanente Haarentfernung, und damit auch auf Umweltschutz. Durch Elektrolyse braucht es keine Klingen, Rasierschaum, Enthaarungscremes oder Einwegprodukte mehr. <br>
-    Weniger Müll, weniger Chemie, mehr Nachhaltigkeit.
-
-    Allein in den USA werden jährlich über
-    <a href="https://css.washingtonpost.com/climate-solutions/2024/05/19/safety-razor-sustainability/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
-    2 Milliarden Einwegrasierer
+      <div class="card-media">
+        <img
+          [src]="svc.image"
+          [alt]="t(svc.altDe, svc.altEn)"
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="card-num">{{ svc.num }}</span>
+      </div>
+      <div class="card-body">
+        <h3>
+          <span class="lang de">{{ svc.titleDe }}</span
+          ><span class="lang en">{{ svc.titleEn }}</span>
+        </h3>
+        <p>
+          <span class="lang de">{{ svc.descDe }}</span
+          ><span class="lang en">{{ svc.descEn }}</span>
+        </p>
+        <span class="card-more"
+          ><span class="lang de">Mehr erfahren</span
+          ><span class="lang en">Learn more</span>
+          →</span
+        >
+      </div>
     </a>
-    entsorgt.<br>
-    Weltweit hochgerechnet sind es viele Milliarden Stück, das verursacht enorme Mengen an Plastik- und Metallmüll.<br>
-    Und das betrifft nur Einwegrasierer. Die Haarentfernungsindustrie insgesamt verursacht noch deutlich mehr Abfall.<br><br>
-    Lass uns gemeinsam dafür sorgen, dass diese Zahl kleiner wird.
+  </div>
 
-    Eine Entscheidung für FareWell ist auch eine Entscheidung für unsere Umwelt.</span><span class="lang en">At FareWell we believe in real, permanent hair removal, and with it in protecting the environment. With electrolysis there is no more need for blades, shaving foam, depilatory creams or single-use products. <br>
-    Less waste, fewer chemicals, more sustainability.
+  <div class="rail-outro" appReveal>
+    <p>
+      <span class="lang de"
+        >Übrigens: Alle Preise findest du transparent in der
+        <a [routerLink]="p('/price')">Preisübersicht</a>, aktuelle Angebote in
+        der
+        <a [routerLink]="p('/laser-haarentfernung-aktion-nuernberg')"
+          >Laser-Aktion</a
+        >
+        und der
+        <a [routerLink]="p('/ipl-dauerhafte-haarentfernung-aktion-nuernberg')"
+          >IPL-Aktion</a
+        >. Und im Ratgeber liest du, wann die
+        <a [routerLink]="p('/ratgeber/epilation-krankenkasse')"
+          >Krankenkasse eine Epilation übernehmen kann</a
+        >
+        und wie du
+        <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')"
+          >Haarentfernung von der Steuer absetzt</a
+        >.</span
+      ><span class="lang en"
+        >By the way: you can find all prices in our transparent
+        <a [routerLink]="p('/price')">price overview</a> and current offers in
+        the
+        <a [routerLink]="p('/laser-haarentfernung-aktion-nuernberg')"
+          >laser deal</a
+        >
+        and the
+        <a [routerLink]="p('/ipl-dauerhafte-haarentfernung-aktion-nuernberg')"
+          >IPL deal</a
+        >. Our guides also explain when
+        <a [routerLink]="p('/ratgeber/epilation-krankenkasse')"
+          >health insurance may cover epilation</a
+        >
+        and how to
+        <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')"
+          >deduct hair removal from your taxes</a
+        >.</span
+      >
+    </p>
+  </div>
+</section>
 
-    In the USA alone, more than
-    <a href="https://css.washingtonpost.com/climate-solutions/2024/05/19/safety-razor-sustainability/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
-    2 billion disposable razors
-    </a>
-    are thrown away every year.<br>
-    Extrapolated worldwide, that is many billions of units, creating enormous amounts of plastic and metal waste.<br>
-    And that covers only disposable razors. The hair removal industry as a whole produces far more waste still.<br><br>
-    Let us work together to make that number smaller.
+<!-- ======================================================================= -->
+<!-- Statement — Parallax-Zwischenruf                                        -->
+<!-- ======================================================================= -->
+<section class="statement">
+  <blockquote appReveal>
+    <p>
+      <span class="lang de"
+        >Funktioniert bei <em>jedem Hauttyp</em>, an jeder
+        Körperstelle.</span
+      ><span class="lang en"
+        >Works on <em>every skin type</em>, on every part of the body.</span
+      >
+    </p>
+  </blockquote>
+</section>
 
-    Choosing FareWell is also a choice for our environment.</span>
-</app-text-block>
+<!-- ======================================================================= -->
+<!-- Zeit-Rechner                                                            -->
+<!-- ======================================================================= -->
+<section class="rechner" id="rechner">
+  <div class="rechner-grid">
+    <div class="rechner-intro">
+      <p class="eyebrow">
+        <span class="lang de">Der Zeit-Rechner</span
+        ><span class="lang en">The time calculator</span>
+      </p>
+      <h2 class="section-title">
+        <span class="lang de"
+          >Wie viel Leben kostet dich <em>Rasieren?</em></span
+        ><span class="lang en"
+          >How much life does <em>shaving</em> cost you?</span
+        >
+      </h2>
+      <p class="rechner-lede">
+        <span class="lang de"
+          >Beweg den Regler und rechne aus, was du mit permanenter
+          Haarentfernung zurückgewinnst.</span
+        ><span class="lang en"
+          >Move the slider and see how much you win back with permanent
+          hair removal.</span
+        >
+      </p>
+    </div>
 
-<app-parallax
-    [imageSrc]="'assets/images/farewell/calendar.jpg'"
-    [title]="t('Öffnungszeiten', 'Opening hours')">
-</app-parallax>
+    <div class="rechner-card">
+      <div class="rechner-row">
+        <label for="fwRange"
+          ><span class="lang de">Rasuren pro Woche</span
+          ><span class="lang en">Shaves per week</span></label
+        >
+        <span class="rechner-freq">{{ freq() }}</span>
+      </div>
+      <input
+        id="fwRange"
+        type="range"
+        min="1"
+        max="14"
+        step="1"
+        [value]="freq()"
+        (input)="onFreqInput($event)"
+      />
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-value">
+            {{ hoursYear() }}
+            <span class="lang de">Std.</span><span class="lang en">hrs</span>
+          </div>
+          <div class="stat-label">
+            <span class="lang de">pro Jahr im Bad</span
+            ><span class="lang en">a year in the bathroom</span>
+          </div>
+        </div>
+        <div class="stat stat--gold">
+          <div class="stat-value">
+            {{ daysLife() }}
+            <span class="lang de">Tage</span><span class="lang en">days</span>
+          </div>
+          <div class="stat-label">
+            <span class="lang de"
+              >deines Lebens, geschenkt an den Rasierer</span
+            ><span class="lang en"
+              >of your life, given to the razor</span
+            >
+          </div>
+        </div>
+      </div>
+      <p class="rechner-note">
+        <span class="lang de">FareWell gibt dir diese Zeit zurück.</span
+        ><span class="lang en">FareWell gives you that time back.</span>
+        <a [routerLink]="p('/zeit')" class="rechner-link no-underline"
+          ><span class="lang de">Zur ausführlichen Elektrolyse-Zeitberechnung</span
+          ><span class="lang en">Full electrolysis time calculation</span>
+          →</a
+        >
+      </p>
+    </div>
+  </div>
+</section>
 
-<app-opening-hours></app-opening-hours>
+<!-- ======================================================================= -->
+<!-- Stimmen — Google-Bewertungen als Lauf-Marquee                           -->
+<!-- ======================================================================= -->
+<section class="stimmen" id="stimmen">
+  <div class="stimmen-head">
+    <h2 class="section-title">
+      <span class="lang de"
+        >{{ ratingDe }} von 5
+        <em>· {{ ratingCount }} Google-Bewertungen</em></span
+      ><span class="lang en"
+        >{{ ratingEn }} out of 5
+        <em>· {{ ratingCount }} Google reviews</em></span
+      >
+    </h2>
+    <div class="stimmen-verified">
+      <img
+        src="assets/images/icons/google.svg"
+        alt=""
+        width="18"
+        height="18"
+        loading="lazy"
+        decoding="async"
+      />
+      <span class="lang de">verifiziert auf Google</span
+      ><span class="lang en">verified on Google</span>
+    </div>
+
+    <button
+      type="button"
+      class="marquee-toggle"
+      (click)="toggleMarquee()"
+      [attr.aria-pressed]="marqueePaused"
+      [attr.aria-label]="t('Bewertungs-Laufband anhalten oder abspielen', 'Pause or play the reviews ticker')"
+    >
+      <ng-container *ngIf="!marqueePaused"
+        ><span class="lang de">Anhalten</span
+        ><span class="lang en">Pause</span></ng-container
+      >
+      <ng-container *ngIf="marqueePaused"
+        ><span class="lang de">Abspielen</span
+        ><span class="lang en">Play</span></ng-container
+      >
+    </button>
+  </div>
+
+  <div class="marquee-rows" [class.paused]="marqueePaused">
+    <div class="marquee">
+      <div class="marquee-track marquee-track--a">
+        <article
+          class="review-card"
+          *ngFor="let r of rowA; trackBy: trackReview"
+        >
+          <div class="review-head">
+            <strong>{{ r.name }}</strong>
+            <span class="review-stars" aria-hidden="true">★★★★★</span>
+          </div>
+          <p>{{ r.text }}</p>
+          <span class="review-meta">{{ r.time }} · Google</span>
+        </article>
+        <article
+          class="review-card marquee-dupe"
+          *ngFor="let r of rowA; trackBy: trackReview"
+          aria-hidden="true"
+        >
+          <div class="review-head">
+            <strong>{{ r.name }}</strong>
+            <span class="review-stars">★★★★★</span>
+          </div>
+          <p>{{ r.text }}</p>
+          <span class="review-meta">{{ r.time }} · Google</span>
+        </article>
+      </div>
+    </div>
+
+    <div class="marquee">
+      <div class="marquee-track marquee-track--b">
+        <article
+          class="review-card"
+          *ngFor="let r of rowB; trackBy: trackReview"
+        >
+          <div class="review-head">
+            <strong>{{ r.name }}</strong>
+            <span class="review-stars" aria-hidden="true">★★★★★</span>
+          </div>
+          <p>{{ r.text }}</p>
+          <span class="review-meta">{{ r.time }} · Google</span>
+        </article>
+        <article
+          class="review-card marquee-dupe"
+          *ngFor="let r of rowB; trackBy: trackReview"
+          aria-hidden="true"
+        >
+          <div class="review-head">
+            <strong>{{ r.name }}</strong>
+            <span class="review-stars">★★★★★</span>
+          </div>
+          <p>{{ r.text }}</p>
+          <span class="review-meta">{{ r.time }} · Google</span>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+<!-- Besuch — Abschluss-CTA über dem Kalender-Foto                           -->
+<!-- ======================================================================= -->
+<section class="besuch" id="besuch">
+  <div class="besuch-scrim" aria-hidden="true"></div>
+  <div class="besuch-content">
+    <h2 appReveal>
+      <span class="lang de">Bereit, <em>FareWell</em> zu sagen?</span
+      ><span class="lang en">Ready to say <em>FareWell</em>?</span>
+    </h2>
+    <p class="besuch-info" appReveal [revealDelay]="120">
+      <span class="lang de"
+        >Frauentorgraben 5, 90443 Nürnberg. Zwei Minuten vom
+        Hauptbahnhof.<br />Mo–Fr 10–20 Uhr · Sa 8–17 Uhr · So geschlossen</span
+      ><span class="lang en"
+        >Frauentorgraben 5, 90443 Nuremberg. Two minutes from the main
+        station.<br />Mon–Fri 10 am–8 pm · Sat 8 am–5 pm · Sun closed</span
+      >
+    </p>
+    <div class="besuch-ctas" appReveal [revealDelay]="240">
+      <a
+        class="btn-gold no-underline"
+        href="https://salonkee.de/salon/farewell?lang=de"
+        target="_blank"
+        rel="noopener noreferrer"
+        (click)="trackBookingClick($event, 'home-besuch', 'Termin Buchen Home Besuch')"
+        ><span class="lang de">Jetzt Termin buchen</span
+        ><span class="lang en">Book your appointment</span></a
+      >
+      <a class="btn-outline no-underline" href="tel:+4915757995694"
+        >+49 157 5799 5694</a
+      >
+    </div>
+  </div>
+</section>

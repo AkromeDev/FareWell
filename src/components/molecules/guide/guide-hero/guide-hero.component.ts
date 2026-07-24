@@ -13,6 +13,7 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
     <header class="gd-hero">
       <img
         class="gd-hero__img"
+        [class.gd-hero__img--crop-top]="mobileCrop === 'top'"
         [src]="image"
         [alt]="imageAlt"
         fetchpriority="high"
@@ -46,4 +47,7 @@ export class GuideHeroComponent {
   /** Optionales Logo (auf hellem Plättchen) zwischen Kicker und Titel. */
   @Input() logo = '';
   @Input() logoAlt = 'FareWell Logo';
+  /** 'top' schneidet das Bild auf Mobil/Tablet von oben an, sodass nur die
+   *  untere Bildhälfte sichtbar bleibt (z. B. um Gesichter auszublenden). */
+  @Input() mobileCrop: '' | 'top' = '';
 }

@@ -15,8 +15,21 @@ $white:        #FFFFFF;  // White card surface
 $font-dark:    #2B3328;  // Charcoal-emerald — primary body text on light
 $font-light:   #F7F2E8;  // Ivory — text on dark
 
+// Emerald Immersive (Home B) — deep-emerald surfaces for immersive dark
+// sections (home page, header, footer). Complements the light palette above.
+$emerald-deep:  #0F1D15;  // Deep emerald — immersive page background
+$emerald-card:  #152A1E;  // Raised card surface on deep emerald
+$emerald-abyss: #0A150E;  // Deepest surface — footer
+$gold:          #C9A55C;  // Bright champagne gold — accent on dark surfaces
+$gold-bright:   #D8B76E;  // Gold hover state on dark surfaces
+$cream:         #F4EDE0;  // Warm cream — text on deep emerald
+$sage-bright:   #8FA07A;  // Aufgehellter Salbeiton — AA-tauglich auf $emerald-deep
+
 // Font Families
 $font-lato: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+$font-fraunces: 'Fraunces', Georgia, 'Times New Roman', serif;
+// Signatur-Schrift für den FareWell-Schriftzug (wie das Logo auf der Theke).
+$font-script: 'Hurricane', 'Fraunces', cursive;
 
 // Active Fonts
 $font: $font-lato;

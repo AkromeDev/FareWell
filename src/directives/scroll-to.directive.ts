@@ -14,6 +14,12 @@ export class ScrollToDirective {
     const el = document.getElementById(this.targetId);
     if (!el) return;
 
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    el.scrollIntoView({
+      behavior: reduceMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
   }
 }

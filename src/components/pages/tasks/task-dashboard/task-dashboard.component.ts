@@ -189,8 +189,8 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       this.lang.lang(); // track language changes
       if (!u) return;
       const title = this.lang.t(
-        `Aufgaben – ${u.name} | FareWell`,
-        `Tasks – ${u.name} | FareWell`,
+        `Aufgaben: ${u.name} | FareWell`,
+        `Tasks: ${u.name} | FareWell`,
       );
       this.seo.setPageSeo({
         title,

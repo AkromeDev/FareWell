@@ -1,19 +1,31 @@
-<div [ngClass]="{ scrolled: scrolled }" class="nav-bar">
-  <a [routerLink]="p('/')" class="nav-logo" (click)="setActiveTab('home')">FareWell</a>
+<div class="scroll-progress" [style.width.%]="progress" aria-hidden="true"></div>
+
+<div
+  [ngClass]="{
+    scrolled: scrolled,
+    transparent: isHome && !scrolled && !menuOpen && !behandlungenOpen
+  }"
+  class="nav-bar"
+>
+  <a [routerLink]="p('/')" class="nav-logo" (click)="setActiveTab('home')"
+    >FareWell<span class="logo-dot">.</span></a
+  >
 
   <!-- Burger Icon -->
-  <div
+  <button
+    type="button"
     class="burger"
     [ngClass]="{ open: menuOpen }"
     (click)="toggleMenu()"
-    [attr.aria-label]="lang.t('Menü öffnen', 'Open menu')"
-    role="button"
-    tabindex="0"
+    [attr.aria-label]="
+      menuOpen ? lang.t('Menü schließen', 'Close menu') : lang.t('Menü öffnen', 'Open menu')
+    "
+    [attr.aria-expanded]="menuOpen"
   >
     <span></span>
     <span></span>
     <span></span>
-  </div>
+  </button>
 
   <!-- Nav links -->
   <div class="nav-links-container" [ngClass]="{ open: menuOpen }">
@@ -52,7 +64,7 @@
         <div class="behandlungen-mobile-inner">
           <a
             class="behandlungen-mobile-link"
-            *ngFor="let t of treatments"
+            *ngFor="let t of treatments; trackBy: trackTreatment"
             [routerLink]="t.route"
             (click)="setActiveTab('behandlungen')"
           >
@@ -70,7 +82,7 @@
         (click)="setActiveTab('zeit')"
         class="nav-link"
       >
-        <span class="lang de">Elektrolyse-Zeitberechnung</span><span class="lang en">Electrolysis time</span>
+        <span class="lang de">Zeit-Rechner</span><span class="lang en">Time calculator</span>
       </a>
 
       <a
@@ -119,7 +131,7 @@
     <div class="panel-inner">
       <a
         class="treatment-card"
-        *ngFor="let t of treatments"
+        *ngFor="let t of treatments; trackBy: trackTreatment"
         [routerLink]="t.route"
         (click)="setActiveTab('behandlungen')"
       >

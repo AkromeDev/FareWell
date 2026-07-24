@@ -34,6 +34,15 @@
   --line: #{rgba($font-dark, 0.12)};
   --line-strong: #{rgba($font-dark, 0.18)};
 
+  // Emerald Immersive (dark home / header / footer)
+  --emerald-deep: #{$emerald-deep};
+  --emerald-card: #{$emerald-card};
+  --emerald-abyss: #{$emerald-abyss};
+  --gold-deep: #{$gold};
+  --gold-deep-bright: #{$gold-bright};
+  --cream: #{$cream};
+  --font-serif: #{$font-fraunces};
+
   // Motion
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --reveal-distance: 28px;
@@ -246,7 +255,7 @@ a[href]:not(.no-underline):not(.gd a) {
     position: static;
     inset: auto;
     display: inline-flex;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba($cream, 0.3);
     border-radius: 999px;
     overflow: hidden;
     background: transparent;
@@ -259,7 +268,7 @@ a[href]:not(.no-underline):not(.gd a) {
       font-weight: 700;
       letter-spacing: 0.08em;
       line-height: 1;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba($cream, 0.85);
       background: transparent;
       border: 0;
       padding: 6px 11px;
@@ -269,12 +278,12 @@ a[href]:not(.no-underline):not(.gd a) {
       // Aktive Sprache: Champagne-Gold (Marken-Akzent), damit sie wie die
       // aktiven Nav-Punkte hervorsticht statt weiß zu sein.
       &[aria-pressed='true'] {
-        background: #b8924a;
-        color: #1c2b24;
+        background: $gold;
+        color: $emerald-deep;
       }
 
       &:not([aria-pressed='true']):hover {
-        background: rgba(255, 255, 255, 0.16);
+        background: rgba($cream, 0.14);
         color: #fff;
       }
     }

@@ -269,11 +269,11 @@ function localizedRoutes(lang: PageLang): Routes {
         import('../components/pages/faq/faq.component').then(m => m.FaqComponent),
       data: d(
         {
-          title: 'FAQ – Häufige Fragen zu Haarentfernung & Behandlungen | FareWell Nürnberg',
+          title: 'FAQ: Häufige Fragen zu Haarentfernung & Behandlungen | FareWell Nürnberg',
           description: 'Antworten auf die häufigsten Fragen an FareWell Nürnberg: Elektrolyse vs. Diodenlaser, Termine & Preise, Kostenübernahme durch die Krankenkasse, Steuer und US-Forces-Mehrwertsteuerbefreiung.'
         },
         {
-          title: 'FAQ – Hair Removal & Treatments in Nuremberg | FareWell',
+          title: 'FAQ: Hair Removal & Treatments in Nuremberg | FareWell',
           description: 'Answers to the most common questions at FareWell Nuremberg: electrolysis vs. diode laser, appointments and prices, insurance coverage, tax, and US Forces VAT exemption.'
         }
       )
@@ -290,11 +290,11 @@ function localizedRoutes(lang: PageLang): Routes {
           .then(m => m.MojoClipboardSupportComponent),
       data: d(
         {
-          title: 'MojoClipboard – Support & Anleitung | Zwischenablage-Verlauf für den Mac',
+          title: 'MojoClipboard: Support & Anleitung | Zwischenablage-Verlauf für den Mac',
           description: 'Support für MojoClipboard, die kostenlose macOS-Menüleisten-App für den Zwischenablage-Verlauf (macOS 14+). ⌃⌘V öffnet den Verlauf. Datenschutz-first: keine Daten, nichts verlässt dein Gerät.'
         },
         {
-          title: 'MojoClipboard – Support & Guide | Clipboard History for Mac',
+          title: 'MojoClipboard: Support & Guide | Clipboard History for Mac',
           description: 'Support for MojoClipboard, the free macOS menu-bar clipboard-history app (macOS 14+). Press ⌃⌘V to open your history. Privacy-first: no data collected, nothing leaves your device.'
         }
       )
@@ -307,11 +307,11 @@ function localizedRoutes(lang: PageLang): Routes {
           .then(m => m.MasseurOnboardingComponent),
       data: d(
         {
-          title: 'Onboarding Massage – so arbeiten wir zusammen | FareWell Nürnberg',
+          title: 'Onboarding Massage: so arbeiten wir zusammen | FareWell Nürnberg',
           description: 'Der Onboarding-Leitfaden für selbständige Masseur:innen bei FareWell Nürnberg: Probe-Session, Leistungen, 70/30-Abrechnung, Kundengewinnung und der geteilte Raum. Auf Deutsch und Englisch.'
         },
         {
-          title: 'Massage Onboarding – How We Work Together | FareWell Nuremberg',
+          title: 'Massage Onboarding: How We Work Together | FareWell Nuremberg',
           description: 'The onboarding guide for freelance massage therapists at FareWell Nuremberg: trial session, services, the 70/30 split, winning clients and the shared space. In German and English.'
         }
       )
@@ -323,11 +323,11 @@ function localizedRoutes(lang: PageLang): Routes {
           .then(m => m.MasseurKarriereComponent),
       data: d(
         {
-          title: 'Masseur:in (m/w/d) in Nürnberg – freiberuflich | Karriere bei FareWell',
+          title: 'Masseur:in (m/w/d) in Nürnberg: freiberuflich | Karriere bei FareWell',
           description: 'FareWell Nürnberg sucht Masseur:in zur freiberuflichen Zusammenarbeit: moderner Salon im Zentrum, flexible Arbeitszeiten, Online-Buchungssystem und eigener Kundenstamm.'
         },
         {
-          title: 'Massage Therapist (m/f/d) in Nuremberg – Freelance | Careers at FareWell',
+          title: 'Massage Therapist (m/f/d) in Nuremberg: Freelance | Careers at FareWell',
           description: 'FareWell Nuremberg is looking for a freelance massage therapist: modern central salon, flexible hours, an online booking system and your own client base.'
         }
       )
@@ -438,7 +438,7 @@ const routes: Routes = [
         .then(m => m.ImpressumComponent),
     data: {
       title: 'Impressum | FareWell Nürnberg',
-      description: 'Impressum von FareWell – Beauty Studio in Nürnberg.'
+      description: 'Impressum von FareWell, Beauty Studio in Nürnberg.'
     }
   },
   {

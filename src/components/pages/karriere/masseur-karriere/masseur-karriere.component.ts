@@ -31,8 +31,8 @@ export class MasseurKarriereComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.seo.setPageSeo({
       title: this.t(
-        'Masseur:in (m/w/d) in Nürnberg – freiberuflich | Karriere bei FareWell',
-        'Massage Therapist (m/f/d) in Nuremberg – Freelance | Careers at FareWell'
+        'Masseur:in (m/w/d) in Nürnberg: freiberuflich | Karriere bei FareWell',
+        'Massage Therapist (m/f/d) in Nuremberg: Freelance | Careers at FareWell'
       ),
       description: this.t(
         'FareWell Nürnberg sucht Masseur:in zur freiberuflichen Zusammenarbeit: moderner Salon im Zentrum, flexible Arbeitszeiten, Online-Buchungssystem und eigener Kundenstamm.',
