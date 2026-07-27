@@ -99,7 +99,8 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
           publisher: {
             '@type': 'BeautySalon',
             '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell',
+            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
+            alternateName: 'FareWell',
             url: 'https://farewell.salon',
           },
           mainEntityOfPage: { '@id': `${pageUrl}#webpage` },

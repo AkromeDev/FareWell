@@ -93,7 +93,8 @@ export class MasseurKarriereComponent implements OnInit, OnDestroy {
           hiringOrganization: {
             '@type': 'BeautySalon',
             '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell',
+            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
+            alternateName: 'FareWell',
             url: 'https://farewell.salon',
             logo: this.imageUrl,
             sameAs: [

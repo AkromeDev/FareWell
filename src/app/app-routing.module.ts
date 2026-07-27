@@ -139,11 +139,11 @@ function localizedRoutes(lang: PageLang): Routes {
         import('../components/pages/home/home.component').then(m => m.HomeComponent),
       data: d(
         {
-          title: 'FareWell Nürnberg | Permanente Haarentfernung & Beauty Studio',
+          title: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung | Nürnberg',
           description: 'FareWell Nürnberg: spezialisiert auf Elektrolyse (permanente Haarentfernung), Laserbehandlungen, Microneedling und weitere Beauty Behandlungen.'
         },
         {
-          title: 'FareWell Nuremberg | Permanent Hair Removal & Beauty Studio',
+          title: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung | Nürnberg',
           description: 'FareWell in Nuremberg specialises in electrolysis (permanent hair removal), laser hair removal, RF microneedling and body treatments. Consultations in English, near the main station.'
         }
       )

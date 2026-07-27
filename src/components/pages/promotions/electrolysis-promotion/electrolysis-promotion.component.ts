@@ -164,7 +164,8 @@ export class ElectrolysisPromotionComponent implements OnInit, OnDestroy {
           provider: {
             '@type': 'BeautySalon',
             '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell',
+            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
+            alternateName: 'FareWell',
             url: 'https://farewell.salon',
             address: {
               '@type': 'PostalAddress',
