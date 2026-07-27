@@ -385,11 +385,11 @@ function localizedRoutes(lang: PageLang): Routes {
       data: d(
         {
           title: 'Laser-Haarentfernung in Nürnberg: 50% Rabatt auf die erste Behandlung | FareWell',
-          description: 'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG, gültig bis 31.08.2026. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.'
+          description: 'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.'
         },
         {
           title: 'Laser Hair Removal in Nuremberg: 50% Off Your First Treatment | FareWell',
-          description: 'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG, valid until 31 Aug 2026. Up to 30% ongoing discount, the more areas you book.'
+          description: 'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG. Up to 30% ongoing discount, the more areas you book.'
         }
       )
     },
@@ -401,11 +401,11 @@ function localizedRoutes(lang: PageLang): Routes {
       data: d(
         {
           title: 'IPL-Haarentfernung in Nürnberg? Die modernere Alternative | FareWell',
-          description: 'Statt IPL: dauerhafte Haarentfernung mit dem präziseren 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG, gültig bis 31.08.2026. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.'
+          description: 'Statt IPL: dauerhafte Haarentfernung mit dem präziseren 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.'
         },
         {
           title: 'IPL Hair Removal in Nuremberg? The More Modern Alternative | FareWell',
-          description: 'Instead of IPL: long-lasting hair removal with the more precise 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG, valid until 31 Aug 2026. Up to 30% ongoing discount, the more areas you book.'
+          description: 'Instead of IPL: long-lasting hair removal with the more precise 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG. Up to 30% ongoing discount, the more areas you book.'
         }
       )
     },

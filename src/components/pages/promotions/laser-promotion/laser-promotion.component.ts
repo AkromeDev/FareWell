@@ -14,9 +14,9 @@ const PAGE_PATH = '/laser-haarentfernung-aktion-nuernberg';
 const PAGE_TITLE_DE = 'Laser-Haarentfernung in Nürnberg: 50% Rabatt auf die erste Behandlung | FareWell';
 const PAGE_TITLE_EN = 'Laser Hair Removal in Nuremberg: 50% Off Your First Treatment | FareWell';
 const PAGE_DESCRIPTION_DE =
-  'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG, gültig bis 31.08.2026. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.';
+  'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.';
 const PAGE_DESCRIPTION_EN =
-  'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG, valid until 31 Aug 2026. Up to 30% ongoing discount, the more areas you book.';
+  'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG. Up to 30% ongoing discount, the more areas you book.';
 const HERO_IMAGE = 'assets/images/treatment/laser2.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 const HERO_IMAGE_ALT_DE =
@@ -161,8 +161,8 @@ export class LaserPromotionComponent implements OnInit, OnDestroy {
             'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg',
           ),
           description: this.t(
-            'Dauerhafte Haarentfernung mit modernem 4-Wellen-Diodenlaser bei FareWell in Nürnberg. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG, gültig bis 31.08.2026. Dauerhaft bis zu 30% Rabatt, je mehr Zonen gebucht werden.',
-            'Long-lasting hair removal with a modern 4-wavelength diode laser at FareWell in Nuremberg. 50% off the first treatment for new clients with the code ERSTEBEHANDLUNG, valid until 31 Aug 2026. Up to 30% ongoing discount, the more areas you book.',
+            'Dauerhafte Haarentfernung mit modernem 4-Wellen-Diodenlaser bei FareWell in Nürnberg. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG. Dauerhaft bis zu 30% Rabatt, je mehr Zonen gebucht werden.',
+            'Long-lasting hair removal with a modern 4-wavelength diode laser at FareWell in Nuremberg. 50% off the first treatment for new clients with the code ERSTEBEHANDLUNG. Up to 30% ongoing discount, the more areas you book.',
           ),
           serviceType: this.t('Laser Haarentfernung', 'Laser hair removal'),
           areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
@@ -191,7 +191,6 @@ export class LaserPromotionComponent implements OnInit, OnDestroy {
             ),
             url: pageUrl,
             priceCurrency: 'EUR',
-            priceValidUntil: '2026-08-31',
             availability: 'https://schema.org/InStock',
             eligibleCustomerType: {
               '@type': 'BusinessEntityType',

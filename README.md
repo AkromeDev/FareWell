@@ -17,7 +17,7 @@ The app reloads automatically on source changes.
   `tools/flatten-prerender.mjs` rewrites `route/index.html` → `route.html`.
 - `npm run watch` – development build that rebuilds on change.
 
-## English pages (/en/) and the indexing switch
+## English pages (/en/)
 
 Every translated page has an English twin under `/en/` (same slug), rendered by
 the same component; the URL decides the language (`LanguageService`). The
@@ -26,16 +26,14 @@ guide (`/ratgeber/mehrwertsteuer-us-streitkraefte`) and the English one
 (`/ratgeber/us-forces-vat-relief`) are hreflang counterparts on their own URLs.
 Legal pages stay German-only.
 
-The `/en/` pages currently carry `noindex,follow`. To launch English indexing:
+**The `/en/` pages are indexable and are meant to stay that way.** They carry
+`index,follow`, they are listed in `src/sitemap.xml`, and hreflang pairs
+(de / en / x-default) are emitted on every bilingual page by
+`SeoService.setPageSeo`. Do not reintroduce a `noindex` switch for the `/en/`
+prefix — only individually private pages (404, staff task pages) opt out, via
+the per-page `noindex` flag on `PageSeo`.
 
-1. Set `EN_PREFIX_INDEXABLE = true` in `src/services/seo.service.ts`.
-2. Uncomment the prepared `/en/` block in `src/sitemap.xml` and refresh the
-   `lastmod` dates.
-3. Rebuild (`npm run prerender`), deploy, and resubmit the sitemap in Google
-   Search Console.
-
-hreflang link pairs (de / en / x-default) are already emitted on every
-bilingual page by `SeoService.setPageSeo` and need no change at launch.
+When adding a new bilingual page, add **both** URLs to `src/sitemap.xml`.
 
 ## URL canonicalization (SEO)
 

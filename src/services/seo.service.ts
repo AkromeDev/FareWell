@@ -31,21 +31,13 @@ const ORIGIN = 'https://farewell.salon';
 const DEFAULT_IMAGE = `${ORIGIN}/assets/images/logo/android-chrome-512x512.png`;
 
 /**
- * Solange false, tragen alle Seiten unter /en/ ein noindex,follow. Auf true
- * stellen (und die /en/-URLs in die sitemap.xml aufnehmen), sobald die
- * englischen Seiten indexiert werden sollen. Bereits indexierte englische
- * Sonderseiten (z. B. /ratgeber/us-forces-vat-relief) sind davon ausgenommen.
- */
-const EN_PREFIX_INDEXABLE = true;
-
-/**
  * Zentraler SEO-Helfer: setzt Title/Meta/Open-Graph pro Seite und injiziert
  * JSON-LD sowie hreflang-Links direkt in den <head> (Skript-Tags in Templates
  * werden vom Angular-Compiler entfernt, daher der Umweg über das DOCUMENT).
  * Läuft identisch im Browser und beim Prerendern. Sprachbewusst: auf
- * englischen Seiten (/en/…) werden Pfad, Locale, Robots und hreflang
- * automatisch abgeleitet — Komponenten übergeben ihren deutschen Pfad und
- * bereits per t() aufgelöste Texte.
+ * englischen Seiten (/en/…) werden Pfad, Locale und hreflang automatisch
+ * abgeleitet — Komponenten übergeben ihren deutschen Pfad und bereits per t()
+ * aufgelöste Texte.
  */
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -68,10 +60,10 @@ export class SeoService {
 
     this.meta.updateTag({ name: 'description', content: seo.description });
 
-    // /en/-Seiten bleiben bis zur Freigabe auf noindex; die Freigabe steuert
-    // EN_PREFIX_INDEXABLE oben.
-    const noindex =
-      seo.noindex === true || (effectivePath.startsWith('/en') && !EN_PREFIX_INDEXABLE);
+    // Alle Seiten – deutsch wie englisch (/en/…) – sind indexierbar. Nur
+    // einzelne private Seiten (404, interne Task-Seiten) setzen per
+    // PageSeo.noindex ein noindex,follow.
+    const noindex = seo.noindex === true;
     this.meta.updateTag({
       name: 'robots',
       content: noindex ? 'noindex,follow' : 'index,follow',
