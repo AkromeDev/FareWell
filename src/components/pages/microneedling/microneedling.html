@@ -6,8 +6,8 @@
     [kicker]="t('FareWell · Nürnberg · Behandlung', 'FareWell · Nuremberg · Treatment')"
     [heading]="
       t(
-        'Microneedling mit Radiofrequenz in Nürnberg',
-        'Radiofrequency microneedling in Nuremberg'
+        'Radiofrequenz Microneedling in Nürnberg',
+        'Radio-frequency microneedling in Nuremberg'
       )
     "
     [tagline]="t('Frischer Glow von innen.', 'A fresh glow from within.')"
@@ -41,18 +41,22 @@
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
           <span class="lang de">
-            Geht es dir um Körperkontur an Bauch, Taille oder Beinen, schauen wir uns gemeinsam die
-            <a [routerLink]="p('/behandlungen/kavitation')">Kavitation</a> an. Alle
-            <a [routerLink]="p('/price')">Preise</a> findest du transparent aufgelistet, und was für
-            deine Haut wirklich realistisch ist, klären wir ehrlich in der
-            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+            Geht es dir gezielt um Narben oder Dehnungsstreifen, ist die
+            <a [routerLink]="p('/behandlungen/narbenbehandlung')">Narbenbehandlung</a> die passende
+            Leistung, bei der Körperkontur an Bauch, Taille oder Beinen das
+            <a [routerLink]="p('/behandlungen/kavitation')">Body Forming</a>. Alle
+            <a [routerLink]="p('/price')" fragment="microneedling">Preise</a> findest du transparent
+            aufgelistet, und was für deine Haut wirklich realistisch ist, klären wir ehrlich in der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Beratung</a>.
           </span>
           <span class="lang en">
-            If it's your body contour at the belly, waist or legs you care about, we'll look at
-            <a [routerLink]="p('/behandlungen/kavitation')">cavitation</a> together. You'll find all
-            <a [routerLink]="p('/price')">prices</a> transparently listed, and what's realistic for
-            your skin we clarify honestly in the
-            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+            If your focus is specifically scars or stretch marks, our
+            <a [routerLink]="p('/behandlungen/narbenbehandlung')">scar treatment</a> is the right
+            service; for body contour at the belly, waist or legs it is
+            <a [routerLink]="p('/behandlungen/kavitation')">body forming</a>. You'll find all
+            <a [routerLink]="p('/price')" fragment="microneedling">prices</a> transparently listed,
+            and what's realistic for your skin we clarify honestly in the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free consultation</a>.
           </span>
         </p>
       </div>
@@ -90,8 +94,8 @@
             <span class="lang en">Stimulates your body's own <strong>collagen and elastin production</strong>, for smoother skin and more firmness</span>
           </li>
           <li>
-            <span class="lang de">Besonders geeignet für <strong>Gesicht, Hals und Dekolleté</strong> sowie bestimmte Körperareale</span>
-            <span class="lang en">Especially suited to the <strong>face, neck and décolleté</strong> as well as certain body areas</span>
+            <span class="lang de">Buchbar für <strong>Gesicht, Hals, Dekolleté und Brust</strong> sowie als Komplettbehandlung</span>
+            <span class="lang en">Bookable for the <strong>face, neck, décolleté and chest</strong>, and as a complete treatment</span>
           </li>
           <li>
             <span class="lang de">Ideal, wenn du dir mehr Festigkeit oder ein gleichmäßigeres Hautbild wünschst</span>
@@ -146,15 +150,25 @@
             <span class="lang en">A reduction in fine lines, for example around the mouth and cheeks</span>
           </li>
           <li>
-            <span class="lang de">Verbesserung bei <strong>Aknenarben</strong>, Narben und unruhiger Hautstruktur</span>
-            <span class="lang en">Improvement in <strong>acne scars</strong>, scars and uneven skin texture</span>
-          </li>
-          <li>
-            <span class="lang de">Milderung von <strong>Dehnungsstreifen</strong> und Ausgleich von Pigmentierungen</span>
-            <span class="lang en">Softening of <strong>stretch marks</strong> and more even pigmentation and tone</span>
+            <span class="lang de">Ausgleich von Pigmentierungen und ein gleichmäßigerer Hautton</span>
+            <span class="lang en">More even pigmentation and a more balanced skin tone</span>
           </li>
         </app-guide-checklist>
       </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Narben & Dehnungsstreifen', 'Scars & stretch marks')">
+        <span class="lang de">
+          Dieselbe Technik wirkt auch auf Narbengewebe. Weil das ein eigener Anlass mit eigenem
+          Ablauf und eigenem Preis ist, haben wir dafür eine eigene Seite:
+          <a [routerLink]="p('/behandlungen/narbenbehandlung')">Narbenbehandlung</a> bei Aknenarben,
+          Narben nach OP und Verletzungen sowie Dehnungsstreifen.
+        </span>
+        <span class="lang en">
+          The same technology also works on scar tissue. Because that is its own reason with its own
+          process and its own price, it has its own page:
+          <a [routerLink]="p('/behandlungen/narbenbehandlung')">scar treatment</a> for acne scars,
+          scars after surgery or injury and stretch marks.
+        </span>
+      </app-guide-note>
       <app-guide-note variant="tip" [label]="t('Geduld zahlt sich aus', 'Patience pays off')">
         <span class="lang de">
           Ergebnisse bauen sich typischerweise <strong>schrittweise</strong> auf, denn
@@ -184,14 +198,14 @@
         side="right"
       >
         <p class="lang de">
-          RF-Microneedling eignet sich besonders, wenn du dir eine Behandlung wünschst, die deine
-          Haut strafft und glättet, das Hautbild bei Poren oder Texturunruhe verbessert und bei
-          Aknenarben unterstützt.
+          Radiofrequenz Microneedling eignet sich besonders, wenn du dir eine Behandlung wünschst,
+          die deine Haut strafft und glättet und das Hautbild bei Poren oder Texturunruhe
+          verbessert.
         </p>
         <p class="lang en">
-          RF microneedling is especially suitable if you're looking for a treatment that firms and
-          smooths the skin, improves the complexion where you have enlarged pores or uneven texture,
-          and supports skin with acne scars.
+          Radio-frequency microneedling is especially suitable if you're looking for a treatment
+          that firms and smooths the skin and improves the complexion where you have enlarged pores
+          or uneven texture.
         </p>
         <app-guide-checklist>
           <li>
@@ -203,12 +217,8 @@
             <span class="lang en">You want to improve the complexion around <strong>pores</strong> or uneven texture</span>
           </li>
           <li>
-            <span class="lang de">Du suchst Unterstützung bei <strong>Aknenarben</strong> und Narbenstruktur</span>
-            <span class="lang en">You're looking for support with <strong>acne scars</strong> and scar texture</span>
-          </li>
-          <li>
-            <span class="lang de">Typische Zonen: <strong>Wangen, Kinnlinie, Stirn, Hals und Dekolleté</strong></span>
-            <span class="lang en">Typical areas: <strong>cheeks, jawline, forehead, neck and décolleté</strong></span>
+            <span class="lang de">Buchbar für <strong>Gesicht, Hals, Dekolleté und Brust</strong> oder als Komplettbehandlung</span>
+            <span class="lang en">Bookable for the <strong>face, neck, décolleté and chest</strong>, or as a complete treatment</span>
           </li>
         </app-guide-checklist>
       </app-guide-media>
@@ -291,12 +301,12 @@
         side="right"
       >
         <p class="lang de">
-          Je nach Ziel (Poren, Narben, Straffung) sind häufig <strong>3–6 Sitzungen</strong> sinnvoll,
+          Je nach Ziel (Poren, Straffung, Hautbild) sind häufig <strong>3–6 Sitzungen</strong> sinnvoll,
           mit einem Abstand von etwa <strong>4–6 Wochen</strong>. So bekommt deine Haut Zeit für die
           Kollagenneubildung.
         </p>
         <p class="lang en">
-          Depending on your goal (pores, scars, firming), <strong>3 to 6 sessions</strong> are often
+          Depending on your goal (pores, firming, complexion), <strong>3 to 6 sessions</strong> are often
           sensible, spaced roughly <strong>4 to 6 weeks</strong> apart. That gives your skin time to
           form new collagen.
         </p>

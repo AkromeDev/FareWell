@@ -196,12 +196,28 @@ function localizedRoutes(lang: PageLang): Routes {
               .then(m => m.MicroneedlingComponent),
           data: d(
             {
-              title: 'Microneedling Radiofrequenz Nürnberg | FareWell',
-              description: 'Microneedling mit Radiofrequenz in Nürnberg: moderne Hautverjüngung, Faltenreduktion und Hautstraffung.'
+              title: 'Radiofrequenz Microneedling Nürnberg: Hautverjüngung | FareWell',
+              description: 'Microneedling mit Radiofrequenz in Nürnberg: Hautverjüngung für Gesicht, Hals, Dekolleté und Brust, ab 180 €. Beratung kostenlos.'
             },
             {
-              title: 'RF Microneedling Nuremberg | FareWell',
-              description: 'Radiofrequency microneedling in Nuremberg: skin rejuvenation, scar treatment and firmer skin. Book online, free initial consultation in English.'
+              title: 'RF Microneedling Nuremberg: Skin Rejuvenation | FareWell',
+              description: 'Radiofrequency microneedling in Nuremberg: skin rejuvenation for face, neck, décolleté and chest, from €180. Book online, free consultation in English.'
+            }
+          )
+        },
+        {
+          path: 'narbenbehandlung',
+          loadComponent: () =>
+            import('../components/pages/narbenbehandlung/narbenbehandlung.component')
+              .then(m => m.NarbenbehandlungComponent),
+          data: d(
+            {
+              title: 'Narbenbehandlung Nürnberg: Aknenarben & Dehnungsstreifen | FareWell',
+              description: 'Narbenbehandlung mit Radiofrequenz Microneedling in Nürnberg: Aknenarben, Narben nach OP und Verletzungen, Dehnungsstreifen. 250 € pro Sitzung, Beratung kostenlos.'
+            },
+            {
+              title: 'Scar Treatment Nuremberg: Acne Scars & Stretch Marks | FareWell',
+              description: 'Scar treatment with RF microneedling in Nuremberg: acne scars, scars after surgery or injury, stretch marks. €250 per session, free consultation, English spoken.'
             }
           )
         },
@@ -212,12 +228,12 @@ function localizedRoutes(lang: PageLang): Routes {
               .then(m => m.KavitationComponent),
           data: d(
             {
-              title: 'Kavitation Fettabbau Nürnberg | FareWell',
-              description: 'Ultraschall Kavitation in Nürnberg: nicht invasive Fettreduktion für Körperformung und Hautstraffung.'
+              title: 'Body Forming Nürnberg: Ultraschall Kavitation & Cellulite | FareWell',
+              description: 'Kosmetisches Body Forming in Nürnberg mit Ultraschall Kavitation und Radiofrequenz: Cellulite Behandlung und lokale Zonen, ab 80 €. Keine Abnehmbehandlung.'
             },
             {
-              title: 'Ultrasound Cavitation & Body Forming Nuremberg | FareWell',
-              description: 'Non-invasive ultrasound cavitation in Nuremberg for body contouring and skin firming. Free consultation, English spoken.'
+              title: 'Body Forming Nuremberg: Ultrasound Cavitation & Cellulite | FareWell',
+              description: 'Cosmetic body forming in Nuremberg with ultrasound cavitation and radio frequency: cellulite treatment and local areas, from €80. Not a weight-loss treatment.'
             }
           )
         },
@@ -267,12 +283,12 @@ function localizedRoutes(lang: PageLang): Routes {
         import('../components/pages/price/price.component').then(m => m.PriceComponent),
       data: d(
         {
-          title: 'Preise Nürnberg: Laser-Haarentfernung, Nadelepilation & mehr | FareWell',
-          description: 'Alle Preise bei FareWell Nürnberg: Laser-Haarentfernung ab 30 €, Nadelepilation ab 40 €, Microneedling ab 180 €, Massage ab 45 €. Erstberatung kostenlos.'
+          title: 'Preise Nürnberg: Laser, Nadelepilation, Microneedling & Massage | FareWell',
+          description: 'Alle Preise bei FareWell Nürnberg: Laser ab 30 €, Nadelepilation ab 40 €, Microneedling ab 180 €, Body Forming ab 80 €, Massage ab 45 €. Beratung kostenlos.'
         },
         {
-          title: 'Prices Nuremberg: Laser Hair Removal, Electrolysis & More | FareWell',
-          description: 'All prices at FareWell Nuremberg: laser hair removal from €30, electrolysis from €40, RF microneedling from €180, massage from €45. Free initial consultation.'
+          title: 'Prices Nuremberg: Laser, Electrolysis, Microneedling & Massage | FareWell',
+          description: 'All prices at FareWell Nuremberg: laser from €30, electrolysis from €40, RF microneedling from €180, body forming from €80, massage from €45. Free consultation.'
         }
       )
     },

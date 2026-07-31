@@ -4,8 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { PriceItem } from 'src/models/price-item';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 
-type OptionGender = 'woman' | 'man';
-
+/**
+ * Generische Preistabelle über eine JSON-Quelle. Aktuell nirgends eingebunden;
+ * die Preisseite rendert ihre Tabellen direkt aus price-data.ts. Die frühere
+ * Aufteilung nach Geschlecht gibt es nicht mehr: Der Katalog ist nach Methode
+ * und Zone sortiert.
+ */
 @Component({
   selector: 'app-table',
   standalone: true,
@@ -16,34 +20,14 @@ type OptionGender = 'woman' | 'man';
 export class TableComponent {
   @Input({ required: true }) src!: string;
 
-  // Fade when gender actually changes
-  @Input() set selectedGender(value: OptionGender | null) {
-    if (!value || value === this._selectedGender()) return;
-
-    // fade out current rows
-    this.fading.set(true);
-
-    // let the class apply, then swap rows, then fade back in
-    requestAnimationFrame(() => {
-      this._selectedGender.set(value);
-      requestAnimationFrame(() => this.fading.set(false));
-    });
-  }
-
   readonly loading: WritableSignal<boolean> = signal(true);
   readonly error: WritableSignal<string | null> = signal(null);
-  readonly fading: WritableSignal<boolean> = signal(false);
 
   trackById = (_: number, row: PriceItem) => row.id;
 
-  private _selectedGender = signal<OptionGender>('woman');
   private _rowsAll = signal<PriceItem[]>([]);
 
-  rows: Signal<PriceItem[]> = computed(() => {
-    const g = this._selectedGender();
-    const wanted: PriceItem['gender'] = g === 'woman' ? 'Damen' : 'Herren';
-    return this._rowsAll().filter(r => r.gender === wanted);
-  });
+  rows: Signal<PriceItem[]> = computed(() => this._rowsAll());
 
   constructor(private http: HttpClient) {}
 
@@ -64,8 +48,7 @@ export class TableComponent {
         }
         const parsed: PriceItem[] = (data as any[]).map(r => ({
           id: String(r.id),
-          method: r.method === 'Elektrolyse' ? 'Elektrolyse' : 'IPL',
-          gender: r.gender === 'Herren' ? 'Herren' : 'Damen',
+          method: r.method === 'Elektrolyse' ? 'Elektrolyse' : 'Laser',
           zone: String(r.zone),
           durationMinutes: Number(r.durationMinutes ?? r.duration ?? 0),
           price: Number(String(r.price).replace('€','').replace(',','.')),

@@ -90,13 +90,31 @@ export class HeaderComponent implements OnInit {
         image: 'assets/images/treatment/diodenlaser.webp'
       },
       {
-        title: t('Microneedling Radio Frequenz', 'RF Microneedling'),
+        title: t('Radiofrequenz Microneedling', 'RF Microneedling'),
         description: t(
           'Straffung & Hautbild: feine Nadeln + Wärme für ein glatteres Erscheinungsbild.',
           'Firming and skin texture: fine needles plus heat for a smoother appearance.'
         ),
         route: this.p('/behandlungen/microneedling-radiofrequenz'),
         image: 'assets/images/treatment/microneedling.webp'
+      },
+      {
+        title: t('Narbenbehandlung', 'Scar Treatment'),
+        description: t(
+          'Aknenarben, Narben nach OP und Dehnungsstreifen: weicher, flacher, gleichmäßiger.',
+          'Acne scars, scars after surgery and stretch marks: softer, flatter, more even.'
+        ),
+        route: this.p('/behandlungen/narbenbehandlung'),
+        image: 'assets/images/treatment/microneedling4.webp'
+      },
+      {
+        title: t('Body Forming', 'Body Forming'),
+        description: t(
+          'Kosmetische Körperbehandlung mit Ultraschall Kavitation und Radiofrequenz.',
+          'A cosmetic body treatment with ultrasound cavitation and radio frequency.'
+        ),
+        route: this.p('/behandlungen/kavitation'),
+        image: 'assets/images/treatment/kavitation.webp'
       },
       {
         title: t('Wellness Massage', 'Wellness Massage'),
@@ -115,15 +133,6 @@ export class HeaderComponent implements OnInit {
         ),
         route: this.p('/behandlungen/therapeutische-massage'),
         image: 'assets/images/massages/tm%20massaging.jpg'
-      },
-      {
-        title: t('Kavitation', 'Cavitation'),
-        description: t(
-          'Ultraschall-Unterstützung zur Kontur: sanft, nicht-invasiv und effektiv.',
-          'Ultrasound support for body contour: gentle, non-invasive and effective.'
-        ),
-        route: this.p('/behandlungen/kavitation'),
-        image: 'assets/images/treatment/kavitation.webp'
       }
     ];
   }

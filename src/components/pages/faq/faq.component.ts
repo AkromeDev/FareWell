@@ -93,7 +93,7 @@ export class FaqComponent implements OnInit, OnDestroy {
           'Which treatments does FareWell offer?'
         ),
         answer: this.t(
-          'Elektrolyse (Nadelepilation) zur permanenten Haarentfernung, Diodenlaser (4 Wellen) zur dauerhaften Haarentfernung, Microneedling mit Radiofrequenz zur Hautverjüngung, Kavitation zur Körperformung sowie Wellness- und therapeutische Massagen.',
+          'Elektrolyse (Nadelepilation) zur permanenten Haarentfernung, Diodenlaser (4 Wellen) zur dauerhaften Haarentfernung, Radiofrequenz Microneedling zur Hautverjüngung, Narbenbehandlung bei Aknenarben und Dehnungsstreifen, Body Forming als kosmetische Körperbehandlung sowie Wellness- und therapeutische Massagen.',
           'Electrolysis (Nadelepilation), permanent hair removal. Diode laser (4 wavelengths), long-lasting hair removal. Microneedling with radio frequency, skin rejuvenation. Cavitation, body contouring. Wellness and therapeutic massages.'
         ),
       },

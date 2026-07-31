@@ -45,7 +45,7 @@ export class KoerperbehandlungenComponent implements OnInit, OnDestroy {
 
   get stats(): GuideStat[] {
     return [
-      { value: '4–8', label: this.t('Sitzungen als Kur', 'sessions as a course') },
+      { value: '5–10', label: this.t('Sitzungen als Kur', 'sessions as a course') },
       { value: this.t('2–4 Tage', '2–4 days'), label: this.t('Abstand pro Termin', 'between sessions') },
       {
         value: this.t('ohne OP', 'no surgery'),

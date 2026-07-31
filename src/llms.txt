@@ -1,6 +1,6 @@
 # FareWell – Kosmetikstudio & dauerhafte Haarentfernung in Nürnberg
 
-> FareWell ist ein Kosmetikstudio in Nürnberg (Frauentorgraben 5, 90443), spezialisiert auf permanente Haarentfernung mit Elektrolyse (Nadelepilation) und dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser. Ergänzend: Radiofrequenz-Microneedling, Ultraschall-Kavitation (Body Forming) und Massagen. 4,9 Sterne aus über 60 Google-Bewertungen. Kostenlose Erstberatung, auch auf Englisch. Öffnungszeiten: Mo–Fr 10–20 Uhr, Sa 8–17 Uhr. Englische Seiten liegen unter /en/ (siehe „English pages").
+> FareWell ist ein Kosmetikstudio in Nürnberg (Frauentorgraben 5, 90443), spezialisiert auf permanente Haarentfernung mit Elektrolyse (Nadelepilation) und dauerhafte Haarentfernung mit dem 4 Wellen Diodenlaser. Ergänzend: Radiofrequenz Microneedling (Hautverjüngung und Narbenbehandlung), Body Forming mit Ultraschall Kavitation und Radiofrequenz sowie Massagen. Das Leistungsangebot ist nach Methode sortiert, nicht nach Geschlecht; allein der Intimbereich ist nach Anatomie geteilt (Vulva / Penis). 4,9 Sterne aus über 60 Google-Bewertungen. Kostenlose Erstberatung, auch auf Englisch. Öffnungszeiten: Mo–Fr 10–20 Uhr, Sa 8–17 Uhr. Englische Seiten liegen unter /en/ (siehe „English pages").
 
 **Wichtiger Unterschied** – in Deutschland ein rechtlicher, kein Marketing-Begriff:
 - **Permanente** Haarentfernung: allein die Elektrolyse (Nadelepilation), die einzige rechtlich als permanent anerkannte Methode; für jeden Haut- und Haartyp.
@@ -9,13 +9,14 @@
 ## Behandlungen
 - [Nadelepilation (Elektrolyse)](https://farewell.salon/behandlungen/nadelepilation): permanente Haarentfernung, jeder Haut- und Haartyp, jede Haarfarbe.
 - [4-Wellen-Diodenlaser](https://farewell.salon/behandlungen/diodenlaser-4-wellen): dauerhafte Haarentfernung für größere Zonen.
-- [Radiofrequenz-Microneedling](https://farewell.salon/behandlungen/microneedling-radiofrequenz): Hautverjüngung, Narben- und Faltenbehandlung, Hautstraffung.
-- [Kavitation / Body Forming](https://farewell.salon/behandlungen/kavitation): nicht-invasive Ultraschall-Fettreduktion und Körperformung.
+- [Radiofrequenz Microneedling](https://farewell.salon/behandlungen/microneedling-radiofrequenz): Hautverjüngung für Gesicht, Hals, Dekolleté und Brust.
+- [Narbenbehandlung](https://farewell.salon/behandlungen/narbenbehandlung): Aknenarben, Narben nach OP und Verletzungen, Dehnungsstreifen; 250 € pro Sitzung (60 Min.).
+- [Body Forming](https://farewell.salon/behandlungen/kavitation): kosmetische Körperbehandlung mit Ultraschall Kavitation und Radiofrequenz, dazu die Cellulite Behandlung. Keine medizinische Maßnahme, keine Abnehmbehandlung.
 - [Wellness-Massagen](https://farewell.salon/behandlungen/wellness-massage): Rücken-Schulter-Nacken, Ganzkörper mit Aromaölen, Teilkörper.
 - [Therapeutische Massagen](https://farewell.salon/behandlungen/therapeutische-massage): Sport-, Regenerations- und medizinisch-funktionelle Massage.
 
 ## Preise & Buchung
-- [Preise je Körperzone](https://farewell.salon/price): Laser ab 30 €, Nadelepilation ab 40 €, Microneedling ab 180 €, Massage ab 45 €. Erstberatung kostenlos.
+- [Preise je Körperzone](https://farewell.salon/price): Laser ab 30 €, Nadelepilation ab 40 €, Microneedling ab 180 €, Narbenbehandlung 250 €, Body Forming ab 80 €, Massage ab 45 €. Beratung kostenlos.
 - [Behandlungsdauer-Rechner (Elektrolyse)](https://farewell.salon/zeit): persönliche Behandlungszeit je Körperzone berechnen.
 - Online-Buchung: https://salonkee.de/salon/farewell
 
@@ -47,10 +48,11 @@ _English mirror of the site; consultations available in English. Prices and offe
 - [Home / overview](https://farewell.salon/en)
 - [Electrolysis (Nadelepilation)](https://farewell.salon/en/behandlungen/nadelepilation): the only truly permanent hair removal, for every skin and hair type.
 - [4-wavelength diode laser](https://farewell.salon/en/behandlungen/diodenlaser-4-wellen): long-lasting hair removal for larger areas.
-- [RF microneedling](https://farewell.salon/en/behandlungen/microneedling-radiofrequenz): skin rejuvenation and scar treatment.
-- [Cavitation / body forming](https://farewell.salon/en/behandlungen/kavitation): non-invasive ultrasound body contouring.
+- [RF microneedling](https://farewell.salon/en/behandlungen/microneedling-radiofrequenz): skin rejuvenation for face, neck, décolleté and chest.
+- [Scar treatment](https://farewell.salon/en/behandlungen/narbenbehandlung): acne scars, scars after surgery or injury, stretch marks; €250 per session (60 min).
+- [Body forming](https://farewell.salon/en/behandlungen/kavitation): cosmetic body treatment with ultrasound cavitation and radio frequency, plus the cellulite treatment. Not a medical procedure, not a weight-loss treatment.
 - [Wellness massages](https://farewell.salon/en/behandlungen/wellness-massage) · [Therapeutic massages](https://farewell.salon/en/behandlungen/therapeutische-massage)
-- [Prices](https://farewell.salon/en/price): laser from €30, electrolysis from €40, microneedling from €180, massage from €45.
+- [Prices](https://farewell.salon/en/price): laser from €30, electrolysis from €40, microneedling from €180, scar treatment €250, body forming from €80, massage from €45.
 - [Electrolysis treatment-time calculator](https://farewell.salon/en/zeit)
 - [FAQ](https://farewell.salon/en/faq)
 - [Guide: electrolysis or laser?](https://farewell.salon/en/ratgeber/elektrolyse-oder-laser) · [Guide: cavitation & fat reduction](https://farewell.salon/en/ratgeber/kavitation-ultraschall-fettreduktion)

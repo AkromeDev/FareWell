@@ -14,16 +14,16 @@ const PAGE_PATH = '/behandlungen/kavitation';
 const HERO_IMAGE = 'assets/images/treatment/kavitation2.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 
-const DE_TITLE = 'Kavitation Fettabbau Nürnberg | FareWell';
-const EN_TITLE = 'Ultrasound Cavitation & Body Forming Nuremberg | FareWell';
+const DE_TITLE = 'Body Forming Nürnberg: Ultraschall Kavitation & Cellulite | FareWell';
+const EN_TITLE = 'Body Forming Nuremberg: Ultrasound Cavitation & Cellulite | FareWell';
 const DE_DESCRIPTION =
-  'Ultraschall Kavitation in Nürnberg: nicht invasive Fettreduktion für Körperformung und Hautstraffung.';
+  'Kosmetisches Body Forming in Nürnberg mit Ultraschall Kavitation und Radiofrequenz: Cellulite Behandlung und lokale Zonen, ab 80 €. Keine Abnehmbehandlung.';
 const EN_DESCRIPTION =
-  'Non-invasive ultrasound cavitation in Nuremberg for body contouring and skin firming. Free consultation, English spoken.';
+  'Cosmetic body forming in Nuremberg with ultrasound cavitation and radio frequency: cellulite treatment and local areas, from €80. Not a weight-loss treatment.';
 const HERO_ALT_DE =
-  'FareWell Studio in Nürnberg für Kavitation und nicht-invasive Ultraschall-Behandlungen zur Kontur';
+  'FareWell Studio in Nürnberg für Body Forming mit Ultraschall Kavitation und Radiofrequenz';
 const HERO_ALT_EN =
-  'FareWell studio in Nuremberg for cavitation and non-invasive ultrasound contour treatments';
+  'FareWell studio in Nuremberg for body forming with ultrasound cavitation and radio frequency';
 
 interface FaqEntry {
   question: string;
@@ -62,12 +62,12 @@ export class KavitationComponent implements OnInit, OnDestroy {
   get stats(): GuideStat[] {
     return [
       {
-        value: '4–8',
+        value: '5–10',
         label: this.t('empfohlene Sitzungen', 'recommended sessions'),
       },
       {
-        value: '1–2',
-        label: this.t('Wochen Abstand zwischen Terminen', 'weeks between appointments'),
+        value: '2–4',
+        label: this.t('Tage Abstand zwischen Terminen', 'days between appointments'),
       },
       {
         value: '0',
@@ -82,10 +82,11 @@ export class KavitationComponent implements OnInit, OnDestroy {
 
   get toc(): GuideTocItem[] {
     return [
-      { id: 'was', label: this.t('Was ist Kavitation?', 'What is cavitation?') },
+      { id: 'was', label: this.t('Was ist Body Forming?', 'What is body forming?') },
       { id: 'wirkung', label: this.t('Wie es funktioniert', 'How it works') },
+      { id: 'cellulite', label: this.t('Cellulite Behandlung', 'Cellulite treatment') },
       { id: 'geeignet', label: this.t('Für wen geeignet?', "Who it's for") },
-      { id: 'nebenwirkungen', label: this.t('Nebenwirkungen', 'Side effects') },
+      { id: 'grenzen', label: this.t('Grenzen & Nebenwirkungen', 'Limits & side effects') },
       { id: 'sitzungen', label: this.t('Wie viele Sitzungen?', 'How many sessions') },
       { id: 'hinweise', label: this.t('Vor & nach der Behandlung', 'Before & after') },
     ];
@@ -98,38 +99,38 @@ export class KavitationComponent implements OnInit, OnDestroy {
   private get faqEntries(): FaqEntry[] {
     return [
       {
-        question: this.t('Was ist Kavitation?', 'What is cavitation?'),
+        question: this.t('Was ist Body Forming?', 'What is body forming?'),
         answer: this.t(
-          'Kavitation ist eine nicht-invasive Behandlung, die mit Ultraschall arbeitet. Ziel ist es, die Körperkontur zu unterstützen und das Hautbild zu verbessern, sanft und angenehm, ganz ohne Nadeln oder OP. Beliebt ist sie als Body-Treatment für eine glattere Optik an Zonen, die trotz Sport und Ernährung hartnäckig wirken.',
-          'Cavitation is a non-invasive treatment that works with ultrasound. The goal is to support your body contour and improve the look of your skin, gently and comfortably, with no needles or surgery. It is popular as a body treatment for a smoother look in areas that feel stubborn despite exercise and a balanced diet.',
+          'Body Forming bündelt bei FareWell zwei kosmetische Körperbehandlungen mit Ultraschall Kavitation und Radiofrequenz: die Behandlung lokaler Zonen und die Cellulite Behandlung. Beide arbeiten nicht-invasiv, ohne Nadeln und ohne OP. Es ist eine kosmetische Anwendung, keine medizinische Maßnahme und keine Abnehmbehandlung.',
+          'At FareWell, body forming covers two cosmetic body treatments with ultrasound cavitation and radio frequency: the treatment of local areas and the cellulite treatment. Both work non-invasively, without needles and without surgery. It is a cosmetic application, not a medical procedure and not a weight-loss treatment.',
         ),
       },
       {
-        question: this.t('Wie funktioniert Kavitation?', 'How does cavitation work?'),
+        question: this.t('Wie funktioniert Body Forming?', 'How does body forming work?'),
         answer: this.t(
-          'Ultraschallwellen werden gezielt in das Gewebe abgegeben und erzeugen dort Mikro-Impulse, die den gewünschten Effekt unterstützen. Wichtig: Kavitation ist ein kosmetisches Verfahren und kein Ersatz für eine medizinische Therapie. Sie ist keine Abnehmbehandlung, kann aber im Rahmen eines gesunden Lebensstils die Kontur unterstützen.',
-          'Ultrasound waves are directed precisely into the tissue, creating micro-impulses that support the desired effect. Important: cavitation is a cosmetic procedure and no replacement for medical therapy. It is not a weight-loss treatment, but as part of a healthy lifestyle it can support your contour.',
+          'Ultraschallwellen werden gezielt in das Gewebe abgegeben und erzeugen dort Mikro-Impulse; die Radiofrequenz erwärmt das Gewebe zusätzlich. Am deutlichsten zeigt sich das am Bauch: Direkt nach einer Sitzung von 60 Minuten messen wir dort meist 1 bis 3 Zentimeter weniger Umfang. Das gelöste Fett ist danach im Blut unterwegs, deshalb solltest du viel trinken und dich nach dem Termin leicht bewegen. Es bleibt ein kosmetisches Verfahren und kein Ersatz für eine medizinische Therapie, und es ist keine Behandlung zur Gewichtsabnahme.',
+          'Ultrasound waves are directed precisely into the tissue, creating micro-impulses; the radio frequency additionally warms the tissue. This shows most clearly on the stomach: directly after a 60-minute session we usually measure 1 to 3 centimetres less circumference there. The released fat then travels in your bloodstream, so drink plenty and get some light movement after your appointment. It remains a cosmetic procedure and no replacement for medical therapy, and it is not a weight-loss treatment.',
         ),
       },
       {
-        question: this.t('Für wen ist Kavitation geeignet?', 'Who is cavitation right for?'),
+        question: this.t('Für wen ist Body Forming geeignet?', 'Who is body forming right for?'),
         answer: this.t(
-          'Kavitation eignet sich besonders, wenn du eine nicht-invasive Kontur-Unterstützung möchtest, die Hautoptik an bestimmten Zonen verbessern willst oder ein Treatment ohne Ausfallzeit bevorzugst. Häufige Zonen sind Bauch, Taille, Hüfte, Oberschenkel oder Po. Wir beraten dich ehrlich, ob Kavitation zu deinem Ziel passt oder ob eine andere Behandlung sinnvoller ist.',
-          'Cavitation is especially suited to you if you want non-invasive contour support, want to improve how your skin looks in certain areas, or prefer a treatment with no downtime. Common areas are the belly, waist, hips, thighs or bottom. We advise you honestly on whether cavitation fits your goal or whether another treatment makes more sense.',
+          'Body Forming passt, wenn du eine nicht-invasive kosmetische Körperbehandlung ohne Ausfallzeit möchtest. Häufige Zonen sind Bauch, Taille, Hüfte, Oberschenkel, Gesäß und Oberarme. Ob es für dich infrage kommt, klären wir vorher persönlich, gegebenenfalls mit ärztlicher Abklärung. Wenn eine andere Behandlung sinnvoller ist oder gar keine, sagen wir das auch.',
+          'Body forming is a fit if you want a non-invasive cosmetic body treatment with no downtime. Common areas are the stomach, waist, hips, thighs, buttocks and upper arms. Whether it is an option for you is something we clarify in person beforehand, if necessary with a medical assessment. If another treatment makes more sense, or none at all, we say so too.',
         ),
       },
       {
         question: this.t('Gibt es Nebenwirkungen?', 'Are there any side effects?'),
         answer: this.t(
-          'Kavitation wird meist als sehr angenehm empfunden. Möglich sind nur leichte, vorübergehende Reaktionen: ein leichtes Wärmegefühl während oder kurz nach der Behandlung, gelegentlich eine milde Rötung und bei manchen ein leises Piepen im Ohr (ultraschallbedingt), das schnell wieder verschwindet. Wir arbeiten mit professionellen Einstellungen und geben klare Nachsorge-Hinweise, damit alles sicher und angenehm bleibt.',
+          'Body Forming wird meist als sehr angenehm empfunden. Möglich sind nur leichte, vorübergehende Reaktionen: ein leichtes Wärmegefühl während oder kurz nach der Behandlung, gelegentlich eine milde Rötung und bei manchen ein leises Piepen im Ohr (ultraschallbedingt), das schnell wieder verschwindet. Wir arbeiten mit professionellen Einstellungen und geben klare Nachsorge-Hinweise, damit alles sicher und angenehm bleibt.',
           'Cavitation is usually experienced as very pleasant. Only mild, temporary reactions can occur: a slight feeling of warmth during or shortly after the treatment, occasionally a mild redness and, for some people, a soft ringing in the ear (caused by the ultrasound) that quickly fades again. We work with professional settings and give clear aftercare guidance, so everything stays safe and comfortable.',
         ),
       },
       {
         question: this.t('Wie viele Sitzungen sind sinnvoll?', 'How many sessions make sense?'),
         answer: this.t(
-          'Je nach Ziel und Zone sind oft 4 bis 8 Sitzungen sinnvoll, mit einem Abstand von etwa 1 bis 2 Wochen. Der Effekt ist individuell und hängt auch davon ab, wie gut du die Behandlung durch Trinken, Bewegung und passende Pflege unterstützt.',
-          'Depending on your goal and the area, 4 to 8 sessions often make sense, spaced about 1 to 2 weeks apart. The effect is individual and also depends on how well you support the treatment through drinking water, movement and suitable care.',
+          'Je nach Ziel und Zone sind oft 5 bis 10 Sitzungen sinnvoll, mit einem Abstand von etwa 2 bis 4 Tagen. Wie stark der Effekt ausfällt, hängt auch davon ab, wie gut du die Behandlung unterstützt: viel trinken, leichte Bewegung und idealerweise ein leichtes Kaloriendefizit, damit dein Körper das freigesetzte Fett verbraucht.',
+          'Depending on your goal and the area, 5 to 10 sessions often make sense, spaced about 2 to 4 days apart. How strong the effect is also depends on how well you support the treatment: drink plenty, get light movement and ideally keep a slight calorie deficit, so your body uses the released fat.',
         ),
       },
     ];
@@ -157,12 +158,12 @@ export class KavitationComponent implements OnInit, OnDestroy {
         {
           '@type': 'Service',
           '@id': `${pageUrl}#service`,
-          name: this.t('Kavitation in Nürnberg', 'Cavitation in Nuremberg'),
+          name: this.t('Body Forming in Nürnberg', 'Body forming in Nuremberg'),
           description: this.t(
-            'Nicht-invasive Ultraschall-Behandlung zur Unterstützung der Körperkontur und Verbesserung des Hautbilds bei FareWell in Nürnberg. Kosmetisches Body-Treatment, keine Abnehmbehandlung.',
-            'Non-invasive ultrasound treatment to support your body contour and improve the look of your skin at FareWell in Nuremberg. A cosmetic body treatment, not a weight-loss treatment.',
+            'Kosmetische Körperbehandlung mit Ultraschall Kavitation und Radiofrequenz bei FareWell in Nürnberg, inklusive Cellulite Behandlung. Keine medizinische Maßnahme und keine Abnehmbehandlung.',
+            'Cosmetic body treatment with ultrasound cavitation and radio frequency at FareWell in Nuremberg, including the cellulite treatment. Not a medical procedure and not a weight-loss treatment.',
           ),
-          serviceType: this.t('Kavitation', 'Cavitation'),
+          serviceType: this.t('Body Forming', 'Body forming'),
           areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
           provider: {
             '@type': 'BeautySalon',
@@ -213,7 +214,7 @@ export class KavitationComponent implements OnInit, OnDestroy {
             {
               '@type': 'ListItem',
               position: 3,
-              name: this.t('Kavitation', 'Cavitation'),
+              name: this.t('Body Forming', 'Body forming'),
               item: pageUrl,
             },
           ],

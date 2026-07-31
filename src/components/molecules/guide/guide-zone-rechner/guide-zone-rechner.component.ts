@@ -8,7 +8,7 @@ interface ZoneDef {
   key: string;
   de: string;
   en: string;
-  /** Preis pro Sitzung in Euro (inkl. 19% MwSt.), Damen-Tarif aus dem Preiskatalog. */
+  /** Preis pro Sitzung in Euro (inkl. 19% MwSt.) aus dem Preiskatalog. */
   price: number;
 }
 
@@ -19,9 +19,12 @@ interface ZoneGroupDef {
 }
 
 /**
- * Zonen-Katalog des Rabatt-Rechners. Preise 1:1 aus dem Damen-Laserkatalog
+ * Zonen-Katalog des Rabatt-Rechners. Preise 1:1 aus dem Laserkatalog
  * (src/components/pages/price/price-data.ts). Eine kuratierte Auswahl der
- * gängigsten Zonen, bewusst nicht der komplette Katalog.
+ * gängigsten Zonen, bewusst nicht der komplette Katalog. Der Intimbereich
+ * steht hier als eine Liste einzelner Zonen: Die Bündel „Intim komplett"
+ * unterscheiden sich je nach Anatomie im Preis und passen deshalb nicht in
+ * einen Rechner, der nach Anzahl der Zonen rabattiert.
  */
 const CATALOG: ZoneGroupDef[] = [
   {
@@ -32,8 +35,10 @@ const CATALOG: ZoneGroupDef[] = [
       { key: 'kinn', de: 'Kinn', en: 'Chin', price: 50 },
       { key: 'wangen', de: 'Wangen', en: 'Cheeks', price: 50 },
       { key: 'koteletten', de: 'Koteletten', en: 'Sideburns', price: 50 },
-      { key: 'untergesicht', de: 'Unteres Gesicht komplett', en: 'Complete lower face', price: 180 },
+      { key: 'unterkinn', de: 'Unterkinn', en: 'Under the chin', price: 50 },
+      { key: 'hals', de: 'Hals', en: 'Neck (front)', price: 60 },
       { key: 'nacken', de: 'Nacken', en: 'Nape of the neck', price: 50 },
+      { key: 'untergesicht', de: 'Unteres Gesicht komplett', en: 'Complete lower face', price: 180 },
     ],
   },
   {
@@ -42,16 +47,16 @@ const CATALOG: ZoneGroupDef[] = [
     zones: [
       { key: 'achseln', de: 'Achseln', en: 'Underarms', price: 60 },
       { key: 'schultern', de: 'Schultern', en: 'Shoulders', price: 50 },
-      { key: 'oberarme', de: 'Oberarme', en: 'Upper arms', price: 70 },
-      { key: 'unterarme', de: 'Unterarme', en: 'Forearms', price: 70 },
+      { key: 'oberarme', de: 'Oberarme', en: 'Upper arms', price: 80 },
+      { key: 'unterarme', de: 'Unterarme', en: 'Forearms', price: 80 },
       { key: 'arme', de: 'Arme komplett', en: 'Complete arms', price: 120 },
-      { key: 'bauch', de: 'Bauch', en: 'Stomach', price: 70 },
-      { key: 'ruecken', de: 'Rücken', en: 'Back', price: 120 },
       { key: 'brust', de: 'Brust', en: 'Chest', price: 70 },
+      { key: 'bauch', de: 'Bauch', en: 'Stomach', price: 70 },
+      { key: 'ruecken', de: 'Rücken komplett', en: 'Complete back', price: 120 },
       { key: 'oberschenkel', de: 'Oberschenkel', en: 'Thighs', price: 90 },
       { key: 'unterschenkel', de: 'Unterschenkel', en: 'Lower legs', price: 80 },
-      { key: 'knie', de: 'Knie', en: 'Knees', price: 30 },
-      { key: 'fuesse', de: 'Füße', en: 'Feet', price: 30 },
+      { key: 'knie', de: 'Knie', en: 'Knees', price: 40 },
+      { key: 'fuesse', de: 'Füße', en: 'Feet', price: 40 },
       { key: 'beine', de: 'Beine komplett', en: 'Complete legs', price: 180 },
     ],
   },
@@ -59,11 +64,14 @@ const CATALOG: ZoneGroupDef[] = [
     de: 'Intimbereich',
     en: 'Intimate area',
     zones: [
-      { key: 'bikini', de: 'Bikinilinie', en: 'Bikini line', price: 60 },
+      { key: 'bikini', de: 'Bikinielinie', en: 'Bikini line', price: 60 },
       { key: 'brazilian', de: 'Brazilian', en: 'Brazilian', price: 100 },
+      { key: 'damm', de: 'Damm', en: 'Perineum', price: 60 },
       { key: 'pofalte', de: 'Pofalte', en: 'Gluteal fold', price: 60 },
       { key: 'gesaess', de: 'Gesäß', en: 'Buttocks', price: 60 },
-      { key: 'intim', de: 'Intim komplett', en: 'Complete intimate area', price: 200 },
+      { key: 'pubis', de: 'Pubischer Bereich', en: 'Pubic area', price: 60 },
+      { key: 'schaft', de: 'Schaft', en: 'Shaft', price: 60 },
+      { key: 'hoden', de: 'Hoden', en: 'Testicles', price: 60 },
     ],
   },
 ];

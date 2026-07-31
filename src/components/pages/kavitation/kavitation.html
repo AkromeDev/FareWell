@@ -4,12 +4,12 @@
 
   <app-guide-hero
     [kicker]="t('FareWell · Nürnberg · Behandlung', 'FareWell · Nuremberg · Treatment')"
-    [heading]="t('Kavitation in Nürnberg', 'Cavitation in Nuremberg')"
+    [heading]="t('Body Forming in Nürnberg', 'Body forming in Nuremberg')"
     [tagline]="t('Sanft in Form.', 'Softly sculpted.')"
     [lead]="
       t(
-        'Kavitation ist eine nicht-invasive Ultraschall-Behandlung, die die Körperkontur unterstützt und das Hautbild glättet: sanft, komfortabel und ohne Ausfallzeit. Ein kosmetisches Body-Treatment, keine Abnehmbehandlung.',
-        'Cavitation is a non-invasive ultrasound treatment that supports your body contour and smooths the look of your skin: gentle, comfortable and with no downtime. A cosmetic body treatment, not a weight-loss treatment.'
+        'Body Forming heißt bei uns: kosmetische Körperbehandlung mit Ultraschall Kavitation und Radiofrequenz, an einzelnen Zonen und bei Cellulite. Nicht invasiv, ohne Ausfallzeit, und am Bauch direkt nach der Sitzung messbar.',
+        'Body forming at FareWell means a cosmetic body treatment with ultrasound cavitation and radio frequency, on individual areas and for cellulite. Non-invasive, with no downtime, and measurable on the stomach straight after your session.'
       )
     "
     [image]="heroImage"
@@ -24,31 +24,38 @@
         <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
           <span class="lang de">
-            Kavitation formt sanft mit Ultraschall, ganz ohne Nadeln, OP oder Ausfallzeit. Ein
-            kosmetisches Body-Treatment für eine glattere Optik an hartnäckigen Zonen, keine
-            Abnehmbehandlung.
+            Ultraschall und Radiofrequenz wirken sanft im Gewebe, ganz ohne Nadeln, OP oder
+            Ausfallzeit. Am Bauch messen wir direkt nach einer Stunde meist 1 bis 3 Zentimeter
+            weniger Umfang. Eine kosmetische Körperbehandlung, keine medizinische Maßnahme und
+            keine Abnehmbehandlung.
           </span>
           <span class="lang en">
-            Cavitation shapes gently with ultrasound, entirely without needles, surgery or downtime.
-            A cosmetic body treatment for a smoother look in stubborn areas, not a weight-loss
-            treatment.
+            Ultrasound and radio frequency work gently in the tissue, entirely without needles,
+            surgery or downtime. On the stomach we usually measure 1 to 3 centimetres less
+            circumference directly after an hour. A cosmetic body treatment, not a medical
+            procedure and not a weight-loss treatment.
           </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
           <span class="lang de">
             Für Straffung und Hautbild im Gesicht ist das
-            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">RF-Microneedling</a> die
-            passende Ergänzung. Ob Kavitation wirklich zu deinem Ziel passt, klären wir ehrlich in der
-            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Erstberatung</a>.
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">Radiofrequenz Microneedling</a>
+            die passende Ergänzung, bei Narben und Dehnungsstreifen die
+            <a [routerLink]="p('/behandlungen/narbenbehandlung')">Narbenbehandlung</a>. Die
+            <a [routerLink]="p('/price')" fragment="body-forming">Preise</a> stehen transparent in
+            der Preisliste. Ob Body Forming zu deinem Ziel passt, klären wir ehrlich in der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Beratung</a>.
             Alles zu Ablauf, Rhythmus und Kontraindikationen liest du im
             <a [routerLink]="p('/ratgeber/kavitation-ultraschall-fettreduktion')">Ratgeber zu den Körperbehandlungen</a>.
           </span>
           <span class="lang en">
             For firming and complexion work on the face,
             <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">RF microneedling</a> is
-            the fitting complement. Whether cavitation really suits your goal, we clarify honestly in
-            the
-            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free initial consultation</a>.
+            the fitting complement, and for scars and stretch marks the
+            <a [routerLink]="p('/behandlungen/narbenbehandlung')">scar treatment</a>. The
+            <a [routerLink]="p('/price')" fragment="body-forming">prices</a> are listed
+            transparently. Whether body forming really suits your goal, we clarify honestly in the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free consultation</a>.
             Everything on the process, rhythm and contraindications is in our
             <a [routerLink]="p('/ratgeber/kavitation-ultraschall-fettreduktion')">guide to body treatments</a>.
           </span>
@@ -59,45 +66,45 @@
 
     <app-guide-section
       index="01"
-      [heading]="t('Was ist Kavitation?', 'What is cavitation?')"
+      [heading]="t('Was ist Body Forming?', 'What is body forming?')"
       sectionId="was"
     >
       <app-guide-media
         image="assets/images/treatment/kavitation3.webp"
         [imageAlt]="
           t(
-            'Nicht-invasive Ultraschall-Kavitation als Body-Treatment bei FareWell in Nürnberg',
-            'Non-invasive ultrasound cavitation as a body treatment at FareWell in Nuremberg'
+            'Nicht-invasives Body Forming mit Ultraschall Kavitation bei FareWell in Nürnberg',
+            'Non-invasive body forming with ultrasound cavitation at FareWell in Nuremberg'
           )
         "
         side="right"
       >
         <p class="lang de">
-          Kavitation ist eine nicht-invasive Behandlung, die mit Ultraschall arbeitet. Ziel ist es,
-          die Körperkontur zu unterstützen und das Hautbild zu verbessern, sanft und angenehm, ganz
-          ohne Nadeln oder OP.
+          Bei FareWell fassen wir unter Body Forming zwei kosmetische Körperbehandlungen zusammen:
+          die Behandlung einzelner Zonen und die Cellulite Behandlung. Beide arbeiten mit
+          Ultraschall Kavitation und Radiofrequenz, beide kosten gleich viel.
         </p>
         <p class="lang en">
-          Cavitation is a non-invasive treatment that works with ultrasound. The goal is to support
-          your body contour and improve the look of your skin, gently and comfortably, entirely
-          without needles or surgery.
+          At FareWell, body forming covers two cosmetic body treatments: the treatment of
+          individual areas and the cellulite treatment. Both work with ultrasound cavitation and
+          radio frequency, and both cost the same.
         </p>
         <app-guide-checklist>
           <li>
-            <span class="lang de">Nicht-invasive Methode, die mit Ultraschall arbeitet</span>
-            <span class="lang en">A non-invasive method that works with ultrasound</span>
+            <span class="lang de">Nicht invasive Methode mit <strong>Ultraschall und Radiofrequenz</strong></span>
+            <span class="lang en">A non-invasive method with <strong>ultrasound and radio frequency</strong></span>
           </li>
           <li>
-            <span class="lang de">Ziel: die <strong>Körperkontur</strong> unterstützen und das Hautbild verbessern</span>
-            <span class="lang en">Goal: support the <strong>body contour</strong> and improve the look of the skin</span>
+            <span class="lang de">Buchbar nach Zeit (30, 60 oder 90 Minuten) oder als Paket</span>
+            <span class="lang en">Bookable by time (30, 60 or 90 minutes) or as a package</span>
           </li>
           <li>
-            <span class="lang de">Beliebt als Body-Treatment an Zonen, die trotz Sport &amp; Ernährung hartnäckig wirken</span>
-            <span class="lang en">Popular as a body treatment for areas that feel stubborn despite exercise &amp; diet</span>
+            <span class="lang de">Typische Zonen: Bauch, Taille, Hüften, Oberschenkel, Gesäß, Oberarme</span>
+            <span class="lang en">Typical areas: stomach, waist, hips, thighs, buttocks, upper arms</span>
           </li>
           <li>
-            <span class="lang de">Auf Wunsch mit passenden Pflege- und Nachsorge-Empfehlungen kombiniert</span>
-            <span class="lang en">Optionally paired with matching care and aftercare recommendations</span>
+            <span class="lang de">Ohne Nadeln, ohne Skalpell, ohne Ausfallzeit</span>
+            <span class="lang en">No needles, no scalpel, no downtime</span>
           </li>
         </app-guide-checklist>
       </app-guide-media>
@@ -115,7 +122,7 @@
 
     <app-guide-section
       index="02"
-      [heading]="t('Wie funktioniert Kavitation?', 'How does cavitation work?')"
+      [heading]="t('Wie funktioniert Body Forming?', 'How does body forming work?')"
       sectionId="wirkung"
     >
       <app-guide-media
@@ -131,11 +138,11 @@
       >
         <p class="lang de">
           Bei der Behandlung werden Ultraschallwellen gezielt in das Gewebe abgegeben. Dabei
-          entstehen Mikro-Impulse, die den gewünschten Effekt unterstützen.
+          entstehen Mikro-Impulse. Die Radiofrequenz erwärmt das Gewebe zusätzlich.
         </p>
         <p class="lang en">
-          During the treatment, ultrasound waves are directed precisely into the tissue. This creates
-          micro-impulses that support the desired effect.
+          During the treatment, ultrasound waves are directed precisely into the tissue. This
+          creates micro-impulses. The radio frequency additionally warms the tissue.
         </p>
         <app-guide-checklist>
           <li>
@@ -143,105 +150,170 @@
             <span class="lang en">Ultrasound waves are directed precisely into the tissue</span>
           </li>
           <li>
-            <span class="lang de">Mikro-Impulse im Gewebe unterstützen den gewünschten Effekt</span>
-            <span class="lang en">Micro-impulses in the tissue support the desired effect</span>
+            <span class="lang de">Radiofrequenz erwärmt das Gewebe und unterstützt die Anwendung</span>
+            <span class="lang en">Radio frequency warms the tissue and supports the application</span>
           </li>
           <li>
-            <span class="lang de">Kann im Rahmen eines gesunden Lebensstils die Kontur unterstützen</span>
-            <span class="lang en">As part of a healthy lifestyle it can support the contour</span>
+            <span class="lang de">Wirkt nur an der behandelten Zone, nicht am ganzen Körper</span>
+            <span class="lang en">It works only on the treated area, not on the whole body</span>
           </li>
         </app-guide-checklist>
       </app-guide-media>
-      <app-guide-note variant="rule" [label]="t('Ehrlich gesagt', 'To be honest')">
+      <app-guide-note variant="warn" [label]="t('Was du erwarten kannst', 'What to expect')">
         <span class="lang de">
-          Kavitation ist ein <strong>kosmetisches</strong> Verfahren, keine Abnehmbehandlung und kein
-          Ersatz für eine medizinische Therapie. Als Teil eines gesunden Lebensstils kann sie die
-          Kontur unterstützen, mehr verspricht sie ehrlich nicht.
+          Am besten lässt sich der Effekt <strong>am Bauch</strong> zeigen: Direkt nach einer
+          Sitzung von 60 Minuten messen wir dort meist <strong>1 bis 3 Zentimeter</strong> weniger
+          Umfang. An anderen Zonen ist die Veränderung schwerer zu messen, weil sich der Umfang
+          dort nicht so klar abnehmen lässt. Was danach passiert, hängt von dir mit ab: Das gelöste
+          Fett ist im Blut unterwegs und will abtransportiert werden. Body Forming bleibt dabei
+          eine kosmetische Anwendung, keine medizinische oder therapeutische Maßnahme und keine
+          Behandlung zur Gewichtsabnahme.
         </span>
         <span class="lang en">
-          Cavitation is a <strong>cosmetic</strong> procedure, not a weight-loss treatment and no
-          replacement for medical therapy. As part of a healthy lifestyle it can support your
-          contour, and honestly it promises nothing more.
+          The effect is easiest to show <strong>on the stomach</strong>: directly after a 60-minute
+          session we usually measure <strong>1 to 3 centimetres</strong> less circumference there.
+          On other areas the change is harder to measure, because circumference cannot be taken as
+          clearly. What happens next depends partly on you: the released fat travels in your
+          bloodstream and needs to be carried away. Body forming remains a cosmetic application,
+          not a medical or therapeutic procedure and not a weight-loss treatment.
+        </span>
+      </app-guide-note>
+      <app-guide-note variant="tip" [label]="t('Dein Anteil nach der Sitzung', 'Your part after the session')">
+        <span class="lang de">
+          <strong>Viel trinken</strong> und <strong>leichte Bewegung</strong> nach dem Termin, ein
+          Spaziergang genügt, damit das gelöste Fett abtransportiert und nicht direkt wieder
+          eingelagert wird. In Kombination mit einer gesunden Ernährung und einem leichten
+          Kaloriendefizit wird das Ergebnis deutlich besser, weil dein Körper das freigesetzte Fett
+          dann wirklich verbraucht.
+        </span>
+        <span class="lang en">
+          <strong>Drink plenty</strong> and get some <strong>light movement</strong> after your
+          appointment, a walk is enough, so the released fat is carried away instead of being stored
+          again straight away. Combined with a healthy diet and a slight calorie deficit the result
+          gets noticeably better, because your body then really uses the released fat.
         </span>
       </app-guide-note>
     </app-guide-section>
 
     <app-guide-section
       index="03"
-      [heading]="t('Für wen ist Kavitation geeignet?', 'Who is cavitation right for?')"
+      [heading]="t('Cellulite Behandlung', 'Cellulite treatment')"
+      sectionId="cellulite"
+    >
+      <app-guide-media
+        image="assets/images/treatment/cellulite.webp"
+        [imageAlt]="
+          t(
+            'Cellulite Behandlung mit Ultraschall und Vakuum an Oberschenkeln und Gesäß',
+            'Cellulite treatment with ultrasound and vacuum on the thighs and buttocks'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Cellulite ist kein Fehler und kein Krankheitsbild, sondern eine Struktur des Bindegewebes,
+          die sehr viele Menschen haben. Die Behandlung arbeitet mit Ultraschall und einer sanften
+          Vakuum-Massage am Gewebe.
+        </p>
+        <p class="lang en">
+          Cellulite is not a flaw and not a disease, it is a structure of the connective tissue that
+          a great many people have. The treatment works on the tissue with ultrasound and a gentle
+          vacuum massage.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Aktiviert das Gewebe und fördert Durchblutung und Lymphfluss</span>
+            <span class="lang en">Activates the tissue and supports circulation and lymphatic flow</span>
+          </li>
+          <li>
+            <span class="lang de">Häufige Zonen: Oberschenkel, Gesäß, Bauch, Hüften und Oberarme</span>
+            <span class="lang en">Common areas: thighs, buttocks, stomach, hips and upper arms</span>
+          </li>
+          <li>
+            <span class="lang de">Sinnvoll als Kur über mehrere Wochen, nicht als einzelner Termin</span>
+            <span class="lang en">Best as a course over several weeks, not as a single appointment</span>
+          </li>
+          <li>
+            <span class="lang de">Gleiche Preise wie die Behandlung einzelner Zonen</span>
+            <span class="lang en">The same prices as the treatment of individual areas</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      [heading]="t('Für wen ist Body Forming geeignet?', 'Who is body forming right for?')"
       sectionId="geeignet"
     >
       <app-guide-media
         image="assets/images/treatment/kavitation4.webp"
         [imageAlt]="
           t(
-            'Typische Kavitations-Zonen: Bauch, Taille, Hüfte, Oberschenkel und Po',
-            'Typical cavitation areas: belly, waist, hips, thighs and bottom'
+            'Typische Zonen für Body Forming: Bauch, Taille, Hüfte, Oberschenkel und Gesäß',
+            'Typical body forming areas: stomach, waist, hips, thighs and buttocks'
           )
         "
-        side="right"
+        side="left"
       >
         <p class="lang de">
-          Kavitation eignet sich besonders, wenn du eine nicht-invasive Kontur-Unterstützung ohne
-          Ausfallzeit suchst und die Hautoptik an bestimmten Zonen verbessern möchtest.
+          Body Forming passt, wenn du eine nicht invasive kosmetische Körperbehandlung ohne
+          Ausfallzeit suchst und die Optik an einer bestimmten Zone verändern möchtest.
         </p>
         <p class="lang en">
-          Cavitation is especially suited to you if you are looking for non-invasive contour support
-          with no downtime and want to improve how your skin looks in certain areas.
+          Body forming is a fit if you are looking for a non-invasive cosmetic body treatment with
+          no downtime and want to change the look of a particular area.
         </p>
         <app-guide-checklist>
           <li>
-            <span class="lang de">Du möchtest eine <strong>nicht-invasive</strong> Kontur-Unterstützung</span>
-            <span class="lang en">You want <strong>non-invasive</strong> contour support</span>
-          </li>
-          <li>
-            <span class="lang de">Du willst die Hautoptik an bestimmten Zonen verbessern</span>
-            <span class="lang en">You want to improve how your skin looks in certain areas</span>
+            <span class="lang de">Du möchtest eine <strong>nicht invasive</strong> kosmetische Behandlung</span>
+            <span class="lang en">You want a <strong>non-invasive</strong> cosmetic treatment</span>
           </li>
           <li>
             <span class="lang de">Du bevorzugst ein Treatment <strong>ohne Ausfallzeit</strong></span>
             <span class="lang en">You prefer a treatment with <strong>no downtime</strong></span>
           </li>
           <li>
-            <span class="lang de">Häufige Zonen: Bauch, Taille, Hüfte, Oberschenkel oder Po</span>
-            <span class="lang en">Common areas: belly, waist, hips, thighs or bottom</span>
+            <span class="lang de">Du bringst Geduld für eine Kur mit, statt ein Ergebnis nach einem Termin zu erwarten</span>
+            <span class="lang en">You bring patience for a course, instead of expecting a result after one appointment</span>
           </li>
         </app-guide-checklist>
       </app-guide-media>
       <app-guide-note variant="tip" [label]="t('Ehrliche Beratung', 'Honest advice')">
         <span class="lang de">
-          Wir schauen uns dein Ziel genau an und sagen dir offen, ob Kavitation dazu passt oder ob
-          eine andere Behandlung sinnvoller ist.
+          Wir schauen uns dein Ziel genau an und sagen dir offen, ob Body Forming dazu passt, ob
+          eine andere Behandlung sinnvoller ist oder ob wir dir gerade gar nichts verkaufen sollten.
         </span>
         <span class="lang en">
-          We take a close look at your goal and tell you openly whether cavitation fits it or whether
-          another treatment makes more sense.
+          We take a close look at your goal and tell you openly whether body forming fits it,
+          whether another treatment makes more sense, or whether we should not be selling you
+          anything right now.
         </span>
       </app-guide-note>
     </app-guide-section>
 
     <app-guide-section
-      index="04"
-      [heading]="t('Gibt es Nebenwirkungen?', 'Are there any side effects?')"
-      sectionId="nebenwirkungen"
+      index="05"
+      [heading]="t('Grenzen & Nebenwirkungen', 'Limits & side effects')"
+      sectionId="grenzen"
     >
       <app-guide-media
-        image="assets/images/treatment/cellulite.webp"
+        image="assets/images/treatment/hands.webp"
         [imageAlt]="
           t(
-            'Nahaufnahme der Hautoberfläche im Kontext der Kavitations-Behandlung',
-            'Close-up of the skin surface in the context of the cavitation treatment'
+            'Pflegende Hände als Symbol für Sicherheit und individuelle Abklärung bei FareWell',
+            'Caring hands symbolising safety and individual assessment at FareWell'
           )
         "
-        side="left"
+        side="right"
       >
         <p class="lang de">
-          Kavitation wird meist als sehr angenehm empfunden. Wie bei jeder Body-Behandlung sind nur
-          leichte, vorübergehende Reaktionen möglich:
+          Die Behandlung wird meist als sehr angenehm empfunden. Wie bei jeder Körperbehandlung sind
+          nur leichte, vorübergehende Reaktionen möglich:
         </p>
         <p class="lang en">
-          Cavitation is usually experienced as very pleasant. As with any body treatment, only mild,
-          temporary reactions can occur:
+          The treatment is usually experienced as very pleasant. As with any body treatment, only
+          mild, temporary reactions can occur:
         </p>
         <app-guide-checklist>
           <li>
@@ -258,20 +330,38 @@
           </li>
         </app-guide-checklist>
       </app-guide-media>
-      <app-guide-note variant="tip" [label]="t('Sicher & angenehm', 'Safe & comfortable')">
+      <app-guide-note variant="rule" [label]="t('Vorher abklären', 'Clarified in advance')">
         <span class="lang de">
-          Wir arbeiten mit professionellen Einstellungen und geben dir klare Nachsorge-Hinweise, damit
-          alles sicher und angenehm bleibt.
+          Vor jeder Behandlung klären wir persönlich ab, ob sie für dich überhaupt infrage kommt,
+          und holen dafür bei Bedarf eine ärztliche Abklärung ein. Nicht geeignet ist Body Forming
+          unter anderem in der Schwangerschaft und Stillzeit, bei Erkrankungen von Leber oder
+          Nieren, bei Herz-Kreislauf-Erkrankungen, mit Herzschrittmacher oder Metallimplantaten in
+          der Zone, bei Blutgerinnungsstörungen und bei akuten Entzündungen.
         </span>
         <span class="lang en">
-          We work with professional settings and give you clear aftercare guidance, so everything
-          stays safe and comfortable.
+          Before every treatment we clarify in person whether it is an option for you at all, and
+          obtain a medical assessment where needed. Body forming is not suitable during pregnancy or
+          breastfeeding, with liver or kidney conditions, with cardiovascular conditions, with a
+          pacemaker or metal implants in the area, with blood-clotting disorders or with acute
+          inflammation, among others.
+        </span>
+      </app-guide-note>
+      <app-guide-note variant="rule" [label]="t('Keine Werbeversprechen', 'No advertising promises')">
+        <span class="lang de">
+          Wir werben bei Body Forming bewusst nicht mit Vorher-Nachher-Bildern, nicht mit
+          Zentimeterangaben und nicht mit Gewichtsabnahme. Solche Zahlen lassen sich seriös nicht
+          zusagen, und alles andere wäre unehrlich.
+        </span>
+        <span class="lang en">
+          With body forming we deliberately do not advertise with before-and-after photos, with
+          centimetre figures or with weight loss. Numbers like that cannot be promised seriously,
+          and anything else would be dishonest.
         </span>
       </app-guide-note>
     </app-guide-section>
 
     <app-guide-section
-      index="05"
+      index="06"
       [heading]="t('Wie viele Sitzungen sind sinnvoll?', 'How many sessions make sense?')"
       sectionId="sitzungen"
     >
@@ -280,69 +370,69 @@
         [contain]="true"
         [imageAlt]="
           t(
-            'Kalender-Illustration für einen Kavitations-Kurs mit 4–8 Sitzungen im Abstand von 2–4 Tagen',
-            'Calendar illustration for a cavitation course of 4–8 sessions spaced 2–4 days apart'
+            'Kalender-Illustration für eine Body-Forming-Kur mit 5–10 Sitzungen im Abstand von 2–4 Tagen',
+            'Calendar illustration for a body forming course of 5–10 sessions spaced 2–4 days apart'
           )
         "
-        side="right"
+        side="left"
       >
         <p class="lang de">
-          Je nach Ziel und Zone sind oft <strong>4–8 Sitzungen</strong> sinnvoll, mit einem Abstand
-          von etwa <strong>2–4 Tagen</strong>. So haben Lymphe und Stoffwechsel Zeit, die gelösten
-          Stoffe abzutransportieren.
+          Je nach Ziel und Zone sind oft <strong>5–10 Sitzungen</strong> sinnvoll, mit einem Abstand
+          von etwa <strong>2–4 Tagen</strong>. So haben Lymphe und Stoffwechsel Zeit, das Gewebe zu
+          entlasten.
         </p>
         <p class="lang en">
-          Depending on your goal and the area, <strong>4–8 sessions</strong> often make sense, spaced
+          Depending on your goal and the area, <strong>5–10 sessions</strong> often make sense, spaced
           about <strong>2–4 days</strong> apart. That gives your lymphatic system and metabolism time
-          to carry away what has been released.
+          to relieve the tissue.
         </p>
         <app-guide-checklist>
           <li>
-            <span class="lang de">Häufig 4–8 Sitzungen, je nach Ziel und Zone</span>
-            <span class="lang en">Often 4–8 sessions, depending on goal and area</span>
+            <span class="lang de">Häufig 5–10 Sitzungen, je nach Ziel und Zone</span>
+            <span class="lang en">Often 5–10 sessions, depending on goal and area</span>
           </li>
           <li>
             <span class="lang de">Abstand von etwa 2–4 Tagen zwischen den Terminen</span>
             <span class="lang en">A gap of around 2–4 days between appointments</span>
           </li>
           <li>
-            <span class="lang de">Der Effekt ist individuell und hängt von deiner Unterstützung ab</span>
-            <span class="lang en">The effect is individual and depends on how you support it</span>
+            <span class="lang de">Für längere Kuren gibt es Pakete über 2 oder 5 Stunden</span>
+            <span class="lang en">For longer courses there are packages of 2 or 5 hours</span>
           </li>
         </app-guide-checklist>
       </app-guide-media>
-      <app-guide-note variant="tip" [label]="t('Dein Anteil', 'Your part')">
+      <app-guide-note variant="tip" [label]="t('Rhythmus halten', 'Keep the rhythm')">
         <span class="lang de">
-          Viel <strong>trinken</strong>, etwas <strong>Bewegung</strong> und eine passende Pflege
-          unterstützen das Ergebnis spürbar, du bist ein aktiver Teil der Behandlung.
+          Der Abstand ist wichtiger als die Anzahl: Zwei bis vier Tage Pause geben Lymphe und
+          Stoffwechsel Zeit. Wer die Termine über Wochen streckt, verschenkt einen Teil der Wirkung.
         </span>
         <span class="lang en">
-          Plenty of <strong>water</strong>, a little <strong>movement</strong> and suitable care
-          noticeably support the result, you are an active part of the treatment.
+          The spacing matters more than the count: two to four days give your lymphatic system and
+          metabolism time. Stretching appointments out over weeks gives away part of the effect.
         </span>
       </app-guide-note>
     </app-guide-section>
 
     <app-guide-section
-      index="06"
+      index="07"
       [heading]="t('Wichtige Hinweise vor & nach der Behandlung', 'Important tips before & after your treatment')"
       sectionId="hinweise"
     >
       <app-guide-media
-        image="assets/images/treatment/hands.webp"
+        image="assets/images/treatment/kavitation.webp"
         [imageAlt]="
           t(
-            'Pflegende Hände als Symbol für Nachsorge und individuelle Beratung bei FareWell',
-            'Caring hands symbolising aftercare and individual advice at FareWell'
+            'Vorbereitung und Nachsorge rund um die Body-Forming-Behandlung bei FareWell',
+            'Preparation and aftercare around the body forming treatment at FareWell'
           )
         "
-        side="left"
+        side="right"
       >
         <p class="lang de">
-          Ein paar einfache Dinge helfen, das Ergebnis optimal zu unterstützen:
+          Ein paar einfache Dinge helfen, die Behandlung gut zu vertragen:
         </p>
         <p class="lang en">
-          A few simple things help to support your result at its best:
+          A few simple things help you tolerate the treatment well:
         </p>
         <app-guide-checklist>
           <li>
@@ -370,17 +460,18 @@
     </app-guide-section>
 
     <app-guide-cta
-      [heading]="t('Bereit für sanftes Body Forming?', 'Ready for gentle body forming?')"
+      [heading]="t('Erst reden, dann buchen', 'Talk first, book second')"
       [bookingLabel]="t('Termin buchen', 'Book now')"
       [tagline]="t('Sanft in Form.', 'Softly sculpted.')"
     >
       <span class="lang de">
-        Buche deinen Termin direkt online. Vorab beraten wir dich ehrlich, ob Kavitation zu deinem
-        Ziel passt, kosmetisch, nicht-invasiv und ohne Ausfallzeit.
+        Body Forming buchst du am besten nach einem Gespräch. Wir schauen uns deine Zone an, klären
+        ab, ob die Behandlung für dich infrage kommt, und sagen dir ehrlich, was sie leisten kann
+        und was nicht.
       </span>
       <span class="lang en">
-        Book your appointment directly online. Beforehand we advise you honestly on whether cavitation
-        fits your goal, cosmetic, non-invasive and with no downtime.
+        Body forming is best booked after a conversation. We look at your area, clarify whether the
+        treatment is an option for you, and tell you honestly what it can and cannot do.
       </span>
     </app-guide-cta>
   </div>

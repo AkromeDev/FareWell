@@ -14,12 +14,12 @@ const PAGE_PATH = '/behandlungen/microneedling-radiofrequenz';
 const HERO_IMAGE = 'assets/images/treatment/microneedling2.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 
-const DE_TITLE = 'Microneedling Radiofrequenz Nürnberg | FareWell';
-const EN_TITLE = 'RF Microneedling Nuremberg | FareWell';
+const DE_TITLE = 'Radiofrequenz Microneedling Nürnberg: Hautverjüngung | FareWell';
+const EN_TITLE = 'RF Microneedling Nuremberg: Skin Rejuvenation | FareWell';
 const DE_DESCRIPTION =
-  'Microneedling mit Radiofrequenz in Nürnberg: moderne Hautverjüngung, Faltenreduktion und Hautstraffung.';
+  'Microneedling mit Radiofrequenz in Nürnberg: Hautverjüngung für Gesicht, Hals, Dekolleté und Brust, ab 180 €. Beratung kostenlos.';
 const EN_DESCRIPTION =
-  'Radiofrequency microneedling in Nuremberg: skin rejuvenation, scar treatment and firmer skin. Book online, free initial consultation in English.';
+  'Radiofrequency microneedling in Nuremberg: skin rejuvenation for face, neck, décolleté and chest, from €180. Book online, free consultation in English.';
 const HERO_ALT_DE =
   'FareWell Studio in Nürnberg für Microneedling mit Radiofrequenz zur Hautstraffung und Hautbildverbesserung';
 const HERO_ALT_EN =
@@ -110,8 +110,8 @@ export class MicroneedlingComponent implements OnInit, OnDestroy {
       {
         question: this.t('Für wen ist RF-Microneedling geeignet?', 'Who is RF microneedling for?'),
         answer: this.t(
-          'Besonders geeignet, wenn du die Haut straffen und glätten möchtest, das Hautbild bei Poren oder Texturunruhe verbessern willst oder bei Aknenarben Unterstützung suchst. Typische Zonen sind Wangen, Kinnlinie, Stirn, Hals und Dekolleté. Bei FareWell beraten wir vorab ehrlich, was für deine Haut realistisch ist.',
-          'Especially suitable if you want to firm and smooth the skin, improve the complexion where you have enlarged pores or uneven texture, or want support with acne scars. Typical areas are the cheeks, jawline, forehead, neck and décolleté. At FareWell we give honest advice up front on what is realistic for your skin.',
+          'Besonders geeignet, wenn du die Haut straffen und glätten möchtest oder das Hautbild bei Poren und Texturunruhe verbessern willst. Buchbar für Gesicht, Hals, Dekolleté und Brust sowie als Komplettbehandlung. Geht es dir gezielt um Aknenarben, Narben nach OP und Verletzungen oder Dehnungsstreifen, ist die Narbenbehandlung die passende Leistung. Bei FareWell beraten wir vorab ehrlich, was für deine Haut realistisch ist.',
+          'Especially suitable if you want to firm and smooth the skin or improve the complexion where you have enlarged pores and uneven texture. Bookable for the face, neck, décolleté and chest, or as a complete treatment. If your focus is specifically acne scars, scars after surgery or injury, or stretch marks, our scar treatment is the right service. At FareWell we give honest advice up front on what is realistic for your skin.',
         ),
       },
       {
@@ -157,14 +157,14 @@ export class MicroneedlingComponent implements OnInit, OnDestroy {
           '@type': 'Service',
           '@id': `${pageUrl}#service`,
           name: this.t(
-            'Microneedling mit Radiofrequenz in Nürnberg',
-            'Radiofrequency microneedling in Nuremberg',
+            'Radiofrequenz Microneedling in Nürnberg',
+            'Radio-frequency microneedling in Nuremberg',
           ),
           description: this.t(
-            'RF-Microneedling bei FareWell in Nürnberg zur Hautstraffung, Hautbildverbesserung sowie zur Unterstützung bei Poren, Aknenarben und unruhiger Hautstruktur.',
-            'RF microneedling at FareWell in Nuremberg for skin firming, a better complexion and support with enlarged pores, acne scars and uneven skin texture.',
+            'Radiofrequenz Microneedling bei FareWell in Nürnberg zur Hautverjüngung: Straffung, feinere Poren und ein ebenmäßigeres Hautbild für Gesicht, Hals, Dekolleté und Brust.',
+            'Radio-frequency microneedling at FareWell in Nuremberg for skin rejuvenation: firming, refined pores and a more even complexion for the face, neck, décolleté and chest.',
           ),
-          serviceType: this.t('Radiofrequenz-Microneedling', 'Radiofrequency microneedling'),
+          serviceType: this.t('Hautverjüngung', 'Skin rejuvenation'),
           areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
           provider: {
             '@type': 'BeautySalon',
@@ -215,7 +215,7 @@ export class MicroneedlingComponent implements OnInit, OnDestroy {
             {
               '@type': 'ListItem',
               position: 3,
-              name: this.t('Microneedling Radiofrequenz', 'RF Microneedling'),
+              name: this.t('Radiofrequenz Microneedling', 'RF Microneedling'),
               item: pageUrl,
             },
           ],

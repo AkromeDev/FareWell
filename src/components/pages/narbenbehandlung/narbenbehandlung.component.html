@@ -1,0 +1,367 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Behandlung', 'FareWell · Nuremberg · Treatment')"
+    [heading]="t('Narbenbehandlung in Nürnberg', 'Scar treatment in Nuremberg')"
+    [tagline]="t('Weicher werden.', 'Softening, step by step.')"
+    [lead]="
+      t(
+        'Aknenarben, Narben nach einer Operation oder Verletzung, Dehnungsstreifen: Mit Radiofrequenz Microneedling arbeiten wir gezielt an Narbengewebe, damit es weicher, flacher und gleichmäßiger wird und die Narbe deutlich weniger auffällt.',
+        'Acne scars, scars after surgery or injury, stretch marks: with radio-frequency microneedling we work specifically on scar tissue, so it becomes softer, flatter and more even and the scar stands out far less.'
+      )
+    "
+    [image]="heroImage"
+    [imageAlt]="heroImageAlt"
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Wir setzen kontrollierte Mikroverletzungen im Narbengewebe und geben gleichzeitig
+            Radiofrequenzwärme in die Tiefe. Der Körper baut das steife, faserige Gewebe langsam
+            um und ersetzt es durch elastischeres Kollagen.
+          </span>
+          <span class="lang en">
+            We create controlled micro-injuries in the scar tissue and, at the same time, deliver
+            radio-frequency warmth deep into the skin. Your body slowly remodels the stiff, fibrous
+            tissue and replaces it with more elastic collagen.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Geht es dir eher um Straffung, Poren und Hautbild als um eine bestimmte Narbe, dann
+            passt die
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">Hautverjüngung mit Radiofrequenz Microneedling</a>
+            besser. Den Preis findest du in der
+            <a [routerLink]="p('/price')" fragment="narbenbehandlung">Preisliste</a>, und was bei
+            deiner Narbe realistisch ist, klären wir ehrlich in der
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlosen Beratung</a>.
+          </span>
+          <span class="lang en">
+            If it is firming, pores and overall complexion you care about rather than one specific
+            scar, then
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">skin rejuvenation with RF microneedling</a>
+            is the better fit. You will find the price in our
+            <a [routerLink]="p('/price')" fragment="narbenbehandlung">price list</a>, and what is
+            realistic for your scar we clarify honestly in the
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">free consultation</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Was die Narbenbehandlung macht', 'What the scar treatment does')"
+      sectionId="was"
+    >
+      <app-guide-media
+        image="assets/images/treatment/microneedling.webp"
+        [imageAlt]="
+          t(
+            'Radiofrequenz Microneedling zur Narbenbehandlung im FareWell Studio in Nürnberg',
+            'Radio-frequency microneedling for scar treatment at the FareWell studio in Nuremberg'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Eine Narbe entsteht, weil der Körper eine Wunde schnell schließen muss. Das Ersatzgewebe
+          ist fester, ärmer an Elastin und liegt oft tiefer oder höher als die Haut daneben. Genau
+          da setzen wir an.
+        </p>
+        <p class="lang en">
+          A scar forms because your body has to close a wound quickly. The replacement tissue is
+          firmer, poorer in elastin and often sits lower or higher than the skin around it. That is
+          exactly where we start.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Feine Nadeln setzen <strong>kontrollierte Mikroverletzungen</strong> im Narbengewebe</span>
+            <span class="lang en">Fine needles create <strong>controlled micro-injuries</strong> in the scar tissue</span>
+          </li>
+          <li>
+            <span class="lang de">Radiofrequenzwärme wirkt <strong>in der Tiefe</strong>, nicht nur an der Oberfläche</span>
+            <span class="lang en">Radio-frequency warmth works <strong>deep down</strong>, not just on the surface</span>
+          </li>
+          <li>
+            <span class="lang de">Der Körper baut steifes Gewebe um und bildet <strong>neues Kollagen</strong></span>
+            <span class="lang en">Your body remodels the stiff tissue and forms <strong>new collagen</strong></span>
+          </li>
+          <li>
+            <span class="lang de">Ziel: weicher, flacher, in Farbe und Struktur gleichmäßiger</span>
+            <span class="lang en">The goal: softer, flatter, more even in colour and texture</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="warn" [label]="t('Was realistisch ist', 'What is realistic')">
+        <span class="lang de">
+          Eine Narbe zu 100% wegzubekommen, kann niemand seriös versprechen. Eine deutliche
+          Verbesserung schon: Nach einigen Sitzungen wird die Narbe weicher, flacher und in Farbe
+          und Struktur gleichmäßiger, sodass sie viel weniger auffällt. Wie viel möglich ist, hängt
+          davon ab, wie alt die Narbe ist, welche Art sie ist und wie tief sie reicht. Wir sagen dir
+          vorher ehrlich, was bei deiner Narbe zu erwarten ist.
+        </span>
+        <span class="lang en">
+          No one can seriously promise to remove a scar 100%. A clear improvement, though, is a
+          different matter: after a few sessions the scar becomes softer, flatter and more even in
+          colour and texture, so it stands out far less. How much is possible depends on how old the
+          scar is, what type it is and how deep it goes. We tell you honestly beforehand what to
+          expect from your scar.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      [heading]="t('Welche Narben wir behandeln', 'Which scars we treat')"
+      sectionId="narben"
+    >
+      <app-guide-media
+        image="assets/images/treatment/microneedling5.webp"
+        [imageAlt]="
+          t(
+            'Typische Behandlungszonen für die Narbenbehandlung: Wangen, Kinnlinie, Bauch und Oberschenkel',
+            'Typical areas for scar treatment: cheeks, jawline, stomach and thighs'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Drei Anlässe kommen bei uns am häufigsten vor. Sie brauchen unterschiedlich viel Geduld,
+          funktionieren aber alle über denselben Weg.
+        </p>
+        <p class="lang en">
+          Three reasons come up most often with us. They need different amounts of patience, but
+          they all work along the same route.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de"><strong>Aknenarben</strong>: eingesunkene Narben an Wangen, Schläfen und Kinnlinie, oft flächig und in Gruppen</span>
+            <span class="lang en"><strong>Acne scars</strong>: sunken scars on the cheeks, temples and jawline, often spread out and in groups</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Narben nach OP und Verletzungen</strong>: einzelne Linien, sobald die Wunde vollständig verheilt ist</span>
+            <span class="lang en"><strong>Scars after surgery or injury</strong>: single lines, once the wound has fully healed</span>
+          </li>
+          <li>
+            <span class="lang de"><strong>Dehnungsstreifen</strong> an Bauch, Hüften, Oberschenkeln, Brust oder Oberarmen</span>
+            <span class="lang en"><strong>Stretch marks</strong> on the stomach, hips, thighs, chest or upper arms</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Helle Streifen brauchen mehr Geduld', 'Pale marks need more patience')">
+        <span class="lang de">
+          Frische, rötliche Dehnungsstreifen sprechen deutlich besser an als alte, silbrig weiße.
+          Beides lässt sich behandeln, nur dauert das eine länger als das andere.
+        </span>
+        <span class="lang en">
+          Fresh, reddish stretch marks respond noticeably better than old, silvery white ones. Both
+          can be treated, one simply takes longer than the other.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      [heading]="t('Ablauf & Betäubung', 'Process & numbing')"
+      sectionId="ablauf"
+    >
+      <app-guide-media
+        image="assets/images/treatment/microneedling7.webp"
+        [imageAlt]="
+          t(
+            'Vorbereitung der Haut vor der Narbenbehandlung mit Betäubungscreme',
+            'Preparing the skin before the scar treatment with numbing cream'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Eine Sitzung dauert 60 Minuten und kostet 250 €. Wenn du möchtest, tragen wir vorher eine
+          Betäubungscreme auf, die etwa 15 Minuten einwirkt und 20 € kostet.
+        </p>
+        <p class="lang en">
+          A session takes 60 minutes and costs €250. If you like, we apply a numbing cream
+          beforehand, which takes about 15 minutes to work and costs €20.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Wir reinigen die Haut und stimmen Nadeltiefe und Energie auf deine Narbe ab</span>
+            <span class="lang en">We cleanse the skin and match needle depth and energy to your scar</span>
+          </li>
+          <li>
+            <span class="lang de">Die Behandlung ist spürbar, aber gut auszuhalten, besonders mit Betäubungscreme</span>
+            <span class="lang en">The treatment is noticeable but manageable, especially with numbing cream</span>
+          </li>
+          <li>
+            <span class="lang de">Danach ist die Haut ein bis zwei Tage gerötet, ähnlich wie bei einem leichten Sonnenbrand</span>
+            <span class="lang en">Afterwards the skin is red for one to two days, similar to mild sunburn</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      [heading]="t('Wie viele Sitzungen sind nötig?', 'How many sessions do you need?')"
+      sectionId="sitzungen"
+    >
+      <app-guide-media
+        image="assets/images/farewell/calendar2.png"
+        [contain]="true"
+        [imageAlt]="
+          t(
+            'Kalender-Illustration für 3 bis 6 Narbenbehandlungen im Abstand von 4 bis 6 Wochen',
+            'Calendar illustration for 3 to 6 scar treatments spaced 4 to 6 weeks apart'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Meist sind <strong>3 bis 6 Sitzungen</strong> im Abstand von <strong>4 bis 6 Wochen</strong>
+          sinnvoll. Zwischen den Terminen passiert die eigentliche Arbeit: Dein Gewebe baut um.
+        </p>
+        <p class="lang en">
+          Usually <strong>3 to 6 sessions</strong> spaced <strong>4 to 6 weeks</strong> apart make
+          sense. The real work happens between appointments: your tissue is remodelling.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Alte und tiefe Narben brauchen mehr Sitzungen als frische, flache</span>
+            <span class="lang en">Old and deep scars need more sessions than fresh, shallow ones</span>
+          </li>
+          <li>
+            <span class="lang de">Der Umbau läuft über Monate weiter, auch nach der letzten Sitzung</span>
+            <span class="lang en">The remodelling continues over months, even after your last session</span>
+          </li>
+          <li>
+            <span class="lang de">Wir schauen nach jeder Sitzung neu, ob und wie es weitergeht</span>
+            <span class="lang en">After each session we reassess whether and how to continue</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+      <app-guide-note variant="tip" [label]="t('Vorher fotografieren', 'Take a photo first')">
+        <span class="lang de">
+          Veränderungen an der eigenen Haut sieht man schlecht, weil man sie jeden Tag anschaut.
+          Auf Wunsch machen wir zu Beginn ein Vergleichsfoto, damit du nach der dritten Sitzung
+          wirklich beurteilen kannst, was passiert ist.
+        </span>
+        <span class="lang en">
+          Changes in your own skin are hard to see, because you look at it every day. If you like,
+          we take a reference photo at the start, so that after the third session you can really
+          judge what has happened.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="05"
+      [heading]="t('Nachsorge', 'Aftercare')"
+      sectionId="nachsorge"
+    >
+      <app-guide-media
+        image="assets/images/treatment/microneedling6.webp"
+        [imageAlt]="
+          t(
+            'Sanfte Pflege und konsequenter Sonnenschutz nach der Narbenbehandlung',
+            'Gentle care and consistent sun protection after the scar treatment'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
+          Die ersten Tage nach der Behandlung entscheiden mit über das Ergebnis. Viel ist es nicht,
+          was du tun musst, aber es sollte konsequent sein.
+        </p>
+        <p class="lang en">
+          The first days after the treatment help decide the result. There is not much you have to
+          do, but it should be consistent.
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Sanft reinigen, gut mit Feuchtigkeit versorgen, nicht kratzen oder schälen</span>
+            <span class="lang en">Cleanse gently, moisturise well, do not scratch or peel</span>
+          </li>
+          <li>
+            <span class="lang de">Konsequent <strong>Sonnenschutz</strong>, sonst kann die Narbe nachdunkeln</span>
+            <span class="lang en">Consistent <strong>sun protection</strong>, otherwise the scar can darken</span>
+          </li>
+          <li>
+            <span class="lang de">Am selben Tag keine Sauna, kein Sport, kein Schwimmbad</span>
+            <span class="lang en">No sauna, no sport and no swimming pool on the same day</span>
+          </li>
+          <li>
+            <span class="lang de">Etwa eine Woche keine Säuren, Retinoide oder Peelings auf der Zone</span>
+            <span class="lang en">No acids, retinoids or peels on the area for about a week</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
+    </app-guide-section>
+
+    <app-guide-section
+      index="06"
+      [heading]="t('Grenzen & Kontraindikationen', 'Limits & contraindications')"
+      sectionId="grenzen"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Nicht jede Narbe gehört zu uns, und das sagen wir lieber vorher als hinterher.
+        </span>
+        <span class="lang en">
+          Not every scar belongs with us, and we would rather say that beforehand than afterwards.
+        </span>
+      </p>
+      <div class="gd-read">
+        <app-guide-note variant="rule" [label]="t('Wann wir nicht behandeln', 'When we do not treat')">
+          <span class="lang de">
+            Wulstige Narben und Keloide behandeln wir nicht, hier kann die Reizung das Gegenteil
+            bewirken: Das gehört in ärztliche Hände. Frische Wunden brauchen erst vollständige
+            Heilung. Nicht geeignet ist die Behandlung außerdem bei aktiver Akne oder Entzündung in
+            der Zone, bei einer laufenden Isotretinoin-Therapie, in der Schwangerschaft sowie bei
+            Störungen der Wundheilung oder der Blutgerinnung.
+          </span>
+          <span class="lang en">
+            We do not treat raised scars or keloids, where the irritation can do the opposite: that
+            belongs in medical hands. Fresh wounds first need to heal completely. The treatment is
+            also unsuitable with active acne or inflammation in the area, during isotretinoin
+            therapy, during pregnancy, and with wound-healing or blood-clotting disorders.
+          </span>
+        </app-guide-note>
+        <app-guide-note variant="tip" [label]="t('Kosmetisch, nicht medizinisch', 'Cosmetic, not medical')">
+          <span class="lang de">
+            Die Narbenbehandlung ist eine kosmetische Anwendung. Sie ersetzt keine ärztliche
+            Diagnose und keine medizinische Therapie. Wenn eine Narbe schmerzt, wächst, juckt oder
+            sich verändert, gehört sie zuerst zur Hautärztin oder zum Hautarzt.
+          </span>
+          <span class="lang en">
+            The scar treatment is a cosmetic application. It does not replace a medical diagnosis or
+            medical therapy. If a scar hurts, grows, itches or changes, it belongs with a
+            dermatologist first.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta
+      [heading]="t('Lass uns deine Narbe gemeinsam anschauen', 'Let us look at your scar together')"
+    >
+      <span class="lang de">
+        In der kostenlosen Beratung schauen wir uns die Narbe an, sagen dir ehrlich, was möglich
+        ist, und planen die Sitzungen mit dir. Ohne Druck und ohne Verpflichtung.
+      </span>
+      <span class="lang en">
+        In the free consultation we look at your scar, tell you honestly what is possible and plan
+        the sessions with you. No pressure and no obligation.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

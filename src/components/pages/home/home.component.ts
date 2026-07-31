@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // -------------------------------------------------------------------------
-  // Behandlungen — gleiche sechs Behandlungen wie im Header-Mega-Menü.
+  // Behandlungen — gleiche sieben Behandlungen wie im Header-Mega-Menü.
   // -------------------------------------------------------------------------
   readonly services: ServiceCard[] = [
     {
@@ -125,7 +125,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       num: '03',
-      titleDe: 'Microneedling RF',
+      titleDe: 'Radiofrequenz Microneedling',
       titleEn: 'RF Microneedling',
       descDe:
         'Straffung & Hautbild: feine Nadeln plus Radiofrequenz-Wärme für ein glatteres Erscheinungsbild.',
@@ -139,6 +139,33 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       num: '04',
+      titleDe: 'Narbenbehandlung',
+      titleEn: 'Scar Treatment',
+      descDe:
+        'Aknenarben, Narben nach OP und Verletzungen, Dehnungsstreifen: weicher, flacher, gleichmäßiger.',
+      descEn:
+        'Acne scars, scars after surgery or injury, stretch marks: softer, flatter, more even.',
+      altDe:
+        'Narbenbehandlung mit Radiofrequenz Microneedling bei FareWell in Nürnberg',
+      altEn: 'Scar treatment with RF microneedling at FareWell in Nuremberg',
+      path: '/behandlungen/narbenbehandlung',
+      image: 'assets/images/treatment/microneedling4.webp',
+    },
+    {
+      num: '05',
+      titleDe: 'Body Forming',
+      titleEn: 'Body Forming',
+      descDe:
+        'Kosmetische Körperbehandlung mit Ultraschall Kavitation und Radiofrequenz, sanft und nicht invasiv.',
+      descEn:
+        'A cosmetic body treatment with ultrasound cavitation and radio frequency, gentle and non-invasive.',
+      altDe: 'Body Forming mit Ultraschall Kavitation bei FareWell Nürnberg',
+      altEn: 'Body forming with ultrasound cavitation at FareWell Nuremberg',
+      path: '/behandlungen/kavitation',
+      image: 'assets/images/treatment/kavitation.webp',
+    },
+    {
+      num: '06',
       titleDe: 'Wellness Massage',
       titleEn: 'Wellness Massage',
       descDe:
@@ -151,7 +178,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       image: 'assets/images/treatment/massage-hero.jpg',
     },
     {
-      num: '05',
+      num: '07',
       titleDe: 'Therapeutische Massage',
       titleEn: 'Therapeutic Massage',
       descDe:
@@ -163,19 +190,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       altEn: 'Therapeutic massage for muscle tension at FareWell in Nuremberg',
       path: '/behandlungen/therapeutische-massage',
       image: 'assets/images/massages/tm%20massaging.jpg',
-    },
-    {
-      num: '06',
-      titleDe: 'Kavitation',
-      titleEn: 'Cavitation',
-      descDe:
-        'Ultraschall-Unterstützung zur Kontur: sanft, nicht-invasiv und effektiv gegen Cellulite.',
-      descEn:
-        'Ultrasound support for body contour: gentle, non-invasive and effective against cellulite.',
-      altDe: 'Kavitationsbehandlung für die Körperkontur bei FareWell Nürnberg',
-      altEn: 'Cavitation body contouring treatment at FareWell Nuremberg',
-      path: '/behandlungen/kavitation',
-      image: 'assets/images/treatment/kavitation.webp',
     },
   ];
 
@@ -381,8 +395,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       'FareWell in Nuremberg specialises in electrolysis (permanent hair removal), laser hair removal, RF microneedling and body treatments. Consultations in English, near the main station.'
     );
     const imageAlt = this.t(
-      'FareWell Studio in Nürnberg für permanente Haarentfernung und ästhetische Behandlungen',
-      'FareWell studio in Nuremberg for permanent hair removal and aesthetic treatments'
+      'FareWell Studio in Nürnberg für permanente und dauerhafte Haarentfernung sowie ästhetische Behandlungen',
+      'FareWell studio in Nuremberg for permanent and long-lasting hair removal and aesthetic treatments'
     );
 
     this.seo.setPageSeo({

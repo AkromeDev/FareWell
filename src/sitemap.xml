@@ -31,13 +31,19 @@
 
   <url>
     <loc>https://farewell.salon/behandlungen/microneedling-radiofrequenz</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/behandlungen/narbenbehandlung</loc>
+    <lastmod>2026-07-31</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://farewell.salon/behandlungen/kavitation</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <priority>0.7</priority>
   </url>
 
@@ -55,7 +61,7 @@
 
   <url>
     <loc>https://farewell.salon/price</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <priority>0.8</priority>
   </url>
 
@@ -194,11 +200,12 @@
   <url><loc>https://farewell.salon/en</loc><lastmod>2026-07-24</lastmod><priority>0.9</priority></url>
   <url><loc>https://farewell.salon/en/behandlungen/nadelepilation</loc><lastmod>2026-07-24</lastmod><priority>0.9</priority></url>
   <url><loc>https://farewell.salon/en/behandlungen/diodenlaser-4-wellen</loc><lastmod>2026-07-24</lastmod><priority>0.9</priority></url>
-  <url><loc>https://farewell.salon/en/behandlungen/microneedling-radiofrequenz</loc><lastmod>2026-07-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://farewell.salon/en/behandlungen/microneedling-radiofrequenz</loc><lastmod>2026-07-31</lastmod><priority>0.7</priority></url>
+  <url><loc>https://farewell.salon/en/behandlungen/narbenbehandlung</loc><lastmod>2026-07-31</lastmod><priority>0.7</priority></url>
   <url><loc>https://farewell.salon/en/behandlungen/kavitation</loc><lastmod>2026-07-24</lastmod><priority>0.6</priority></url>
   <url><loc>https://farewell.salon/en/behandlungen/wellness-massage</loc><lastmod>2026-07-24</lastmod><priority>0.7</priority></url>
   <url><loc>https://farewell.salon/en/behandlungen/therapeutische-massage</loc><lastmod>2026-07-17</lastmod><priority>0.7</priority></url>
-  <url><loc>https://farewell.salon/en/price</loc><lastmod>2026-07-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://farewell.salon/en/price</loc><lastmod>2026-07-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://farewell.salon/en/zeit</loc><lastmod>2026-07-16</lastmod><priority>0.5</priority></url>
   <url><loc>https://farewell.salon/en/historie</loc><lastmod>2026-07-24</lastmod><priority>0.4</priority></url>
   <url><loc>https://farewell.salon/en/faq</loc><lastmod>2026-07-24</lastmod><priority>0.8</priority></url>

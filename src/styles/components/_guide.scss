@@ -40,6 +40,9 @@
   --gd-ok-tint: rgba(74, 122, 78, 0.12);
   --gd-warn: #9A6B25;
   --gd-warn-tint: rgba(154, 107, 37, 0.13);
+  // Dunklere Textvariante des Orange: #9A6B25 erreicht auf dem getönten
+  // Hinweis-Hintergrund nur ~3.9:1, das Label ist 11px und braucht 4.5:1.
+  --gd-warn-strong: #7E5313;
   --gd-danger: #9E4A34;
   --gd-danger-tint: rgba(158, 74, 52, 0.11);
   --gd-shadow: 0 1px 2px rgba(31, 40, 28, 0.05), 0 10px 30px rgba(31, 40, 28, 0.07);
@@ -1021,6 +1024,17 @@
 
       .gd-note__label {
         color: var(--gd-ok);
+      }
+    }
+
+    // Einordnung/Erwartungsmanagement — bewusst orange, nicht rot: hier steht,
+    // was realistisch ist, keine Warnung.
+    &.gd-note--warn {
+      background: var(--gd-warn-tint);
+      border-color: rgba(154, 107, 37, 0.32);
+
+      .gd-note__label {
+        color: var(--gd-warn-strong);
       }
     }
 

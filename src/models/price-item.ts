@@ -1,7 +1,6 @@
 export interface PriceItem {
   id: string;
-  method: 'IPL' | 'Elektrolyse';
-  gender: 'Damen' | 'Herren';
+  method: 'Laser' | 'Elektrolyse';
   zone: string;
   durationMinutes: number;
   price: number;
