@@ -143,7 +143,10 @@
   }
 }
 
-.legal-row a {
+/* Der Widerruf-Button sitzt optisch in derselben Reihe wie die Rechtstexte:
+   Art. 7 Abs. 3 DSGVO verlangt, dass er so leicht zu finden ist wie sie. */
+.legal-row a,
+.legal-row .consent-reopen {
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -153,6 +156,20 @@
 
   &:hover {
     color: $gold;
+  }
+}
+
+.legal-row .consent-reopen {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  line-height: inherit;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $gold;
+    outline-offset: 3px;
   }
 }
 

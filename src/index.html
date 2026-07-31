@@ -130,7 +130,118 @@
     }
   </script>
 
+  <!-- 🔒 Consent Mode v2, Advanced.
+       This block MUST stay the first script on the page. Nothing Google related
+       may load above it, otherwise the defaults arrive after the tags and the
+       tags fall back to "no consent signal was ever set". -->
+  <script>
+    (function () {
+      // ISO 3166-1 alpha-2. "EEA" is not a value Google accepts, the countries
+      // have to be listed one by one. EU 27 + Iceland, Liechtenstein, Norway,
+      // plus UK (UK GDPR) and Switzerland (revDSG).
+      var CONSENT_REQUIRED = [
+        'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR',
+        'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK',
+        'SI', 'ES', 'SE', 'IS', 'LI', 'NO', 'GB', 'CH'
+      ];
+      var COOKIE = 'fw_consent';
+      var MAX_AGE = 60 * 60 * 24 * 180; // 6 months, then we ask again
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+
+      // Two banner toggles, six Google signals. security_storage is strictly
+      // necessary and stays granted throughout.
+      function signals(analytics, ads) {
+        return {
+          analytics_storage: analytics ? 'granted' : 'denied',
+          functionality_storage: analytics ? 'granted' : 'denied',
+          ad_storage: ads ? 'granted' : 'denied',
+          ad_user_data: ads ? 'granted' : 'denied',
+          ad_personalization: ads ? 'granted' : 'denied',
+          personalization_storage: ads ? 'granted' : 'denied',
+          security_storage: 'granted'
+        };
+      }
+
+      // 1. EEA + UK + CH: nothing until the visitor actively agrees.
+      var eu = signals(false, false);
+      eu.region = CONSENT_REQUIRED;
+      gtag('consent', 'default', eu);
+
+      // 2. Everywhere else: no § 25 TDDDG equivalent, granted by default.
+      //    Change to signals(false, false) if you want one worldwide rule.
+      gtag('consent', 'default', signals(true, true));
+
+      // Two opposing levers, both off. Decide with your lawyer, not by default.
+      //
+      // ads_data_redaction strips the Google click ID (gclid) out of the
+      // pre-consent pings: less leaves the browser before consent, weaker Ads
+      // conversion modelling.
+      // gtag('set', 'ads_data_redaction', true);
+      //
+      // url_passthrough carries the gclid through internal navigation when
+      // cookies are denied. Marginal here, because Angular never reloads the
+      // page so gtag keeps the gclid in memory for the whole visit anyway.
+      // Turning it on widens what is transmitted before consent.
+      // gtag('set', 'url_passthrough', true);
+
+      // 3. Returning visitor: replay the stored choice synchronously, before
+      //    gtag.js or gtm.js have run. No wrong ping, no banner flash.
+      var state = null;
+      try {
+        var raw = document.cookie.match(/(?:^|;\s*)fw_consent=([^;]*)/);
+        if (raw) {
+          var parsed = JSON.parse(decodeURIComponent(raw[1]));
+          if (parsed && parsed.v === 1) { state = parsed; }
+        }
+      } catch (e) { state = null; }
+
+      if (state) { gtag('consent', 'update', signals(state.an, state.ad)); }
+
+      // 4. The only surface the Angular banner needs. Everything above has to
+      //    run long before Angular exists, so it cannot live in a component.
+      window.fwConsent = {
+        state: function () { return state; },
+        needsBanner: function () { return state === null; },
+        set: function (analytics, ads) {
+          state = {
+            v: 1,
+            an: !!analytics,
+            ad: !!ads,
+            t: new Date().toISOString()
+          };
+          document.cookie = COOKIE + '=' + encodeURIComponent(JSON.stringify(state)) +
+            ';path=/;max-age=' + MAX_AGE + ';SameSite=Lax' +
+            (location.protocol === 'https:' ? ';Secure' : '');
+          gtag('consent', 'update', signals(state.an, state.ad));
+          dataLayer.push({
+            event: 'fw_consent_update',
+            fw_consent_analytics: state.an,
+            fw_consent_ads: state.ad
+          });
+          return state;
+        },
+        // Testing only: forces the banner to appear again on next load.
+        clear: function () {
+          document.cookie = COOKIE + '=;path=/;max-age=0;SameSite=Lax';
+          state = null;
+        }
+      };
+    })();
+  </script>
+
+  <!-- Google tag (gtag.js). Loads AFTER the consent defaults, never before. -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQCJ2D64MQ"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-TQCJ2D64MQ');
+  </script>
+
+  <!-- Google Tag Manager. Read only container, carries the Ads tagging.
+       Its Google tags (__gclidw, __awct, __awec) ship with built in consent
+       checks and honour the state set above without any container edit. -->
   <script>
     (function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
@@ -140,14 +251,6 @@
         j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
           'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-TNLPZN3S');
-  </script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-TQCJ2D64MQ');
   </script>
 </head>
 

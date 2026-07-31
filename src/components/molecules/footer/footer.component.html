@@ -102,6 +102,9 @@
         <a [routerLink]="p('/agb')" class="no-underline"
           ><span class="lang de">AGB</span><span class="lang en">Terms</span></a
         >
+        <button type="button" class="no-underline consent-reopen" (click)="openConsentSettings()"
+          ><span class="lang de">Cookie-Einstellungen</span><span class="lang en">Cookie settings</span></button
+        >
         <a href="#topSection" [appScrollTo]="'topSection'" class="no-underline back-to-top"
           ><span class="lang de">Zurück nach oben</span><span class="lang en">Back to top</span></a
         >

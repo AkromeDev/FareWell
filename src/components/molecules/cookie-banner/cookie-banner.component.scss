@@ -1,0 +1,315 @@
+@use 'themes/theme-entry' as *;
+
+/* Consent-Banner (Emerald Immersive).
+
+   Bewusst kein Overlay, das die Seite blockiert: Inhalte bleiben lesbar und
+   scrollbar, die Entscheidung wird nicht erzwungen. Beide Buttons sind gleich
+   groß, gleich schwer und liegen nebeneinander auf Ebene 1. */
+
+.consent-sheet {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 1000;
+  pointer-events: none;
+  animation: consent-rise 0.45s var(--ease-out, ease-out) both;
+}
+
+@keyframes consent-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consent-sheet { animation: none; }
+}
+
+/* Randlose Leiste über die volle Gerätebreite, milchig statt deckend: die
+   Seite bleibt dahinter sichtbar, der Text steht trotzdem auf genug Deckung
+   für AA-Kontrast. */
+.consent-card {
+  pointer-events: auto;
+  width: 100%;
+  background-color: rgba($emerald-card, 0.85);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  color: $cream;
+  border-top: 1px solid rgba($gold, 0.28);
+  padding: 1.25rem clamp(1rem, 4vw, 3.5rem);
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+  box-shadow: 0 -14px 44px rgba(0, 0, 0, 0.32);
+  display: grid;
+  gap: 1rem;
+}
+
+/* Ohne backdrop-filter (ältere Firefox-Builds) würde die Transparenz den
+   Kontrast fressen – dort deckt die Fläche fast vollständig ab. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .consent-card {
+    background-color: rgba($emerald-card, 0.97);
+  }
+}
+
+/* Ebene 1: Text und Buttons nebeneinander, sobald Platz da ist. */
+.consent-main {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media (min-width: 60rem) {
+  .consent-main {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: clamp(2rem, 5vw, 4rem);
+  }
+}
+
+.consent-title {
+  font-family: $font-fraunces;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: $cream;
+  margin: 0 0 0.35rem;
+}
+
+.consent-body {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba($cream, 0.88);
+  max-width: 78ch;
+}
+
+/* ---- Ebene 2: Kategorien ---- */
+
+.consent-categories {
+  display: grid;
+  gap: 0.6rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba($gold, 0.16);
+}
+
+/* Auf breiten Schirmen die volle Leiste nutzen statt drei Zeilen zu stapeln. */
+@media (min-width: 60rem) {
+  .consent-categories {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .consent-save {
+    grid-column: 1 / -1;
+  }
+}
+
+.consent-category {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba($cream, 0.12);
+  border-radius: 0.65rem;
+  background-color: rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+
+  &.is-locked {
+    cursor: default;
+    opacity: 0.78;
+  }
+}
+
+.consent-category-text {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.consent-category-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: $cream;
+}
+
+/* 0.78 statt 0.68: auf der jetzt durchscheinenden Fläche muss der Hinweistext
+   auch über hellem Seiteninhalt noch AA erreichen. */
+.consent-category-hint {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba($cream, 0.78);
+}
+
+.consent-locked-label {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba($gold, 0.9);
+  padding-top: 0.15rem;
+}
+
+/* Schalter: nativer Checkbox-Input, als Pill gezeichnet. Bleibt damit
+   tastatur- und screenreaderbedienbar, ohne ARIA-Nachbau. */
+.consent-switch {
+  flex-shrink: 0;
+  appearance: none;
+  margin: 0.1rem 0 0;
+  width: 2.75rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background-color: rgba($cream, 0.18);
+  border: 1px solid rgba($cream, 0.26);
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0.17rem;
+    width: 1.05rem;
+    height: 1.05rem;
+    border-radius: 50%;
+    background-color: $cream;
+    transform: translateY(-50%);
+    transition: transform 0.2s var(--ease-out, ease-out);
+  }
+
+  &:checked {
+    background-color: rgba($gold, 0.85);
+    border-color: rgba($gold, 0.95);
+  }
+
+  &:checked::after {
+    transform: translate(1.2rem, -50%);
+    background-color: $emerald-abyss;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $gold-bright;
+    outline-offset: 2px;
+  }
+}
+
+.consent-save {
+  justify-self: start;
+  margin-top: 0.3rem;
+  background: none;
+  border: 1px solid rgba($gold, 0.55);
+  color: $cream;
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+
+  &:hover { border-color: $gold-bright; background-color: rgba($gold, 0.12); }
+  &:focus-visible { outline: 2px solid $gold-bright; outline-offset: 2px; }
+}
+
+/* ---- Ebene 1: die beiden Entscheidungen ---- */
+
+.consent-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* Breite Schirme: die Buttons schrumpfen auf Inhaltsbreite und rücken nach
+   rechts, bleiben untereinander aber exakt gleich groß. */
+@media (min-width: 60rem) {
+  .consent-actions {
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-auto-columns: minmax(11rem, auto);
+  }
+}
+
+/* Identische Geometrie und Schriftstärke für beide Buttons. Nur die Füllung
+   unterscheidet sich. Soll die Gestaltung noch neutraler werden, bekommt
+   .consent-btn-accept dieselbe Deklaration wie .consent-btn-reject. */
+.consent-btn {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:focus-visible {
+    outline: 2px solid $gold-bright;
+    outline-offset: 3px;
+  }
+}
+
+.consent-btn-reject {
+  background-color: transparent;
+  border: 1.5px solid rgba($cream, 0.55);
+  color: $cream;
+
+  &:hover {
+    border-color: $cream;
+    background-color: rgba($cream, 0.1);
+  }
+}
+
+.consent-btn-accept {
+  background-color: $gold;
+  border: 1.5px solid $gold;
+  color: $emerald-abyss;
+
+  &:hover {
+    background-color: $gold-bright;
+    border-color: $gold-bright;
+  }
+}
+
+/* ---- Fußzeile des Banners ---- */
+
+.consent-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+}
+
+.consent-meta-sep {
+  color: rgba($cream, 0.35);
+}
+
+.consent-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: rgba($cream, 0.72);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+
+  &:hover { color: $cream; }
+  &:focus-visible { outline: 2px solid $gold-bright; outline-offset: 2px; }
+}
+
+/* ---- Mobil ---- */
+
+@media (max-width: 30rem) {
+  .consent-card {
+    padding: 1.1rem 1rem;
+    padding-bottom: max(1.1rem, env(safe-area-inset-bottom));
+    max-height: 85dvh;
+    overflow-y: auto;
+  }
+
+  /* Gestapelt, aber weiterhin gleich groß: "Ablehnen" bleibt oben und damit
+     zuerst erreichbar. */
+  .consent-actions { grid-template-columns: 1fr; }
+
+  .consent-category {
+    flex-direction: row;
+    align-items: center;
+  }
+}

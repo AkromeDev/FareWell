@@ -4,6 +4,7 @@ import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { HeaderComponent } from 'src/components/atoms/header/header.component';
 import { FooterComponent } from 'src/components/molecules/footer/footer.component';
+import { CookieBannerComponent } from 'src/components/molecules/cookie-banner/cookie-banner.component';
 import { AnalyticsService } from 'src/services/analytics.service';
 
 @Component({
@@ -14,7 +15,8 @@ import { AnalyticsService } from 'src/services/analytics.service';
   imports: [
     RouterOutlet,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CookieBannerComponent
   ]
 })
 export class AppComponent {

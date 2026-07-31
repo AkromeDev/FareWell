@@ -1,0 +1,128 @@
+@if (visible()) {
+<div class="consent-sheet" role="dialog" aria-labelledby="consentTitle" aria-describedby="consentBody">
+  <div class="consent-card">
+
+    <!-- Ebene 1: Erklärung links, beide Entscheidungen rechts. Auf schmalen
+         Geräten stapelt sich das, "Ablehnen" bleibt dabei oben. -->
+    <div class="consent-main">
+      <div class="consent-intro">
+        <h2 id="consentTitle" class="consent-title">
+          <span class="lang de">Kurz gefragt: Cookies?</span>
+          <span class="lang en">Quick question: cookies?</span>
+        </h2>
+
+        <p id="consentBody" class="consent-body">
+          <span class="lang de">
+            Wir nutzen Cookies, um zu verstehen, wie unsere Seite gefunden wird, und
+            um unsere Anzeigen sinnvoll auszusteuern. Notwendige Cookies laufen
+            immer. Alles andere nur, wenn Sie zustimmen. Sie können Ihre Wahl
+            jederzeit im Footer ändern.
+          </span>
+          <span class="lang en">
+            We use cookies to understand how people find us and to run our ads
+            sensibly. Strictly necessary cookies always run. Everything else only
+            if you agree. You can change your choice any time via the footer.
+          </span>
+        </p>
+      </div>
+
+      <div class="consent-actions">
+        <button type="button" class="consent-btn consent-btn-reject" (click)="rejectAll()">
+          <span class="lang de">Alle ablehnen</span>
+          <span class="lang en">Reject all</span>
+        </button>
+        <button type="button" class="consent-btn consent-btn-accept" (click)="acceptAll()">
+          <span class="lang de">Alle akzeptieren</span>
+          <span class="lang en">Accept all</span>
+        </button>
+      </div>
+    </div>
+
+    @if (detailsOpen()) {
+    <div class="consent-categories">
+
+      <div class="consent-category is-locked">
+        <div class="consent-category-text">
+          <span class="consent-category-name">
+            <span class="lang de">Notwendig</span>
+            <span class="lang en">Strictly necessary</span>
+          </span>
+          <span class="consent-category-hint">
+            <span class="lang de">Speichert nur Ihre Cookie-Entscheidung und die Sprachwahl. Ohne diese funktioniert die Seite nicht.</span>
+            <span class="lang en">Stores only your cookie choice and your language. The site does not work without these.</span>
+          </span>
+        </div>
+        <span class="consent-locked-label">
+          <span class="lang de">Immer aktiv</span>
+          <span class="lang en">Always on</span>
+        </span>
+      </div>
+
+      <label class="consent-category">
+        <span class="consent-category-text">
+          <span class="consent-category-name">
+            <span class="lang de">Statistik</span>
+            <span class="lang en">Statistics</span>
+          </span>
+          <span class="consent-category-hint">
+            <span class="lang de">Google Analytics. Zeigt uns anonymisiert, welche Seiten gelesen werden.</span>
+            <span class="lang en">Google Analytics. Shows us anonymously which pages get read.</span>
+          </span>
+        </span>
+        <input
+          type="checkbox"
+          class="consent-switch"
+          [checked]="analytics()"
+          (change)="analytics.set($any($event.target).checked)" />
+      </label>
+
+      <label class="consent-category">
+        <span class="consent-category-text">
+          <span class="consent-category-name">
+            <span class="lang de">Marketing</span>
+            <span class="lang en">Marketing</span>
+          </span>
+          <span class="consent-category-hint">
+            <span class="lang de">Google Ads. Misst, welche Anzeige zu einer Terminbuchung geführt hat.</span>
+            <span class="lang en">Google Ads. Measures which ad led to a booking.</span>
+          </span>
+        </span>
+        <input
+          type="checkbox"
+          class="consent-switch"
+          [checked]="ads()"
+          (change)="ads.set($any($event.target).checked)" />
+      </label>
+
+      <button type="button" class="consent-save" (click)="saveSelection()">
+        <span class="lang de">Auswahl speichern</span>
+        <span class="lang en">Save selection</span>
+      </button>
+    </div>
+    }
+
+    <div class="consent-meta">
+      <button type="button" class="consent-link" (click)="toggleDetails()" [attr.aria-expanded]="detailsOpen()">
+        @if (detailsOpen()) {
+        <span class="lang de">Einstellungen schließen</span>
+        <span class="lang en">Close settings</span>
+        } @else {
+        <span class="lang de">Einstellungen</span>
+        <span class="lang en">Settings</span>
+        }
+      </button>
+      <span class="consent-meta-sep" aria-hidden="true">·</span>
+      <a [routerLink]="p('/datenschutz')" class="consent-link">
+        <span class="lang de">Datenschutz</span>
+        <span class="lang en">Privacy</span>
+      </a>
+      <span class="consent-meta-sep" aria-hidden="true">·</span>
+      <a [routerLink]="p('/impressum')" class="consent-link">
+        <span class="lang de">Impressum</span>
+        <span class="lang en">Imprint</span>
+      </a>
+    </div>
+
+  </div>
+</div>
+}

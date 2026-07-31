@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
+import { ConsentService } from 'src/services/consent.service';
 import { LanguageService } from 'src/services/language.service';
 
 declare global {
@@ -20,7 +21,14 @@ export class FooterComponent {
 
   readonly lang = inject(LanguageService);
 
+  private readonly consent = inject(ConsentService);
+
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
+
+  /** Art. 7 Abs. 3 DSGVO: Widerruf muss so einfach sein wie die Erteilung. */
+  openConsentSettings(): void {
+    this.consent.reopen();
+  }
 
   t(de: string, en: string): string {
     return this.lang.t(de, en);
