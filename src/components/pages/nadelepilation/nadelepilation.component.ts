@@ -73,8 +73,8 @@ export class NadelepilationComponent implements OnInit, OnDestroy {
         label: this.t('empfohlener Abstand zwischen Terminen', 'recommended gap between appointments'),
       },
       {
-        value: '1–4',
-        label: this.t('Kosmetikerinnen gleichzeitig, 2–4× schneller', 'aestheticians at once, 2–4× faster'),
+        value: this.t('die einzige', 'the only'),
+        label: this.t('dauerhaft anerkannte Methode', 'permanently recognised method'),
       },
       {
         value: this.t('Alle', 'All'),
@@ -115,8 +115,8 @@ export class NadelepilationComponent implements OnInit, OnDestroy {
       {
         question: this.t('Wie lange dauert eine Behandlung?', 'How long does a treatment take?'),
         answer: this.t(
-          'Das hängt von Behandlungsareal, Haardichte und Körpergröße ab. Nur etwa 60 % der sichtbaren Haare sind gerade in der behandelbaren Anagenphase, daher empfehlen wir rund 10 Wochen Abstand zwischen den Terminen. Bei FareWell können 1 bis 4 Kosmetikerinnen gleichzeitig arbeiten, was die Sitzung um das Zwei- bis Vierfache verkürzt. Eine persönliche Einschätzung liefert unser Online-Zeit-Rechner.',
-          'That depends on the treatment area, hair density and body size. Only about 60 % of visible hairs are in the treatable anagen phase at any time, so we recommend a gap of around 10 weeks between appointments. At FareWell 1 to 4 aestheticians can work at once, cutting the session by two to four times. Our online time calculator gives a personal estimate.',
+          'Das hängt von Behandlungsareal, Haardichte und Körpergröße ab. Nur etwa 60 % der sichtbaren Haare sind gerade in der behandelbaren Anagenphase, daher empfehlen wir rund 10 Wochen Abstand zwischen den Terminen. Die Stunden musst du nicht an einem Tag machen, sie lassen sich auf mehrere Termine verteilen. Eine persönliche Einschätzung liefert unser Online-Zeit-Rechner.',
+          'That depends on the treatment area, hair density and body size. Only about 60 % of visible hairs are in the treatable anagen phase at any time, so we recommend a gap of around 10 weeks between appointments. You do not have to do the hours in a single day, they can be spread across several appointments. Our online time calculator gives a personal estimate.',
         ),
       },
     ];

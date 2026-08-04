@@ -23,16 +23,7 @@
     <button [class.active]="density === 'medium'" (click)="setDensity('medium')">{{ t('Mittel', 'Medium') }}</button>
     <button [class.active]="density === 'high'" (click)="setDensity('high')">{{ t('Hoch', 'High') }}</button>
   </div>
-  
-  <div class="speed-dropdown">
-    <app-dropdown
-    [(ngModel)]="speedMultiplier"
-    [options]="speedOptions"
-    [theme]="'light'"
-    (ngModelChange)="calculateTime()"
-    ></app-dropdown>
-  </div>
-  
+
   <div class="results" *ngIf="totalHours > 0">
 
     <p><strong>{{ t('Anzahl an Sitzungen:', 'Number of sessions:') }}</strong> {{ recommendedSessions }}</p>

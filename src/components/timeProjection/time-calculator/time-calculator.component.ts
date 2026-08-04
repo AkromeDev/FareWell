@@ -27,7 +27,6 @@ export class TimeCalculatorComponent implements OnChanges {
 
     userSizeCm = 170;
     density: 'low' | 'medium' | 'high' = 'medium';
-    speedMultiplier: number = 1;
 
     sessionDates: Date[] = [];
     recommendedSessions: number = 0;
@@ -47,36 +46,18 @@ export class TimeCalculatorComponent implements OnChanges {
     }));
   }
 
-  get speedOptions(): { label: string; value: number }[] {
-    const max = this.selectedPart?.maxMultiplier || 1;
-    return Array.from({ length: max }, (_, i) => i + 1).map(n => ({
-      label: `x${n} (${n === 1 ? this.t('Einzeln', 'single') : this.t(`${n} gleichzeitig`, `${n} at once`)})`,
-      value: n
-    }));
-  }
-
   selectedPartKey: BodyPartKey = 'armpits'; // default
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedPart'] && this.selectedPart) {
       this.selectedPartKey = this.selectedPart.key;
-      this.generateSpeedOptions();
       this.calculateTime();
-    }  
-  }  
+    }
+  }
 
   onPartChange(key: BodyPartKey): void {
     this.selectedPart = BodyParts[key];
-    this.generateSpeedOptions();
     this.calculateTime();
-  }    
-
-  generateSpeedOptions(): void {
-    const max = this.selectedPart?.maxMultiplier || 1;
-
-    if (this.speedMultiplier > max) {
-      this.speedMultiplier = 1;
-    }
   }
 
   getNumberOfWaves(anagenPercentage: number): number {
@@ -95,11 +76,10 @@ calculateTime(): void {
   const heightFactor = 1 + heightDelta * 0.004;
 
   const densityFactor = { low: 0.8, medium: 1, high: 1.3 }[this.density];
-  const speedFactor = 1 / this.speedMultiplier;
 
   // ✅ Use estimatedTotalHours only
   const baseEstimated = this.selectedPart.estimatedTotalHours || 1;
-  const adjustedTime = baseEstimated * heightFactor * densityFactor * speedFactor;
+  const adjustedTime = baseEstimated * heightFactor * densityFactor;
 
   // 👇 Dynamic waves based on anagen %
   this.waveCount = this.getNumberOfWaves(anagenPercentage);
