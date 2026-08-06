@@ -33,6 +33,15 @@ export interface PriceRow {
    * JSON-LD, zählt aber nicht als günstigste Behandlung (lowPrice).
    */
   addon?: boolean;
+  /**
+   * Untergruppe innerhalb derselben Tabelle (Nadelepilation „mit ärztlicher
+   * Delegation"): die Zeile wird abgesetzt dargestellt, bleibt aber Teil der
+   * Tabelle und des Service im JSON-LD.
+   */
+  group?: boolean;
+  /** Zwischenüberschrift der Untergruppe; nur auf deren erster Zeile. */
+  groupDe?: string;
+  groupEn?: string;
 }
 
 export interface PriceTable {
@@ -60,6 +69,24 @@ export const PRICE_TABLES = {
       { de: 'Sitzung 45 Minuten', en: '45-minute session', minutes: 45, price: 60 },
       { de: 'Sitzung 60 Minuten', en: '60-minute session', minutes: 60, price: 80 },
       { de: 'Sitzung 120 Minuten', en: '120-minute session', minutes: 120, price: 160 },
+      // Termine unter ärztlicher Delegation: nur als volle Stunde buchbar,
+      // deshalb als abgesetzte Untergruppe derselben Tabelle.
+      {
+        de: 'Sitzung 60 Minuten mit ärztlicher Delegation',
+        en: '60-minute session with medical delegation',
+        minutes: 60,
+        price: 120,
+        group: true,
+        groupDe: 'Mit ärztlicher Delegation',
+        groupEn: 'With medical delegation',
+      },
+      {
+        de: 'Sitzung 120 Minuten mit ärztlicher Delegation',
+        en: '120-minute session with medical delegation',
+        minutes: 120,
+        price: 240,
+        group: true,
+      },
       { de: 'Behandlungsvorbereitung mit Betäubungscreme', en: 'Preparation with numbing cream', minutes: 15, price: 20, addon: true },
     ],
   },

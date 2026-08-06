@@ -86,8 +86,8 @@ export class PriceComponent implements OnInit, OnDestroy {
     nadelepilation: {
       qDe: 'Was kostet Nadelepilation (Elektrolyse) in Nürnberg?',
       qEn: 'How much does electrolysis (needle epilation) cost in Nuremberg?',
-      aDe: 'Bei FareWell in Nürnberg kostet die Nadelepilation 40 € für 30 Minuten, 60 € für 45 Minuten, 80 € für 60 Minuten und 160 € für 120 Minuten. Abgerechnet wird nach Sitzungsdauer, für alle gleich. Die Behandlungsvorbereitung mit Betäubungscreme kostet 20 €, die Beratung ist kostenlos.',
-      aEn: 'At FareWell in Nuremberg, electrolysis costs €40 for 30 minutes, €60 for 45 minutes, €80 for 60 minutes and €160 for 120 minutes. It is charged by session length, the same for everyone. Preparation with numbing cream costs €20, and the consultation is free.',
+      aDe: 'Bei FareWell in Nürnberg kostet die Nadelepilation 40 € für 30 Minuten, 60 € für 45 Minuten, 80 € für 60 Minuten und 160 € für 120 Minuten. Mit ärztlicher Delegation kostet die Sitzung 120 € für 60 Minuten und 240 € für 120 Minuten; diese Termine gibt es ausschließlich als volle Stunde. Abgerechnet wird nach Sitzungsdauer, für alle gleich. Die Behandlungsvorbereitung mit Betäubungscreme kostet 20 €, die Beratung ist kostenlos.',
+      aEn: 'At FareWell in Nuremberg, electrolysis costs €40 for 30 minutes, €60 for 45 minutes, €80 for 60 minutes and €160 for 120 minutes. With medical delegation, a session costs €120 for 60 minutes and €240 for 120 minutes; these appointments are available in full hours only. It is charged by session length, the same for everyone. Preparation with numbing cream costs €20, and the consultation is free.',
     },
     laser: {
       qDe: 'Was kostet Laser Haarentfernung in Nürnberg?',
@@ -177,6 +177,16 @@ export class PriceComponent implements OnInit, OnDestroy {
 
   duration(row: PriceRow): string {
     return `${row.minutes} ${this.t('Min.', 'min')}`;
+  }
+
+  /** Gehört die Zeile zu einer abgesetzten Untergruppe der Tabelle? */
+  inGroup(row: PriceRow): boolean {
+    return row.group === true;
+  }
+
+  /** Zwischenüberschrift über der ersten Zeile einer Untergruppe, sonst ''. */
+  groupLabel(row: PriceRow): string {
+    return row.groupDe ? this.t(row.groupDe, row.groupEn ?? row.groupDe) : '';
   }
 
   get stats(): GuideStat[] {
