@@ -143,13 +143,15 @@
           </thead>
           <tbody>
             @for (row of tables.nadelepilation.rows; track $index) {
-              @if (groupLabel(row); as label) {
-                <tr class="gd-subhead">
-                  <td colspan="2">{{ label }}</td>
-                </tr>
-              }
-              <tr [class.gd-subrow]="inGroup(row)">
-                <td>{{ t(row.de, row.en) }}</td>
+              <tr [class.gd-subrow]="isDelegation(row)">
+                <td>
+                  @if (isDelegation(row)) {
+                    <span class="gd-visually-hidden">{{ t(row.de, row.en) }}</span>
+                    <span class="gd-pill gd-pill--soft">{{ delegationLabel }}</span>
+                  } @else {
+                    {{ t(row.de, row.en) }}
+                  }
+                </td>
                 <td class="num">{{ price(row) }}</td>
               </tr>
             }
@@ -222,8 +224,15 @@
               </thead>
               <tbody>
                 @for (row of tbl.rows; track $index) {
-                  <tr>
-                    <td>{{ t(row.de, row.en) }}</td>
+                  <tr [class.gd-subrow]="isDelegation(row)">
+                    <td>
+                      @if (isDelegation(row)) {
+                        <span class="gd-visually-hidden">{{ t(row.de, row.en) }}</span>
+                        <span class="gd-pill gd-pill--soft">{{ delegationLabel }}</span>
+                      } @else {
+                        {{ t(row.de, row.en) }}
+                      }
+                    </td>
                     <td class="num">{{ price(row) }}</td>
                   </tr>
                 }
@@ -232,6 +241,18 @@
           </div>
         </app-faq-item>
       }
+      <p class="gd-read" appReveal style="color: var(--gd-muted)">
+        <span class="lang de">
+          Ärztliche Delegation bedeutet, dass die Behandlung unter der fachlichen Verantwortung
+          unseres begleitenden Arztes stattfindet. Diese Variante bieten wir nur für die
+          Komplettpakete an, nicht für einzelne Zonen.
+        </span>
+        <span class="lang en">
+          Medical delegation means the treatment takes place under the professional responsibility
+          of our accompanying physician. We offer this option for the complete packages only, not
+          for single zones.
+        </span>
+      </p>
       <div class="gd-read">
         <app-guide-note variant="win" [label]="t('Keine versteckten Kosten', 'No hidden costs')">
           <span class="lang de">

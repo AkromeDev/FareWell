@@ -83,9 +83,32 @@
         </a>
         <a href="tel:+4915757995694" class="no-underline">tel: +49 157 5799 5694</a>
         <a href="mailto:info@farewell.salon" class="no-underline">info&#64;farewell.salon</a>
+      </div>
+
+      <!-- Karriere: die Übersicht plus jede offene Position einzeln, damit die
+           Stellenseiten intern verlinkt sind (Google for Jobs findet sie so
+           auch ohne Sitemap-Crawl). -->
+      <div class="links-row career-row">
+        <a [routerLink]="p('/karriere')" class="no-underline career-hub"
+          ><span class="lang de">Karriere bei FareWell</span
+          ><span class="lang en">Careers at FareWell</span></a
+        >
+        <a [routerLink]="p('/karriere/kosmetik-nuernberg')" class="no-underline"
+          ><span class="lang de">Kosmetiker:in</span><span class="lang en">Beautician</span></a
+        >
         <a [routerLink]="p('/karriere/masseur-nuernberg')" class="no-underline"
-          ><span class="lang de">Karriere bei FareWell: Masseur:in</span
-          ><span class="lang en">Careers at FareWell: massage therapist</span></a
+          ><span class="lang de">Masseur:in</span
+          ><span class="lang en">Massage therapist</span></a
+        >
+        <a [routerLink]="p('/karriere/yoga-nuernberg')" class="no-underline"
+          ><span class="lang de">Yoga-Lehrer:in</span><span class="lang en">Yoga teacher</span></a
+        >
+        <a [routerLink]="p('/karriere/tanzlehrer-nuernberg')" class="no-underline"
+          ><span class="lang de">Tanzlehrer:in</span><span class="lang en">Dance teacher</span></a
+        >
+        <a [routerLink]="p('/karriere/botox-nuernberg')" class="no-underline"
+          ><span class="lang de">Botox &amp; ästhetische Medizin</span
+          ><span class="lang en">Botox &amp; aesthetic medicine</span></a
         >
       </div>
 

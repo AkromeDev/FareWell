@@ -143,6 +143,24 @@
   }
 }
 
+/* Karriere-Reihe: etwas kleiner als die Kontaktzeile, damit die Stellen
+   auffindbar bleiben, ohne den Footer zu dominieren. Die Übersicht führt die
+   Reihe als einziger hervorgehobener Eintrag an. */
+.career-row a {
+  font-size: 0.86rem;
+  color: rgba($cream, 0.72);
+  white-space: nowrap;
+
+  &:hover {
+    color: $gold;
+  }
+
+  &.career-hub {
+    font-weight: 700;
+    color: rgba($cream, 0.9);
+  }
+}
+
 /* Der Widerruf-Button sitzt optisch in derselben Reihe wie die Rechtstexte:
    Art. 7 Abs. 3 DSGVO verlangt, dass er so leicht zu finden ist wie sie. */
 .legal-row a,

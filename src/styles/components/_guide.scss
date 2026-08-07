@@ -967,36 +967,22 @@
       overflow-wrap: break-word;
     }
 
-    // Untergruppe innerhalb derselben Tabelle (Nadelepilation „mit ärztlicher
-    // Delegation"): Zwischenüberschrift plus leichte Tönung setzen den Block
-    // ab, ohne ihn aus der Tabelle zu lösen.
-    tbody tr.gd-subhead td {
-      padding: 0.65rem 0.95rem 0.3rem;
-      border-top: 1px solid var(--gd-line-strong);
-      border-bottom: none;
-      background: var(--gd-surface-2);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
+    // Delegationszeile: dieselbe Behandlung zu einem anderen Preis. Sie hängt
+    // optisch an der Zeile darüber — eingerückt, leiser, mit Tag statt
+    // wiederholtem Namen. Gleiche Darstellung bei Nadelepilation und Laser.
+    tbody tr.gd-subrow td {
+      padding-top: 0.36rem;
       color: var(--gd-faint);
     }
 
-    tbody tr.gd-subhead:hover td {
-      background: var(--gd-surface-2);
+    tbody tr.gd-subrow td:first-child {
+      padding-left: 1.85rem;
     }
 
-    tbody tr.gd-subrow td {
-      background: var(--gd-surface-2);
-    }
-
-    tbody tr.gd-subrow:hover td {
-      background: var(--gd-sand-tint);
-    }
-
-    // Schließt den Block nach unten, sobald wieder eine normale Zeile folgt.
-    tbody tr.gd-subrow + tr:not(.gd-subrow) td {
-      border-top: 1px solid var(--gd-line-strong);
+    // Basis- und Delegationszeile bilden ein Paar: keine Trennlinie dazwischen.
+    tbody tr:not(.gd-subrow):has(+ tr.gd-subrow) td {
+      padding-bottom: 0.3rem;
+      border-bottom: none;
     }
 
     @media (max-width: 480px) {
@@ -1019,6 +1005,17 @@
     border-radius: 6px;
     background: var(--gd-sand-tint);
     color: var(--gd-sage-strong);
+
+    // Leise Variante für Tabellenzeilen (Delegationspreise): markiert die
+    // Zeile, ohne sie hervorzuheben.
+    &.gd-pill--soft {
+      background: var(--gd-surface-2);
+      border: 1px solid var(--gd-line);
+      color: var(--gd-faint);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 0.1rem 0.45rem;
+    }
 
     &.gd-pill--ok {
       background: var(--gd-ok-tint);

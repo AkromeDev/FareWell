@@ -61,5 +61,6 @@ _English mirror of the site; consultations available in English. Prices and offe
 
 ## Optional
 - [Die Geschichte der Elektrolyse](https://farewell.salon/historie) · [The history of electrolysis (EN)](https://farewell.salon/en/historie)
-- [Karriere: Masseur:in (freiberuflich) in Nürnberg](https://farewell.salon/karriere/masseur-nuernberg)
+- [Karriere bei FareWell](https://farewell.salon/karriere): offene Positionen für Selbständige. Kein festes Gehalt, keine Raummiete, sondern Umsatzbeteiligung; FareWell stellt Raum, Buchung und Sichtbarkeit.
+  - [Kosmetiker:in](https://farewell.salon/karriere/kosmetik-nuernberg) · [Masseur:in](https://farewell.salon/karriere/masseur-nuernberg) · [Yoga-Lehrer:in](https://farewell.salon/karriere/yoga-nuernberg) · [Tanzlehrer:in](https://farewell.salon/karriere/tanzlehrer-nuernberg) · [Botox & ästhetische Medizin (Approbation erforderlich)](https://farewell.salon/karriere/botox-nuernberg)
 - [Impressum](https://farewell.salon/impressum) · [Datenschutz](https://farewell.salon/datenschutz) · [AGB](https://farewell.salon/agb)

@@ -245,7 +245,7 @@ export class HeaderComponent implements OnInit {
   private updateInteractionMode() {
     if (!this.isBrowser) return;
     // Kompakte Leiste (Burger) — muss mit dem CSS-Breakpoint übereinstimmen.
-    this.isMobile = window.matchMedia('(max-width: 1160px)').matches;
+    this.isMobile = window.matchMedia('(max-width: 1260px)').matches;
   }
 
   @HostListener('window:resize')

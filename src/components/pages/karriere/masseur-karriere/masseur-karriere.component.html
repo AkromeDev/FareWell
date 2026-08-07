@@ -1,163 +1,135 @@
-<div class="karriere-wrapper">
-  <article class="karriere">
-    <h1 class="lang de">Masseur:in in Nürnberg: freiberufliche Zusammenarbeit bei FareWell</h1>
-    <h1 class="lang en">Massage therapist (m/f/d) in Nuremberg: freelance collaboration at FareWell</h1>
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
 
-    <p class="lang de">
-      Für unseren modernen Salon <strong class="inline">FareWell</strong> im Zentrum von Nürnberg
-      suchen wir eine Masseurin oder einen Masseur (m/w/d) zur freiberuflichen Zusammenarbeit.
-    </p>
-    <p class="lang en">
-      For our modern salon <strong class="inline">FareWell</strong> in the centre of Nuremberg
-      we are looking for a massage therapist (m/f/d) for a freelance collaboration.
-    </p>
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Karriere', 'FareWell · Nuremberg · Careers')"
+    [heading]="
+      t(
+        'Masseur:in in Nürnberg: deine eigene kleine Praxis',
+        'Massage therapist in Nuremberg: your own little practice'
+      )
+    "
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Wir suchen Masseur:innen zur freiberuflichen Zusammenarbeit: eigene Kund:innen, eigene Preise, eigener Stil. Raum, Buchung und Sichtbarkeit stellen wir.',
+        'We are looking for massage therapists for a freelance collaboration: your own clients, your own prices, your own style. We provide the room, the booking system and the visibility.'
+      )
+    "
+    image="assets/images/massages/tm massaging.jpg"
+    [imageAlt]="t('Massage bei FareWell in Nürnberg', 'Massage at FareWell in Nuremberg')"
+  />
 
-    <p class="lang de">
-      FareWell ist ein hochwertiger Beauty- und Ästhetik-Salon mit Fokus auf moderne Behandlungen.
-      Unser Ziel ist es, qualifizierten Dienstleisterinnen und Dienstleistern eine professionelle
-      Umgebung zu bieten, in der sie sich vollständig auf ihre Kund:innen
-      konzentrieren können.
-    </p>
-    <p class="lang en">
-      FareWell is a high-quality beauty and aesthetics salon with a focus on modern treatments.
-      Our goal is to offer qualified service providers a professional environment in which they
-      can focus fully on their clients.
-    </p>
+  <app-guide-stats [stats]="stats" />
 
-    <h2 class="lang de">Ihre Aufgaben</h2>
-    <h2 class="lang en">Your responsibilities</h2>
-    <ul>
-      <li class="lang de">Durchführung von Massagen und körperbezogenen Wellness-Behandlungen</li>
-      <li class="lang en">Performing massages and body-focused wellness treatments</li>
-      <li class="lang de">Eigenständige Betreuung der Kund:innen</li>
-      <li class="lang en">Independent care of your clients</li>
-      <li class="lang de">Professionelles und serviceorientiertes Auftreten</li>
-      <li class="lang en">A professional and service-oriented manner</li>
-      <li class="lang de">Einhaltung von Hygiene- und Qualitätsstandards</li>
-      <li class="lang en">Adherence to hygiene and quality standards</li>
-      <li class="lang de">Aufbau und Pflege eines eigenen Kundenstamms mit Unterstützung des Salons</li>
-      <li class="lang en">Building and nurturing your own client base with the support of the salon</li>
-    </ul>
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Du führst deine eigene kleine Massagepraxis mitten in FareWell. Du bringst die Hände
+            und das Können, wir kümmern uns um alles drumherum: Raum, Website, Buchung und die
+            Werkzeuge fürs Marketing.
+          </span>
+          <span class="lang en">
+            You run your own little massage practice right inside FareWell. You bring the hands and
+            the craft, we take care of everything around it: the room, the website, the booking
+            system and the marketing tools.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            FareWell ist ein Kosmetikstudio am Frauentorgraben mit Fokus auf moderne Behandlungen.
+            Der Massagebereich läuft davon getrennt und gehört den Selbständigen, die ihn machen.
+            Aktuell teilen sich mehrere Kolleg:innen den Raum, siehe unsere
+            <a [routerLink]="p('/behandlungen/wellness-massage')">Wellness-Massagen</a> und
+            <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutischen Massagen</a>.
+          </span>
+          <span class="lang en">
+            FareWell is a beauty studio on Frauentorgraben with a focus on modern treatments. The
+            massage side runs separately and belongs to the freelancers who do it. Several
+            colleagues currently share the room, see our
+            <a [routerLink]="p('/behandlungen/wellness-massage')">wellness massages</a> and
+            <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutic massages</a>.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
 
-    <h2 class="lang de">Ihr Profil</h2>
-    <h2 class="lang en">Your profile</h2>
-    <ul>
-      <li class="lang de">Abgeschlossene Ausbildung als Masseur/in oder eine vergleichbare Qualifikation</li>
-      <li class="lang en">Completed training as a massage therapist (m/f/d) or a comparable qualification</li>
-      <li class="lang de">Gültige Zertifizierungen und fachliche Nachweise</li>
-      <li class="lang en">Valid certifications and professional credentials</li>
-      <li class="lang de">Selbständige und strukturierte Arbeitsweise</li>
-      <li class="lang en">An independent and structured way of working</li>
-      <li class="lang de">Verantwortungsbewusstsein und Zuverlässigkeit</li>
-      <li class="lang en">A strong sense of responsibility and reliability</li>
-      <li class="lang de">Freundliches und gepflegtes Erscheinungsbild</li>
-      <li class="lang en">A friendly and well-groomed appearance</li>
-      <li class="lang de">Professioneller Umgang mit Kund:innen</li>
-      <li class="lang en">A professional approach with clients</li>
-    </ul>
+    <app-guide-section
+      index="01"
+      [heading]="t('Deine Aufgaben', 'Your responsibilities')"
+      sectionId="aufgaben"
+    >
+      <div class="gd-read">
+        <app-guide-checklist>
+          @for (item of responsibilities; track item) {
+            <li>{{ item }}</li>
+          }
+        </app-guide-checklist>
+      </div>
+    </app-guide-section>
 
-    <h2 class="lang de">Wir bieten</h2>
-    <h2 class="lang en">What we offer</h2>
-    <ul>
-      <li class="lang de">Modernen, voll ausgestatteten Salon in zentraler Lage in Nürnberg</li>
-      <li class="lang en">A modern, fully equipped salon in a central location in Nuremberg</li>
-      <li class="lang de">Nutzung aller vorhandenen Räumlichkeiten und der gesamten Ausstattung</li>
-      <li class="lang en">Use of all available rooms and the entire equipment</li>
-      <li class="lang de">Transparentes Online-Buchungssystem mit mobiler Termineinsicht</li>
-      <li class="lang en">A transparent online booking system with mobile appointment access</li>
-      <li class="lang de">Vollständig flexible Arbeitszeiten</li>
-      <li class="lang en">Fully flexible working hours</li>
-      <li class="lang de">Keine Anwesenheitspflicht ohne gebuchte Termine</li>
-      <li class="lang en">No obligation to be present without booked appointments</li>
-      <li class="lang de">Freie Wahl der Behandlungen, auch solche, die bei uns noch nicht im Angebot sind</li>
-      <li class="lang en">Free choice of treatments, including ones we do not yet offer</li>
-      <li class="lang de">Persönliche Vorstellung auf unserer Webseite farewell.salon</li>
-      <li class="lang en">A personal profile on our website farewell.salon</li>
-      <li class="lang de">Möglichkeit zur Teilnahme an Online-Marketing-Kampagnen</li>
-      <li class="lang en">The option to take part in online marketing campaigns</li>
-      <li class="lang de">Reposts und Sichtbarkeit über unsere Instagram-Kanäle</li>
-      <li class="lang en">Reposts and visibility through our Instagram channels</li>
-      <li class="lang de">Professionelles Umfeld ohne organisatorischen Aufwand</li>
-      <li class="lang en">A professional environment without any organizational effort</li>
-    </ul>
+    <app-guide-section index="02" [heading]="t('Dein Profil', 'Your profile')" sectionId="profil">
+      <div class="gd-read">
+        <app-guide-checklist>
+          @for (item of profile; track item) {
+            <li>{{ item }}</li>
+          }
+        </app-guide-checklist>
 
-    <h2 class="lang de">Arbeitsort</h2>
-    <h2 class="lang en">Work location</h2>
-    <p class="lang de">
-      FareWell Salon<br />
-      Frauentorgraben 5<br />
-      90443 Nürnberg (Innenstadt)
-    </p>
-    <p class="lang en">
-      FareWell Salon<br />
-      Frauentorgraben 5<br />
-      90443 Nürnberg (city centre)
-    </p>
+        <app-guide-note
+          variant="tip"
+          [label]="t('Alles im Detail nachlesen', 'Read every detail')"
+        >
+          <span class="lang de">
+            Wie die Zusammenarbeit konkret abläuft — Probe-Session, Abrechnung mit Rechenbeispiel,
+            Kundengewinnung und der geteilte Raum — steht ausführlich in unserem
+            <a [routerLink]="p('/karriere/masseur-nuernberg/onboarding')"
+              >Onboarding-Leitfaden für Masseur:innen</a
+            >. Er ist öffentlich, damit du vor dem Erstgespräch weißt, worauf du dich einlässt.
+          </span>
+          <span class="lang en">
+            How the collaboration works in practice — trial session, settlement with a worked
+            example, winning clients and the shared room — is described in detail in our
+            <a [routerLink]="p('/karriere/masseur-nuernberg/onboarding')"
+              >onboarding guide for massage therapists</a
+            >. It is public, so you know what you are signing up for before the first conversation.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
 
-    <h2 class="lang de">So läuft die Zusammenarbeit ab</h2>
-    <h2 class="lang en">How the collaboration works</h2>
-    <p class="lang de">
-      Wie die Zusammenarbeit bei FareWell konkret aussieht (von der Probe-Session über
-      Bezahlung und Kundengewinnung bis zu den ersten Stammkund:innen), haben wir in einem
-      ausführlichen Leitfaden zusammengefasst:
-    </p>
-    <p class="lang en">
-      We have put together a detailed guide on exactly how the collaboration at FareWell works,
-      covering the trial session, payment, winning new clients and your first regulars:
-    </p>
-    <p class="lang de">
-      <a [routerLink]="p('/karriere/masseur-nuernberg/onboarding')">
-        Zum Onboarding-Leitfaden für Masseur:innen (DE/EN)
-      </a>
-    </p>
-    <p class="lang en">
-      <a [routerLink]="p('/karriere/masseur-nuernberg/onboarding')">
-        To the onboarding guide for massage therapists (DE/EN)
-      </a>
-    </p>
+    <app-karriere-zeiten role="massage" index="03" />
 
-    <h2 class="lang de">Jetzt bewerben</h2>
-    <h2 class="lang en">Apply now</h2>
-    <p class="lang de">
-      Interesse? Dann freuen wir uns über eine kurze Nachricht mit ein paar Worten
-      zu Ihnen und Ihrer Erfahrung.
-    </p>
-    <p class="lang en">
-      Interested? Then we would be glad to receive a short message with a few words
-      about you and your experience.
-    </p>
+    <app-karriere-deal index="04" />
 
-    <p class="lang de"><strong>Kontakt</strong>
-      E-Mail:
-      <a href="mailto:info@farewell.salon?subject=Bewerbung%20als%20Masseur%3Ain%20bei%20FareWell">
-        info&#64;farewell.salon
-      </a><br />
-      Website:
-      <a href="https://farewell.salon">farewell.salon</a><br />
-      Buchung:
-      <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">
-        salonkee.de/salon/farewell
-      </a><br />
-      Instagram:
-      <a href="https://www.instagram.com/farewell.salon/" target="_blank" rel="noopener noreferrer">
-        instagram.com/farewell.salon
-      </a>
+    <app-karriere-faq index="05" [entries]="faq" />
+
+    <app-karriere-apply [subject]="applySubject">
+      <span class="lang de">
+        Interesse? Dann freuen wir uns über eine kurze Nachricht mit ein paar Worten zu dir und
+        deiner Erfahrung. Wir melden uns und laden dich zum Erstgespräch ein.
+      </span>
+      <span class="lang en">
+        Interested? Then we would be glad to receive a short message with a few words about you and
+        your experience. We will get back to you and invite you for a first conversation.
+      </span>
+    </app-karriere-apply>
+
+    <p class="gd-fine" style="margin-top: 2rem; text-align: center">
+      <span class="lang de">
+        Dein Beruf ist doch nicht dabei?
+        <a [routerLink]="p('/karriere')">Alle offenen Stellen bei FareWell</a>
+      </span>
+      <span class="lang en">
+        Not the right role after all?
+        <a [routerLink]="p('/karriere')">All open positions at FareWell</a>
+      </span>
     </p>
-    <p class="lang en"><strong>Contact</strong>
-      Email:
-      <a href="mailto:info@farewell.salon?subject=Application%20as%20a%20massage%20therapist%20at%20FareWell">
-        info&#64;farewell.salon
-      </a><br />
-      Website:
-      <a href="https://farewell.salon">farewell.salon</a><br />
-      Booking:
-      <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">
-        salonkee.de/salon/farewell
-      </a><br />
-      Instagram:
-      <a href="https://www.instagram.com/farewell.salon/" target="_blank" rel="noopener noreferrer">
-        instagram.com/farewell.salon
-      </a>
-    </p>
-  </article>
+  </div>
+
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
 </div>

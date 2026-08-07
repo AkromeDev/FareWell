@@ -11,6 +11,8 @@ import {
   GuideTocItem,
 } from 'src/components/molecules/guide';
 import {
+  DELEGATION_DE,
+  DELEGATION_EN,
   PRICE_SERVICES,
   PRICE_TABLES,
   PriceRow,
@@ -92,8 +94,8 @@ export class PriceComponent implements OnInit, OnDestroy {
     laser: {
       qDe: 'Was kostet Laser Haarentfernung in Nürnberg?',
       qEn: 'How much does laser hair removal cost in Nuremberg?',
-      aDe: 'Laser Haarentfernung kostet bei FareWell in Nürnberg ab 30 € pro Zone. Beispiele: Achseln 60 €, Oberlippe 50 €, Rücken komplett 120 €, Beine komplett 180 €, Intim komplett 200 € (Vulva) beziehungsweise 220 € (Penis), ganzer Körper 750 €. Alle Preise gelten pro Sitzung und inklusive 19% MwSt.',
-      aEn: 'Laser hair removal at FareWell in Nuremberg starts at €30 per area. Examples: underarms €60, upper lip €50, complete back €120, complete legs €180, complete intimate area €200 (vulva) or €220 (penis), full body €750. All prices are per session and include 19% VAT.',
+      aDe: 'Laser Haarentfernung kostet bei FareWell in Nürnberg ab 30 € pro Zone. Beispiele: Achseln 60 €, Oberlippe 50 €, Rücken komplett 120 €, Beine komplett 180 €, Intim vorne 180 € (Penis), Intim komplett 200 € (Vulva) beziehungsweise 220 € (Penis), ganzer Körper 750 €. Mit ärztlicher Delegation kosten die Komplettpakete 250 € (unteres Gesicht komplett, Intim vorne) und 300 € (Intim komplett). Alle Preise gelten pro Sitzung und inklusive 19% MwSt.',
+      aEn: 'Laser hair removal at FareWell in Nuremberg starts at €30 per area. Examples: underarms €60, upper lip €50, complete back €120, complete legs €180, front intimate area €180 (penis), complete intimate area €200 (vulva) or €220 (penis), full body €750. With medical delegation, the complete packages cost €250 (complete lower face, front intimate area) and €300 (complete intimate area). All prices are per session and include 19% VAT.',
     },
     microneedling: {
       qDe: 'Was kostet Radiofrequenz Microneedling in Nürnberg?',
@@ -179,14 +181,14 @@ export class PriceComponent implements OnInit, OnDestroy {
     return `${row.minutes} ${this.t('Min.', 'min')}`;
   }
 
-  /** Gehört die Zeile zu einer abgesetzten Untergruppe der Tabelle? */
-  inGroup(row: PriceRow): boolean {
-    return row.group === true;
+  /** Ist die Zeile die Delegationsvariante der Zeile darüber? */
+  isDelegation(row: PriceRow): boolean {
+    return row.delegation === true;
   }
 
-  /** Zwischenüberschrift über der ersten Zeile einer Untergruppe, sonst ''. */
-  groupLabel(row: PriceRow): string {
-    return row.groupDe ? this.t(row.groupDe, row.groupEn ?? row.groupDe) : '';
+  /** Tag-Text der Delegationszeilen, zugleich Namenszusatz im JSON-LD. */
+  get delegationLabel(): string {
+    return this.t(DELEGATION_DE, DELEGATION_EN);
   }
 
   get stats(): GuideStat[] {
@@ -302,9 +304,12 @@ export class PriceComponent implements OnInit, OnDestroy {
     const label = this.t(table.de, table.en);
     const scope = label ? `${label}, ` : '';
     const price = row.price ?? 0;
+    // Delegationszeilen tragen in der Tabelle nur ein Tag, im Offer aber den
+    // vollständigen Namen wie im Buchungssystem.
+    const suffix = row.delegation ? ` ${this.delegationLabel}` : '';
     return {
       '@type': 'Offer',
-      name: `${scope}${this.t(row.de, row.en)} (${row.minutes} ${this.t('Min.', 'min')})`,
+      name: `${scope}${this.t(row.de, row.en)}${suffix} (${row.minutes} ${this.t('Min.', 'min')})`,
       url: `${pageUrl}#${anchor}`,
       price,
       priceCurrency: 'EUR',

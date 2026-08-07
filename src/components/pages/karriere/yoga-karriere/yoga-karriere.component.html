@@ -1,0 +1,129 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Karriere', 'FareWell · Nuremberg · Careers')"
+    [heading]="
+      t(
+        'Yoga-Lehrer:in in Nürnberg: bau dein Angebot bei uns auf',
+        'Yoga teacher in Nuremberg: build your offering with us'
+      )
+    "
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Yoga gibt es bei uns noch nicht. Genau deshalb suchen wir dich: einen ruhigen Raum, eine Online-Buchung und Sichtbarkeit haben wir, das Konzept bringst du mit. Die Stunden liegen abends und am Wochenende.',
+        'Yoga does not exist here yet. That is exactly why we are looking for you: we have a quiet room, an online booking system and visibility, you bring the concept. Classes take place in the evening and at the weekend.'
+      )
+    "
+    image="assets/images/farewell/studio.webp"
+    [imageAlt]="t('Der FareWell Salon in Nürnberg', 'The FareWell salon in Nuremberg')"
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Du unterrichtest Yoga, hast einen eigenen Stil und suchst einen Ort, an dem du ihn
+            wachsen lassen kannst, ohne dich an ein fremdes Studiokonzept anzupassen? Bei FareWell
+            bekommst du den Raum und den Rahmen. Der Unterricht gehört dir.
+          </span>
+          <span class="lang en">
+            You teach yoga, you have a style of your own and you are looking for a place to let it
+            grow without bending it to somebody else’s studio concept? At FareWell you get the room
+            and the frame around it. The teaching stays yours.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Wir sind ein kleines Kosmetikstudio am Frauentorgraben, mitten in Nürnberg und wenige
+            Minuten vom Hauptbahnhof entfernt. Unsere Kund:innen kommen zu Behandlungen, die Ruhe
+            brauchen. Yoga passt in diese Welt, wir haben es nur noch nicht.
+          </span>
+          <span class="lang en">
+            We are a small beauty studio on Frauentorgraben, in the middle of Nuremberg and a few
+            minutes from the main station. Our clients come for treatments that ask for calm. Yoga
+            fits into that world, we simply do not have it yet.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Deine Aufgaben', 'Your responsibilities')"
+      sectionId="aufgaben"
+    >
+      <div class="gd-read">
+        <app-guide-checklist>
+          @for (item of responsibilities; track item) {
+            <li>{{ item }}</li>
+          }
+        </app-guide-checklist>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="02" [heading]="t('Dein Profil', 'Your profile')" sectionId="profil">
+      <div class="gd-read">
+        <app-guide-checklist>
+          @for (item of profile; track item) {
+            <li>{{ item }}</li>
+          }
+        </app-guide-checklist>
+
+        <app-guide-note
+          variant="tip"
+          [label]="t('Du fängst bei null an, nicht allein', 'Starting from zero, but not alone')"
+        >
+          <span class="lang de">
+            Weil es bei uns noch kein Yoga gibt, gibt es auch keine Vorgaben, an die du dich halten
+            musst. Dafür bauen wir deine Seite, deine Buchung und dein erstes Video gemeinsam auf,
+            damit dein Kurs nicht in einem leeren Kalender startet.
+          </span>
+          <span class="lang en">
+            Because there is no yoga here yet, there are also no rules you have to fit into.
+            In exchange, we build your page, your booking and your first video together, so your
+            classes do not start in an empty calendar.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-karriere-zeiten role="kurs" index="03" />
+
+    <app-karriere-deal index="04" />
+
+    <app-karriere-faq index="05" [entries]="faq" />
+
+    <app-karriere-apply [subject]="applySubject">
+      <span class="lang de">
+        Schreib uns ein paar Sätze zu dir, deinem Stil und dem Kursformat, das du dir vorstellst.
+        Ein Zertifikat als Anhang reicht uns, ein ausführlicher Lebenslauf ist kein Muss. Wir melden
+        uns und laden dich zum Erstgespräch ein.
+      </span>
+      <span class="lang en">
+        Write us a few sentences about you, your style and the class format you have in mind. A
+        certificate attached is enough for us, a detailed CV is not required. We will get back to
+        you and invite you for a first conversation.
+      </span>
+    </app-karriere-apply>
+
+    <p class="gd-fine" style="margin-top: 2rem; text-align: center">
+      <span class="lang de">
+        Dein Beruf ist doch nicht dabei?
+        <a [routerLink]="p('/karriere')">Alle offenen Stellen bei FareWell</a>
+      </span>
+      <span class="lang en">
+        Not the right role after all?
+        <a [routerLink]="p('/karriere')">All open positions at FareWell</a>
+      </span>
+    </p>
+  </div>
+
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+</div>

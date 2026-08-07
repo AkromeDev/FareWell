@@ -717,10 +717,13 @@ button {
     filter: none !important;
   }
 }
-/* Tablets: sechs Nav-Links passen nicht nebeneinander, ohne sich zu quetschen.
-   Nur "Termin Buchen" und "Behandlungen" bleiben in der Leiste; die übrigen
-   Links (.nav-secondary) wandern ins Burger-Menü wie auf Mobil. */
-@media (min-width: 769px) and (max-width: 1160px) {
+/* Tablets und schmale Laptops: sieben Nav-Links passen nicht nebeneinander,
+   ohne sich zu quetschen (seit "Karriere" dazugekommen ist — die Grenze lag
+   vorher bei 1160px für sechs Links). Nur "Termin Buchen" und "Behandlungen"
+   bleiben in der Leiste; die übrigen Links (.nav-secondary) wandern ins
+   Burger-Menü wie auf Mobil. Muss mit updateInteractionMode() im TS
+   übereinstimmen. */
+@media (min-width: 769px) and (max-width: 1260px) {
   .burger {
     display: flex;
     /* relativ statt absolut: als Flex-Item rechts neben den Links, bleibt

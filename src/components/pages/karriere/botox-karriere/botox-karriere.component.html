@@ -1,0 +1,133 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Karriere', 'FareWell · Nuremberg · Careers')"
+    [heading]="
+      t(
+        'Ärztin oder Arzt für ästhetische Medizin in Nürnberg',
+        'Physician for aesthetic medicine in Nuremberg'
+      )
+    "
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Wir suchen eine approbierte Ärztin oder einen approbierten Arzt mit Injektionserfahrung, die oder der bei uns ein eigenes Angebot mit Botulinumtoxin aufbaut. Raum, Termine und Sichtbarkeit stellen wir.',
+        'We are looking for a licensed physician with injection experience to build their own botulinum toxin offering with us. We provide the room, the appointments and the visibility.'
+      )
+    "
+    image="assets/images/treatment/microneedling6.webp"
+    [imageAlt]="
+      t('Ästhetische Behandlung bei FareWell in Nürnberg', 'An aesthetic treatment at FareWell in Nuremberg')
+    "
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Du bist approbiert, injizierst sicher und willst ein eigenes ästhetisches Angebot
+            aufbauen, ohne dafür eine Praxis zu eröffnen? Bei FareWell bekommst du Raum,
+            Online-Buchung und Sichtbarkeit in der Nürnberger Innenstadt. Die ärztliche
+            Verantwortung bleibt bei dir.
+          </span>
+          <span class="lang en">
+            You are licensed, you inject confidently and you want to build your own aesthetic
+            offering without opening a practice for it? At FareWell you get a room, online booking
+            and visibility in the centre of Nuremberg. The medical responsibility stays with you.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Ärztliche Verantwortung ist bei uns kein Neuland: Einen Teil unserer Behandlungen
+            bieten wir bereits
+            <a [routerLink]="p('/price')">unter ärztlicher Delegation</a> an. In diese Struktur
+            passt dein Angebot direkt hinein.
+          </span>
+          <span class="lang en">
+            Medical responsibility is not new territory here: some of our treatments are already
+            offered <a [routerLink]="p('/price')">under medical delegation</a>. Your offering fits
+            straight into that structure.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Deine Aufgaben', 'Your responsibilities')"
+      sectionId="aufgaben"
+    >
+      <div class="gd-read">
+        <app-guide-checklist>
+          @for (item of responsibilities; track item) {
+            <li>{{ item }}</li>
+          }
+        </app-guide-checklist>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="02" [heading]="t('Dein Profil', 'Your profile')" sectionId="profil">
+      <div class="gd-read">
+        <app-guide-note
+          variant="rule"
+          [label]="t('Zwingende Voraussetzung', 'Non-negotiable requirement')"
+        >
+          <span class="lang de">
+            Botulinumtoxin ist verschreibungspflichtig, und die Injektion ist approbierten
+            Ärzt:innen vorbehalten. Ohne deutsche Approbation können wir diese Zusammenarbeit
+            nicht eingehen, auch nicht unter Aufsicht.
+          </span>
+          <span class="lang en">
+            Botulinum toxin is a prescription-only medicine, and injecting it is reserved for
+            licensed physicians. Without a German medical licence we cannot enter into this
+            collaboration, not even under supervision.
+          </span>
+        </app-guide-note>
+
+        <app-guide-checklist>
+          @for (item of profile; track item) {
+            <li>{{ item }}</li>
+          }
+        </app-guide-checklist>
+      </div>
+    </app-guide-section>
+
+    <app-karriere-zeiten role="botox" index="03" />
+
+    <app-karriere-deal index="04" />
+
+    <app-karriere-faq index="05" [entries]="faq" />
+
+    <app-karriere-apply [subject]="applySubject">
+      <span class="lang de">
+        Schreib uns kurz, seit wann du approbiert bist, womit du injizierst und welches Angebot du
+        dir bei uns vorstellst. Wir melden uns und laden dich zum Erstgespräch ein, in dem wir
+        Zeiten, Ablauf und Aufteilung klären.
+      </span>
+      <span class="lang en">
+        Write us a short note on when you were licensed, what you inject and what offering you have
+        in mind here. We will get back to you and invite you for a first conversation, where we
+        settle hours, process and the revenue split.
+      </span>
+    </app-karriere-apply>
+
+    <p class="gd-fine" style="margin-top: 2rem; text-align: center">
+      <span class="lang de">
+        Dein Beruf ist doch nicht dabei?
+        <a [routerLink]="p('/karriere')">Alle offenen Stellen bei FareWell</a>
+      </span>
+      <span class="lang en">
+        Not the right role after all?
+        <a [routerLink]="p('/karriere')">All open positions at FareWell</a>
+      </span>
+    </p>
+  </div>
+
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+</div>

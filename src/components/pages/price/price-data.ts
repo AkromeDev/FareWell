@@ -34,15 +34,17 @@ export interface PriceRow {
    */
   addon?: boolean;
   /**
-   * Untergruppe innerhalb derselben Tabelle (Nadelepilation „mit ärztlicher
-   * Delegation"): die Zeile wird abgesetzt dargestellt, bleibt aber Teil der
-   * Tabelle und des Service im JSON-LD.
+   * Dieselbe Behandlung unter ärztlicher Delegation, nur zu einem anderen
+   * Preis: steht direkt unter ihrer Basiszeile, wird ihr untergeordnet
+   * dargestellt (eingerückt, mit Tag) und trägt deshalb denselben Namen.
+   * Im JSON-LD hängt DELEGATION_DE/EN als Zusatz am Namen des Offers.
    */
-  group?: boolean;
-  /** Zwischenüberschrift der Untergruppe; nur auf deren erster Zeile. */
-  groupDe?: string;
-  groupEn?: string;
+  delegation?: boolean;
 }
+
+/** Namenszusatz der Delegationsvarianten (Tag in der Tabelle, Name im JSON-LD). */
+export const DELEGATION_DE = 'mit ärztlicher Delegation';
+export const DELEGATION_EN = 'with medical delegation';
 
 export interface PriceTable {
   /** Sichtbare Tabellenüberschrift (leer, wenn die Sektion nur eine Tabelle hat). */
@@ -67,26 +69,12 @@ export const PRICE_TABLES = {
     rows: [
       { de: 'Sitzung 30 Minuten', en: '30-minute session', minutes: 30, price: 40 },
       { de: 'Sitzung 45 Minuten', en: '45-minute session', minutes: 45, price: 60 },
-      { de: 'Sitzung 60 Minuten', en: '60-minute session', minutes: 60, price: 80 },
-      { de: 'Sitzung 120 Minuten', en: '120-minute session', minutes: 120, price: 160 },
       // Termine unter ärztlicher Delegation: nur als volle Stunde buchbar,
-      // deshalb als abgesetzte Untergruppe derselben Tabelle.
-      {
-        de: 'Sitzung 60 Minuten mit ärztlicher Delegation',
-        en: '60-minute session with medical delegation',
-        minutes: 60,
-        price: 120,
-        group: true,
-        groupDe: 'Mit ärztlicher Delegation',
-        groupEn: 'With medical delegation',
-      },
-      {
-        de: 'Sitzung 120 Minuten mit ärztlicher Delegation',
-        en: '120-minute session with medical delegation',
-        minutes: 120,
-        price: 240,
-        group: true,
-      },
+      // deshalb jeweils direkt unter der passenden Sitzungsdauer.
+      { de: 'Sitzung 60 Minuten', en: '60-minute session', minutes: 60, price: 80 },
+      { de: 'Sitzung 60 Minuten', en: '60-minute session', minutes: 60, price: 120, delegation: true },
+      { de: 'Sitzung 120 Minuten', en: '120-minute session', minutes: 120, price: 160 },
+      { de: 'Sitzung 120 Minuten', en: '120-minute session', minutes: 120, price: 240, delegation: true },
       { de: 'Behandlungsvorbereitung mit Betäubungscreme', en: 'Preparation with numbing cream', minutes: 15, price: 20, addon: true },
     ],
   },
@@ -106,6 +94,7 @@ export const PRICE_TABLES = {
       { de: 'Hals', en: 'Neck (front)', minutes: 15, price: 60 },
       { de: 'Nacken', en: 'Nape of the neck', minutes: 15, price: 50 },
       { de: 'Unteres Gesicht komplett', en: 'Complete lower face', minutes: 45, price: 180 },
+      { de: 'Unteres Gesicht komplett', en: 'Complete lower face', minutes: 45, price: 250, delegation: true },
       { de: 'Kopf inkl. Nacken', en: 'Head incl. nape', minutes: 45, price: 140 },
     ],
   },
@@ -160,7 +149,21 @@ export const PRICE_TABLES = {
       { de: 'Hoden', en: 'Testicles', minutes: 15, price: 60 },
       { de: 'Pubischer Bereich', en: 'Pubic area', minutes: 15, price: 60 },
       { de: 'Schaft', en: 'Shaft', minutes: 15, price: 60 },
+      {
+        de: 'Intim vorne (Schaft, Hoden, Damm, Pubis)',
+        en: 'Front intimate area (shaft, testicles, perineum, pubic area)',
+        minutes: 45,
+        price: 180,
+      },
+      {
+        de: 'Intim vorne (Schaft, Hoden, Damm, Pubis)',
+        en: 'Front intimate area (shaft, testicles, perineum, pubic area)',
+        minutes: 45,
+        price: 250,
+        delegation: true,
+      },
       { de: 'Intim komplett', en: 'Complete intimate area', minutes: 60, price: 220 },
+      { de: 'Intim komplett', en: 'Complete intimate area', minutes: 60, price: 300, delegation: true },
     ],
   },
 

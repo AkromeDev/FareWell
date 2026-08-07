@@ -112,6 +112,15 @@
         FAQ
       </a>
 
+      <a
+        [routerLink]="p('/karriere')"
+        routerLinkActive="active"
+        (click)="setActiveTab('karriere')"
+        class="nav-link"
+      >
+        <span class="lang de">Karriere</span><span class="lang en">Careers</span>
+      </a>
+
       <!-- Sprachumschalter: letztes Element, auf Desktop rechts, auf Mobil unten -->
       <div class="nav-lang">
         <app-guide-lang-toggle

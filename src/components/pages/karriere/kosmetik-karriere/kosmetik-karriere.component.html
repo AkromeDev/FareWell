@@ -1,0 +1,133 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Karriere', 'FareWell · Nuremberg · Careers')"
+    [heading]="
+      t(
+        'Kosmetiker:in in Nürnberg: dein eigenes Studio im Studio',
+        'Beautician in Nuremberg: your own studio inside our studio'
+      )
+    "
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Wir suchen selbständige Kosmetiker:innen, die ein eigenes Konzept aufbauen wollen: eigene Handschrift, eigene Preise, eigene Kund:innen. Den Ort und alles drumherum stellen wir.',
+        'We are looking for freelance beauticians who want to build a concept of their own: your own signature, your own prices, your own clients. We provide the place and everything around it.'
+      )
+    "
+    image="assets/images/treatment/microneedling.webp"
+    [imageAlt]="
+      t('Kosmetische Behandlung bei FareWell in Nürnberg', 'A cosmetic treatment at FareWell in Nuremberg')
+    "
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Du bist Kosmetiker:in, hast eine eigene Handschrift und willst nicht auf fremde
+            Rechnung arbeiten? Bei FareWell bekommst du den Raum, die Buchung und die
+            Sichtbarkeit. Was du daraus machst, gehört dir.
+          </span>
+          <span class="lang en">
+            You are a beautician with a signature of your own, and you would rather not work on
+            someone else’s account? At FareWell you get the room, the booking system and the
+            visibility. What you build with it is yours.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Wir sind ein kleines Studio am Frauentorgraben, spezialisiert auf
+            <a [routerLink]="p('/behandlungen/nadelepilation')">permanente</a> und
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">dauerhafte Haarentfernung</a>,
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">Microneedling</a> und
+            Körperbehandlungen. Was uns fehlt, ist genau das, was du mitbringst: dein Schwerpunkt,
+            deine Idee, deine Kund:innen.
+          </span>
+          <span class="lang en">
+            We are a small studio on Frauentorgraben, specialising in
+            <a [routerLink]="p('/behandlungen/nadelepilation')">permanent</a> and
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">long-lasting hair removal</a>,
+            <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')">microneedling</a> and
+            body treatments. What we are missing is exactly what you bring: your focus, your idea,
+            your clients.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Deine Aufgaben', 'Your responsibilities')"
+      sectionId="aufgaben"
+    >
+      <div class="gd-read">
+        <app-guide-checklist>
+          @for (item of responsibilities; track item) {
+            <li>{{ item }}</li>
+          }
+        </app-guide-checklist>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="02" [heading]="t('Dein Profil', 'Your profile')" sectionId="profil">
+      <div class="gd-read">
+        <app-guide-checklist>
+          @for (item of profile; track item) {
+            <li>{{ item }}</li>
+          }
+        </app-guide-checklist>
+
+        <app-guide-note variant="tip" [label]="t('Noch nicht alles davon?', 'Not all of it yet?')">
+          <span class="lang de">
+            Melde dich trotzdem. Uns interessiert dein Konzept mehr als eine lückenlose Liste an
+            Zertifikaten, solange die Nachweise für die Behandlungen stimmen, die du tatsächlich
+            anbietest.
+          </span>
+          <span class="lang en">
+            Get in touch anyway. Your concept interests us more than a flawless list of
+            certificates, as long as the credentials for the treatments you actually offer are in
+            order.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-karriere-zeiten role="kosmetik" index="03" />
+
+    <app-karriere-deal index="04" />
+
+    <app-karriere-faq index="05" [entries]="faq" />
+
+    <app-karriere-apply [subject]="applySubject">
+      <span class="lang de">
+        Schick uns ein paar Sätze zu dir, zu deinem Schwerpunkt und zu der Idee, die du aufbauen
+        willst. Ein Lebenslauf ist willkommen, aber kein Muss. Wir melden uns und laden dich zum
+        Erstgespräch ein.
+      </span>
+      <span class="lang en">
+        Send us a few sentences about you, your focus and the idea you want to build. A CV is
+        welcome but not required. We will get back to you and invite you for a first conversation.
+      </span>
+    </app-karriere-apply>
+
+    <p class="gd-fine" style="margin-top: 2rem; text-align: center">
+      <span class="lang de">
+        Dein Beruf ist doch nicht dabei?
+        <a [routerLink]="p('/karriere')">Alle offenen Stellen bei FareWell</a>
+      </span>
+      <span class="lang en">
+        Not the right role after all?
+        <a [routerLink]="p('/karriere')">All open positions at FareWell</a>
+      </span>
+    </p>
+  </div>
+
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+</div>

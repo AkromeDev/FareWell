@@ -392,6 +392,86 @@ function localizedRoutes(lang: PageLang): Routes {
         }
       )
     },
+    {
+      path: 'karriere/kosmetik-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/karriere/kosmetik-karriere/kosmetik-karriere.component')
+          .then(m => m.KosmetikKarriereComponent),
+      data: d(
+        {
+          title: 'Kosmetiker:in (m/w/d) in Nürnberg: freiberuflich | Karriere bei FareWell',
+          description: 'FareWell Nürnberg sucht selbständige Kosmetiker:innen mit eigenem Konzept: voll ausgestatteter Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete und Hilfe beim eigenen Google-Business-Profil.'
+        },
+        {
+          title: 'Beautician (m/f/d) in Nuremberg: Freelance | Careers at FareWell',
+          description: 'FareWell Nuremberg is looking for freelance beauticians with a concept of their own: a fully equipped room in the city centre, online booking, flexible hours, no fixed rent and help setting up your own Google Business profile.'
+        }
+      )
+    },
+    {
+      path: 'karriere/yoga-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/karriere/yoga-karriere/yoga-karriere.component')
+          .then(m => m.YogaKarriereComponent),
+      data: d(
+        {
+          title: 'Yoga-Lehrer:in (m/w/d) in Nürnberg: freiberuflich | Karriere bei FareWell',
+          description: 'FareWell Nürnberg sucht selbständige Yoga-Lehrer:innen, die ein eigenes Kursangebot aufbauen wollen: ruhiger Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete und Hilfe beim eigenen Google-Business-Profil.'
+        },
+        {
+          title: 'Yoga Teacher (m/f/d) in Nuremberg: Freelance | Careers at FareWell',
+          description: 'FareWell Nuremberg is looking for freelance yoga teachers who want to build their own class offering: a quiet room in the city centre, online booking, flexible hours, no fixed rent and help setting up your own Google Business profile.'
+        }
+      )
+    },
+    {
+      path: 'karriere/tanzlehrer-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/karriere/tanz-karriere/tanz-karriere.component')
+          .then(m => m.TanzKarriereComponent),
+      data: d(
+        {
+          title: 'Tanzlehrer:in (m/w/d) in Nürnberg: freiberuflich | Karriere bei FareWell',
+          description: 'FareWell Nürnberg sucht selbständige Tanzlehrer:innen mit eigenem Konzept: flexibler Raum im Zentrum für Einzelunterricht, Paare und kleine Gruppen, Online-Buchung, flexible Zeiten und keine feste Miete.'
+        },
+        {
+          title: 'Dance Teacher (m/f/d) in Nuremberg: Freelance | Careers at FareWell',
+          description: 'FareWell Nuremberg is looking for freelance dance teachers with a concept of their own: a flexible room in the city centre for one-to-one lessons, couples and small groups, online booking, flexible hours and no fixed rent.'
+        }
+      )
+    },
+    {
+      path: 'karriere/botox-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/karriere/botox-karriere/botox-karriere.component')
+          .then(m => m.BotoxKarriereComponent),
+      data: d(
+        {
+          title: 'Ärztin / Arzt (m/w/d) für Botox & ästhetische Medizin in Nürnberg | Karriere bei FareWell',
+          description: 'FareWell Nürnberg sucht approbierte Ärzt:innen mit Injektionserfahrung für ein eigenes Angebot mit Botulinumtoxin: Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete, eingebettet in unser bestehendes Delegationsmodell.'
+        },
+        {
+          title: 'Physician (m/f/d) for Botox & Aesthetic Medicine in Nuremberg | Careers at FareWell',
+          description: 'FareWell Nuremberg is looking for licensed physicians with injection experience to build their own botulinum toxin offering: a room in the city centre, online booking, flexible hours, no fixed rent, embedded in our existing medical delegation model.'
+        }
+      )
+    },
+    {
+      path: 'karriere',
+      loadComponent: () =>
+        import('../components/pages/karriere/karriere-hub/karriere-hub.component')
+          .then(m => m.KarriereHubComponent),
+      data: d(
+        {
+          title: 'Karriere bei FareWell Nürnberg: freiberuflich arbeiten im Studio',
+          description: 'Offene Positionen bei FareWell Nürnberg für Selbständige: Kosmetik, Massage, Yoga, Tanz und ästhetische Medizin. Voll ausgestatteter Raum im Zentrum, keine feste Miete, flexible Zeiten und Hilfe beim eigenen Google-Business-Profil.'
+        },
+        {
+          title: 'Careers at FareWell Nuremberg: Work Freelance in Our Studio',
+          description: 'Open positions at FareWell Nuremberg for freelancers: cosmetics, massage, yoga, dance and aesthetic medicine. A fully equipped room in the city centre, no fixed rent, flexible hours and help setting up your own Google Business profile.'
+        }
+      )
+    },
 
     {
       path: 'laser-haarentfernung-aktion-nuernberg',
