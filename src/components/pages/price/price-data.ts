@@ -131,7 +131,6 @@ export const PRICE_TABLES = {
     rows: [
       { de: 'Bikinielinie', en: 'Bikini line', minutes: 15, price: 60 },
       { de: 'Brazilian', en: 'Brazilian', minutes: 30, price: 100 },
-      { de: 'Damm', en: 'Perineum', minutes: 15, price: 60 },
       { de: 'Pofalte', en: 'Gluteal fold', minutes: 15, price: 60 },
       { de: 'Gesäß', en: 'Buttocks', minutes: 15, price: 60 },
       { de: 'Intim komplett', en: 'Complete intimate area', minutes: 30, price: 200 },

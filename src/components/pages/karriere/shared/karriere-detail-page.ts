@@ -84,7 +84,7 @@ export abstract class KarriereDetailPage implements OnInit, OnDestroy {
     return [
       { id: 'aufgaben', label: this.t('Deine Aufgaben', 'Your responsibilities') },
       { id: 'profil', label: this.t('Dein Profil', 'Your profile') },
-      { id: 'zeiten', label: this.t('Zeiten und Raumbelegung', 'Hours and room use') },
+      { id: 'zeiten', label: this.t('Zeiten und freie Fenster', 'Hours and open slots') },
       { id: 'deal', label: this.t('Dein Deal bei FareWell', 'Your deal at FareWell') },
       { id: 'faq', label: this.t('Häufige Fragen', 'Frequently asked questions') },
       { id: 'bewerben', label: this.t('Bewerben', 'Apply') },

@@ -89,6 +89,7 @@ interface RenderedDay {
           </div>
         </div>
 
+        <p class="kz__legend-title">{{ t('Geöffnet für', 'Open for') }}</p>
         <ul class="kz__legend">
           @for (lane of lanes; track lane) {
             <li>
@@ -103,7 +104,12 @@ interface RenderedDay {
           }
           <li>
             <span class="kz__chip kz__band--kurs is-reserved" aria-hidden="true"></span>
-            {{ t('letzter Dienstag im Monat: Yoga', 'last Tuesday of the month: yoga') }}
+            {{
+              t(
+                'bereits belegt: letzter Dienstagabend im Monat (Yoga)',
+                'already taken: last Tuesday evening of the month (yoga)'
+              )
+            }}
           </li>
         </ul>
       </div>
@@ -236,9 +242,18 @@ interface RenderedDay {
         );
       }
 
+      .kz__legend-title {
+        margin: 0.9rem 0 0.35rem;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gd-faint);
+      }
+
       .kz__legend {
         list-style: none;
-        margin: 0.9rem 0 0;
+        margin: 0;
         padding: 0;
         display: flex;
         flex-wrap: wrap;
@@ -362,33 +377,36 @@ export class KarriereZeitenComponent {
     }).join('. ');
 
     return this.t(
-      `Wochenraster der Raumbelegung. ${week}.`,
-      `Weekly grid of room use. ${week}.`
+      `Wochenraster der geöffneten Zeitfenster; belegt ist derzeit nur der letzte Dienstagabend im Monat. ${week}.`,
+      `Weekly grid of the open time windows; only the last Tuesday evening of the month is currently taken. ${week}.`
     );
   }
 
   get heading(): string {
-    return this.t('Zeiten und Raumbelegung', 'Hours and room use');
+    return this.t('Zeiten und freie Fenster', 'Hours and open slots');
   }
 
   get lead(): string {
     if (this.role === 'uebersicht') {
       return this.t(
-        'Wann im Studio was läuft: drei Spuren, die sich die Woche teilen.',
-        'What runs when in the studio: three lanes sharing the week.'
+        'Welche Fenster wir geöffnet haben: drei Spuren, die sich die Woche teilen. Frei sind sie derzeit fast alle.',
+        'Which windows we have opened: three lanes sharing the week. Almost all of them are free at the moment.'
       );
     }
     return this.t(
-      'Wann im Studio was läuft, und wo dein Fenster liegt. Grün ist die Spur, die dir gehört.',
-      'What runs when in the studio, and where your window sits. Green is the lane that belongs to you.'
+      'Welche Fenster wir geöffnet haben, und wo deins liegt. Grün ist deine Spur, und die ist im Moment fast komplett frei.',
+      'Which windows we have opened, and where yours sits. Green is your lane, and right now it is almost entirely free.'
     );
   }
 
-  /** Der Grundtakt des Hauses — für alle Rollen derselbe Absatz. */
+  /**
+   * Der Rahmen des Hauses — für alle Rollen derselbe Absatz. Formuliert
+   * bewusst als „geöffnet“, nicht als „läuft“: Es sind Fenster, keine Schichten.
+   */
   get rhythmText(): string {
     return this.t(
-      'Das Studio hat einen festen Grundtakt. Kosmetik und ästhetische Medizin laufen montags bis freitags von 10:00 bis 20:00 Uhr und samstags von 08:00 bis 17:00 Uhr. Massagen sind darüber hinaus von 08:00 bis 22:00 Uhr möglich, weil sie einen eigenen Raum haben. Yoga und Tanz brauchen Musik, Bewegung und Platz und passen deshalb nicht neben eine laufende Behandlung: Ihre Fenster liegen davor und danach, montags bis freitags von 07:00 bis 09:00 Uhr und ab 19:30 Uhr, samstags ab 18:00 Uhr und sonntags zu jeder Zeit.',
-      'The studio runs to a fixed rhythm. Cosmetics and aesthetic medicine operate Monday to Friday from 10:00 to 20:00 and on Saturdays from 08:00 to 17:00. Massages are possible beyond that, from 08:00 to 22:00, because they have a room of their own. Yoga and dance need music, movement and space, so they do not sit next to a treatment in progress: their windows are before and after, Monday to Friday from 07:00 to 09:00 and from 19:30, on Saturdays from 18:00 and on Sundays at any time.'
+      'Das Raster zeigt geöffnete Zeitfenster, keine Belegung. Kosmetik und ästhetische Medizin sind montags bis freitags von 10:00 bis 20:00 Uhr und samstags von 08:00 bis 17:00 Uhr geöffnet. Für Massagen steht der Raum darüber hinaus von 08:00 bis 22:00 Uhr offen, weil er nicht an die Öffnungszeiten der Kosmetik gebunden ist. Yoga und Tanz brauchen Musik, Bewegung und Platz und liegen deshalb außerhalb des Behandlungsbetriebs: montags bis freitags von 07:00 bis 09:00 Uhr und ab 19:30 Uhr, samstags ab 18:00 Uhr und sonntags zu jeder Zeit.',
+      'The grid shows open time windows, not bookings. Cosmetics and aesthetic medicine are open Monday to Friday from 10:00 to 20:00 and on Saturdays from 08:00 to 17:00. Beyond that, the room is open for massages from 08:00 to 22:00, because it is not tied to the cosmetics opening hours. Yoga and dance need music, movement and space, so they sit outside treatment hours: Monday to Friday from 07:00 to 09:00 and from 19:30, on Saturdays from 18:00 and on Sundays at any time.'
     );
   }
 
@@ -397,48 +415,51 @@ export class KarriereZeitenComponent {
     switch (this.role) {
       case 'kosmetik':
         return this.t(
-          'Dein Fenster ist der Hauptbetrieb: montags bis freitags von 10:00 bis 20:00 Uhr, samstags von 08:00 bis 17:00 Uhr. Innerhalb dieser Zeiten legst du deine festen Tage selbst fest, und eine Anwesenheitspflicht ohne gebuchte Termine gibt es nicht. Kurse mit Musik können in deinen Behandlungszeiten nicht stattfinden, du arbeitest also nie gegen eine Tanzstunde an.',
-          'Your window is the main operation: Monday to Friday from 10:00 to 20:00, Saturdays from 08:00 to 17:00. Within those hours you set your own fixed days, and there is no obligation to be present without booked appointments. Classes with music cannot take place during your treatment hours, so you never work against a dance lesson.'
+          'Dein Fenster ist das größte: montags bis freitags von 10:00 bis 20:00 Uhr, samstags von 08:00 bis 17:00 Uhr. Darin suchst du dir deine festen Tage selbst aus, und eine Anwesenheitspflicht ohne gebuchte Termine gibt es nicht. Kurse mit Musik liegen bewusst außerhalb dieser Zeiten, du arbeitest also nie gegen eine Tanzstunde an.',
+          'Yours is the largest window: Monday to Friday from 10:00 to 20:00, Saturdays from 08:00 to 17:00. Within it you pick your own fixed days, and there is no obligation to be present without booked appointments. Classes with music deliberately sit outside those hours, so you never work against a dance lesson.'
         );
       case 'botox':
         return this.t(
-          'Dein Fenster liegt im Behandlungsbetrieb: montags bis freitags von 10:00 bis 20:00 Uhr, samstags von 08:00 bis 17:00 Uhr. Weil viele neben Praxis oder Klinik arbeiten, reicht in der Regel ein fester Nachmittag oder früher Abend pro Woche. Kurse mit Musik können parallel nicht laufen: Injektionsbehandlungen brauchen Ruhe, und die haben Vorrang.',
-          'Your window sits inside the treatment operation: Monday to Friday from 10:00 to 20:00, Saturdays from 08:00 to 17:00. Since many work alongside a practice or clinic, one fixed afternoon or early evening a week is usually enough. Classes with music cannot run in parallel: injection treatments need quiet, and quiet takes precedence.'
+          'Dein Fenster liegt im Behandlungsbetrieb: montags bis freitags von 10:00 bis 20:00 Uhr, samstags von 08:00 bis 17:00 Uhr. Weil viele neben Praxis oder Klinik arbeiten, reicht in der Regel ein fester Nachmittag oder früher Abend pro Woche, und den suchst du dir aus. Kurse mit Musik liegen bewusst außerhalb dieser Zeiten: Injektionsbehandlungen brauchen Ruhe, und die haben Vorrang.',
+          'Your window sits inside the treatment hours: Monday to Friday from 10:00 to 20:00, Saturdays from 08:00 to 17:00. Since many work alongside a practice or clinic, one fixed afternoon or early evening a week is usually enough, and you pick which one. Classes with music deliberately sit outside those hours: injection treatments need quiet, and quiet takes precedence.'
         );
       case 'massage':
         return this.t(
-          'Dein Fenster ist das längste im Haus: montags bis samstags von 08:00 bis 22:00 Uhr. Du bist damit nicht an die Öffnungszeiten der Kosmetik gebunden und kannst früh morgens oder spät abends arbeiten. Weil sich mehrere Masseur:innen den Raum teilen, legen wir deine festen wöchentlichen Zeitfenster gemeinsam fest.',
-          'Your window is the longest in the house: Monday to Saturday from 08:00 to 22:00. That means you are not tied to the cosmetics opening hours and can work early in the morning or late in the evening. Because several therapists share the room, we agree your fixed weekly time slots together.'
+          'Dein Fenster ist das längste im Haus: montags bis samstags von 08:00 bis 22:00 Uhr. Du bist damit nicht an die Öffnungszeiten der Kosmetik gebunden und kannst früh morgens oder spät abends arbeiten. Der Raum ist in diesen Zeiten derzeit weitgehend frei; du suchst dir deine festen wöchentlichen Zeitfenster aus, und wir stimmen sie mit den anderen Masseur:innen ab.',
+          'Yours is the longest window in the house: Monday to Saturday from 08:00 to 22:00. That means you are not tied to the cosmetics opening hours and can work early in the morning or late in the evening. The room is largely free during those hours at the moment; you pick your fixed weekly slots and we align them with the other therapists.'
         );
       case 'kurs':
         return this.t(
-          'Dein Fenster liegt vor und nach dem Behandlungsbetrieb: montags bis freitags von 07:00 bis 09:00 Uhr und ab 19:30 Uhr, samstags ab 18:00 Uhr und sonntags zu jeder Zeit. Samstagmorgen fällt weg, weil die Kosmetik dort schon um 08:00 Uhr startet. Innerhalb dieser Fenster legst du deine festen Zeiten selbst fest, und eine Anwesenheitspflicht ohne gebuchte Stunden gibt es nicht.',
-          'Your window sits before and after the treatment operation: Monday to Friday from 07:00 to 09:00 and from 19:30, on Saturdays from 18:00 and on Sundays at any time. Saturday morning drops out because cosmetics already start at 08:00. Within these windows you set your own fixed times, and there is no obligation to be present without booked classes.'
+          'Dein Fenster liegt vor und nach dem Behandlungsbetrieb: montags bis freitags von 07:00 bis 09:00 Uhr und ab 19:30 Uhr, samstags ab 18:00 Uhr und sonntags zu jeder Zeit. Samstagmorgen fällt weg, weil die Kosmetik dort schon um 08:00 Uhr startet. Innerhalb dieser Fenster suchst du dir deine festen Zeiten selbst aus, und eine Anwesenheitspflicht ohne gebuchte Stunden gibt es nicht.',
+          'Your window sits before and after the treatment hours: Monday to Friday from 07:00 to 09:00 and from 19:30, on Saturdays from 18:00 and on Sundays at any time. Saturday morning drops out because cosmetics already start at 08:00. Within these windows you pick your own fixed times, and there is no obligation to be present without booked classes.'
         );
       case 'uebersicht':
         return this.t(
-          'Jede Spur hat ihr eigenes Fenster, und keine Spur besitzt den Tag. Behandlungen halten den Kern, Massagen reichen morgens und abends darüber hinaus, Kurse nutzen die Ränder und den Sonntag. Welche Zeiten für deine Position gelten, steht auf der jeweiligen Stellenseite.',
-          'Every lane has its own window, and no lane owns the day. Treatments hold the core, massages reach beyond it morning and evening, courses use the edges and Sundays. Which hours apply to your position is spelled out on the individual role page.'
+          'Jede Spur hat ihr eigenes Fenster, und keine Spur besitzt den Tag. Die Kosmetik hält den Kern, die Massage reicht morgens und abends darüber hinaus, Kurse nutzen die Ränder und den Sonntag. Welche Zeiten für deine Position gelten, steht auf der jeweiligen Stellenseite.',
+          'Every lane has its own window, and no lane owns the day. Cosmetics hold the core, massage reaches beyond it morning and evening, courses use the edges and Sundays. Which hours apply to your position is spelled out on the individual role page.'
         );
     }
   }
 
-  /** Die Regel, die den Kalender überhaupt erst benutzbar macht. */
+  /**
+   * Die Regel, die den Kalender benutzbar macht. Der erste Satz ist der
+   * wichtigste: Die Bänder sind geöffnete Fenster, keine belegten Schichten.
+   */
   get rulesText(): string {
     const shared = this.t(
-      'Das Raster zeigt, was möglich ist, nicht was belegt ist. Innerhalb der Fenster gilt schlicht: first come, first served. Ein Platz gehört dem, der ihn zuerst belegt, und kann genauso gut von einem anderen Kurs oder einer anderen selbständigen Person genommen werden. ',
-      'The grid shows what is possible, not what is taken. Within the windows the rule is simply first come, first served. A slot belongs to whoever claims it first, and it can just as easily be taken by another course or another freelancer. '
+      'Wichtig zu verstehen: Das sind Fenster, die wir öffnen, keine Zeiten, in denen schon jemand arbeitet. Bis auf eine einzige Ausnahme sind sie im Moment alle frei. Wer sich ein Fenster nimmt, hat es: first come, first served. Genauso kann ein Platz von einem anderen Kurs oder einer anderen selbständigen Person belegt werden. ',
+      'Worth understanding: these are windows we open, not hours in which somebody is already working. With a single exception they are all free at the moment. Whoever claims a window has it: first come, first served. And just as easily, a slot can be claimed by another course or another freelancer. '
     );
 
     const noise =
       this.role === 'kurs'
         ? this.t(
-            'Dazu kommt eine harte Regel: Wo eine Massage oder eine Injektionsbehandlung gebucht ist, kann parallel kein Kurs mit Musik laufen. Die Massagezeiten reichen bis 22:00 Uhr und überschneiden sich deshalb mit deinen Abendfenstern. Am ruhigsten und sichersten ist der Sonntag, weil dann kein Behandlungsbetrieb dagegensteht.',
-            'On top of that there is a hard rule: where a massage or an injection treatment is booked, no class with music can run in parallel. Massage hours reach until 22:00 and therefore overlap your evening windows. Sundays are the calmest and safest, because no treatment operation stands against them.'
+            'Eine Einschränkung gibt es: Sobald in deinem Fenster tatsächlich eine Massage oder eine Injektionsbehandlung gebucht ist, kann zeitgleich kein Kurs mit Musik laufen. Weil derzeit kaum etwas belegt ist, ist das eher die Ausnahme als die Regel. Sonntags stellt sich die Frage ohnehin nicht, dann ist gar kein Behandlungsbetrieb im Haus.',
+            'One restriction applies: as soon as a massage or an injection treatment is actually booked in your window, no class with music can run at the same time. Since almost nothing is booked at the moment, that is the exception rather than the rule. On Sundays the question does not arise at all, as there are no treatments in the house.'
           )
         : this.t(
-            'Dazu kommt eine harte Regel zugunsten der Ruhe: Wo eine Massage oder eine Injektionsbehandlung gebucht ist, kann parallel kein Yoga- oder Tanzkurs stattfinden. Behandlungen gehen dem Lärm vor, nicht umgekehrt.',
-            'On top of that there is a hard rule in favour of quiet: where a massage or an injection treatment is booked, no yoga or dance class can take place alongside it. Treatments come before noise, not the other way round.'
+            'Eine Regel gilt zugunsten der Ruhe: Sobald bei dir eine Massage oder eine Injektionsbehandlung gebucht ist, kann zeitgleich kein Yoga- oder Tanzkurs stattfinden. Behandlungen gehen dem Lärm vor, nicht umgekehrt.',
+            'One rule applies in favour of quiet: as soon as a massage or an injection treatment is booked with you, no yoga or dance class can take place at the same time. Treatments come before noise, not the other way round.'
           );
 
     return shared + noise;
@@ -446,8 +467,8 @@ export class KarriereZeitenComponent {
 
   get reservedText(): string {
     return this.t(
-      'Fest vergeben ist im Moment genau ein Fenster im ganzen Kursraster: Der letzte Dienstagabend im Monat gehört dem Yoga. Alles andere ist offen und wartet auf jemanden, der es sich nimmt.',
-      'Exactly one window in the whole course grid is currently taken: the last Tuesday evening of the month belongs to yoga. Everything else is open and waiting for someone to claim it.'
+      'Belegt ist im Moment genau ein einziges Fenster im ganzen Raster: Der letzte Dienstagabend im Monat gehört dem Yoga. Alles andere ist frei und wartet auf jemanden, der es sich nimmt.',
+      'Exactly one single window in the whole grid is taken at the moment: the last Tuesday evening of the month belongs to yoga. Everything else is free and waiting for someone to claim it.'
     );
   }
 }

@@ -1,18 +1,25 @@
 /**
- * Belegungsmodell des Studios — die eine Quelle für den Wochenkalender, die
- * Fließtexte und JobPosting.workHours auf allen Karriere-Seiten.
+ * Die geöffneten Zeitfenster des Studios — eine Quelle für den Wochenkalender,
+ * die Fließtexte und JobPosting.workHours auf allen Karriere-Seiten.
  *
- * Der Grundtakt:
- *   Kosmetik & ästhetische Medizin  Mo–Fr 10–20, Sa 08–17  (Behandlungsbetrieb)
- *   Massage                         Mo–Sa 08–22            (eigener Raum)
- *   Yoga & Tanz                     nur außerhalb des Behandlungsbetriebs:
- *                                   Mo–Fr 07–09 und ab 19:30, Sa ab 18:00,
+ * WICHTIG: Das hier ist kein Belegungsplan. Die Bänder sagen „in diesem Fenster
+ * darf gearbeitet werden“, nicht „hier arbeitet jemand“. Faktisch ist derzeit
+ * alles frei bis auf den letzten Dienstagabend im Monat (Yoga). Texte, die auf
+ * diesem Modell aufbauen, müssen diese Unterscheidung sauber halten — sonst
+ * liest sich ein offenes Haus wie ein ausgebuchtes.
+ *
+ * Die Fenster:
+ *   Kosmetik & ästhetische Medizin  Mo–Fr 10–20, Sa 08–17
+ *   Massage                         Mo–Sa 08–22   (eigener Raum, nicht an die
+ *                                                  Kosmetikzeiten gebunden)
+ *   Yoga & Tanz                     Mo–Fr 07–09 und ab 19:30, Sa ab 18:00,
  *                                   So ganztägig
  *
- * Warum Kurse ihr eigenes Fenster brauchen: Sie bringen Musik und Bewegung mit
- * und passen nicht neben eine laufende Behandlung. Die Massagezeiten (08–22)
- * überlappen die Kursfenster bewusst — beides ist *möglich*, belegt ist es erst
- * durch eine Buchung. Wer zuerst da ist, hat den Platz.
+ * Warum Kurse eigene Fenster haben: Sie bringen Musik und Bewegung mit und
+ * passen nicht neben eine laufende Behandlung. Dass sich das Massagefenster mit
+ * den Kursfenstern überlappt, ist deshalb kein Widerspruch: Beide sind offen,
+ * und erst eine tatsächliche Buchung schließt das andere aus. Wer zuerst da
+ * ist, hat den Platz.
  */
 
 /** Aus wessen Perspektive der Kalender gelesen wird. */

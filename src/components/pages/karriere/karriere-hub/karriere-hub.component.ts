@@ -78,7 +78,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
     return [
       { id: 'philosophie', label: this.t('Unsere Philosophie', 'Our philosophy') },
       { id: 'deal', label: this.t('Dein Deal bei FareWell', 'Your deal at FareWell') },
-      { id: 'zeiten', label: this.t('Zeiten und Raumbelegung', 'Hours and room use') },
+      { id: 'zeiten', label: this.t('Zeiten und freie Fenster', 'Hours and open slots') },
       { id: 'start', label: this.t('So läuft der Start', 'How the start works') },
       { id: 'stellen', label: this.t('Offene Positionen', 'Open positions') },
       { id: 'bewerben', label: this.t('Bewerben', 'Apply') },
