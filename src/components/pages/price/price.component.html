@@ -143,15 +143,8 @@
           </thead>
           <tbody>
             @for (row of tables.nadelepilation.rows; track $index) {
-              <tr [class.gd-subrow]="isDelegation(row)">
-                <td>
-                  @if (isDelegation(row)) {
-                    <span class="gd-visually-hidden">{{ t(row.de, row.en) }}</span>
-                    <span class="gd-pill gd-pill--soft">{{ delegationLabel }}</span>
-                  } @else {
-                    {{ t(row.de, row.en) }}
-                  }
-                </td>
+              <tr>
+                <td>{{ t(row.de, row.en) }}</td>
                 <td class="num">{{ price(row) }}</td>
               </tr>
             }
@@ -160,14 +153,16 @@
       </div>
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
-          Ärztliche Delegation bedeutet, dass die Behandlung unter der fachlichen Verantwortung
-          unseres begleitenden Arztes stattfindet. Diese Termine werden ausschließlich als volle
-          Stunde gebucht, kürzere Einheiten sind hier nicht möglich.
+          Die Nadelepilation gibt es auch in ärztlicher Delegation, zu eigenen Preisen und
+          ausschließlich als volle Stunde. Diese Termine stehen in einer eigenen Liste:
+          <a [routerLink]="p('/price')" fragment="aerztliche-delegation">Behandlungen unter
+          ärztlicher Verantwortung</a>.
         </span>
         <span class="lang en">
-          Medical delegation means the treatment takes place under the professional responsibility
-          of our accompanying physician. These appointments are booked in full hours only, shorter
-          units are not available for this option.
+          Electrolysis is also available under medical delegation, at its own prices and in full
+          hours only. Those appointments have their own list:
+          <a [routerLink]="p('/price')" fragment="aerztliche-delegation">treatments under medical
+          responsibility</a>.
         </span>
       </p>
       <div class="gd-read">
@@ -224,15 +219,8 @@
               </thead>
               <tbody>
                 @for (row of tbl.rows; track $index) {
-                  <tr [class.gd-subrow]="isDelegation(row)">
-                    <td>
-                      @if (isDelegation(row)) {
-                        <span class="gd-visually-hidden">{{ t(row.de, row.en) }}</span>
-                        <span class="gd-pill gd-pill--soft">{{ delegationLabel }}</span>
-                      } @else {
-                        {{ t(row.de, row.en) }}
-                      }
-                    </td>
+                  <tr>
+                    <td>{{ t(row.de, row.en) }}</td>
                     <td class="num">{{ price(row) }}</td>
                   </tr>
                 }
@@ -243,14 +231,17 @@
       }
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
-          Ärztliche Delegation bedeutet, dass die Behandlung unter der fachlichen Verantwortung
-          unseres begleitenden Arztes stattfindet. Diese Variante bieten wir nur für die
-          Komplettpakete an, nicht für einzelne Zonen.
+          Zwei Komplettpakete bieten wir zusätzlich in ärztlicher Delegation an, zu eigenen
+          Preisen. Einzelne Zonen behandeln wir nicht in Delegation. Die Preise stehen in einer
+          eigenen Liste:
+          <a [routerLink]="p('/price')" fragment="aerztliche-delegation">Behandlungen unter
+          ärztlicher Verantwortung</a>.
         </span>
         <span class="lang en">
-          Medical delegation means the treatment takes place under the professional responsibility
-          of our accompanying physician. We offer this option for the complete packages only, not
-          for single zones.
+          Two of the complete packages are also available under medical delegation, at their own
+          prices. Single areas are not treated under delegation. The prices have their own list:
+          <a [routerLink]="p('/price')" fragment="aerztliche-delegation">treatments under medical
+          responsibility</a>.
         </span>
       </p>
       <div class="gd-read">
@@ -274,9 +265,105 @@
       </div>
     </app-guide-section>
 
-    <!-- 04 · Radiofrequenz Microneedling -->
+    <!-- 04 · Behandlungen unter ärztlicher Verantwortung -->
     <app-guide-section
       index="04"
+      [heading]="
+        t(
+          'Behandlungen unter ärztlicher Verantwortung: Preise',
+          'Treatments under medical responsibility: prices'
+        )
+      "
+      sectionId="aerztliche-delegation"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Einen Teil unserer Behandlungen bieten wir zusätzlich in ärztlicher Delegation an.
+          Behandelt wird wie immer bei uns im Studio, die fachliche Verantwortung trägt dabei
+          unser begleitender Arzt. Diese Termine haben eigene Preise und stehen deshalb, wie im
+          Buchungssystem, in einer eigenen Liste.
+        </span>
+        <span class="lang en">
+          Some of our treatments are also available under medical delegation. The treatment takes
+          place in our studio as always, while our accompanying physician holds the professional
+          responsibility. These appointments have their own prices and therefore their own list,
+          exactly as in our booking system.
+        </span>
+      </p>
+      <div
+        class="gd-table-wrap gd-table-wrap--price"
+        appReveal
+        tabindex="0"
+        role="region"
+        [attr.aria-label]="
+          t('Preise mit ärztlicher Delegation', 'Prices with medical delegation')
+        "
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t('Behandlung', 'Treatment') }}</th>
+              <th class="num">{{ t('Preis', 'Price') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of tables.aerztlicheDelegation.rows; track $index) {
+              <tr>
+                <td>
+                  {{ t(row.de, row.en) }}
+                  @if (row.scope) {
+                    <span class="gd-row-scope">{{ scopeLabel(row) }}</span>
+                  }
+                </td>
+                <td class="num">{{ price(row) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="gd-read" appReveal style="color: var(--gd-muted)">
+        <span class="lang de">
+          Die Nadelepilation buchst du hier ausschließlich als volle Stunde, kürzere Einheiten
+          gibt es in Delegation nicht. Beim Laser gilt die Delegation nur für die beiden
+          Komplettpakete, einzelne Zonen behandeln wir regulär.
+        </span>
+        <span class="lang en">
+          Electrolysis is booked in full hours only here, shorter units are not available under
+          delegation. For the laser, delegation applies to the two complete packages only; single
+          areas are treated regularly.
+        </span>
+      </p>
+      <div class="gd-read">
+        <app-guide-note
+          variant="tip"
+          [label]="t('Warum das wichtig sein kann', 'Why this can matter')"
+        >
+          <span class="lang de">
+            Viele Krankenkassen verlangen für eine Kostenübernahme, dass die Haarentfernung
+            ärztlich delegiert erfolgt. Ob deine Kasse zahlt, entscheidet allein deine Kasse, und
+            das fällt von Fall zu Fall unterschiedlich aus. Ein Versuch ist es wert: Im
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Leitfaden zur Krankenkasse</a>
+            steht Schritt für Schritt, wie du den Antrag aufsetzt.
+          </span>
+          <span class="lang en">
+            Many German health insurers require hair removal to be medically delegated before they
+            will consider covering it. Whether yours pays is decided by your insurer alone, and it
+            varies case by case. It is worth a try: our
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">guide to health insurance</a>
+            walks through the application step by step (in German).
+          </span>
+        </app-guide-note>
+        <app-faq-item
+          [question]="t(faqs['aerztlicheDelegation'].qDe, faqs['aerztlicheDelegation'].qEn)"
+        >
+          <p>{{ t(faqs['aerztlicheDelegation'].aDe, faqs['aerztlicheDelegation'].aEn) }}</p>
+        </app-faq-item>
+      </div>
+    </app-guide-section>
+
+    <!-- 05 · Radiofrequenz Microneedling -->
+    <app-guide-section
+      index="05"
       [heading]="t('Radiofrequenz Microneedling: Preise', 'RF microneedling prices')"
       sectionId="microneedling"
     >
@@ -323,9 +410,9 @@
       </div>
     </app-guide-section>
 
-    <!-- 05 · Narbenbehandlung -->
+    <!-- 06 · Narbenbehandlung -->
     <app-guide-section
-      index="05"
+      index="06"
       [heading]="t('Narbenbehandlung: Preise', 'Scar treatment prices')"
       sectionId="narbenbehandlung"
     >
@@ -390,9 +477,9 @@
       </div>
     </app-guide-section>
 
-    <!-- 06 · Body Forming -->
+    <!-- 07 · Body Forming -->
     <app-guide-section
-      index="06"
+      index="07"
       [heading]="t('Body Forming: Preise', 'Body forming prices')"
       sectionId="body-forming"
     >
@@ -472,9 +559,9 @@
       </div>
     </app-guide-section>
 
-    <!-- 07 · Wellness Massage -->
+    <!-- 08 · Wellness Massage -->
     <app-guide-section
-      index="07"
+      index="08"
       [heading]="t('Wellness Massage: Preise', 'Wellness massage prices')"
       sectionId="wellness-massage"
     >
@@ -522,9 +609,9 @@
       </div>
     </app-guide-section>
 
-    <!-- 08 · Therapeutische Massage -->
+    <!-- 09 · Therapeutische Massage -->
     <app-guide-section
-      index="08"
+      index="09"
       [heading]="t('Therapeutische Massage: Preise', 'Therapeutic massage prices')"
       sectionId="therapeutische-massage"
     >
@@ -584,9 +671,9 @@
       </div>
     </app-guide-section>
 
-    <!-- 09 · Gut zu wissen -->
+    <!-- 10 · Gut zu wissen -->
     <app-guide-section
-      index="09"
+      index="10"
       [heading]="t('Gut zu wissen', 'Good to know')"
       sectionId="gut-zu-wissen"
     >

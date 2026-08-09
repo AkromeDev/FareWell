@@ -8,7 +8,9 @@
  * Gliederung wie im Buchungssystem: sortiert nach Methode, nicht nach
  * Geschlecht. Getrennt wird allein der Intimbereich, und zwar nach Anatomie
  * (Vulva / Penis), damit trans und nicht binäre Kund:innen buchen können, ohne
- * sich falsch einordnen zu müssen.
+ * sich falsch einordnen zu müssen. Ebenfalls wie im Buchungssystem: Termine in
+ * ärztlicher Delegation bilden eine eigene Liste (`aerztlicheDelegation`) und
+ * stehen nicht als Variante unter der jeweiligen Basisleistung.
  *
  * Hausregel: „permanente Haarentfernung" = allein die Nadelepilation
  * (Elektrolyse); „dauerhafte" = Laser, Microneedling, Body Forming und alle
@@ -34,12 +36,19 @@ export interface PriceRow {
    */
   addon?: boolean;
   /**
-   * Dieselbe Behandlung unter ärztlicher Delegation, nur zu einem anderen
-   * Preis: steht direkt unter ihrer Basiszeile, wird ihr untergeordnet
-   * dargestellt (eingerückt, mit Tag) und trägt deshalb denselben Namen.
-   * Im JSON-LD hängt DELEGATION_DE/EN als Zusatz am Namen des Offers.
+   * Behandlung unter ärztlicher Delegation. Diese Zeilen stehen wie im
+   * Buchungssystem in einer eigenen Liste (Tabelle `aerztlicheDelegation`),
+   * nicht als Untervariante bei der Basisleistung. Im JSON-LD hängt
+   * DELEGATION_DE/EN als Zusatz am Namen des Offers.
    */
   delegation?: boolean;
+  /**
+   * Herkunft der Behandlung, nur in der Delegationsliste nötig: dort stehen
+   * Methoden nebeneinander, deren Namen für sich genommen mehrdeutig wären
+   * („Intim komplett" gibt es für Vulva und Penis). Erscheint als leise zweite
+   * Zeile in der Tabelle und als Präfix im JSON-LD.
+   */
+  scope?: { de: string; en: string };
 }
 
 /** Namenszusatz der Delegationsvarianten (Tag in der Tabelle, Name im JSON-LD). */
@@ -69,12 +78,8 @@ export const PRICE_TABLES = {
     rows: [
       { de: 'Sitzung 30 Minuten', en: '30-minute session', minutes: 30, price: 40 },
       { de: 'Sitzung 45 Minuten', en: '45-minute session', minutes: 45, price: 60 },
-      // Termine unter ärztlicher Delegation: nur als volle Stunde buchbar,
-      // deshalb jeweils direkt unter der passenden Sitzungsdauer.
       { de: 'Sitzung 60 Minuten', en: '60-minute session', minutes: 60, price: 80 },
-      { de: 'Sitzung 60 Minuten', en: '60-minute session', minutes: 60, price: 120, delegation: true },
       { de: 'Sitzung 120 Minuten', en: '120-minute session', minutes: 120, price: 160 },
-      { de: 'Sitzung 120 Minuten', en: '120-minute session', minutes: 120, price: 240, delegation: true },
       { de: 'Behandlungsvorbereitung mit Betäubungscreme', en: 'Preparation with numbing cream', minutes: 15, price: 20, addon: true },
     ],
   },
@@ -94,7 +99,6 @@ export const PRICE_TABLES = {
       { de: 'Hals', en: 'Neck (front)', minutes: 15, price: 60 },
       { de: 'Nacken', en: 'Nape of the neck', minutes: 15, price: 50 },
       { de: 'Unteres Gesicht komplett', en: 'Complete lower face', minutes: 45, price: 180 },
-      { de: 'Unteres Gesicht komplett', en: 'Complete lower face', minutes: 45, price: 250, delegation: true },
       { de: 'Kopf inkl. Nacken', en: 'Head incl. nape', minutes: 45, price: 140 },
     ],
   },
@@ -154,15 +158,59 @@ export const PRICE_TABLES = {
         minutes: 45,
         price: 180,
       },
+      { de: 'Intim komplett', en: 'Complete intimate area', minutes: 60, price: 220 },
+    ],
+  },
+
+  /**
+   * Eigene Preisliste, genau wie im Buchungssystem: Delegationstermine stehen
+   * bei Salonkee getrennt und nicht als Variante unter der Basisleistung. Die
+   * Namen bleiben deshalb wortwörtlich, die Methode steht im `scope`.
+   */
+  aerztlicheDelegation: {
+    de: '',
+    en: '',
+    rows: [
+      {
+        de: 'Sitzung 60 Minuten',
+        en: '60-minute session',
+        minutes: 60,
+        price: 120,
+        delegation: true,
+        scope: { de: 'Nadelepilation', en: 'Electrolysis' },
+      },
+      {
+        de: 'Sitzung 120 Minuten',
+        en: '120-minute session',
+        minutes: 120,
+        price: 240,
+        delegation: true,
+        scope: { de: 'Nadelepilation', en: 'Electrolysis' },
+      },
+      {
+        de: 'Unteres Gesicht komplett',
+        en: 'Complete lower face',
+        minutes: 45,
+        price: 250,
+        delegation: true,
+        scope: { de: 'Laser, Gesicht & Kopf', en: 'Laser, face & head' },
+      },
       {
         de: 'Intim vorne (Schaft, Hoden, Damm, Pubis)',
         en: 'Front intimate area (shaft, testicles, perineum, pubic area)',
         minutes: 45,
         price: 250,
         delegation: true,
+        scope: { de: 'Laser, Intimbereich Penis', en: 'Laser, intimate area penis' },
       },
-      { de: 'Intim komplett', en: 'Complete intimate area', minutes: 60, price: 220 },
-      { de: 'Intim komplett', en: 'Complete intimate area', minutes: 60, price: 300, delegation: true },
+      {
+        de: 'Intim komplett',
+        en: 'Complete intimate area',
+        minutes: 60,
+        price: 300,
+        delegation: true,
+        scope: { de: 'Laser, Intimbereich Penis', en: 'Laser, intimate area penis' },
+      },
     ],
   },
 
@@ -297,6 +345,18 @@ export const PRICE_SERVICES: PriceService[] = [
     descriptionEn:
       'Long-lasting hair removal with the four-wavelength diode laser and AI-assisted skin-type detection, for the face, body and intimate area. Sorted by area, the intimate area by anatomy (vulva / penis).',
     tables: ['laserGesicht', 'laserKoerper', 'laserIntimVulva', 'laserIntimPenis'],
+  },
+  {
+    anchor: 'aerztliche-delegation',
+    nameDe: 'Behandlungen unter ärztlicher Verantwortung',
+    nameEn: 'Treatments under medical responsibility',
+    serviceTypeDe: 'Ärztliche Delegation',
+    serviceTypeEn: 'Medical delegation',
+    descriptionDe:
+      'Nadelepilation und Laser in ärztlicher Delegation bei FareWell Nürnberg: Die Behandlung führen wir durch, die fachliche Verantwortung trägt unser begleitender Arzt. Eigene Preisliste, eigene Termine.',
+    descriptionEn:
+      'Electrolysis and laser under medical delegation at FareWell Nuremberg: we carry out the treatment, our accompanying physician holds the professional responsibility. Separate price list, separate appointments.',
+    tables: ['aerztlicheDelegation'],
   },
   {
     anchor: 'microneedling',

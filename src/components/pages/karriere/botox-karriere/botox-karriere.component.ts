@@ -23,7 +23,9 @@ const PAGE_PATH = '/karriere/botox-nuernberg';
 })
 export class BotoxKarriereComponent extends KarriereDetailPage {
   protected readonly jsonLdId = 'botox-karriere-schema';
-  protected override readonly ogImage = 'assets/images/treatment/microneedling6.webp';
+  // Eigene 1200x630-JPEG-Fassung des Behandlungsfotos: WebP zeigen mehrere
+  // Messenger im Link-Vorschaubild nicht an.
+  protected override readonly ogImage = 'assets/images/treatment/og-aesthetische-medizin.jpg';
 
   protected override get hoursStat(): GuideStat {
     return zeitStat((de, en) => this.t(de, en), '10–20', 'Mo–Fr · Sa 08–17', 'Mon–Fri · Sat 08–17');
@@ -154,6 +156,7 @@ export class BotoxKarriereComponent extends KarriereDetailPage {
               'You treat under your own medical responsibility, with your own informed consent process, your own documentation and your own liability insurance. FareWell provides the room, the appointments, the booking system and the visibility. We already work with medical responsibility in the house: some of our cosmetic treatments are offered under medical delegation. Your offering fits directly into that structure.'
             ),
             linkPath: '/price',
+            linkFragment: 'aerztliche-delegation',
             linkLabel: t(
               'Behandlungen unter ärztlicher Delegation ansehen',
               'See the treatments under medical delegation'

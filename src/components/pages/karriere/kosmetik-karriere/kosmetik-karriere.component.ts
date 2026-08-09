@@ -22,7 +22,9 @@ const PAGE_PATH = '/karriere/kosmetik-nuernberg';
 })
 export class KosmetikKarriereComponent extends KarriereDetailPage {
   protected readonly jsonLdId = 'kosmetik-karriere-schema';
-  protected override readonly ogImage = 'assets/images/treatment/microneedling.webp';
+  // Eigene 1200x630-JPEG-Fassung: das Original ist WebP im Hochformat und
+  // taugt als Vorschaubild weder vom Format noch vom Zuschnitt her.
+  protected override readonly ogImage = 'assets/images/treatment/og-kosmetik.jpg';
 
   protected override get hoursStat(): GuideStat {
     return zeitStat((de, en) => this.t(de, en), '10–20', 'Mo–Fr · Sa 08–17', 'Mon–Fri · Sat 08–17');

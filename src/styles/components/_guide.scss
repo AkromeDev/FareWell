@@ -967,22 +967,15 @@
       overflow-wrap: break-word;
     }
 
-    // Delegationszeile: dieselbe Behandlung zu einem anderen Preis. Sie hängt
-    // optisch an der Zeile darüber — eingerückt, leiser, mit Tag statt
-    // wiederholtem Namen. Gleiche Darstellung bei Nadelepilation und Laser.
-    tbody tr.gd-subrow td {
-      padding-top: 0.36rem;
+    // Herkunft der Behandlung in der Delegationsliste: dort stehen Methoden
+    // nebeneinander, deren Namen aus dem Buchungssystem allein mehrdeutig
+    // wären. Leise zweite Zeile, damit der Name selbst führend bleibt.
+    .gd-row-scope {
+      display: block;
+      margin-top: 0.12rem;
+      font-size: 0.82em;
+      line-height: 1.35;
       color: var(--gd-faint);
-    }
-
-    tbody tr.gd-subrow td:first-child {
-      padding-left: 1.85rem;
-    }
-
-    // Basis- und Delegationszeile bilden ein Paar: keine Trennlinie dazwischen.
-    tbody tr:not(.gd-subrow):has(+ tr.gd-subrow) td {
-      padding-bottom: 0.3rem;
-      border-bottom: none;
     }
 
     @media (max-width: 480px) {
@@ -1005,17 +998,6 @@
     border-radius: 6px;
     background: var(--gd-sand-tint);
     color: var(--gd-sage-strong);
-
-    // Leise Variante für Tabellenzeilen (Delegationspreise): markiert die
-    // Zeile, ohne sie hervorzuheben.
-    &.gd-pill--soft {
-      background: var(--gd-surface-2);
-      border: 1px solid var(--gd-line);
-      color: var(--gd-faint);
-      font-size: 11.5px;
-      font-weight: 600;
-      padding: 0.1rem 0.45rem;
-    }
 
     &.gd-pill--ok {
       background: var(--gd-ok-tint);

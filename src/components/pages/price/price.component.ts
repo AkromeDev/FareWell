@@ -97,6 +97,12 @@ export class PriceComponent implements OnInit, OnDestroy {
       aDe: 'Laser Haarentfernung kostet bei FareWell in Nürnberg ab 30 € pro Zone. Beispiele: Achseln 60 €, Oberlippe 50 €, Rücken komplett 120 €, Beine komplett 180 €, Intim vorne 180 € (Penis), Intim komplett 200 € (Vulva) beziehungsweise 220 € (Penis), ganzer Körper 750 €. Mit ärztlicher Delegation kosten die Komplettpakete 250 € (unteres Gesicht komplett, Intim vorne) und 300 € (Intim komplett). Alle Preise gelten pro Sitzung und inklusive 19% MwSt.',
       aEn: 'Laser hair removal at FareWell in Nuremberg starts at €30 per area. Examples: underarms €60, upper lip €50, complete back €120, complete legs €180, front intimate area €180 (penis), complete intimate area €200 (vulva) or €220 (penis), full body €750. With medical delegation, the complete packages cost €250 (complete lower face, front intimate area) and €300 (complete intimate area). All prices are per session and include 19% VAT.',
     },
+    aerztlicheDelegation: {
+      qDe: 'Was kostet eine Behandlung in ärztlicher Delegation in Nürnberg?',
+      qEn: 'How much does a treatment under medical delegation cost in Nuremberg?',
+      aDe: 'Bei FareWell in Nürnberg kosten die Behandlungen unter ärztlicher Verantwortung: Nadelepilation 120 € für 60 Minuten und 240 € für 120 Minuten, Laser unteres Gesicht komplett 250 €, Laser Intim vorne 250 € und Laser Intim komplett 300 €. Die Nadelepilation in Delegation wird ausschließlich als volle Stunde gebucht, beim Laser gilt sie nur für die Komplettpakete und nicht für einzelne Zonen. Ob deine Krankenkasse die Kosten übernimmt, entscheidet allein deine Kasse.',
+      aEn: 'At FareWell in Nuremberg, treatments under medical responsibility cost: electrolysis €120 for 60 minutes and €240 for 120 minutes, laser complete lower face €250, laser front intimate area €250 and laser complete intimate area €300. Electrolysis under delegation is booked in full hours only; for the laser it applies to the complete packages, not to single areas. Whether your health insurer covers the cost is decided by your insurer alone.',
+    },
     microneedling: {
       qDe: 'Was kostet Radiofrequenz Microneedling in Nürnberg?',
       qEn: 'How much does radio-frequency microneedling cost in Nuremberg?',
@@ -133,6 +139,7 @@ export class PriceComponent implements OnInit, OnDestroy {
   private readonly faqOrder: (keyof PriceComponent['faqs'])[] = [
     'nadelepilation',
     'laser',
+    'aerztlicheDelegation',
     'microneedling',
     'narbenbehandlung',
     'bodyForming',
@@ -181,12 +188,16 @@ export class PriceComponent implements OnInit, OnDestroy {
     return `${row.minutes} ${this.t('Min.', 'min')}`;
   }
 
-  /** Ist die Zeile die Delegationsvariante der Zeile darüber? */
-  isDelegation(row: PriceRow): boolean {
-    return row.delegation === true;
+  /**
+   * Methode hinter einer Zeile der Delegationsliste („Nadelepilation", „Laser,
+   * Intimbereich Penis"). Nur dort gesetzt, weil die Namen aus dem
+   * Buchungssystem für sich genommen mehrdeutig wären.
+   */
+  scopeLabel(row: PriceRow): string {
+    return row.scope ? this.t(row.scope.de, row.scope.en) : '';
   }
 
-  /** Tag-Text der Delegationszeilen, zugleich Namenszusatz im JSON-LD. */
+  /** Namenszusatz der Delegationsangebote im JSON-LD. */
   get delegationLabel(): string {
     return this.t(DELEGATION_DE, DELEGATION_EN);
   }
@@ -208,6 +219,10 @@ export class PriceComponent implements OnInit, OnDestroy {
       { id: 'beratung', label: this.t('Kostenlose Beratung', 'Free consultation') },
       { id: 'nadelepilation', label: this.t('Nadelepilation (Elektrolyse)', 'Electrolysis') },
       { id: 'laser', label: this.t('Laser (4 Wellen Diodenlaser)', 'Laser (diode laser)') },
+      {
+        id: 'aerztliche-delegation',
+        label: this.t('Unter ärztlicher Verantwortung', 'Under medical responsibility'),
+      },
       { id: 'microneedling', label: this.t('Radiofrequenz Microneedling', 'RF microneedling') },
       { id: 'narbenbehandlung', label: this.t('Narbenbehandlung', 'Scar treatment') },
       { id: 'body-forming', label: this.t('Body Forming', 'Body forming') },
@@ -301,11 +316,14 @@ export class PriceComponent implements OnInit, OnDestroy {
   }
 
   private buildOffer(pageUrl: string, anchor: string, table: PriceTable, row: PriceRow): object {
-    const label = this.t(table.de, table.en);
+    // Herkunft der Zeile schlägt die Tabellenüberschrift: in der
+    // Delegationsliste hat die Tabelle keine Überschrift, dafür trägt jede
+    // Zeile ihre Methode.
+    const label = this.scopeLabel(row) || this.t(table.de, table.en);
     const scope = label ? `${label}, ` : '';
     const price = row.price ?? 0;
-    // Delegationszeilen tragen in der Tabelle nur ein Tag, im Offer aber den
-    // vollständigen Namen wie im Buchungssystem.
+    // In der Tabelle steht die Delegation als Sektionsüberschrift, im Offer
+    // muss sie am Namen hängen, weil das Offer für sich allein gelesen wird.
     const suffix = row.delegation ? ` ${this.delegationLabel}` : '';
     return {
       '@type': 'Offer',

@@ -22,7 +22,11 @@ import { KarriereFaqEntry } from 'src/components/pages/karriere/shared/karriere-
         <app-faq-item [question]="entry.question" [open]="first">
           <p>{{ entry.answer }}</p>
           @if (entry.linkPath && entry.linkLabel) {
-            <p><a [routerLink]="p(entry.linkPath)">{{ entry.linkLabel }}</a></p>
+            <p>
+              <a [routerLink]="p(entry.linkPath)" [fragment]="entry.linkFragment">{{
+                entry.linkLabel
+              }}</a>
+            </p>
           }
         </app-faq-item>
       }

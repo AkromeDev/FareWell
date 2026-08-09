@@ -25,7 +25,8 @@ const PAGE_PATH = '/karriere/tanzlehrer-nuernberg';
 })
 export class TanzKarriereComponent extends KarriereDetailPage {
   protected readonly jsonLdId = 'tanz-karriere-schema';
-  protected override readonly ogImage = 'assets/images/farewell/studio.webp';
+  // Kein eigenes ogImage: das Standardbild ist bereits der Empfang im Studio,
+  // und ohne Override setzt der SeoService auch Format und Maße mit.
 
   /** Statt „flexibel“: das feste Zeitfenster für Kurse. */
   protected override get hoursStat(): GuideStat {

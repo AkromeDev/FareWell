@@ -34,6 +34,8 @@ export interface KarriereFaqEntry {
   /** Optionaler weiterführender interner Link unter der Antwort. */
   linkPath?: string;
   linkLabel?: string;
+  /** Anker auf der Zielseite, wenn der Link auf einen Abschnitt zeigt. */
+  linkFragment?: string;
 }
 
 /** Ersetzt Frage und/oder Antwort einer Standardfrage. */

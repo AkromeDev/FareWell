@@ -65,8 +65,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly jsonLdId = 'home-schema';
 
+  /**
+   * Studioempfang als JPEG in 1200x630. Bewusst nicht die WebP-Fassung des
+   * Heros: dasselbe Bild dient als Vorschaubild beim Teilen, und WebP zeigen
+   * mehrere Messenger dort nicht an.
+   */
   private readonly heroImageUrl =
-    'https://farewell.salon/assets/images/farewell/studio.webp';
+    'https://farewell.salon/assets/images/farewell/og-studio.jpg';
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
 
   @ViewChild('railTrack') private railTrack?: ElementRef<HTMLElement>;
@@ -403,7 +408,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       title: pageTitle,
       description: description,
       path: PAGE_PATH,
-      image: this.heroImageUrl,
+      // Kein image: das Standardbild des SeoService ist bereits dieses Foto,
+      // und ohne Override kommen Format und Maße automatisch mit.
       imageAlt: imageAlt,
       largeImage: true,
     });
