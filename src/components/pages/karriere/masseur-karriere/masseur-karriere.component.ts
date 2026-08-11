@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { GUIDE_COMPONENTS, type GuideStat } from 'src/components/molecules/guide';
-import { KARRIERE_COMPONENTS } from 'src/components/molecules/karriere';
+import { KARRIERE_COMPONENTS, type KarriereRole } from 'src/components/molecules/karriere';
 import { KarriereDetailPage } from '../shared/karriere-detail-page';
 import { KarriereJobConfig } from '../shared/karriere-seo';
 import { karriereFaqEntries, zeitStat } from '../shared/karriere-content';
@@ -24,6 +24,7 @@ const PAGE_PATH = '/karriere/masseur-nuernberg';
 })
 export class MasseurKarriereComponent extends KarriereDetailPage {
   protected readonly jsonLdId = 'masseur-jobposting-schema';
+  override readonly role: KarriereRole = 'massage';
   protected override readonly ogImage = 'assets/images/massages/tm massaging.jpg';
 
   /** Das längste Fenster im Haus: der Massageraum hängt nicht an der Kosmetik. */

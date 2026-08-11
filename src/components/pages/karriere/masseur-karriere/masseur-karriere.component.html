@@ -102,11 +102,13 @@
       </div>
     </app-guide-section>
 
-    <app-karriere-zeiten role="massage" index="03" />
+    <app-karriere-zeiten [role]="role" index="03" />
 
     <app-karriere-deal index="04" />
 
-    <app-karriere-faq index="05" [entries]="faq" />
+    <app-karriere-kanaele [role]="role" index="05" />
+
+    <app-karriere-faq index="06" [entries]="faq" />
 
     <app-karriere-apply [subject]="applySubject">
       <span class="lang de">

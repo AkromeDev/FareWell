@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { GUIDE_COMPONENTS, type GuideStat } from 'src/components/molecules/guide';
-import { KARRIERE_COMPONENTS } from 'src/components/molecules/karriere';
+import { KARRIERE_COMPONENTS, type KarriereRole } from 'src/components/molecules/karriere';
 import { KarriereDetailPage } from '../shared/karriere-detail-page';
 import { KarriereJobConfig } from '../shared/karriere-seo';
 import { karriereFaqEntries, zeitStat } from '../shared/karriere-content';
@@ -22,6 +22,7 @@ const PAGE_PATH = '/karriere/kosmetik-nuernberg';
 })
 export class KosmetikKarriereComponent extends KarriereDetailPage {
   protected readonly jsonLdId = 'kosmetik-karriere-schema';
+  override readonly role: KarriereRole = 'kosmetik';
   // Eigene 1200x630-JPEG-Fassung: das Original ist WebP im Hochformat und
   // taugt als Vorschaubild weder vom Format noch vom Zuschnitt her.
   protected override readonly ogImage = 'assets/images/treatment/og-kosmetik.jpg';

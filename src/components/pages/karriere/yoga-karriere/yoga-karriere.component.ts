@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { GUIDE_COMPONENTS, type GuideStat } from 'src/components/molecules/guide';
-import { KARRIERE_COMPONENTS } from 'src/components/molecules/karriere';
+import { KARRIERE_COMPONENTS, type KarriereRole } from 'src/components/molecules/karriere';
 import { KarriereDetailPage } from '../shared/karriere-detail-page';
 import { KarriereJobConfig } from '../shared/karriere-seo';
-import { karriereFaqEntries, kursZeitStat } from '../shared/karriere-content';
+import { karriereFaqEntries, kursPlattformFaq, kursZeitStat } from '../shared/karriere-content';
 
 const PAGE_PATH = '/karriere/yoga-nuernberg';
 
@@ -26,6 +26,7 @@ const PAGE_PATH = '/karriere/yoga-nuernberg';
 })
 export class YogaKarriereComponent extends KarriereDetailPage {
   protected readonly jsonLdId = 'yoga-karriere-schema';
+  override readonly role: KarriereRole = 'kurs';
   // Kein eigenes ogImage: das Standardbild ist bereits der Empfang im Studio,
   // und ohne Override setzt der SeoService auch Format und Maße mit.
 
@@ -131,6 +132,7 @@ export class YogaKarriereComponent extends KarriereDetailPage {
               'We have a quiet room inside the studio, suited to small groups and one-to-one sessions rather than a large class hall. How many mats realistically fit is something we look at together on the trial day, so you can plan your format around it.'
             ),
           },
+          kursPlattformFaq(t),
           {
             question: t(
               'Kann ich Kurse und Einzelstunden mischen?',

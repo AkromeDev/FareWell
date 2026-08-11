@@ -347,6 +347,22 @@
             </tbody>
           </table>
         </div>
+
+        <app-guide-note
+          variant="win"
+          [label]="t('Ausnahme: Groupon', 'Exception: Groupon')"
+        >
+          <span class="lang de">
+            Für Umsätze über Groupon gilt die 70/30-Aufteilung nicht. Was die Plattform an dich
+            auszahlt, behältst du vollständig: Groupon hat sich seinen Teil schon geholt, und
+            wir nehmen von dem Rest nichts.
+          </span>
+          <span class="lang en">
+            The 70/30 split does not apply to revenue through Groupon. Whatever the platform
+            pays out to you stays with you in full: Groupon has already taken its cut, and we
+            take nothing from what is left.
+          </span>
+        </app-guide-note>
       </div>
       <div class="gd-cards gd-cards--2">
         <app-guide-card icon="💳" [heading]="t('Wie du kassierst', 'How you take payment')">
@@ -496,18 +512,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><strong>50%</strong></td>
-                <td class="num">35,00</td>
-                <td class="num" style="color: var(--gd-danger)">19,17</td>
-                <td class="num">15,83</td>
-              </tr>
-              <tr>
-                <td><strong>25%</strong></td>
-                <td class="num">52,50</td>
-                <td class="num" style="color: var(--gd-ok)">28,76</td>
-                <td class="num">23,74</td>
-              </tr>
+              @for (row of grouponBeispiele; track row.rabatt) {
+                <tr>
+                  <td><strong>{{ row.rabatt }}</strong></td>
+                  <td class="num">{{ row.zahlt }}</td>
+                  <td class="num" [style.color]="row.gut ? 'var(--gd-ok)' : 'var(--gd-danger)'">
+                    {{ row.bekommst }}
+                  </td>
+                  <td class="num">{{ row.behaelt }}</td>
+                </tr>
+              }
             </tbody>
           </table>
         </div>
@@ -525,14 +539,16 @@
 
         <app-guide-note variant="win" [label]="t('Der eigentliche Sinn', 'The real point')">
           <span class="lang de">
-            Bei 50% Rabatt bekommst du rund €&nbsp;19 für eine Massage zu €&nbsp;70. Das ist
+            Bei 50% Rabatt bekommst du rund €&nbsp;19 für eine Massage zu €&nbsp;70 — und davon
+            geht nichts mehr ab, weil wir auf Groupon-Umsätze keine 30% nehmen. Das ist
             als einmaliger Kennenlernpreis in Ordnung, aber nur wenn du umwandelst. Bei Groupon
             geht es nicht um Gewinn beim ersten Termin, sondern darum, dein Können zu zeigen
             und Stammkund:innen zu gewinnen. Anna, unsere erste Masseurin, hat rund 20% ihrer
             Groupon Gäste zu einer zweiten Massage zum vollen Preis gebracht.
           </span>
           <span class="lang en">
-            At 50% off you receive about €&nbsp;19 for a €&nbsp;70 massage. That is fine as a
+            At 50% off you receive about €&nbsp;19 for a €&nbsp;70 massage — and nothing is
+            deducted from it, because we take no 30% on Groupon revenue. That is fine as a
             one time taster, but only if you convert. With Groupon it is not about profit on
             the first visit, it is about showing your skill and winning a regular client. Anna,
             our first therapist, turned about 20% of her Groupon guests into a second, full

@@ -91,14 +91,38 @@
             classes do not start in an empty calendar.
           </span>
         </app-guide-note>
+
+        <app-guide-note
+          variant="win"
+          [label]="t('Volle Matten von Anfang an', 'A full room from the start')"
+        >
+          <span class="lang de">
+            Am Anfang zählt weniger der Preis pro Platz als eine Stunde, die sich voll anfühlt.
+            Deshalb kannst du zu Beginn einen Teil deiner Plätze über Urban Sports Club anbieten:
+            Mitglieder checken bei dir ein, du verdienst pro Person weniger als an einem regulär
+            gebuchten Platz, dafür steht jemand auf der Matte, der dich sonst nie gefunden hätte.
+            Beim Einrichten helfen wir dir; wie groß das Kontingent ist, entscheidest du. Und was
+            die Plattform auszahlt, bleibt zu 100% bei dir — davon nehmen wir nichts.
+          </span>
+          <span class="lang en">
+            At the start, what counts is less the price per spot than a class that feels full. That
+            is why you can offer part of your spots through Urban Sports Club in the beginning:
+            members check in with you, you earn less per person than on a regularly booked spot, but
+            somebody is standing on the mat who would never have found you otherwise. We help you
+            set it up, and how big the contingent is stays your decision. And whatever the platform
+            pays out stays 100% with you — we take nothing from it.
+          </span>
+        </app-guide-note>
       </div>
     </app-guide-section>
 
-    <app-karriere-zeiten role="kurs" index="03" />
+    <app-karriere-zeiten [role]="role" index="03" />
 
     <app-karriere-deal index="04" />
 
-    <app-karriere-faq index="05" [entries]="faq" />
+    <app-karriere-kanaele [role]="role" index="05" />
+
+    <app-karriere-faq index="06" [entries]="faq" />
 
     <app-karriere-apply [subject]="applySubject">
       <span class="lang de">

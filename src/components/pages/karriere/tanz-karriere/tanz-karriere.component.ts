@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { GUIDE_COMPONENTS, type GuideStat } from 'src/components/molecules/guide';
-import { KARRIERE_COMPONENTS } from 'src/components/molecules/karriere';
+import { KARRIERE_COMPONENTS, type KarriereRole } from 'src/components/molecules/karriere';
 import { KarriereDetailPage } from '../shared/karriere-detail-page';
 import { KarriereJobConfig } from '../shared/karriere-seo';
-import { karriereFaqEntries, kursZeitStat } from '../shared/karriere-content';
+import { karriereFaqEntries, kursPlattformFaq, kursZeitStat } from '../shared/karriere-content';
 
 const PAGE_PATH = '/karriere/tanzlehrer-nuernberg';
 
@@ -25,6 +25,7 @@ const PAGE_PATH = '/karriere/tanzlehrer-nuernberg';
 })
 export class TanzKarriereComponent extends KarriereDetailPage {
   protected readonly jsonLdId = 'tanz-karriere-schema';
+  override readonly role: KarriereRole = 'kurs';
   // Kein eigenes ogImage: das Standardbild ist bereits der Empfang im Studio,
   // und ohne Override setzt der SeoService auch Format und Maße mit.
 
@@ -127,6 +128,7 @@ export class TanzKarriereComponent extends KarriereDetailPage {
               'Honestly: no. We do not have a hall with a mirrored wall and a sprung floor, but a flexible room inside the studio. It works well for one-to-one lessons, couples and small groups, but not for large classes. On the trial day you see for yourself whether your format fits, before anyone commits to anything.'
             ),
           },
+          kursPlattformFaq(t),
           {
             question: t('Welche Stile sucht ihr?', 'Which styles are you looking for?'),
             answer: t(

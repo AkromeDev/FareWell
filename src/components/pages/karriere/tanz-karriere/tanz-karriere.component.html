@@ -92,14 +92,39 @@
             sides know whether it fits.
           </span>
         </app-guide-note>
+
+        <app-guide-note
+          variant="win"
+          [label]="t('Urban Sports Club für den Start', 'Urban Sports Club for the start')"
+        >
+          <span class="lang de">
+            Eine neue Kursreihe entscheidet sich in den ersten Wochen. Wenn du willst, gibst du
+            dafür einen Teil deiner Plätze über Urban Sports Club frei: Dein Kurs taucht dann in
+            einer App auf, in der Menschen ohnehin nach Bewegung in der Nähe suchen. Pro Check-in
+            bekommst du weniger als für einen regulär gebuchten Platz, dafür füllt sich die Gruppe
+            schneller, und eine volle Gruppe zieht die nächste an. Beim Einrichten helfen wir dir,
+            später fährst du das Kontingent einfach wieder zurück. Was die Plattform auszahlt,
+            bleibt zu 100% bei dir — davon nehmen wir nichts.
+          </span>
+          <span class="lang en">
+            A new course series is decided in its first weeks. If you want, you can release part of
+            your spots through Urban Sports Club: your class then shows up in an app where people
+            are already looking for movement nearby. You get less per check-in than for a regularly
+            booked spot, but the group fills up faster, and a full group pulls in the next one. We
+            help you set it up, and later you simply dial the contingent back down. Whatever the
+            platform pays out stays 100% with you — we take nothing from it.
+          </span>
+        </app-guide-note>
       </div>
     </app-guide-section>
 
-    <app-karriere-zeiten role="kurs" index="03" />
+    <app-karriere-zeiten [role]="role" index="03" />
 
     <app-karriere-deal index="04" />
 
-    <app-karriere-faq index="05" [entries]="faq" />
+    <app-karriere-kanaele [role]="role" index="05" />
+
+    <app-karriere-faq index="06" [entries]="faq" />
 
     <app-karriere-apply [subject]="applySubject">
       <span class="lang de">

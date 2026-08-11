@@ -10,6 +10,7 @@ import {
   GuideStat,
   GuideTocItem,
 } from 'src/components/molecules/guide';
+import { GROUPON_BEISPIELE, type GrouponBeispiel } from 'src/components/molecules/karriere';
 
 const PAGE_PATH = '/karriere/masseur-nuernberg/onboarding';
 const PAGE_TITLE_DE = 'Onboarding Massage: so arbeiten wir zusammen | FareWell Nürnberg';
@@ -37,6 +38,13 @@ export class MasseurOnboardingComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly language = inject(LanguageService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
+  /**
+   * Dieselben Zahlen wie in der Kanal-Tabelle der Karriere-Seiten
+   * (<app-karriere-kanaele>) — eine Quelle, damit Gebührenänderungen bei
+   * Groupon nicht an zwei Stellen gepflegt werden müssen.
+   */
+  readonly grouponBeispiele: GrouponBeispiel[] = GROUPON_BEISPIELE;
 
   get lang(): GuideLang {
     return this.language.lang();

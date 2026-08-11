@@ -108,6 +108,26 @@ export function kursZeitStat(t: Translate): GuideStat {
   };
 }
 
+/**
+ * Die Frage, die Kursformate von Behandlungsberufen unterscheidet: Eine
+ * Massage lebt vom einzelnen Termin, eine Stunde Yoga oder Tanz von einer
+ * Gruppe, die sich voll anfühlt. Deshalb steht die Antwort auf beiden
+ * Kursseiten (Yoga, Tanz) im selben Wortlaut hier — inklusive der ehrlichen
+ * Einordnung, dass ein Check-in weniger einbringt als ein regulärer Platz.
+ */
+export function kursPlattformFaq(t: Translate): KarriereFaqEntry {
+  return {
+    question: t(
+      'Wie bekomme ich meinen Kurs am Anfang voll?',
+      'How do I get my class full at the beginning?'
+    ),
+    answer: t(
+      'Der schwierige Teil ist nicht die erste Stunde, sondern die Wochen danach. Neben deiner eigenen Seite, der Online-Buchung und unseren Instagram-Kanälen lohnt sich gerade am Anfang ein eigenes Konto bei Urban Sports Club oder einem vergleichbaren Anbieter: Du gibst dort ein Kontingent deiner Plätze frei, Mitglieder checken bei dir ein und lernen dich kennen, ohne vorher etwas buchen zu müssen. Pro Check-in bekommst du weniger als für einen regulär gebuchten Platz, dafür füllt sich der Raum schneller, und eine gut besuchte Stunde zieht die nächsten Teilnehmenden an. Was die Plattform auszahlt, bleibt vollständig bei dir: Auf diese Umsätze nimmt FareWell keine Beteiligung. Beim Einrichten helfen wir dir; das Konto läuft wie dein Google-Profil auf deinen Namen. Sobald dein Angebot etabliert ist, kannst du das Kontingent verkleinern oder ganz zurücknehmen.',
+      'The hard part is not the first class, it is the weeks after it. Alongside your own page, the online booking and our Instagram channels, an account of your own with Urban Sports Club or a comparable platform is worth it especially at the start: you release a contingent of your spots there, and members check in with you and get to know you without having to book anything in advance. You get less per check-in than for a regularly booked spot, but the room fills up faster, and a well-attended class draws the next participants in. Whatever the platform pays out stays with you in full: FareWell takes no share of that revenue. We help you set it up; like your Google profile, the account is in your name. Once your offering is established you can shrink the contingent or withdraw it entirely.'
+    ),
+  };
+}
+
 /** Kennzahl-Kachel für Behandlungsberufe mit festem Betriebsfenster. */
 export function zeitStat(t: Translate, value: string, de: string, en: string): GuideStat {
   return { value, label: t(de, en), animate: false };
@@ -252,8 +272,8 @@ export function karriereFaqEntries(
           'What does using the space cost me, and how does the model work?'
         ),
         answer: t(
-          'Du zahlst keine feste Miete und kein Fixum. Wir arbeiten mit einer Umsatzbeteiligung: Du behältst den größeren Teil von dem, was du tatsächlich einnimmst, FareWell einen kleineren Anteil für Raum, Buchungssystem, Rahmen und Sichtbarkeit. Die genaue Aufteilung und den Abrechnungsrhythmus halten wir im Erstgespräch schriftlich fest, bevor du startest.',
-          'You pay no fixed rent and no flat fee. We work with a revenue share: you keep the larger part of what you actually take in, FareWell keeps a smaller share for the room, the booking system, the frame around it and the visibility. We put the exact split and the settlement rhythm in writing at the first meeting, before you start.'
+          'Du zahlst keine feste Miete und kein Fixum. Wir arbeiten mit einer Umsatzbeteiligung: Du behältst den größeren Teil von dem, was du tatsächlich einnimmst, FareWell einen kleineren Anteil für Raum, Buchungssystem, Rahmen und Sichtbarkeit. Ausgenommen sind Umsätze über Plattformen wie Groupon oder Urban Sports Club: Davon nehmen wir nichts, die bleiben zu 100% bei dir. Die genaue Aufteilung und den Abrechnungsrhythmus halten wir im Erstgespräch schriftlich fest, bevor du startest.',
+          'You pay no fixed rent and no flat fee. We work with a revenue share: you keep the larger part of what you actually take in, FareWell keeps a smaller share for the room, the booking system, the frame around it and the visibility. Revenue from platforms such as Groupon or Urban Sports Club is excluded: we take nothing from it, 100% stays with you. We put the exact split and the settlement rhythm in writing at the first meeting, before you start.'
         ),
       },
       overrides.model

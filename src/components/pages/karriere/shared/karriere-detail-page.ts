@@ -2,6 +2,8 @@ import { Directive, OnDestroy, OnInit, inject } from '@angular/core';
 import { SeoService } from 'src/services/seo.service';
 import { LanguageService, Lang } from 'src/services/language.service';
 import { type GuideStat, type GuideTocItem } from 'src/components/molecules/guide';
+import { type KarriereRole } from 'src/components/molecules/karriere/karriere-zeiten/karriere-zeiten.model';
+import { kanaeleHeading } from 'src/components/molecules/karriere/karriere-kanaele/karriere-kanaele.model';
 import { KarriereFaqEntry, karriereStats } from './karriere-content';
 import { KarriereJobConfig, buildKarriereJsonLd } from './karriere-seo';
 
@@ -30,6 +32,13 @@ export abstract class KarriereDetailPage implements OnInit, OnDestroy {
 
   /** Optionales Hero-Bild (Pfad ab /assets) für Open Graph. */
   protected readonly ogImage: string | null = null;
+
+  /**
+   * Aus wessen Perspektive Wochenraster und Kanal-Tabelle gelesen werden. Die
+   * Unterklasse setzt sie; sie steuert unter anderem, ob Urban Sports Club
+   * (nur Kurse) und Groupon (nicht in der ärztlichen Ästhetik) auftauchen.
+   */
+  readonly role: KarriereRole = 'kosmetik';
 
   private configCache: { lang: Lang; config: KarriereJobConfig } | null = null;
 
@@ -86,6 +95,7 @@ export abstract class KarriereDetailPage implements OnInit, OnDestroy {
       { id: 'profil', label: this.t('Dein Profil', 'Your profile') },
       { id: 'zeiten', label: this.t('Zeiten und freie Fenster', 'Hours and open slots') },
       { id: 'deal', label: this.t('Dein Deal bei FareWell', 'Your deal at FareWell') },
+      { id: 'kanaele', label: kanaeleHeading((de, en) => this.t(de, en), this.role) },
       { id: 'faq', label: this.t('Häufige Fragen', 'Frequently asked questions') },
       { id: 'bewerben', label: this.t('Bewerben', 'Apply') },
     ];

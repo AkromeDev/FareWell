@@ -3,7 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { GUIDE_COMPONENTS, type GuideStat, type GuideTocItem } from 'src/components/molecules/guide';
-import { KARRIERE_COMPONENTS } from 'src/components/molecules/karriere';
+import { KARRIERE_COMPONENTS, kanaeleHeading } from 'src/components/molecules/karriere';
 import { SeoService } from 'src/services/seo.service';
 import { LanguageService, Lang } from 'src/services/language.service';
 
@@ -80,6 +80,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
       { id: 'deal', label: this.t('Dein Deal bei FareWell', 'Your deal at FareWell') },
       { id: 'zeiten', label: this.t('Zeiten und freie Fenster', 'Hours and open slots') },
       { id: 'start', label: this.t('So läuft der Start', 'How the start works') },
+      { id: 'kanaele', label: kanaeleHeading((de, en) => this.t(de, en), 'uebersicht') },
       { id: 'stellen', label: this.t('Offene Positionen', 'Open positions') },
       { id: 'bewerben', label: this.t('Bewerben', 'Apply') },
     ];

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { GUIDE_COMPONENTS, type GuideStat } from 'src/components/molecules/guide';
-import { KARRIERE_COMPONENTS } from 'src/components/molecules/karriere';
+import { KARRIERE_COMPONENTS, type KarriereRole } from 'src/components/molecules/karriere';
 import { KarriereDetailPage } from '../shared/karriere-detail-page';
 import { KarriereJobConfig } from '../shared/karriere-seo';
 import { karriereFaqEntries, zeitStat } from '../shared/karriere-content';
@@ -23,6 +23,7 @@ const PAGE_PATH = '/karriere/botox-nuernberg';
 })
 export class BotoxKarriereComponent extends KarriereDetailPage {
   protected readonly jsonLdId = 'botox-karriere-schema';
+  override readonly role: KarriereRole = 'botox';
   // Eigene 1200x630-JPEG-Fassung des Behandlungsfotos: WebP zeigen mehrere
   // Messenger im Link-Vorschaubild nicht an.
   protected override readonly ogImage = 'assets/images/treatment/og-aesthetische-medizin.jpg';
