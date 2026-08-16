@@ -1,6 +1,19 @@
+<!-- Skip-Link: erstes fokussierbares Element der Seite.
+     Das href trägt bewusst den vollen Pfad der aktuellen Seite: wegen
+     <base href="/"> würde ein blosses "#main-content" gegen "/" aufgelöst und
+     ein Klick vor dem Start von Angular (oder ganz ohne JavaScript) landete
+     auf der Startseite. Mit vollem Pfad springt der Browser auch ohne JS
+     korrekt; skipToContent() übernimmt danach den Fokus. -->
+<a class="skip-link no-underline" [href]="skipHref" (click)="skipToContent($event)"
+  ><span class="lang de">Zum Inhalt springen</span
+  ><span class="lang en">Skip to content</span></a
+>
+
 <app-header></app-header>
 
-<router-outlet></router-outlet>
+<main id="main-content" tabindex="-1">
+  <router-outlet></router-outlet>
+</main>
 
 <app-footer></app-footer>
 

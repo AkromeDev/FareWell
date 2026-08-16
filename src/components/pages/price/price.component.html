@@ -76,8 +76,8 @@
         <table>
           <thead>
             <tr>
-              <th>{{ t('Termin', 'Appointment') }}</th>
-              <th class="num">{{ t('Preis', 'Price') }}</th>
+              <th scope="col">{{ t('Termin', 'Appointment') }}</th>
+              <th scope="col" class="num">{{ t('Preis', 'Price') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -137,8 +137,8 @@
         <table>
           <thead>
             <tr>
-              <th>{{ t('Sitzung', 'Session') }}</th>
-              <th class="num">{{ t('Preis', 'Price') }}</th>
+              <th scope="col">{{ t('Sitzung', 'Session') }}</th>
+              <th scope="col" class="num">{{ t('Preis', 'Price') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -213,8 +213,8 @@
             <table>
               <thead>
                 <tr>
-                  <th>{{ t('Zone', 'Area') }}</th>
-                  <th class="num">{{ t('Preis', 'Price') }}</th>
+                  <th scope="col">{{ t('Zone', 'Area') }}</th>
+                  <th scope="col" class="num">{{ t('Preis', 'Price') }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -302,8 +302,8 @@
         <table>
           <thead>
             <tr>
-              <th>{{ t('Behandlung', 'Treatment') }}</th>
-              <th class="num">{{ t('Preis', 'Price') }}</th>
+              <th scope="col">{{ t('Behandlung', 'Treatment') }}</th>
+              <th scope="col" class="num">{{ t('Preis', 'Price') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -389,8 +389,8 @@
         <table>
           <thead>
             <tr>
-              <th>{{ t('Zone', 'Area') }}</th>
-              <th class="num">{{ t('Preis', 'Price') }}</th>
+              <th scope="col">{{ t('Zone', 'Area') }}</th>
+              <th scope="col" class="num">{{ t('Preis', 'Price') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -440,8 +440,8 @@
         <table>
           <thead>
             <tr>
-              <th>{{ t('Behandlung', 'Treatment') }}</th>
-              <th class="num">{{ t('Preis', 'Price') }}</th>
+              <th scope="col">{{ t('Behandlung', 'Treatment') }}</th>
+              <th scope="col" class="num">{{ t('Preis', 'Price') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -506,8 +506,8 @@
             <table>
               <thead>
                 <tr>
-                  <th>{{ t('Sitzung', 'Session') }}</th>
-                  <th class="num">{{ t('Preis', 'Price') }}</th>
+                  <th scope="col">{{ t('Sitzung', 'Session') }}</th>
+                  <th scope="col" class="num">{{ t('Preis', 'Price') }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -588,8 +588,8 @@
         <table>
           <thead>
             <tr>
-              <th>{{ t('Massage', 'Massage') }}</th>
-              <th class="num">{{ t('Preis', 'Price') }}</th>
+              <th scope="col">{{ t('Massage', 'Massage') }}</th>
+              <th scope="col" class="num">{{ t('Preis', 'Price') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -638,8 +638,8 @@
         <table>
           <thead>
             <tr>
-              <th>{{ t('Behandlung', 'Treatment') }}</th>
-              <th class="num">{{ t('Preis', 'Price') }}</th>
+              <th scope="col">{{ t('Behandlung', 'Treatment') }}</th>
+              <th scope="col" class="num">{{ t('Preis', 'Price') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -773,7 +773,7 @@
             For trans people: how facial hair removal becomes a covered benefit, with medical
             delegation at FareWell (guide in German).
           </span>
-          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')" [attr.aria-label]="t('Zum Leitfaden: Epilation über die Krankenkasse', 'Read the guide: Insurance-covered epilation')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>
         <app-guide-card
           icon="🧾"
@@ -788,7 +788,7 @@
             Claim out-of-pocket costs as an extraordinary burden. We show what evidence the tax office
             wants to see (guide in German).
           </span>
-          <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+          <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')" [attr.aria-label]="t('Zum Leitfaden: Behandlungskosten steuerlich absetzen', 'Read the guide: Tax-deductible treatments')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>
         <app-guide-card
           icon="🇺🇸"
@@ -803,7 +803,7 @@
             NF1 forms or the Remonon app: how to stop paying the 19% German VAT. Explained in
             English and German.
           </span>
-          <a [routerLink]="p('/ratgeber/us-forces-vat-relief')">{{ t('Zum Leitfaden (EN)', 'Read the guide') }}</a>
+          <a [routerLink]="p('/ratgeber/us-forces-vat-relief')" [attr.aria-label]="t('Zum Leitfaden (EN): US Forces VAT relief in Germany', 'Read the guide: US Forces VAT relief in Germany')">{{ t('Zum Leitfaden (EN)', 'Read the guide') }}</a>
         </app-guide-card>
       </div>
     </app-guide-section>

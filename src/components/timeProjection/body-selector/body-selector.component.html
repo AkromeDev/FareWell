@@ -1,33 +1,82 @@
-<div class="body-container">
-  <img src="assets/images/separator/proportions.png" alt="Body Image" class="body-image" />
+<div class="body-container" role="group" [attr.aria-label]="groupLabel">
+  <!-- Rein dekorativ: die Zonen darunter tragen die Namen. -->
+  <img src="assets/images/separator/proportions.png" alt="" aria-hidden="true" class="body-image" />
 
-  <div class="clickable head" (click)="selectPart(BodyParts.head)"></div>
+  <button
+    type="button"
+    class="clickable head"
+    [attr.aria-label]="label(BodyParts.head)"
+    [attr.aria-pressed]="isSelected(BodyParts.head)"
+    (click)="selectPart(BodyParts.head)"
+  ></button>
 
-  <div class="clickable-group shoulders-group" (click)="selectPart(BodyParts.shoulders)">
+  <button
+    type="button"
+    class="clickable-group shoulders-group"
+    [attr.aria-label]="label(BodyParts.shoulders)"
+    [attr.aria-pressed]="isSelected(BodyParts.shoulders)"
+    (click)="selectPart(BodyParts.shoulders)"
+  >
     <div class="clickable shoulder-zone left-shoulder"></div>
     <div class="clickable shoulder-zone right-shoulder"></div>
-  </div>
+  </button>
 
-  <div class="clickable-group arms-group" (click)="selectPart(BodyParts.arms)">
+  <button
+    type="button"
+    class="clickable-group arms-group"
+    [attr.aria-label]="label(BodyParts.arms)"
+    [attr.aria-pressed]="isSelected(BodyParts.arms)"
+    (click)="selectPart(BodyParts.arms)"
+  >
     <div class="clickable arm-zone left-upper-arm"></div>
     <div class="clickable arm-zone right-upper-arm"></div>
     <div class="clickable arm-zone left-forearm"></div>
     <div class="clickable arm-zone right-forearm"></div>
-  </div>
+  </button>
 
-  <div class="clickable-group armpits-group" (click)="selectPart(BodyParts.armpits)">
+  <button
+    type="button"
+    class="clickable-group armpits-group"
+    [attr.aria-label]="label(BodyParts.armpits)"
+    [attr.aria-pressed]="isSelected(BodyParts.armpits)"
+    (click)="selectPart(BodyParts.armpits)"
+  >
     <div class="clickable armpit-zone left-armpit"></div>
     <div class="clickable armpit-zone right-armpit"></div>
-  </div>
+  </button>
 
-  <div class="clickable torso" (click)="selectPart(BodyParts.torso)"></div>
-  <div class="clickable stomach" (click)="selectPart(BodyParts.stomach)"></div>
-  <div class="clickable intim" (click)="selectPart(BodyParts.intim)"></div>
+  <button
+    type="button"
+    class="clickable torso"
+    [attr.aria-label]="label(BodyParts.torso)"
+    [attr.aria-pressed]="isSelected(BodyParts.torso)"
+    (click)="selectPart(BodyParts.torso)"
+  ></button>
+  <button
+    type="button"
+    class="clickable stomach"
+    [attr.aria-label]="label(BodyParts.stomach)"
+    [attr.aria-pressed]="isSelected(BodyParts.stomach)"
+    (click)="selectPart(BodyParts.stomach)"
+  ></button>
+  <button
+    type="button"
+    class="clickable intim"
+    [attr.aria-label]="label(BodyParts.intim)"
+    [attr.aria-pressed]="isSelected(BodyParts.intim)"
+    (click)="selectPart(BodyParts.intim)"
+  ></button>
 
-  <div class="clickable-group legs-group" (click)="selectPart(BodyParts.legs)">
+  <button
+    type="button"
+    class="clickable-group legs-group"
+    [attr.aria-label]="label(BodyParts.legs)"
+    [attr.aria-pressed]="isSelected(BodyParts.legs)"
+    (click)="selectPart(BodyParts.legs)"
+  >
     <div class="clickable leg-zone left-inner"></div>
     <div class="clickable leg-zone right-inner"></div>
     <div class="clickable leg-zone left-outer"></div>
     <div class="clickable leg-zone right-outer"></div>
-  </div>
+  </button>
 </div>

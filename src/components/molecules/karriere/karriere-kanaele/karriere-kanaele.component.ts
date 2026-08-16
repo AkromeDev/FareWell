@@ -23,7 +23,10 @@ import {
  * „Kund:innen gewinnen“ — die Kanal-Tabelle mit Tempo, Kosten und dem Anteil,
  * den FareWell davon nimmt, plus die Groupon-Zahlen im Klartext.
  *
- *   <app-karriere-kanaele role="kurs" index="05" />
+ *   <app-karriere-kanaele [role]="'kurs'" index="05" />
+ *
+ * Immer als Property binden: als statisches Attribut geschrieben landet `role`
+ * zusätzlich im DOM und ist dort eine ungültige ARIA-Rolle.
  *
  * Inhalte und Rollenlogik stehen in karriere-kanaele.model.ts, damit die
  * Tabelle auf allen Karriere-Seiten dieselbe Aussage trifft. Die wichtigste
@@ -53,11 +56,11 @@ import {
         <table>
           <thead>
             <tr>
-              <th>{{ t('Weg', 'Channel') }}</th>
-              <th>{{ t('Tempo', 'Speed') }}</th>
-              <th>{{ t('Kosten für dich', 'Cost to you') }}</th>
-              <th>{{ t('FareWell-Anteil', 'FareWell’s share') }}</th>
-              <th>{{ t('Gut für', 'Best for') }}</th>
+              <th scope="col">{{ t('Weg', 'Channel') }}</th>
+              <th scope="col">{{ t('Tempo', 'Speed') }}</th>
+              <th scope="col">{{ t('Kosten für dich', 'Cost to you') }}</th>
+              <th scope="col">{{ t('FareWell-Anteil', 'FareWell’s share') }}</th>
+              <th scope="col">{{ t('Gut für', 'Best for') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -103,10 +106,10 @@ import {
             <table>
               <thead>
                 <tr>
-                  <th>{{ t('Rabatt', 'Discount') }}</th>
-                  <th class="num">{{ payerLabel }}</th>
-                  <th class="num">{{ t('Du bekommst', 'You get') }}</th>
-                  <th class="num">{{ t('Groupon behält', 'Groupon keeps') }}</th>
+                  <th scope="col">{{ t('Rabatt', 'Discount') }}</th>
+                  <th scope="col" class="num">{{ payerLabel }}</th>
+                  <th scope="col" class="num">{{ t('Du bekommst', 'You get') }}</th>
+                  <th scope="col" class="num">{{ t('Groupon behält', 'Groupon keeps') }}</th>
                 </tr>
               </thead>
               <tbody>

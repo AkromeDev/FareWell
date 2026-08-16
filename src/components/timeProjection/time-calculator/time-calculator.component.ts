@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnChanges,
+  Output,
   SimpleChanges,
   inject
 } from '@angular/core';
@@ -22,6 +24,14 @@ import { LanguageService } from 'src/services/language.service';
 })
 export class TimeCalculatorComponent implements OnChanges {
   @Input() selectedPart!: BodyPart;
+
+  /**
+   * Meldet die Auswahl aus dem Dropdown nach oben. Ohne das kannte nur dieses
+   * Bauteil die neue Zone: die Körpergrafik daneben blieb auf dem alten Stand
+   * (und meldete per aria-pressed etwas Falsches), und die Auswahl landete
+   * nicht im localStorage.
+   */
+  @Output() partChange = new EventEmitter<BodyPart>();
 
   private readonly lang = inject(LanguageService);
 
@@ -58,6 +68,7 @@ export class TimeCalculatorComponent implements OnChanges {
   onPartChange(key: BodyPartKey): void {
     this.selectedPart = BodyParts[key];
     this.calculateTime();
+    this.partChange.emit(this.selectedPart);
   }
 
   getNumberOfWaves(anagenPercentage: number): number {

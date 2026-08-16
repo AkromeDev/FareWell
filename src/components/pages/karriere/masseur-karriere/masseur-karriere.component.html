@@ -54,6 +54,24 @@
             <a [routerLink]="p('/behandlungen/therapeutische-massage')">therapeutic massages</a>.
           </span>
         </p>
+        <p appReveal [revealDelay]="180" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Du bist blind oder sehbehindert? Dann gibt es zusätzlich
+            <a [routerLink]="p('/karriere/masseur-bademeister-blind-nuernberg')"
+              >eine eigene Stellenseite für blinde und sehbehinderte Masseur:innen und
+              medizinische Bademeister:innen</a
+            >. Sie beantwortet die praktischen Fragen direkt, und dort ist auch eine Festanstellung
+            möglich.
+          </span>
+          <span class="lang en">
+            Are you blind or visually impaired? There is also
+            <a [routerLink]="p('/karriere/masseur-bademeister-blind-nuernberg')"
+              >a dedicated page for blind and visually impaired massage therapists and medical
+              bath attendants</a
+            >. It answers the practical questions directly, and permanent employment is possible
+            there too.
+          </span>
+        </p>
       </div>
       <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
     </div>

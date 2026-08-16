@@ -24,6 +24,17 @@ export class BookingCtaComponent {
     return this.label ?? this.lang.t('Termin buchen', 'Book now');
   }
 
+  /**
+   * Kündigt den Sprung zur externen Buchung an. Der sichtbare Text bleibt
+   * Präfix, damit Sprachsteuerung („Klick Termin buchen") weiter greift.
+   */
+  get ariaLabel(): string {
+    return this.lang.t(
+      `${this.displayLabel}: Online-Buchung bei Salonkee, öffnet in einem neuen Tab`,
+      `${this.displayLabel}: online booking at Salonkee, opens in a new tab`
+    );
+  }
+
   readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
 
   trackBookingClick(event: MouseEvent): void {

@@ -118,6 +118,23 @@
   .gd-fine {
     font-size: 14px;
     color: var(--gd-faint);
+
+  }
+
+  // NUR die Kontaktzeile der Karriere-Karte: E-Mail und Telefon sind dort neu
+  // zu echten Links geworden und sollen die gedaempfte Farbe des Absatzes
+  // behalten. Bewusst eng auf .ka-contact begrenzt — auf alle .gd-fine a
+  // angewandt wuerde das die bereits vorhandenen Links im Kleingedruckten
+  // anderer Seiten umfaerben. Die Unterstreichung bleibt sichtbar, damit sie
+  // auch ohne Farbunterschied als Link erkennbar sind (WCAG 1.4.1).
+  .gd-fine.ka-contact a {
+    color: inherit;
+    text-decoration-color: currentColor;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--gd-sage-strong);
+    }
   }
 
   // Intro row: lede text next to the sticky table of contents.
@@ -863,6 +880,10 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
+    // Das Element ist ein <h3>; die globale Überschriften-Regel setzt
+    // line-height: 1.15. Hier bewusst geerbt wie früher als <div>, damit sich
+    // die Höhe der Zeile nicht ändert.
+    line-height: inherit;
   }
 
   .gd-panel--forest .gd-panel__head {

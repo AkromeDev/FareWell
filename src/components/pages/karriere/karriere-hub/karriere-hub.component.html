@@ -27,14 +27,13 @@
         <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
           <span class="lang de">
-            Wir suchen keine Angestellten. Wir suchen Selbständige, die etwas Eigenes aufbauen
-            wollen, und geben ihnen dafür den Raum, die Buchung und die Sichtbarkeit. Was daraus
-            entsteht, gehört dir.
+            Wir suchen vor allem Selbständige, die etwas Eigenes aufbauen wollen, und geben ihnen
+            dafür den Raum, die Buchung und die Sichtbarkeit. Was daraus entsteht, gehört dir.
           </span>
           <span class="lang en">
-            We are not looking for employees. We are looking for freelancers who want to build
-            something of their own, and we give them the room, the booking system and the
-            visibility for it. Whatever grows out of that is yours.
+            Most of all we are looking for freelancers who want to build something of their own,
+            and we give them the room, the booking system and the visibility for it. Whatever
+            grows out of that is yours.
           </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
@@ -130,11 +129,11 @@
 
     <app-karriere-deal index="02" />
 
-    <app-karriere-zeiten role="uebersicht" index="03" />
+    <app-karriere-zeiten [role]="'uebersicht'" index="03" />
 
     <app-karriere-start index="04" />
 
-    <app-karriere-kanaele role="uebersicht" index="05" />
+    <app-karriere-kanaele [role]="'uebersicht'" index="05" />
 
     <app-guide-section
       index="06"
@@ -143,11 +142,14 @@
     >
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
-          Alle Positionen sind freiberuflich, alle folgen demselben Deal. Nur das Handwerk ist ein
-          anderes.
+          Fast alle Positionen sind freiberuflich und folgen demselben Deal, nur das Handwerk ist
+          ein anderes. Die Ausnahme: Die Stelle für blinde und sehbehinderte Masseur:innen gibt es
+          auch als Festanstellung.
         </span>
         <span class="lang en">
-          Every position is freelance and every one follows the same deal. Only the craft differs.
+          Almost every position is freelance and follows the same deal, only the craft differs.
+          The exception: the role for blind and visually impaired massage therapists is also open
+          as permanent employment.
         </span>
       </p>
 
@@ -159,7 +161,9 @@
             [revealDelay]="i * 60"
           >
             {{ position.text }}
-            <a [routerLink]="p(position.path)">{{ position.linkLabel }}</a>
+            <a [routerLink]="p(position.path)" [attr.aria-label]="position.linkAria">{{
+              position.linkLabel
+            }}</a>
           </app-guide-card>
         }
 
@@ -171,12 +175,22 @@
           <span class="lang de">
             Dein Beruf ist nicht dabei? Überzeug uns von deinem Konzept. Wenn es zu einem ruhigen
             Studio in der Innenstadt passt, reden wir darüber.
-            <a [href]="pagePath + '#bewerben'" [appScrollTo]="'bewerben'">Erzähl uns davon</a>
+            <a
+              [href]="pagePath + '#bewerben'"
+              [appScrollTo]="'bewerben'"
+              aria-label="Erzähl uns davon: Initiativbewerbung bei FareWell"
+              >Erzähl uns davon</a
+            >
           </span>
           <span class="lang en">
             Your profession is not on the list? Convince us with your concept. If it fits a calm
             studio in the city centre, we are happy to talk.
-            <a [href]="pagePath + '#bewerben'" [appScrollTo]="'bewerben'">Tell us about it</a>
+            <a
+              [href]="pagePath + '#bewerben'"
+              [appScrollTo]="'bewerben'"
+              aria-label="Tell us about it: speculative application at FareWell"
+              >Tell us about it</a
+            >
           </span>
         </app-guide-card>
       </div>

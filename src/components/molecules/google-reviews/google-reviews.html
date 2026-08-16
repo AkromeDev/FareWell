@@ -5,8 +5,11 @@
 
       @if (vm.rating !== null) {
         <div class="reviews__meta">
-          <div class="reviews__stars" aria-label="Rating">
-            <span class="star" *ngFor="let s of stars(vm.rating)">
+          <!-- role="img" + Label: sonst liest ein Screenreader die Glyphen
+               einzeln vor („schwarzer Stern, schwarzer Stern …"). Auf einem
+               <div> ohne Rolle wird ein aria-label ignoriert. -->
+          <div class="reviews__stars" role="img" [attr.aria-label]="ratingLabel(vm.rating)">
+            <span class="star" *ngFor="let s of stars(vm.rating)" aria-hidden="true">
               {{ s ? '★' : '☆' }}
             </span>
           </div>
@@ -29,6 +32,7 @@
   } @else {
     <div
       class="carousel"
+      role="group"
       tabindex="0"
       (keydown)="onKeydown($event, vm.reviews.length)"
       (touchstart)="onTouchStart($event)"
@@ -50,7 +54,7 @@
           <article class="card" *ngFor="let r of vm.reviews; trackBy: trackByName">
             <div class="card__top">
               <div class="avatar avatar--logo">
-                <img src="assets/images/icons/google.svg" alt="Google Logo" loading="lazy" />
+                <img src="assets/images/icons/google.svg" alt="" aria-hidden="true" loading="lazy" />
               </div>
 
               <div class="who">
@@ -62,8 +66,8 @@
                 </div>
               </div>
 
-              <div class="mini-stars" *ngIf="r.rating">
-                <span *ngFor="let s of stars(r.rating)">{{ s ? '★' : '☆' }}</span>
+              <div class="mini-stars" *ngIf="r.rating" role="img" [attr.aria-label]="ratingLabel(r.rating)">
+                <span *ngFor="let s of stars(r.rating)" aria-hidden="true">{{ s ? '★' : '☆' }}</span>
               </div>
             </div>
 
@@ -96,12 +100,16 @@
       </button>
     </div>
 
-    <div class="dots" aria-hidden="true">
+    <!-- Kein aria-hidden auf dem Container: die Punkte sind echte Buttons und
+         bleiben tabbar. Versteckt wären sie stumme Fokusstationen. -->
+    <div class="dots" role="group" [attr.aria-label]="t('Seiten', 'Pages')">
       <button
         type="button"
         class="dot-btn"
         *ngFor="let _ of pages(vm.reviews.length); let i = index"
         [class.is-active]="i === activeIndex"
+        [attr.aria-label]="dotLabel(i, pageCount(vm.reviews.length))"
+        [attr.aria-current]="i === activeIndex ? 'true' : null"
         (click)="goTo(i)"
       ></button>
     </div>

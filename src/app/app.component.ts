@@ -23,14 +23,49 @@ export class AppComponent {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
 
+  /**
+   * Ziel des Skip-Links, immer mit vollem Pfad. Ein blosses "#main-content"
+   * würde wegen <base href="/"> zur Startseite führen, wenn es geklickt wird,
+   * bevor Angular läuft.
+   */
+  skipHref = '#main-content';
+
   constructor(private analytics: AnalyticsService) {
+    this.skipHref = this.buildSkipHref(this.router.url);
+
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe((e) => {
+        this.skipHref = this.buildSkipHref(e.urlAfterRedirects);
+
         const canonical = this.document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
         if (canonical) {
           canonical.href = `https://farewell.salon${e.urlAfterRedirects}`;
         }
       });
+  }
+
+  private buildSkipHref(url: string): string {
+    const path = (url || '/').split('#')[0];
+    return `${path}#main-content`;
+  }
+
+  /**
+   * Skip-Link. Ein einfaches href="#main-content" würde wegen <base href="/">
+   * gegen "/" aufgelöst und die aktuelle Route verlassen. routerLink+fragment
+   * scheidet ebenfalls aus: das löst ein NavigationEnd aus, und der
+   * Canonical-Updater oben würde "#main-content" in die Canonical-URL schreiben.
+   */
+  skipToContent(event: Event): void {
+    event.preventDefault();
+
+    const target = this.document.getElementById('main-content');
+    if (!target) return;
+
+    target.focus({ preventScroll: true });
+
+    const reduceMotion =
+      this.document.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches ?? false;
+    target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
   }
 }

@@ -310,8 +310,8 @@
           <table>
             <thead>
               <tr>
-                <th>{{ t('Position', 'Item') }}</th>
-                <th class="num">€</th>
+                <th scope="col">{{ t('Position', 'Item') }}</th>
+                <th scope="col" class="num">€</th>
               </tr>
             </thead>
             <tbody>
@@ -354,7 +354,7 @@
     >
       <div class="gd-cards gd-cards--2">
         <app-guide-card icon="🏥" [heading]="t('Epilation über die Krankenkasse', 'Epilation through health insurance')">
-          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')" [attr.aria-label]="t('Zum Leitfaden: Epilation über die Krankenkasse', 'Read the guide: Insurance-covered epilation')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>
         <app-guide-card icon="💬" [heading]="t('Häufige Fragen', 'Frequently asked questions')" [revealDelay]="60">
           <a [routerLink]="p('/faq')">{{ t('Zu den FAQ', 'Read the FAQ') }}</a>

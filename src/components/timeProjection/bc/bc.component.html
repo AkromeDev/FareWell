@@ -1,9 +1,15 @@
 <div class="bc-layout">
   <div class="bc-left" *ngIf="!isMobile">
-    <app-body-selector (partSelected)="onPartSelected($event)"></app-body-selector>
+    <app-body-selector
+      [selectedPart]="selectedPart"
+      (partSelected)="onPartSelected($event)"
+    ></app-body-selector>
   </div>
 
   <div class="bc-right">
-    <app-time-calculator [selectedPart]="selectedPart"></app-time-calculator>
+    <app-time-calculator
+      [selectedPart]="selectedPart"
+      (partChange)="onPartSelected($event)"
+    ></app-time-calculator>
   </div>
 </div>

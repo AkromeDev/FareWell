@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { LanguageService } from 'src/services/language.service';
 
 /**
  * Abschluss-CTA der Guide-Seiten: Überschrift, projizierter Text, Buttons zu
@@ -19,6 +20,7 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
           [href]="bookingHref"
           target="_blank"
           rel="noopener noreferrer"
+          [attr.aria-label]="bookingAria"
           >{{ bookingLabel }}</a
         >
         <a
@@ -26,6 +28,7 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
           [href]="instagramHref"
           target="_blank"
           rel="noopener noreferrer"
+          [attr.aria-label]="instagramAria"
           >{{ instagramLabel }}</a
         >
       </div>
@@ -42,4 +45,25 @@ export class GuideCtaComponent {
   @Input() instagramLabel = 'Instagram';
   @Input() instagramHref = 'https://www.instagram.com/farewell.salon/';
   @Input() tagline = 'Für immer sanft.';
+
+  private readonly language = inject(LanguageService);
+
+  /**
+   * Beide Buttons verlassen die Seite in einem neuen Tab. Ohne Ankündigung
+   * merkt das jemand mit Screenreader erst, wenn der Zurück-Knopf nicht mehr
+   * greift. Der sichtbare Text bleibt Präfix (WCAG 2.5.3).
+   */
+  get bookingAria(): string {
+    return this.language.t(
+      `${this.bookingLabel}: Online-Buchung bei Salonkee, öffnet in einem neuen Tab`,
+      `${this.bookingLabel}: online booking at Salonkee, opens in a new tab`
+    );
+  }
+
+  get instagramAria(): string {
+    return this.language.t(
+      `${this.instagramLabel}: FareWell auf Instagram, öffnet in einem neuen Tab`,
+      `${this.instagramLabel}: FareWell on Instagram, opens in a new tab`
+    );
+  }
 }

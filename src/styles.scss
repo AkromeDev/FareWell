@@ -156,6 +156,15 @@ a[href]:not(.no-underline):not(.gd a) {
   outline-offset: 3px;
 }
 
+// Programmatisch fokussierte Sprungziele (Skip-Link-Muster, Inhaltsverzeichnis)
+// bekommen keinen Rahmen — sie sind Landepunkte, keine Bedienelemente, und ein
+// Rahmen um einen ganzen Abschnitt wäre optisch laut. Screenreader lesen beim
+// Fokuswechsel ohnehin die Überschrift des Ziels vor.
+[tabindex='-1']:focus,
+[tabindex='-1']:focus-visible {
+  outline: none;
+}
+
 // Themed, slim scrollbar (Firefox + WebKit)
 @media (min-width: 769px) {
   html {

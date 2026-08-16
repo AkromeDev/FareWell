@@ -63,8 +63,15 @@ export class GuideTopButtonComponent implements AfterViewInit, OnDestroy {
   }
 
   toTop(): void {
-    if (this.isBrowser) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!this.isBrowser) {
+      return;
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Gleiches Verhalten wie appScrollTo: ohne Fokuswechsel bliebe der
+    // Lesecursor eines Screenreaders unten am Button stehen, während nur das
+    // Bild nach oben springt.
+    const main = document.getElementById('main-content');
+    main?.focus({ preventScroll: true });
   }
 }

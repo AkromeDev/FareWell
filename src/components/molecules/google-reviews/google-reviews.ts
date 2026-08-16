@@ -139,6 +139,22 @@ export class GoogleReviewsComponent implements OnChanges {
     return Array.from({ length: 5 }, (_, i) => (i < safe ? 1 : 0));
   }
 
+  /**
+   * Textfassung der Sternereihe. Ohne sie liest ein Screenreader die Glyphen
+   * einzeln vor („schwarzer Stern, schwarzer Stern, weißer Stern").
+   */
+  ratingLabel(rating: number | null): string {
+    const value = rating ?? 0;
+    const rounded = Math.round(value * 10) / 10;
+    const de = String(rounded).replace('.', ',');
+    return this.t(`${de} von 5 Sternen`, `${rounded} out of 5 stars`);
+  }
+
+  /** Name für die Punkte der Seitennavigation. */
+  dotLabel(index: number, total: number): string {
+    return this.t(`Seite ${index + 1} von ${total}`, `Page ${index + 1} of ${total}`);
+  }
+
   pageCount(total: number): number {
     return this.maxStartIndex(total) + 1;
   }

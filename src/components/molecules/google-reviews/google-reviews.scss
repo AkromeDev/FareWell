@@ -106,7 +106,15 @@
   grid-template-columns: 42px minmax(0, 1fr) 42px;
   align-items: center;
   gap: 8px;
-  outline: none;
+
+  // Kein `outline: none` mehr: das Karussell ist mit tabindex="0" bedienbar,
+  // und ohne Fokusring war nicht zu sehen, wo man gerade steht. Bei Mausklick
+  // greift :focus-visible ohnehin nicht.
+  &:focus-visible {
+    outline: 2px solid $accent-1;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
 
   &--skeleton {
     .track {

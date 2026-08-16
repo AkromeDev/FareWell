@@ -1,6 +1,6 @@
 <div class="scroll-progress" [style.width.%]="progress" aria-hidden="true"></div>
 
-<div
+<header
   [ngClass]="{
     scrolled: scrolled,
     transparent: isHome && !scrolled && !menuOpen && !behandlungenOpen
@@ -11,7 +11,9 @@
     >FareWell<span class="logo-dot">.</span></a
   >
 
-  <!-- Burger Icon -->
+  <!-- Burger Icon. aria-controls nennt zwei Ziele: unter 769px klappt der
+       Burger .nav-links-container auf, zwischen 769px und 1260px dagegen
+       .nav-secondary. -->
   <button
     type="button"
     class="burger"
@@ -21,6 +23,7 @@
       menuOpen ? lang.t('Menü schließen', 'Close menu') : lang.t('Menü öffnen', 'Open menu')
     "
     [attr.aria-expanded]="menuOpen"
+    aria-controls="nav-primary nav-secondary"
   >
     <span></span>
     <span></span>
@@ -28,13 +31,24 @@
   </button>
 
   <!-- Nav links -->
-  <div class="nav-links-container" [ngClass]="{ open: menuOpen }">
+  <nav
+    class="nav-links-container"
+    [ngClass]="{ open: menuOpen }"
+    id="nav-primary"
+    [attr.aria-label]="lang.t('Hauptnavigation', 'Main navigation')"
+  >
     <a
       href="https://salonkee.de/salon/farewell?lang=de"
       target="_blank"
       rel="noopener noreferrer"
       class="nav-link"
       id="terminBuchen"
+      [attr.aria-label]="
+        lang.t(
+          'Termin Buchen: Online-Buchung bei Salonkee, öffnet in einem neuen Tab',
+          'Book now: online booking at Salonkee, opens in a new tab'
+        )
+      "
       (click)="trackBookingClick($event)"
     >
       <span class="lang de">Termin Buchen</span><span class="lang en">Book now</span>
@@ -53,14 +67,20 @@
           class="nav-link nav-link-btn"
           [class.active]="isBehandlungenRoute"
           [attr.aria-expanded]="behandlungenOpen"
+          aria-controls="nav-behandlungen-mobile nav-behandlungen-panel"
+          aria-haspopup="true"
           (click)="toggleBehandlungen($event)"
         >
           <span class="lang de">Behandlungen</span><span class="lang en">Treatments</span>
-          <span class="chevron" [ngClass]="{ open: behandlungenOpen }">▾</span>
+          <span class="chevron" [ngClass]="{ open: behandlungenOpen }" aria-hidden="true">▾</span>
         </button>
       </div>
 
-      <div class="behandlungen-mobile" [ngClass]="{ open: behandlungenOpen }">
+      <div
+        id="nav-behandlungen-mobile"
+        class="behandlungen-mobile"
+        [ngClass]="{ open: behandlungenOpen }"
+      >
         <div class="behandlungen-mobile-inner">
           <a
             class="behandlungen-mobile-link"
@@ -75,7 +95,7 @@
     </div>
 
     <!-- Sekundäre Links: auf Tablets im Burger-Menü, sonst Teil der Leiste -->
-    <div class="nav-secondary">
+    <div id="nav-secondary" class="nav-secondary">
       <a
         [routerLink]="p('/zeit')"
         routerLinkActive="active"
@@ -129,9 +149,16 @@
         />
       </div>
     </div>
-  </div>
+  </nav>
 
+  <!-- Eigenes Navigations-Landmark: das Panel liegt als Geschwister ausserhalb
+       von <nav id="nav-primary">, weil es position:fixed ist und dort
+       zurechtgeschnitten wuerde. Ohne eigenen Namen faenden die sieben
+       Behandlungsseiten in der Landmark-Navigation gar nicht statt. -->
   <div
+    id="nav-behandlungen-panel"
+    role="navigation"
+    [attr.aria-label]="lang.t('Behandlungen', 'Treatments')"
     class="behandlungen-panel"
     [ngClass]="{ open: behandlungenOpen }"
     (pointerenter)="onBehandlungenEnter($event)"
@@ -152,4 +179,4 @@
       </a>
     </div>
   </div>
-</div>
+</header>

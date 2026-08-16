@@ -34,6 +34,13 @@ interface RenderedDay {
   bands: RenderedBand[];
 }
 
+/** Eine Zeile der Screenreader-Tabelle: ein Wochentag, eine Zelle pro Spur. */
+interface ZeitTableRow {
+  key: string;
+  day: string;
+  cells: string[];
+}
+
 /**
  * „Zeiten und Raumbelegung“: Wochenraster plus die Regeln dahinter.
  *
@@ -42,7 +49,10 @@ interface RenderedDay {
  * nicht Belegung: Massage- und Kursfenster überlappen sich, und wer zuerst
  * bucht, bekommt den Platz.
  *
- *   <app-karriere-zeiten role="kurs" index="03" />
+ *   <app-karriere-zeiten [role]="'kurs'" index="03" />
+ *
+ * Immer als Property binden: als statisches Attribut geschrieben landet `role`
+ * zusätzlich im DOM und ist dort eine ungültige ARIA-Rolle.
  */
 @Component({
   selector: 'app-karriere-zeiten',
@@ -53,8 +63,13 @@ interface RenderedDay {
       <p class="gd-lead-p gd-read" appReveal>{{ lead }}</p>
 
       <div class="kz" appReveal>
-        <div class="kz__scroll">
-          <div class="kz__board" role="img" [attr.aria-label]="ariaLabel">
+        <!-- Bleibt fokussierbar, damit das Raster per Tastatur seitwärts
+             gescrollt werden kann (WCAG 2.1.1). Der Name sagt ausdrücklich,
+             dass der Inhalt grafisch ist und die Daten als Tabelle folgen —
+             sonst landet man in einer benannten, aber scheinbar leeren
+             Gruppe, weil das Raster aria-hidden ist. -->
+        <div class="kz__scroll" tabindex="0" role="group" [attr.aria-label]="scrollLabel">
+          <div class="kz__board" aria-hidden="true">
             <div class="kz__corner" aria-hidden="true"></div>
             @for (day of days; track day.key) {
               <div class="kz__head" [attr.title]="day.full">{{ day.head }}</div>
@@ -87,6 +102,36 @@ interface RenderedDay {
               </div>
             }
           </div>
+        </div>
+
+        <!-- Dieselben Daten als echte Tabelle, nur für Screenreader. Das Raster
+             oben ist ein Bild aus absolut positionierten Kästen; hier kann man
+             Tag für Tag und Spur für Spur navigieren, statt sich einen langen
+             Fließtext am Stück anzuhören. -->
+        <div class="kz__sr-only">
+          <table>
+            <caption>
+              {{ tableCaption }}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{{ t('Tag', 'Day') }}</th>
+                @for (lane of lanes; track lane) {
+                  <th scope="col">{{ laneLabel(lane) }}</th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of tableRows; track row.key) {
+                <tr>
+                  <th scope="row">{{ row.day }}</th>
+                  @for (cell of row.cells; track $index) {
+                    <td>{{ cell }}</td>
+                  }
+                </tr>
+              }
+            </tbody>
+          </table>
         </div>
 
         <p class="kz__legend-title">{{ t('Geöffnet für', 'Open for') }}</p>
@@ -129,6 +174,27 @@ interface RenderedDay {
     `
       .kz {
         margin-top: 1.4rem;
+      }
+
+      /* Nur für Screenreader: dieselbe Technik wie .gd-visually-hidden, aber
+         lokal, damit die Tabelle nicht am .gd-Scope hängt. Nimmt keinen Platz
+         im Layout ein und darf deshalb NICHT in .kz__board stehen — das ist
+         ein Grid, dort würde sie eine achte Spalte erzeugen.
+
+         Das <div> ist Absicht: auf einem <table> greifen width/height nicht,
+         weil das automatische Tabellenlayout mindestens die Inhaltsbreite
+         belegt (gemessen: 555x64px statt 1x1). Ein Blockcontainer schrumpft
+         korrekt auf 1x1. */
+      .kz__sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
       }
 
       /* Auf schmalen Schirmen scrollt das Raster seitwärts, statt die Spalten
@@ -366,20 +432,65 @@ export class KarriereZeitenComponent {
     }
   }
 
-  /** Textfassung des Rasters für Screenreader. */
-  get ariaLabel(): string {
-    const isEn = this.language.lang() === 'en';
-    const week = ZEIT_WOCHE.map((day) => {
-      const bands = day.bands
-        .map((b) => `${this.laneLabel(b.lane)} ${formatTime(b.start)}–${formatTime(b.end)}`)
-        .join(', ');
-      return `${isEn ? day.en : day.de}: ${bands || (isEn ? 'closed' : 'geschlossen')}`;
-    }).join('. ');
-
+  /** Name des grafischen Rasters; verweist auf die Tabelle mit denselben Daten. */
+  get scrollLabel(): string {
     return this.t(
-      `Wochenraster der geöffneten Zeitfenster; belegt ist derzeit nur der letzte Dienstagabend im Monat. ${week}.`,
-      `Weekly grid of the open time windows; only the last Tuesday evening of the month is currently taken. ${week}.`
+      'Wochenraster als Grafik. Dieselben Angaben stehen darunter als Tabelle.',
+      'Weekly grid, graphical. The same information follows below as a table.'
     );
+  }
+
+  /** Bildunterschrift der Screenreader-Tabelle. */
+  get tableCaption(): string {
+    return this.t(
+      'Geöffnete Zeitfenster pro Wochentag und Spur',
+      'Open time windows by weekday and lane'
+    );
+  }
+
+  private tableRowsCache: { key: string; rows: ZeitTableRow[] } | null = null;
+
+  /**
+   * Dieselben Daten wie das Raster, aber als Zeilen und Spalten: ein Tag pro
+   * Zeile, eine Spur pro Spalte. Erst dadurch kann jemand mit Screenreader
+   * gezielt „Donnerstag, Massage" abfragen, statt einen 110-Wörter-Satz am
+   * Stück zu hören. Nebenbei bekommen zwei Dinge einen Textwert, die im Bild
+   * nur Farbe sind: die eigene Spur (grün) und das belegte Fenster.
+   */
+  get tableRows(): ZeitTableRow[] {
+    const key = `${this.language.lang()}|${this.role}`;
+    if (this.tableRowsCache?.key !== key) {
+      this.tableRowsCache = { key, rows: this.buildTableRows() };
+    }
+    return this.tableRowsCache.rows;
+  }
+
+  private buildTableRows(): ZeitTableRow[] {
+    const isEn = this.language.lang() === 'en';
+    const closed = this.t('geschlossen', 'closed');
+    const reserved = this.t(
+      '(letzter Dienstag im Monat belegt: Yoga)',
+      '(last Tuesday of the month taken: yoga)'
+    );
+    const yours = this.t('— deine Spur', '— your lane');
+
+    return ZEIT_WOCHE.map((day) => ({
+      key: day.key,
+      day: isEn ? day.en : day.de,
+      cells: LANE_ORDER.map((lane) => {
+        const bands = day.bands
+          .filter((band) => band.lane === lane)
+          .map(
+            (band) =>
+              `${formatTime(band.start)}–${formatTime(band.end)}` +
+              (band.reserved ? ` ${reserved}` : '')
+          );
+        if (!bands.length) {
+          return closed;
+        }
+        return bands.join(', ') + (lane === this.ownLane ? ` ${yours}` : '');
+      }),
+    }));
   }
 
   get heading(): string {

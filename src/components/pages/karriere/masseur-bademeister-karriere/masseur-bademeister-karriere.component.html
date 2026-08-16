@@ -1,0 +1,463 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Karriere', 'FareWell · Nuremberg · Careers')"
+    [heading]="
+      t(
+        'Masseur:in und medizinische:r Bademeister:in in Nürnberg: für blinde und sehbehinderte Bewerber:innen',
+        'Massage therapist and medical bath attendant in Nuremberg: for blind and visually impaired applicants'
+      )
+    "
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Festanstellung oder selbständige Tätigkeit, beides ist offen. Diese Seite beantwortet die praktischen Fragen direkt, von der Anfahrt bis zur Arbeitsassistenz.',
+        'Permanent employment or freelance work, both are open. This page answers the practical questions directly, from getting here to work assistance.'
+      )
+    "
+    image="assets/images/massages/tm massaging.jpg"
+    [imageAlt]="
+      t('Massagebehandlung bei FareWell in Nürnberg', 'A massage treatment at FareWell in Nuremberg')
+    "
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Warum diese Seite', 'Why this page exists') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Unsere allgemeine Stellenseite für Masseur:innen steht allen offen, auch dir. Diese
+            Seite gibt es zusätzlich: Wenn du blind oder sehbehindert bist, sind die praktischen
+            Fragen andere, und wir beantworten sie lieber direkt, statt dich alles einzeln erfragen
+            zu lassen.
+          </span>
+          <span class="lang en">
+            Our general page for massage therapists is open to everyone, including you. This page
+            exists in addition: if you are blind or visually impaired, the practical questions are
+            different, and we would rather answer them directly than make you ask for every detail.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            FareWell stellt die Person ein, die fachlich am besten qualifiziert ist, und hat einen
+            Salon gebaut, in dem eine blinde Therapeutin oder ein blinder Therapeut vollständig
+            eigenständig arbeiten kann. Eine Anstellung wie jede andere, Barrierefreiheit als
+            Kompetenz. Ab hier geht es deshalb um den Beruf.
+          </span>
+          <span class="lang en">
+            FareWell hires the best qualified person, and we have built a salon in which a blind
+            therapist can work fully independently. Employment as normal, accessibility as a
+            competence. From here on, this page is about the profession.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Der Beruf ist längst offen', 'A profession long open')"
+      sectionId="beruf"
+    >
+      <div class="gd-read">
+        <p class="gd-lead-p" appReveal>
+          <span class="lang de">
+            Masseur:in und medizinische:r Bademeister:in ist in Deutschland seit Jahrzehnten ein
+            Beruf, in dem blinde und sehbehinderte Menschen ausgebildet werden und arbeiten.
+          </span>
+          <span class="lang en">
+            In Germany, blind and visually impaired people have trained and worked as massage
+            therapists and medical bath attendants (Masseur und medizinischer Bademeister) for
+            decades.
+          </span>
+        </p>
+        <p appReveal>
+          <span class="lang de">
+            Die Ausbildung gibt es unter anderem am
+            <a href="https://www.bbs-nuernberg.de/">bbs nürnberg</a> (Bildungszentrum für Blinde
+            und Sehbehinderte), wenige Kilometer von unserem Salon, und am
+            <a href="https://www.bfw-mainz.de/">BFW Mainz</a> (Berufsförderungswerk). Die
+            Vermittlungsquoten der Absolvent:innen liegen nahe 100 Prozent.
+          </span>
+          <span class="lang en">
+            The training exists among other places at
+            <a href="https://www.bbs-nuernberg.de/">bbs nürnberg</a> (the education centre for
+            blind and visually impaired people), a few kilometres from our salon, and at
+            <a href="https://www.bfw-mainz.de/">BFW Mainz</a> (a vocational rehabilitation
+            centre). Placement rates for graduates are close to 100 percent.
+          </span>
+        </p>
+        <p appReveal>
+          <span class="lang de">
+            Der Engpass war nie das Können. Der Engpass sind Arbeitgeber, die bereit sind, einen
+            Arbeitsplatz anzupassen. Wir haben unseren angepasst.
+          </span>
+          <span class="lang en">
+            The bottleneck has never been ability. The bottleneck is employers willing to adapt a
+            workplace. We adapted ours.
+          </span>
+        </p>
+
+        <app-guide-note variant="tip" [label]="t('Eine lange Tradition', 'A long tradition')">
+          <span class="lang de">
+            Blinde Masseur:innen sind in vielen Ländern eine etablierte Berufstradition: in Japan
+            als Anma, ebenso in Korea, China, der Türkei und Teilen Südostasiens. In Südkorea war
+            die lizenzierte Massage über Jahrzehnte gesetzlich blinden Praktiker:innen
+            vorbehalten.
+          </span>
+          <span class="lang en">
+            Blind massage is an established professional tradition in many countries: in Japan as
+            anma, and likewise in Korea, China, Turkey and parts of Southeast Asia. In South
+            Korea, licensed massage was for decades legally reserved for blind practitioners.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section index="02" [heading]="t('Der Weg zu uns', 'Getting here')" sectionId="weg">
+      <div class="gd-read">
+        <p class="gd-lead-p" appReveal>
+          <span class="lang de">
+            Zuerst als Text, danach als Karte. Die Wegbeschreibung führt Schritt für Schritt von
+            der U-Bahn bis in den Behandlungsraum. Der Eingang ist stufenfrei, es gibt einen
+            Aufzug, und auf dem gesamten Weg liegt keine einzige Treppe.
+          </span>
+          <span class="lang en">
+            First as text, then as a map. The directions lead step by step from the U-Bahn to the
+            treatment room. The entrance is step free, there is a lift, and there is not a single
+            staircase along the way.
+          </span>
+        </p>
+
+        <!--
+          TODO(Joé): Die exakte Wegbeschreibung wird von dir diktiert und hier
+          eingetragen; nichts erfinden. Platzhalter unten VOR Veröffentlichung
+          ersetzen (ein <li>-Paar pro Schritt, Muster: <li class="lang de">…</li>
+          <li class="lang en">…</li>).
+        -->
+        <app-guide-steps>
+          <li class="lang de">
+            <strong>Wegbeschreibung folgt.</strong> [Platzhalter: Die exakte
+            Schritt-für-Schritt-Beschreibung von der U-Bahn bis in den Behandlungsraum wird hier
+            eingefügt, sobald wir sie gemeinsam abgegangen sind.]
+          </li>
+          <li class="lang en">
+            <strong>Directions to follow.</strong> [Placeholder: the exact step-by-step route from
+            the U-Bahn to the treatment room will be added here once we have walked it together.]
+          </li>
+        </app-guide-steps>
+
+        <!--
+          TODO(Joé): Karte gegen die diktierte Route prüfen. Angenommen ist die
+          U-Bahn-Station Opernhaus (U2/U3) direkt am Frauentorgraben; falls die
+          Route woanders startet (z. B. Hauptbahnhof), Karte anpassen.
+        -->
+        <figure class="gd-figure gd-figure--wide" appReveal>
+          <svg
+            viewBox="0 0 760 300"
+            role="img"
+            focusable="false"
+            [attr.aria-label]="
+              t(
+                'Vereinfachte Karte: vom U-Bahnhof Opernhaus am Frauentorgraben zum Salon, Hausnummer 5, stufenfreier Eingang. Inhalt wie in der Wegbeschreibung.',
+                'Simplified map: from Opernhaus underground station on Frauentorgraben to the salon at number 5, step-free entrance. Same content as the written directions.'
+              )
+            "
+            style="
+              width: 100%;
+              height: auto;
+              display: block;
+              border-radius: 16px;
+              box-shadow: var(--gd-shadow-lg);
+            "
+          >
+            <rect width="760" height="300" rx="16" fill="var(--gd-surface)" />
+            <rect x="0" y="140" width="760" height="60" fill="var(--gd-sand-2)" />
+            <text
+              x="380"
+              y="128"
+              text-anchor="middle"
+              font-size="16"
+              font-style="italic"
+              fill="var(--gd-faint)"
+            >
+              Frauentorgraben
+            </text>
+
+            <!-- U-Bahn-Station -->
+            <rect x="96" y="148" width="44" height="44" rx="8" fill="#005A9E" />
+            <text
+              x="118"
+              y="171"
+              text-anchor="middle"
+              dominant-baseline="central"
+              font-size="27"
+              font-weight="700"
+              fill="#FFFFFF"
+            >
+              U
+            </text>
+            <text x="118" y="232" text-anchor="middle" font-size="16" fill="var(--gd-ink)">
+              Opernhaus (U2, U3)
+            </text>
+
+            <!-- Fußweg -->
+            <line
+              x1="152"
+              y1="170"
+              x2="548"
+              y2="170"
+              stroke="var(--gd-sage-strong)"
+              stroke-width="5"
+              stroke-linecap="round"
+              stroke-dasharray="0.1 14"
+            />
+            <polygon points="552,160 574,170 552,180" fill="var(--gd-sage-strong)" />
+
+            <!-- Salon -->
+            <circle cx="600" cy="170" r="13" fill="var(--gd-forest)" />
+            <circle cx="600" cy="170" r="5" fill="var(--gd-surface)" />
+            <text
+              x="600"
+              y="96"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="700"
+              fill="var(--gd-ink)"
+            >
+              FareWell
+            </text>
+            <text x="600" y="118" text-anchor="middle" font-size="15" fill="var(--gd-muted)">
+              Frauentorgraben 5
+            </text>
+            <text
+              class="lang de"
+              x="600"
+              y="232"
+              text-anchor="middle"
+              font-size="15"
+              fill="var(--gd-ink)"
+            >
+              stufenfreier Eingang, Aufzug
+            </text>
+            <text
+              class="lang en"
+              x="600"
+              y="232"
+              text-anchor="middle"
+              font-size="15"
+              fill="var(--gd-ink)"
+            >
+              step-free entrance, lift
+            </text>
+
+            <text class="lang de" x="744" y="266" text-anchor="end" font-size="14" fill="var(--gd-faint)">
+              Richtung Hauptbahnhof →
+            </text>
+            <text class="lang en" x="744" y="266" text-anchor="end" font-size="14" fill="var(--gd-faint)">
+              towards the main station →
+            </text>
+          </svg>
+          <figcaption class="gd-figure__cap">
+            <span class="lang de">
+              Vereinfachte Karte als Ergänzung für sehende Leser:innen. Sie zeigt nichts, was nicht
+              auch im Text steht.
+            </span>
+            <span class="lang en">
+              A simplified map as a supplement for sighted readers. It shows nothing that is not
+              also in the text.
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      [heading]="t('Was schon da ist', 'What is already in place')"
+      sectionId="salon"
+    >
+      <div class="gd-read">
+        <p class="gd-lead-p" appReveal>
+          <span class="lang de">
+            Du fängst nicht bei null an. Der Massagebereich läuft, und das Haus ist klein genug,
+            um es schnell zu kennen.
+          </span>
+          <span class="lang en">
+            You are not starting from zero. The massage side is up and running, and the house is
+            small enough to learn quickly.
+          </span>
+        </p>
+        <app-guide-checklist>
+          @for (item of inPlace; track item) {
+            <li>{{ item }}</li>
+          }
+        </app-guide-checklist>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      [heading]="t('Zwei Wege, beide offen', 'Two arrangements, both open')"
+      sectionId="modelle"
+    >
+      <div class="gd-read">
+        <p class="gd-lead-p" appReveal>
+          <span class="lang de">
+            Es gibt zwei Möglichkeiten, bei uns zu arbeiten, und wir sind ehrlich offen für beide.
+            Welche besser passt, hängt von deinem Leben ab, nicht von unserem Plan.
+          </span>
+          <span class="lang en">
+            There are two ways to work with us, and we are genuinely open to either. Which one
+            fits better depends on your life, not on a plan of ours.
+          </span>
+        </p>
+
+        <h3 appReveal>{{ t('1. Festanstellung', '1. Permanent employment') }}</h3>
+        <p appReveal>
+          <span class="lang de">
+            In Voll- oder Teilzeit, mit allem, was dazugehört: geregelte Vergütung, Urlaub,
+            Sozialversicherung. Den Stundenumfang legen wir gemeinsam fest.
+          </span>
+          <span class="lang en">
+            Full or part time, with everything that belongs to it: regular pay, holidays, social
+            insurance. We agree the number of hours together.
+          </span>
+        </p>
+
+        <h3 appReveal>
+          {{ t('2. Selbständige Tätigkeit im Salon', '2. Freelance work inside the salon') }}
+        </h3>
+        <p appReveal>
+          <span class="lang de">
+            Zu denselben Konditionen wie bei unseren anderen freiberuflichen Therapeut:innen: Du
+            behältst 70 Prozent deiner Nettoeinnahmen, 30 Prozent gehen an FareWell für Raum,
+            Buchung und Sichtbarkeit. Keine feste Miete, kein Fixum. Alle Zahlen stehen öffentlich
+            in unserem
+            <a [routerLink]="p('/karriere/masseur-nuernberg/onboarding')"
+              >Onboarding-Leitfaden für Masseur:innen</a
+            >, mit Rechenbeispiel.
+          </span>
+          <span class="lang en">
+            On the same terms as our other freelance therapists: you keep 70 percent of your net
+            takings, 30 percent goes to FareWell for the room, the booking system and the
+            visibility. No fixed rent, no flat fee. All the numbers are public in our
+            <a [routerLink]="p('/karriere/masseur-nuernberg/onboarding')"
+              >onboarding guide for massage therapists</a
+            >, with a worked example.
+          </span>
+        </p>
+
+        <p appReveal>
+          <span class="lang de">
+            Sag uns im Gespräch, wohin du tendierst, oder lass es offen. Wir besprechen beides in
+            Ruhe und entscheiden gemeinsam, was zu dir passt.
+          </span>
+          <span class="lang en">
+            Tell us in the first conversation which way you lean, or leave it open. We will talk
+            both options through calmly and decide together what fits you.
+          </span>
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="05"
+      [heading]="t('Was wir stellen', 'What we provide')"
+      sectionId="unterstuetzung"
+    >
+      <div class="gd-read">
+        <app-guide-checklist>
+          @for (item of weProvide; track item) {
+            <li>{{ item }}</li>
+          }
+        </app-guide-checklist>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="06"
+      [heading]="t('Die Rahmendaten', 'The practical details')"
+      sectionId="rahmen"
+    >
+      <div class="gd-read">
+        <!--
+          TODO(Joé): Stundenumfang, Vergütung und Startdatum eintragen, bevor
+          die Seite live geht. Optional danach im JSON-LD der Komponente
+          baseSalary ergänzen.
+        -->
+        <p appReveal>
+          <span class="lang de"><strong>Stundenumfang:</strong> [folgt]</span>
+          <span class="lang en"><strong>Hours:</strong> [to follow]</span>
+        </p>
+        <p appReveal>
+          <span class="lang de"><strong>Vergütung:</strong> [folgt]</span>
+          <span class="lang en"><strong>Pay:</strong> [to follow]</span>
+        </p>
+        <p appReveal>
+          <span class="lang de"><strong>Startdatum:</strong> [folgt]</span>
+          <span class="lang en"><strong>Start date:</strong> [to follow]</span>
+        </p>
+      </div>
+    </app-guide-section>
+
+    <div class="gd-cta" id="bewerben" appReveal>
+      <h2>{{ t('So bewirbst du dich', 'How to apply') }}</h2>
+      <p>
+        <span class="lang de">
+          Schreib uns eine E-Mail oder ruf an, beides ist uns gleich lieb. Es gibt kein Formular
+          und keine Vorlage: Ein paar Sätze zu dir und deiner Ausbildung reichen. Ein Lebenslauf
+          ist in jedem Format willkommen, ein Foto brauchst du nicht. Deine Ansprechperson ist
+          Joé Chatelain.
+        </span>
+        <span class="lang en">
+          Write us an email or call us, either is equally welcome. There is no form and no
+          template: a few sentences about you and your training are enough. A CV is welcome in
+          any format, and a photo is not required. Your contact person is Joé Chatelain.
+        </span>
+      </p>
+
+      <div class="gd-cta__actions">
+        <a class="gd-btn" [href]="mailHref" [attr.aria-label]="mailAria">{{
+          t('E-Mail schreiben', 'Write an email')
+        }}</a>
+        <a class="gd-btn gd-btn--ghost" [href]="phoneHref" [attr.aria-label]="phoneAria">{{
+          t('Anrufen', 'Call us')
+        }}</a>
+      </div>
+
+      <p class="gd-cta__tagline">Für immer sanft.</p>
+
+      <p class="gd-fine">
+        FareWell · Frauentorgraben 5 · 90443 Nürnberg<br />
+        <a [href]="'mailto:' + email" [attr.aria-label]="emailAria">{{ email }}</a> ·
+        <a [href]="phoneHref" [attr.aria-label]="phoneAria">{{ phone }}</a>
+      </p>
+    </div>
+
+    <p class="gd-fine" style="margin-top: 2rem; text-align: center">
+      <span class="lang de">
+        Diese Seite ist die Ergänzung:
+        <a [routerLink]="p('/karriere/masseur-nuernberg')"
+          >zur allgemeinen Stellenseite für Masseur:innen</a
+        >
+        oder
+        <a [routerLink]="p('/karriere')">zu allen offenen Positionen bei FareWell</a>
+      </span>
+      <span class="lang en">
+        This page is the addition:
+        <a [routerLink]="p('/karriere/masseur-nuernberg')"
+          >see the general page for massage therapists</a
+        >
+        or
+        <a [routerLink]="p('/karriere')">all open positions at FareWell</a>
+      </span>
+    </p>
+  </div>
+
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+</div>

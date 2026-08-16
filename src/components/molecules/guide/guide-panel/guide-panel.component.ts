@@ -23,7 +23,11 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
       appReveal
       [revealDelay]="revealDelay"
     >
-      <div class="gd-panel__head">{{ heading }}</div>
+      <!-- Echte Überschrift statt <div>: „Was wir geben" / „Was wir erwarten"
+           sind Abschnittstitel. Als <div> tauchten sie in der
+           Überschriften-Navigation eines Screenreaders nicht auf, und die
+           Liste darunter kam ohne Kontext an. -->
+      <h3 class="gd-panel__head">{{ heading }}</h3>
       @if (intro) {
         <p>{{ intro }}</p>
       }

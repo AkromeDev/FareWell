@@ -7,7 +7,7 @@
 } @else if (locked()) {
   <app-task-auth-gate />
 } @else if (user(); as u) {
-  <div class="dash">
+  <section class="dash">
     <header class="hero">
       <div class="hero__top">
         <div class="hero__id">
@@ -151,7 +151,7 @@
     }
 
     <div class="dash__body" [class.dash__body--cal]="viewMode() === 'calendar'">
-      <main class="dash__main" [attr.aria-label]="t('Aufgaben', 'Tasks')">
+      <div class="dash__main" role="region" [attr.aria-label]="t('Aufgaben', 'Tasks')">
         @if (viewMode() === 'list') {
           @if (filteredRecords().length === 0 && filter() !== 'all') {
             <div class="dash__filter-empty">
@@ -205,7 +205,7 @@
             (requestComplete)="onRequestComplete($event)"
           />
         }
-      </main>
+      </div>
 
       <aside class="dash__aside" [attr.aria-label]="t('Aktivitäten', 'Activity')">
         <app-activity-feed
@@ -276,5 +276,5 @@
         <span class="toast__timer" aria-hidden="true"></span>
       </div>
     }
-  </div>
+  </section>
 }

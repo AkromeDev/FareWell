@@ -18,6 +18,13 @@ interface KarrierePosition {
   /** Deutscher Pfad der Detailseite; wird per p() lokalisiert. */
   path: string;
   linkLabel: string;
+  /**
+   * Name für die Linkliste eines Screenreaders. Alle fünf Karten teilen sich
+   * denselben sichtbaren Linktext („Zur Stelle") — erst der Beruf macht sie
+   * unterscheidbar. Der sichtbare Text bleibt Präfix, damit Sprachsteuerung
+   * („Klick Zur Stelle") weiter funktioniert (WCAG 2.5.3).
+   */
+  linkAria: string;
 }
 
 /**
@@ -67,7 +74,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
 
   get stats(): GuideStat[] {
     return [
-      { value: '5', label: this.t('offene Bereiche', 'open areas') },
+      { value: '6', label: this.t('offene Positionen', 'open positions') },
       { value: '0 €', label: this.t('feste Raummiete', 'fixed room rent'), animate: false },
       { value: '100%', label: this.t('deine Kund:innen', 'your own clients') },
       { value: this.t('selbständig', 'freelance'), label: this.t('dein Status', 'your status') },
@@ -90,7 +97,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
     const t = (de: string, en: string) => this.t(de, en);
     const more = t('Zur Stelle', 'View the role');
 
-    return [
+    const positions: Omit<KarrierePosition, 'linkAria'>[] = [
       {
         icon: '✨',
         title: t('Kosmetiker:in', 'Beautician'),
@@ -109,6 +116,19 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
           'Your own little massage practice inside the studio, with a public onboarding guide in which all the numbers are laid out openly.'
         ),
         path: '/karriere/masseur-nuernberg',
+        linkLabel: more,
+      },
+      {
+        icon: '👐',
+        title: t(
+          'Masseur:in, blind oder sehbehindert',
+          'Massage therapist, blind or visually impaired'
+        ),
+        text: t(
+          'Für Masseur:innen und medizinische Bademeister:innen, die blind oder sehbehindert sind: eine eigene Seite, die die praktischen Fragen direkt beantwortet. Festanstellung oder selbständig, beides ist offen.',
+          'For massage therapists and medical bath attendants who are blind or visually impaired: a dedicated page that answers the practical questions directly. Employed or freelance, both are open.'
+        ),
+        path: '/karriere/masseur-bademeister-blind-nuernberg',
         linkLabel: more,
       },
       {
@@ -142,6 +162,11 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
         linkLabel: more,
       },
     ];
+
+    return positions.map((position) => ({
+      ...position,
+      linkAria: `${position.linkLabel}: ${position.title}`,
+    }));
   }
 
   ngOnInit(): void {

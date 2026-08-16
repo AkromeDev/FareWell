@@ -377,6 +377,22 @@ function localizedRoutes(lang: PageLang): Routes {
       )
     },
     {
+      path: 'karriere/masseur-bademeister-blind-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/karriere/masseur-bademeister-karriere/masseur-bademeister-karriere.component')
+          .then(m => m.MasseurBademeisterKarriereComponent),
+      data: d(
+        {
+          title: 'Masseur:in und medizinische:r Bademeister:in (m/w/d) in Nürnberg: für blinde und sehbehinderte Bewerber:innen | FareWell',
+          description: 'FareWell Nürnberg sucht eine:n Masseur:in und medizinische:n Bademeister:in, blind oder sehbehindert: Festanstellung oder selbständige Tätigkeit, eingerichteter Arbeitsplatz, stufenfreier Weg von der U-Bahn, Blindenführhund willkommen.'
+        },
+        {
+          title: 'Massage Therapist (m/f/d) in Nuremberg: a Role for Blind and Visually Impaired Applicants | FareWell',
+          description: 'FareWell Nuremberg is hiring a blind or visually impaired massage therapist (Masseur und medizinischer Bademeister): permanent employment or freelance work, an adapted workplace, a step-free route from the U-Bahn and a welcome for guide dogs.'
+        }
+      )
+    },
+    {
       path: 'karriere/masseur-nuernberg',
       loadComponent: () =>
         import('../components/pages/karriere/masseur-karriere/masseur-karriere.component')

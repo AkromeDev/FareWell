@@ -1,5 +1,9 @@
 <section class="time-calculator" *ngIf="selectedPart">
-    <h2 class="title">{{ t('Zeit Berechner', 'Time calculator') }}</h2>
+    <!-- h1, weil dies die einzige Überschrift ganz oben auf /zeit ist: die
+         Seite hatte vorher gar keine und begann bei h2. app-bc wird
+         ausschließlich dort verwendet. Optisch identisch — .title setzt alle
+         Werte per Klasse, unabhängig von der Ebene. -->
+    <h1 class="title">{{ t('Zeit Berechner', 'Time calculator') }}</h1>
 
   <div class="body-part-dropdown">
     <app-dropdown
@@ -19,9 +23,9 @@
 
   <div class="density-group">
     <p><strong>{{ t('Wie dicht sind deine Haare an dieser Stelle?', 'How dense is your hair in this area?') }}</strong></p>
-    <button [class.active]="density === 'low'" (click)="setDensity('low')">{{ t('Gering', 'Low') }}</button>
-    <button [class.active]="density === 'medium'" (click)="setDensity('medium')">{{ t('Mittel', 'Medium') }}</button>
-    <button [class.active]="density === 'high'" (click)="setDensity('high')">{{ t('Hoch', 'High') }}</button>
+    <button type="button" [class.active]="density === 'low'" [attr.aria-pressed]="density === 'low'" (click)="setDensity('low')">{{ t('Gering', 'Low') }}</button>
+    <button type="button" [class.active]="density === 'medium'" [attr.aria-pressed]="density === 'medium'" (click)="setDensity('medium')">{{ t('Mittel', 'Medium') }}</button>
+    <button type="button" [class.active]="density === 'high'" [attr.aria-pressed]="density === 'high'" (click)="setDensity('high')">{{ t('Hoch', 'High') }}</button>
   </div>
 
   <div class="results" *ngIf="totalHours > 0">

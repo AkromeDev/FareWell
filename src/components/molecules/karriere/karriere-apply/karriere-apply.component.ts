@@ -26,21 +26,26 @@ import {
       <p><ng-content /></p>
 
       <div class="gd-cta__actions">
-        <a class="gd-btn" [href]="mailHref">{{ mailLabel }}</a>
+        <a class="gd-btn" [href]="mailHref" [attr.aria-label]="mailAria">{{ mailLabel }}</a>
         <a
           class="gd-btn gd-btn--ghost"
           [href]="instagram"
           target="_blank"
           rel="noopener noreferrer"
+          [attr.aria-label]="instagramAria"
           >Instagram</a
         >
       </div>
 
       <p class="gd-cta__tagline">Für immer sanft.</p>
 
-      <p class="gd-fine">
+      <!-- E-Mail und Telefon als echte Links: Wer den mailto-Knopf nicht nutzen
+           kann (kein Mailprogramm eingerichtet), braucht einen zweiten Weg, und
+           die Rufnummer muss wählbar und Ziffer für Ziffer vorlesbar sein. -->
+      <p class="gd-fine ka-contact">
         FareWell · Frauentorgraben 5 · 90443 Nürnberg<br />
-        {{ email }} · {{ phone }}
+        <a [href]="'mailto:' + email" [attr.aria-label]="emailAria">{{ email }}</a> ·
+        <a [href]="phoneHref" [attr.aria-label]="phoneAria">{{ phone }}</a>
       </p>
     </div>
   `,
@@ -71,5 +76,44 @@ export class KarriereApplyComponent {
 
   get mailHref(): string {
     return `mailto:${KARRIERE_EMAIL}?subject=${encodeURIComponent(this.subject)}`;
+  }
+
+  /** Sagt vorab, dass sich ein Mailprogramm öffnet — sonst ist der Sprung aus
+   *  der Seite heraus für Screenreader-Nutzende eine Überraschung. */
+  get mailAria(): string {
+    return this.language.t(
+      `${this.mailLabel}: öffnet dein E-Mail-Programm mit einer Nachricht an ${KARRIERE_EMAIL}, Betreff „${this.subject}“`,
+      `${this.mailLabel}: opens your email app with a message to ${KARRIERE_EMAIL}, subject “${this.subject}”`
+    );
+  }
+
+  get instagramAria(): string {
+    return this.language.t(
+      'Instagram: FareWell auf Instagram, öffnet in einem neuen Tab',
+      'Instagram: FareWell on Instagram, opens in a new tab'
+    );
+  }
+
+  get emailAria(): string {
+    return this.language.t(
+      `E-Mail an ${KARRIERE_EMAIL} schreiben`,
+      `Write an email to ${KARRIERE_EMAIL}`
+    );
+  }
+
+  /** tel:-Ziel ohne Leerzeichen — mit Leerzeichen wählt kein Telefon. */
+  get phoneHref(): string {
+    return `tel:${KARRIERE_PHONE.replace(/\s/g, '')}`;
+  }
+
+  /**
+   * Der sichtbare Text muss wörtlich im Namen vorkommen, sonst kann eine
+   * Sprachsteuerung den Link nicht auslösen (WCAG 2.5.3 Label in Name).
+   * Deshalb die Nummer genau wie angezeigt, plus ein Verb als Hinweis —
+   * nicht die früher hier stehende Ziffernfolge, die den sichtbaren Text
+   * ersetzt hätte.
+   */
+  get phoneAria(): string {
+    return this.language.t(`${KARRIERE_PHONE} anrufen`, `Call ${KARRIERE_PHONE}`);
   }
 }

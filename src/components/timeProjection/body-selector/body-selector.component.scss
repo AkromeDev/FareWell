@@ -48,6 +48,44 @@
     transition: box-shadow 0.3s ease;
     border-radius: 2rem;
   }
+
+  // Die Zonen sind unsichtbare Overlays. Ein <button> bringt Rahmen,
+  // Hintergrund, Schrift und Innenabstand von Haus aus mit — hier alles auf
+  // die frueheren <div>-Werte zurueckgesetzt, damit sich optisch nichts
+  // aendert. `appearance: none` ist Pflicht: sonst ignoriert Safari
+  // box-shadow und border-radius und der Hover-Glow verschwindet.
+  button.clickable,
+  button.clickable-group {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    -webkit-tap-highlight-color: transparent;
+
+    &::-moz-focus-inner {
+      border: 0;
+      padding: 0;
+    }
+  }
+
+  // Die Gruppen-Buttons ersetzen frühere <div>-Wrapper. Ohne display:block
+  // waeren sie inline-block und wuerden eine leere Textzeile unter der
+  // Grafik erzeugen.
+  button.clickable-group {
+    display: block;
+
+    // Der eigene Kasten ist 0 Pixel hoch — ein Fokusrahmen waere nur ein
+    // Strich quer ueber die Grafik. Stattdessen leuchten die Zonen selbst
+    // (siehe :focus-visible bei den einzelnen Gruppen).
+    &:focus-visible {
+      outline: none;
+    }
+  }
 }
 
 .head {
@@ -57,7 +95,8 @@
   height: 12%;
   border-radius: 2rem;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     @include sun-glow-hover;
   }
 }
@@ -68,7 +107,8 @@
   width: 12%;
   height: 8%;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     @include sun-glow-hover;
   }
 }
@@ -79,7 +119,8 @@
   width: 17%;
   height: 9%;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     @include dark-sun-glow-hover;
   }
 }
@@ -90,7 +131,8 @@
   width: 19%;
   height: 9%;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     @include dark-sun-glow-hover;
   }
 }
@@ -104,7 +146,8 @@
     border-radius: 2rem;
   }
 
-  &:hover .leg-zone {
+  &:hover .leg-zone,
+  &:focus-visible .leg-zone {
     @include sun-glow-hover;
   }
 
@@ -147,7 +190,8 @@
     border-radius: 3rem;
   }
 
-  &:hover .shoulder-zone {
+  &:hover .shoulder-zone,
+  &:focus-visible .shoulder-zone {
     @include dark-sun-glow-hover;
   }
 
@@ -174,7 +218,8 @@
     border-radius: 2rem;
   }
 
-  &:hover .armpit-zone {
+  &:hover .armpit-zone,
+  &:focus-visible .armpit-zone {
     @include dark-sun-glow-hover;
   }
 
@@ -202,7 +247,8 @@
     border-radius: 2rem;
   }
 
-  &:hover .arm-zone {
+  &:hover .arm-zone,
+  &:focus-visible .arm-zone {
     @include sun-glow-hover;
   }
 
