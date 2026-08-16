@@ -7,6 +7,25 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!--
+    Sprachumschaltung, kritisch inline.
+
+    Zweisprachige Inhalte liegen als Paare im DOM (<span class="lang de">…</span>
+    <span class="lang en">…</span>); dieselbe Regel steht auch in styles.scss.
+    Das Haupt-Stylesheet wird aber asynchron geladen (media="print" onload),
+    und Beasties nimmt diese Regel nicht ins kritische CSS auf. Ohne die Kopie
+    hier wäre zwischen First Paint und Stylesheet BEIDE Sprachen sichtbar und
+    im Accessibility-Tree, ein Screenreader läse in diesem Fenster alles doppelt.
+    display:none (nicht nur visuell verstecken) nimmt die inaktive Sprache
+    vollständig aus dem Accessibility-Tree.
+  -->
+  <style>
+    [data-lang='de'] .lang.en,
+    [data-lang='en'] .lang.de {
+      display: none !important;
+    }
+  </style>
+
   <!-- 🌟 Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo/favicon-32x32.png">

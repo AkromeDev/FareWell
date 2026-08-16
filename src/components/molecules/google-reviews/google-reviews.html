@@ -81,8 +81,9 @@
                 class="read-more"
                 (click)="toggleExpanded(r)"
                 [attr.aria-expanded]="isExpanded(r)"
+                [attr.aria-label]="readMoreAria(r)"
               >
-                {{ isExpanded(r) ? t('Weniger', 'Show less') : t('Mehr lesen', 'Read more') }}
+                {{ readMoreText(r) }}
               </button>
             }
           </article>

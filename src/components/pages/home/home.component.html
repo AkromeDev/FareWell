@@ -181,7 +181,7 @@
         <span class="card-more"
           ><span class="lang de">Mehr erfahren</span
           ><span class="lang en">Learn more</span>
-          →</span
+          <span aria-hidden="true">→</span></span
         >
       </div>
     </a>
@@ -282,6 +282,11 @@
         >
         <span class="rechner-freq">{{ freq() }}</span>
       </div>
+      <!-- aria-valuetext: Ohne sie liest ein Screenreader bei jedem Pfeiltastendruck
+           nur die nackte Zahl („8"), während sich die beiden Ergebniskacheln
+           daneben stumm ändern. valuenow/valuemin/valuemax kommen bereits aus
+           value/min/max und dürfen nicht zusätzlich gesetzt werden, sonst
+           veralten sie beim Schieben. -->
       <input
         id="fwRange"
         type="range"
@@ -289,6 +294,7 @@
         max="14"
         step="1"
         [value]="freq()"
+        [attr.aria-valuetext]="freqValueText()"
         (input)="onFreqInput($event)"
       />
       <div class="stat-grid">
@@ -322,7 +328,7 @@
         <a [routerLink]="p('/zeit')" class="rechner-link no-underline"
           ><span class="lang de">Zur ausführlichen Elektrolyse-Zeitberechnung</span
           ><span class="lang en">Full electrolysis time calculation</span>
-          →</a
+          <span aria-hidden="true">→</span></a
         >
       </p>
     </div>
@@ -403,7 +409,12 @@
       </div>
     </div>
 
-    <div class="marquee">
+    <!-- Zweite Reihe: dieselben Bewertungen wie Reihe A, nur umgedreht
+         (rowB = rowA.slice().reverse()). Rein visuell, damit die zweite Zeile
+         gegenläufig wirkt. Ohne aria-hidden liest ein Screenreader jede
+         Bewertung doppelt. Enthält nichts Fokussierbares, daher genügt
+         aria-hidden ohne inert/tabindex="-1". -->
+    <div class="marquee" aria-hidden="true">
       <div class="marquee-track marquee-track--b">
         <article
           class="review-card"

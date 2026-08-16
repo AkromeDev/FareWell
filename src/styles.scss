@@ -243,12 +243,17 @@ a[href]:not(.no-underline):not(.gd a) {
 //   <span class="lang de">Deutsch</span><span class="lang en">English</span>
 // und werden per CSS umgeschaltet. So sind beide Sprachen vorgerendert und der
 // Wechsel im Header ist sofort sichtbar, ohne Nachladen.
+// !important ist hier Absicht: Die Regel ist eine Invariante, keine Empfehlung.
+// Eine Komponentenregel wie `.rail-intro .lang { display: block }` hat mit dem
+// _ngcontent-Attribut eine höhere Spezifität und hat die inaktive Sprache
+// bereits einmal wieder sichtbar gemacht. Sichtbar heißt hier auch: im
+// Accessibility-Tree, ein Screenreader liest die Passage dann zweimal vor.
 [data-lang='de'] .lang.en {
-  display: none;
+  display: none !important;
 }
 
 [data-lang='en'] .lang.de {
-  display: none;
+  display: none !important;
 }
 
 // ---------------------------------------------------------------------------

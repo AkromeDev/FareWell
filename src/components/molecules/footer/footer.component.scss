@@ -151,6 +151,14 @@
   color: rgba($cream, 0.72);
   white-space: nowrap;
 
+  /* Der Stellentitel für blinde und sehbehinderte Bewerber:innen ist deutlich
+     länger als die übrigen (englisch: „Massage therapist, blind or visually
+     impaired"). Mit nowrap würde er auf 320px-Geräten am Rand abgeschnitten,
+     und weil body overflow-x: hidden setzt, lautlos, ohne Scrollbalken. */
+  &.career-wrap {
+    white-space: normal;
+  }
+
   &:hover {
     color: $gold;
   }

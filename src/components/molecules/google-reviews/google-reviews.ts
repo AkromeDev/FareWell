@@ -228,6 +228,29 @@ export class GoogleReviewsComponent implements OnChanges {
     return this.expanded.has(this.keyOf(r));
   }
 
+  /**
+   * Sichtbarer Text des Aufklapp-Knopfes. Steht hier und nicht im Template,
+   * damit er sich die Quelle mit readMoreAria() teilt: Der zugängliche Name
+   * muss den sichtbaren Text als Präfix enthalten (WCAG 2.5.3), und der Text
+   * wechselt beim Aufklappen. Zwei getrennte Ternaries im Template würden
+   * irgendwann auseinanderlaufen.
+   */
+  readMoreText(r: GoogleReview): string {
+    return this.isExpanded(r) ? this.t('Weniger', 'Show less') : this.t('Mehr lesen', 'Read more');
+  }
+
+  /**
+   * „Mehr lesen" allein wiederholt sich auf jeder Karte; in der Linkliste eines
+   * Screenreaders stehen dann fünf identische Knöpfe. Der Name der bewertenden
+   * Person macht sie unterscheidbar.
+   */
+  readMoreAria(r: GoogleReview): string {
+    const who = (r.authorAttribution?.displayName ?? r.name ?? '').trim();
+    const text = this.readMoreText(r);
+    if (!who) return text;
+    return this.t(`${text}: Bewertung von ${who}`, `${text}: review by ${who}`);
+  }
+
   toggleExpanded(r: GoogleReview): void {
     const k = this.keyOf(r);
 

@@ -66,10 +66,14 @@ import {
           <tbody>
             @for (row of rows; track row.name) {
               <tr>
-                <td>
+                <!-- Erste Spalte ist die Zeilenidentität, nicht irgendeine Zelle:
+                     ohne scope="row" liest ein Screenreader in der Spalte
+                     „FareWell-Anteil" nur „0 %", ohne zu sagen, zu welchem Kanal
+                     das gehört. <strong> allein trägt die Beziehung nur optisch. -->
+                <th scope="row">
                   <strong>{{ row.name }}</strong><br />
                   <span class="gd-fine">{{ row.sub }}</span>
-                </td>
+                </th>
                 <td><app-guide-pill [variant]="row.tempo.variant" [label]="row.tempo.label" /></td>
                 <td>
                   <app-guide-pill [variant]="row.kosten.variant" [label]="row.kosten.label" />
@@ -115,7 +119,7 @@ import {
               <tbody>
                 @for (row of beispiele; track row.rabatt) {
                   <tr>
-                    <td><strong>{{ row.rabatt }}</strong></td>
+                    <th scope="row"><strong>{{ row.rabatt }}</strong></th>
                     <td class="num">{{ row.zahlt }}</td>
                     <td
                       class="num"

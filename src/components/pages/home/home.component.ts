@@ -91,6 +91,23 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly hoursYear = computed(() => Math.round((this.freq() * 10 * 52) / 60));
   readonly daysLife = computed(() => Math.round((this.hoursYear() * 60) / 24));
 
+  /**
+   * Gesprochener Wert des Schiebereglers (aria-valuetext).
+   *
+   * Ein Screenreader liest bei jedem Pfeiltastendruck nur den Wert vor, nicht
+   * den Namen des Reglers und schon gar nicht die beiden Ergebniskacheln
+   * daneben. Ohne diesen Text hört man also „8", „9", „10" und erfährt nie,
+   * worauf der Rechner hinauswill. Deshalb reisen Einheit und Ergebnis mit.
+   * Die Sprache kommt aus dem Signal in LanguageService.t, das computed
+   * aktualisiert sich damit auch beim Umschalten der Sprache.
+   */
+  readonly freqValueText = computed(() =>
+    this.t(
+      `${this.freq()} Rasuren pro Woche, ${this.hoursYear()} Stunden im Jahr, ${this.daysLife()} Tage deines Lebens`,
+      `${this.freq()} shaves per week, ${this.hoursYear()} hours a year, ${this.daysLife()} days of your life`
+    )
+  );
+
   onFreqInput(event: Event): void {
     this.freq.set(Number((event.target as HTMLInputElement).value));
   }

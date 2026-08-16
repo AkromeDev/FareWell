@@ -49,6 +49,14 @@ export interface KarriereJobConfig {
    * festem Zeitfenster (Yoga, Tanz) setzen hier ihre Abend-/Wochenendzeiten.
    */
   workHours?: string;
+  /**
+   * JobPosting.jobStartDate. schema.org erlaubt Date ODER Text; wir nutzen Text,
+   * weil es kein festes Eintrittsdatum gibt (siehe Standardwert in
+   * KarriereDetailPage). Sobald eine Stelle ein echtes Datum hat, gehört hier
+   * ein ISO-Datum hin, und der sichtbare Text muss dasselbe sagen: Google
+   * verlangt, dass strukturierte Daten den sichtbaren Inhalt abbilden.
+   */
+  jobStartDate?: string;
 }
 
 /** Minimales HTML-Escaping für die eingebettete Stellenbeschreibung. */
@@ -114,6 +122,7 @@ export function buildKarriereJsonLd(
             'Vollständig flexible Arbeitszeiten, keine Anwesenheitspflicht ohne gebuchte Termine',
             'Fully flexible working hours, no obligation to be present without booked appointments'
           ),
+        ...(cfg.jobStartDate ? { jobStartDate: cfg.jobStartDate } : {}),
         hiringOrganization: {
           '@type': 'BeautySalon',
           '@id': `${ORIGIN}/#organization`,

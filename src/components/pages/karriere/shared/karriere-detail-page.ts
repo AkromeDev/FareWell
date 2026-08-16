@@ -72,6 +72,23 @@ export abstract class KarriereDetailPage implements OnInit, OnDestroy {
     return this.config.applySubject;
   }
 
+  /**
+   * Eintrittstermin, sichtbar und im JobPosting identisch.
+   *
+   * Es gibt bewusst kein Kalenderdatum: Keine der freiberuflichen Stellen hat
+   * eines, und der Ablauf auf den Seiten sagt genau das („Die genaue Aufteilung
+   * … legen wir vor deinem Start gemeinsam fest", Erstgespräch → Probetag →
+   * Konzept → Launch). Ein erfundenes Datum wäre eine Tatsachenbehauptung über
+   * den Betrieb. Sobald eine Stelle ein echtes Datum hat, setzt ihre
+   * buildConfig() jobStartDate und überschreibt diesen Standard.
+   */
+  get jobStartDate(): string {
+    return (
+      this.config.jobStartDate ??
+      this.t('nach Vereinbarung, im Erstgespräch festgelegt', 'by arrangement, agreed at the first conversation')
+    );
+  }
+
   /** Dritte Kennzahl überschreiben (Kursformate mit festem Zeitfenster). */
   protected get hoursStat(): GuideStat | undefined {
     return undefined;
@@ -125,9 +142,14 @@ export abstract class KarriereDetailPage implements OnInit, OnDestroy {
         : {}),
     });
 
+    // jobStartDate wird hier aufgelöst, damit JSON-LD und sichtbarer Text
+    // garantiert denselben Wert tragen (Google verlangt diese Übereinstimmung).
     this.seo.setJsonLd(
       this.jsonLdId,
-      buildKarriereJsonLd((de, en) => this.t(de, en), this.language.lang() === 'en', cfg)
+      buildKarriereJsonLd((de, en) => this.t(de, en), this.language.lang() === 'en', {
+        ...cfg,
+        jobStartDate: this.jobStartDate,
+      })
     );
   }
 

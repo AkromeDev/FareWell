@@ -237,12 +237,14 @@
   // ---------- zweisprachige Seiten ----------
   // Der Seiten-Wrapper trägt data-lang="de|en"; Inhalte liegen als
   // <span class="lang de">…</span><span class="lang en">…</span> nebeneinander.
+  // !important wie in styles.scss: die inaktive Sprache darf von keiner
+  // Komponentenregel wieder eingeblendet werden (sonst doppelte Vorlesung).
   &[data-lang='de'] .lang.en {
-    display: none;
+    display: none !important;
   }
 
   &[data-lang='en'] .lang.de {
-    display: none;
+    display: none !important;
   }
 
   // ---------- Lese-Fortschrittsbalken ----------
@@ -948,19 +950,28 @@
       background: var(--gd-surface-2);
     }
 
-    tbody td {
+    // tbody th ist die Zeilenüberschrift (erste Spalte). Sie muss dieselbe
+    // Optik wie eine normale Zelle bekommen: ohne diese Regel fiele sie auf
+    // die Browser-Defaults zurück (zentriert, fett, ohne Padding und Rahmen)
+    // und die Tabelle sähe kaputt aus, sobald td zu th wird.
+    tbody td,
+    tbody th {
       padding: 0.72rem 0.95rem;
       border-bottom: 1px solid var(--gd-line);
       vertical-align: top;
       color: var(--gd-muted);
       transition: background 0.2s ease;
+      text-align: left;
+      font-weight: 400;
     }
 
-    tbody tr:last-child td {
+    tbody tr:last-child td,
+    tbody tr:last-child th {
       border-bottom: none;
     }
 
-    tbody tr:hover td {
+    tbody tr:hover td,
+    tbody tr:hover th {
       background: var(--gd-sand-tint);
     }
 

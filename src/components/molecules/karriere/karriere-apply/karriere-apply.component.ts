@@ -37,6 +37,16 @@ import {
         >
       </div>
 
+      <!-- Eintrittstermin sichtbar, weil derselbe Wert im JobPosting steht:
+           Google verlangt, dass strukturierte Daten den sichtbaren Inhalt der
+           Seite abbilden. Leerer Standard, damit die Übersichtsseite (dort gibt
+           es kein JobPosting) unverändert bleibt. -->
+      @if (startDate) {
+        <p class="gd-fine ka-start">
+          <strong>{{ startLabel }}</strong> {{ startDate }}
+        </p>
+      }
+
       <p class="gd-cta__tagline">Für immer sanft.</p>
 
       <!-- E-Mail und Telefon als echte Links: Wer den mailto-Knopf nicht nutzen
@@ -56,6 +66,11 @@ export class KarriereApplyComponent {
   /** Anker-id, damit Karten von der Hub-Seite hierher springen können. */
   @Input() sectionId = 'bewerben';
   @Input() headingOverride = '';
+  /**
+   * Eintrittstermin im Klartext. Muss wortgleich im JobPosting stehen; wird
+   * von KarriereDetailPage.jobStartDate geliefert. Leer = nicht anzeigen.
+   */
+  @Input() startDate = '';
 
   readonly email = KARRIERE_EMAIL;
   readonly phone = KARRIERE_PHONE;
@@ -68,6 +83,10 @@ export class KarriereApplyComponent {
       this.headingOverride ||
       this.language.t('Erzähl uns von deiner Idee', 'Tell us about your idea')
     );
+  }
+
+  get startLabel(): string {
+    return this.language.t('Start:', 'Start date:');
   }
 
   get mailLabel(): string {
