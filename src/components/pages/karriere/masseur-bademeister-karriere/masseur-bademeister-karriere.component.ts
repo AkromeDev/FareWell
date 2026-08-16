@@ -29,6 +29,13 @@ function list(items: string[]): string {
  * allgemeinen Masseur:innen-Seite, weil die praktischen Fragen andere sind
  * und wir sie direkt beantworten statt sie erfragen zu lassen.
  *
+ * Sprachaufbau bewusst anders als der Rest des Baukastens: Der Fließtext
+ * steht pro Abschnitt zuerst komplett auf Deutsch (Block mit lang="de"),
+ * darunter komplett auf Englisch (Block mit lang="en" unter der dezenten
+ * Überschrift „In English"). Deshalb gibt es die Listen hier als getrennte
+ * De-/En-Arrays statt über t(); nur Hero, Überschriften, TOC und Metadaten
+ * folgen weiter der URL-Sprache. Begründung im Template-Kommentar.
+ *
  * Bewusst KEINE Unterklasse von KarriereDetailPage: Diese Stelle gibt es auch
  * als Festanstellung (employmentType FULL_TIME/PART_TIME statt nur
  * CONTRACTOR), und die geteilten Deal-/FAQ-Bausteine sind rein freiberuflich
@@ -61,32 +68,43 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
     return this.language.localizePath(path);
   }
 
-  get stats(): GuideStat[] {
-    return [
-      {
-        value: this.t('beides', 'both'),
-        label: this.t('Festanstellung oder selbständig', 'employed or freelance'),
-        animate: false,
-      },
-      {
-        value: '0',
-        label: this.t('Stufen bis in den Behandlungsraum', 'steps to the treatment room'),
-        animate: false,
-      },
-      { value: '3', label: this.t('Behandlungsräume', 'treatment rooms') },
-      {
-        value: this.t('willkommen', 'welcome'),
-        label: this.t('Blindenführhund', 'guide dog'),
-        animate: false,
-      },
-    ];
-  }
+  /**
+   * Kennzahlen bewusst deutsch (die Seite liest sich deutsch zuerst) und mit
+   * srText als vollständigem Satz: Wert und Label allein wären linear gelesen
+   * zusammenhanglose Fragmente („beides", „0", „3", „willkommen").
+   */
+  readonly stats: GuideStat[] = [
+    {
+      value: 'beides',
+      label: 'Festanstellung oder selbständig',
+      srText: 'Festanstellung oder selbständige Tätigkeit, beides ist möglich.',
+      animate: false,
+    },
+    {
+      value: '0',
+      label: 'Stufen bis in den Behandlungsraum',
+      srText: 'Null Stufen bis in den Behandlungsraum.',
+      animate: false,
+    },
+    {
+      value: '3',
+      label: 'Behandlungsräume',
+      srText: 'Drei Behandlungsräume.',
+    },
+    {
+      value: 'willkommen',
+      label: 'Blindenführhund',
+      srText: 'Blindenführhund willkommen.',
+      animate: false,
+    },
+  ];
 
   get toc(): GuideTocItem[] {
     return [
       { id: 'beruf', label: this.t('Der Beruf ist längst offen', 'A profession long open') },
       { id: 'weg', label: this.t('Der Weg zu uns', 'Getting here') },
       { id: 'salon', label: this.t('Was schon da ist', 'What is already in place') },
+      { id: 'keine-baeder', label: this.t('Massage, keine Bäder', 'Massage, no baths') },
       { id: 'modelle', label: this.t('Zwei Wege, beide offen', 'Two arrangements, both open') },
       { id: 'unterstuetzung', label: this.t('Was wir stellen', 'What we provide') },
       { id: 'rahmen', label: this.t('Die Rahmendaten', 'The practical details') },
@@ -94,49 +112,43 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
     ];
   }
 
-  /** Sichtbare Checkliste „Was schon da ist“; speist auch das JSON-LD. */
-  get inPlace(): string[] {
-    return [
-      this.t(
-        'Ein eingerichteter Massage-Arbeitsplatz, an dem bereits behandelt wird: Liege, Wäsche, Öle, alles vorhanden.',
-        'A working massage setup where treatments already take place: couch, linen, oils, everything in place.'
-      ),
-      this.t(
-        'Feste, dauerhafte Plätze für alle Produkte und Materialien. Nichts wandert, nichts wird umgeräumt, ohne dass wir es absprechen.',
-        'Fixed permanent positions for all products and materials. Nothing wanders, and nothing gets moved without agreeing it first.'
-      ),
-      this.t(
-        'Ein kleines Team mit kurzen Wegen und direkter Absprache.',
-        'A small team with short paths and direct communication.'
-      ),
-      this.t(
-        'Drei Behandlungsräume in einem überschaubaren Grundriss.',
-        'Three treatment rooms on a compact floor plan.'
-      ),
-    ];
-  }
+  /** Checkliste „Was schon da ist", deutsch; speist auch das JSON-LD. */
+  readonly inPlaceDe: string[] = [
+    'Stufenfreier Eingang, Aufzug im Haus, keine Treppe bis in den Behandlungsraum.',
+    'Ein eingerichteter Massage-Arbeitsplatz, an dem bereits behandelt wird: Liege, Wäsche, Öle, alles vorhanden.',
+    'Feste, dauerhafte Plätze für alle Produkte und Materialien. Nichts wandert, nichts wird umgeräumt, ohne dass wir es absprechen.',
+    'Ein kleines Team mit kurzen Wegen und direkter Absprache.',
+    'Drei Behandlungsräume in einem überschaubaren Grundriss.',
+    'Du bist nie allein im Salon. Es ist immer mindestens eine weitere Person da, die kurz einspringen kann, wenn etwas gebraucht wird.',
+    'Für den Kalender und die Terminübersicht richten wir eine Sprachsteuerung ein. Welche Lösung wir nehmen, entscheiden wir mit dir, nicht für dich.',
+  ];
 
-  /** Sichtbare Checkliste „Was wir stellen“; speist auch das JSON-LD. */
-  get weProvide(): string[] {
-    return [
-      this.t(
-        'Eine Einarbeitung in deinem Tempo: Räume, Abläufe, Team.',
-        'An induction at your pace: rooms, routines, team.'
-      ),
-      this.t(
-        'Die Anpassung des Arbeitsplatzes, geplant mit dir statt für dich.',
-        'Adapting the workplace, planned with you rather than for you.'
-      ),
-      this.t(
-        'Unterstützung bei den Anträgen auf Arbeitsassistenz und technische Hilfsmittel, etwa beim Inklusionsamt.',
-        'Support with applying for work assistance (Arbeitsassistenz) and technical aids, for example at the Inklusionsamt, the inclusion office.'
-      ),
-      this.t(
-        'Dein Blindenführhund ist bei uns willkommen.',
-        'Your guide dog is welcome here.'
-      ),
-    ];
-  }
+  /** Checkliste „Was schon da ist", englisch; speist auch das JSON-LD auf /en. */
+  readonly inPlaceEn: string[] = [
+    'A step-free entrance, a lift in the building and not a single stair on the way to the treatment room.',
+    'A working massage setup where treatments already take place: couch, linen, oils, everything in place.',
+    'Fixed permanent positions for all products and materials. Nothing wanders, and nothing gets moved without agreeing it first.',
+    'A small team with short paths and direct communication.',
+    'Three treatment rooms on a compact floor plan.',
+    'You are never alone in the salon. There is always at least one other person present who can step in for a moment if something is needed.',
+    'For the calendar and the appointment overview we will set up voice control software. Which solution we use is something we decide with you, not for you.',
+  ];
+
+  /** Checkliste „Was wir stellen", deutsch; speist auch das JSON-LD. */
+  readonly weProvideDe: string[] = [
+    'Eine Einarbeitung in deinem Tempo: Räume, Abläufe, Team.',
+    'Die Anpassung des Arbeitsplatzes, geplant mit dir statt für dich.',
+    'Unterstützung bei den Anträgen auf Arbeitsassistenz und technische Hilfsmittel, etwa beim Inklusionsamt.',
+    'Dein Blindenführhund ist bei uns willkommen.',
+  ];
+
+  /** Checkliste „Was wir stellen", englisch; speist auch das JSON-LD auf /en. */
+  readonly weProvideEn: string[] = [
+    'An induction at your pace: rooms, routines, team.',
+    'Adapting the workplace, planned with you rather than for you.',
+    'Support with applying for work assistance (Arbeitsassistenz) and technical aids, for example at the Inklusionsamt, the inclusion office.',
+    'Your guide dog is welcome here.',
+  ];
 
   get applySubject(): string {
     return this.t(
@@ -157,10 +169,6 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
     );
   }
 
-  get emailAria(): string {
-    return this.t(`E-Mail an ${this.email} schreiben`, `Write an email to ${this.email}`);
-  }
-
   /** tel:-Ziel ohne Leerzeichen — mit Leerzeichen wählt kein Telefon. */
   get phoneHref(): string {
     return `tel:${this.phone.replace(/\s/g, '')}`;
@@ -178,6 +186,8 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
     const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${PAGE_PATH}`;
     const homeUrl = isEn ? `${ORIGIN}/en` : ORIGIN;
     const inLanguage = isEn ? 'en' : 'de';
+    const inPlace = isEn ? this.inPlaceEn : this.inPlaceDe;
+    const weProvide = isEn ? this.weProvideEn : this.weProvideDe;
 
     const title = t(
       'Masseur:in und medizinische:r Bademeister:in (m/w/d) in Nürnberg: für blinde und sehbehinderte Bewerber:innen | FareWell',
@@ -194,6 +204,12 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
       path: PAGE_PATH,
       // encodeURI wegen des Leerzeichens im Assetnamen (vgl. KarriereDetailPage).
       image: encodeURI(`${ORIGIN}/assets/images/massages/tm massaging.jpg`),
+      // Ohne eigenes Alt fiele og:image:alt auf den Empfangs-Text des
+      // SeoService zurück; das Bild zeigt aber eine Massagebehandlung.
+      imageAlt: t(
+        'Massagebehandlung bei FareWell in Nürnberg',
+        'A massage treatment at FareWell in Nuremberg'
+      ),
       largeImage: true,
     });
 
@@ -227,9 +243,9 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
             `<p><strong>${esc(t('Zwei Wege, beide offen', 'Two arrangements, both open'))}</strong></p>` +
             list(arrangements) +
             `<p><strong>${esc(t('Was wir stellen', 'What we provide'))}</strong></p>` +
-            list(this.weProvide) +
+            list(weProvide) +
             `<p><strong>${esc(t('Was schon da ist', 'What is already in place'))}</strong></p>` +
-            list(this.inPlace),
+            list(inPlace),
           inLanguage,
           datePosted: '2026-08-16',
           employmentType: ['FULL_TIME', 'PART_TIME', 'CONTRACTOR'],

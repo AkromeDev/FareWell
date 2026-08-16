@@ -247,6 +247,31 @@
     display: none !important;
   }
 
+  // ---------- sequenziell zweisprachige Abschnitte ----------
+  // Für Seiten, deren Leser:innen primär mit Sprachausgabe unterwegs sind
+  // (Karriereseite für blinde Bewerber:innen): Deutsch steht komplett zuerst
+  // in einem Block mit lang="de", darunter der komplette englische Text in
+  // einem Block mit lang="en". Beide sind immer sichtbar, nichts hängt an
+  // CSS-Versteckung. Die „In English"-Überschrift ist bewusst dezent.
+  .gd-en {
+    margin-top: 2.2rem;
+
+    .gd-en__head {
+      font-family: var(--gd-font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gd-faint);
+      margin: 0 0 0.6rem;
+    }
+  }
+
+  // Bildunterschriften mit beiden Sprachen: jede Sprache in eigener Zeile.
+  .gd-figure__cap [lang] {
+    display: block;
+  }
+
   // ---------- Lese-Fortschrittsbalken ----------
   .gd-progress {
     position: fixed;

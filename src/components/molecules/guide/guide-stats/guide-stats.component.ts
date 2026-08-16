@@ -16,6 +16,12 @@ export interface GuideStat {
   label: string;
   /** false unterdrückt das Hochzählen (z. B. bei Bereichen wie '1–7%'). */
   animate?: boolean;
+  /**
+   * Vollständiger Satz als alleiniger Screenreader-Text des Stats. Wenn
+   * gesetzt, werden Wert und Label mit aria-hidden dekorativ: linear gelesen
+   * wären sie sonst zusammenhanglose Fragmente („beides", „0", „3", …).
+   */
+  srText?: string;
 }
 
 /**
@@ -31,14 +37,20 @@ export interface GuideStat {
       <div class="gd-stats__in">
         @for (stat of stats; track stat.label) {
           <div class="gd-stat">
+            @if (stat.srText) {
+              <span class="gd-visually-hidden">{{ stat.srText }}</span>
+            }
             <div
               class="gd-stat__n"
               [class.gd-stat__n--text]="!isNumeric(stat.value)"
               [attr.data-value]="stat.animate === false ? null : stat.value"
+              [attr.aria-hidden]="stat.srText ? 'true' : null"
             >
               {{ stat.value }}
             </div>
-            <div class="gd-stat__l">{{ stat.label }}</div>
+            <div class="gd-stat__l" [attr.aria-hidden]="stat.srText ? 'true' : null">
+              {{ stat.label }}
+            </div>
           </div>
         }
       </div>

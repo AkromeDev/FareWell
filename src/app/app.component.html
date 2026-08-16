@@ -4,10 +4,9 @@
      ein Klick vor dem Start von Angular (oder ganz ohne JavaScript) landete
      auf der Startseite. Mit vollem Pfad springt der Browser auch ohne JS
      korrekt; skipToContent() übernimmt danach den Fokus. -->
-<a class="skip-link no-underline" [href]="skipHref" (click)="skipToContent($event)"
-  ><span class="lang de">Zum Inhalt springen</span
-  ><span class="lang en">Skip to content</span></a
->
+<a class="skip-link no-underline" [href]="skipHref" (click)="skipToContent($event)">{{
+  t('Zum Inhalt springen', 'Skip to content')
+}}</a>
 
 <app-header></app-header>
 
