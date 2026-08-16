@@ -14,6 +14,16 @@ const PAGE_PATH = '/karriere/masseur-bademeister-blind-nuernberg';
 const ORIGIN = 'https://farewell.salon';
 const LOGO_URL = `${ORIGIN}/assets/images/logo/android-chrome-512x512.png`;
 
+/**
+ * Veröffentlichungsdatum der Seite und Ablauf der Anzeige (datePosted plus
+ * sechs Monate). Beide fest verdrahtet, nicht aus `new Date()` berechnet:
+ * Ein mitwanderndes datePosted lässt die Stelle in der Google-Jobsuche
+ * dauerhaft als „heute veröffentlicht" erscheinen. Läuft validThrough ab und
+ * die Stelle ist noch offen, hier beide Werte neu setzen.
+ */
+const DATE_POSTED = '2026-08-16';
+const VALID_THROUGH = '2027-02-16';
+
 /** Minimales HTML-Escaping für die eingebettete Stellenbeschreibung. */
 function esc(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -51,7 +61,15 @@ function list(items: string[]): string {
 export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
   private readonly language = inject(LanguageService);
-  private readonly jsonLdId = 'masseur-bademeister-jobposting-schema';
+
+  /**
+   * Zwei getrennte JSON-LD-Blöcke statt eines @graph: Die JobPosting steht als
+   * eigenständiges Dokument im Head (vorgegebene Struktur, deutsche Copy,
+   * unabhängig von der URL-Sprache), WebPage und Breadcrumb bleiben im Graph
+   * und folgen weiter der Seitensprache.
+   */
+  private readonly jobPostingLdId = 'masseur-bademeister-jobposting-schema';
+  private readonly pageLdId = 'masseur-bademeister-webpage-schema';
 
   readonly email = KARRIERE_EMAIL;
   readonly phone = KARRIERE_PHONE;
@@ -150,6 +168,77 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
     'Your guide dog is welcome here.',
   ];
 
+  /**
+   * Die vollständige deutsche Seitencopy als escaptes HTML für das
+   * JobPosting-Feld `description` — auch auf /en, weil die Anzeige selbst
+   * deutsch ist (`inLanguage: 'de'`).
+   *
+   * Der Fließtext steht damit zweimal im Repo, hier und im Template. Das ist
+   * gewollt: Google verlangt in `description` die volle Stellenbeschreibung
+   * als HTML, das Template braucht Angular-Bindings und Links. Wird oben im
+   * Template ein deutscher Absatz geändert, gehört er hier mitgeändert.
+   * Links bleiben hier absichtlich weg, Google entfernt sie ohnehin.
+   */
+  private get jobDescriptionDe(): string {
+    const p = (text: string) => `<p>${esc(text)}</p>`;
+    const h = (text: string) => `<p><strong>${esc(text)}</strong></p>`;
+
+    return [
+      p(
+        'Unsere allgemeine Stellenseite für Masseur:innen steht allen offen, auch dir. Diese Seite gibt es zusätzlich: Wenn du blind oder sehbehindert bist, sind die praktischen Fragen andere, und wir beantworten sie lieber direkt, statt dich alles einzeln erfragen zu lassen.'
+      ),
+      p(
+        'Wir stellen die Person ein, die fachlich am besten qualifiziert ist, und wir haben einen Salon gebaut, in dem eine blinde Therapeutin oder ein blinder Therapeut vollständig eigenständig arbeiten kann. Eine Anstellung wie jede andere, Barrierefreiheit als Kompetenz.'
+      ),
+      h('Der Beruf ist längst offen'),
+      p(
+        'Masseur:in und medizinische:r Bademeister:in ist in Deutschland seit Jahrzehnten ein Beruf, in dem blinde und sehbehinderte Menschen ausgebildet werden und arbeiten. Die Ausbildung gibt es unter anderem am bbs nürnberg (Bildungszentrum für Blinde und Sehbehinderte), wenige Kilometer von unserem Salon, und am BFW Mainz (Berufsförderungswerk). Die Vermittlungsquoten der Absolvent:innen liegen nahe 100 Prozent.'
+      ),
+      p(
+        'Der Engpass war nie das Können. Der Engpass sind Arbeitgeber, die bereit sind, einen Arbeitsplatz anzupassen. Wir haben unseren angepasst.'
+      ),
+      h('Der Weg zu uns'),
+      p(
+        'Der Salon liegt am Frauentorgraben 5, direkt zwischen dem U-Bahnhof Opernhaus (U2, U3) und dem Hauptbahnhof. Der Eingang ist stufenfrei, es gibt einen Aufzug, und auf dem gesamten Weg von der Straße bis in den Behandlungsraum liegt keine einzige Treppe.'
+      ),
+      p(
+        'Eine ausführliche Wegbeschreibung, Schritt für Schritt von der U-Bahn bis zur Liege, gehen wir am liebsten gemeinsam ab und schreiben sie danach auf. Melde dich, dann machen wir einen Termin.'
+      ),
+      h('Was schon da ist'),
+      p(
+        'Du fängst nicht bei null an. Der Massagebereich läuft, und das Haus ist klein genug, um es schnell zu kennen.'
+      ),
+      list(this.inPlaceDe),
+      h('Massage, keine Bäder'),
+      p(
+        'Ehrlich gesagt: Bäder, Fango und Hydrotherapie gibt es bei uns nicht. Wir machen Massage. Der Bademeisterteil deiner Ausbildung kommt hier also nicht zum Einsatz. Wir nennen die vollständige Berufsbezeichnung trotzdem, weil sie deine ist, und sagen dir lieber vorher, was dich erwartet.'
+      ),
+      h('Zwei Wege, beide offen'),
+      p(
+        'Es gibt zwei Möglichkeiten, bei uns zu arbeiten, und wir sind ehrlich offen für beide. Welche besser passt, hängt von deinem Leben ab, nicht von unserem Plan.'
+      ),
+      p(
+        '1. Festanstellung in Voll- oder Teilzeit, mit allem, was dazugehört: geregelte Vergütung, Urlaub, Sozialversicherung. Den Stundenumfang legen wir gemeinsam fest.'
+      ),
+      p(
+        '2. Selbständige Tätigkeit im Salon zu denselben Konditionen wie bei unseren anderen freiberuflichen Therapeut:innen: Du behältst 70 Prozent deiner Nettoeinnahmen, 30 Prozent gehen an uns für Raum, Buchung und Sichtbarkeit. Keine feste Miete, kein Fixum.'
+      ),
+      h('Was wir stellen'),
+      list(this.weProvideDe),
+      h('Die Rahmendaten'),
+      p('Stundenumfang: Voll- oder Teilzeit, den Umfang legen wir gemeinsam fest.'),
+      p('Vergütung: Nach Vereinbarung. Wir sprechen im ersten Gespräch offen über Zahlen.'),
+      p('Startdatum: Ab sofort, sobald es für dich passt.'),
+      h('So bewirbst du dich'),
+      p(
+        'Schreib uns eine E-Mail oder ruf an, beides ist uns gleich lieb. Es gibt kein Formular und keine Vorlage: Ein paar Sätze zu dir und deiner Ausbildung reichen. Ein Lebenslauf ist in jedem Format willkommen, ein Foto brauchst du nicht. Deine Ansprechperson ist Joé Chatelain.'
+      ),
+      p(
+        'Ruf gerne einfach an, ohne Termin und ohne Anmeldung. Mo bis Fr 10 bis 20 Uhr, Sa 8 bis 17 Uhr.'
+      ),
+    ].join('');
+  }
+
   get applySubject(): string {
     return this.t(
       'Bewerbung als Masseur:in und medizinische:r Bademeister:in bei FareWell',
@@ -186,8 +275,6 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
     const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${PAGE_PATH}`;
     const homeUrl = isEn ? `${ORIGIN}/en` : ORIGIN;
     const inLanguage = isEn ? 'en' : 'de';
-    const inPlace = isEn ? this.inPlaceEn : this.inPlaceDe;
-    const weProvide = isEn ? this.weProvideEn : this.weProvideDe;
 
     const title = t(
       'Masseur:in und medizinische:r Bademeister:in (m/w/d) in Nürnberg: für blinde und sehbehinderte Bewerber:innen | FareWell',
@@ -213,81 +300,52 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
       largeImage: true,
     });
 
-    const intro = t(
-      'FareWell in Nürnberg sucht eine:n Masseur:in und medizinische:n Bademeister:in. Die Stelle richtet sich an blinde und sehbehinderte Bewerber:innen; der Salon ist so eingerichtet, dass du vollständig eigenständig arbeiten kannst. Der Eingang ist stufenfrei, es gibt einen Aufzug, dein Blindenführhund ist willkommen.',
-      'FareWell in Nuremberg is hiring a massage therapist and medical bath attendant (Masseur und medizinischer Bademeister). The role is addressed to blind and visually impaired applicants; the salon is set up so that you can work fully independently. The entrance is step free, there is a lift, and your guide dog is welcome.'
-    );
-    const arrangements = [
-      t(
-        'Festanstellung in Voll- oder Teilzeit, mit geregelter Vergütung, Urlaub und Sozialversicherung.',
-        'Permanent employment, full or part time, with regular pay, holidays and social insurance.'
-      ),
-      t(
-        'Selbständige Tätigkeit im Salon zu denselben Konditionen wie bei unseren anderen freiberuflichen Therapeut:innen: 70 Prozent der Nettoeinnahmen bleiben bei dir, 30 Prozent gehen an FareWell. Keine feste Miete, kein Fixum.',
-        'Freelance work inside the salon on the same terms as our other freelance therapists: 70 percent of the net takings stay with you, 30 percent goes to FareWell. No fixed rent, no flat fee.'
-      ),
-    ];
+    this.seo.setJsonLd(this.jobPostingLdId, {
+      '@context': 'https://schema.org/',
+      '@type': 'JobPosting',
+      title: 'Masseur:in und medizinische:r Bademeister:in (m/w/d)',
+      identifier: {
+        '@type': 'PropertyValue',
+        name: 'FareWell',
+        value: 'FW-MASSAGE-INKLUSIV-2026',
+      },
+      description: this.jobDescriptionDe,
+      inLanguage: 'de',
+      datePosted: DATE_POSTED,
+      validThrough: VALID_THROUGH,
+      // Bewusst ohne CONTRACTOR, obwohl die Seite die selbständige Tätigkeit
+      // gleichberechtigt anbietet: so vorgegeben. Wenn die freiberufliche
+      // Variante über die Jobsuche gefunden werden soll, muss CONTRACTOR
+      // zurück in diese Liste.
+      employmentType: ['FULL_TIME', 'PART_TIME'],
+      hiringOrganization: {
+        '@type': 'Organization',
+        name: 'FareWell',
+        sameAs: ORIGIN,
+        logo: LOGO_URL,
+      },
+      jobLocation: {
+        '@type': 'Place',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Frauentorgraben 5',
+          addressLocality: 'Nürnberg',
+          postalCode: '90443',
+          addressRegion: 'BY',
+          addressCountry: 'DE',
+        },
+      },
+      directApply: true,
+      qualifications:
+        'Abgeschlossene Ausbildung als Masseur:in und medizinische:r Bademeister:in oder eine vergleichbare Qualifikation.',
+      responsibilities:
+        'Durchführung von Wellness- und therapeutischen Massagen sowie eigenständige Betreuung der Kund:innen. Bäder, Fango und Hydrotherapie gehören nicht zum Angebot.',
+      occupationalCategory: '32552 Masseur/in und medizinische/r Bademeister/in',
+    });
 
-    this.seo.setJsonLd(this.jsonLdId, {
+    this.seo.setJsonLd(this.pageLdId, {
       '@context': 'https://schema.org',
       '@graph': [
-        {
-          '@type': 'JobPosting',
-          '@id': `${pageUrl}#jobposting`,
-          title: t(
-            'Masseur:in und medizinische:r Bademeister:in (m/w/d): Stelle für blinde und sehbehinderte Bewerber:innen',
-            'Massage therapist and medical bath attendant (m/f/d): a role for blind and visually impaired applicants'
-          ),
-          description:
-            `<p>${esc(intro)}</p>` +
-            `<p><strong>${esc(t('Zwei Wege, beide offen', 'Two arrangements, both open'))}</strong></p>` +
-            list(arrangements) +
-            `<p><strong>${esc(t('Was wir stellen', 'What we provide'))}</strong></p>` +
-            list(weProvide) +
-            `<p><strong>${esc(t('Was schon da ist', 'What is already in place'))}</strong></p>` +
-            list(inPlace),
-          inLanguage,
-          datePosted: '2026-08-16',
-          employmentType: ['FULL_TIME', 'PART_TIME', 'CONTRACTOR'],
-          directApply: true,
-          industry: t('Beauty und Wellness', 'Beauty and wellness'),
-          occupationalCategory: t('Massage und Wellness', 'Massage and wellness'),
-          qualifications: t(
-            'Abgeschlossene Ausbildung als Masseur:in und medizinische:r Bademeister:in, zum Beispiel am bbs nürnberg oder am BFW Mainz, oder eine vergleichbare Qualifikation.',
-            'Completed training as a massage therapist and medical bath attendant (Masseur und medizinischer Bademeister), for example at bbs nürnberg or BFW Mainz, or a comparable qualification.'
-          ),
-          workHours: t(
-            'Voll- oder Teilzeit nach Vereinbarung; bei selbständiger Tätigkeit vollständig flexible Zeiten.',
-            'Full or part time by agreement; fully flexible hours when working freelance.'
-          ),
-          hiringOrganization: {
-            '@type': 'BeautySalon',
-            '@id': `${ORIGIN}/#organization`,
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: ORIGIN,
-            logo: LOGO_URL,
-            sameAs: ['https://www.instagram.com/farewell.salon/'],
-          },
-          jobLocation: {
-            '@type': 'Place',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressRegion: 'Bayern',
-              addressCountry: 'DE',
-            },
-          },
-          applicationContact: {
-            '@type': 'ContactPoint',
-            name: 'Joé Chatelain',
-            email: KARRIERE_EMAIL,
-            telephone: KARRIERE_PHONE,
-            contactType: t('Bewerbung', 'Application'),
-          },
-        },
         {
           '@type': 'WebPage',
           '@id': `${pageUrl}#webpage`,
@@ -296,7 +354,6 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
           description,
           inLanguage,
           isPartOf: { '@id': `${ORIGIN}/#website` },
-          about: { '@id': `${pageUrl}#jobposting` },
         },
         {
           '@type': 'BreadcrumbList',
@@ -324,6 +381,7 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.seo.clearJsonLd(this.jsonLdId);
+    this.seo.clearJsonLd(this.jobPostingLdId);
+    this.seo.clearJsonLd(this.pageLdId);
   }
 }
