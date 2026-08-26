@@ -1,7 +1,7 @@
 /**
  * Preiskatalog der Preisseite — einzige Quelle für die sichtbaren Tabellen UND
  * das JSON-LD (Service/Offer). Quelle der Preise: Salonkee
- * (salonkee.de/salon/farewell), Stand 26. August 2026, Preise in Euro inkl. 19%
+ * (salonkee.de/salon/farewell), Stand 27. August 2026, Preise in Euro inkl. 19%
  * MwSt. Bei Preisänderungen nur diese Datei pflegen — Tabellen und
  * strukturierte Daten ziehen automatisch nach.
  *
@@ -137,7 +137,7 @@ export const PRICE_TABLES = {
       { de: 'Brazilian', en: 'Brazilian', minutes: 30, price: 100 },
       { de: 'Pofalte', en: 'Gluteal fold', minutes: 15, price: 60 },
       { de: 'Gesäß', en: 'Buttocks', minutes: 15, price: 60 },
-      { de: 'Intim komplett', en: 'Complete intimate area', minutes: 30, price: 200 },
+      { de: 'Intim komplett', en: 'Complete intimate area', minutes: 45, price: 200 },
     ],
   },
 

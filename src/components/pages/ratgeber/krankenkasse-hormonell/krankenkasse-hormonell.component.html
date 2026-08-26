@@ -163,20 +163,40 @@
           [revealDelay]="240"
         >
           <span class="lang de">
-            <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a> ist die
-            anerkannte permanente Methode und funktioniert unabhängig von Haarfarbe und Hauttyp.
-            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser</a> (dauerhafte
-            Haarentfernung) bieten wir ergänzend an.
+            Bei hormonell bedingtem Haarwuchs arbeiten wir ausschließlich mit der
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a>, der
+            anerkannten permanenten Methode. Sie funktioniert unabhängig von Haarfarbe und Hauttyp
+            und verödet jede Haarwurzel einzeln.
           </span>
           <span class="lang en">
-            <a [routerLink]="p('/behandlungen/nadelepilation')">Electrolysis (Nadelepilation)</a> is the
-            recognised permanent method and works regardless of hair colour and skin type. We also
-            offer the
-            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">diode laser</a> (long-lasting hair
-            removal) as a complement.
+            With hormonally driven hair growth we work exclusively with
+            <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis (Nadelepilation)</a>, the
+            recognised permanent method. It works regardless of hair colour and skin type and
+            deactivates each hair root individually.
           </span>
         </app-guide-card>
       </div>
+      <app-guide-note
+        variant="tip"
+        [label]="t('Warum nur die Nadelepilation', 'Why electrolysis only')"
+      >
+        <span class="lang de">
+          Bei krankhaftem Haarwuchs erkennt die Kasse allein die Nadelepilation an; steht der Laser
+          mit im Antrag, wirkt der ganze Vorgang kosmetisch und gefährdet den Teil, der tragfähig
+          ist. Fachlich passt sie hier ohnehin besser: Bei hormonell getriebenem Haarwuchs bildet
+          sich laufend neues Haar, der Laser reduziert ihn nur, verödet die einzelne Wurzel nicht
+          endgültig und erreicht feine oder helle Haare ohne den dunklen Farbstoff Melanin gar
+          nicht.
+        </span>
+        <span class="lang en">
+          For pathological hair growth, insurers recognise electrolysis alone; if the laser is in
+          the application as well, the whole request reads as cosmetic and puts at risk the part
+          that would otherwise hold. It also suits the situation better: with hormonally driven hair
+          growth new hair keeps forming, and the laser only reduces it. It does not deactivate the
+          individual root for good, and it cannot reach fine or light hairs, which lack the dark
+          pigment melanin.
+        </span>
+      </app-guide-note>
     </app-guide-section>
 
     <app-guide-section
@@ -252,10 +272,11 @@
           </li>
           <li>
             <span class="lang de">
-              Behandlung durch geschultes Personal, permanente und dauerhafte Haarentfernung.
+              Die Behandlung durch geschultes Personal: permanente Haarentfernung mit der
+              Nadelepilation.
             </span>
             <span class="lang en">
-              Treatment by trained staff, permanent and long-lasting hair removal.
+              Treatment by trained staff: permanent hair removal with electrolysis.
             </span>
           </li>
         </app-guide-panel>
@@ -442,15 +463,14 @@
           <li>
             <span class="lang de">
               <strong>Kostenvoranschlag bei FareWell.</strong> Wir erstellen dir einen
-              Kostenvoranschlag für die Nadelepilation im Rahmen der Delegation. Den Diodenlaser
-              nehmen wir nur auf Wunsch dazu, als Selbstzahlerleistung. Die Preise je Zone findest
-              du auf <a [routerLink]="p('/price')">unserer Preisseite</a>.
+              Kostenvoranschlag für die Nadelepilation im Rahmen der Delegation, und zwar nur dafür.
+              Die Preise je Zone findest du auf
+              <a [routerLink]="p('/price')">unserer Preisseite</a>.
             </span>
             <span class="lang en">
               <strong>Cost estimate from FareWell.</strong> We prepare a cost estimate for
-              electrolysis (Nadelepilation) within the delegation. We only add the diode laser if
-              you want it, as a self-pay service. You will find the prices per area on
-              <a [routerLink]="p('/price')">our price page</a>.
+              electrolysis (Nadelepilation) within the delegation, and for nothing else. You will
+              find the prices per area on <a [routerLink]="p('/price')">our price page</a>.
             </span>
           </li>
           <li>
