@@ -11,31 +11,41 @@ import {
 } from 'src/components/molecules/guide';
 import { KostenvoranschlagUnterlagenComponent } from 'src/components/molecules/kostenvoranschlag-unterlagen/kostenvoranschlag-unterlagen.component';
 
-const PAGE_PATH = '/ratgeber/epilation-krankenkasse';
-const PAGE_TITLE_DE =
-  'Epilation über die Krankenkasse: Leitfaden für trans Personen | FareWell Nürnberg';
-const PAGE_TITLE_EN =
-  'Health Insurance Coverage for Hair Removal: a Guide for Trans People | FareWell Nuremberg';
+/**
+ * Schwesterseite zum Leitfaden für trans Personen
+ * (`/ratgeber/epilation-krankenkasse`): gleicher Aufbau, gleiche Abschnitte,
+ * gleicher Ton. Unterschiedlich sind bewusst nur zwei Dinge, die Diagnosen und
+ * die ärztlichen Ansprechpartner:innen; der tragende Rechtsgedanke ist auf
+ * beiden Seiten derselbe.
+ *
+ * Die Metadaten sind absichtlich auf PCOS, Hirsutismus und hormonellen
+ * Haarwuchs zugeschnitten, damit beide Seiten nicht um dieselben Suchbegriffe
+ * konkurrieren: „trans“ und „F64.0“ kommen hier nicht vor, „PCOS“ und
+ * „Hirsutismus“ nicht auf der Trans-Seite.
+ */
+const PAGE_PATH = '/ratgeber/epilation-krankenkasse-hormonell';
+const PAGE_TITLE_DE = 'Hirsutismus & PCOS: Haarentfernung auf Kasse? | FareWell Nürnberg';
+const PAGE_TITLE_EN = 'Hirsutism & PCOS: Hair Removal on Insurance? | FareWell Nuremberg';
 const PAGE_DESCRIPTION_DE =
-  'So bekommst du deine Haarentfernung im Gesicht als Kassenleistung: Ärztevorbehalt, ärztliche Delegation bei FareWell, Antrag in 5 Schritten, Fristen und Widerspruch.';
+  'Hirsutismus durch PCOS, AGS oder die Wechseljahre: welche Abklärung nötig ist, was ins ärztliche Attest gehört und wie ein Antrag bei der Kasse abläuft.';
 const PAGE_DESCRIPTION_EN =
-  'How facial hair removal becomes a covered benefit in Germany: the physician requirement, medical delegation at FareWell, the application in 5 steps, deadlines and objections.';
+  'Hirsutism from PCOS, CAH or the menopause: which work-up is needed, what belongs in the medical certificate and how an application to a German insurer works.';
 
 @Component({
   standalone: true,
-  selector: 'app-krankenkasse-epilation',
+  selector: 'app-krankenkasse-hormonell',
   imports: [
     ...GUIDE_COMPONENTS,
     RevealOnScrollDirective,
     RouterLink,
     KostenvoranschlagUnterlagenComponent,
   ],
-  templateUrl: './krankenkasse-epilation.component.html',
+  templateUrl: './krankenkasse-hormonell.component.html',
 })
-export class KrankenkasseEpilationComponent implements OnInit, OnDestroy {
+export class KrankenkasseHormonellComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
   private readonly language = inject(LanguageService);
-  private readonly jsonLdId = 'krankenkasse-epilation-schema';
+  private readonly jsonLdId = 'krankenkasse-hormonell-schema';
 
   get lang(): GuideLang {
     return this.language.lang();
@@ -102,12 +112,12 @@ export class KrankenkasseEpilationComponent implements OnInit, OnDestroy {
           '@type': 'Article',
           '@id': `${pageUrl}#article`,
           headline: this.t(
-            'Epilation über die Krankenkasse',
-            'Epilation covered by your statutory health insurer',
+            'Haarentfernung bei PCOS, Hirsutismus und Hypertrichose: Kostenübernahme',
+            'Hair removal with PCOS, hirsutism and hypertrichosis: insurance coverage',
           ),
           description,
           inLanguage: isEn ? 'en' : 'de',
-          datePublished: '2026-07-15',
+          datePublished: '2026-08-27',
           dateModified: '2026-08-27',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
           author: { '@id': 'https://farewell.salon/#organization' },
@@ -118,6 +128,10 @@ export class KrankenkasseEpilationComponent implements OnInit, OnDestroy {
             alternateName: 'FareWell',
             url: 'https://farewell.salon',
           },
+          about: this.t(
+            'Kostenübernahme der Haarentfernung bei PCOS, Hirsutismus und Hypertrichose',
+            'Insurance coverage of hair removal with PCOS, hirsutism and hypertrichosis',
+          ),
           mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
         },
         {
@@ -135,15 +149,15 @@ export class KrankenkasseEpilationComponent implements OnInit, OnDestroy {
             {
               '@type': 'ListItem',
               position: 2,
-              name: 'FAQ',
-              item: `https://farewell.salon${this.p('/faq')}`,
+              name: this.t('Ratgeber', 'Guides'),
+              item: `https://farewell.salon${this.p('/ratgeber')}`,
             },
             {
               '@type': 'ListItem',
               position: 3,
               name: this.t(
-                'Epilation über die Krankenkasse',
-                'Epilation covered by your statutory health insurer',
+                'Epilation über die Krankenkasse bei hormonellem Haarwuchs',
+                'Insurance-covered epilation for hormonal hair growth',
               ),
               item: pageUrl,
             },

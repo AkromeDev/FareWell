@@ -740,18 +740,27 @@
         "
       >
         <p class="lang de">
-          Ja, das ist möglich. Die Kasse übernimmt Epilation als Sachleistung, wenn sie
-          medizinisch notwendig ist (§ 27 SGB V), etwa bei der Diagnose Geschlechtsinkongruenz
-          (ICD F64.0). Der Knackpunkt ist der Ärztevorbehalt (§ 28 SGB V): Die Behandlung muss
-          als ärztliche Leistung gelten. Weil FareWell mit einer delegierenden Ärztin arbeitet,
-          ist genau das gelöst.
+          Ja, das ist möglich. § 27 SGB V gibt dir Anspruch auf Krankenbehandlung, wenn sie
+          medizinisch notwendig ist, etwa bei der Diagnose Geschlechtsinkongruenz (ICD F64.0).
+          Der Knackpunkt ist der Ärztevorbehalt (§ 28 SGB V): Die Behandlung muss als ärztliche
+          Leistung gelten. Weil FareWell mit einem delegierenden Arzt arbeitet, unserem
+          medizinischen Berater Dr. med. univ. Noam Degner, ist genau das gelöst.
         </p>
         <p class="lang en">
-          Yes, that is possible. Your health insurer covers epilation as a benefit in kind when
-          it is medically necessary (§ 27 SGB V), for example with a diagnosis of gender
-          incongruence (ICD F64.0). The key point is the doctor's reservation (§ 28 SGB V): the
-          treatment must count as a medical service. Because FareWell works with a delegating
-          doctor, exactly this is taken care of.
+          Yes, that is possible. § 27 SGB V entitles you to medical treatment where it is
+          necessary, for example with a diagnosis of gender incongruence (ICD F64.0). The key
+          point is the physician requirement (§ 28 SGB V): the treatment must count as a medical
+          service. Because FareWell works with a delegating doctor, our medical adviser
+          Dr. med. univ. Noam Degner, exactly this is taken care of.
+        </p>
+        <p class="lang de">
+          Bei uns läuft die Abrechnung als Kostenerstattung: Du bezahlst deine Behandlung bei
+          FareWell und reichst die Rechnungen bei deiner Kasse ein. Eine Direktabrechnung mit der
+          Kasse bieten wir nicht an.
+        </p>
+        <p class="lang en">
+          With us it runs as reimbursement: you pay FareWell for your treatment and submit the
+          invoices to your insurer. We do not offer direct billing with insurers.
         </p>
         <p class="lang de">
           Wichtig: Der Antrag muss <strong>vor Behandlungsbeginn</strong> gestellt werden. Alle
@@ -771,17 +780,17 @@
         "
       >
         <p class="lang de">
-          Eine Ärztin delegiert die Epilationsbehandlung an unser geschultes Team und bleibt
-          medizinisch verantwortlich. Dadurch zählt die Nadelepilation bei FareWell als
-          ärztlich delegierte Leistung: die Voraussetzung dafür, dass die Krankenkasse sie als
-          Sachleistung übernehmen kann. Für deinen Antrag erstellen wir gemeinsam den
-          Kostenvoranschlag.
+          Unser medizinischer Berater Dr. med. univ. Noam Degner delegiert die
+          Epilationsbehandlung an unser geschultes Team und bleibt medizinisch verantwortlich.
+          Dadurch zählt die Nadelepilation bei FareWell als ärztlich delegierte Leistung: die
+          Voraussetzung dafür, dass die Krankenkasse sie überhaupt übernehmen kann. Für deinen
+          Antrag erstellen wir gemeinsam den Kostenvoranschlag.
         </p>
         <p class="lang en">
-          A doctor delegates the epilation treatment to our trained team and remains medically
-          responsible. This makes electrolysis at FareWell a medically delegated service, the
-          condition for your health insurer to cover it as a benefit in kind. For your
-          application we prepare the cost estimate together.
+          Our medical adviser Dr. med. univ. Noam Degner delegates the epilation treatment to our
+          trained team and remains medically responsible. This makes electrolysis at FareWell a
+          medically delegated service, the condition for your health insurer to be able to cover
+          it at all. For your application we prepare the cost estimate together.
         </p>
       </app-faq-item>
 
@@ -816,7 +825,7 @@
 
       <app-faq-item
         [question]="
-          t('Was brauche ich von meiner Ärztin, bevor ich starte?', 'What do I need from my doctor before I start?')
+          t('Was brauche ich von meiner Ärztin oder meinem Arzt, bevor ich starte?', 'What do I need from my doctor before I start?')
         "
       >
         <p class="lang de">
@@ -836,6 +845,190 @@
 
     <app-guide-section
       index="06"
+      [heading]="
+        t('Hormoneller Haarwuchs & Krankenkasse', 'Hormonal hair growth & health insurance')
+      "
+      sectionId="kostenuebernahme-hormonell"
+    >
+      <app-faq-item
+        [question]="
+          t(
+            'Zahlt die Krankenkasse die Haarentfernung bei PCOS?',
+            'Does health insurance pay for hair removal with PCOS?'
+          )
+        "
+      >
+        <p class="lang de">
+          Sie kann. Entscheidend ist nicht die Diagnose allein, sondern ob der Haarwuchs krankhaft
+          und entstellend ist und die Haarentfernung deshalb medizinisch notwendig. Die Kassen
+          rechnen dafür die Nadelepilation (Elektroepilation) im Gesicht und an den Händen ab.
+          Zusagen kann dir das niemand, jeder Bescheid ist eine Einzelfallentscheidung, aber der
+          Antrag ist einen Versuch wert.
+        </p>
+        <p class="lang en">
+          It can. What decides it is not the diagnosis alone but whether the hair growth is
+          pathological and disfiguring, making the removal medically necessary. Insurers bill
+          electrolysis (Nadelepilation) on the face and hands for this. Nobody can promise you an
+          outcome, every decision is an individual one, but the application is worth a try.
+        </p>
+        <p class="lang de">
+          Alle Schritte stehen im Leitfaden
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')">Haarentfernung bei
+          PCOS, Hirsutismus und Hypertrichose</a>.
+        </p>
+        <p class="lang en">
+          Every step is in our guide to
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')">hair removal with PCOS,
+          hirsutism and hypertrichosis</a>.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t('Ich bin nicht trans, gilt das trotzdem für mich?', 'I am not trans, does this still apply to me?')
+        "
+      >
+        <p class="lang de">
+          Ja. Die Kasse zahlt nicht, weil jemand trans ist, sondern weil krankhafter Haarwuchs
+          behandlungsbedürftig sein kann. Bei einer Hormonstörung gilt derselbe Gedanke. Zwei
+          Unterschiede gibt es in der Praxis: Bei trans Personen sind Gesicht, Hals und Hände
+          vorgesehen und auch der Laser ist abrechenbar, bei krankhaftem Haarwuchs sind es Gesicht
+          und Hände und die Nadelepilation.
+        </p>
+        <p class="lang en">
+          Yes. Insurers do not pay because someone is trans, but because pathological hair growth
+          can require treatment. With a hormonal condition the same reasoning applies. Two
+          differences exist in practice: for trans people the face, neck and hands are provided for
+          and the laser is billable too, whereas for pathological hair growth it is the face and
+          hands, with electrolysis.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t('Welche Körperstellen übernimmt die Kasse?', 'Which body areas does an insurer cover?')
+        "
+      >
+        <p class="lang de">
+          Realistisch sind Gesicht und Hände. Beine, Bikinizone, Rücken oder Achseln werden fast
+          immer abgelehnt, weil Kleidung sie bedeckt. Setz deinen Antrag deshalb auf die Regionen,
+          die dich wirklich belasten, das erspart dir vergebliche Anträge.
+        </p>
+        <p class="lang en">
+          Realistically the face and hands. Legs, bikini line, back or underarms are almost always
+          refused because clothing covers them. So build your application around the areas that
+          genuinely burden you; it saves you futile applications.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t('Was muss in dem ärztlichen Attest stehen?', 'What has to be in the medical certificate?')
+        "
+      >
+        <p class="lang de">
+          Zwei Dinge: die Diagnose mit ihrer ICD-Ziffer, etwa E28.2 beim PCOS oder L68.0 beim
+          Hirsutismus, und die ausdrückliche Feststellung, dass die Haarentfernung medizinisch
+          notwendig ist. Hilfreich sind außerdem der bisherige Verlauf, was du schon versucht hast
+          und was die Behandlung der Grunderkrankung gebracht hat.
+        </p>
+        <p class="lang en">
+          Two things: the diagnosis with its ICD code, for example E28.2 for PCOS or L68.0 for
+          hirsutism, and an explicit statement that the hair removal is medically necessary. It also
+          helps to describe the history, what you have already tried and what treating the
+          underlying condition has achieved.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t('Was kostet mich das, wenn die Kasse ablehnt?', 'What does it cost me if my insurer says no?')
+        "
+      >
+        <p class="lang de">
+          Dann zahlst du die Behandlung selbst, zu den Preisen, die offen auf unserer
+          <a [routerLink]="p('/price')">Preisseite</a> stehen. Eine Sitzung Nadelepilation kostet
+          bei uns zwischen 40,00 € für 30 Minuten und 160,00 € für 120 Minuten. Was du selbst
+          trägst, kannst du unter Umständen als außergewöhnliche Belastung von der Steuer absetzen.
+        </p>
+        <p class="lang en">
+          Then you pay for the treatment yourself, at the prices listed openly on our
+          <a [routerLink]="p('/price')">price page</a>. A session of electrolysis costs between
+          €40,00 for 30 minutes and €160,00 for 120 minutes with us. What you pay yourself may be
+          deductible from your taxes as an extraordinary burden.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t('Wie lange dauert es, bis die Kasse entscheidet?', 'How long does the insurer take to decide?')
+        "
+      >
+        <p class="lang de">
+          Drei Wochen ab Eingang deines Antrags. Schaltet die Kasse den Medizinischen Dienst ein und
+          teilt dir das mit, sind es fünf Wochen. Verstreicht die Frist ohne Nachricht, gilt die
+          Leistung als genehmigt (§ 13 Abs. 3a SGB V): Du darfst dir die Behandlung dann selbst
+          beschaffen und die Kosten erstattet verlangen. Die Gerichte legen das eng aus, lass dich
+          vorher beraten.
+        </p>
+        <p class="lang en">
+          Three weeks from the day your application arrives. If your insurer calls in the Medical
+          Service and tells you so, it is five weeks. If the deadline passes without word, the
+          benefit is deemed approved (§ 13 Abs. 3a SGB V): you may then obtain the treatment
+          yourself and claim the costs back. The courts read this narrowly, so get advice first.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="t('Muss ich in Vorkasse gehen?', 'Do I have to pay up front?')"
+      >
+        <p class="lang de">
+          Bei FareWell ja. Wir rechnen nicht direkt mit den Krankenkassen ab, eine Direktabrechnung
+          bieten wir nicht an. Du bezahlst deine Behandlung bei uns und reichst die Rechnungen bei
+          deiner Kasse ein. Deshalb ist es so wichtig, die Bewilligung abzuwarten, bevor die
+          Behandlung beginnt.
+        </p>
+        <p class="lang en">
+          At FareWell, yes. We do not bill insurers directly and do not offer direct billing. You
+          pay us for your treatment and submit the invoices to your insurer. That is why it matters
+          so much to wait for the approval before treatment starts.
+        </p>
+      </app-faq-item>
+
+      <app-faq-item
+        [question]="
+          t('Welche Unterlagen braucht FareWell von mir?', 'Which documents does FareWell need from me?')
+        "
+      >
+        <p class="lang de">
+          Für den Kostenvoranschlag: deinen vollständigen Namen wie auf den ärztlichen Unterlagen,
+          dein Geburtsdatum, deine private Anschrift, den Namen deiner Krankenkasse und, sobald
+          vorhanden, die Versichertennummer. Dazu das ärztliche Attest, Angaben zu Vorerkrankungen,
+          Medikamenten und Hautbesonderheiten und, falls vorhanden, Fotos der betroffenen Region.
+          Den Bescheid der Kasse schickst du uns nach, sobald er da ist.
+        </p>
+        <p class="lang en">
+          For the cost estimate: your full name as it appears on your medical papers, your date of
+          birth, your private address, the name of your health insurer and, once you have it, your
+          insurance number. Plus the medical certificate, details of pre-existing conditions,
+          medication and anything particular about your skin, and photos of the affected area if you
+          have them. You send us the insurer's decision letter once it arrives.
+        </p>
+        <p class="lang de">
+          Ohne Geburtsdatum und Anschrift ist der Kostenvoranschlag für die Kasse wertlos, deshalb
+          fragen wir danach. Die vollständige Liste steht im
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')" fragment="unterlagen">Leitfaden</a>.
+        </p>
+        <p class="lang en">
+          Without a date of birth and an address the cost estimate is worthless to your insurer,
+          which is why we ask. The full list is in the
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')" fragment="unterlagen">guide</a>.
+        </p>
+      </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-section
+      index="07"
       [heading]="t('US Forces & Mehrwertsteuer', 'US Forces & VAT')"
       sectionId="us-forces"
     >
@@ -921,7 +1114,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="07"
+      index="08"
       [heading]="t('Kontakt & Öffnungszeiten', 'Contact & opening hours')"
       sectionId="kontakt"
     >
@@ -955,7 +1148,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="08"
+      index="09"
       [heading]="t('Ratgeber zum Vertiefen', 'Guides to go deeper')"
       sectionId="ratgeber"
     >
@@ -1014,9 +1207,26 @@
           <a [routerLink]="p('/ratgeber/epilation-krankenkasse')" [attr.aria-label]="t('Zum Leitfaden: Epilation über die Krankenkasse', 'Read the guide: Insurance-covered epilation')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>
         <app-guide-card
+          icon="🩺"
+          [heading]="
+            t('Haarentfernung bei PCOS & Hirsutismus', 'Hair removal with PCOS & hirsutism')
+          "
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Bei hormonell bedingtem Haarwuchs: welche Diagnose zählt, was ins ärztliche Attest
+            gehört und wie der Antrag läuft.
+          </span>
+          <span class="lang en">
+            For hormonally driven hair growth: which diagnosis counts, what belongs in the medical
+            certificate and how the application works.
+          </span>
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')" [attr.aria-label]="t('Zum Leitfaden: Haarentfernung bei PCOS und Hirsutismus', 'Read the guide: Hair removal with PCOS and hirsutism')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
+        </app-guide-card>
+        <app-guide-card
           icon="🧾"
           [heading]="t('Behandlungskosten steuerlich absetzen', 'Tax-deductible treatments')"
-          [revealDelay]="60"
+          [revealDelay]="120"
         >
           <span class="lang de">
             Selbst getragene Kosten als außergewöhnliche Belastung geltend machen: welche

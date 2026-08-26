@@ -1,0 +1,141 @@
+<div class="gd-read">
+  <p appReveal>
+    <span class="lang de">
+      Den Kostenvoranschlag schreiben wir für dich, aber ein paar Angaben können wir nicht
+      erfinden. Bring sie zum Beratungstermin mit oder schick sie uns vorher per Mail, dann
+      liegt das Dokument schnell bei dir. Fehlt eine Angabe, müssen wir nachfragen, und das
+      verzögert deinen Antrag.
+    </span>
+    <span class="lang en">
+      We write the cost estimate for you, but there are a few details we cannot invent. Bring
+      them to your consultation or send them to us by email beforehand, and the document will be
+      with you quickly. If something is missing we have to come back to you, and that delays your
+      application.
+    </span>
+  </p>
+</div>
+
+<div class="gd-split">
+  <app-guide-panel
+    [heading]="t('Für das Dokument selbst', 'For the document itself')"
+    tone="forest"
+  >
+    <li>
+      <span class="lang de">
+        <strong>Vollständiger Name</strong>, genau so geschrieben wie auf den ärztlichen
+        Unterlagen.
+      </span>
+      <span class="lang en">
+        <strong>Your full name</strong>, spelled exactly as it appears on your medical papers.
+      </span>
+    </li>
+    <li>
+      <span class="lang de">
+        <strong>Geburtsdatum.</strong> Ohne Geburtsdatum ist der Kostenvoranschlag für die Kasse
+        wertlos.
+      </span>
+      <span class="lang en">
+        <strong>Your date of birth.</strong> Without it, the cost estimate is worthless to your
+        insurer.
+      </span>
+    </li>
+    <li>
+      <span class="lang de">
+        <strong>Private Anschrift.</strong> Sie steht später auf jeder Rechnung, sonst erstattet
+        die Kasse nicht.
+      </span>
+      <span class="lang en">
+        <strong>Your private address.</strong> It goes on every invoice later; without it your
+        insurer will not reimburse.
+      </span>
+    </li>
+    <li>
+      <span class="lang de">
+        <strong>Name der Krankenkasse</strong>, gesetzlich oder privat.
+      </span>
+      <span class="lang en">
+        <strong>The name of your health insurer</strong>, statutory or private.
+      </span>
+    </li>
+    <li>
+      <span class="lang de">
+        <strong>Versichertennummer oder Aktenzeichen</strong>, sobald du sie hast.
+      </span>
+      <span class="lang en">
+        <strong>Your insurance number or file reference</strong>, as soon as you have it.
+      </span>
+    </li>
+  </app-guide-panel>
+
+  <app-guide-panel
+    [heading]="t('Für die medizinische Seite', 'For the medical side')"
+    tone="sage"
+    dots="sand"
+    [revealDelay]="60"
+  >
+    <li>
+      <span class="lang de">
+        <strong>Ärztliches Attest oder Indikationsschreiben</strong> mit der Diagnose und der
+        Feststellung, dass die Haarentfernung medizinisch notwendig ist.
+      </span>
+      <span class="lang en">
+        <strong>A medical certificate or letter of indication</strong> stating the diagnosis and
+        confirming that the hair removal is medically necessary.
+      </span>
+    </li>
+    <li>
+      <span class="lang de">
+        <strong>Vorerkrankungen, laufende Medikamente und Hautbesonderheiten</strong> wie
+        Allergien, Neurodermitis, Nesselsucht oder eine Neigung zu Narben.
+      </span>
+      <span class="lang en">
+        <strong>Pre-existing conditions, current medication and anything particular about your
+        skin</strong>, such as allergies, atopic dermatitis, hives or a tendency to scarring.
+      </span>
+    </li>
+    <li>
+      <span class="lang de">
+        <strong>Fotos der betroffenen Region</strong>, falls vorhanden. Manche Kassen verlangen
+        sie, im Gesicht meist frontal, von beiden Seiten und von unten.
+      </span>
+      <span class="lang en">
+        <strong>Photos of the affected area</strong>, if you have them. Some insurers ask for
+        them: for the face usually from the front, from both sides and from below.
+      </span>
+    </li>
+  </app-guide-panel>
+</div>
+
+<div class="gd-read">
+  <p class="gd-kick" appReveal>{{ t('Später, sobald da', 'Later, once you have it') }}</p>
+  <app-guide-checklist>
+    <li>
+      <span class="lang de">
+        Der <strong>Bescheid der Kasse</strong>, als Foto oder Scan. Er sagt uns, was bewilligt
+        ist und worauf wir die Rechnungen ausstellen.
+      </span>
+      <span class="lang en">
+        Your insurer's <strong>decision letter</strong>, as a photo or a scan. It tells us what
+        has been approved and how to make out the invoices.
+      </span>
+    </li>
+  </app-guide-checklist>
+
+  <app-guide-note
+    variant="tip"
+    [label]="t('Warum wir nach der Gesundheit fragen', 'Why we ask about your health')"
+  >
+    <span class="lang de">
+      Unser medizinischer Berater zeichnet jeden Kostenvoranschlag mit, und er unterschreibt nur,
+      wenn er weiß, wen er vor sich hat. Das ist keine Neugier, es ist die Bedingung dafür, dass
+      der Antrag überhaupt trägt. Deine Angaben bleiben bei ihm und bei uns; was zur Kasse geht,
+      entscheidest du, denn den Antrag reichst du selbst ein.
+    </span>
+    <span class="lang en">
+      Our medical adviser co-signs every cost estimate, and he only signs when he knows who is in
+      front of him. That is not curiosity, it is the condition for the application to hold up at
+      all. What you tell us stays with him and with us; what goes to your insurer is your
+      decision, because you file the application yourself.
+    </span>
+  </app-guide-note>
+</div>

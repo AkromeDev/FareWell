@@ -47,7 +47,7 @@ export class FaqComponent implements OnInit, OnDestroy {
       { value: '2', label: this.t('Methoden der Haarentfernung', 'Hair removal methods') },
       { value: this.t('gratis', 'free'), label: this.t('Erstberatung', 'Initial consultation') },
       { value: '6', label: this.t('Tage pro Woche geöffnet', 'Days open per week') },
-      { value: '6', label: this.t('Ratgeber zum Nachlesen', 'Guides to read') },
+      { value: '7', label: this.t('Ratgeber zum Nachlesen', 'Guides to read') },
     ];
   }
 
@@ -64,6 +64,10 @@ export class FaqComponent implements OnInit, OnDestroy {
         label: this.t('Termine, Beratung & Preise', 'Appointments, consultation & prices'),
       },
       { id: 'kostenuebernahme', label: this.t('Krankenkasse & Steuer', 'Health insurance & tax') },
+      {
+        id: 'kostenuebernahme-hormonell',
+        label: this.t('Hormoneller Haarwuchs & Krankenkasse', 'Hormonal hair growth & health insurance'),
+      },
       { id: 'us-forces', label: this.t('US Forces & Mehrwertsteuer', 'US Forces & VAT') },
       { id: 'kontakt', label: this.t('Kontakt & Öffnungszeiten', 'Contact & opening hours') },
       { id: 'ratgeber', label: this.t('Ratgeber zum Vertiefen', 'Guides to go deeper') },
@@ -204,8 +208,8 @@ export class FaqComponent implements OnInit, OnDestroy {
           'Does health insurance cover epilation for gender confirmation?'
         ),
         answer: this.t(
-          'Ja, das ist möglich. Die Kasse übernimmt Epilation als Sachleistung, wenn sie medizinisch notwendig ist (§ 27 SGB V), etwa bei der Diagnose Geschlechtsinkongruenz (ICD F64.0). Der Knackpunkt ist der Ärztevorbehalt (§ 28 SGB V): Die Behandlung muss als ärztliche Leistung gelten. Weil FareWell mit einer delegierenden Ärztin arbeitet, ist genau das gelöst. Wichtig: Der Antrag muss vor Behandlungsbeginn gestellt werden. Alle Schritte erklärt unser Leitfaden „Epilation über die Krankenkasse“.',
-          'Yes, that is possible. Your health insurer covers epilation as a benefit in kind when it is medically necessary (§ 27 SGB V), for example with a diagnosis of gender incongruence (ICD F64.0). The key point is the doctor\'s reservation (§ 28 SGB V): the treatment must count as a medical service. Because FareWell works with a delegating doctor, exactly this is taken care of. Important: the application must be submitted before treatment begins. Every step, deadline and appeal is explained in our guide on insurance-covered epilation (in German).'
+          'Ja, das ist möglich. § 27 SGB V gibt dir Anspruch auf Krankenbehandlung, wenn sie medizinisch notwendig ist, etwa bei der Diagnose Geschlechtsinkongruenz (ICD F64.0). Der Knackpunkt ist der Ärztevorbehalt (§ 28 SGB V): Die Behandlung muss als ärztliche Leistung gelten. Weil FareWell mit einem delegierenden Arzt arbeitet, unserem medizinischen Berater Dr. med. univ. Noam Degner, ist genau das gelöst. Bei uns läuft es als Kostenerstattung: Du bezahlst die Behandlung und reichst die Rechnungen bei deiner Kasse ein, eine Direktabrechnung bieten wir nicht an. Wichtig: Der Antrag muss vor Behandlungsbeginn gestellt werden. Alle Schritte erklärt unser Leitfaden „Epilation über die Krankenkasse“.',
+          'Yes, that is possible. § 27 SGB V entitles you to medical treatment where it is necessary, for example with a diagnosis of gender incongruence (ICD F64.0). The key point is the physician requirement (§ 28 SGB V): the treatment must count as a medical service. Because FareWell works with a delegating doctor, our medical adviser Dr. med. univ. Noam Degner, exactly this is taken care of. With us it runs as reimbursement: you pay for the treatment and submit the invoices to your insurer, as we do not offer direct billing. Important: the application must be submitted before treatment begins. Every step, deadline and appeal is explained in our guide on insurance-covered epilation (in German).'
         ),
       },
       {
@@ -214,8 +218,8 @@ export class FaqComponent implements OnInit, OnDestroy {
           'What does “medical delegation” mean at FareWell?'
         ),
         answer: this.t(
-          'Eine Ärztin delegiert die Epilationsbehandlung an unser geschultes Team und bleibt medizinisch verantwortlich. Dadurch zählt die Nadelepilation bei FareWell als ärztlich delegierte Leistung: die Voraussetzung dafür, dass die Krankenkasse sie als Sachleistung übernehmen kann. Für deinen Antrag erstellen wir gemeinsam den Kostenvoranschlag.',
-          'A doctor delegates the epilation treatment to our trained team and remains medically responsible. This makes electrolysis at FareWell a medically delegated service, the condition for your health insurer to cover it as a benefit in kind. For your application we prepare the cost estimate together.'
+          'Unser medizinischer Berater Dr. med. univ. Noam Degner delegiert die Epilationsbehandlung an unser geschultes Team und bleibt medizinisch verantwortlich. Dadurch zählt die Nadelepilation bei FareWell als ärztlich delegierte Leistung: die Voraussetzung dafür, dass die Krankenkasse sie überhaupt übernehmen kann. Für deinen Antrag erstellen wir gemeinsam den Kostenvoranschlag.',
+          'Our medical adviser Dr. med. univ. Noam Degner delegates the epilation treatment to our trained team and remains medically responsible. This makes electrolysis at FareWell a medically delegated service, the condition for your health insurer to be able to cover it at all. For your application we prepare the cost estimate together.'
         ),
       },
       {
@@ -230,12 +234,89 @@ export class FaqComponent implements OnInit, OnDestroy {
       },
       {
         question: this.t(
-          'Was brauche ich von meiner Ärztin, bevor ich starte?',
+          'Was brauche ich von meiner Ärztin oder meinem Arzt, bevor ich starte?',
           'What do I need from my doctor before I start?'
         ),
         answer: this.t(
           'Die Diagnose (Geschlechtsdysphorie bzw. Geschlechtsinkongruenz, ICD F64.0) und eine Bescheinigung, dass die Haarentfernung zur Transition medizinisch notwendig ist, idealerweise ausgestellt vor der ersten Sitzung. Für den Kassenantrag kommt der ärztliche Bericht dazu.',
           'The diagnosis (gender dysphoria or gender incongruence, ICD F64.0) and a certificate confirming that the hair removal is medically necessary for gender confirmation, ideally issued before the first session. For the insurance application, the medical report is added.'
+        ),
+      },
+      {
+        question: this.t(
+          'Zahlt die Krankenkasse die Haarentfernung bei PCOS?',
+          'Does health insurance pay for hair removal with PCOS?'
+        ),
+        answer: this.t(
+          'Sie kann. Entscheidend ist nicht die Diagnose allein, sondern ob der Haarwuchs krankhaft und entstellend ist und die Haarentfernung deshalb medizinisch notwendig. Die Kassen rechnen dafür die Nadelepilation (Elektroepilation) im Gesicht und an den Händen ab. Zusagen kann dir das niemand, jeder Bescheid ist eine Einzelfallentscheidung, aber der Antrag ist einen Versuch wert. Alle Schritte stehen im Leitfaden Haarentfernung bei PCOS, Hirsutismus und Hypertrichose.',
+          'It can. What decides it is not the diagnosis alone but whether the hair growth is pathological and disfiguring, making the removal medically necessary. Insurers bill electrolysis (Nadelepilation) on the face and hands for this. Nobody can promise you an outcome, every decision is an individual one, but the application is worth a try. Every step is in our guide to hair removal with PCOS, hirsutism and hypertrichosis.'
+        ),
+      },
+      {
+        question: this.t(
+          'Ich bin nicht trans, gilt das trotzdem für mich?',
+          'I am not trans, does this still apply to me?'
+        ),
+        answer: this.t(
+          'Ja. Die Kasse zahlt nicht, weil jemand trans ist, sondern weil krankhafter Haarwuchs behandlungsbedürftig sein kann. Bei einer Hormonstörung gilt derselbe Gedanke. Zwei Unterschiede gibt es in der Praxis: Bei trans Personen sind Gesicht, Hals und Hände vorgesehen und auch der Laser ist abrechenbar, bei krankhaftem Haarwuchs sind es Gesicht und Hände und die Nadelepilation.',
+          'Yes. Insurers do not pay because someone is trans, but because pathological hair growth can require treatment. With a hormonal condition the same reasoning applies. Two differences exist in practice: for trans people the face, neck and hands are provided for and the laser is billable too, whereas for pathological hair growth it is the face and hands, with electrolysis.'
+        ),
+      },
+      {
+        question: this.t(
+          'Welche Körperstellen übernimmt die Kasse?',
+          'Which body areas does an insurer cover?'
+        ),
+        answer: this.t(
+          'Realistisch sind Gesicht und Hände. Beine, Bikinizone, Rücken oder Achseln werden fast immer abgelehnt, weil Kleidung sie bedeckt. Setz deinen Antrag deshalb auf die Regionen, die dich wirklich belasten, das erspart dir vergebliche Anträge.',
+          'Realistically the face and hands. Legs, bikini line, back or underarms are almost always refused because clothing covers them. So build your application around the areas that genuinely burden you; it saves you futile applications.'
+        ),
+      },
+      {
+        question: this.t(
+          'Was muss in dem ärztlichen Attest stehen?',
+          'What has to be in the medical certificate?'
+        ),
+        answer: this.t(
+          'Zwei Dinge: die Diagnose mit ihrer ICD-Ziffer, etwa E28.2 beim PCOS oder L68.0 beim Hirsutismus, und die ausdrückliche Feststellung, dass die Haarentfernung medizinisch notwendig ist. Hilfreich sind außerdem der bisherige Verlauf, was du schon versucht hast und was die Behandlung der Grunderkrankung gebracht hat.',
+          'Two things: the diagnosis with its ICD code, for example E28.2 for PCOS or L68.0 for hirsutism, and an explicit statement that the hair removal is medically necessary. It also helps to describe the history, what you have already tried and what treating the underlying condition has achieved.'
+        ),
+      },
+      {
+        question: this.t(
+          'Was kostet mich das, wenn die Kasse ablehnt?',
+          'What does it cost me if my insurer says no?'
+        ),
+        answer: this.t(
+          'Dann zahlst du die Behandlung selbst, zu den Preisen, die offen auf unserer Preisseite stehen. Eine Sitzung Nadelepilation kostet bei uns zwischen 40,00 € für 30 Minuten und 160,00 € für 120 Minuten. Was du selbst trägst, kannst du unter Umständen als außergewöhnliche Belastung von der Steuer absetzen.',
+          'Then you pay for the treatment yourself, at the prices listed openly on our price page. A session of electrolysis costs between €40,00 for 30 minutes and €160,00 for 120 minutes with us. What you pay yourself may be deductible from your taxes as an extraordinary burden.'
+        ),
+      },
+      {
+        question: this.t(
+          'Wie lange dauert es, bis die Kasse entscheidet?',
+          'How long does the insurer take to decide?'
+        ),
+        answer: this.t(
+          'Drei Wochen ab Eingang deines Antrags. Schaltet die Kasse den Medizinischen Dienst ein und teilt dir das mit, sind es fünf Wochen. Verstreicht die Frist ohne Nachricht, gilt die Leistung als genehmigt (§ 13 Abs. 3a SGB V): Du darfst dir die Behandlung dann selbst beschaffen und die Kosten erstattet verlangen. Die Gerichte legen das eng aus, lass dich vorher beraten.',
+          'Three weeks from the day your application arrives. If your insurer calls in the Medical Service and tells you so, it is five weeks. If the deadline passes without word, the benefit is deemed approved (§ 13 Abs. 3a SGB V): you may then obtain the treatment yourself and claim the costs back. The courts read this narrowly, so get advice first.'
+        ),
+      },
+      {
+        question: this.t('Muss ich in Vorkasse gehen?', 'Do I have to pay up front?'),
+        answer: this.t(
+          'Bei FareWell ja. Wir rechnen nicht direkt mit den Krankenkassen ab, eine Direktabrechnung bieten wir nicht an. Du bezahlst deine Behandlung bei uns und reichst die Rechnungen bei deiner Kasse ein. Deshalb ist es so wichtig, die Bewilligung abzuwarten, bevor die Behandlung beginnt.',
+          'At FareWell, yes. We do not bill insurers directly and do not offer direct billing. You pay us for your treatment and submit the invoices to your insurer. That is why it matters so much to wait for the approval before treatment starts.'
+        ),
+      },
+      {
+        question: this.t(
+          'Welche Unterlagen braucht FareWell von mir?',
+          'Which documents does FareWell need from me?'
+        ),
+        answer: this.t(
+          'Für den Kostenvoranschlag: deinen vollständigen Namen wie auf den ärztlichen Unterlagen, dein Geburtsdatum, deine private Anschrift, den Namen deiner Krankenkasse und, sobald vorhanden, die Versichertennummer. Dazu das ärztliche Attest, Angaben zu Vorerkrankungen, Medikamenten und Hautbesonderheiten und, falls vorhanden, Fotos der betroffenen Region. Den Bescheid der Kasse schickst du uns nach, sobald er da ist. Ohne Geburtsdatum und Anschrift ist der Kostenvoranschlag für die Kasse wertlos, deshalb fragen wir danach.',
+          'For the cost estimate: your full name as it appears on your medical papers, your date of birth, your private address, the name of your health insurer and, once you have it, your insurance number. Plus the medical certificate, details of pre-existing conditions, medication and anything particular about your skin, and photos of the affected area if you have them. You send us the insurer\'s decision letter once it arrives. Without a date of birth and an address the cost estimate is worthless to your insurer, which is why we ask.'
         ),
       },
       {

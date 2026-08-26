@@ -1,7 +1,7 @@
 /**
  * Preiskatalog der Preisseite — einzige Quelle für die sichtbaren Tabellen UND
  * das JSON-LD (Service/Offer). Quelle der Preise: Salonkee
- * (salonkee.de/salon/farewell), Stand 30. Juli 2026, Preise in Euro inkl. 19%
+ * (salonkee.de/salon/farewell), Stand 26. August 2026, Preise in Euro inkl. 19%
  * MwSt. Bei Preisänderungen nur diese Datei pflegen — Tabellen und
  * strukturierte Daten ziehen automatisch nach.
  *
@@ -194,6 +194,14 @@ export const PRICE_TABLES = {
         price: 250,
         delegation: true,
         scope: { de: 'Laser, Gesicht & Kopf', en: 'Laser, face & head' },
+      },
+      {
+        de: 'Rücken komplett',
+        en: 'Complete back',
+        minutes: 45,
+        price: 250,
+        delegation: true,
+        scope: { de: 'Laser, Körper', en: 'Laser, body' },
       },
       {
         de: 'Intim vorne (Schaft, Hoden, Damm, Pubis)',

@@ -54,6 +54,22 @@ function localizedRoutes(lang: PageLang): Routes {
       )
     },
     {
+      path: 'epilation-krankenkasse-hormonell',
+      loadComponent: () =>
+        import('../components/pages/ratgeber/krankenkasse-hormonell/krankenkasse-hormonell.component')
+          .then(m => m.KrankenkasseHormonellComponent),
+      data: d(
+        {
+          title: 'Hirsutismus & PCOS: Haarentfernung auf Kasse? | FareWell Nürnberg',
+          description: 'Hirsutismus durch PCOS, AGS oder die Wechseljahre: welche Abklärung nötig ist, was ins ärztliche Attest gehört und wie ein Antrag bei der Kasse abläuft.'
+        },
+        {
+          title: 'Hirsutism & PCOS: Hair Removal on Insurance? | FareWell Nuremberg',
+          description: 'Hirsutism from PCOS, CAH or the menopause: which work-up is needed, what belongs in the medical certificate and how an application to a German insurer works.'
+        }
+      )
+    },
+    {
       path: 'haarentfernung-steuer-absetzen',
       loadComponent: () =>
         import('../components/pages/ratgeber/steuer-absetzen/steuer-absetzen.component')

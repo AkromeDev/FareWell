@@ -28,6 +28,7 @@
 - [Elektrolyse oder Laser? Der ehrliche Methodenvergleich](https://farewell.salon/ratgeber/elektrolyse-oder-laser)
 - [Kavitation, Ultraschall-Fettreduktion & Cellulite](https://farewell.salon/ratgeber/kavitation-ultraschall-fettreduktion)
 - [Epilation über die Krankenkasse – Leitfaden für trans Personen](https://farewell.salon/ratgeber/epilation-krankenkasse): mögliche Kostenübernahme der Gesichtsepilation, Antrag Schritt für Schritt.
+- [Haarentfernung bei PCOS, Hirsutismus und Hypertrichose – Krankenkasse](https://farewell.salon/ratgeber/epilation-krankenkasse-hormonell): mögliche Kostenübernahme bei hormonell bedingtem Haarwuchs, Diagnosen, Attest, Antrag.
 - [Haarentfernung von der Steuer absetzen – für trans Personen](https://farewell.salon/ratgeber/haarentfernung-steuer-absetzen): Laser & Nadelepilation als außergewöhnliche Belastung.
 - [Mehrwertsteuerbefreiung für US-Streitkräfte (SOFA)](https://farewell.salon/ratgeber/mehrwertsteuer-us-streitkraefte): NF1-Formular & Remonon-App, Schritt für Schritt.
 - [US Forces VAT relief (English)](https://farewell.salon/ratgeber/us-forces-vat-relief)
@@ -57,6 +58,7 @@ _English mirror of the site; consultations available in English. Prices and offe
 - [FAQ](https://farewell.salon/en/faq)
 - [Guide: electrolysis or laser?](https://farewell.salon/en/ratgeber/elektrolyse-oder-laser) · [Guide: cavitation & fat reduction](https://farewell.salon/en/ratgeber/kavitation-ultraschall-fettreduktion)
 - [Guide: health insurance coverage (trans people)](https://farewell.salon/en/ratgeber/epilation-krankenkasse) · [Guide: deducting hair removal from tax](https://farewell.salon/en/ratgeber/haarentfernung-steuer-absetzen)
+- [Guide: coverage with hormonal hair growth (PCOS, hirsutism)](https://farewell.salon/en/ratgeber/epilation-krankenkasse-hormonell)
 - [US Forces VAT relief in Germany](https://farewell.salon/ratgeber/us-forces-vat-relief): NF1/NF2 forms, the Remonon app, plus 20% off laser hair removal for life (code USLASER).
 
 ## Optional

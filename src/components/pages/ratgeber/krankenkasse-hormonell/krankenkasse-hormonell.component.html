@@ -1,0 +1,737 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-hero
+    [kicker]="
+      t(
+        'Kundenleitfaden · Hormoneller Haarwuchs · Krankenkasse',
+        'Customer guide · Hormonal hair growth · Health insurer'
+      )
+    "
+    [heading]="
+      t(
+        'Haarentfernung bei PCOS, Hirsutismus und Hypertrichose',
+        'Hair removal with PCOS, hirsutism and hypertrichosis'
+      )
+    "
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Wie du deine Haarentfernung bei PCOS, Hirsutismus oder Hypertrichose als Kassenleistung bezahlt bekommst, Schritt für Schritt erklärt, mit FareWell als Beispiel.',
+        'How to get your hair removal covered when PCOS, hirsutism or hypertrichosis is behind it, explained step by step, with FareWell as the example.'
+      )
+    "
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Deine Krankenkasse kann die Epilation im Gesicht übernehmen. Nicht, weil jemand trans
+            ist, sondern weil krankhafter Haarwuchs medizinisch behandlungsbedürftig sein kann. Bei
+            einer Hormonstörung gilt genau derselbe Gedanke. Der Knackpunkt ist meist der
+            Ärztevorbehalt, und dafür arbeitet FareWell mit einem delegierenden Arzt: unserem
+            medizinischen Berater Dr. med. univ. Noam Degner.
+          </span>
+          <span class="lang en">
+            Your statutory health insurer can cover facial epilation. Not because someone is trans,
+            but because pathological hair growth can require medical treatment. With a hormonal
+            disorder the very same reasoning applies. The sticking point is usually the physician
+            requirement (Ärztevorbehalt), and for that FareWell works with a delegating doctor: our
+            medical adviser Dr. med. univ. Noam Degner.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Wenn du mit PCOS, Hirsutismus oder Hypertrichose lebst, gehören Rasieren, Zupfen und
+            Abdecken oft seit Jahren zum Alltag. Was andere als Damenbart abtun, ist medizinisch ein
+            Befund mit eigener Diagnose. Ob deine Kasse zahlt, ist von Fall zu
+            Fall verschieden, versprechen lässt sich nichts. Aber der Antrag ist einen Versuch wert,
+            und dieser Leitfaden zeigt dir Schritt für Schritt, wie du ihn aufsetzt. Die
+            <a [routerLink]="p('/price')" fragment="aerztliche-delegation">Preise je Sitzung</a>
+            stehen offen auf unserer Preisseite, die
+            <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlose Erstberatung</a>
+            buchst du direkt online.
+          </span>
+          <span class="lang en">
+            If you live with PCOS, hirsutism or hypertrichosis, shaving, plucking and covering up
+            have often been part of daily life for years. What others brush off as a bit of facial
+            hair is, medically, a finding with a diagnosis of its own. Whether your insurer pays
+            varies from case to case, and nothing can be promised. But the application is worth a
+            try, and this guide shows you step by step how to put it together. The
+            <a [routerLink]="p('/price')" fragment="aerztliche-delegation">prices per session</a>
+            are listed openly on our price page, and you can book the
+            <a href="https://salonkee.de/salon/farewell?lang=en" target="_blank" rel="noopener noreferrer">free initial consultation</a>
+            online.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="180" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Geht es bei dir um die Haarentfernung im Zuge einer Transition? Dann ist unser
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Leitfaden für trans Personen</a>
+            der passende: gleicher Weg, andere Diagnose und andere Beratungsstellen.
+          </span>
+          <span class="lang en">
+            Is your hair removal part of a gender transition? Then our
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">guide for trans people</a> is
+            the right one: same route, different diagnosis and different counselling services.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Warum die Kasse zahlen kann', 'Why your insurer can pay')"
+      sectionId="warum"
+    >
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card
+          icon="📄"
+          [heading]="t('Anspruch nach § 27 SGB V', 'Your entitlement under § 27 SGB V')"
+        >
+          <span class="lang de">
+            § 27 SGB V gibt dir Anspruch auf Krankenbehandlung, wenn sie notwendig ist. Entscheidend
+            ist nicht die Ursache, sondern ob der Haarwuchs krankhaft ist und behandelt werden muss.
+            Welche Methode dazu zählt, entscheidet deine Kasse im Einzelfall.
+          </span>
+          <span class="lang en">
+            § 27 SGB V entitles you to medical treatment where it is necessary. What counts is not
+            the cause but whether the hair growth is pathological and needs treating. Which method
+            is part of that is decided by your insurer, case by case.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="⚕️"
+          [heading]="
+            t('Ärztevorbehalt nach § 28 SGB V', 'Physician requirement (Ärztevorbehalt) under § 28 SGB V')
+          "
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Die Behandlung muss als ärztliche Leistung zählen; deshalb scheitern Anträge sonst
+            oft an reinen Kosmetikstudios.
+          </span>
+          <span class="lang en">
+            The treatment has to count as a medical service, which is why applications otherwise
+            often fail at ordinary cosmetic studios.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🤝"
+          [heading]="t('Wie die Delegation helfen kann', 'How delegation can help')"
+          [revealDelay]="120"
+        >
+          <span class="lang de">
+            Unser medizinischer Berater Dr. med. univ. Noam Degner delegiert die Behandlung an
+            unser geschultes Team und bleibt medizinisch verantwortlich. So kann deine
+            Nadelepilation als ärztlich delegierte Leistung zählen. Manche Kassen erkennen die
+            Delegation an, andere bestehen auf einer ärztlichen Praxis, das ist von Kasse zu Kasse
+            verschieden.
+          </span>
+          <span class="lang en">
+            Our medical adviser Dr. med. univ. Noam Degner delegates the treatment to our trained
+            team and stays medically responsible. That way your electrolysis (Nadelepilation) can
+            count as a medically delegated service. Some insurers accept delegation, others insist
+            on a medical practice, it varies from insurer to insurer.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="💶"
+          [heading]="
+            t('Kostenerstattung, keine Direktabrechnung', 'Reimbursement, not direct billing')
+          "
+          [revealDelay]="180"
+        >
+          <span class="lang de">
+            FareWell rechnet nicht direkt mit deiner Kasse ab, eine Direktabrechnung bieten wir
+            nicht an. Du bezahlst deine Behandlung bei uns und reichst die Rechnungen bei deiner
+            Kasse ein; erstattet wird, was sie vorher bewilligt hat.
+          </span>
+          <span class="lang en">
+            FareWell does not bill your insurer directly; we do not offer direct billing. You pay
+            us for your treatment and submit the invoices to your insurer, which reimburses what it
+            approved beforehand.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🪡"
+          [heading]="t('Die anerkannte Methode', 'The recognised method')"
+          [revealDelay]="240"
+        >
+          <span class="lang de">
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a> ist die
+            anerkannte permanente Methode und funktioniert unabhängig von Haarfarbe und Hauttyp.
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">Diodenlaser</a> (dauerhafte
+            Haarentfernung) bieten wir ergänzend an.
+          </span>
+          <span class="lang en">
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Electrolysis (Nadelepilation)</a> is the
+            recognised permanent method and works regardless of hair colour and skin type. We also
+            offer the
+            <a [routerLink]="p('/behandlungen/diodenlaser-4-wellen')">diode laser</a> (long-lasting hair
+            removal) as a complement.
+          </span>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      [heading]="t('Was du wissen solltest', 'What you should know')"
+      sectionId="wissen"
+    >
+      <div class="gd-split">
+        <app-guide-panel
+          [heading]="t('Was die Kasse anerkennt', 'What your insurer recognises')"
+          tone="forest"
+        >
+          <li>
+            <span class="lang de">
+              Die Epilation an <strong>Gesicht und Händen</strong>, wenn der Haarwuchs krankhaft und
+              entstellend ist. Genau so ist die Abrechnungsziffer formuliert, die es dafür gibt. Der
+              Hals gehört hier nicht dazu, den sieht die Kasse nur bei Behandlungen im Rahmen
+              einer Transition vor.
+            </span>
+            <span class="lang en">
+              Epilation of the <strong>face and hands</strong>, where the hair growth is
+              pathological and disfiguring. That is exactly how the billing code for it is worded.
+              The neck is not part of it here; insurers provide for the neck only in treatments
+              that are part of a transition.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              Als Methode kennt die Kasse hier die <strong>Nadelepilation (Elektroepilation)</strong>.
+              Die Laserepilation ist bei Hirsutismus keine Leistung der gesetzlichen
+              Krankenversicherung, weil der Gemeinsame Bundesausschuss, das Gremium, das über die
+              Leistungen der Kassen entscheidet, sie dafür nicht empfohlen hat.
+            </span>
+            <span class="lang en">
+              The method insurers recognise here is
+              <strong>electrolysis (Nadelepilation)</strong>. Laser epilation is not a statutory
+              benefit for hirsutism, because the Federal Joint Committee has not recommended it for
+              that purpose.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              Voraussetzung: eine gesicherte Diagnose und die ärztliche Feststellung, dass die
+              Haarentfernung medizinisch notwendig ist.
+            </span>
+            <span class="lang en">
+              Requirement: a confirmed diagnosis and a doctor's finding that the hair removal is
+              medically necessary.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              Antrag stellen und die Bewilligung abwarten, bevor die Behandlung beginnt.
+            </span>
+            <span class="lang en">
+              Submit the application and wait for approval before the treatment begins.
+            </span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Was FareWell beisteuert', 'What FareWell contributes')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Die ärztliche Delegation durch unseren medizinischen Berater.</span>
+            <span class="lang en">The medical delegation by our medical adviser.</span>
+          </li>
+          <li>
+            <span class="lang de">Einen Kostenvoranschlag für deinen Antrag.</span>
+            <span class="lang en">A cost estimate for your application.</span>
+          </li>
+          <li>
+            <span class="lang de">
+              Behandlung durch geschultes Personal, permanente und dauerhafte Haarentfernung.
+            </span>
+            <span class="lang en">
+              Treatment by trained staff, permanent and long-lasting hair removal.
+            </span>
+          </li>
+        </app-guide-panel>
+      </div>
+
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Diagnosen, die hier zählen', 'Diagnoses that count here') }}</p>
+        <p appReveal style="color: var(--gd-muted)">
+          <span class="lang de">
+            Welche Ziffer in deinem Attest steht, entscheidet deine Praxis, nicht wir. Diese Liste
+            hilft dir nur, das Gespräch dort vorzubereiten. Die Bezeichnungen sind die offiziellen
+            aus dem ICD-10-GM.
+          </span>
+          <span class="lang en">
+            Which code goes on your certificate is decided by your medical practice, not by us.
+            This list is only here to help you prepare that conversation. The labels are the
+            official ones from the German ICD-10-GM.
+          </span>
+        </p>
+        <ul class="gd-ticks" appReveal>
+          <li>
+            <span class="lang de">
+              <strong>PCOS: E28.2</strong>, offiziell „Syndrom polyzystischer Ovarien“. Im Mai
+              2026 wurde die Erkrankung international in Polyendokrines Metabolisches
+              Ovarialsyndrom (PMOS) umbenannt, die deutschen Fachgesellschaften haben sich dem im
+              Juni 2026 angeschlossen. Im ICD steht weiterhin E28.2.
+            </span>
+            <span class="lang en">
+              <strong>PCOS: E28.2</strong>, officially “Syndrom polyzystischer Ovarien”
+              (polycystic ovary syndrome). In May 2026 the condition was renamed internationally to
+              Polyendokrines Metabolisches Ovarialsyndrom (PMOS), and the German specialist
+              societies endorsed that in June 2026. The ICD label is still E28.2.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Hirsutismus: L68.0.</strong> Er steht im ICD innerhalb der Gruppe
+              <strong>L68.- Hypertrichose</strong> („Verstärkter Haarwuchs“), auch wenn beides
+              klinisch zwei verschiedene Bilder sind.
+            </span>
+            <span class="lang en">
+              <strong>Hirsutism: L68.0.</strong> In the ICD it sits inside the group
+              <strong>L68.- Hypertrichose</strong> (“increased hair growth”), even though clinically
+              the two are distinct pictures.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Hypertrichose: L68.1</strong> (Hypertrichosis lanuginosa acquisita),
+              <strong>L68.2</strong> (Lokalisierte Hypertrichose) und <strong>L68.8/L68.9</strong>.
+              Angeborene Formen laufen unter Q84.2.
+            </span>
+            <span class="lang en">
+              <strong>Hypertrichosis: L68.1</strong> (hypertrichosis lanuginosa acquisita),
+              <strong>L68.2</strong> (localised hypertrichosis) and <strong>L68.8/L68.9</strong>.
+              Congenital forms sit under Q84.2.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Adrenogenitales Syndrom: E25.-</strong>, im ICD „Adrenogenitale Störungen“.
+              Die angeborenen Formen brauchen eine fünfstellige Ziffer, etwa E25.01 für die spät
+              einsetzende Form.
+            </span>
+            <span class="lang en">
+              <strong>Adrenogenital syndrome: E25.-</strong>, in the ICD “Adrenogenitale
+              Störungen” (adrenogenital disorders). The congenital forms need a five-digit code, for example E25.01 for the
+              late-onset form.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Androgenüberschuss: E28.1</strong>, wenn die Eierstöcke zu viele Androgene
+              bilden.
+            </span>
+            <span class="lang en">
+              <strong>Androgen excess: E28.1</strong>, where the ovaries produce too many androgens.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Schilddrüse: E03.-</strong> (Unterfunktion) oder <strong>E05.-</strong>
+              (Überfunktion). Eine Schilddrüsenerkrankung kann den Haarwuchs verändern, sie ist
+              aber selten die Hauptursache. Hashimoto trägt eine eigene Ziffer, E06.3.
+            </span>
+            <span class="lang en">
+              <strong>Thyroid: E03.-</strong> (underactive) or <strong>E05.-</strong> (overactive).
+              A thyroid condition can change hair growth, but it is rarely the main cause.
+              Hashimoto's has its own code, E06.3.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Haarwuchs als Nebenwirkung:</strong> Dafür gibt es keine eigene Ziffer. Kodiert
+              wird der Haarwuchs selbst, also L68.0 oder L68.1, und die auslösende Substanz kommt als
+              zweite Ziffer dazu.
+            </span>
+            <span class="lang en">
+              <strong>Hair growth as a side effect:</strong> there is no code of its own for it. The
+              hair growth itself is coded, L68.0 or L68.1, and the substance responsible is added as
+              a second code.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Nach den Wechseljahren:</strong> auch dafür gibt es keine eigene Ziffer, es
+              wird als Hirsutismus (L68.0) verschlüsselt.
+            </span>
+            <span class="lang en">
+              <strong>After the menopause:</strong> again there is no code of its own, it is coded as
+              hirsutism (L68.0).
+            </span>
+          </li>
+        </ul>
+
+        <app-guide-note
+          variant="warn"
+          [label]="t('Was „entstellend“ juristisch heißt', 'What “disfiguring” means in law')"
+        >
+          <span class="lang de">
+            Das Bundessozialgericht legt hier einen strengen und rein objektiven Maßstab an: Gemeint
+            ist eine Auffälligkeit, die schon bei einer flüchtigen Begegnung ins Auge fällt, Blicke
+            auf sich zieht und die Teilhabe am Leben in der Gesellschaft gefährdet. Wie sehr jemand
+            selbst darunter leidet, zählt nach dieser Rechtsprechung ausdrücklich nicht. Das klingt
+            hart, und für viele fühlt es sich auch so an. Wir schreiben es trotzdem hin, damit du
+            weißt, woran dein Antrag gemessen wird, bevor du ihn stellst.
+          </span>
+          <span class="lang en">
+            The Federal Social Court applies a strict, purely objective standard here: it means a
+            conspicuousness that catches the eye even in a fleeting encounter, draws stares and puts
+            your participation in social life at risk. How much you personally suffer from it
+            expressly does not count under that case law. That sounds harsh, and for many people it
+            feels that way too. We write it down anyway, so you know what your application will be
+            measured against before you file it.
+          </span>
+        </app-guide-note>
+        <app-guide-note
+          variant="tip"
+          [label]="t('Normale Hormonwerte schließen nichts aus', 'Normal hormone levels rule nothing out')"
+        >
+          <span class="lang de">
+            Hirsutismus entsteht auch dann, wenn die Haarfollikel besonders empfindlich auf ganz
+            normale Androgenspiegel reagieren. Die Stärke des Haarwuchses hängt nicht an der Höhe
+            der Werte, und familiäre Veranlagung spielt mit. Ein unauffälliges Blutbild ist also
+            kein Grund, den Antrag aufzugeben. Umgekehrt gilt: Kommen plötzlicher, schneller
+            Haarwuchs, ausbleibende Regel, eine tiefer werdende Stimme oder Haarausfall am Oberkopf
+            dazu, gehört das zuerst ärztlich abgeklärt, nicht kosmetisch behandelt. Wir sind ein
+            Kosmetikstudio und stellen keine Diagnosen.
+          </span>
+          <span class="lang en">
+            Hirsutism also occurs when the hair follicles simply respond strongly to perfectly
+            normal androgen levels. How pronounced the hair growth is does not track the blood
+            values, and family predisposition plays its part. So unremarkable blood work is no
+            reason to drop the application. The other way round: if hair growth appears suddenly and
+            fast, if your period stops, your voice deepens or your scalp hair thins, that belongs in
+            a medical practice first, not in a cosmetic one. We are a cosmetic studio and we do not
+            make diagnoses.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="03"
+      [heading]="t('In 5 Schritten zur Kostenübernahme', 'Coverage in 5 steps')"
+      sectionId="schritte"
+    >
+      <div class="gd-read">
+        <app-guide-steps>
+          <li>
+            <span class="lang de">
+              <strong>Diagnose und Attest holen.</strong> Die Diagnose stellt meist die
+              gynäkologische Praxis, bei Verdacht auf eine Hormonstörung die Endokrinologie und beim
+              Hautbefund die Dermatologie. Lass dir die Diagnose und die medizinische Notwendigkeit
+              der Haarentfernung schriftlich bestätigen.
+            </span>
+            <span class="lang en">
+              <strong>Get your diagnosis and certificate.</strong> The diagnosis usually comes from
+              a gynaecology practice, from endocrinology where a hormonal disorder is suspected, and
+              from dermatology for the skin findings. Have the diagnosis and the medical necessity
+              of the hair removal confirmed in writing.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Kostenvoranschlag bei FareWell.</strong> Wir erstellen dir einen
+              Kostenvoranschlag für die Nadelepilation im Rahmen der Delegation. Den Diodenlaser
+              nehmen wir nur auf Wunsch dazu, als Selbstzahlerleistung. Die Preise je Zone findest
+              du auf <a [routerLink]="p('/price')">unserer Preisseite</a>.
+            </span>
+            <span class="lang en">
+              <strong>Cost estimate from FareWell.</strong> We prepare a cost estimate for
+              electrolysis (Nadelepilation) within the delegation. We only add the diode laser if
+              you want it, as a self-pay service. You will find the prices per area on
+              <a [routerLink]="p('/price')">our price page</a>.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Antrag bei der Krankenkasse.</strong> Reiche vor dem ersten Termin den
+              Antrag auf Kostenübernahme ein, zusammen mit dem ärztlichen Attest und unserem
+              Kostenvoranschlag.
+            </span>
+            <span class="lang en">
+              <strong>Application to your health insurer.</strong> Before your first appointment,
+              submit the application for coverage, together with the medical certificate and our
+              cost estimate.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Fristen nutzen.</strong> Die Kasse muss innerhalb von 3 Wochen entscheiden,
+              innerhalb von 5 Wochen, wenn sie den Medizinischen Dienst einschaltet und dir das
+              mitteilt. Verstreicht die Frist ohne Nachricht, gilt die Leistung als genehmigt
+              (§ 13 Abs. 3a SGB V). In der Praxis kann das heißen, dass du dir die Behandlung selbst
+              beschaffen und die Kosten erstattet verlangen darfst. Die Gerichte legen das eng aus,
+              deshalb lohnt sich vorher eine Beratung.
+            </span>
+            <span class="lang en">
+              <strong>Use the deadlines.</strong> Your insurer must decide within 3 weeks, or
+              within 5 if it calls in the Medical Service and tells you so. If the deadline passes
+              without word from them, the benefit is deemed approved (§ 13 Abs. 3a SGB V). In
+              practice that can mean you may obtain the treatment yourself and claim the costs back.
+              The courts read this narrowly, so it is worth getting advice first.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              <strong>Bei Ablehnung: Widerspruch.</strong> Du hast einen Monat Zeit, schriftlich.
+              Ein Widerspruch lohnt sich oft, und deine gynäkologische, endokrinologische oder
+              dermatologische Praxis unterstützt dich mit einer ergänzenden Begründung.
+            </span>
+            <span class="lang en">
+              <strong>If denied: file an objection (Widerspruch).</strong> You have one month, in
+              writing. An objection is often worth it, and your gynaecology, endocrinology or
+              dermatology practice can support you with additional reasoning.
+            </span>
+          </li>
+        </app-guide-steps>
+
+        <app-guide-note variant="rule" [label]="t('Wichtig', 'Please note')">
+          <span class="lang de">
+            Warte mit der Behandlung, bis die Bewilligung da ist. Kosten, die vor dem
+            Bewilligungsdatum entstehen, kann die Kasse ablehnen. Unterschreib auch keinen
+            Behandlungsvertrag, solange die Frist der Kasse läuft: Das Bundessozialgericht wertet
+            das als Zeichen, dass du dich ohnehin schon entschieden hattest, und das kann die
+            Erstattung kosten. Halte alles schriftlich fest, auch Telefonate, und akzeptiere keine
+            mündliche Ablehnung.
+          </span>
+          <span class="lang en">
+            Wait to start treatment until the approval is in. Costs that arise before the approval
+            date can be refused by your insurer. Do not sign a treatment contract while your
+            insurer's deadline is still running either: the Federal Social Court treats that as a
+            sign that you had already made up your mind, and it can cost you the reimbursement.
+            Keep a written record of everything, including phone calls, and do not accept a verbal
+            denial.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="04"
+      [heading]="t('Gut zu wissen', 'Good to know')"
+      sectionId="gut-zu-wissen"
+    >
+      <div class="gd-read">
+        <app-guide-note variant="win" [label]="t('Starke Argumente', 'Strong arguments')">
+          <span class="lang de">
+            Was einem Antrag oft mehr hilft als jede Formulierung: eine kurze Schilderung, wie lange
+            der Haarwuchs dich schon begleitet und was du bisher versucht hast, dazu Fotos und, wenn
+            vorhanden, ein dermatologischer Befund. Hilfreich ist außerdem, wenn aus dem Attest
+            hervorgeht, dass die Grunderkrankung ärztlich betreut wird; verlangt wird dagegen nicht,
+            dass eine Hormontherapie vorher gescheitert ist. Und ein Punkt, den viele Kassen
+            anerkennen: Medikamente gegen die Hormonstörung können neuen Haarwuchs bremsen; die
+            kräftigen, dunklen Haare, die schon da sind, verschwinden davon nicht.
+          </span>
+          <span class="lang en">
+            What often helps an application more than any wording: a short account of how long the
+            hair growth has been with you and what you have already tried, plus photos and, if you
+            have one, a dermatological report. It also helps if the certificate shows that the
+            underlying condition is under medical care; what is not required is proof that a hormone
+            therapy failed first. And one point many insurers accept: medication for the hormonal
+            disorder can slow new growth, but it does not remove the thick, pigmented hairs that are
+            already there.
+          </span>
+        </app-guide-note>
+        <ul class="gd-ticks" appReveal>
+          <li>
+            <span class="lang de">
+              Wie deine Kasse damit umgeht, ist sehr verschieden. Manche prüfen wohlwollend, andere
+              lehnen alles ab, was nicht in einer ärztlichen Praxis stattfindet. Versprechen lässt
+              sich nichts, aber der Antrag ist einen Versuch wert.
+            </span>
+            <span class="lang en">
+              How your insurer handles this varies a great deal. Some assess generously, others
+              refuse anything that does not take place in a medical practice. Nothing can be
+              promised, but the application is worth a try.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              Manche Kassen erstatten nur, wenn die Behandlung selbst in einer ärztlichen Praxis
+              stattfindet und von dort abgerechnet wird. Das Bundessozialgericht hat 2020
+              entschieden, dass die Nadelepilation an geschultes Personal delegiert werden darf,
+              wenn eine Ärztin oder ein Arzt sie anordnet und dafür verantwortlich bleibt. Wie deine
+              Kasse das handhabt, klärst du am besten vorher schriftlich mit ihr.
+            </span>
+            <span class="lang en">
+              Some insurers only reimburse when the treatment itself takes place in a medical
+              practice and is billed from there. In 2020 the Federal Social Court held that
+              electrolysis may be delegated to trained staff where a doctor orders it and remains
+              responsible for it. How your insurer handles that is best clarified with them in
+              writing beforehand.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              Beine, Bikinizone, Rücken oder Achseln werden fast immer abgelehnt, mit der
+              Begründung, dass Kleidung sie bedeckt. Seit 2022 lässt das Bundessozialgericht auch
+              bedeckte Stellen zu, aber nur in eng begrenzten Ausnahmefällen. Setz den Antrag also
+              auf die Regionen, die dich wirklich belasten, das erspart dir vergebliche Anträge.
+            </span>
+            <span class="lang en">
+              Legs, bikini line, back or underarms are almost always refused, on the grounds that
+              clothing covers them. Since 2022 the Federal Social Court has allowed covered areas
+              too, but only in narrowly limited exceptional cases. So build your application around
+              the areas that genuinely burden you; it saves you futile applications.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              Findet sich in erreichbarer Nähe keine Praxis, die die Nadelepilation selbst anbietet,
+              kann ein Versorgungsproblem vorliegen. Lass dir das von deiner Kassenärztlichen
+              Vereinigung, der Selbstverwaltung der Ärzt:innen in deinem Bundesland, schriftlich
+              geben; es ist ein Baustein für die Kostenerstattung.
+            </span>
+            <span class="lang en">
+              If no practice within reach offers electrolysis itself, there may be a gap in care.
+              Ask your regional Association of Statutory Health Insurance Physicians to confirm
+              that in writing; it is one building block for reimbursement.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
+              Bei wenig Einkommen gibt es Beratungshilfe für anwaltliche Unterstützung.
+            </span>
+            <span class="lang en">
+              If your income is low, you can get advice assistance (Beratungshilfe) for support
+              from a lawyer.
+            </span>
+          </li>
+        </ul>
+        <p class="gd-fine">
+          <span class="lang de">
+            Dieser Leitfaden ist eine allgemeine Information und keine Rechtsberatung. Deine
+            Krankenkasse entscheidet im Einzelfall.
+          </span>
+          <span class="lang en">
+            This guide is general information and not legal advice. Your statutory health insurer
+            decides on a case-by-case basis.
+          </span>
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="05"
+      [heading]="t('Was wir von dir brauchen', 'What we need from you')"
+      sectionId="unterlagen"
+    >
+      <app-kostenvoranschlag-unterlagen />
+      <div class="gd-read">
+        <p appReveal style="color: var(--gd-muted)">
+          <span class="lang de">
+            Beim Termin erstellen wir gemeinsam deinen Kostenvoranschlag und, über die ärztliche
+            Delegation, die unterschriebene Fassung für die Kasse. So musst du dich um die
+            Formalitäten nicht allein kümmern.
+          </span>
+          <span class="lang en">
+            At the appointment we prepare your cost estimate together and, through the medical
+            delegation, the signed version for your insurer. That way you do not have to handle the
+            formalities on your own.
+          </span>
+        </p>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="06"
+      [heading]="t('Weiterlesen', 'Further reading')"
+      sectionId="weiterlesen"
+    >
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card
+          icon="🏥"
+          [heading]="t('Leitfaden für trans Personen', 'Guide for trans people')"
+        >
+          <span class="lang de">
+            Derselbe Weg, wenn die Haarentfernung zur Transition gehört: mit der Diagnose
+            Geschlechtsinkongruenz statt einer Hormonstörung.
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Zum Leitfaden</a>
+          </span>
+          <span class="lang en">
+            The same route where hair removal is part of a transition: with a diagnosis of gender
+            incongruence instead of a hormonal disorder.
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Read the guide</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🧾"
+          [heading]="
+            t('Behandlungskosten steuerlich absetzen', 'Deducting treatment costs from your taxes')
+          "
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Den Anteil, den du selbst trägst, kannst du als außergewöhnliche Belastung geltend
+            machen.
+            <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">Zum Steuerleitfaden</a>
+          </span>
+          <span class="lang en">
+            You can claim the share you pay yourself as an extraordinary burden.
+            <a [routerLink]="p('/ratgeber/haarentfernung-steuer-absetzen')">Read the tax guide</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🪡"
+          [heading]="t('Nadelepilation (Elektrolyse)', 'Electrolysis (Nadelepilation)')"
+          [revealDelay]="120"
+        >
+          <span class="lang de">
+            Wie die permanente Haarentfernung abläuft, wie lange sie dauert und für wen sie sich
+            eignet.
+            <a [routerLink]="p('/behandlungen/nadelepilation')">Zur Behandlung</a>
+          </span>
+          <span class="lang en">
+            How permanent hair removal works, how long it takes and who it suits.
+            <a [routerLink]="p('/behandlungen/nadelepilation')">See the treatment</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="💬"
+          [heading]="t('Häufige Fragen', 'Frequently asked questions')"
+          [revealDelay]="180"
+        >
+          <span class="lang de">
+            Antworten zu Methoden, Terminen, Preisen und Kostenübernahme, kompakt gesammelt.
+            <a [routerLink]="p('/faq')" fragment="kostenuebernahme-hormonell">Zu den FAQ</a>
+          </span>
+          <span class="lang en">
+            Answers on methods, appointments, prices and coverage, gathered in one place.
+            <a [routerLink]="p('/faq')" fragment="kostenuebernahme-hormonell">Read the FAQ</a>
+          </span>
+        </app-guide-card>
+      </div>
+    </app-guide-section>
+
+    <app-guide-cta
+      [heading]="t('Bereit für den ersten Schritt?', 'Ready for the first step?')"
+      [bookingLabel]="t('Termin buchen', 'Book an appointment')"
+      [bookingHref]="
+        t(
+          'https://salonkee.de/salon/farewell?lang=de',
+          'https://salonkee.de/salon/farewell?lang=en'
+        )
+      "
+    >
+      <span class="lang de">
+        Buche deine kostenlose Erstberatung über Salonkee oder schreib uns auf Instagram. Wir
+        schauen uns deine Situation an und sagen dir ehrlich, was möglich ist.
+      </span>
+      <span class="lang en">
+        Book your free initial consultation via Salonkee or message us on Instagram. We will look
+        at your situation and tell you honestly what is possible.
+      </span>
+    </app-guide-cta>
+  </div>
+</div>

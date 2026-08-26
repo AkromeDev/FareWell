@@ -30,28 +30,45 @@
         <p class="gd-lede" appReveal [revealDelay]="60">
           <span class="lang de">
             Deine Krankenkasse kann die Epilation im Gesicht übernehmen. Der Knackpunkt ist meist
-            der Ärztevorbehalt, und dafür bietet FareWell eine delegierende Ärztin an. Ob deine
-            Kasse das anerkennt, ist von Fall zu Fall verschieden, aber es ist ein Versuch wert.
+            der Ärztevorbehalt, und dafür arbeitet FareWell mit einem delegierenden Arzt: unserem
+            medizinischen Berater Dr. med. univ. Noam Degner. Ob deine Kasse das anerkennt, ist von
+            Fall zu Fall verschieden, aber es ist ein Versuch wert.
           </span>
           <span class="lang en">
             Your statutory health insurer can cover facial epilation. The sticking point is usually
-            the physician requirement (Ärztevorbehalt), and for that FareWell offers a delegating
-            doctor. Whether your insurer accepts this varies from case to case, but it is worth a
-            try.
+            the physician requirement (Ärztevorbehalt), and for that FareWell works with a
+            delegating doctor: our medical adviser Dr. med. univ. Noam Degner. Whether your insurer
+            accepts this varies from case to case, but it is worth a try.
           </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
           <span class="lang de">
-            Für viele trans Personen gehört die Haarentfernung im Gesicht fest zur
-            Transition. Die gute Nachricht: Deine Krankenkasse kann die Kosten
-            übernehmen, denn die Behandlung muss als ärztliche Leistung gelten. Dieser Leitfaden
-            zeigt dir Schritt für Schritt, wie du die Kostenübernahme bekommst.
+            Für viele trans Personen gehört die Haarentfernung im Gesicht fest zur Transition.
+            Deine Krankenkasse kann die Kosten übernehmen, wenn die Behandlung als ärztliche
+            Leistung gilt. Genau daran scheitern Anträge sonst meistens. Dieser Leitfaden zeigt dir
+            Schritt für Schritt, wie du die Kostenübernahme beantragst.
           </span>
           <span class="lang en">
-            For many trans people, facial hair removal is an integral part of gender-affirming
-            treatment. The good news: your statutory health insurer can cover the cost, because the
-            treatment can qualify as a medical service. This guide shows you, step by step, how to
-            get that coverage.
+            For many trans people, facial hair removal is an integral part of their transition.
+            Your statutory health insurer can cover the cost if the treatment counts as a medical
+            service, and that is exactly where applications otherwise tend to fail. This guide shows
+            you, step by step, how to apply for that coverage.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="180" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Wächst dein Haar durch eine Hormonstörung wie PCOS, durch Hirsutismus oder Hypertrichose
+            stärker? Dann ist unser
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')">Leitfaden bei
+            hormonell bedingtem Haarwuchs</a> der passende: gleicher Weg, andere Diagnose und andere
+            Ansprechpartner:innen.
+          </span>
+          <span class="lang en">
+            Is your hair growth driven by a hormonal condition such as PCOS, by hirsutism or
+            hypertrichosis? Then our
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')">guide for hormonally
+            driven hair growth</a> is the right one: same route, different diagnosis and different
+            specialists.
           </span>
         </p>
       </div>
@@ -66,15 +83,17 @@
       <div class="gd-cards gd-cards--2">
         <app-guide-card
           icon="📄"
-          [heading]="t('Sachleistung nach § 27 SGB V', 'Benefit in kind under § 27 SGB V')"
+          [heading]="t('Anspruch nach § 27 SGB V', 'Your entitlement under § 27 SGB V')"
         >
           <span class="lang de">
-            Die Kasse übernimmt Epilation als Sachleistung, wenn sie medizinisch notwendig ist.
-            Der krankhafte, entstellende Barthaarwuchs gilt als Behandlungsgrund.
+            § 27 SGB V gibt dir Anspruch auf Krankenbehandlung, wenn sie notwendig ist. Krankhafter,
+            entstellender Barthaarwuchs kann dieser Behandlungsgrund sein. Welche Methode dazu
+            zählt, entscheidet deine Kasse im Einzelfall.
           </span>
           <span class="lang en">
-            Your insurer covers epilation as a benefit in kind when it is medically necessary.
-            Pathological, disfiguring beard growth counts as grounds for treatment.
+            § 27 SGB V entitles you to medical treatment where it is necessary. Pathological,
+            disfiguring beard growth can be those grounds. Which method counts as part of it is
+            decided by your insurer, case by case.
           </span>
         </app-guide-card>
         <app-guide-card
@@ -99,22 +118,42 @@
           [revealDelay]="120"
         >
           <span class="lang de">
-            Eine Ärztin delegiert die Behandlung an unser geschultes Team und bleibt
-            verantwortlich. So kann deine Nadelepilation als ärztlich delegierte Leistung zählen.
+            Unser medizinischer Berater Dr. med. univ. Noam Degner delegiert die Behandlung an
+            unser geschultes Team und bleibt medizinisch verantwortlich. So kann deine
+            Nadelepilation als ärztlich delegierte Leistung zählen.
             Manche Kassen erkennen die Delegation an, andere bestehen auf einer ärztlichen Praxis,
             das ist von Kasse zu Kasse verschieden.
           </span>
           <span class="lang en">
-            A doctor delegates the treatment to our trained team and stays responsible. That way
-            your electrolysis (Nadelepilation) can count as a medically delegated service. Some
+            Our medical adviser Dr. med. univ. Noam Degner delegates the treatment to our trained
+            team and stays medically responsible. That way your electrolysis (Nadelepilation) can
+            count as a medically delegated service. Some
             insurers accept delegation, others insist on a medical practice, it varies from insurer
             to insurer.
           </span>
         </app-guide-card>
         <app-guide-card
+          icon="💶"
+          [heading]="
+            t('Kostenerstattung, keine Direktabrechnung', 'Reimbursement, not direct billing')
+          "
+          [revealDelay]="180"
+        >
+          <span class="lang de">
+            FareWell rechnet nicht direkt mit deiner Kasse ab, eine Direktabrechnung bieten wir
+            nicht an. Du bezahlst deine Behandlung bei uns und reichst die Rechnungen bei deiner
+            Kasse ein; erstattet wird, was sie vorher bewilligt hat.
+          </span>
+          <span class="lang en">
+            FareWell does not bill your insurer directly; we do not offer direct billing. You pay
+            us for your treatment and submit the invoices to your insurer, which reimburses what it
+            approved beforehand.
+          </span>
+        </app-guide-card>
+        <app-guide-card
           icon="🪡"
           [heading]="t('Die anerkannte Methode', 'The recognised method')"
-          [revealDelay]="180"
+          [revealDelay]="240"
         >
           <span class="lang de">
             <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a> ist die
@@ -144,12 +183,15 @@
         >
           <li>
             <span class="lang de">
-              Epilation im Gesicht und Bartbereich als medizinische Leistung, bei entsprechender
-              Indikation teils auch weitere Bereiche wie Handrücken oder Brust.
+              Epilation an <strong>Gesicht, Hals und Händen</strong>. Diese drei Regionen nennt die
+              Begutachtungsanleitung des GKV-Spitzenverbandes ausdrücklich. Alles darüber hinaus
+              landet in der Einzelfallprüfung und wird meist als kosmetisch abgelehnt.
             </span>
             <span class="lang en">
-              Epilation of the face and beard area as a medical service, and with a corresponding
-              indication sometimes further areas such as the backs of the hands or chest.
+              Epilation of the <strong>face, neck and hands</strong>. Those three areas are named
+              explicitly in the assessment guideline of the national association of statutory health
+              insurers. Anything beyond them goes to an individual assessment and is usually refused
+              as cosmetic.
             </span>
           </li>
           <li>
@@ -177,8 +219,8 @@
           [revealDelay]="60"
         >
           <li>
-            <span class="lang de">Die Delegation durch eine Ärztin oder einen Arzt.</span>
-            <span class="lang en">The delegation by a doctor.</span>
+            <span class="lang de">Die ärztliche Delegation durch unseren medizinischen Berater.</span>
+            <span class="lang en">The medical delegation by our medical adviser.</span>
           </li>
           <li>
             <span class="lang de">Einen Kostenvoranschlag für deinen Antrag.</span>
@@ -205,7 +247,7 @@
         <app-guide-steps>
           <li>
             <span class="lang de">
-              <strong>Diagnose und Verordnung holen.</strong> Lass dir von deiner Ärztin die
+              <strong>Diagnose und Verordnung holen.</strong> Lass dir in deiner Praxis die
               Diagnose Geschlechtsinkongruenz (F64.0) und die medizinische Notwendigkeit der
               Epilation bestätigen.
             </span>
@@ -240,25 +282,31 @@
           </li>
           <li>
             <span class="lang de">
-              <strong>Fristen nutzen.</strong> Die Kasse muss in 3 Wochen entscheiden, mit MDK in
-              5. Verpasst sie die Frist ohne Nachricht, gilt die Leistung als genehmigt.
+              <strong>Fristen nutzen.</strong> Die Kasse muss innerhalb von 3 Wochen entscheiden,
+              innerhalb von 5 Wochen, wenn sie den Medizinischen Dienst einschaltet und dir das
+              mitteilt. Verstreicht die Frist ohne Nachricht, gilt die Leistung als genehmigt
+              (§ 13 Abs. 3a SGB V). In der Praxis kann das heißen, dass du dir die Behandlung selbst
+              beschaffen und die Kosten erstattet verlangen darfst. Die Gerichte legen das eng aus,
+              deshalb lohnt sich vorher eine Beratung.
             </span>
             <span class="lang en">
-              <strong>Use the deadlines.</strong> The insurer must decide within 3 weeks, or
-              within 5 if it involves the MDK. If it misses the deadline without notifying you, the
-              benefit is deemed approved.
+              <strong>Use the deadlines.</strong> Your insurer must decide within 3 weeks, or
+              within 5 if it calls in the Medical Service and tells you so. If the deadline passes
+              without word from them, the benefit is deemed approved (§ 13 Abs. 3a SGB V). In
+              practice that can mean you may obtain the treatment yourself and claim the costs back.
+              The courts read this narrowly, so it is worth getting advice first.
             </span>
           </li>
           <li>
             <span class="lang de">
-              <strong>Bei Ablehnung: Widerspruch.</strong> Du hast einen Monat Zeit. Ein
-              Widerspruch lohnt sich oft, und deine Ärztin oder eine Trans-Beratung unterstützt
-              dich.
+              <strong>Bei Ablehnung: Widerspruch.</strong> Du hast einen Monat Zeit, schriftlich. Ein
+              Widerspruch lohnt sich oft, und deine Praxis oder eine Beratungsstelle für trans
+              Personen unterstützt dich.
             </span>
             <span class="lang en">
-              <strong>If denied: file an objection (Widerspruch).</strong> You have one month. An
-              objection is often worth it, and your doctor or a trans counselling service can
-              support you.
+              <strong>If denied: file an objection (Widerspruch).</strong> You have one month, in writing. An
+              objection is often worth it, and your medical practice or a counselling service for
+              trans people can support you.
             </span>
           </li>
         </app-guide-steps>
@@ -266,13 +314,19 @@
         <app-guide-note variant="rule" [label]="t('Wichtig', 'Please note')">
           <span class="lang de">
             Warte mit der Behandlung, bis die Bewilligung da ist. Kosten, die vor dem
-            Bewilligungsdatum entstehen, kann die Kasse ablehnen. Halte alles schriftlich fest,
-            auch Telefonate, und akzeptiere keine mündliche Ablehnung.
+            Bewilligungsdatum entstehen, kann die Kasse ablehnen. Unterschreib auch keinen
+            Behandlungsvertrag, solange die Frist der Kasse läuft: Das Bundessozialgericht wertet
+            das als Zeichen, dass du dich ohnehin schon entschieden hattest, und das kann die
+            Erstattung kosten. Halte alles schriftlich fest, auch Telefonate, und akzeptiere keine
+            mündliche Ablehnung.
           </span>
           <span class="lang en">
             Wait to start treatment until the approval is in. Costs that arise before the approval
-            date can be refused by your insurer. Keep a written record of everything, including
-            phone calls, and do not accept a verbal denial.
+            date can be refused by your insurer. Do not sign a treatment contract while your
+            insurer's deadline is still running either: the Federal Social Court treats that as a
+            sign that you had already made up your mind, and it can cost you the reimbursement.
+            Keep a written record of everything, including phone calls, and do not accept a verbal
+            denial.
           </span>
         </app-guide-note>
       </div>
@@ -308,6 +362,22 @@
           </li>
           <li>
             <span class="lang de">
+              Manche Kassen erstatten nur, wenn die Behandlung selbst in einer ärztlichen Praxis
+              stattfindet und von dort abgerechnet wird. Das Bundessozialgericht hat 2020
+              entschieden, dass die Nadelepilation an geschultes Personal delegiert werden darf,
+              wenn eine Ärztin oder ein Arzt sie anordnet und dafür verantwortlich bleibt. Wie deine
+              Kasse das handhabt, klärst du am besten vorher schriftlich mit ihr.
+            </span>
+            <span class="lang en">
+              Some insurers only reimburse when the treatment itself takes place in a medical
+              practice and is billed from there. In 2020 the Federal Social Court held that
+              electrolysis may be delegated to trained staff where a doctor orders it and remains
+              responsible for it. How your insurer handles that is best clarified with them in
+              writing beforehand.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
               Bei wenig Einkommen gibt es Beratungshilfe für anwaltliche Unterstützung.
             </span>
             <span class="lang en">
@@ -331,30 +401,11 @@
 
     <app-guide-section
       index="05"
-      [heading]="t('Was du zum Termin mitbringst', 'What to bring to your appointment')"
-      sectionId="termin"
+      [heading]="t('Was wir von dir brauchen', 'What we need from you')"
+      sectionId="unterlagen"
     >
+      <app-kostenvoranschlag-unterlagen />
       <div class="gd-read">
-        <app-guide-checklist>
-          <li>
-            <span class="lang de">
-              Die ärztliche Diagnose und Verordnung (F64.0 und Notwendigkeit der Epilation).
-            </span>
-            <span class="lang en">
-              The medical diagnosis and prescription (F64.0 and the necessity of the epilation).
-            </span>
-          </li>
-          <li>
-            <span class="lang de">Deine Versichertendaten und den Namen deiner Krankenkasse.</span>
-            <span class="lang en">
-              Your insurance details and the name of your statutory health insurer.
-            </span>
-          </li>
-          <li>
-            <span class="lang de">Den Bescheid der Kasse, sobald er vorliegt.</span>
-            <span class="lang en">The insurer's decision letter, once you have it.</span>
-          </li>
-        </app-guide-checklist>
         <p appReveal style="color: var(--gd-muted)">
           <span class="lang de">
             Beim Termin erstellen wir gemeinsam deinen Kostenvoranschlag und, über die ärztliche

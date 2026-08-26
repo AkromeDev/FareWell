@@ -236,6 +236,123 @@
 
     <app-guide-section
       index="04"
+      [heading]="t('Wie läuft dein Termin ab?', 'How does your appointment run?')"
+      sectionId="ablauf"
+    >
+      <div class="gd-read">
+        <p appReveal>
+          <span class="lang de">
+            Zu deinem Termin gehört mehr als das Gerät. Am Anfang steht die Betäubungscreme, die
+            deine Haut in Ruhe unempfindlich werden lässt. Am Ende steht ein kühlendes Finish, das
+            die Wärme aus der Haut nimmt. Die Creme buchst du einmal dazu, das Finish ist im
+            Behandlungspreis enthalten.
+          </span>
+          <span class="lang en">
+            There is more to your appointment than the device. It starts with numbing cream, which
+            gives your skin time to become insensitive. It ends with a cooling finish that takes the
+            warmth out of the skin. You add the cream to your booking once; the finish is included
+            in the treatment price.
+          </span>
+        </p>
+      </div>
+      <app-guide-note
+        variant="rule"
+        [label]="
+          t('Betäubungscreme bitte mitbuchen', 'Please book the numbing cream with your appointment')
+        "
+      >
+        <span class="lang de">
+          Die Behandlung ist spürbar, aber gut auszuhalten, mit Betäubungscreme wird sie deutlich
+          entspannter, besonders an Stirn, Kinnlinie und Dekolleté. Die Creme braucht rund
+          <strong>15 Minuten Einwirkzeit</strong> und ist deshalb eine eigene Position im
+          Buchungssystem: Wähle bei deinem Termin zusätzlich
+          <strong>„Behandlungsvorbereitung mit Betäubungscreme“ (20 €)</strong> aus. Spontan im
+          Studio lässt sich diese Zeit nicht immer nachschieben, mitgebucht ist sie sicher für dich
+          reserviert. Alle
+          <a [routerLink]="p('/price')" fragment="microneedling">Preise</a> findest du auf der
+          Preisseite.
+        </span>
+        <span class="lang en">
+          The treatment is noticeable but manageable; with numbing cream it becomes considerably
+          more relaxed, especially on the forehead, jawline and décolleté. The cream needs about
+          <strong>15 minutes to take effect</strong> and is therefore its own item in the booking
+          system: when you book your appointment, please also select
+          <strong>“Preparation with numbing cream” (€20)</strong>. Asking for it spontaneously in
+          the studio does not always leave room in your slot, whereas booking it keeps the time
+          reserved for you. You'll find all
+          <a [routerLink]="p('/price')" fragment="microneedling">prices</a> on our price page.
+        </span>
+      </app-guide-note>
+      <div class="gd-read">
+        <p appReveal>
+          <span class="lang de">
+            Am Ende der Behandlung ist deine Haut so aufnahmefähig wie sonst nie: Die feinen
+            Mikrokanäle stehen offen. Genau dieses Fenster nutzen wir mit drei Schritten, die bei
+            jeder Microneedling-Behandlung dabei sind.
+          </span>
+          <span class="lang en">
+            At the end of the treatment your skin is more receptive than at any other moment: the
+            fine micro-channels are open. That is exactly the window we use, with three steps that
+            are part of every microneedling treatment.
+          </span>
+        </p>
+      </div>
+      <div class="gd-cards gd-cards--3">
+        <app-guide-card icon="💧" [heading]="t('Hyaluron-Serum', 'Hyaluronic serum')">
+          <span class="lang de">
+            Direkt nach dem letzten Zug legen wir ein Hyaluron-Serum auf. Über die frisch geöffneten
+            Mikrokanäle zieht es besonders tief ein und polstert deine Haut mit Feuchtigkeit auf.
+          </span>
+          <span class="lang en">
+            Right after the last pass we apply a hyaluronic acid serum. Through the freshly opened
+            micro-channels it sinks in especially deeply and cushions your skin with moisture.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="🌿"
+          [heading]="t('Kühle Aloe-Vera-Schicht', 'Cool aloe vera layer')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Darüber kommt eine kühle Schicht Aloe Vera mit Kollagen und Hyaluron. Sie nimmt die
+            Wärme aus der Haut und beruhigt sie, während die Pflegestoffe einziehen.
+          </span>
+          <span class="lang en">
+            On top comes a cool layer of aloe vera with collagen and hyaluronic acid. It takes the
+            warmth out of the skin and calms it while the care ingredients sink in.
+          </span>
+        </app-guide-card>
+        <app-guide-card
+          icon="❄️"
+          [heading]="t('Kühlende Gesichtsmaske', 'Cold face mask')"
+          [revealDelay]="120"
+        >
+          <span class="lang de">
+            Zum Abschluss eine kühlende Gesichtsmaske. Rötung und Wärmegefühl gehen spürbar zurück,
+            und du gehst beruhigt aus dem Studio statt hochrot.
+          </span>
+          <span class="lang en">
+            To finish, a cold face mask. Redness and the feeling of warmth noticeably subside, and
+            you leave the studio calm rather than flushed.
+          </span>
+        </app-guide-card>
+      </div>
+      <app-guide-note variant="win" [label]="t('Ohne Aufpreis', 'At no extra cost')">
+        <span class="lang de">
+          Serum, Aloe-Schicht und Maske sind Teil <strong>jeder</strong> Microneedling-Behandlung.
+          Du buchst sie nicht extra und zahlst nichts dazu. Die einzige Zusatzleistung ist die
+          Betäubungscreme am Anfang.
+        </span>
+        <span class="lang en">
+          Serum, aloe layer and mask are part of <strong>every</strong> microneedling treatment.
+          Nothing to book separately, nothing extra to pay. The only add-on is the numbing cream at
+          the start.
+        </span>
+      </app-guide-note>
+    </app-guide-section>
+
+    <app-guide-section
+      index="05"
       [heading]="t('Gibt es Nebenwirkungen oder Ausfallzeit?', 'Are there side effects or downtime?')"
       sectionId="sicherheit"
     >
@@ -285,7 +402,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="05"
+      index="06"
       [heading]="t('Wie viele Sitzungen sind sinnvoll?', 'How many sessions make sense?')"
       sectionId="sitzungen"
     >
@@ -338,7 +455,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="06"
+      index="07"
       [heading]="t('Wichtige Hinweise vor der Behandlung', 'Important notes before your treatment')"
       sectionId="vorbereitung"
     >
@@ -361,6 +478,10 @@
           rules around your appointment:
         </p>
         <app-guide-checklist>
+          <li>
+            <span class="lang de">Die <strong>Betäubungscreme</strong> gleich mit dem Termin buchen, sie braucht 15 Minuten Vorlauf</span>
+            <span class="lang en">Book the <strong>numbing cream</strong> together with your appointment, it needs 15 minutes to work</span>
+          </li>
           <li>
             <span class="lang de">48 h vorher keine aggressiven Peelings oder Säuren (je nach Hautzustand)</span>
             <span class="lang en">No aggressive peels or acids for 48 h beforehand (depending on your skin condition)</span>

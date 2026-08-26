@@ -111,13 +111,13 @@
   <!-- FAQ & Ratgeber -->
   <url>
     <loc>https://farewell.salon/faq</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://farewell.salon/ratgeber</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <priority>0.7</priority>
   </url>
 
@@ -135,13 +135,19 @@
 
   <url>
     <loc>https://farewell.salon/ratgeber/epilation-krankenkasse</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/ratgeber/epilation-krankenkasse-hormonell</loc>
+    <lastmod>2026-08-27</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://farewell.salon/ratgeber/haarentfernung-steuer-absetzen</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <priority>0.7</priority>
   </url>
 
@@ -244,12 +250,13 @@
   <url><loc>https://farewell.salon/en/price</loc><lastmod>2026-07-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://farewell.salon/en/zeit</loc><lastmod>2026-07-16</lastmod><priority>0.5</priority></url>
   <url><loc>https://farewell.salon/en/historie</loc><lastmod>2026-07-24</lastmod><priority>0.4</priority></url>
-  <url><loc>https://farewell.salon/en/faq</loc><lastmod>2026-07-24</lastmod><priority>0.8</priority></url>
-  <url><loc>https://farewell.salon/en/ratgeber</loc><lastmod>2026-07-24</lastmod><priority>0.6</priority></url>
+  <url><loc>https://farewell.salon/en/faq</loc><lastmod>2026-08-27</lastmod><priority>0.8</priority></url>
+  <url><loc>https://farewell.salon/en/ratgeber</loc><lastmod>2026-08-27</lastmod><priority>0.6</priority></url>
   <url><loc>https://farewell.salon/en/ratgeber/elektrolyse-oder-laser</loc><lastmod>2026-07-24</lastmod><priority>0.7</priority></url>
   <url><loc>https://farewell.salon/en/ratgeber/kavitation-ultraschall-fettreduktion</loc><lastmod>2026-07-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://farewell.salon/en/ratgeber/epilation-krankenkasse</loc><lastmod>2026-07-18</lastmod><priority>0.5</priority></url>
-  <url><loc>https://farewell.salon/en/ratgeber/haarentfernung-steuer-absetzen</loc><lastmod>2026-07-18</lastmod><priority>0.5</priority></url>
+  <url><loc>https://farewell.salon/en/ratgeber/epilation-krankenkasse</loc><lastmod>2026-08-27</lastmod><priority>0.5</priority></url>
+  <url><loc>https://farewell.salon/en/ratgeber/epilation-krankenkasse-hormonell</loc><lastmod>2026-08-27</lastmod><priority>0.5</priority></url>
+  <url><loc>https://farewell.salon/en/ratgeber/haarentfernung-steuer-absetzen</loc><lastmod>2026-08-27</lastmod><priority>0.5</priority></url>
   <url><loc>https://farewell.salon/en/karriere</loc><lastmod>2026-08-07</lastmod><priority>0.4</priority></url>
   <url><loc>https://farewell.salon/en/karriere/kosmetik-nuernberg</loc><lastmod>2026-08-07</lastmod><priority>0.4</priority></url>
   <url><loc>https://farewell.salon/en/karriere/masseur-nuernberg</loc><lastmod>2026-08-07</lastmod><priority>0.4</priority></url>

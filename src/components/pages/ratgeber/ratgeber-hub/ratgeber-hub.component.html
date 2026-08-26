@@ -95,9 +95,27 @@
           </span>
         </app-guide-card>
         <app-guide-card
+          icon="🩺"
+          [heading]="
+            t('Haarentfernung bei PCOS & Hirsutismus', 'Hair removal with PCOS & hirsutism')
+          "
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Bei hormonell bedingtem Haarwuchs: welche Diagnose zählt, was ins Attest gehört und wie
+            der Antrag läuft.
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')" aria-label="Zum Leitfaden: Haarentfernung bei PCOS und Hirsutismus">Zum Leitfaden</a>
+          </span>
+          <span class="lang en">
+            For hormonally driven hair growth: which diagnosis counts, what belongs in the medical
+            certificate and how the application works.
+            <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')" aria-label="Read the guide: Hair removal with PCOS and hirsutism">Read the guide</a>
+          </span>
+        </app-guide-card>
+        <app-guide-card
           icon="🧾"
           [heading]="t('Behandlungskosten steuerlich absetzen', 'Tax-deductible treatments')"
-          [revealDelay]="60"
+          [revealDelay]="120"
         >
           <span class="lang de">
             Selbst getragene Kosten als außergewöhnliche Belastung geltend machen: welche Nachweise
@@ -113,7 +131,7 @@
         <app-guide-card
           icon="🇩🇪"
           [heading]="t('Mehrwertsteuerbefreiung für US-Streitkräfte', 'VAT exemption for US Forces')"
-          [revealDelay]="120"
+          [revealDelay]="180"
         >
           <span class="lang de">
             NF1-Formular oder Remonon-App: So funktioniert das Einkaufen ohne die deutsche
@@ -128,7 +146,7 @@
         <app-guide-card
           icon="🇺🇸"
           [heading]="t('US Forces VAT relief in Germany', 'US Forces VAT relief in Germany')"
-          [revealDelay]="180"
+          [revealDelay]="240"
         >
           <span class="lang de">
             Der englische Leitfaden: NF1-Formulare, die Remonon-App, die fünf Regeln und dein

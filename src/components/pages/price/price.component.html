@@ -231,15 +231,16 @@
       }
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
-          Zwei Komplettpakete bieten wir zusätzlich in ärztlicher Delegation an, zu eigenen
-          Preisen. Einzelne Zonen behandeln wir nicht in Delegation. Die Preise stehen in einer
-          eigenen Liste:
+          Mehrere Komplettpakete bieten wir zusätzlich in ärztlicher Delegation an, zu eigenen
+          Preisen: unteres Gesicht komplett, Rücken komplett und den Intimbereich. Einzelne Zonen
+          behandeln wir nicht in Delegation. Die Preise stehen in einer eigenen Liste:
           <a [routerLink]="p('/price')" fragment="aerztliche-delegation">Behandlungen unter
           ärztlicher Verantwortung</a>.
         </span>
         <span class="lang en">
-          Two of the complete packages are also available under medical delegation, at their own
-          prices. Single areas are not treated under delegation. The prices have their own list:
+          Several complete packages are also available under medical delegation, at their own
+          prices: complete lower face, complete back and the intimate area. Single areas are not
+          treated under delegation. The prices have their own list:
           <a [routerLink]="p('/price')" fragment="aerztliche-delegation">treatments under medical
           responsibility</a>.
         </span>
@@ -324,12 +325,12 @@
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
           Die Nadelepilation buchst du hier ausschließlich als volle Stunde, kürzere Einheiten
-          gibt es in Delegation nicht. Beim Laser gilt die Delegation nur für die beiden
+          gibt es in Delegation nicht. Beim Laser gilt die Delegation nur für die
           Komplettpakete, einzelne Zonen behandeln wir regulär.
         </span>
         <span class="lang en">
           Electrolysis is booked in full hours only here, shorter units are not available under
-          delegation. For the laser, delegation applies to the two complete packages only; single
+          delegation. For the laser, delegation applies to the complete packages only; single
           areas are treated regularly.
         </span>
       </p>
@@ -403,6 +404,22 @@
           </tbody>
         </table>
       </div>
+      <p class="gd-read" appReveal style="color: var(--gd-muted)">
+        <span class="lang de">
+          Im Preis enthalten ist das beruhigende Finish zum Schluss: Hyaluron-Serum, kühle
+          Aloe-Vera-Schicht mit Kollagen und Hyaluron und eine kühlende Gesichtsmaske. Einzige
+          Zusatzleistung ist die Betäubungscreme, die du am besten gleich mitbuchst, mehr dazu unter
+          <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')" fragment="ablauf">Ablauf,
+          Betäubung &amp; Finish</a>.
+        </span>
+        <span class="lang en">
+          The calming finish at the end is included in the price: hyaluronic serum, a cool aloe vera
+          layer with collagen and hyaluronic acid and a cold face mask. The only add-on is the
+          numbing cream, best booked together with your appointment, more on that under
+          <a [routerLink]="p('/behandlungen/microneedling-radiofrequenz')" fragment="ablauf">process,
+          numbing &amp; finish</a>.
+        </span>
+      </p>
       <div class="gd-read">
         <app-faq-item [question]="t(faqs['microneedling'].qDe, faqs['microneedling'].qEn)">
           <p>{{ t(faqs['microneedling'].aDe, faqs['microneedling'].aEn) }}</p>

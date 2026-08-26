@@ -43,7 +43,7 @@ export class RatgeberHubComponent implements OnInit, OnDestroy {
 
   get stats(): GuideStat[] {
     return [
-      { value: '6', label: this.t('Ratgeber zum Nachlesen', 'guides to read') },
+      { value: '7', label: this.t('Ratgeber zum Nachlesen', 'guides to read') },
       { value: '2', label: this.t('Themenfelder', 'topic areas') },
       { value: 'DE · EN', label: this.t('zweisprachig', 'bilingual') },
       { value: this.t('gratis', 'free'), label: this.t('Erstberatung', 'initial consultation') },

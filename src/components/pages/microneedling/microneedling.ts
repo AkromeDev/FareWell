@@ -85,6 +85,7 @@ export class MicroneedlingComponent implements OnInit, OnDestroy {
       { id: 'grundlagen', label: this.t('Was ist RF-Microneedling?', 'What is RF microneedling?') },
       { id: 'wirkung', label: this.t('Wie wirkt es?', 'How it works') },
       { id: 'geeignet', label: this.t('Für wen ist es geeignet?', 'Who it is for') },
+      { id: 'ablauf', label: this.t('Ablauf, Betäubung & Finish', 'Process, numbing & finish') },
       { id: 'sicherheit', label: this.t('Nebenwirkungen & Ausfallzeit', 'Side effects & downtime') },
       { id: 'sitzungen', label: this.t('Wie viele Sitzungen?', 'How many sessions') },
       { id: 'vorbereitung', label: this.t('Wichtige Hinweise', 'Important notes') },
@@ -112,6 +113,26 @@ export class MicroneedlingComponent implements OnInit, OnDestroy {
         answer: this.t(
           'Besonders geeignet, wenn du die Haut straffen und glätten möchtest oder das Hautbild bei Poren und Texturunruhe verbessern willst. Buchbar für Gesicht, Hals, Dekolleté und Brust sowie als Komplettbehandlung. Geht es dir gezielt um Aknenarben, Narben nach OP und Verletzungen oder Dehnungsstreifen, ist die Narbenbehandlung die passende Leistung. Bei FareWell beraten wir vorab ehrlich, was für deine Haut realistisch ist.',
           'Especially suitable if you want to firm and smooth the skin or improve the complexion where you have enlarged pores and uneven texture. Bookable for the face, neck, décolleté and chest, or as a complete treatment. If your focus is specifically acne scars, scars after surgery or injury, or stretch marks, our scar treatment is the right service. At FareWell we give honest advice up front on what is realistic for your skin.',
+        ),
+      },
+      {
+        question: this.t(
+          'Tut Radiofrequenz Microneedling weh?',
+          'Does radio-frequency microneedling hurt?',
+        ),
+        answer: this.t(
+          'Die Behandlung ist spürbar, aber gut auszuhalten. Mit Betäubungscreme wird sie deutlich entspannter, deshalb empfehlen wir, sie direkt mitzubuchen. Die Behandlungsvorbereitung mit Betäubungscreme kostet 20 €, braucht rund 15 Minuten Einwirkzeit und wird bei der Buchung als eigene Position ausgewählt. Spontan im Studio lässt sich diese Zeit nicht immer nachschieben.',
+          'The treatment is noticeable but manageable. Numbing cream makes it considerably more relaxed, which is why we recommend adding it to your booking. Preparation with numbing cream costs €20, needs about 15 minutes to take effect and is selected as a separate item when you book. Asking for it spontaneously in the studio does not always leave room in your slot.',
+        ),
+      },
+      {
+        question: this.t(
+          'Was ist am Ende der Behandlung inklusive?',
+          'What is included at the end of the treatment?',
+        ),
+        answer: this.t(
+          'Jede Microneedling-Behandlung bei FareWell endet mit einem beruhigenden Finish, ohne Aufpreis: ein Hyaluron-Serum, das über die frisch geöffneten Mikrokanäle besonders tief einzieht, eine kühle Aloe-Vera-Schicht mit Kollagen und Hyaluron, die die Wärme aus der Haut nimmt, und zum Abschluss eine kühlende Gesichtsmaske, unter der Rötung und Wärmegefühl spürbar zurückgehen. Extra dazu buchst du nur die Betäubungscreme am Anfang.',
+          'Every microneedling treatment at FareWell ends with a calming finish, at no extra cost: a hyaluronic acid serum that sinks in especially deeply through the freshly opened micro-channels, a cool aloe vera layer with collagen and hyaluronic acid that takes the warmth out of the skin, and finally a cold face mask under which redness and the feeling of warmth noticeably subside. The only thing you add to your booking is the numbing cream at the start.',
         ),
       },
       {
