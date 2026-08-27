@@ -213,6 +213,9 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
       p(
         'Ehrlich gesagt: Bäder, Fango und Hydrotherapie gibt es bei uns nicht. Wir machen Massage. Der Bademeisterteil deiner Ausbildung kommt hier also nicht zum Einsatz. Wir nennen die vollständige Berufsbezeichnung trotzdem, weil sie deine ist, und sagen dir lieber vorher, was dich erwartet.'
       ),
+      p(
+        'Wenn du Physiotherapeut:in bist, bist du genauso willkommen. Wie beim Bademeisterteil gilt aber auch hier: Was du bei uns machst, ist Massage. Krankengymnastik und Behandlungen auf Verordnung gehören nicht dazu.'
+      ),
       h('Zwei Wege, beide offen'),
       p(
         'Es gibt zwei Möglichkeiten, bei uns zu arbeiten, und wir sind ehrlich offen für beide. Welche besser passt, hängt von deinem Leben ab, nicht von unserem Plan.'
@@ -338,7 +341,7 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
       },
       directApply: true,
       qualifications:
-        'Abgeschlossene Ausbildung als Masseur:in und medizinische:r Bademeister:in oder eine vergleichbare Qualifikation.',
+        'Abgeschlossene Ausbildung als Masseur:in und medizinische:r Bademeister:in, als Physiotherapeut:in oder eine vergleichbare Qualifikation.',
       responsibilities:
         'Durchführung von Wellness- und therapeutischen Massagen sowie eigenständige Betreuung der Kund:innen. Bäder, Fango und Hydrotherapie gehören nicht zum Angebot.',
       occupationalCategory: '32552 Masseur/in und medizinische/r Bademeister/in',
