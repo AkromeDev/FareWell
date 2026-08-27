@@ -313,11 +313,12 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
       inLanguage: 'de',
       datePosted: DATE_POSTED,
       validThrough: VALID_THROUGH,
-      // Bewusst ohne CONTRACTOR, obwohl die Seite die selbständige Tätigkeit
-      // gleichberechtigt anbietet: so vorgegeben. Wenn die freiberufliche
-      // Variante über die Jobsuche gefunden werden soll, muss CONTRACTOR
-      // zurück in diese Liste.
-      employmentType: ['FULL_TIME', 'PART_TIME'],
+      // Alle drei Formen, weil die Seite Festanstellung und selbständige
+      // Tätigkeit (70 Prozent der Nettoeinnahmen bleiben bei dir, 30 Prozent
+      // gehen an uns) gleichberechtigt anbietet. Ohne CONTRACTOR widersprächen
+      // die Strukturdaten dem sichtbaren Text und die freiberufliche Variante
+      // wäre über die Google-Jobsuche nicht auffindbar.
+      employmentType: ['FULL_TIME', 'PART_TIME', 'CONTRACTOR'],
       hiringOrganization: {
         '@type': 'Organization',
         name: 'FareWell',
