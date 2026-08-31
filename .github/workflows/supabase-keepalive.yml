@@ -1,0 +1,47 @@
+# Keeps the shared Putzplan database awake.
+#
+# Supabase pauses free-plan projects after 7 days without database activity,
+# and a paused project stops resolving in DNS — which locks the whole team out
+# of the task pages behind an unlock gate no passphrase can pass
+# (SUPABASE-SETUP.md §6b). One cheap REST read per run resets that timer.
+#
+# It runs DAILY, not weekly, on purpose: the pause threshold is 7 days, so a
+# weekly schedule has no margin at all — one delayed or skipped run and the
+# project pauses. GitHub also queues cron jobs under load, which a 7-day
+# cadence cannot absorb. The job is a single HTTP request; running it daily
+# costs nothing and needs six consecutive failures to put the salon at risk.
+#
+# It is also the alarm: any failure (unreachable project, stale anon key, RLS
+# regression) fails the job, so GitHub emails the repo owner instead of the
+# problem surfacing weeks later as a locked-out salon.
+#
+# Caveat: GitHub disables scheduled workflows in a repository after 60 days
+# without commits. This repo is actively committed to, but if it ever goes
+# quiet, re-enable this workflow in the Actions tab.
+name: Supabase keepalive
+
+on:
+  schedule:
+    # 04:17 UTC daily — off the hour, since GitHub delays on-the-hour crons.
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    name: Ping the Putzplan database
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      # No install step: the script uses only Node built-ins, and reads the
+      # public credentials from src/.../config/supabase.config.ts so that
+      # recreating the project can never leave this pinging a dead one.
+      - run: node tools/supabase-keepalive.mjs

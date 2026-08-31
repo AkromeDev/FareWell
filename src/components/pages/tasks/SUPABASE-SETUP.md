@@ -141,8 +141,25 @@ restore is one click for **90 days** after the pause; past that the one-click
 restore is gone and the project is eventually deleted, which needs a fresh
 project, a re-run of §2–§4 and new values in `config/supabase.config.ts`.
 
-To stop it recurring, either move the project to a paid plan or keep it warm
-with a scheduled request (e.g. a weekly GitHub Action doing a trivial select).
+**Prevention (already wired up):**
+`.github/workflows/supabase-keepalive.yml` runs `tools/supabase-keepalive.mjs`
+once a day. It reads the public credentials straight out of
+`config/supabase.config.ts` — so recreating the project can never leave it
+pinging a dead one — and does a single anon `select` against `tasks`. The one
+passing answer is `200 []`: project awake, anon key valid, RLS still refusing
+anonymous readers (§7's criterion, now checked continuously). Anything else
+fails the job and GitHub mails the repo owner, so the next outage surfaces as
+an email rather than as a locked-out salon.
+
+Daily rather than weekly on purpose: the pause threshold is 7 days, so a
+weekly cron has no margin for a delayed or skipped run. Run it by hand any
+time with `npm run supabase:keepalive`, or from the Actions tab
+("Supabase keepalive" → Run workflow).
+
+Two things it cannot do for you: it does not wake an already-paused project
+(restore that by hand first), and GitHub disables scheduled workflows in a
+repo after 60 days without commits — if this repo ever goes quiet, re-enable
+the workflow in the Actions tab. A paid plan removes the whole problem.
 
 ## 7. Acceptance checklist
 

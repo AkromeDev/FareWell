@@ -10,7 +10,8 @@
     "prerender": "ng run FareWell:prerender && node tools/flatten-prerender.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "update:google-reviews": "node src/assets/scripts/update-google-reviews.mjs"
+    "update:google-reviews": "node src/assets/scripts/update-google-reviews.mjs",
+    "supabase:keepalive": "node tools/supabase-keepalive.mjs"
   },
   "dependencies": {
     "@angular/animations": "^20.3.15",
