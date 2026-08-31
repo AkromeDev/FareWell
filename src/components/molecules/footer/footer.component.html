@@ -10,7 +10,8 @@
         class="booking-pill no-underline"
         (click)="trackBookingClick($event)"
       >
-        <span class="lang de">Termin buchen</span><span class="lang en">Book now</span>
+        <span class="lang de">Termin buchen</span
+        ><span class="lang en">Book now</span>
       </a>
     </div>
 
@@ -77,12 +78,21 @@
           target="_blank"
           rel="noopener noreferrer"
           class="no-underline"
-          [attr.aria-label]="t('Öffnet Google Maps in einem neuen Tab oder in der App', 'Opens Google Maps in a new tab or in the app')"
+          [attr.aria-label]="
+            t(
+              'Öffnet Google Maps in einem neuen Tab oder in der App',
+              'Opens Google Maps in a new tab or in the app'
+            )
+          "
         >
           Frauentorgraben 5, 90443 Nürnberg
         </a>
-        <a href="tel:+4915757995694" class="no-underline">tel: +49 157 5799 5694</a>
-        <a href="mailto:info@farewell.salon" class="no-underline">info&#64;farewell.salon</a>
+        <a href="tel:+4915757995694" class="no-underline"
+          >tel: +49 157 5799 5694</a
+        >
+        <a href="mailto:info@farewell.salon" class="no-underline"
+          >info&#64;farewell.salon</a
+        >
       </div>
 
       <!-- Karriere: die Übersicht plus jede offene Position einzeln, damit die
@@ -94,23 +104,37 @@
           ><span class="lang en">Careers at FareWell</span></a
         >
         <a [routerLink]="p('/karriere/kosmetik-nuernberg')" class="no-underline"
-          ><span class="lang de">Kosmetiker:in</span><span class="lang en">Beautician</span></a
+          ><span class="lang de">Kosmetiker:in</span
+          ><span class="lang en">Beautician</span></a
         >
         <a [routerLink]="p('/karriere/masseur-nuernberg')" class="no-underline"
           ><span class="lang de">Masseur:in</span
           ><span class="lang en">Massage therapist</span></a
         >
         <a
+          [routerLink]="p('/karriere/physiotherapeut-nuernberg')"
+          class="no-underline"
+          ><span class="lang de">Physiotherapeut:in</span
+          ><span class="lang en">Physiotherapist</span></a
+        >
+        <a
           [routerLink]="p('/karriere/masseur-bademeister-blind-nuernberg')"
           class="no-underline career-wrap"
-          ><span class="lang de">Masseur:in, blind oder sehbehindert</span
-          ><span class="lang en">Massage therapist, blind or visually impaired</span></a
+          ><span class="lang de"
+            >Masseur:in oder Physio, blind oder sehbehindert</span
+          ><span class="lang en"
+            >Massage therapist or physio, blind or visually impaired</span
+          ></a
         >
         <a [routerLink]="p('/karriere/yoga-nuernberg')" class="no-underline"
-          ><span class="lang de">Yoga-Lehrer:in</span><span class="lang en">Yoga teacher</span></a
+          ><span class="lang de">Yoga-Lehrer:in</span
+          ><span class="lang en">Yoga teacher</span></a
         >
-        <a [routerLink]="p('/karriere/tanzlehrer-nuernberg')" class="no-underline"
-          ><span class="lang de">Tanzlehrer:in</span><span class="lang en">Dance teacher</span></a
+        <a
+          [routerLink]="p('/karriere/tanzlehrer-nuernberg')"
+          class="no-underline"
+          ><span class="lang de">Tanzlehrer:in</span
+          ><span class="lang en">Dance teacher</span></a
         >
         <a [routerLink]="p('/karriere/botox-nuernberg')" class="no-underline"
           ><span class="lang de">Botox &amp; ästhetische Medizin</span
@@ -120,22 +144,34 @@
 
       <div class="links-row legal-row">
         <a [routerLink]="p('/faq')" class="no-underline"
-          ><span class="lang de">FAQ &amp; Ratgeber</span><span class="lang en">FAQ &amp; guides</span></a
+          ><span class="lang de">FAQ &amp; Ratgeber</span
+          ><span class="lang en">FAQ &amp; guides</span></a
         >
         <a [routerLink]="p('/impressum')" class="no-underline"
-          ><span class="lang de">Impressum</span><span class="lang en">Imprint</span></a
+          ><span class="lang de">Impressum</span
+          ><span class="lang en">Imprint</span></a
         >
         <a [routerLink]="p('/datenschutz')" class="no-underline"
-          ><span class="lang de">Datenschutz</span><span class="lang en">Privacy</span></a
+          ><span class="lang de">Datenschutz</span
+          ><span class="lang en">Privacy</span></a
         >
         <a [routerLink]="p('/agb')" class="no-underline"
           ><span class="lang de">AGB</span><span class="lang en">Terms</span></a
         >
-        <button type="button" class="no-underline consent-reopen" (click)="openConsentSettings()"
-          ><span class="lang de">Cookie-Einstellungen</span><span class="lang en">Cookie settings</span></button
+        <button
+          type="button"
+          class="no-underline consent-reopen"
+          (click)="openConsentSettings()"
         >
-        <a href="#main-content" [appScrollTo]="'main-content'" class="no-underline back-to-top"
-          ><span class="lang de">Zurück nach oben</span><span class="lang en">Back to top</span></a
+          <span class="lang de">Cookie-Einstellungen</span
+          ><span class="lang en">Cookie settings</span>
+        </button>
+        <a
+          href="#main-content"
+          [appScrollTo]="'main-content'"
+          class="no-underline back-to-top"
+          ><span class="lang de">Zurück nach oben</span
+          ><span class="lang en">Back to top</span></a
         >
       </div>
     </div>

@@ -16,6 +16,42 @@ import { SUPABASE_CONFIG, isSupabaseEnabled } from '../config/supabase.config';
 export type SupabaseSessionStatus = 'disabled' | 'initializing' | 'signed-out' | 'signed-in';
 
 /**
+ * Why an unlock attempt failed.
+ *
+ * - `credentials` the server judged the passphrase and rejected it.
+ * - `unreachable` the server never judged anything: DNS/network/gateway
+ *   failure, or a paused Supabase project (its hostname stops resolving).
+ *
+ * The distinction matters: telling staff to "check the passphrase" when the
+ * backend is simply down sends them hunting for a secret that is perfectly
+ * correct.
+ */
+export type SignInFailureKind = 'credentials' | 'unreachable';
+
+export interface SignInFailure {
+  kind: SignInFailureKind;
+  /** Raw underlying message, for the console — never shown verbatim in the UI. */
+  detail: string;
+}
+
+/**
+ * True when the failure happened before the credentials were ever checked.
+ *
+ * supabase-js reports an unrejectable request as `AuthRetryableFetchError`
+ * with `status` 0; a rejected passphrase is an `AuthApiError` with status 400.
+ * Gateway-level failures (5xx, and the 540 a paused project can return) are
+ * likewise not verdicts on the passphrase.
+ */
+function isUnreachable(error: { name?: string; status?: number; message?: string }): boolean {
+  if (error.name === 'AuthRetryableFetchError') return true;
+  const status = error.status ?? 0;
+  if (status === 0 || status >= 500) return true;
+  return /failed to fetch|load failed|network|fetch failed|timed? ?out|not resolve/i.test(
+    error.message ?? '',
+  );
+}
+
+/**
  * Owns the Supabase client and the single shared "household" session.
  *
  * The whole team shares ONE auth user ({@link SUPABASE_CONFIG.authEmail});
@@ -96,19 +132,24 @@ export class SupabaseSessionService implements OnDestroy {
   }
 
   /**
-   * Unlock this device with the shared passphrase. Resolves to an error
-   * message or null on success.
+   * Unlock this device with the shared passphrase. Resolves to null on
+   * success, or to a classified failure the gate can phrase honestly.
    */
-  async signIn(passphrase: string): Promise<string | null> {
+  async signIn(passphrase: string): Promise<SignInFailure | null> {
     try {
       const client = await this.getClient();
       const { error } = await client.auth.signInWithPassword({
         email: SUPABASE_CONFIG.authEmail,
         password: passphrase,
       });
-      return error ? error.message : null;
+      if (!error) return null;
+      console.warn('[tasks] sign-in failed', error);
+      return { kind: isUnreachable(error) ? 'unreachable' : 'credentials', detail: error.message };
     } catch (err) {
-      return err instanceof Error ? err.message : String(err);
+      // Nothing reached the server at all (client/chunk load, DNS, offline).
+      const detail = err instanceof Error ? err.message : String(err);
+      console.warn('[tasks] sign-in could not reach Supabase', err);
+      return { kind: 'unreachable', detail };
     }
   }
 

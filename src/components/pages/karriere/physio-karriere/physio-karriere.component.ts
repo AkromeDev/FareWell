@@ -26,10 +26,20 @@ const PAGE_PATH = '/karriere/physiotherapeut-nuernberg';
  * ohne Kassenzulassung. Heilmittel wie Krankengymnastik oder Manuelle
  * Therapie lassen sich hier nicht auf Rezept abrechnen; was läuft, ist
  * Massage und Körperarbeit auf Privat- und Selbstzahlerbasis. Das steht
- * bewusst im Lead, in „Dein Profil" als Hinweiskasten und in der FAQ, statt
- * es Bewerber:innen im Erstgespräch zu überlassen: Wer eine Praxis mit
- * Rezeptbetrieb sucht, soll das vor der Bewerbung wissen. Wird das je anders
- * (eigene Zulassung, Praxisräume), gehören alle drei Stellen angefasst.
+ * bewusst mehrfach da, statt es dem Erstgespräch zu überlassen: Wer eine
+ * Praxis mit Rezeptbetrieb sucht, soll das vor der Bewerbung wissen.
+ *
+ * Sollte FareWell je eine Zulassung bekommen, hängt die Aussage an SECHS
+ * Stellen und alle gehören zusammen geändert — die letzten drei gehen an
+ * Google for Jobs und fallen sonst niemandem auf:
+ *   1. Hero-Lead und 2. Hinweiskasten „Privat, nicht auf Rezept" unter
+ *      „Deine Aufgaben" (physio-karriere.component.html)
+ *   3. die ersten beiden FAQ-Einträge (unten in buildConfig)
+ *   4. `intro` und 5. `qualifications` (JobPosting)
+ *   6. description in dieser Datei UND die Kopie in app-routing.module.ts
+ * Dieselbe Aussage steht in kürzerer Form auf der Seite für blinde
+ * Bewerber:innen („Krankengymnastik und Behandlungen auf Verordnung gehören
+ * nicht dazu"); sie gehört dann ebenfalls angefasst.
  */
 @Component({
   standalone: true,

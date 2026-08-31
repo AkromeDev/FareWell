@@ -135,7 +135,13 @@
 .gate__error {
   margin: 0.9rem 0 0;
   font-size: 0.82rem;
+  line-height: 1.45;
   color: var(--u-critical, #b4462f);
+}
+
+/* An outage is not the user's mistake — warn rather than accuse. */
+.gate__error--outage {
+  color: var(--u-warning, #a5732a);
 }
 
 @media (prefers-reduced-motion: reduce) {

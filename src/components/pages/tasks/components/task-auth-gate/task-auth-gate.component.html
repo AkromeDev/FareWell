@@ -26,7 +26,7 @@
           autocomplete="current-password"
           [(ngModel)]="passphrase"
           [disabled]="busy()"
-          [attr.aria-invalid]="error() ? true : null"
+          [attr.aria-invalid]="error()?.kind === 'credentials' ? true : null"
           [attr.aria-describedby]="error() ? 'gate-error' : null"
         />
         <button type="submit" class="gate__btn" [disabled]="busy() || !passphrase.trim()">
@@ -39,7 +39,12 @@
       </form>
 
       @if (error(); as err) {
-        <p id="gate-error" class="gate__error" role="alert">{{ err }}</p>
+        <p
+          id="gate-error"
+          class="gate__error"
+          [class.gate__error--outage]="err.kind === 'unreachable'"
+          role="alert"
+        >{{ err.text }}</p>
       }
     </div>
   </div>

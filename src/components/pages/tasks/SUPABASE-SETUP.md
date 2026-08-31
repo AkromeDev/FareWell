@@ -117,6 +117,33 @@ sessions on other devices. The robust procedure for all three cases is:
 The task data is untouched by this — the `tasks` table has no link to the
 auth user, and the email-pinned policies match the recreated user.
 
+## 6b. "The passphrase suddenly stops working" (free-plan pausing)
+
+Free-plan projects are **paused after 7 days without database activity**. A
+paused project's hostname stops resolving entirely — `<ref>.supabase.co`
+returns NXDOMAIN — so the browser never reaches an auth server at all. Every
+device is pushed back to the unlock gate as its token expires, and no
+passphrase can get past it. The passphrase is not the problem.
+
+Diagnose in one command before touching any credential:
+
+```sh
+# Silence / "no answer" = the project is paused or deleted, not a bad passphrase.
+dig +short kpwiujyprexemkfmvjhk.supabase.co
+```
+
+Or in the browser console on a task page: an unlock attempt logs
+`[tasks] sign-in could not reach Supabase` (or an `AuthRetryableFetchError`),
+never an "Invalid login credentials" 400.
+
+**Fix:** supabase.com → the project → **Restore project**. Data is intact and
+restore is one click for **90 days** after the pause; past that the one-click
+restore is gone and the project is eventually deleted, which needs a fresh
+project, a re-run of §2–§4 and new values in `config/supabase.config.ts`.
+
+To stop it recurring, either move the project to a paid plan or keep it warm
+with a scheduled request (e.g. a weekly GitHub Action doing a trivial select).
+
 ## 7. Acceptance checklist
 
 - [ ] Two signed-in browsers show the same tasks; completing a task in one

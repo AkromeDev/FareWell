@@ -81,7 +81,14 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
 
   get stats(): GuideStat[] {
     return [
-      { value: '6', label: this.t('offene Positionen', 'open positions') },
+      // Aus der Liste abgeleitet, nicht gezählt: Eine neue Stelle hat die
+      // Zahl hier schon einmal überholt (Physio 2026-08-31, Stat blieb auf 6).
+      // Die Initiativbewerbung ist bewusst nicht mitgezählt, sie ist keine
+      // offene Position und steht im Template separat.
+      {
+        value: String(this.positions.length),
+        label: this.t('offene Positionen', 'open positions'),
+      },
       {
         value: '0 €',
         label: this.t('feste Raummiete', 'fixed room rent'),
