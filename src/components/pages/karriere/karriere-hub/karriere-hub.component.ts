@@ -2,8 +2,15 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
-import { GUIDE_COMPONENTS, type GuideStat, type GuideTocItem } from 'src/components/molecules/guide';
-import { KARRIERE_COMPONENTS, kanaeleHeading } from 'src/components/molecules/karriere';
+import {
+  GUIDE_COMPONENTS,
+  type GuideStat,
+  type GuideTocItem,
+} from 'src/components/molecules/guide';
+import {
+  KARRIERE_COMPONENTS,
+  kanaeleHeading,
+} from 'src/components/molecules/karriere';
 import { SeoService } from 'src/services/seo.service';
 import { LanguageService, Lang } from 'src/services/language.service';
 
@@ -75,19 +82,41 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
   get stats(): GuideStat[] {
     return [
       { value: '6', label: this.t('offene Positionen', 'open positions') },
-      { value: '0 €', label: this.t('feste Raummiete', 'fixed room rent'), animate: false },
+      {
+        value: '0 €',
+        label: this.t('feste Raummiete', 'fixed room rent'),
+        animate: false,
+      },
       { value: '100%', label: this.t('deine Kund:innen', 'your own clients') },
-      { value: this.t('selbständig', 'freelance'), label: this.t('dein Status', 'your status') },
+      {
+        value: this.t('selbständig', 'freelance'),
+        label: this.t('dein Status', 'your status'),
+      },
     ];
   }
 
   get toc(): GuideTocItem[] {
     return [
-      { id: 'philosophie', label: this.t('Unsere Philosophie', 'Our philosophy') },
-      { id: 'deal', label: this.t('Dein Deal bei FareWell', 'Your deal at FareWell') },
-      { id: 'zeiten', label: this.t('Zeiten und freie Fenster', 'Hours and open slots') },
-      { id: 'start', label: this.t('So läuft der Start', 'How the start works') },
-      { id: 'kanaele', label: kanaeleHeading((de, en) => this.t(de, en), 'uebersicht') },
+      {
+        id: 'philosophie',
+        label: this.t('Unsere Philosophie', 'Our philosophy'),
+      },
+      {
+        id: 'deal',
+        label: this.t('Dein Deal bei FareWell', 'Your deal at FareWell'),
+      },
+      {
+        id: 'zeiten',
+        label: this.t('Zeiten und freie Fenster', 'Hours and open slots'),
+      },
+      {
+        id: 'start',
+        label: this.t('So läuft der Start', 'How the start works'),
+      },
+      {
+        id: 'kanaele',
+        label: kanaeleHeading((de, en) => this.t(de, en), 'uebersicht'),
+      },
       { id: 'stellen', label: this.t('Offene Positionen', 'Open positions') },
       { id: 'bewerben', label: this.t('Bewerben', 'Apply') },
     ];
@@ -103,7 +132,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
         title: t('Kosmetiker:in', 'Beautician'),
         text: t(
           'Dein eigener Schwerpunkt in einem eingerichteten Studio: Gesichtsbehandlungen, Pflege, deine Spezialitäten. Immer nur eine Kosmetikerin gleichzeitig, dein Konzept ergänzt statt doppelt.',
-          'Your own focus inside a fully set-up studio: facials, skincare, your specialities. Only ever one beautician at a time, so your concept complements rather than duplicates.'
+          'Your own focus inside a fully set-up studio: facials, skincare, your specialities. Only ever one beautician at a time, so your concept complements rather than duplicates.',
         ),
         path: '/karriere/kosmetik-nuernberg',
         linkLabel: more,
@@ -113,20 +142,30 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
         title: t('Masseur:in', 'Massage therapist'),
         text: t(
           'Deine eigene kleine Massagepraxis mitten im Studio, mit einem öffentlichen Onboarding-Leitfaden, in dem alle Zahlen offen stehen.',
-          'Your own little massage practice inside the studio, with a public onboarding guide in which all the numbers are laid out openly.'
+          'Your own little massage practice inside the studio, with a public onboarding guide in which all the numbers are laid out openly.',
         ),
         path: '/karriere/masseur-nuernberg',
         linkLabel: more,
       },
       {
+        icon: '💪',
+        title: t('Physiotherapeut:in', 'Physiotherapist'),
+        text: t(
+          'Massage und Körperarbeit auf Privatbasis, ohne Rezepte und ohne Kassenabrechnung. Derselbe Deal und derselbe Raum wie bei den Masseur:innen, nur die Ausbildung ist eine andere.',
+          'Massage and bodywork on a private basis, without prescriptions and without insurance billing. The same deal and the same room as the massage therapists, only the training is different.',
+        ),
+        path: '/karriere/physiotherapeut-nuernberg',
+        linkLabel: more,
+      },
+      {
         icon: '👐',
         title: t(
-          'Masseur:in, blind oder sehbehindert',
-          'Massage therapist, blind or visually impaired'
+          'Masseur:in oder Physio, blind oder sehbehindert',
+          'Massage therapist or physio, blind or visually impaired',
         ),
         text: t(
-          'Für Masseur:innen und medizinische Bademeister:innen, die blind oder sehbehindert sind: eine eigene Seite, die die praktischen Fragen direkt beantwortet. Festanstellung oder selbständig, beides ist offen.',
-          'For massage therapists and medical bath attendants who are blind or visually impaired: a dedicated page that answers the practical questions directly. Employed or freelance, both are open.'
+          'Für Masseur:innen, medizinische Bademeister:innen und Physiotherapeut:innen, die blind oder sehbehindert sind: eine eigene Seite, die die praktischen Fragen direkt beantwortet. Festanstellung oder selbständig, beides ist offen.',
+          'For massage therapists, medical bath attendants and physiotherapists who are blind or visually impaired: a dedicated page that answers the practical questions directly. Employed or freelance, both are open.',
         ),
         path: '/karriere/masseur-bademeister-blind-nuernberg',
         linkLabel: more,
@@ -136,7 +175,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
         title: t('Yoga-Lehrer:in', 'Yoga teacher'),
         text: t(
           'Yoga gibt es bei uns noch nicht. Ein ruhiger Raum für kleine Gruppen und Einzelstunden wartet auf jemanden, der es aufbaut. Stunden abends und am Wochenende.',
-          'Yoga does not exist here yet. A quiet room for small groups and one-to-one sessions is waiting for someone to build it. Classes in the evening and at the weekend.'
+          'Yoga does not exist here yet. A quiet room for small groups and one-to-one sessions is waiting for someone to build it. Classes in the evening and at the weekend.',
         ),
         path: '/karriere/yoga-nuernberg',
         linkLabel: more,
@@ -146,7 +185,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
         title: t('Tanzlehrer:in', 'Dance teacher'),
         text: t(
           'Ein flexibler Raum für Einzelunterricht, Paare und kleine Gruppen. Kein Tanzsaal, dafür ein Standort mitten in der Innenstadt. Unterricht abends und am Wochenende.',
-          'A flexible room for one-to-one lessons, couples and small groups. Not a dance hall, but a location right in the city centre. Lessons in the evening and at the weekend.'
+          'A flexible room for one-to-one lessons, couples and small groups. Not a dance hall, but a location right in the city centre. Lessons in the evening and at the weekend.',
         ),
         path: '/karriere/tanzlehrer-nuernberg',
         linkLabel: more,
@@ -156,7 +195,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
         title: t('Botox & ästhetische Medizin', 'Botox & aesthetic medicine'),
         text: t(
           'Für approbierte Ärzt:innen mit Injektionserfahrung: ein eigenes ästhetisches Angebot, eingebettet in unser bestehendes Modell mit ärztlicher Verantwortung.',
-          'For licensed physicians with injection experience: your own aesthetic offering, embedded in our existing model with medical responsibility.'
+          'For licensed physicians with injection experience: your own aesthetic offering, embedded in our existing model with medical responsibility.',
         ),
         path: '/karriere/botox-nuernberg',
         linkLabel: more,
@@ -173,11 +212,11 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
     const isEn = this.language.lang() === 'en';
     const title = this.t(
       'Karriere bei FareWell Nürnberg: freiberuflich arbeiten im Studio',
-      'Careers at FareWell Nuremberg: Work Freelance in Our Studio'
+      'Careers at FareWell Nuremberg: Work Freelance in Our Studio',
     );
     const description = this.t(
       'Offene Positionen bei FareWell Nürnberg für Selbständige: Kosmetik, Massage, Yoga, Tanz und ästhetische Medizin. Voll ausgestatteter Raum im Zentrum, keine feste Miete, flexible Zeiten und Hilfe beim eigenen Google-Business-Profil.',
-      'Open positions at FareWell Nuremberg for freelancers: cosmetics, massage, yoga, dance and aesthetic medicine. A fully equipped room in the city centre, no fixed rent, flexible hours and help setting up your own Google Business profile.'
+      'Open positions at FareWell Nuremberg for freelancers: cosmetics, massage, yoga, dance and aesthetic medicine. A fully equipped room in the city centre, no fixed rent, flexible hours and help setting up your own Google Business profile.',
     );
     const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${PAGE_PATH}`;
     const homeUrl = isEn ? `${ORIGIN}/en` : ORIGIN;
@@ -199,7 +238,10 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
         {
           '@type': 'ItemList',
           '@id': `${pageUrl}#positions`,
-          name: this.t('Offene Positionen bei FareWell', 'Open positions at FareWell'),
+          name: this.t(
+            'Offene Positionen bei FareWell',
+            'Open positions at FareWell',
+          ),
           itemListElement: this.positions.map((position, index) => ({
             '@type': 'ListItem',
             position: index + 1,
@@ -210,7 +252,12 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'FareWell', item: homeUrl },
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'FareWell',
+              item: homeUrl,
+            },
             {
               '@type': 'ListItem',
               position: 2,

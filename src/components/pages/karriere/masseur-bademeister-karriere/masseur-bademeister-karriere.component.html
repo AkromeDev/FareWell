@@ -23,11 +23,13 @@
   <app-guide-progress />
 
   <app-guide-hero
-    [kicker]="t('FareWell · Nürnberg · Karriere', 'FareWell · Nuremberg · Careers')"
+    [kicker]="
+      t('FareWell · Nürnberg · Karriere', 'FareWell · Nuremberg · Careers')
+    "
     [heading]="
       t(
-        'Masseur:in und medizinische:r Bademeister:in in Nürnberg: für blinde und sehbehinderte Bewerber:innen',
-        'Massage therapist and medical bath attendant in Nuremberg: for blind and visually impaired applicants'
+        'Masseur:in, medizinische:r Bademeister:in oder Physiotherapeut:in in Nürnberg: für blinde und sehbehinderte Bewerber:innen',
+        'Massage therapist, medical bath attendant or physiotherapist in Nuremberg: for blind and visually impaired applicants'
       )
     "
     tagline="Für immer sanft."
@@ -39,7 +41,10 @@
     "
     image="assets/images/massages/tm massaging.jpg"
     [imageAlt]="
-      t('Massagebehandlung bei FareWell in Nürnberg', 'A massage treatment at FareWell in Nuremberg')
+      t(
+        'Massagebehandlung bei FareWell in Nürnberg',
+        'A massage treatment at FareWell in Nuremberg'
+      )
     "
   />
 
@@ -48,38 +53,46 @@
   <div class="gd-wrap">
     <div class="gd-intro">
       <div class="gd-read">
-        <p class="gd-kick" appReveal>{{ t('Warum diese Seite', 'Why this page exists') }}</p>
+        <p class="gd-kick" appReveal>
+          {{ t("Warum diese Seite", "Why this page exists") }}
+        </p>
 
         <div lang="de">
           <p class="gd-lede" appReveal [revealDelay]="60">
-            Unsere allgemeine Stellenseite für Masseur:innen steht allen offen, auch dir. Diese
-            Seite gibt es zusätzlich: Wenn du blind oder sehbehindert bist, sind die praktischen
-            Fragen andere, und wir beantworten sie lieber direkt, statt dich alles einzeln erfragen
-            zu lassen.
+            Unsere allgemeine Stellenseite für Masseur:innen steht allen offen,
+            auch dir. Diese Seite gibt es zusätzlich: Wenn du blind oder
+            sehbehindert bist, sind die praktischen Fragen andere, und wir
+            beantworten sie lieber direkt, statt dich alles einzeln erfragen zu
+            lassen.
           </p>
           <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
-            Wir stellen die Person ein, die fachlich am besten qualifiziert ist, und wir haben
-            einen Salon gebaut, in dem eine blinde Therapeutin oder ein blinder Therapeut
-            vollständig eigenständig arbeiten kann. Eine Anstellung wie jede andere,
-            Barrierefreiheit als Kompetenz. Ab hier geht es deshalb um den Beruf.
+            Wir stellen die Person ein, die fachlich am besten qualifiziert ist,
+            und wir haben einen Salon gebaut, in dem eine blinde Therapeutin
+            oder ein blinder Therapeut vollständig eigenständig arbeiten kann.
+            Eine Anstellung wie jede andere, Barrierefreiheit als Kompetenz. Ab
+            hier geht es deshalb um den Beruf.
           </p>
         </div>
 
         <div lang="en" class="gd-en" appReveal>
           <h2 class="gd-en__head">In English</h2>
           <p>
-            Permanent employment or freelance work, both are open. This page answers the practical
-            questions directly, from getting here to work assistance.
+            Permanent employment or freelance work, both are open. This page
+            answers the practical questions directly, from getting here to work
+            assistance.
           </p>
           <p>
-            Our general page for massage therapists is open to everyone, including you. This page
-            exists in addition: if you are blind or visually impaired, the practical questions are
-            different, and we would rather answer them directly than make you ask for every detail.
+            Our general page for massage therapists is open to everyone,
+            including you. This page exists in addition: if you are blind or
+            visually impaired, the practical questions are different, and we
+            would rather answer them directly than make you ask for every
+            detail.
           </p>
           <p>
-            We hire the best qualified person, and we have built a salon in which a blind
-            therapist can work fully independently. Employment as normal, accessibility as a
-            competence. From here on, this page is about the profession.
+            We hire the best qualified person, and we have built a salon in
+            which a blind therapist can work fully independently. Employment as
+            normal, accessibility as a competence. From here on, this page is
+            about the profession.
           </p>
         </div>
       </div>
@@ -94,82 +107,97 @@
       <div class="gd-read">
         <div lang="de">
           <p class="gd-lead-p" appReveal>
-            Masseur:in und medizinische:r Bademeister:in ist in Deutschland seit Jahrzehnten ein
-            Beruf, in dem blinde und sehbehinderte Menschen ausgebildet werden und arbeiten.
+            Masseur:in und medizinische:r Bademeister:in ist in Deutschland seit
+            Jahrzehnten ein Beruf, in dem blinde und sehbehinderte Menschen
+            ausgebildet werden und arbeiten.
           </p>
           <p appReveal>
             Die Ausbildung gibt es unter anderem am
-            <a href="https://www.bbs-nuernberg.de/">bbs nürnberg</a> (Bildungszentrum für Blinde
-            und Sehbehinderte), wenige Kilometer von unserem Salon, und am
-            <a href="https://www.bfw-mainz.de/">BFW Mainz</a> (Berufsförderungswerk). Die
-            Vermittlungsquoten der Absolvent:innen liegen nahe 100 Prozent.
+            <a href="https://www.bbs-nuernberg.de/">bbs nürnberg</a>
+            (Bildungszentrum für Blinde und Sehbehinderte), wenige Kilometer von
+            unserem Salon, und am
+            <a href="https://www.bfw-mainz.de/">BFW Mainz</a>
+            (Berufsförderungswerk). Die Vermittlungsquoten der Absolvent:innen
+            liegen nahe 100 Prozent.
           </p>
           <p appReveal>
-            Der Engpass war nie das Können. Der Engpass sind Arbeitgeber, die bereit sind, einen
-            Arbeitsplatz anzupassen. Wir haben unseren angepasst.
+            Der Engpass war nie das Können. Der Engpass sind Arbeitgeber, die
+            bereit sind, einen Arbeitsplatz anzupassen. Wir haben unseren
+            angepasst.
           </p>
 
           <app-guide-note variant="tip" label="Eine lange Tradition">
-            Blinde Masseur:innen sind in vielen Ländern eine etablierte Berufstradition: in Japan
-            als Anma, ebenso in Korea, China, der Türkei und Teilen Südostasiens. In Südkorea war
-            die lizenzierte Massage über Jahrzehnte gesetzlich blinden Praktiker:innen vorbehalten.
+            Blinde Masseur:innen sind in vielen Ländern eine etablierte
+            Berufstradition: in Japan als Anma, ebenso in Korea, China, der
+            Türkei und Teilen Südostasiens. In Südkorea war die lizenzierte
+            Massage über Jahrzehnte gesetzlich blinden Praktiker:innen
+            vorbehalten.
           </app-guide-note>
         </div>
 
         <div lang="en" class="gd-en" appReveal>
           <h3 class="gd-en__head">In English</h3>
           <p>
-            In Germany, blind and visually impaired people have trained and worked as massage
-            therapists and medical bath attendants (Masseur und medizinischer Bademeister) for
-            decades.
+            In Germany, blind and visually impaired people have trained and
+            worked as massage therapists and medical bath attendants (Masseur
+            und medizinischer Bademeister) for decades.
           </p>
           <p>
             The training exists among other places at
-            <a href="https://www.bbs-nuernberg.de/">bbs nürnberg</a> (the education centre for
-            blind and visually impaired people), a few kilometres from our salon, and at
-            <a href="https://www.bfw-mainz.de/">BFW Mainz</a> (a vocational rehabilitation centre).
-            Placement rates for graduates are close to 100 percent.
+            <a href="https://www.bbs-nuernberg.de/">bbs nürnberg</a> (the
+            education centre for blind and visually impaired people), a few
+            kilometres from our salon, and at
+            <a href="https://www.bfw-mainz.de/">BFW Mainz</a> (a vocational
+            rehabilitation centre). Placement rates for graduates are close to
+            100 percent.
           </p>
           <p>
-            The bottleneck has never been ability. The bottleneck is employers willing to adapt a
-            workplace. We adapted ours.
+            The bottleneck has never been ability. The bottleneck is employers
+            willing to adapt a workplace. We adapted ours.
           </p>
 
           <app-guide-note variant="tip" label="A long tradition">
-            Blind massage is an established professional tradition in many countries: in Japan as
-            anma, and likewise in Korea, China, Turkey and parts of Southeast Asia. In South Korea,
-            licensed massage was for decades legally reserved for blind practitioners.
+            Blind massage is an established professional tradition in many
+            countries: in Japan as anma, and likewise in Korea, China, Turkey
+            and parts of Southeast Asia. In South Korea, licensed massage was
+            for decades legally reserved for blind practitioners.
           </app-guide-note>
         </div>
       </div>
     </app-guide-section>
 
-    <app-guide-section index="02" [heading]="t('Der Weg zu uns', 'Getting here')" sectionId="weg">
+    <app-guide-section
+      index="02"
+      [heading]="t('Der Weg zu uns', 'Getting here')"
+      sectionId="weg"
+    >
       <div class="gd-read">
         <div lang="de">
           <p class="gd-lead-p" appReveal>
-            Der Salon liegt am Frauentorgraben 5, direkt zwischen dem U-Bahnhof Opernhaus (U2, U3)
-            und dem Hauptbahnhof. Der Eingang ist stufenfrei, es gibt einen Aufzug, und auf dem
-            gesamten Weg von der Straße bis in den Behandlungsraum liegt keine einzige Treppe.
+            Der Salon liegt am Frauentorgraben 5, direkt zwischen dem U-Bahnhof
+            Opernhaus (U2, U3) und dem Hauptbahnhof. Der Eingang ist stufenfrei,
+            es gibt einen Aufzug, und auf dem gesamten Weg von der Straße bis in
+            den Behandlungsraum liegt keine einzige Treppe.
           </p>
           <p appReveal>
-            Eine ausführliche Wegbeschreibung, Schritt für Schritt von der U-Bahn bis zur Liege,
-            gehen wir am liebsten gemeinsam ab und schreiben sie danach auf. Melde dich, dann
-            machen wir einen Termin.
+            Eine ausführliche Wegbeschreibung, Schritt für Schritt von der
+            U-Bahn bis zur Liege, gehen wir am liebsten gemeinsam ab und
+            schreiben sie danach auf. Melde dich, dann machen wir einen Termin.
           </p>
         </div>
 
         <div lang="en" class="gd-en" appReveal>
           <h3 class="gd-en__head">In English</h3>
           <p>
-            The salon is at Frauentorgraben 5, between the U-Bahn station Opernhaus (U2, U3) and
-            the main station. The entrance is step free, there is a lift, and there is not a single
-            staircase on the way from the street to the treatment room.
+            The salon is at Frauentorgraben 5, between the U-Bahn station
+            Opernhaus (U2, U3) and the main station. The entrance is step free,
+            there is a lift, and there is not a single staircase on the way from
+            the street to the treatment room.
           </p>
           <p>
-            A detailed route description, step by step from the U-Bahn to the table, is something
-            we would rather walk together and write down afterwards. Get in touch and we will
-            arrange it.
+            A detailed route description, step by step from the U-Bahn to the
+            table, is something we would rather walk together and write down
+            afterwards. Get in touch and we will arrange it.
           </p>
         </div>
 
@@ -193,7 +221,13 @@
             "
           >
             <rect width="760" height="300" rx="16" fill="var(--gd-surface)" />
-            <rect x="0" y="140" width="760" height="60" fill="var(--gd-sand-2)" />
+            <rect
+              x="0"
+              y="140"
+              width="760"
+              height="60"
+              fill="var(--gd-sand-2)"
+            />
             <text
               x="380"
               y="128"
@@ -218,7 +252,13 @@
             >
               U
             </text>
-            <text x="118" y="232" text-anchor="middle" font-size="16" fill="var(--gd-ink)">
+            <text
+              x="118"
+              y="232"
+              text-anchor="middle"
+              font-size="16"
+              fill="var(--gd-ink)"
+            >
               Opernhaus (U2, U3)
             </text>
 
@@ -233,7 +273,10 @@
               stroke-linecap="round"
               stroke-dasharray="0.1 14"
             />
-            <polygon points="552,160 574,170 552,180" fill="var(--gd-sage-strong)" />
+            <polygon
+              points="552,160 574,170 552,180"
+              fill="var(--gd-sage-strong)"
+            />
 
             <!-- Salon -->
             <circle cx="600" cy="170" r="13" fill="var(--gd-forest)" />
@@ -248,7 +291,13 @@
             >
               FareWell
             </text>
-            <text x="600" y="118" text-anchor="middle" font-size="15" fill="var(--gd-muted)">
+            <text
+              x="600"
+              y="118"
+              text-anchor="middle"
+              font-size="15"
+              fill="var(--gd-muted)"
+            >
               Frauentorgraben 5
             </text>
             <text
@@ -295,13 +344,13 @@
           </svg>
           <figcaption class="gd-figure__cap">
             <span lang="de">
-              Vereinfachte Karte als Ergänzung für sehende Leser:innen. Sie zeigt nichts, was nicht
-              auch im Text steht.
+              Vereinfachte Karte als Ergänzung für sehende Leser:innen. Sie
+              zeigt nichts, was nicht auch im Text steht.
             </span>
             <span lang="en">
               <span class="gd-en__inline">In English</span>
-              A simplified map as a supplement for sighted readers. It shows nothing that is not
-              also in the text.
+              A simplified map as a supplement for sighted readers. It shows
+              nothing that is not also in the text.
             </span>
           </figcaption>
         </figure>
@@ -316,8 +365,8 @@
       <div class="gd-read">
         <div lang="de">
           <p class="gd-lead-p" appReveal>
-            Du fängst nicht bei null an. Der Massagebereich läuft, und das Haus ist klein genug, um
-            es schnell zu kennen.
+            Du fängst nicht bei null an. Der Massagebereich läuft, und das Haus
+            ist klein genug, um es schnell zu kennen.
           </p>
           <app-guide-checklist>
             @for (item of inPlaceDe; track item) {
@@ -329,8 +378,8 @@
         <div lang="en" class="gd-en" appReveal>
           <h3 class="gd-en__head">In English</h3>
           <p>
-            You are not starting from zero. The massage side is up and running, and the house is
-            small enough to learn quickly.
+            You are not starting from zero. The massage side is up and running,
+            and the house is small enough to learn quickly.
           </p>
           <app-guide-checklist>
             @for (item of inPlaceEn; track item) {
@@ -349,30 +398,34 @@
       <div class="gd-read">
         <div lang="de">
           <p class="gd-lead-p" appReveal>
-            Ehrlich gesagt: Bäder, Fango und Hydrotherapie gibt es bei uns nicht. Wir machen
-            Massage. Der Bademeisterteil deiner Ausbildung kommt hier also nicht zum Einsatz. Wir
-            nennen die vollständige Berufsbezeichnung trotzdem, weil sie deine ist, und sagen dir
-            lieber vorher, was dich erwartet.
+            Ehrlich gesagt: Bäder, Fango und Hydrotherapie gibt es bei uns
+            nicht. Wir machen Massage. Der Bademeisterteil deiner Ausbildung
+            kommt hier also nicht zum Einsatz. Wir nennen die vollständige
+            Berufsbezeichnung trotzdem, weil sie deine ist, und sagen dir lieber
+            vorher, was dich erwartet.
           </p>
           <p appReveal>
-            Wenn du Physiotherapeut:in bist, bist du genauso willkommen. Wie beim Bademeisterteil
-            gilt aber auch hier: Was du bei uns machst, ist Massage. Krankengymnastik und
-            Behandlungen auf Verordnung gehören nicht dazu.
+            Wenn du Physiotherapeut:in bist, bist du genauso willkommen. Wie
+            beim Bademeisterteil gilt aber auch hier: Was du bei uns machst, ist
+            Massage. Krankengymnastik und Behandlungen auf Verordnung gehören
+            nicht dazu.
           </p>
         </div>
 
         <div lang="en" class="gd-en" appReveal>
           <h3 class="gd-en__head">In English</h3>
           <p>
-            To be straightforward: we have no baths, no fango and no hydrotherapy. We do massage.
-            The Bademeister part of your training will not be used here. We still name the full
-            professional title because it is yours, and we would rather tell you in advance what to
+            To be straightforward: we have no baths, no fango and no
+            hydrotherapy. We do massage. The Bademeister part of your training
+            will not be used here. We still name the full professional title
+            because it is yours, and we would rather tell you in advance what to
             expect.
           </p>
           <p>
-            If you are a physiotherapist, you are just as welcome. The same applies as to the
-            Bademeister part: what you would do here is massage. Remedial exercise therapy and
-            treatment on prescription are not part of it.
+            If you are a physiotherapist, you are just as welcome. The same
+            applies as to the Bademeister part: what you would do here is
+            massage. Remedial exercise therapy and treatment on prescription are
+            not part of it.
           </p>
         </div>
       </div>
@@ -386,59 +439,65 @@
       <div class="gd-read">
         <div lang="de">
           <p class="gd-lead-p" appReveal>
-            Es gibt zwei Möglichkeiten, bei uns zu arbeiten, und wir sind ehrlich offen für beide.
-            Welche besser passt, hängt von deinem Leben ab, nicht von unserem Plan.
+            Es gibt zwei Möglichkeiten, bei uns zu arbeiten, und wir sind
+            ehrlich offen für beide. Welche besser passt, hängt von deinem Leben
+            ab, nicht von unserem Plan.
           </p>
 
           <h3 appReveal>1. Festanstellung</h3>
           <p appReveal>
-            In Voll- oder Teilzeit, mit allem, was dazugehört: geregelte Vergütung, Urlaub,
-            Sozialversicherung. Den Stundenumfang legen wir gemeinsam fest.
+            In Voll- oder Teilzeit, mit allem, was dazugehört: geregelte
+            Vergütung, Urlaub, Sozialversicherung. Den Stundenumfang legen wir
+            gemeinsam fest.
           </p>
 
           <h3 appReveal>2. Selbständige Tätigkeit im Salon</h3>
           <p appReveal>
-            Zu denselben Konditionen wie bei unseren anderen freiberuflichen Therapeut:innen: Du
-            behältst 70 Prozent deiner Nettoeinnahmen, 30 Prozent gehen an uns für Raum, Buchung
-            und Sichtbarkeit. Keine feste Miete, kein Fixum. Alle Zahlen stehen öffentlich in
-            unserem
+            Zu denselben Konditionen wie bei unseren anderen freiberuflichen
+            Therapeut:innen: Du behältst 70 Prozent deiner Nettoeinnahmen, 30
+            Prozent gehen an uns für Raum, Buchung und Sichtbarkeit. Keine feste
+            Miete, kein Fixum. Alle Zahlen stehen öffentlich in unserem
             <a [routerLink]="p('/karriere/masseur-nuernberg/onboarding')"
               >Onboarding-Leitfaden für Masseur:innen</a
             >, mit Rechenbeispiel.
           </p>
 
           <p appReveal>
-            Sag uns im Gespräch, wohin du tendierst, oder lass es offen. Wir besprechen beides in
-            Ruhe und entscheiden gemeinsam, was zu dir passt.
+            Sag uns im Gespräch, wohin du tendierst, oder lass es offen. Wir
+            besprechen beides in Ruhe und entscheiden gemeinsam, was zu dir
+            passt.
           </p>
         </div>
 
         <div lang="en" class="gd-en" appReveal>
           <h3 class="gd-en__head">In English</h3>
           <p>
-            There are two ways to work with us, and we are genuinely open to either. Which one fits
-            better depends on your life, not on a plan of ours.
+            There are two ways to work with us, and we are genuinely open to
+            either. Which one fits better depends on your life, not on a plan of
+            ours.
           </p>
 
           <h4>1. Permanent employment</h4>
           <p>
-            Full or part time, with everything that belongs to it: regular pay, holidays, social
-            insurance. We agree the number of hours together.
+            Full or part time, with everything that belongs to it: regular pay,
+            holidays, social insurance. We agree the number of hours together.
           </p>
 
           <h4>2. Freelance work inside the salon</h4>
           <p>
-            On the same terms as our other freelance therapists: you keep 70 percent of your net
-            takings, 30 percent goes to us for the room, the booking system and the visibility. No
-            fixed rent, no flat fee. All the numbers are public in our
+            On the same terms as our other freelance therapists: you keep 70
+            percent of your net takings, 30 percent goes to us for the room, the
+            booking system and the visibility. No fixed rent, no flat fee. All
+            the numbers are public in our
             <a [routerLink]="p('/karriere/masseur-nuernberg/onboarding')"
               >onboarding guide for massage therapists</a
             >, with a worked example.
           </p>
 
           <p>
-            Tell us in the first conversation which way you lean, or leave it open. We will talk
-            both options through calmly and decide together what fits you.
+            Tell us in the first conversation which way you lean, or leave it
+            open. We will talk both options through calmly and decide together
+            what fits you.
           </p>
         </div>
       </div>
@@ -477,64 +536,75 @@
       <div class="gd-read">
         <div lang="de">
           <p appReveal>
-            <strong>Stundenumfang:</strong> Voll- oder Teilzeit, den Umfang legen wir gemeinsam
-            fest.
+            <strong>Stundenumfang:</strong> Voll- oder Teilzeit, den Umfang
+            legen wir gemeinsam fest.
           </p>
           <p appReveal>
-            <strong>Vergütung:</strong> Nach Vereinbarung. Wir sprechen im ersten Gespräch offen
-            über Zahlen.
+            <strong>Vergütung:</strong> Nach Vereinbarung. Wir sprechen im
+            ersten Gespräch offen über Zahlen.
           </p>
-          <p appReveal><strong>Startdatum:</strong> Ab sofort, sobald es für dich passt.</p>
+          <p appReveal>
+            <strong>Startdatum:</strong> Ab sofort, sobald es für dich passt.
+          </p>
         </div>
 
         <div lang="en" class="gd-en" appReveal>
           <h3 class="gd-en__head">In English</h3>
-          <p><strong>Hours:</strong> Full or part time, we agree the number of hours together.</p>
           <p>
-            <strong>Pay:</strong> By agreement. We talk about numbers openly in the first
-            conversation.
+            <strong>Hours:</strong> Full or part time, we agree the number of
+            hours together.
           </p>
-          <p><strong>Start date:</strong> Immediately, as soon as it suits you.</p>
+          <p>
+            <strong>Pay:</strong> By agreement. We talk about numbers openly in
+            the first conversation.
+          </p>
+          <p>
+            <strong>Start date:</strong> Immediately, as soon as it suits you.
+          </p>
         </div>
       </div>
     </app-guide-section>
 
     <div class="gd-cta" id="bewerben" appReveal>
-      <h2>{{ t('So bewirbst du dich', 'How to apply') }}</h2>
+      <h2>{{ t("So bewirbst du dich", "How to apply") }}</h2>
 
       <div lang="de">
         <p>
-          Schreib uns eine E-Mail oder ruf an, beides ist uns gleich lieb. Es gibt kein Formular
-          und keine Vorlage: Ein paar Sätze zu dir und deiner Ausbildung reichen. Ein Lebenslauf
-          ist in jedem Format willkommen, ein Foto brauchst du nicht. Deine Ansprechperson ist
-          Joé Chatelain.
+          Schreib uns eine E-Mail oder ruf an, beides ist uns gleich lieb. Es
+          gibt kein Formular und keine Vorlage: Ein paar Sätze zu dir und deiner
+          Ausbildung reichen. Ein Lebenslauf ist in jedem Format willkommen, ein
+          Foto brauchst du nicht. Deine Ansprechperson ist Joé Chatelain.
         </p>
         <p>
-          Ruf gerne einfach an, ohne Termin und ohne Anmeldung. Mo bis Fr 10 bis 20 Uhr, Sa 8 bis
-          17 Uhr.
+          Ruf gerne einfach an, ohne Termin und ohne Anmeldung. Mo bis Fr 10 bis
+          20 Uhr, Sa 8 bis 17 Uhr.
         </p>
       </div>
 
       <div lang="en" class="gd-en">
         <h3 class="gd-en__head">In English</h3>
         <p>
-          Write us an email or call us, either is equally welcome. There is no form and no
-          template: a few sentences about you and your training are enough. A CV is welcome in any
-          format, and a photo is not required. Your contact person is Joé Chatelain.
+          Write us an email or call us, either is equally welcome. There is no
+          form and no template: a few sentences about you and your training are
+          enough. A CV is welcome in any format, and a photo is not required.
+          Your contact person is Joé Chatelain.
         </p>
         <p>
-          Feel free to just call, no appointment needed. Mon to Fri 10:00 to 20:00, Sat 08:00 to
-          17:00.
+          Feel free to just call, no appointment needed. Mon to Fri 10:00 to
+          20:00, Sat 08:00 to 17:00.
         </p>
       </div>
 
       <div class="gd-cta__actions">
         <a class="gd-btn" [href]="mailHref" [attr.aria-label]="mailAria">{{
-          t('E-Mail schreiben', 'Write an email')
+          t("E-Mail schreiben", "Write an email")
         }}</a>
-        <a class="gd-btn gd-btn--ghost" [href]="phoneHref" [attr.aria-label]="phoneAria">{{
-          t('Anrufen', 'Call us')
-        }}</a>
+        <a
+          class="gd-btn gd-btn--ghost"
+          [href]="phoneHref"
+          [attr.aria-label]="phoneAria"
+          >{{ t("Anrufen", "Call us") }}</a
+        >
       </div>
 
       <!--
@@ -549,11 +619,11 @@
         eine normale zusammenhängende Adresse stehen.
       -->
       <p class="gd-fine ka-contact">
-        <strong>{{ t('E-Mail:', 'Email:') }}</strong>
+        <strong>{{ t("E-Mail:", "Email:") }}</strong>
         <span class="ka-mail-plain"
           ><span>info</span><span>&#64;</span><span>farewell.salon</span></span
         ><br />
-        <strong>{{ t('Telefon:', 'Phone:') }}</strong> {{ phone }}
+        <strong>{{ t("Telefon:", "Phone:") }}</strong> {{ phone }}
       </p>
 
       <p class="gd-cta__tagline">Für immer sanft.</p>
@@ -571,15 +641,23 @@
       Diese Seite ist die Ergänzung:
       <a [routerLink]="p('/karriere/masseur-nuernberg')"
         >zur allgemeinen Stellenseite für Masseur:innen</a
+      >,
+      <a [routerLink]="p('/karriere/physiotherapeut-nuernberg')"
+        >zur Stellenseite für Physiotherapeut:innen</a
       >
       oder
-      <a [routerLink]="p('/karriere')">zu allen offenen Positionen bei FareWell</a>
+      <a [routerLink]="p('/karriere')"
+        >zu allen offenen Positionen bei FareWell</a
+      >
     </p>
     <p class="gd-fine" style="margin-top: 0.5rem; text-align: center" lang="en">
       <span class="gd-en__inline">In English</span>
       This page is the addition:
       <a [routerLink]="p('/karriere/masseur-nuernberg')"
         >see the general page for massage therapists</a
+      >,
+      <a [routerLink]="p('/karriere/physiotherapeut-nuernberg')"
+        >see the page for physiotherapists</a
       >
       or
       <a [routerLink]="p('/karriere')">all open positions at FareWell</a>

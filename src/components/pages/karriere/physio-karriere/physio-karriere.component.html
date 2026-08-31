@@ -7,15 +7,15 @@
     "
     [heading]="
       t(
-        'Masseur:in in Nürnberg: deine eigene kleine Praxis',
-        'Massage therapist in Nuremberg: your own little practice'
+        'Physiotherapeut:in in Nürnberg: deine eigene kleine Praxis',
+        'Physiotherapist in Nuremberg: your own little practice'
       )
     "
     tagline="Für immer sanft."
     [lead]="
       t(
-        'Wir suchen Masseur:innen zur freiberuflichen Zusammenarbeit: eigene Kund:innen, eigene Preise, eigener Stil. Raum, Buchung und Sichtbarkeit stellen wir.',
-        'We are looking for massage therapists for a freelance collaboration: your own clients, your own prices, your own style. We provide the room, the booking system and the visibility.'
+        'Freiberuflich und auf Privatbasis: eigene Kund:innen, eigene Preise, eigene Zeiten. Ohne Rezepte und ohne Kassenabrechnung. Raum, Buchung und Sichtbarkeit stellen wir.',
+        'Freelance and private: your own clients, your own prices, your own hours. No prescriptions and no insurance billing. We provide the room, the booking system and the visibility.'
       )
     "
     image="assets/images/massages/tm massaging.jpg"
@@ -32,13 +32,13 @@
         <p class="gd-kick" appReveal>{{ t("Kurz gesagt", "In short") }}</p>
         <p class="gd-lede" appReveal [revealDelay]="60">
           <span class="lang de">
-            Du führst deine eigene kleine Massagepraxis mitten in FareWell. Du
-            bringst die Hände und das Können, wir kümmern uns um alles
-            drumherum: Raum, Website, Buchung und die Werkzeuge fürs Marketing.
+            Du führst deine eigene kleine Praxis mitten in FareWell. Du bringst
+            den Befund und die Hände, wir kümmern uns um alles drumherum: Raum,
+            Website, Buchung und die Werkzeuge fürs Marketing.
           </span>
           <span class="lang en">
-            You run your own little massage practice right inside FareWell. You
-            bring the hands and the craft, we take care of everything around it:
+            You run your own little practice right inside FareWell. You bring
+            the assessment and the hands, we take care of everything around it:
             the room, the website, the booking system and the marketing tools.
           </span>
         </p>
@@ -104,6 +104,32 @@
             <li>{{ item }}</li>
           }
         </app-guide-checklist>
+
+        <app-guide-note
+          variant="warn"
+          [label]="
+            t('Privat, nicht auf Rezept', 'Private, not on prescription')
+          "
+        >
+          <span class="lang de">
+            Das Wichtigste zuerst, damit du es nicht erst im Erstgespräch
+            erfährst: Wir sind ein Kosmetikstudio ohne Kassenzulassung.
+            Krankengymnastik, Manuelle Therapie und alles andere auf Verordnung
+            lässt sich hier nicht abrechnen. Was bei uns läuft, ist Massage und
+            Körperarbeit für Selbstzahler:innen. Deine Ausbildung ist dabei kein
+            Ballast: Du siehst und ertastest mehr als andere, und genau das
+            suchen viele unserer Kund:innen.
+          </span>
+          <span class="lang en">
+            The most important thing first, so you do not hear it for the first
+            time in an interview: we are a beauty studio without a
+            health-insurance licence. Remedial exercise therapy, manual therapy
+            and anything else on prescription cannot be billed here. What
+            happens here is massage and bodywork for self-paying clients. Your
+            training is not wasted on that: you see and feel more than others
+            do, and that is exactly what many of our clients are looking for.
+          </span>
+        </app-guide-note>
       </div>
     </app-guide-section>
 
@@ -129,8 +155,8 @@
             ausführlich in unserem
             <a [routerLink]="p('/karriere/masseur-nuernberg/onboarding')"
               >Onboarding-Leitfaden für Masseur:innen</a
-            >. Er ist öffentlich, damit du vor dem Erstgespräch weißt, worauf du
-            dich einlässt.
+            >. Er gilt für dich genauso und ist öffentlich, damit du vor dem
+            Erstgespräch weißt, worauf du dich einlässt.
           </span>
           <span class="lang en">
             How the collaboration works in practice — trial session, settlement
@@ -138,8 +164,8 @@
             described in detail in our
             <a [routerLink]="p('/karriere/masseur-nuernberg/onboarding')"
               >onboarding guide for massage therapists</a
-            >. It is public, so you know what you are signing up for before the
-            first conversation.
+            >. It applies to you in exactly the same way and it is public, so
+            you know what you are signing up for before the first conversation.
           </span>
         </app-guide-note>
       </div>

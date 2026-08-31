@@ -425,6 +425,22 @@ function localizedRoutes(lang: PageLang): Routes {
       )
     },
     {
+      path: 'karriere/physiotherapeut-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/karriere/physio-karriere/physio-karriere.component')
+          .then(m => m.PhysioKarriereComponent),
+      data: d(
+        {
+          title: 'Physiotherapeut:in (m/w/d) in Nürnberg: freiberuflich auf Privatbasis | Karriere bei FareWell',
+          description: 'FareWell Nürnberg sucht Physiotherapeut:innen zur freiberuflichen Zusammenarbeit auf Privatbasis: Massage und Körperarbeit ohne Kassenrezepte, moderner Salon im Zentrum, flexible Zeiten und ein eigener Kundenstamm.'
+        },
+        {
+          title: 'Physiotherapist (m/f/d) in Nuremberg: Freelance, Private Practice | Careers at FareWell',
+          description: 'FareWell Nuremberg is looking for freelance physiotherapists working privately: massage and bodywork without health-insurance prescriptions, a modern central salon, flexible hours and your own client base.'
+        }
+      )
+    },
+    {
       path: 'karriere/kosmetik-nuernberg',
       loadComponent: () =>
         import('../components/pages/karriere/kosmetik-karriere/kosmetik-karriere.component')
