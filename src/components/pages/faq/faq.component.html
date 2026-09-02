@@ -841,6 +841,118 @@
           report is added.
         </p>
       </app-faq-item>
+
+      <app-faq-item
+        id="unterlagen-kostenvoranschlag"
+        [question]="
+          t(
+            'Welche Angaben und Unterlagen braucht FareWell für den Kostenvoranschlag?',
+            'What information and documents does FareWell need for the cost estimate?'
+          )
+        "
+      >
+        <p class="lang de">
+          Der Kostenvoranschlag ist das Dokument, das deine Kasse prüft, und die Rechnungen müssen
+          später genau dazu passen. Deshalb sammeln wir vorher einmal alles ein:
+        </p>
+        <p class="lang en">
+          The cost estimate is the document your insurer examines, and the later invoices have to
+          match it exactly. So we collect everything once, upfront:
+        </p>
+        <ul class="lang de">
+          <li>
+            Deine Daten: vollständiger Name genau so, wie er auf den ärztlichen Unterlagen steht,
+            Geburtsdatum, private Anschrift, Mailadresse. Ohne Geburtsdatum und Anschrift trägt ein
+            Kassenantrag das Dokument in der Regel nicht.
+          </li>
+          <li>
+            Deine Kasse: der genaue Name, gesetzlich oder privat, und deine Versichertennummer oder
+            dein Aktenzeichen, sobald du eins hast.
+          </li>
+          <li>
+            Die ärztlichen Unterlagen: die Diagnose mit ICD Ziffer (F64.0) und die schriftliche
+            Feststellung, dass die Haarentfernung medizinisch notwendig ist. Am besten stehen die
+            Körperregionen ausdrücklich darin. Fehlen sie, weisen wir jede Region im Voranschlag
+            einzeln aus, damit die Kasse den gut belegten Teil bewilligen kann, statt alles auf
+            einmal abzulehnen.
+          </li>
+          <li>
+            Deine Gesundheitsangaben: Vorerkrankungen, Medikamente, Hautbesonderheiten,
+            Herzschrittmacher, Schwangerschaft. Dafür bekommst du vor dem Termin unser Formular zur
+            Nadelepilation über das Buchungssystem. Unser medizinischer Berater zeichnet den
+            Kostenvoranschlag nur gegen, wenn er diese Angaben kennt.
+          </li>
+          <li>
+            Fotos der Region: bei Tageslicht, ohne Blitz und ohne Filter, ein Bild vom ganzen
+            Bereich und eines aus etwa 20 bis 30 cm Abstand. Lass die Haare drei bis fünf Tage
+            stehen, damit Dichte und Farbe zu erkennen sind. Helle, weiße oder graue Haare müssen
+            wir sehen: sie lassen sich ausschließlich mit der Elektrolyse behandeln, ein Laser
+            erfasst sie nicht.
+          </li>
+          <li>
+            Regionen und Zeitrahmen: welche Zonen behandelt werden sollen und ob ein Datum drückt,
+            etwa eine geplante Operation.
+          </li>
+        </ul>
+        <ul class="lang en">
+          <li>
+            Your details: your full name exactly as it appears on your medical papers, date of
+            birth, private address, email address. Without a date of birth and an address, an
+            application usually does not carry the document.
+          </li>
+          <li>
+            Your insurer: the exact name, statutory or private, and your insurance number or file
+            reference as soon as you have one.
+          </li>
+          <li>
+            The medical papers: the diagnosis with its ICD code (F64.0) and a written statement
+            that the hair removal is medically necessary. Ideally the body areas are named
+            explicitly. If they are not, we list each area separately in the estimate, so your
+            insurer can approve the well-documented part instead of refusing everything at once.
+          </li>
+          <li>
+            Your health information: pre-existing conditions, medication, anything particular about
+            your skin, pacemaker, pregnancy. You get our electrolysis form through the booking
+            system before your appointment. Our medical adviser countersigns the estimate only once
+            he knows these details.
+          </li>
+          <li>
+            Photos of the area: in daylight, no flash, no filter, one image of the whole area and
+            one from about 20 to 30 cm away. Let the hair grow for three to five days so density
+            and colour are visible. We need to see light, white or grey hairs: they can only be
+            treated with electrolysis, a laser cannot pick them up.
+          </li>
+          <li>
+            Areas and timing: which zones are to be treated, and whether a date is pressing, such
+            as planned surgery.
+          </li>
+        </ul>
+        <p class="lang de">
+          Später kommt nur noch der Bescheid dazu, sobald er bei dir liegt. Er nennt die bewilligten
+          Sitzungen und Preise, und daran richten wir Termine und Rechnungen aus.
+        </p>
+        <p class="lang en">
+          After that, only the decision letter follows, once it reaches you. It names the approved
+          sessions and prices, and we align appointments and invoices with it.
+        </p>
+        <p class="lang de">
+          Schick uns alles an <a href="mailto:info@farewell.salon">info&#64;farewell.salon</a> oder
+          bring es zur kostenlosen Erstberatung mit. Fotos und Gesundheitsangaben sind
+          Gesundheitsdaten. Sie bleiben in deiner Akte und gehen an niemanden außer an unseren
+          medizinischen Berater, der den Voranschlag gegenzeichnet. Was du bei deiner Kasse
+          einreichst, entscheidest du. Auf Wunsch löschen wir die Fotos. Alle Schritte des Antrags
+          stehen im Leitfaden
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')" fragment="unterlagen">„Epilation über die Krankenkasse“</a>.
+        </p>
+        <p class="lang en">
+          Send everything to <a href="mailto:info@farewell.salon">info&#64;farewell.salon</a> or
+          bring it to your free initial consultation. Photos and health information are health data.
+          They stay in your file and go to nobody except our medical adviser, who countersigns the
+          estimate. What you submit to your insurer is your decision, and we delete the photos on
+          request. Every step of the application is in our
+          <a [routerLink]="p('/ratgeber/epilation-krankenkasse')" fragment="unterlagen">guide on insurance-covered epilation (in German)</a>.
+        </p>
+      </app-faq-item>
     </app-guide-section>
 
     <app-guide-section
@@ -1001,27 +1113,98 @@
         "
       >
         <p class="lang de">
-          Für den Kostenvoranschlag: deinen vollständigen Namen wie auf den ärztlichen Unterlagen,
-          dein Geburtsdatum, deine private Anschrift, den Namen deiner Krankenkasse und, sobald
-          vorhanden, die Versichertennummer. Dazu das ärztliche Attest, Angaben zu Vorerkrankungen,
-          Medikamenten und Hautbesonderheiten und, falls vorhanden, Fotos der betroffenen Region.
-          Den Bescheid der Kasse schickst du uns nach, sobald er da ist.
+          Damit der Kostenvoranschlag bei deiner Kasse Bestand hat, brauchen wir das hier:
         </p>
         <p class="lang en">
-          For the cost estimate: your full name as it appears on your medical papers, your date of
-          birth, your private address, the name of your health insurer and, once you have it, your
-          insurance number. Plus the medical certificate, details of pre-existing conditions,
-          medication and anything particular about your skin, and photos of the affected area if you
-          have them. You send us the insurer's decision letter once it arrives.
+          For the cost estimate to hold up with your insurer, we need the following:
+        </p>
+        <ul class="lang de">
+          <li>
+            Deine Daten: vollständiger Name genau so, wie er auf den ärztlichen Unterlagen steht,
+            Geburtsdatum, private Anschrift, Mailadresse. Ohne Geburtsdatum und Anschrift trägt ein
+            Kassenantrag das Dokument in der Regel nicht.
+          </li>
+          <li>
+            Deine Kasse: der genaue Name, gesetzlich oder privat, und deine Versichertennummer oder
+            dein Aktenzeichen, sobald du eins hast.
+          </li>
+          <li>
+            Das ärztliche Attest: die Diagnose mit ICD Ziffer, etwa E28.2 beim PCOS oder L68.0 beim
+            Hirsutismus, und die ausdrückliche Feststellung, dass die Haarentfernung medizinisch
+            notwendig ist. Hilfreich sind der bisherige Verlauf und was die Behandlung der
+            Grunderkrankung gebracht hat.
+          </li>
+          <li>
+            Deine Gesundheitsangaben: Vorerkrankungen, Medikamente, Hautbesonderheiten,
+            Herzschrittmacher, Schwangerschaft. Dafür bekommst du vor dem Termin unser Formular zur
+            Nadelepilation über das Buchungssystem. Unser medizinischer Berater zeichnet den
+            Kostenvoranschlag nur gegen, wenn er diese Angaben kennt.
+          </li>
+          <li>
+            Fotos der Region: bei Tageslicht, ohne Blitz und ohne Filter, ein Bild vom ganzen
+            Bereich und eines aus etwa 20 bis 30 cm Abstand. Lass die Haare drei bis fünf Tage
+            stehen, damit Dichte und Farbe zu erkennen sind. Bei hormonell bedingtem Haarwuchs sind
+            realistisch Gesicht und Hände, fotografiere deshalb genau diese Bereiche.
+          </li>
+          <li>
+            Zeitrahmen: ob ein Datum drückt und wann du starten möchtest. Der Antrag muss vor der
+            ersten Sitzung gestellt sein.
+          </li>
+        </ul>
+        <ul class="lang en">
+          <li>
+            Your details: your full name exactly as it appears on your medical papers, date of
+            birth, private address, email address. Without a date of birth and an address, an
+            application usually does not carry the document.
+          </li>
+          <li>
+            Your insurer: the exact name, statutory or private, and your insurance number or file
+            reference as soon as you have one.
+          </li>
+          <li>
+            The medical certificate: the diagnosis with its ICD code, for example E28.2 for PCOS or
+            L68.0 for hirsutism, and an explicit statement that the hair removal is medically
+            necessary. The history so far and what treating the underlying condition achieved both
+            help.
+          </li>
+          <li>
+            Your health information: pre-existing conditions, medication, anything particular about
+            your skin, pacemaker, pregnancy. You get our electrolysis form through the booking
+            system before your appointment. Our medical adviser countersigns the estimate only once
+            he knows these details.
+          </li>
+          <li>
+            Photos of the area: in daylight, no flash, no filter, one image of the whole area and
+            one from about 20 to 30 cm away. Let the hair grow for three to five days so density
+            and colour are visible. For hormonally driven hair growth the realistic areas are the
+            face and the hands, so photograph exactly those.
+          </li>
+          <li>
+            Timing: whether a date is pressing and when you would like to start. The application
+            has to be filed before the first session.
+          </li>
+        </ul>
+        <p class="lang de">
+          Den Bescheid schickst du uns nach, sobald er da ist. Er nennt die bewilligten Sitzungen
+          und Preise, und daran richten wir Termine und Rechnungen aus.
+        </p>
+        <p class="lang en">
+          You send us the decision letter once it arrives. It names the approved sessions and
+          prices, and we align appointments and invoices with it.
         </p>
         <p class="lang de">
-          Ohne Geburtsdatum und Anschrift ist der Kostenvoranschlag für die Kasse wertlos, deshalb
-          fragen wir danach. Die vollständige Liste steht im
+          Schick uns alles an <a href="mailto:info@farewell.salon">info&#64;farewell.salon</a> oder
+          bring es zur kostenlosen Erstberatung mit. Fotos und Gesundheitsangaben sind
+          Gesundheitsdaten. Sie bleiben in deiner Akte und gehen an niemanden außer an unseren
+          medizinischen Berater, der den Voranschlag gegenzeichnet. Auf Wunsch löschen wir die
+          Fotos. Die vollständige Liste steht im
           <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')" fragment="unterlagen">Leitfaden</a>.
         </p>
         <p class="lang en">
-          Without a date of birth and an address the cost estimate is worthless to your insurer,
-          which is why we ask. The full list is in the
+          Send everything to <a href="mailto:info@farewell.salon">info&#64;farewell.salon</a> or
+          bring it to your free initial consultation. Photos and health information are health data.
+          They stay in your file and go to nobody except our medical adviser, who countersigns the
+          estimate, and we delete the photos on request. The full list is in the
           <a [routerLink]="p('/ratgeber/epilation-krankenkasse-hormonell')" fragment="unterlagen">guide</a>.
         </p>
       </app-faq-item>
