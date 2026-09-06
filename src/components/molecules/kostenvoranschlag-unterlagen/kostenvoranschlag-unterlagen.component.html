@@ -1,18 +1,33 @@
 <div class="gd-read">
-  <p appReveal>
-    <span class="lang de">
-      Den Kostenvoranschlag schreiben wir für dich, aber ein paar Angaben können wir nicht
-      erfinden. Bring sie zum Beratungstermin mit oder schick sie uns vorher per Mail, dann
-      liegt das Dokument schnell bei dir. Fehlt eine Angabe, müssen wir nachfragen, und das
-      verzögert deinen Antrag.
-    </span>
-    <span class="lang en">
-      We write the cost estimate for you, but there are a few details we cannot invent. Bring
-      them to your consultation or send them to us by email beforehand, and the document will be
-      with you quickly. If something is missing we have to come back to you, and that delays your
-      application.
-    </span>
-  </p>
+  @if (track === 'trans') {
+    <p appReveal>
+      <span class="lang de">
+        Den Kostenvoranschlag schreiben wir für dich, aber ein paar Angaben können wir nicht
+        erfinden. Schick sie uns am besten in einer einzigen Mail, dann liegt das Dokument
+        schnell bei dir. Fehlt etwas, müssen wir nachfragen, und das verzögert deinen Antrag.
+      </span>
+      <span class="lang en">
+        We write the cost estimate for you, but there are a few details we cannot invent. Send
+        them to us in a single email if you can, and the document will be with you quickly. If
+        something is missing we have to come back to you, and that delays your application.
+      </span>
+    </p>
+  } @else {
+    <p appReveal>
+      <span class="lang de">
+        Den Kostenvoranschlag schreiben wir für dich, aber ein paar Angaben können wir nicht
+        erfinden. Bring sie zum Beratungstermin mit oder schick sie uns vorher per Mail, dann
+        liegt das Dokument schnell bei dir. Fehlt eine Angabe, müssen wir nachfragen, und das
+        verzögert deinen Antrag.
+      </span>
+      <span class="lang en">
+        We write the cost estimate for you, but there are a few details we cannot invent. Bring
+        them to your consultation or send them to us by email beforehand, and the document will be
+        with you quickly. If something is missing we have to come back to you, and that delays your
+        application.
+      </span>
+    </p>
+  }
 </div>
 
 <div class="gd-split">
@@ -73,36 +88,83 @@
     dots="sand"
     [revealDelay]="60"
   >
-    <li>
-      <span class="lang de">
-        <strong>Ärztliches Attest oder Indikationsschreiben</strong> mit der Diagnose und der
-        Feststellung, dass die Haarentfernung medizinisch notwendig ist.
-      </span>
-      <span class="lang en">
-        <strong>A medical certificate or letter of indication</strong> stating the diagnosis and
-        confirming that the hair removal is medically necessary.
-      </span>
-    </li>
-    <li>
-      <span class="lang de">
-        <strong>Vorerkrankungen, laufende Medikamente und Hautbesonderheiten</strong> wie
-        Allergien, Neurodermitis, Nesselsucht oder eine Neigung zu Narben.
-      </span>
-      <span class="lang en">
-        <strong>Pre-existing conditions, current medication and anything particular about your
-        skin</strong>, such as allergies, atopic dermatitis, hives or a tendency to scarring.
-      </span>
-    </li>
-    <li>
-      <span class="lang de">
-        <strong>Fotos der betroffenen Region</strong>, falls vorhanden. Manche Kassen verlangen
-        sie, im Gesicht meist frontal, von beiden Seiten und von unten.
-      </span>
-      <span class="lang en">
-        <strong>Photos of the affected area</strong>, if you have them. Some insurers ask for
-        them: for the face usually from the front, from both sides and from below.
-      </span>
-    </li>
+    @if (track === 'trans') {
+      <li>
+        <span class="lang de">
+          <strong>Ärztlicher Bericht oder Indikationsschreiben</strong> mit der Diagnose
+          Geschlechtsinkongruenz (F64.0) und der Feststellung, dass die Haarentfernung
+          medizinisch notwendig ist. Das Original geht mit deinem Antrag an die Kasse, uns
+          genügt eine Kopie oder ein Foto: Unser begleitender Arzt liest die Diagnose, bevor er
+          den Kostenvoranschlag mitzeichnet.
+        </span>
+        <span class="lang en">
+          <strong>A medical report or letter of indication</strong> stating the diagnosis of
+          gender incongruence (F64.0) and confirming that the hair removal is medically
+          necessary. The original goes to your insurer with your application; a copy or a photo
+          is enough for us, because our medical adviser reads the diagnosis before he co-signs
+          the cost estimate.
+        </span>
+      </li>
+      <li>
+        <span class="lang de">
+          <strong>Vorerkrankungen, laufende Medikamente und Hautbesonderheiten</strong> wie
+          Allergien, Neurodermitis, aktive Akne oder eine Neigung zu Narben. Sie ändern, wie wir
+          behandeln: Auf empfindlicher Haut arbeiten wir mit niedrigeren Einstellungen, kürzeren
+          Sitzungen und mehr Abstand dazwischen.
+        </span>
+        <span class="lang en">
+          <strong>Pre-existing conditions, current medication and anything particular about your
+          skin</strong>, such as allergies, atopic dermatitis, active acne or a tendency to
+          scarring. They change how we treat you: on sensitive skin we work with lower settings,
+          shorter sessions and more time in between.
+        </span>
+      </li>
+      <li>
+        <span class="lang de">
+          <strong>Fotos der betroffenen Region.</strong> Sie haben zwei Aufgaben: Wir schätzen
+          daran ab, wie viel Zeit und wie viele Sitzungen realistisch sind, und manche Kassen
+          verlangen sie mit dem Antrag. Im Gesicht am besten frontal, von beiden Seiten und von
+          unten, bei Tageslicht und ungeschminkt.
+        </span>
+        <span class="lang en">
+          <strong>Photos of the affected area.</strong> They do two jobs: we use them to judge how
+          much time and how many sessions are realistic, and some insurers ask for them with the
+          application. For the face, best taken from the front, from both sides and from below, in
+          daylight and without make-up.
+        </span>
+      </li>
+    } @else {
+      <li>
+        <span class="lang de">
+          <strong>Ärztliches Attest oder Indikationsschreiben</strong> mit der Diagnose und der
+          Feststellung, dass die Haarentfernung medizinisch notwendig ist.
+        </span>
+        <span class="lang en">
+          <strong>A medical certificate or letter of indication</strong> stating the diagnosis and
+          confirming that the hair removal is medically necessary.
+        </span>
+      </li>
+      <li>
+        <span class="lang de">
+          <strong>Vorerkrankungen, laufende Medikamente und Hautbesonderheiten</strong> wie
+          Allergien, Neurodermitis, Nesselsucht oder eine Neigung zu Narben.
+        </span>
+        <span class="lang en">
+          <strong>Pre-existing conditions, current medication and anything particular about your
+          skin</strong>, such as allergies, atopic dermatitis, hives or a tendency to scarring.
+        </span>
+      </li>
+      <li>
+        <span class="lang de">
+          <strong>Fotos der betroffenen Region</strong>, falls vorhanden. Manche Kassen verlangen
+          sie, im Gesicht meist frontal, von beiden Seiten und von unten.
+        </span>
+        <span class="lang en">
+          <strong>Photos of the affected area</strong>, if you have them. Some insurers ask for
+          them: for the face usually from the front, from both sides and from below.
+        </span>
+      </li>
+    }
   </app-guide-panel>
 </div>
 

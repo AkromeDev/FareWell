@@ -441,7 +441,7 @@
 
     <app-guide-section
       index="03"
-      [heading]="t('In 5 Schritten zur Kostenübernahme', 'Coverage in 5 steps')"
+      [heading]="t('In 6 Schritten zur Kostenübernahme', 'Coverage in 6 steps')"
       sectionId="schritte"
     >
       <div class="gd-read">
@@ -462,15 +462,40 @@
           </li>
           <li>
             <span class="lang de">
+              <strong>Unterlagen per Mail schicken.</strong> Schick uns in einer Mail alles, was
+              wir für den Kostenvoranschlag brauchen: deine Daten, das ärztliche Schreiben und
+              Fotos der Region. Was genau hineingehört, steht unter
+              <a
+                [href]="p('/ratgeber/epilation-krankenkasse-hormonell') + '#unterlagen'"
+                appScrollTo="unterlagen"
+                >Was wir von dir brauchen</a
+              >.
+            </span>
+            <span class="lang en">
+              <strong>Send us your documents by email.</strong> Send us everything we need for the
+              cost estimate in one email: your details, the medical letter and photos of the area.
+              What exactly belongs in it is under
+              <a
+                [href]="p('/ratgeber/epilation-krankenkasse-hormonell') + '#unterlagen'"
+                appScrollTo="unterlagen"
+                >What we need from you</a
+              >.
+            </span>
+          </li>
+          <li>
+            <span class="lang de">
               <strong>Kostenvoranschlag bei FareWell.</strong> Wir erstellen dir einen
               Kostenvoranschlag für die Nadelepilation im Rahmen der Delegation, und zwar nur dafür.
               Die Preise je Zone findest du auf
-              <a [routerLink]="p('/price')">unserer Preisseite</a>.
+              <a [routerLink]="p('/price')" fragment="aerztliche-delegation"
+                >unserer Preisseite</a
+              >.
             </span>
             <span class="lang en">
               <strong>Cost estimate from FareWell.</strong> We prepare a cost estimate for
               electrolysis (Nadelepilation) within the delegation, and for nothing else. You will
-              find the prices per area on <a [routerLink]="p('/price')">our price page</a>.
+              find the prices per area on
+              <a [routerLink]="p('/price')" fragment="aerztliche-delegation">our price page</a>.
             </span>
           </li>
           <li>
@@ -647,7 +672,7 @@
       [heading]="t('Was wir von dir brauchen', 'What we need from you')"
       sectionId="unterlagen"
     >
-      <app-kostenvoranschlag-unterlagen />
+      <app-kostenvoranschlag-unterlagen track="hormonell" />
       <div class="gd-read">
         <p appReveal style="color: var(--gd-muted)">
           <span class="lang de">

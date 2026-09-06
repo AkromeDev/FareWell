@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { SeoService } from 'src/services/seo.service';
 import { LanguageService } from 'src/services/language.service';
 import {
@@ -37,6 +38,7 @@ const PAGE_DESCRIPTION_EN =
   imports: [
     ...GUIDE_COMPONENTS,
     RevealOnScrollDirective,
+    ScrollToDirective,
     RouterLink,
     KostenvoranschlagUnterlagenComponent,
   ],
@@ -62,7 +64,7 @@ export class KrankenkasseHormonellComponent implements OnInit, OnDestroy {
   get stats(): GuideStat[] {
     return [
       { value: '§ 27', label: this.t('SGB V · Krankenbehandlung', 'SGB V · medical treatment') },
-      { value: '5', label: this.t('Schritte zum Antrag', 'Steps to your application') },
+      { value: '6', label: this.t('Schritte zum Antrag', 'Steps to your application') },
       {
         value: this.t('3 Wochen', '3 weeks'),
         label: this.t('Entscheidungsfrist der Kasse', "Insurer's decision deadline"),
@@ -80,7 +82,7 @@ export class KrankenkasseHormonellComponent implements OnInit, OnDestroy {
       { id: 'wissen', label: this.t('Was du wissen solltest', 'What you should know') },
       {
         id: 'schritte',
-        label: this.t('In 5 Schritten zur Kostenübernahme', 'Coverage in 5 steps'),
+        label: this.t('In 6 Schritten zur Kostenübernahme', 'Coverage in 6 steps'),
       },
       { id: 'gut-zu-wissen', label: this.t('Gut zu wissen', 'Good to know') },
       {
@@ -118,7 +120,7 @@ export class KrankenkasseHormonellComponent implements OnInit, OnDestroy {
           description,
           inLanguage: isEn ? 'en' : 'de',
           datePublished: '2026-08-27',
-          dateModified: '2026-08-27',
+          dateModified: '2026-09-05',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
           author: { '@id': 'https://farewell.salon/#organization' },
           publisher: {

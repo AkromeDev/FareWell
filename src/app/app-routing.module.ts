@@ -45,11 +45,11 @@ function localizedRoutes(lang: PageLang): Routes {
       data: d(
         {
           title: 'Epilation über die Krankenkasse: Leitfaden für trans Personen | FareWell Nürnberg',
-          description: 'So bekommst du deine Haarentfernung im Gesicht als Kassenleistung: Ärztevorbehalt, ärztliche Delegation bei FareWell, Antrag in 5 Schritten, Fristen und Widerspruch.'
+          description: 'So bekommst du deine Haarentfernung im Gesicht als Kassenleistung: Ärztevorbehalt, ärztliche Delegation bei FareWell, Antrag in 6 Schritten, Fristen und Widerspruch.'
         },
         {
           title: 'Health Insurance Coverage for Hair Removal: a Guide for Trans People | FareWell Nuremberg',
-          description: 'How facial hair removal becomes a covered benefit in Germany: the physician requirement, medical delegation at FareWell, the application in 5 steps, deadlines and objections.'
+          description: 'How facial hair removal becomes a covered benefit in Germany: the physician requirement, medical delegation at FareWell, the application in 6 steps, deadlines and objections.'
         }
       )
     },
