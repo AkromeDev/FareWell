@@ -195,6 +195,18 @@
   </url>
 
   <url>
+    <loc>https://farewell.salon/karriere/freelancer-road</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/karriere/freelancer-road/schritte</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
     <loc>https://farewell.salon/karriere/yoga-nuernberg</loc>
     <lastmod>2026-08-07</lastmod>
     <priority>0.6</priority>
@@ -268,6 +280,8 @@
   <url><loc>https://farewell.salon/en/karriere/masseur-nuernberg</loc><lastmod>2026-08-31</lastmod><priority>0.4</priority></url>
   <url><loc>https://farewell.salon/en/karriere/masseur-bademeister-blind-nuernberg</loc><lastmod>2026-08-31</lastmod><priority>0.4</priority></url>
   <url><loc>https://farewell.salon/en/karriere/physiotherapeut-nuernberg</loc><lastmod>2026-08-31</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/freelancer-road</loc><lastmod>2026-09-18</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/freelancer-road/schritte</loc><lastmod>2026-09-18</lastmod><priority>0.3</priority></url>
   <url><loc>https://farewell.salon/en/karriere/yoga-nuernberg</loc><lastmod>2026-08-07</lastmod><priority>0.4</priority></url>
   <url><loc>https://farewell.salon/en/karriere/tanzlehrer-nuernberg</loc><lastmod>2026-08-07</lastmod><priority>0.4</priority></url>
   <url><loc>https://farewell.salon/en/karriere/botox-nuernberg</loc><lastmod>2026-08-07</lastmod><priority>0.4</priority></url>

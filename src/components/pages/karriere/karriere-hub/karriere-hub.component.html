@@ -133,6 +133,26 @@
 
     <app-karriere-start index="04" />
 
+    <!-- Freelancer Road: Joés eigener Gründungsweg als Checkliste. Bewusst
+         direkt nach „So läuft der Start", weil dort die Frage „und dann?"
+         entsteht. -->
+    <div class="gd-read" style="margin-top: 1.4rem">
+      <app-guide-note variant="win" [label]="t('Die Freelancer Road', 'The Freelancer Road')">
+        <span class="lang de">
+          Ämter, Nummern, Versicherungen, Google-Profil, Marketing: Joé hat alles, was er bei der
+          Gründung von FareWell gelernt hat, in eine Checkliste gepackt, die du nach Beruf filtern
+          und in deinem Browser abhaken kannst.
+          <a [routerLink]="p('/karriere/freelancer-road')">Zur Freelancer Road</a>
+        </span>
+        <span class="lang en">
+          Offices, phone numbers, insurance, Google profile, marketing: Joé put everything he
+          learned founding FareWell into a checklist you can filter by profession and tick off in
+          your browser.
+          <a [routerLink]="p('/karriere/freelancer-road')">Go to the Freelancer Road</a>
+        </span>
+      </app-guide-note>
+    </div>
+
     <app-karriere-kanaele [role]="'uebersicht'" index="05" />
 
     <app-guide-section

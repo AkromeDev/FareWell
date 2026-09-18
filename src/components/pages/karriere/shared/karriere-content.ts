@@ -144,10 +144,10 @@ export function karriereWeGive(t: Translate): KarriereDealItem[] {
       ),
     },
     {
-      title: t('Deine eigene Seite', 'Your own page'),
+      title: t('Deine eigene Seite', 'Your own website'),
       text: t(
-        'Eine eigene Seite auf farewell.salon mit deinem Namen, deinen Leistungen und deinen Preisen.',
-        'Your own page on farewell.salon with your name, your services and your prices.'
+        'Eine eigene Seite auf farewell.salon oder eine eigene Website unter deiner Domain, mit deinem Namen, deinen Leistungen und deinen Preisen. Mehrere Websites, die aufeinander verweisen, bringen allen mehr Besucher:innen über Google.',
+        'Your own page on farewell.salon or your own website under your own domain, with your name, your services and your prices. Several websites linking to each other bring everyone more visitors via Google.'
       ),
     },
     {

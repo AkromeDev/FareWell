@@ -376,6 +376,40 @@ function localizedRoutes(lang: PageLang): Routes {
       )
     },
 
+    // Freelancer Road: die Schritte-Seite steht VOR der Einstiegsseite, wie
+    // beim Masseur-Onboarding, damit der längere Pfad zuerst greift.
+    {
+      path: 'karriere/freelancer-road/schritte',
+      loadComponent: () =>
+        import('../components/pages/karriere/freelancer-road/freelancer-road-schritte.component')
+          .then(m => m.FreelancerRoadSchritteComponent),
+      data: d(
+        {
+          title: 'Freelancer Road: alle Schritte als Checkliste | FareWell Nürnberg',
+          description: 'Die abhakbare Checkliste in die Selbständigkeit bei FareWell Nürnberg: Gewerbe oder freier Beruf, Finanzamt, Kammer, Berufsgenossenschaft, Versicherung, Google-Profil, Website und Marketing. Mit Nummern, Adressen und Joés Erfahrungen. Dein Stand bleibt in deinem Browser.'
+        },
+        {
+          title: 'Freelancer Road: Every Step as a Checklist | FareWell Nuremberg',
+          description: "The tick-off checklist into self-employment at FareWell Nuremberg: trade or liberal profession, tax office, chamber, accident insurer, insurance, Google profile, website and marketing. With phone numbers, addresses and Joé's experience. Your progress stays in your browser."
+        }
+      )
+    },
+    {
+      path: 'karriere/freelancer-road',
+      loadComponent: () =>
+        import('../components/pages/karriere/freelancer-road/freelancer-road.component')
+          .then(m => m.FreelancerRoadComponent),
+      data: d(
+        {
+          title: 'Freelancer Road: der Weg in die Selbständigkeit bei FareWell Nürnberg',
+          description: 'Alle Schritte in die Selbständigkeit als Kosmetiker:in, Masseur:in, Physio, Yoga-Lehrer:in oder Ärzt:in bei FareWell Nürnberg, in der richtigen Reihenfolge: Ämter, Nummern, Versicherungen, Website, Google-Profil und Marketing. Aus Joés eigener Gründung, mit abhakbarer Checkliste.'
+        },
+        {
+          title: 'Freelancer Road: The Path into Self-Employment at FareWell Nuremberg',
+          description: "Every step into self-employment as a beautician, massage therapist, physio, yoga teacher or physician at FareWell Nuremberg, in the right order: offices, phone numbers, insurance, website, Google profile and marketing. From Joé's own founding, with a checklist you can tick off."
+        }
+      )
+    },
     {
       path: 'karriere/masseur-nuernberg/onboarding',
       loadComponent: () =>

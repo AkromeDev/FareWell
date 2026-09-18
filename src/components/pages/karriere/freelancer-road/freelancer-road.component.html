@@ -1,0 +1,501 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+
+  <app-guide-hero
+    kicker="Freelancer Road"
+    logo="assets/images/logo/farewell-transparent.png"
+    logoAlt="FareWell Logo"
+    [heading]="
+      t(
+        'Der Weg in die Selbständigkeit, den ich schon gegangen bin.',
+        'The road into self-employment that I have already walked.'
+      )
+    "
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Jeder Schritt, jede Nummer, jeder Fehler, den du nicht mehr machen musst. Für alle, die bei FareWell selbständig anfangen und den Papierkram noch vor sich haben.',
+        'Every step, every phone number, every mistake you no longer have to make. For everyone starting out self-employed at FareWell with the paperwork still ahead of them.'
+      )
+    "
+    image="assets/images/farewell/studio.webp"
+    [imageAlt]="t('Der FareWell Salon in Nürnberg', 'The FareWell salon in Nuremberg')"
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Ich habe FareWell 2025 gegründet und dabei 87 Karten auf meinem Aufgaben-Board
+            abgearbeitet: Ämter, Banken, Versicherungen, Kammern, Verträge, Website, Marketing.
+            Diese Seite ist das, was ich damals gern gehabt hätte.
+          </span>
+          <span class="lang en">
+            I founded FareWell in 2025 and worked through 87 cards on my task board along the way:
+            offices, banks, insurers, chambers, contracts, website, marketing. This page is what I
+            wish I had had back then.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Die Road hat zwei Teile: diese Seite erklärt das Warum und den Deal. Die
+            <a [routerLink]="p(stepsPath)">Schritte-Seite</a> ist deine persönliche Checkliste,
+            nach Beruf gefiltert, mit Notizen, die in deinem Browser bleiben.
+          </span>
+          <span class="lang en">
+            The road has two parts: this page explains the why and the deal. The
+            <a [routerLink]="p(stepsPath)">steps page</a> is your personal checklist, filtered by
+            profession, with notes that stay in your browser.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <!-- 01 -->
+    <app-guide-section
+      index="01"
+      [heading]="t('Warum es diese Seite gibt', 'Why this page exists')"
+      sectionId="warum"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Weil der Anfang der Selbständigkeit in Deutschland nicht schwer ist, sondern
+          unübersichtlich. Jede Stelle kennt ihren Teil und keine den ganzen Weg.
+        </span>
+        <span class="lang en">
+          Because starting out self-employed in Germany is not hard, it is confusing. Every office
+          knows its part and none of them knows the whole road.
+        </span>
+      </p>
+      <div class="gd-read">
+        <p appReveal>
+          <span class="lang de">
+            Ich habe in neun Monaten mit dem Gewerbeamt, dem Finanzamt, zwei Kammern, der Agentur
+            für Arbeit, dem Gesundheitsamt, der Berufsgenossenschaft, fünf Banken, einer Anwältin
+            und einer Steuerberaterin gesprochen. Manche Anrufe haben in zehn Minuten mehr gebracht
+            als drei Abende Recherche. Andere waren umsonst. Ich habe beides aufgeschrieben.
+          </span>
+          <span class="lang en">
+            Over nine months I talked to the trade office, the tax office, two chambers, the
+            employment agency, the health office, the accident insurer, five banks, a lawyer and a
+            tax adviser. Some calls achieved more in ten minutes than three evenings of research.
+            Others were wasted. I wrote both down.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="60">
+          <span class="lang de">
+            Wer bei FareWell anfängt, soll von dieser Erfahrung profitieren: so schnell wie möglich
+            lernen, keine Frist verpassen, kein Geld liegen lassen und keinen Schritt in der falschen
+            Reihenfolge machen. Die Zeit, die du hier im Studio verbringst, soll ein Sprungbrett für
+            deine Karriere sein, nicht nur ein Raum, in dem du arbeitest.
+          </span>
+          <span class="lang en">
+            Anyone starting at FareWell should benefit from that experience: learn as fast as
+            possible, miss no deadline, leave no money on the table and take no step in the wrong
+            order. The time you spend in this studio should be a stepping stone for your career,
+            not just a room you work in.
+          </span>
+        </p>
+        <app-guide-note variant="tip" [label]="t('Ehrlich gesagt', 'Honestly')">
+          <span class="lang de">
+            Ich bin weder Anwalt noch Steuerberater. Was hier steht, ist Erfahrung, keine Beratung.
+            Wo es auf deinen Einzelfall ankommt, nennt der Schritt die Stelle, die es verbindlich
+            sagen kann, mit Nummer.
+          </span>
+          <span class="lang en">
+            I am neither a lawyer nor a tax adviser. What is written here is experience, not advice.
+            Where your individual case matters, the step names the office that can say it
+            reliably, with its phone number.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 02: der Standard-Deal, identisch mit allen Karriere-Seiten -->
+    <app-karriere-deal index="02" />
+
+    <!-- 03 -->
+    <app-guide-section
+      index="03"
+      [heading]="t('Alles, was entsteht, gehört dir', 'Everything created is yours')"
+      sectionId="deins"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Du entscheidest, was du anbietest, wann du arbeitest und was es kostet. Und alles, was wir
+          gemeinsam für dich aufbauen, läuft unter deinem Namen. Wenn du eines Tages weiterziehst,
+          nimmst du es einfach mit.
+        </span>
+        <span class="lang en">
+          You decide what you offer, when you work and what it costs. And everything we build for
+          you together runs under your name. If one day you move on, you simply take it with you.
+        </span>
+      </p>
+      <div class="gd-split">
+        <app-guide-panel [heading]="t('Das nimmst du mit', 'What you take with you')" tone="forest">
+          <li>
+            <span class="lang de">Deine Website-Seite, Texte, Bilder und Videos, als Export</span>
+            <span class="lang en">Your website page, texts, images and videos, as an export</span>
+          </li>
+          <li>
+            <span class="lang de">Deine Marketing-Kampagnen, Anzeigentexte und die Zahlen dazu</span>
+            <span class="lang en">Your marketing campaigns, ad copy and the numbers behind them</span>
+          </li>
+          <li>
+            <span class="lang de">Dein Portfolio: Vorher-nachher, Vorstellungsvideo, Referenzen</span>
+            <span class="lang en">Your portfolio: before and after, introduction video, references</span>
+          </li>
+          <li>
+            <span class="lang de">Dein Google-Unternehmensprofil mit allen Bewertungen</span>
+            <span class="lang en">Your Google Business Profile with all its reviews</span>
+          </li>
+          <li>
+            <span class="lang de">Deine Kund:innen, deine Preise, deine Social-Media-Konten</span>
+            <span class="lang en">Your clients, your prices, your social media accounts</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Das entscheidest nur du', 'Only you decide this')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Welche Behandlungen oder Kurse du anbietest</span>
+            <span class="lang en">Which treatments or classes you offer</span>
+          </li>
+          <li>
+            <span class="lang de">Deine Preise und deine Aktionen</span>
+            <span class="lang en">Your prices and your promotions</span>
+          </li>
+          <li>
+            <span class="lang de">Deine Zeiten im Studio, gemeinsam mit den anderen abgestimmt</span>
+            <span class="lang en">Your hours in the studio, coordinated with the others</span>
+          </li>
+          <li>
+            <span class="lang de">Wie du vor der Kamera und in deinen Kanälen auftrittst</span>
+            <span class="lang en">How you appear on camera and in your channels</span>
+          </li>
+          <li>
+            <span class="lang de">Wann du gehst. Die Übergabe steht im Vertrag, nicht im Kleingedruckten</span>
+            <span class="lang en">When you leave. The handover is in the agreement, not in the small print</span>
+          </li>
+        </app-guide-panel>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="win" [label]="t('Warum das so ist', 'Why it is this way')">
+          <span class="lang de">
+            Nicht nur aus Fairness. Eigene Preise, eigene Kund:innen, eigene Werkzeuge und ein
+            eigenes Google-Profil sind genau die Merkmale, die deine Selbständigkeit vor dem Vorwurf
+            der Scheinselbständigkeit schützen. Was gut für dich ist, ist hier auch gut für uns.
+          </span>
+          <span class="lang en">
+            Not only out of fairness. Your own prices, clients, tools and Google profile are
+            exactly the features that protect your freelance status from being classed as false
+            self-employment. What is good for you is also good for us here.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 04 -->
+    <app-guide-section index="04" [heading]="t('Was ich mitbringe', 'What I bring')" sectionId="joe">
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Ich glaube, dass ich der beste Partner bin, den man für den Start haben kann. Nicht, weil
+          ich alles weiß, sondern weil Marketing und Technik neun Jahre lang mein Beruf waren und
+          ich die Gründung gerade selbst hinter mir habe.
+        </span>
+        <span class="lang en">
+          I believe I am the best partner you can have for the start. Not because I know
+          everything, but because marketing and technology were my profession for nine years and I
+          have just been through the founding myself.
+        </span>
+      </p>
+      <ul class="fr-cv" appReveal>
+        <li>
+          <strong>
+            <span class="lang de">Drei Jahre Performance-Marketing in der Agentur</span>
+            <span class="lang en">Three years of performance marketing at an agency</span>
+          </strong>
+          <span class="lang de">
+            Google Ads, Analytics, Merchant Center, Microsoft Ads, Meta und TikTok für Unternehmen.
+            Kampagnen planen, steuern, auswerten. Ich weiß, was ein Klick kostet und wann er sich
+            lohnt.
+          </span>
+          <span class="lang en">
+            Google Ads, Analytics, Merchant Center, Microsoft Ads, Meta and TikTok for business.
+            Planning, running and evaluating campaigns. I know what a click costs and when it pays
+            off.
+          </span>
+        </li>
+        <li>
+          <strong>
+            <span class="lang de">Leitung Online-Marketing eines Webshops</span>
+            <span class="lang en">Head of online marketing for a web shop</span>
+          </strong>
+          <span class="lang de">
+            Europaweite Expansion, Aufbau der Kampagnen von null. Dasselbe Prinzip wie bei einem
+            neuen Angebot im Studio, nur mit mehr Nullen.
+          </span>
+          <span class="lang en">
+            Europe-wide expansion, building the campaigns from zero. The same principle as a new
+            offer in the studio, just with more zeros.
+          </span>
+        </li>
+        <li>
+          <strong>
+            <span class="lang de">Vier Jahre Softwareentwicklung und Teamleitung</span>
+            <span class="lang en">Four years of software development and team leadership</span>
+          </strong>
+          <span class="lang de">
+            Backend und Web, zuletzt als Teamleiter für Kliniksoftware. Diese Website, das
+            Buchungssystem, die Suchmaschinenoptimierung und die Werkzeuge im Studio habe ich selbst
+            gebaut.
+          </span>
+          <span class="lang en">
+            Backend and web, most recently as team lead for hospital software. I built this website,
+            the booking setup, the search engine optimisation and the tools in the studio myself.
+          </span>
+        </li>
+        <li>
+          <strong>
+            <span class="lang de">Zertifizierter Scrum Master und drei Jahre Mentor</span>
+            <span class="lang en">Certified Scrum Master and three years as a mentor</span>
+          </strong>
+          <span class="lang de">
+            Ich habe Studierende durch Projekte begleitet und Teams durch Veränderungen. Erklären,
+            strukturieren, dranbleiben: Das ist der Teil, den man auf dieser Seite sieht.
+          </span>
+          <span class="lang en">
+            I have guided students through projects and teams through change. Explaining,
+            structuring, staying on it: that is the part you can see on this page.
+          </span>
+        </li>
+        <li>
+          <strong>
+            <span class="lang de">Wirtschaft und Management, vier Sprachen</span>
+            <span class="lang en">Business and management, four languages</span>
+          </strong>
+          <span class="lang de">
+            Bachelor in Wirtschaft und Management, Französisch als Muttersprache, Englisch und
+            Deutsch fließend, Spanisch für den Alltag. Ämterdeutsch übersetze ich gern.
+          </span>
+          <span class="lang en">
+            Bachelor in business and management, French as a native language, fluent English and
+            German, everyday Spanish. Happy to translate German bureaucratese.
+          </span>
+        </li>
+        <li>
+          <strong>
+            <span class="lang de">Die Gründung selbst, frisch</span>
+            <span class="lang en">The founding itself, recent</span>
+          </strong>
+          <span class="lang de">
+            GmbH, Handwerkskammer, Gründungszuschuss, Bankkredit, NiSV, Hygieneplan, erste
+            Mitarbeitende, Kostenübernahmen mit Krankenkassen. Alles innerhalb der letzten zwei
+            Jahre, die Nummern habe ich noch im Telefon.
+          </span>
+          <span class="lang en">
+            Limited company, chamber of crafts, start-up grant, bank loan, NiSV, hygiene plan, first
+            employees, insurance coverage cases. All within the last two years, the numbers are
+            still in my phone.
+          </span>
+        </li>
+      </ul>
+      <div class="gd-read">
+        <app-guide-note variant="tip" [label]="t('Was das für dich heißt', 'What that means for you')">
+          <span class="lang de">
+            Du bekommst jemanden, der deine Seite baut, dir an einem Nachmittag erklärt, wie eine
+            effiziente Marketing-Strategie aussieht, welche Werkzeuge es gibt, wie gut sie
+            funktionieren und was sie kosten. Und der beim ersten Video zeigt, wie er schneidet,
+            damit du ab dem zweiten selbst kannst.
+          </span>
+          <span class="lang en">
+            You get someone who builds your page, explains in one afternoon what an efficient
+            marketing strategy looks like, which tools exist, how well they work and what they
+            cost. And who shows you how he edits the first video, so from the second one on you
+            can do it yourself.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 05 -->
+    <app-guide-section
+      index="05"
+      [heading]="t('Was FareWell davon hat', 'What FareWell gets out of it')"
+      sectionId="farewell"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Je mehr Menschen ins Studio kommen, desto besser. So einfach ist das.
+        </span>
+        <span class="lang en">
+          The more people come into the studio, the better. It is that simple.
+        </span>
+      </p>
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card icon="🤝" [heading]="t('Synergie statt Konkurrenz', 'Synergy, not competition')">
+          <span class="lang de">
+            Ich suche Menschen, deren Behandlungen zu dem passen, was es hier schon gibt. Deine
+            Kund:innen entdecken unser Angebot, unsere entdecken deins, und alle bekommen 20 %
+            Vorteil, wenn sie wechseln.
+          </span>
+          <span class="lang en">
+            I look for people whose treatments fit what already exists here. Your clients discover
+            our offer, ours discover yours, and everyone gets a 20% perk when they switch.
+          </span>
+        </app-guide-card>
+        <app-guide-card icon="📈" [heading]="t('Gemeinsam wachsen', 'Growing together')" [revealDelay]="60">
+          <span class="lang de">
+            Keine Raummiete, sondern ein Anteil an dem, was du tatsächlich einnimmst. Läuft es bei
+            dir, läuft es bei uns. Was über Plattformen wie Groupon kommt, bleibt zu 100 % bei dir.
+          </span>
+          <span class="lang en">
+            No room rent, but a share of what you actually take in. When it works for you, it works
+            for us. What comes in through platforms like Groupon stays 100% with you.
+          </span>
+        </app-guide-card>
+        <app-guide-card icon="🎥" [heading]="t('Du vor der Kamera', 'You in front of the camera')" [revealDelay]="120">
+          <span class="lang de">
+            Für die Videos zu deinem Angebot stehst du vor der Kamera, nicht ich. Ich filme und
+            bereite mit dir vor. Das erste Video schneide ich und zeige dir dabei, wie. Danach
+            schneidest du selbst, wenn du kannst.
+          </span>
+          <span class="lang en">
+            For the videos about your offer, you are in front of the camera, not me. I film and
+            prepare with you. I edit the first video and show you how. After that you edit
+            yourself, if you can.
+          </span>
+        </app-guide-card>
+        <app-guide-card icon="🌱" [heading]="t('Ein Ort, an dem man anfängt', 'A place where people start')" [revealDelay]="180">
+          <span class="lang de">
+            Wenn du in zwei Jahren dein eigenes Studio eröffnest, ist das kein Verlust für uns. Dann
+            hat FareWell gezeigt, dass man hier gut anfängt. Das ist der Ruf, den ich will.
+          </span>
+          <span class="lang en">
+            If you open your own studio in two years, that is no loss for us. Then FareWell has
+            shown that this is a good place to start. That is the reputation I want.
+          </span>
+        </app-guide-card>
+      </div>
+      <div class="gd-read">
+        <app-guide-note
+          variant="win"
+          [label]="t('Anteil auf den Gewinn, nicht auf den Umsatz', 'A share of profit, not of revenue')"
+        >
+          <span class="lang de">
+            Wenn dein Angebot viele Produkte und schwankende Kosten hat, rechnen wir die Aufteilung
+            auf das, was nach Material, Kosten und Steuern übrig bleibt, nicht auf den Umsatz. Am
+            Anfang, wenn die Kosten oft höher sind als die Einnahmen, will ich dir keinen
+            zusätzlichen Druck machen. Und wenn die 30 % für FareWell in einem Monat unter 300 €
+            liegen, behältst du sie einfach. Wenn du dann trotzdem etwas geben willst: Lad mich zum
+            Essen ein. Dann haben wir auch mal Zeit, außerhalb des Salons zu reden.
+          </span>
+          <span class="lang en">
+            If your offer involves many products and fluctuating costs, we calculate the split on
+            what is left after materials, costs and taxes, not on revenue. At the start, when costs
+            are often higher than income, I do not want to add any pressure. And if FareWell's 30%
+            comes to less than 300 € in a month, you simply keep it. If you still want to give
+            something back: take me out for dinner. Then we also have time to talk outside the
+            salon.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <!-- 06 -->
+    <app-guide-section
+      index="06"
+      [heading]="t('So funktioniert die Road', 'How the road works')"
+      sectionId="road"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Fünf Etappen in der Reihenfolge, in der sie Sinn ergeben. Die Schritte gelten für jede
+          selbständige Tätigkeit in Deutschland, nicht nur bei FareWell. Du wählst deinen Beruf,
+          hakst ab, was du schon hast, und schreibst dir Notizen zu jedem Schritt.
+        </span>
+        <span class="lang en">
+          Five stages in the order that makes sense. The steps apply to every self-employed
+          activity in Germany, not only at FareWell. You pick your profession, tick off what you
+          already have, and write notes on every step.
+        </span>
+      </p>
+      <div class="fr-phases">
+        @for (phase of phases; track phase.id; let i = $index) {
+          <div class="gd-phase" appReveal [revealDelay]="i * 60">
+            <div class="gd-phase__n" aria-hidden="true">{{ i + 1 }}</div>
+            <div class="gd-phase__tag">
+              <span class="lang de">{{ phase.tag.de }}</span
+              ><span class="lang en">{{ phase.tag.en }}</span>
+            </div>
+            <h3>
+              <span class="lang de">{{ phase.title.de }}</span
+              ><span class="lang en">{{ phase.title.en }}</span>
+            </h3>
+            <p>
+              <span class="lang de">{{ phase.steps.length }} Schritte</span
+              ><span class="lang en">{{ phase.steps.length }} steps</span>
+            </p>
+          </div>
+        }
+      </div>
+      <div class="gd-read">
+        <app-guide-note
+          variant="warn"
+          [label]="t('Dein Fortschritt bleibt in deinem Browser', 'Your progress stays in your browser')"
+        >
+          <span class="lang de">
+            Was du abhakst und notierst, wird nur auf diesem Gerät gespeichert, im lokalen Speicher
+            deines Browsers, technisch wie ein Cookie. Es wird nie an FareWell oder Dritte
+            übertragen und für nichts anderes verwendet. Das heißt aber auch: Wenn du deine Cookies
+            und Website-Daten löschst, den Browser wechselst oder im privaten Modus surfst, sind
+            alle Häkchen und Notizen weg. Auf der Schritte-Seite kannst du deinen Stand deshalb
+            jederzeit als Datei exportieren und später wieder importieren.
+          </span>
+          <span class="lang en">
+            What you tick off and note down is stored only on this device, in your browser's local
+            storage, technically like a cookie. It is never sent to FareWell or third parties and is
+            not used for anything else. But that also means: if you clear your cookies and site
+            data, switch browsers or browse in private mode, all ticks and notes are gone. On the
+            steps page you can therefore export your progress as a file at any time and import it
+            again later.
+          </span>
+        </app-guide-note>
+        <div class="fr-actions">
+          <a class="gd-btn" [routerLink]="p(stepsPath)">
+            {{ t('Zur Schritte-Seite', 'Go to the steps page') }}
+          </a>
+        </div>
+      </div>
+    </app-guide-section>
+
+    <app-karriere-apply
+      [subject]="t('Freelancer Road: ich möchte bei FareWell anfangen', 'Freelancer Road: I want to start at FareWell')"
+      [headingOverride]="t('Bereit für den ersten Schritt?', 'Ready for the first step?')"
+    >
+      <span class="lang de">
+        Schreib mir, was du machst und was du dir vorstellst. Wir treffen uns im Studio, du zeigst
+        deine Arbeit, und dann gehen wir die Road zusammen durch.
+      </span>
+      <span class="lang en">
+        Tell me what you do and what you have in mind. We meet at the studio, you show your work,
+        and then we walk the road together.
+      </span>
+    </app-karriere-apply>
+
+    <p class="gd-fine" style="margin-top: 3rem; text-align: center">
+      <span class="lang de">FareWell · Freelancer Road · Stand {{ stand }}</span>
+      <span class="lang en">FareWell · Freelancer Road · as of {{ stand }}</span>
+    </p>
+  </div>
+
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+</div>
