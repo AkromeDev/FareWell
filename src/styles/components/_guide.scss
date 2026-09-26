@@ -159,6 +159,15 @@
       flex-direction: column;
     }
 
+    // Alles andere bleibt in Quelltext-Reihenfolge HINTER dem Intro. Die
+    // Regel gilt bewusst für jedes Kind: vorher bekamen nur app-guide-section
+    // und app-guide-cta `order: 3`, und alles ohne `order` (Karriere-Bausteine
+    // wie Deal, Zeiten, Bewerbung, Schlusshinweise, Kleingedrucktes) sprang
+    // mit dem Standardwert 0 mobil über das Intro.
+    .gd-wrap > * {
+      order: 3;
+    }
+
     .gd-wrap > app-guide-section.gd-promo-section {
       order: 1;
       margin-top: 1.6rem;
@@ -166,11 +175,6 @@
 
     .gd-wrap > .gd-intro {
       order: 2;
-    }
-
-    .gd-wrap > app-guide-section,
-    .gd-wrap > app-guide-cta {
-      order: 3;
     }
   }
 
