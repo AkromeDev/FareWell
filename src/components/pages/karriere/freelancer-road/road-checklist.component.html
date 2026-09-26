@@ -1,0 +1,271 @@
+<!-- Auswahl, Speicherhinweis, Werkzeuge -->
+<app-guide-section index="00" [heading]="bi(road.copy.choiceHeading)" [sectionId]="road.copy.choiceId">
+  <p class="gd-lead-p gd-read" appReveal>
+    <span class="lang de">{{ road.copy.choiceLead.de }}</span>
+    <span class="lang en">{{ road.copy.choiceLead.en }}</span>
+  </p>
+
+  <div class="fr-picker" role="group" [attr.aria-label]="bi(road.copy.choiceGroupLabel)">
+    @for (prof of road.professions; track prof.id) {
+      <button
+        type="button"
+        class="fr-chip"
+        [attr.aria-pressed]="state.profession() === prof.id"
+        (click)="chooseProfession(prof.id)"
+      >
+        <span class="fr-chip__ico" aria-hidden="true">{{ prof.icon }}</span>
+        <span class="lang de">{{ prof.label.de }}</span>
+        <span class="lang en">{{ prof.label.en }}</span>
+      </button>
+    }
+  </div>
+
+  @if (state.professionInfo(); as prof) {
+    <p class="fr-status">
+      <span class="lang de">{{ prof.status.de }}</span>
+      <span class="lang en">{{ prof.status.en }}</span>
+    </p>
+    @if (state.hiddenCount() > 0) {
+      <p class="fr-hidden-count">
+        <span class="lang de">{{ count(road.copy.hiddenCount.de, state.hiddenCount()) }}</span>
+        <span class="lang en">{{ count(road.copy.hiddenCount.en, state.hiddenCount()) }}</span>
+      </p>
+    }
+  }
+
+  <div class="fr-progress" appReveal>
+    <div class="fr-progress__row">
+      <span>
+        <strong>{{ state.visibleDone() }}</strong>
+        <span class="lang de"> von {{ state.visibleSteps().length }} Schritten erledigt</span>
+        <span class="lang en"> of {{ state.visibleSteps().length }} steps done</span>
+      </span>
+      <span>{{ state.percent() }}%</span>
+    </div>
+    <div
+      class="fr-progress__bar"
+      role="progressbar"
+      [attr.aria-valuenow]="state.percent()"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [attr.aria-label]="t('Fortschritt der ' + road.name, road.name + ' progress')"
+    >
+      <div class="fr-progress__fill" [style.width.%]="state.percent()"></div>
+    </div>
+  </div>
+
+  <div class="gd-read">
+    <app-guide-note
+      variant="warn"
+      [label]="t('Wichtig: alles bleibt in deinem Browser', 'Important: everything stays in your browser')"
+    >
+      <span class="lang de">{{ road.copy.storageNote.de }}</span>
+      <span class="lang en">{{ road.copy.storageNote.en }}</span>
+    </app-guide-note>
+    @if (state.loaded() && !state.persistent()) {
+      <app-guide-note variant="rule" [label]="t('Kein Speicher verfügbar', 'No storage available')">
+        <span class="lang de">
+          Dein Browser erlaubt gerade kein Speichern (privater Modus oder blockierte
+          Website-Daten). Du kannst die Seite benutzen, aber beim Neuladen ist alles weg.
+          Exportiere, bevor du gehst.
+        </span>
+        <span class="lang en">
+          Your browser currently does not allow saving (private mode or blocked site data). You
+          can use the page, but everything is gone on reload. Export before you leave.
+        </span>
+      </app-guide-note>
+    }
+  </div>
+
+  <div class="fr-actions">
+    <button type="button" class="gd-btn" (click)="exportState()" [disabled]="!state.hasAnyData()">
+      {{ t('Stand exportieren', 'Export progress') }}
+    </button>
+    <button type="button" class="gd-btn gd-btn--ghost" (click)="openImport()">
+      {{ t('Datei importieren', 'Import file') }}
+    </button>
+    <button
+      type="button"
+      class="gd-btn gd-btn--ghost"
+      (click)="resetState()"
+      [disabled]="!state.hasAnyData()"
+    >
+      {{ t('Zurücksetzen', 'Reset') }}
+    </button>
+    <input
+      #fileInput
+      type="file"
+      accept="application/json,.json"
+      hidden
+      (change)="onImportFile($event)"
+      [attr.aria-label]="t(fileWord + '-Datei auswählen', 'Choose a ' + road.name + ' file')"
+    />
+  </div>
+  <p class="fr-live" role="status" aria-live="polite">
+    @if (feedback(); as msg) {
+      <span class="lang de">{{ msg.de }}</span><span class="lang en">{{ msg.en }}</span>
+    }
+  </p>
+</app-guide-section>
+
+<!-- Etappen -->
+@for (phase of road.phases; track phase.id) {
+  <app-guide-section [index]="phase.index" [heading]="bi(phase.title)" [sectionId]="phase.id">
+    <p class="gd-lead-p gd-read" appReveal>
+      <span class="lang de">{{ phase.lead.de }}</span>
+      <span class="lang en">{{ phase.lead.en }}</span>
+    </p>
+    <p class="fr-phase-count">
+      <span class="lang de">{{ phaseDone(phase) }} von {{ stepsOf(phase).length }} erledigt</span>
+      <span class="lang en">{{ phaseDone(phase) }} of {{ stepsOf(phase).length }} done</span>
+    </p>
+
+    @if (stepsOf(phase).length === 0) {
+      <p class="fr-empty">
+        <span class="lang de">{{ road.copy.emptyPhase.de }}</span>
+        <span class="lang en">{{ road.copy.emptyPhase.en }}</span>
+      </p>
+    } @else {
+      <ol class="fr-steps">
+        @for (step of stepsOf(phase); track step.id) {
+          <li class="fr-step" [class.is-done]="state.isDone(step.id)" [attr.id]="'schritt-' + step.id">
+            <div class="fr-step__head">
+              <input
+                type="checkbox"
+                class="fr-check"
+                [id]="'chk-' + step.id"
+                [checked]="state.isDone(step.id)"
+                (change)="toggleDone(step.id)"
+              />
+              <div>
+                <h3 class="fr-step__title">
+                  <label [for]="'chk-' + step.id">
+                    <span class="lang de">{{ step.title.de }}</span>
+                    <span class="lang en">{{ step.title.en }}</span>
+                  </label>
+                </h3>
+                <div class="fr-step__meta">
+                  <span class="fr-tag" [class]="'fr-tag fr-tag--' + step.weight">{{ weightLabel(step.weight) }}</span>
+                  @if (professionTags(step); as tags) {
+                    <span class="fr-tag">{{ tags }}</span>
+                  }
+                  @if (doneAtLabel(step.id); as when) {
+                    <span class="fr-tag fr-tag--done">{{ when }}</span>
+                  }
+                </div>
+                <p class="fr-step__summary">
+                  <span class="lang de">{{ step.summary.de }}</span>
+                  <span class="lang en">{{ step.summary.en }}</span>
+                </p>
+              </div>
+              <button
+                type="button"
+                class="fr-toggle"
+                [attr.aria-expanded]="isExpanded(step.id)"
+                [attr.aria-controls]="'body-' + step.id"
+                (click)="toggleExpanded(step.id)"
+              >
+                {{ isExpanded(step.id) ? t('Weniger', 'Less') : t('Details', 'Details') }}
+              </button>
+            </div>
+
+            @if (isExpanded(step.id)) {
+              <div class="fr-step__body" [attr.id]="'body-' + step.id">
+                <ul class="fr-list">
+                  @for (item of step.details; track $index) {
+                    <li>
+                      <span class="lang de">{{ item.de }}</span>
+                      <span class="lang en">{{ item.en }}</span>
+                    </li>
+                  }
+                </ul>
+
+                @if (step.farewell; as fw) {
+                  <div class="fr-box fr-box--fw">
+                    <span class="fr-box__label">{{ t('Das übernimmt FareWell', 'FareWell takes care of this') }}</span>
+                    <p>
+                      <span class="lang de">{{ fw.de }}</span>
+                      <span class="lang en">{{ fw.en }}</span>
+                    </p>
+                  </div>
+                }
+
+                @if (step.joe; as joe) {
+                  <div class="fr-box fr-box--joe">
+                    <span class="fr-box__label">{{ t('Joés Erfahrung', 'Joé\'s experience') }}</span>
+                    <p>
+                      <span class="lang de">{{ joe.de }}</span>
+                      <span class="lang en">{{ joe.en }}</span>
+                    </p>
+                  </div>
+                }
+
+                @if (step.contacts?.length) {
+                  <ul class="fr-contacts" [attr.aria-label]="t('Anlaufstellen', 'Contacts')">
+                    @for (c of step.contacts; track c.name) {
+                      <li class="fr-contact">
+                        <strong>{{ c.name }}</strong>
+                        @if (c.phone) {
+                          <span><a [href]="telHref(c.phone)">{{ c.phone }}</a></span>
+                        }
+                        @if (c.email) {
+                          <span><a [href]="'mailto:' + c.email">{{ c.email }}</a></span>
+                        }
+                        @if (c.address) {
+                          <span>{{ c.address }}</span>
+                        }
+                        @if (c.hours; as hours) {
+                          <span>
+                            <span class="lang de">{{ hours.de }}</span>
+                            <span class="lang en">{{ hours.en }}</span>
+                          </span>
+                        }
+                        @if (c.url) {
+                          <span>
+                            <a [href]="c.url" target="_blank" rel="noopener noreferrer">
+                              {{ t('Website', 'Website') }}
+                            </a>
+                          </span>
+                        }
+                      </li>
+                    }
+                  </ul>
+                }
+
+                @if (step.links?.length) {
+                  <ul class="fr-links" [attr.aria-label]="t('Links', 'Links')">
+                    @for (link of step.links; track link.url) {
+                      <li>
+                        <a [href]="link.url" target="_blank" rel="noopener noreferrer">
+                          <span class="lang de">{{ link.label.de }}</span>
+                          <span class="lang en">{{ link.label.en }}</span>
+                        </a>
+                      </li>
+                    }
+                  </ul>
+                }
+
+                <div class="fr-note">
+                  <label [for]="'note-' + step.id">{{ t('Deine Notizen zu diesem Schritt', 'Your notes on this step') }}</label>
+                  <textarea
+                    [id]="'note-' + step.id"
+                    rows="3"
+                    [value]="state.note(step.id)"
+                    (input)="onNoteInput(step.id, $event)"
+                    (blur)="onNoteBlur(step.id, $event)"
+                    [placeholder]="
+                      t(
+                        'Wen hast du erreicht, was wurde gesagt, welche Nummer hat funktioniert?',
+                        'Whom did you reach, what was said, which number worked?'
+                      )
+                    "
+                  ></textarea>
+                </div>
+              </div>
+            }
+          </li>
+        }
+      </ol>
+    }
+  </app-guide-section>
+}

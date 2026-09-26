@@ -1,6 +1,7 @@
 /**
- * Inhalt der Freelancer Road: Etappen, Schritte, Behörden-Kontakte und Joés
- * Erfahrungen aus der eigenen Gründung (Jan. 2025 bis Herbst 2025).
+ * Inhalt der Freelancer Road: Etappen, Schritte und Joés Erfahrungen aus der
+ * eigenen Gründung (Jan. 2025 bis Herbst 2025). Die Behörden-Kontakte stehen
+ * in road-contacts.ts, gemeinsam mit denen der Gastro Road.
  *
  * Quelle ist das private GitHub-Project-Board „Farewell" (87 Karten). Was hier
  * steht, ist bewusst gefiltert: öffentliche Ämter mit Adresse und Nummer ja,
@@ -13,62 +14,34 @@
  * Karriere-Seiten. Kein Gedankenstrich als Satztrenner (Hausregel).
  */
 
+import type {
+  Phase as RoadPhase,
+  Profession as RoadProfession,
+  RoadDefinition,
+  Step as RoadStep,
+} from './road.model';
+import {
+  GEWERBEAMT,
+  GESUNDHEITSAMT,
+  HWK,
+  HWK_BERATUNG,
+  IHK,
+  LFA,
+  BAYERN_INNOVATIV,
+  AFA,
+  FINANZAMT,
+  DRV,
+  BGW,
+  VBG,
+  GAA,
+} from './road-contacts';
+
+export type { Bi, Contact, Link } from './road.model';
+
 export type ProfessionId = 'kosmetik' | 'massage' | 'physio' | 'kurse' | 'medizin';
-
-export interface Bi {
-  de: string;
-  en: string;
-}
-
-export interface Profession {
-  id: ProfessionId;
-  icon: string;
-  label: Bi;
-  /** Ein Satz zur steuerlichen Einordnung, die den Rest der Road prägt. */
-  status: Bi;
-}
-
-export interface Contact {
-  name: string;
-  phone?: string;
-  email?: string;
-  address?: string;
-  hours?: Bi;
-  url?: string;
-}
-
-export interface Link {
-  label: Bi;
-  url: string;
-}
-
-export interface Step {
-  id: string;
-  title: Bi;
-  /** Ein bis zwei Sätze, immer sichtbar. */
-  summary: Bi;
-  /** Aufzählungspunkte im ausgeklappten Zustand. */
-  details: Bi[];
-  /** Für welche Berufe der Schritt gilt. Leer = alle. */
-  professions?: ProfessionId[];
-  /** Gewichtung: Pflicht (rechtlich), empfohlen, optional. */
-  weight: 'pflicht' | 'empfohlen' | 'optional';
-  /** Joés eigene Erfahrung, in der ersten Person. */
-  joe?: Bi;
-  /** Was FareWell hier konkret abnimmt oder mitbringt. */
-  farewell?: Bi;
-  contacts?: Contact[];
-  links?: Link[];
-}
-
-export interface Phase {
-  id: string;
-  index: string;
-  tag: Bi;
-  title: Bi;
-  lead: Bi;
-  steps: Step[];
-}
+export type Profession = RoadProfession<ProfessionId>;
+export type Step = RoadStep<ProfessionId>;
+export type Phase = RoadPhase<ProfessionId>;
 
 /** Stand der Inhalte, wird im Kleingedruckten der Seiten angezeigt. */
 export const ROAD_STAND = '2026';
@@ -123,104 +96,6 @@ export const PROFESSIONS: Profession[] = [
 
 const ALL_GEWERBE: ProfessionId[] = ['kosmetik', 'massage'];
 const FREIE_BERUFE: ProfessionId[] = ['physio', 'kurse', 'medizin'];
-
-const GEWERBEAMT: Contact = {
-  name: 'Gewerbeamt Nürnberg (Ordnungsamt, Sachgebiet Gewerbewesen)',
-  phone: '0911 231-0',
-  email: 'gewerbeanzeigen@stadt.nuernberg.de',
-  address: 'Innerer Laufer Platz 3, 90403 Nürnberg',
-  hours: {
-    de: 'Mo, Di, Do 08:00–15:45 · Mi, Fr 08:00–12:30 (Stand 2025)',
-    en: 'Mon, Tue, Thu 08:00–15:45 · Wed, Fri 08:00–12:30 (as of 2025)',
-  },
-  url: 'https://www.nuernberg.de/internet/ordnungsamt/gewerbe.html',
-};
-
-const GESUNDHEITSAMT: Contact = {
-  name: 'Gesundheitsamt Nürnberg',
-  phone: '0911 231-2333',
-  email: 'gesundheitsamt@stadt.nuernberg.de',
-  address: 'Burgstraße 4, 90403 Nürnberg',
-  hours: {
-    de: 'Mo–Fr 08:30–12:30, Do zusätzlich 14:00–16:00 (Stand 2025)',
-    en: 'Mon–Fri 08:30–12:30, Thu also 14:00–16:00 (as of 2025)',
-  },
-  url: 'https://www.nuernberg.de/internet/gesundheit_nbg/',
-};
-
-const HWK: Contact = {
-  name: 'Handwerkskammer für Mittelfranken',
-  phone: '0911 5309-0',
-  email: 'info@hwk-mittelfranken.de',
-  address: 'Sulzbacher Straße 11–15, 90489 Nürnberg',
-  hours: {
-    de: 'Mo–Do 07:30–17:00 · Fr 07:30–14:30 (Stand 2025)',
-    en: 'Mon–Thu 07:30–17:00 · Fri 07:30–14:30 (as of 2025)',
-  },
-  url: 'https://www.hwk-mittelfranken.de/',
-};
-
-const HWK_BERATUNG: Contact = {
-  name: 'HWK Mittelfranken, Unternehmensberatung',
-  phone: '0911 5309-498',
-  email: 'unternehmensberatung@hwk-mittelfranken.de',
-};
-
-const IHK: Contact = {
-  name: 'IHK Nürnberg für Mittelfranken, Gründungsberatung',
-  phone: '0911 1335-1516',
-  address: 'Hauptmarkt 25/27, 90403 Nürnberg',
-  url: 'https://www.ihk.de/nuernberg/',
-};
-
-const LFA: Contact = {
-  name: 'LfA Förderbank Bayern, Repräsentanz Nürnberg',
-  phone: '0911 81008-00',
-  email: 'nuernberg@lfa.de',
-  address: 'Am Tullnaupark 8, 90402 Nürnberg',
-  url: 'https://www.lfa.de/',
-};
-
-const BAYERN_INNOVATIV: Contact = {
-  name: 'Bayern Innovativ',
-  phone: '0911 20671-0',
-  address: 'Am Tullnaupark 8, 90402 Nürnberg',
-  url: 'https://www.bayern-innovativ.de/',
-};
-
-const AFA: Contact = {
-  name: 'Agentur für Arbeit Nürnberg',
-  phone: '0800 4 5555 00',
-  address: 'Richard-Wagner-Platz 5, 90443 Nürnberg',
-  url: 'https://www.arbeitsagentur.de/vor-ort/nuernberg/startseite',
-};
-
-const FINANZAMT: Contact = {
-  name: 'Finanzamt Nürnberg (Neuaufnahme, Umsatzsteuer)',
-  phone: '0911 3998-250',
-  url: 'https://www.finanzamt.bayern.de/Nuernberg/',
-};
-
-const DRV: Contact = {
-  name: 'Deutsche Rentenversicherung, kostenloses Servicetelefon',
-  phone: '0800 1000 4800',
-  url: 'https://www.deutsche-rentenversicherung.de/',
-};
-
-const BGW: Contact = {
-  name: 'BGW, Berufsgenossenschaft für Gesundheitsdienst und Wohlfahrtspflege',
-  url: 'https://www.bgw-online.de/',
-};
-
-const VBG: Contact = {
-  name: 'VBG, Verwaltungs-Berufsgenossenschaft (Sport, Unterricht)',
-  url: 'https://www.vbg.de/',
-};
-
-const GAA: Contact = {
-  name: 'Gewerbeaufsichtsamt bei der Regierung von Mittelfranken (NiSV-Anzeige)',
-  url: 'https://www.regierung.mittelfranken.bayern.de/',
-};
 
 export const PHASES: Phase[] = [
   // ------------------------------------------------------------------ 0
@@ -1182,16 +1057,39 @@ export const PHASES: Phase[] = [
 /** Alle Schritte flach, für Zähler und Fortschritt. */
 export const ALL_STEPS: Step[] = PHASES.flatMap((phase) => phase.steps);
 
-export function stepAppliesTo(step: Step, profession: ProfessionId | null): boolean {
-  if (!profession || !step.professions || step.professions.length === 0) {
-    return true;
-  }
-  return step.professions.includes(profession);
-}
-
-export function professionById(id: string | null): Profession | null {
-  return PROFESSIONS.find((p) => p.id === id) ?? null;
-}
+/** Die Freelancer Road für die Schritte-Seite (Checkliste und Speicher). */
+export const FREELANCER_ROAD: RoadDefinition<ProfessionId> = {
+  slug: 'freelancer-road',
+  name: 'Freelancer Road',
+  storageKey: 'fw_freelancer_road_v1',
+  professions: PROFESSIONS,
+  phases: PHASES,
+  copy: {
+    choiceId: 'beruf',
+    choiceHeading: { de: 'Dein Beruf', en: 'Your profession' },
+    choiceLead: {
+      de: 'Die Ämter unterscheiden sich je nach Beruf. Wähl deinen, dann verschwinden die Schritte, die für dich nicht gelten. Ohne Wahl siehst du alles, mit Hinweis, für wen es gilt.',
+      en: 'The offices differ by profession. Pick yours and the steps that do not apply to you disappear. Without a choice you see everything, with a note on whom it applies to.',
+    },
+    choiceGroupLabel: { de: 'Beruf wählen', en: 'Choose a profession' },
+    hiddenCount: {
+      de: '{n} Schritte ausgeblendet, die für deinen Beruf nicht gelten.',
+      en: '{n} steps hidden that do not apply to your profession.',
+    },
+    emptyPhase: {
+      de: 'In dieser Etappe gibt es für deinen Beruf nichts zu tun.',
+      en: 'Nothing to do in this stage for your profession.',
+    },
+    storageNote: {
+      de: 'Häkchen, Notizen und Berufswahl werden nur auf diesem Gerät gespeichert, im lokalen Speicher deines Browsers, technisch wie ein Cookie. Nichts davon wird an FareWell oder Dritte übertragen oder für irgendetwas anderes verwendet. Deshalb gilt aber auch: Wenn du deine Cookies und Website-Daten löschst, den Browser wechselst oder im privaten Modus surfst, ist dein ganzer Stand auf dieser Seite weg. Exportiere ihn regelmäßig als Datei.',
+      en: 'Ticks, notes and your profession choice are stored only on this device, in your browser\'s local storage, technically like a cookie. None of it is sent to FareWell or third parties or used for anything else. That also means: if you clear your cookies and site data, switch browsers or browse in private mode, your entire progress on this page is gone. Export it as a file regularly.',
+    },
+    resetConfirm: {
+      de: 'Alle Häkchen, Notizen und die Berufswahl auf diesem Gerät löschen? Das lässt sich nicht rückgängig machen. Exportiere vorher, wenn du unsicher bist.',
+      en: 'Delete all ticks, notes and the profession choice on this device? This cannot be undone. Export first if you are unsure.',
+    },
+  },
+};
 
 // Unbenutzte Sammlung bewusst exportiert: dokumentiert, welche Berufe als
 // „freie Berufe" behandelt werden, falls ein Schritt das später braucht.

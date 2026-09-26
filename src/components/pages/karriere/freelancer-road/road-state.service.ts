@@ -1,14 +1,19 @@
 import { Injectable, PLATFORM_ID, computed, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ALL_STEPS, PROFESSIONS, type ProfessionId } from './freelancer-road.data';
+import { ROAD, professionIn, roadSteps, stepAppliesTo } from './road.model';
 
 /**
- * Persistierter Stand der Freelancer Road: gewählter Beruf, abgehakte Schritte
- * (mit Datum) und Notizen je Schritt.
+ * Persistierter Stand einer Road: gewählter Beruf bzw. gewähltes Vorhaben,
+ * abgehakte Schritte (mit Datum) und Notizen je Schritt.
  *
- * Lebt ausschließlich im Browser der Person (localStorage, ein Schlüssel).
- * Nichts davon verlässt das Gerät: kein Backend, kein Sync, keine Auswertung.
- * Genau deshalb steht auf der Seite die Warnung, dass gelöschte
+ * Nicht `providedIn: 'root'`: jede Road-Seite stellt ihre eigene Instanz
+ * bereit, zusammen mit dem ROAD-Token. So hat jede Road ihren eigenen
+ * Speicherschlüssel, und ein Import aus der Freelancer Road kann die Gastro
+ * Road nicht überschreiben (unbekannte Schritt-IDs werden verworfen).
+ *
+ * Lebt ausschließlich im Browser der Person (localStorage, ein Schlüssel pro
+ * Road). Nichts davon verlässt das Gerät: kein Backend, kein Sync, keine
+ * Auswertung. Genau deshalb steht auf der Seite die Warnung, dass gelöschte
  * Website-Daten den Stand mitnehmen, und deshalb gibt es Export/Import.
  *
  * Beim Prerendern gibt es keinen Speicher: `load()` ist dann ein No-op und
@@ -16,13 +21,12 @@ import { ALL_STEPS, PROFESSIONS, type ProfessionId } from './freelancer-road.dat
  * (die App hydratisiert nicht, sie rendert clientseitig neu).
  */
 
-const STORAGE_KEY = 'fw_freelancer_road_v1';
 const SCHEMA = 1;
 
 export interface RoadSnapshot {
   schema: number;
   updatedAt: string;
-  profession: ProfessionId | null;
+  profession: string | null;
   /** Schritt-ID → ISO-Datum des Abhakens. */
   done: Record<string, string>;
   /** Schritt-ID → Notiztext. */
@@ -37,11 +41,13 @@ export interface ImportResult {
   error?: 'parse' | 'schema';
 }
 
-@Injectable({ providedIn: 'root' })
-export class FreelancerRoadStateService {
+@Injectable()
+export class RoadStateService {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly road = inject(ROAD);
+  private readonly allSteps = roadSteps(this.road);
 
-  readonly profession = signal<ProfessionId | null>(null);
+  readonly profession = signal<string | null>(null);
   readonly done = signal<Record<string, string>>({});
   readonly notes = signal<Record<string, string>>({});
   /** true, sobald load() im Browser gelaufen ist (steuert Hinweise im UI). */
@@ -59,13 +65,29 @@ export class FreelancerRoadStateService {
       Object.values(this.notes()).some((n) => n.trim().length > 0),
   );
 
+  /** Die gewählte Auswahl als Objekt (Icon, Label, Einordnung) oder null. */
+  readonly professionInfo = computed(() => professionIn(this.road, this.profession()));
+  /** Schritte, die für die gewählte Auswahl gelten (alle, wenn keine gewählt). */
+  readonly visibleSteps = computed(() =>
+    this.allSteps.filter((s) => stepAppliesTo(s, this.profession())),
+  );
+  readonly hiddenCount = computed(() => this.allSteps.length - this.visibleSteps().length);
+  readonly visibleDone = computed(() => {
+    const done = this.done();
+    return this.visibleSteps().filter((s) => s.id in done).length;
+  });
+  readonly percent = computed(() => {
+    const total = this.visibleSteps().length;
+    return total === 0 ? 0 : Math.round((this.visibleDone() / total) * 100);
+  });
+
   load(): void {
     if (!this.isBrowser) {
       return;
     }
     this.persistent.set(this.probe());
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(this.road.storageKey);
       if (raw) {
         const parsed = this.parse(raw);
         if (parsed) {
@@ -78,7 +100,7 @@ export class FreelancerRoadStateService {
     this.loaded.set(true);
   }
 
-  setProfession(id: ProfessionId | null): void {
+  setProfession(id: string | null): void {
     this.profession.set(id);
     this.persist();
   }
@@ -124,7 +146,7 @@ export class FreelancerRoadStateService {
     this.updatedAt.set(null);
     if (this.isBrowser) {
       try {
-        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(this.road.storageKey);
       } catch {
         /* ignore */
       }
@@ -146,7 +168,7 @@ export class FreelancerRoadStateService {
     if (!parsed) {
       return { ok: false, error: 'parse' };
     }
-    const known = new Set(ALL_STEPS.map((s) => s.id));
+    const known = new Set(this.allSteps.map((s) => s.id));
     const done = { ...this.done() };
     const notes = { ...this.notes() };
     let steps = 0;
@@ -196,7 +218,7 @@ export class FreelancerRoadStateService {
     const snap = this.snapshot();
     this.updatedAt.set(snap.updatedAt);
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(snap));
+      localStorage.setItem(this.road.storageKey, JSON.stringify(snap));
       this.persistent.set(true);
     } catch {
       this.persistent.set(false);
@@ -211,14 +233,14 @@ export class FreelancerRoadStateService {
     } catch {
       return null;
     }
-    if (!value || typeof value !== 'object') {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
       return null;
     }
     const v = value as Record<string, unknown>;
-    const professionIds = new Set<string>(PROFESSIONS.map((p) => p.id));
+    const professionIds = new Set<string>(this.road.professions.map((p) => p.id));
     const profession =
       typeof v['profession'] === 'string' && professionIds.has(v['profession'])
-        ? (v['profession'] as ProfessionId)
+        ? v['profession']
         : null;
     const done = this.stringRecord(v['done']);
     const notes = this.stringRecord(v['notes']);

@@ -1,0 +1,121 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+
+  <app-guide-hero
+    kicker="Gastro Road"
+    icon="🍳"
+    image=""
+    [heading]="
+      t(
+        'Restaurant oder Kochkurse: Schritt für Schritt in die Selbständigkeit.',
+        'Restaurant or cooking classes: step by step into self-employment.'
+      )
+    "
+    [lead]="
+      t(
+        'Alles, was passieren muss, bevor der erste Gast bestellt oder die erste Gruppe am Herd steht: Hygiene, Ämter, Genehmigungen, Kasse, Versicherung. Wähl, was du planst, hak ab, was du schon hast, und schreib dir zu jedem Schritt auf, was du erfahren hast.',
+        'Everything that has to happen before the first guest orders or the first group stands at the stove: hygiene, offices, permits, till, insurance. Pick what you are planning, tick off what you already have, and note down what you learned at every step.'
+      )
+    "
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Die Freelancer Road, umgebaut für alle, die ein Restaurant eröffnen oder Kochkurse geben
+            wollen. Der größte Unterschied: Wer Essen an andere abgibt, ist ein
+            Lebensmittelunternehmen, und die Lebensmittelkontrolle kommt ohne Termin.
+          </span>
+          <span class="lang en">
+            The Freelancer Road, rebuilt for anyone who wants to open a restaurant or teach cooking
+            classes. The biggest difference: whoever serves food to others is a food business, and
+            the food inspectors come without an appointment.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="90" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Deshalb hat die Hygiene hier eine eigene Etappe, und sie steht vor dem Mietvertrag. Was
+            eine Küche können muss, entscheidet, welche Räume überhaupt in Frage kommen. Umbauen,
+            nachdem unterschrieben ist, ist der teuerste Weg.
+          </span>
+          <span class="lang en">
+            That is why hygiene has its own stage here, and it comes before the lease. What a
+            kitchen has to be able to do decides which premises are even an option. Rebuilding
+            after you have signed is the most expensive way.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            Jeder Schritt sagt dir, ob er Pflicht ist und wen du anrufst. Oben wählst du Restaurant
+            oder Kochkurse, dann verschwindet, was nicht für dich gilt. Planst du beides, wähl nichts.
+          </span>
+          <span class="lang en">
+            Every step tells you whether it is required and whom to call. At the top you pick
+            restaurant or cooking classes and whatever does not apply to you disappears. Planning
+            both? Pick nothing.
+          </span>
+        </p>
+        <app-guide-note variant="warn" [label]="t('Ja, sie kommen wirklich an die Tür', 'Yes, they really do come to the door')">
+          <span class="lang de">
+            Die Lebensmittelüberwachung kontrolliert unangekündigt: eine Erstkontrolle nach der
+            Registrierung, danach je nach Einstufung alle sechs Monate bis drei Jahre, dazu nach
+            Beschwerden. Wer die Listen aus Etappe 02 jeden Tag führt, hat dabei nichts zu
+            befürchten. Wer nicht, zahlt Gebühren, riskiert ein Bußgeld und steht womöglich sechs
+            Monate lang mit Namen und Adresse im Internet.
+          </span>
+          <span class="lang en">
+            The food inspectors check without notice: a first inspection after registration, then
+            every six months to three years depending on your grade, plus after complaints. If you
+            keep the lists from stage 02 every day, you have nothing to fear. If you do not, you pay
+            fees, risk a fine and may end up online with your name and address for six months.
+          </span>
+        </app-guide-note>
+        <app-guide-note variant="tip" [label]="t('Ehrlich gesagt', 'Honestly')">
+          <span class="lang de">
+            Ich habe ein Kosmetikstudio gegründet, kein Restaurant. Was hier über Gastronomie und
+            Lebensmittelrecht steht, ist recherchiert, nicht erlebt, und ersetzt keine Beratung. Wo
+            es auf deinen Fall ankommt, nennt der Schritt die Stelle, die es verbindlich sagen kann.
+            Wo meine eigene Gründung weiterhilft, steht es im Kasten „Joés Erfahrung".
+          </span>
+          <span class="lang en">
+            I founded a beauty studio, not a restaurant. What is written here about gastronomy and
+            food law is researched, not lived, and is no substitute for advice. Where your case
+            matters, the step names the office that can say it reliably. Where my own founding
+            helps, it sits in the box "Joé's experience".
+          </span>
+        </app-guide-note>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <!-- Auswahl, Fortschritt, Werkzeuge und alle Etappen: gemeinsam mit der Freelancer Road -->
+    <app-road-checklist />
+
+    <div class="gd-read" style="margin-top: 2.5rem">
+      <app-guide-note variant="tip" [label]="t('Etwas fehlt oder stimmt nicht mehr?', 'Something missing or out of date?')">
+        <span class="lang de">
+          Zuständigkeiten, Gebühren und Öffnungszeiten ändern sich, und bei Lebensmitteln hängt
+          vieles vom Einzelfall ab. Wenn du bei einem Schritt etwas anderes erlebst als hier
+          beschrieben, sag es Joé. Dann profitiert die nächste Person davon.
+        </span>
+        <span class="lang en">
+          Responsibilities, fees and opening hours change, and with food a lot depends on the
+          individual case. If you experience something different at a step than described here,
+          tell Joé. Then the next person benefits from it.
+        </span>
+      </app-guide-note>
+    </div>
+
+    <p class="gd-fine" style="margin-top: 3rem; text-align: center">
+      <span class="lang de">FareWell · Gastro Road · Stand {{ stand }}</span>
+      <span class="lang en">FareWell · Gastro Road · as of {{ stand }}</span>
+    </p>
+  </div>
+
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+</div>

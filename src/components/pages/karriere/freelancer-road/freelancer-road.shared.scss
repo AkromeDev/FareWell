@@ -182,6 +182,19 @@ button.gd-btn {
       text-decoration-color: rgba(74, 122, 78, 0.6);
       text-decoration-thickness: 1px;
     }
+
+    // Auf dem grünen Grund erledigter Schritte (Tönung über --gd-bg) fielen
+    // die Tag-Farben unter 4.5:1 (axe; gemessen 3.3 bis 4.4). Dunklere Töne
+    // derselben Farbe, jeweils über 5:1.
+    .fr-tag--pflicht {
+      color: #843C2A;
+    }
+    .fr-tag--empfohlen {
+      color: #6B4510;
+    }
+    .fr-tag--done {
+      color: #335A3A;
+    }
   }
 }
 

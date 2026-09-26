@@ -475,6 +475,28 @@
     }
   }
 
+  // Emoji statt Logo (app-guide-hero [icon]): gleiches Plättchen, quadratisch.
+  .gd-hero__icon {
+    display: inline-grid;
+    place-items: center;
+    width: clamp(72px, 10vw, 104px);
+    height: clamp(72px, 10vw, 104px);
+    font-size: clamp(40px, 6vw, 60px);
+    line-height: 1;
+    background: rgba(251, 250, 245, 0.94);
+    border-radius: 18px;
+    box-shadow: var(--gd-shadow-lg);
+  }
+
+  // Hero ohne Foto (app-guide-hero image=""): Forest-Fläche mit weichem
+  // Sage-Licht, etwas niedriger, weil kein Bild den Raum füllen muss.
+  .gd-hero--plain {
+    min-height: min(52vh, 480px);
+    background:
+      radial-gradient(110% 90% at 88% 8%, rgba(138, 154, 117, 0.34), transparent 62%),
+      linear-gradient(165deg, var(--gd-forest-2) 0%, var(--gd-forest) 72%);
+  }
+
   .gd-hero__title {
     font-family: var(--gd-font-head);
     font-weight: 560;

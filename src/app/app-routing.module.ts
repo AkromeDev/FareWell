@@ -378,6 +378,25 @@ function localizedRoutes(lang: PageLang): Routes {
 
     // Freelancer Road: die Schritte-Seite steht VOR der Einstiegsseite, wie
     // beim Masseur-Onboarding, damit der längere Pfad zuerst greift.
+    // Die Gastro Road (Restaurant oder Kochkurse) ist eine Variante ohne
+    // FareWell-Bezug, gebaut für jemanden aus Joés Umfeld: noindex, nicht in
+    // der Sitemap, nirgends verlinkt, nur per Link erreichbar.
+    {
+      path: 'karriere/freelancer-road/gastro',
+      loadComponent: () =>
+        import('../components/pages/karriere/freelancer-road/gastro-road.component')
+          .then(m => m.GastroRoadComponent),
+      data: d(
+        {
+          title: 'Gastro Road: Restaurant oder Kochkurse eröffnen, alle Schritte | FareWell Nürnberg',
+          description: 'Die abhakbare Checkliste für alle, die in Nürnberg ein Restaurant eröffnen oder Kochkurse geben wollen: Hygiene und Lebensmittelkontrolle, Gaststättenerlaubnis, Finanzamt und Kasse, Versicherung. Mit Nummern und Adressen. Dein Stand bleibt in deinem Browser.'
+        },
+        {
+          title: 'Gastro Road: Opening a Restaurant or Cooking Classes, Every Step | FareWell Nuremberg',
+          description: 'The tick-off checklist for anyone opening a restaurant or teaching cooking classes in Nuremberg: hygiene and food inspections, restaurant licence, tax office and till, insurance. With phone numbers and addresses. Your progress stays in your browser.'
+        }
+      )
+    },
     {
       path: 'karriere/freelancer-road/schritte',
       loadComponent: () =>
