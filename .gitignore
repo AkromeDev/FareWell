@@ -54,3 +54,7 @@ Thumbs.db
 
 # Set-aside files (nothing is ever deleted — see CLAUDE.md)
 /bin/
+
+# Personalordner mit Ausweis, Approbation und Diplom eines Bewerbers: darf nie in
+# dieses öffentliche Repository gelangen (siehe Leo Andrea/Leo Andrea.md).
+/Leo Andrea/

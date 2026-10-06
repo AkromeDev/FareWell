@@ -1,0 +1,532 @@
+<div class="am" [attr.lang]="lang">
+  <!-- ===================================================================== -->
+  <!-- Hero: Porträt und Versprechen                                          -->
+  <!-- ===================================================================== -->
+  <section class="hero" id="topSection">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow" appReveal>
+          <span class="lang de">FareWell · Nürnberg · Ästhetische Medizin</span
+          ><span class="lang en">FareWell · Nuremberg · Aesthetic medicine</span>
+        </p>
+        <h1 class="hero-title">
+          <span class="hero-line" appReveal [revealDelay]="80"
+            ><span class="lang de">Ästhetische Medizin</span
+            ><span class="lang en">Aesthetic medicine</span></span
+          >
+          <span class="hero-line hero-line--accent" appReveal [revealDelay]="200"
+            ><span class="lang de">in ärztlicher Hand.</span
+            ><span class="lang en">in a doctor's hands.</span></span
+          >
+        </h1>
+        <p class="hero-sub" appReveal [revealDelay]="340">
+          <span class="lang de"
+            >Botulinumtoxin, Hyaluronsäure und regenerative Behandlungen bei FareWell in
+            Nürnberg, durchgeführt von Dr. med. Andrea Leo: approbierter Arzt seit 2016, seit 2017
+            in Kliniken in Bayern tätig und seit 2018 in der ästhetischen Medizin.</span
+          ><span class="lang en"
+            >Botulinum toxin, hyaluronic acid and regenerative treatments at FareWell in
+            Nuremberg, performed by Dr. med. Andrea Leo: a licensed physician since 2016, working
+            in Bavarian hospitals since 2017 and in aesthetic medicine since 2018.</span
+          >
+        </p>
+        <div class="hero-ctas" appReveal [revealDelay]="460">
+          <a class="btn-gold no-underline" [href]="mailHref" (click)="trackLead('aesthetik-hero')"
+            ><span class="lang de">Beratung anfragen</span
+            ><span class="lang en">Request a consultation</span></a
+          >
+          <a class="btn-outline no-underline" href="#leistungen" [appScrollTo]="'leistungen'"
+            ><span class="lang de">Behandlungen ansehen</span
+            ><span class="lang en">See the treatments</span></a
+          >
+        </div>
+        <p class="hero-pill" appReveal="fade" [revealDelay]="600">
+          <span class="pill-dot" aria-hidden="true"></span>
+          <span class="lang de">Approbierter Arzt · Behandlung in eigener ärztlicher Verantwortung</span
+          ><span class="lang en">Licensed physician · treatment under his own medical responsibility</span>
+        </p>
+      </div>
+
+      <figure class="portrait" appReveal="scale" [revealDelay]="160">
+        <div class="portrait-ring">
+          <div class="portrait-frame">
+            <img
+              [src]="portrait"
+              width="257"
+              height="257"
+              [alt]="t('Porträt von Dr. med. Andrea Leo', 'Portrait of Dr. med. Andrea Leo')"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <figcaption class="portrait-card">
+          <span class="portrait-name">Dr. med. Andrea Leo</span>
+          <span class="portrait-role"
+            ><span class="lang de">Approbierter Arzt · Ästhetische Medizin</span
+            ><span class="lang en">Licensed physician · Aesthetic medicine</span></span
+          >
+          <span class="portrait-langs"
+            ><span class="sr-only"
+              ><span class="lang de">Sprachen: </span><span class="lang en">Languages: </span></span
+            >Deutsch · English · Italiano · Magyar</span
+          >
+          <a class="portrait-ig no-underline" [href]="instagramUrl" target="_blank" rel="noopener noreferrer"
+            >Instagram <span aria-hidden="true">↗</span></a
+          >
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Zahlen, die man nachprüfen kann                                        -->
+  <!-- ===================================================================== -->
+  <section class="stats-band" [attr.aria-label]="t('Eckdaten zu Dr. med. Andrea Leo', 'Key facts about Dr. med. Andrea Leo')">
+    <div class="wrap">
+      <ul class="stats">
+        @for (stat of stats; track $index) {
+          <li class="stat" appReveal [revealDelay]="$index * 80">
+            <span class="stat-value"
+              ><span class="lang de">{{ stat.value.de }}</span
+              ><span class="lang en">{{ stat.value.en }}</span></span
+            >
+            <span class="stat-label"
+              ><span class="lang de">{{ stat.label.de }}</span
+              ><span class="lang en">{{ stat.label.en }}</span></span
+            >
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Warum ein Arzt                                                         -->
+  <!-- ===================================================================== -->
+  <section class="vertrauen" id="vertrauen">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Warum ein Arzt</span><span class="lang en">Why a doctor</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Sicherheit ist keine Zusatzleistung. <em>Sie ist der Anfang.</em></span
+          ><span class="lang en">Safety is not an add-on. <em>It is where we begin.</em></span>
+        </h2>
+        <p class="section-lede" appReveal [revealDelay]="120">
+          <span class="lang de"
+            >Botulinumtoxin ist ein verschreibungspflichtiges Arzneimittel, und die Injektion ist
+            Ärzt:innen vorbehalten. Dahinter steckt kein Formalismus: Wer injiziert, muss Anatomie
+            lesen, Gegenanzeigen erkennen, aufklären und im seltenen Fall einer Komplikation sofort
+            richtig handeln. Genau dafür ist Andrea Leo ausgebildet.</span
+          ><span class="lang en"
+            >Botulinum toxin is a prescription-only medicine, and injecting it is reserved for
+            physicians. That is not a formality: whoever injects has to read anatomy, recognise
+            contraindications, inform you properly and, in the rare event of a complication, act
+            correctly and at once. That is exactly what Andrea Leo is trained for.</span
+          >
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card" appReveal>
+          <span class="card-num" aria-hidden="true">01</span>
+          <h3>
+            <span class="lang de">Anatomie, täglich</span><span class="lang en">Anatomy, every day</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Seit 2017 in Kliniken, die meiste Zeit in Chirurgie, Unfallchirurgie und Orthopädie.
+              Wer Gefäße und Nerven jeden Tag vor sich hat, setzt eine Kanüle anders.</span
+            ><span class="lang en"
+              >In hospitals since 2017, most of that time in surgery, trauma surgery and
+              orthopaedics. Someone who sees vessels and nerves every day places a needle
+              differently.</span
+            >
+          </p>
+        </article>
+        <article class="card" appReveal [revealDelay]="100">
+          <span class="card-num" aria-hidden="true">02</span>
+          <h3>
+            <span class="lang de">Notfallmedizinisch geschult</span
+            ><span class="lang en">Trained for emergencies</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >ATLS, ALS und ITLS, Notarztkurs, Intensivstation und Notaufnahme in Schwabach.
+              Ernste Komplikationen sind bei Injektionen selten. Falls doch, zählt, dass jemand sie
+              erkennt und ruhig bleibt.</span
+            ><span class="lang en"
+              >ATLS, ALS and ITLS, emergency physician course, intensive care and the emergency
+              department in Schwabach. Serious complications are rare with injections. If one
+              occurs, what counts is that someone recognises it and stays calm.</span
+            >
+          </p>
+        </article>
+        <article class="card" appReveal [revealDelay]="200">
+          <span class="card-num" aria-hidden="true">03</span>
+          <h3>
+            <span class="lang de">Aufklärung ohne Verkaufsdruck</span
+            ><span class="lang en">Advice without sales pressure</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Jede Behandlung beginnt mit einem ärztlichen Gespräch: Was wünschst du dir, was ist
+              anatomisch sinnvoll, wovon rät er ab? Ein ehrliches Nein gehört dazu. Entschieden
+              wird in Ruhe, nicht auf der Liege.</span
+            ><span class="lang en"
+              >Every treatment begins with a medical consultation: what do you wish for, what makes
+              anatomical sense, what does he advise against? An honest no is part of it. Decisions
+              are made calmly, not on the treatment couch.</span
+            >
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Der Weg: Laufbahn als Zeitstrahl                                       -->
+  <!-- ===================================================================== -->
+  <section class="weg" id="weg">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Der Weg</span><span class="lang en">The path</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Erfahrung, <em>die man nachlesen kann.</em></span
+          ><span class="lang en">Experience <em>you can look up.</em></span>
+        </h2>
+        <p class="section-lede" appReveal [revealDelay]="120">
+          <span class="lang de"
+            >Medizinstudium in Budapest, Approbation in Frankfurt, seit 2017 Kliniken in Bayern,
+            parallel dazu die ästhetische Medizin. Jede Station mit Ort und Zeitraum.</span
+          ><span class="lang en"
+            >Medical studies in Budapest, licence in Frankfurt, Bavarian hospitals since 2017,
+            aesthetic medicine alongside. Every station with place and dates.</span
+          >
+        </p>
+      </div>
+
+      <div class="tl-wrap" appReveal>
+        <ul class="tl-legend" aria-hidden="true">
+          <li>
+            <span class="sw sw--klinik"></span>
+            <span class="lang de">Klinik</span><span class="lang en">Hospital</span>
+          </li>
+          <li>
+            <span class="sw sw--studium"></span>
+            <span class="lang de">Studium und Lehre</span><span class="lang en">Studies and teaching</span>
+          </li>
+          <li>
+            <span class="sw sw--aesthetik"></span>
+            <span class="lang de">Ästhetische Medizin, parallel</span
+            ><span class="lang en">Aesthetic medicine, in parallel</span>
+          </li>
+          <li>
+            <span class="sw sw--approbation"></span>
+            <span class="lang de">Approbation</span><span class="lang en">Medical licence</span>
+          </li>
+        </ul>
+
+        <div class="tl-head" aria-hidden="true">
+          <span></span>
+          <div class="tl-ticks">
+            @for (tick of ticks; track tick.year) {
+              <span class="tl-tick" [style.left.%]="tick.left">{{ tick.year }}</span>
+            }
+            <span class="tl-tick tl-tick--now"
+              ><span class="lang de">heute</span><span class="lang en">today</span></span
+            >
+          </div>
+        </div>
+
+        <ol class="tl" [style.--tl-period]="tickPeriod">
+          @for (row of timeline; track $index) {
+            <li class="tl-row" [class]="'tl-row--' + row.kind">
+              <div class="tl-label">
+                <span class="tl-when"
+                  ><span class="lang de">{{ row.when.de }}</span
+                  ><span class="lang en">{{ row.when.en }}</span></span
+                >
+                <span class="tl-top">
+                  <span class="tl-place"
+                    ><span class="lang de">{{ row.place.de }}</span
+                    ><span class="lang en">{{ row.place.en }}</span></span
+                  >
+                  <span class="tl-kind"
+                    ><span class="lang de">{{ row.kindLabel.de }}</span
+                    ><span class="lang en">{{ row.kindLabel.en }}</span></span
+                  >
+                </span>
+                <span class="tl-role"
+                  ><span class="lang de">{{ row.role.de }}</span
+                  ><span class="lang en">{{ row.role.en }}</span></span
+                >
+              </div>
+              <div class="tl-lane" aria-hidden="true">
+                @if (row.kind === 'approbation') {
+                  <span class="tl-dot" [style.left.%]="row.left"></span>
+                } @else {
+                  <span class="tl-bar" [style.left.%]="row.left" [style.width.%]="row.width"></span>
+                }
+              </div>
+            </li>
+          }
+        </ol>
+      </div>
+
+      <div class="certs">
+        @for (group of certs; track $index) {
+          <div class="cert-group" appReveal [revealDelay]="$index * 100">
+            <h3>
+              <span class="lang de">{{ group.title.de }}</span
+              ><span class="lang en">{{ group.title.en }}</span>
+            </h3>
+            <ul>
+              @for (item of group.items; track $index) {
+                <li>
+                  <span class="lang de">{{ item.de }}</span><span class="lang en">{{ item.en }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Statement                                                              -->
+  <!-- ===================================================================== -->
+  <section class="statement">
+    <blockquote appReveal>
+      <p>
+        <span class="lang de"
+          >Gute ästhetische Medizin sieht man nicht. <em>Man sieht nur dich, ausgeruht.</em></span
+        ><span class="lang en"
+          >Good aesthetic medicine is not something you see. <em>You just see yourself, rested.</em></span
+        >
+      </p>
+    </blockquote>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Behandlungen                                                           -->
+  <!-- ===================================================================== -->
+  <section class="leistungen" id="leistungen">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Behandlungen</span><span class="lang en">Treatments</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Was Dr. Leo <em>bei FareWell anbietet.</em></span
+          ><span class="lang en">What Dr. Leo <em>offers at FareWell.</em></span>
+        </h2>
+        <p class="section-lede" appReveal [revealDelay]="120">
+          <span class="lang de"
+            >Sieben Bereiche, von der klassischen Faltenbehandlung bis zur regenerativen Medizin.
+            Was davon für dich sinnvoll ist, und was nicht, klärt das ärztliche Gespräch vorab.
+            Preis und Dauer richten sich nach Region und Aufwand und werden dort festgelegt.</span
+          ><span class="lang en"
+            >Seven areas, from classic wrinkle treatment to regenerative medicine. What makes sense
+            for you, and what does not, is settled in the medical consultation beforehand. Price
+            and duration depend on the area and the effort involved and are set there.</span
+          >
+        </p>
+      </div>
+
+      <div class="tx-grid">
+        @for (group of groups; track group.id) {
+          <article
+            class="tx-card"
+            [class.tx-card--wide]="$first"
+            [id]="'leistung-' + group.id"
+            appReveal
+            [revealDelay]="($index % 2) * 90"
+          >
+            <span class="tx-num" aria-hidden="true">{{ group.num }}</span>
+            <h3>
+              <span class="lang de">{{ group.title.de }}</span
+              ><span class="lang en">{{ group.title.en }}</span>
+            </h3>
+            <p class="tx-blurb">
+              <span class="lang de">{{ group.blurb.de }}</span
+              ><span class="lang en">{{ group.blurb.en }}</span>
+            </p>
+            <ul class="pills">
+              @for (item of group.items; track $index) {
+                <li class="pill">
+                  <span class="lang de">{{ item.name.de }}</span
+                  ><span class="lang en">{{ item.name.en }}</span>
+                  @if (item.price) {
+                    <span class="pill-meta"
+                      ><span class="lang de">{{ item.price.de }}</span
+                      ><span class="lang en">{{ item.price.en }}</span></span
+                    >
+                  }
+                </li>
+              }
+            </ul>
+          </article>
+        }
+      </div>
+
+      <p class="tx-outro" appReveal>
+        <span class="lang de"
+          >Behandlungen lassen sich je nach Befund kombinieren. Dr. Leo erstellt dafür ein
+          individuelles Konzept.</span
+        ><span class="lang en"
+          >Treatments can be combined depending on the findings. Dr. Leo puts together an
+          individual plan.</span
+        >
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Ablauf                                                                 -->
+  <!-- ===================================================================== -->
+  <section class="ablauf" id="ablauf">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Der Ablauf</span><span class="lang en">How it works</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Drei Schritte, <em>kein Zeitdruck.</em></span
+          ><span class="lang en">Three steps, <em>no time pressure.</em></span>
+        </h2>
+      </div>
+
+      <ol class="steps">
+        <li class="step" appReveal>
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>
+            <span class="lang de">Gespräch und Aufklärung</span
+            ><span class="lang en">Consultation and informed consent</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Du beschreibst, was dich stört. Dr. Leo untersucht, erklärt Möglichkeiten, Grenzen
+              und Risiken und sagt dir auch, wenn er von etwas abrät. Danach weißt du, was auf dich
+              zukommt, inklusive Preis.</span
+            ><span class="lang en"
+              >You describe what bothers you. Dr. Leo examines, explains options, limits and risks,
+              and tells you if he advises against something. Afterwards you know what to expect,
+              price included.</span
+            >
+          </p>
+        </li>
+        <li class="step" appReveal [revealDelay]="100">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3><span class="lang de">Behandlung</span><span class="lang en">Treatment</span></h3>
+          <p>
+            <span class="lang de"
+              >In einem ruhigen Behandlungsraum bei FareWell, mit sterilem Material und
+              zugelassenen Präparaten. Wie lange es dauert, hängt von der Behandlung ab und wird dir
+              vorab genannt.</span
+            ><span class="lang en"
+              >In a quiet treatment room at FareWell, with sterile materials and approved products.
+              How long it takes depends on the treatment and is told to you in advance.</span
+            >
+          </p>
+        </li>
+        <li class="step" appReveal [revealDelay]="200">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>
+            <span class="lang de">Nachsorge und Kontrolle</span
+            ><span class="lang en">Aftercare and follow-up</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Du bekommst klare Hinweise für die ersten Tage. Bei Fragen oder Unsicherheiten ist
+              Dr. Leo erreichbar, und wo es sinnvoll ist, schaut er sich das Ergebnis in einer
+              Kontrolle an.</span
+            ><span class="lang en"
+              >You receive clear guidance for the first days. If you have questions or concerns,
+              Dr. Leo is reachable, and where it makes sense he reviews the result at a
+              follow-up.</span
+            >
+          </p>
+        </li>
+      </ol>
+
+      <p class="frame-note" appReveal>
+        <strong><span class="lang de">Gut zu wissen</span><span class="lang en">Good to know</span></strong>
+        <span class="lang de"
+          >Dr. med. Andrea Leo behandelt in eigener ärztlicher Verantwortung in den Räumen von
+          FareWell. Aufklärung, Indikation, Dokumentation und Abrechnung liegen bei ihm; FareWell
+          stellt Raum, Termine und Organisation. Ästhetische Behandlungen sind in der Regel
+          Privatleistungen.</span
+        ><span class="lang en"
+          >Dr. med. Andrea Leo treats under his own medical responsibility on FareWell's premises.
+          Informed consent, indication, documentation and billing are his; FareWell provides the
+          room, appointments and organisation. Aesthetic treatments are as a rule private
+          services.</span
+        >
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Fragen                                                                 -->
+  <!-- ===================================================================== -->
+  <section class="fragen" id="fragen">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Häufige Fragen</span><span class="lang en">Common questions</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Was du <em>vorher wissen willst.</em></span
+          ><span class="lang en">What you <em>want to know first.</em></span>
+        </h2>
+      </div>
+
+      <div class="faq" appReveal>
+        @for (entry of faq; track $index) {
+          <details>
+            <summary>
+              <span class="lang de">{{ entry.q.de }}</span><span class="lang en">{{ entry.q.en }}</span>
+            </summary>
+            <p class="faq-a">
+              <span class="lang de">{{ entry.a.de }}</span><span class="lang en">{{ entry.a.en }}</span>
+            </p>
+          </details>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Abschluss                                                              -->
+  <!-- ===================================================================== -->
+  <section class="besuch" id="besuch">
+    <div class="wrap besuch-content">
+      <h2 appReveal>
+        <span class="lang de">Bereit für ein <em>ehrliches Gespräch?</em></span
+        ><span class="lang en">Ready for an <em>honest conversation?</em></span>
+      </h2>
+      <p class="besuch-info" appReveal [revealDelay]="120">
+        <span class="lang de"
+          >Frauentorgraben 5, 90443 Nürnberg. Zwei Minuten vom Hauptbahnhof.<br />Termine mit
+          Dr. Leo nach Vereinbarung.</span
+        ><span class="lang en"
+          >Frauentorgraben 5, 90443 Nuremberg. Two minutes from the main station.<br />Appointments
+          with Dr. Leo by arrangement.</span
+        >
+      </p>
+      <div class="besuch-ctas" appReveal [revealDelay]="240">
+        <a class="btn-gold no-underline" [href]="mailHref" (click)="trackLead('aesthetik-besuch')"
+          ><span class="lang de">Beratung anfragen</span
+          ><span class="lang en">Request a consultation</span></a
+        >
+        <a class="btn-outline no-underline" [href]="phoneHref">{{ phoneLabel }}</a>
+      </div>
+    </div>
+  </section>
+</div>

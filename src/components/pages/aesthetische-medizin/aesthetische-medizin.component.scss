@@ -1,0 +1,1000 @@
+@use 'themes/theme-entry' as *;
+
+// ===========================================================================
+// Ästhetische Medizin (Dr. med. Andrea Leo): „Emerald Immersive" wie die
+// Startseite, tiefes Smaragd, Champagner-Gold, Fraunces-Serifen. Eine
+// Vertrauensseite: Porträt, Zahlen, Laufbahn als Zeitstrahl, dann das Angebot.
+// Komponenten-CSS darf höchstens 20 kB wiegen (angular.json), deshalb knapp.
+// ===========================================================================
+
+:host {
+  display: block;
+  background: $emerald-deep;
+  color: $cream;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: clip;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+
+section {
+  padding: clamp(72px, 10vh, 130px) 0;
+}
+
+figure,
+blockquote,
+ol,
+ul {
+  margin: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Gemeinsame Bausteine (Namen und Werte wie auf der Startseite)
+// ---------------------------------------------------------------------------
+.eyebrow {
+  margin: 0 0 18px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: $sage-bright;
+}
+
+.section-title {
+  margin: 0;
+  font-family: $font-fraunces;
+  font-weight: 400;
+  font-size: clamp(30px, 3.4vw, 52px);
+  line-height: 1.1;
+  color: $cream;
+  text-wrap: balance;
+
+  em {
+    color: $gold;
+    font-style: italic;
+    font-weight: 300;
+  }
+}
+
+.section-head {
+  max-width: 780px;
+  margin-bottom: clamp(36px, 5vw, 60px);
+}
+
+.section-lede {
+  margin: 22px 0 0;
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.7;
+  color: rgba($cream, 0.75);
+}
+
+.btn-gold,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.btn-gold {
+  background: $gold;
+  color: $emerald-deep;
+  font-weight: 700;
+  padding: 18px 34px;
+  box-shadow: 0 16px 40px rgba($gold, 0.35);
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 50px rgba($gold, 0.45);
+    background: $gold-bright;
+    color: $emerald-deep;
+  }
+}
+
+.btn-outline {
+  border: 1.5px solid rgba($cream, 0.4);
+  color: $cream;
+  font-weight: 600;
+  padding: 17px 30px;
+  transition: border-color 220ms ease, color 220ms ease, background 220ms ease;
+
+  &:hover {
+    border-color: $gold;
+    color: $gold;
+    background: rgba($gold, 0.08);
+  }
+}
+
+// Karten-Überschriften (Vertrauen, Leistungen, Fortbildungen, Schritte)
+.card h3,
+.tx-card h3,
+.cert-group h3,
+.step h3 {
+  font-family: $font-fraunces;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $cream;
+}
+
+// ---------------------------------------------------------------------------
+// Hero
+// ---------------------------------------------------------------------------
+.hero {
+  position: relative;
+  padding: clamp(120px, 16vh, 170px) 0 clamp(56px, 8vh, 90px);
+  background:
+    radial-gradient(55% 60% at 78% 28%, rgba($gold, 0.16), transparent 70%),
+    radial-gradient(45% 50% at 8% 95%, rgba($sage-bright, 0.12), transparent 70%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($gold, 0.45), transparent);
+  }
+}
+
+.hero-grid {
+  display: grid;
+  gap: clamp(40px, 5vw, 72px);
+  align-items: center;
+}
+
+.hero-title {
+  margin: 0;
+  font-weight: 300;
+}
+
+.hero-line {
+  display: block;
+  font-family: $font-fraunces;
+  font-weight: 300;
+  font-size: clamp(42px, 6.2vw, 92px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: $cream;
+  text-wrap: balance;
+
+  &--accent {
+    font-style: italic;
+    font-weight: 400;
+    color: $gold;
+  }
+}
+
+.hero-sub {
+  margin: 28px 0 0;
+  max-width: 58ch;
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.65;
+  color: rgba($cream, 0.8);
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 34px 0 0;
+  padding: 10px 18px;
+  border: 1px solid rgba($gold, 0.35);
+  border-radius: 999px;
+  background: rgba($emerald-deep, 0.55);
+  font-size: 13.5px;
+  color: rgba($cream, 0.85);
+}
+
+.pill-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $gold;
+  box-shadow: 0 0 0 4px rgba($gold, 0.18);
+}
+
+// Porträt im Bogenrahmen mit versetztem Goldring. Die Vorlage ist 257 px
+// klein (aus dem Lebenslauf), deshalb bleibt die Darstellung unter 300 px.
+.portrait {
+  position: relative;
+  width: min(290px, 68vw);
+  margin: 0 auto;
+}
+
+.portrait-ring {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -14px;
+    border-radius: 999px 999px 38px 38px;
+    border: 1px solid rgba($gold, 0.25);
+    pointer-events: none;
+  }
+}
+
+.portrait-frame {
+  aspect-ratio: 4 / 5;
+  border-radius: 999px 999px 26px 26px;
+  overflow: hidden;
+  border: 1px solid rgba($gold, 0.5);
+  background: $emerald-card;
+  box-shadow: 0 34px 80px rgba($emerald-abyss, 0.75);
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 15%;
+  }
+}
+
+.portrait-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 28px;
+  text-align: center;
+}
+
+.portrait-name {
+  font-family: $font-fraunces;
+  font-size: 27px;
+  font-weight: 400;
+  color: $cream;
+}
+
+.portrait-role {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $gold;
+}
+
+.portrait-langs {
+  font-size: 13.5px;
+  color: rgba($cream, 0.65);
+}
+
+.portrait-ig {
+  align-self: center;
+  margin-top: 6px;
+  padding-bottom: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba($cream, 0.7);
+  border-bottom: 1px solid rgba($gold, 0.4);
+  transition: color 200ms ease, border-color 200ms ease;
+
+  &:hover {
+    color: $gold;
+    border-color: $gold;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Zahlen
+// ---------------------------------------------------------------------------
+.stats-band {
+  padding: 0;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding-top: clamp(40px, 6vh, 64px);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 22px 20px;
+  background: $emerald-card;
+  border: 1px solid rgba($gold, 0.22);
+  border-radius: 20px;
+}
+
+.stat-value {
+  font-family: $font-fraunces;
+  font-size: clamp(30px, 2.8vw, 44px);
+  font-weight: 500;
+  line-height: 1;
+  color: $gold;
+}
+
+.stat-label {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgba($cream, 0.7);
+}
+
+// ---------------------------------------------------------------------------
+// Vertrauen: drei Karten
+// ---------------------------------------------------------------------------
+.cards {
+  display: grid;
+  gap: 18px;
+}
+
+.card {
+  padding: 32px 30px 30px;
+  background: $emerald-card;
+  border: 1px solid rgba($gold, 0.22);
+  border-radius: 24px;
+
+  h3 {
+    margin: 16px 0 12px;
+    font-size: 24px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: rgba($cream, 0.72);
+  }
+}
+
+.card-num {
+  display: inline-block;
+  padding: 5px 12px;
+  font-family: $font-fraunces;
+  font-style: italic;
+  font-size: 15px;
+  color: $emerald-deep;
+  background: $gold;
+  border-radius: 999px;
+}
+
+// ---------------------------------------------------------------------------
+// Zeitstrahl. Breit: Beschriftung links, Balken auf einer Jahresachse rechts.
+// Schmal: vertikaler Zeitstrahl, die Balken verschwinden, die Art steht im Text.
+// ---------------------------------------------------------------------------
+.tl-wrap {
+  padding: clamp(22px, 3vw, 40px);
+  background: $emerald-card;
+  border: 1px solid rgba($gold, 0.22);
+  border-radius: 28px;
+}
+
+.tl-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-bottom: 26px;
+  font-size: 13px;
+  color: rgba($cream, 0.7);
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.sw {
+  display: inline-block;
+  width: 22px;
+  height: 10px;
+  border-radius: 4px;
+  background: $gold;
+
+  &--studium {
+    background: rgba($cream, 0.55);
+  }
+
+  &--aesthetik {
+    background: rgba($gold, 0.06);
+    border: 1.5px solid $gold-bright;
+  }
+
+  &--approbation {
+    width: 10px;
+    height: 10px;
+    margin: 0 6px;
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+}
+
+.tl-head,
+.tl-row {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  column-gap: 24px;
+}
+
+.tl-ticks {
+  position: relative;
+  height: 22px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: rgba($cream, 0.62);
+}
+
+.tl-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+
+  &:first-child {
+    transform: none;
+  }
+
+  &--now {
+    left: auto;
+    right: 0;
+    transform: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $gold;
+  }
+}
+
+.tl-row {
+  padding: 15px 0;
+  border-top: 1px solid rgba($cream, 0.07);
+}
+
+.tl-label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.tl-when {
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: $gold;
+}
+
+.tl-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+}
+
+.tl-place {
+  font-size: 15px;
+  font-weight: 600;
+  color: $cream;
+}
+
+// 0.62 statt 0.5: 10,5-px-Text braucht 4,5:1 (AA) auf $emerald-card.
+.tl-kind {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba($cream, 0.62);
+}
+
+.tl-role {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: rgba($cream, 0.68);
+}
+
+// Jahreslinien als ruhiges Raster; der Abstand kommt als --tl-period aus der Komponente.
+.tl-lane {
+  position: relative;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba($cream, 0.09) 0 1px,
+    transparent 1px var(--tl-period, 21%)
+  );
+}
+
+.tl-bar {
+  position: absolute;
+  top: 50%;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 4px;
+  background: $gold;
+
+  .tl-row--studium & {
+    background: rgba($cream, 0.55);
+  }
+
+  .tl-row--aesthetik & {
+    background: rgba($gold, 0.06);
+    border: 1.5px solid $gold-bright;
+  }
+}
+
+.tl-dot {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 2px;
+  background: $gold;
+  box-shadow: 0 0 0 4px rgba($gold, 0.18);
+  transform: rotate(45deg);
+}
+
+@media (max-width: 859px) {
+  .tl-head,
+  .tl-legend,
+  .tl-lane {
+    display: none;
+  }
+
+  .tl {
+    margin-left: 7px;
+    border-left: 1px solid rgba($gold, 0.35);
+  }
+
+  .tl-row {
+    display: block;
+    position: relative;
+    padding: 0 0 26px 24px;
+    border-top: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 5px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: $gold;
+    }
+
+    &--studium::before {
+      background: rgba($cream, 0.55);
+    }
+
+    &--aesthetik::before {
+      background: $emerald-card;
+      border: 1.5px solid $gold-bright;
+    }
+
+    &--approbation::before {
+      border-radius: 2px;
+      transform: rotate(45deg);
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}
+
+// Fortbildungen
+.certs {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.cert-group {
+  padding: 28px;
+  background: rgba($emerald-card, 0.6);
+  border: 1px solid rgba($cream, 0.1);
+  border-radius: 24px;
+
+  h3 {
+    margin: 0 0 14px;
+    font-size: 21px;
+  }
+
+  li {
+    position: relative;
+    padding: 9px 0 9px 22px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: rgba($cream, 0.75);
+    border-top: 1px solid rgba($cream, 0.07);
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 17px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $gold;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Statement
+// ---------------------------------------------------------------------------
+.statement {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56vh;
+  text-align: center;
+  overflow: hidden;
+  background: url('/assets/images/treatment/microneedling6.webp') center / cover;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba($emerald-deep, 0.64);
+  }
+
+  blockquote {
+    position: relative;
+    max-width: 980px;
+    padding: 0 clamp(20px, 4vw, 56px);
+  }
+
+  p {
+    margin: 0;
+    font-family: $font-fraunces;
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 58px);
+    line-height: 1.15;
+    color: $cream;
+    text-wrap: balance;
+
+    em {
+      font-style: italic;
+      color: $gold;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Behandlungen
+// ---------------------------------------------------------------------------
+.tx-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.tx-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 30px 28px;
+  background: $emerald-card;
+  border: 1px solid rgba($gold, 0.22);
+  border-radius: 24px;
+
+  h3 {
+    margin: 0;
+    font-size: 24px;
+  }
+}
+
+.tx-num {
+  font-family: $font-fraunces;
+  font-style: italic;
+  font-size: 15px;
+  color: $gold;
+}
+
+.tx-blurb {
+  margin: 0 0 6px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba($cream, 0.7);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  border: 1px solid rgba($cream, 0.18);
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1.3;
+  color: rgba($cream, 0.85);
+}
+
+.pill-meta {
+  font-variant-numeric: tabular-nums;
+  color: $gold;
+}
+
+.tx-outro {
+  margin: 28px 0 0;
+  font-size: 15px;
+  color: rgba($cream, 0.62);
+}
+
+// ---------------------------------------------------------------------------
+// Ablauf
+// ---------------------------------------------------------------------------
+.steps {
+  display: grid;
+  gap: 18px;
+}
+
+.step {
+  padding-top: 26px;
+  border-top: 1px solid rgba($gold, 0.3);
+
+  h3 {
+    margin: 12px 0 10px;
+    font-size: 23px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: rgba($cream, 0.72);
+  }
+}
+
+.step-num {
+  font-family: $font-fraunces;
+  font-style: italic;
+  font-size: 40px;
+  line-height: 1;
+  color: $gold;
+}
+
+.frame-note {
+  margin: clamp(36px, 5vw, 56px) 0 0;
+  padding: 24px 28px;
+  border: 1px solid rgba($gold, 0.32);
+  border-radius: 22px;
+  background: rgba($gold, 0.06);
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba($cream, 0.8);
+
+  strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $gold;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Fragen: natives details/summary, kein Skript nötig
+// ---------------------------------------------------------------------------
+.faq {
+  max-width: 860px;
+
+  details {
+    border-top: 1px solid rgba($cream, 0.12);
+
+    &:last-child {
+      border-bottom: 1px solid rgba($cream, 0.12);
+    }
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: $font-fraunces;
+    font-weight: 500;
+    font-size: clamp(18px, 1.5vw, 22px);
+    line-height: 1.3;
+    color: $cream;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      content: '+';
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba($gold, 0.45);
+      border-radius: 50%;
+      font-family: $font;
+      font-weight: 300;
+      font-size: 22px;
+      color: $gold;
+      transition: background 250ms ease;
+    }
+
+    &:hover::after {
+      background: rgba($gold, 0.12);
+    }
+  }
+
+  details[open] summary::after {
+    content: '−';
+  }
+}
+
+.faq-a {
+  max-width: 70ch;
+  margin: 0;
+  padding: 0 0 26px;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: rgba($cream, 0.75);
+}
+
+// ---------------------------------------------------------------------------
+// Abschluss
+// ---------------------------------------------------------------------------
+.besuch {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background: url('/assets/images/farewell/studio.webp') center / cover;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba($emerald-deep, 0.72);
+  }
+}
+
+.besuch-content {
+  position: relative;
+  max-width: 900px;
+
+  h2 {
+    margin: 0;
+    font-family: $font-fraunces;
+    font-weight: 300;
+    font-size: clamp(38px, 5.2vw, 78px);
+    line-height: 1.05;
+    color: $cream;
+    text-wrap: balance;
+
+    em {
+      font-style: italic;
+      color: $gold;
+    }
+  }
+}
+
+.besuch-info {
+  max-width: 50ch;
+  margin: 24px auto 0;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: rgba($cream, 0.78);
+}
+
+.besuch-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+// ---------------------------------------------------------------------------
+// Breite Bildschirme
+// ---------------------------------------------------------------------------
+@media (max-width: 899px) {
+  // Auf dem Handy zuerst das Gesicht, dann der Text; die Lesereihenfolge
+  // (Überschrift vor Bild) bleibt im DOM erhalten.
+  .portrait {
+    order: -1;
+  }
+}
+
+// Auf schmalen Handys bricht „seit 2018“ sonst in zwei Zeilen und die Kacheln
+// verlieren ihre gemeinsame Grundlinie.
+@media (max-width: 480px) {
+  .stat-value {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 760px) {
+  .tx-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tx-card--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+
+  .stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .cards,
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .certs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// Parallax nur dort, wo es zuverlässig funktioniert (iOS ignoriert fixed).
+@media (min-width: 1024px) and (hover: hover) {
+  .statement,
+  .besuch {
+    background-attachment: fixed;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-gold:hover {
+    transform: none;
+  }
+
+  .faq summary::after {
+    transition: none;
+  }
+}

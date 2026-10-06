@@ -289,6 +289,26 @@ function localizedRoutes(lang: PageLang): Routes {
               description: 'Targeted therapeutic massages in Nuremberg: initial appointment with assessment, sports and recovery massage, and medical functional massage at FareWell.'
             }
           )
+        },
+        // Ästhetische Medizin mit Dr. med. Andrea Leo als Kooperationsarzt.
+        // Vorerst eine versteckte Vorschau für den Arzt selbst: noindex, nicht
+        // in der Sitemap, nicht im Header, Footer oder in llms.txt verlinkt.
+        // Freigeschaltet wird sie erst mit Vertrag, Nachweisen und Preisliste.
+        {
+          path: 'aesthetische-medizin',
+          loadComponent: () =>
+            import('../components/pages/aesthetische-medizin/aesthetische-medizin.component')
+              .then(m => m.AesthetischeMedizinComponent),
+          data: d(
+            {
+              title: 'Ästhetische Medizin in Nürnberg: Dr. med. Andrea Leo bei FareWell',
+              description: 'Botulinumtoxin, Hyaluronsäure, Skinbooster und PRP bei FareWell in Nürnberg, durchgeführt von Dr. med. Andrea Leo: approbierter Arzt seit 2016, seit 2017 in Kliniken in Bayern, seit 2018 in der ästhetischen Medizin.'
+            },
+            {
+              title: 'Aesthetic Medicine in Nuremberg: Dr. med. Andrea Leo at FareWell',
+              description: 'Botulinum toxin, hyaluronic acid, skin boosters and PRP at FareWell in Nuremberg, performed by Dr. med. Andrea Leo: licensed physician since 2016, in Bavarian hospitals since 2017, in aesthetic medicine since 2018.'
+            }
+          )
         }
       ]
     },
