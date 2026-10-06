@@ -64,10 +64,15 @@ export interface TimelineRow extends Station {
   width: number;
 }
 
+/** Eine Zeile der Preisliste: Startpreis („ab“) in Euro, optional mit Zusatz und Einheit. */
 interface TreatmentItem {
   name: Bi;
-  /** Preisliste steht noch aus; sobald sie da ist, hier eintragen, z. B. { de: 'ab 180 €', en: 'from €180' }. */
-  price?: Bi;
+  /** Startpreis in Euro laut Preisliste vom 02.10.2026. */
+  priceFrom: number;
+  /** Kleingedrucktes unter dem Namen, z. B. die Beispielzonen. */
+  detail?: Bi;
+  /** Einheit hinter dem Preis, z. B. „pro Faden“. */
+  unit?: Bi;
 }
 
 interface TreatmentGroup {
@@ -75,7 +80,18 @@ interface TreatmentGroup {
   num: string;
   title: Bi;
   blurb: Bi;
+  /** Volle Breite im Raster, mit zweispaltiger Preisliste. */
+  wide?: boolean;
   items: TreatmentItem[];
+}
+
+/** Zeile mit fertig formatiertem Preis für das Template. */
+export interface PricedItem extends TreatmentItem {
+  price: Bi;
+}
+
+export interface PricedGroup extends Omit<TreatmentGroup, 'items'> {
+  items: PricedItem[];
 }
 
 interface Stat {
@@ -252,57 +268,63 @@ const CERTS: CertGroup[] = [
 ];
 
 /**
- * Behandlungsangebot, seine Liste vom 02.10.2026, hier nur geordnet und mit
- * Einordnungssätzen versehen. Preise und Dauer liegen noch nicht vor.
+ * Behandlungsangebot und Startpreise aus seiner Preisliste (Datei vom
+ * 02.10.2026, eingegangen am 06.10.2026). Gruppen und Zeilen wie dort, nur
+ * die Einordnungssätze stammen von uns. Eine Dauer je Behandlung liegt
+ * weiterhin nicht vor.
  */
 const TREATMENT_GROUPS: TreatmentGroup[] = [
   {
     id: 'botulinumtoxin',
     num: '01',
+    wide: true,
     title: { de: 'Botulinumtoxin', en: 'Botulinum toxin' },
     blurb: {
-      de: 'Entspannt gezielt die Muskeln, die Mimikfalten entstehen lassen. Die Wirkung baut sich über einige Tage auf und lässt nach einigen Monaten von selbst wieder nach.',
-      en: 'Precisely relaxes the muscles that create expression lines. The effect builds over a few days and wears off on its own after a few months.',
+      de: 'Entspannt gezielt die Muskeln, die Mimikfalten entstehen lassen. Die Wirkung baut sich über einige Tage auf und lässt nach einigen Monaten von selbst wieder nach. Abgerechnet wird nach Zonen, einzelne Regionen stehen eigens in der Liste.',
+      en: 'Precisely relaxes the muscles that create expression lines. The effect builds over a few days and wears off on its own after a few months. Priced by zones, with individual regions listed separately.',
     },
     items: [
-      { name: { de: 'Stirnfalten', en: 'Forehead lines' } },
-      { name: { de: 'Zornesfalte (Glabella)', en: 'Frown lines (glabella)' } },
-      { name: { de: 'Krähenfüße', en: "Crow's feet" } },
-      { name: { de: 'Brow Lift', en: 'Brow lift' } },
-      { name: { de: 'Bunny Lines', en: 'Bunny lines' } },
-      { name: { de: 'Gummy Smile', en: 'Gummy smile' } },
-      { name: { de: 'Lip Flip', en: 'Lip flip' } },
-      { name: { de: 'Kinn (Pflastersteinkinn)', en: 'Chin (cobblestone chin)' } },
-      { name: { de: 'Mundwinkel (DAO)', en: 'Corners of the mouth (DAO)' } },
-      { name: { de: 'Masseter und Gesichtskonturierung', en: 'Masseter and facial contouring' } },
-      { name: { de: 'Bruxismus (Zähneknirschen)', en: 'Bruxism (teeth grinding)' } },
-      { name: { de: 'Nefertiti Lift (Platysma)', en: 'Nefertiti lift (platysma)' } },
-      { name: { de: 'Hyperhidrose (starkes Schwitzen)', en: 'Hyperhidrosis (excessive sweating)' } },
-      { name: { de: 'Individuelle Full-Face-Behandlung', en: 'Individual full-face treatment' } },
+      {
+        name: { de: '1 Zone', en: '1 zone' },
+        detail: { de: 'z. B. Stirn, Glabella oder Krähenfüße', en: 'e.g. forehead, glabella or crow\'s feet' },
+        priceFrom: 109,
+      },
+      { name: { de: '2 Zonen', en: '2 zones' }, priceFrom: 179 },
+      { name: { de: '3 Zonen', en: '3 zones' }, priceFrom: 229 },
+      { name: { de: '4 Zonen', en: '4 zones' }, priceFrom: 279 },
+      { name: { de: 'Brow Lift', en: 'Brow lift' }, priceFrom: 99 },
+      { name: { de: 'Bunny Lines', en: 'Bunny lines' }, priceFrom: 89 },
+      { name: { de: 'Gummy Smile', en: 'Gummy smile' }, priceFrom: 89 },
+      { name: { de: 'Lip Flip', en: 'Lip flip' }, priceFrom: 89 },
+      { name: { de: 'Kinn (Pflastersteinkinn)', en: 'Chin (cobblestone chin)' }, priceFrom: 89 },
+      { name: { de: 'Mundwinkel (DAO)', en: 'Corners of the mouth (DAO)' }, priceFrom: 89 },
+      { name: { de: 'Masseter, Bruxismus (Zähneknirschen)', en: 'Masseter, bruxism (teeth grinding)' }, priceFrom: 219 },
+      { name: { de: 'Nefertiti Lift (Platysma)', en: 'Nefertiti lift (platysma)' }, priceFrom: 219 },
+      { name: { de: 'Hyperhidrose (übermäßiges Schwitzen)', en: 'Hyperhidrosis (excessive sweating)' }, priceFrom: 250 },
     ],
   },
   {
     id: 'filler',
     num: '02',
-    title: { de: 'Hyaluronsäure und Filler', en: 'Hyaluronic acid and fillers' },
+    wide: true,
+    title: { de: 'Hyaluronsäure und Konturierung', en: 'Hyaluronic acid and contouring' },
     blurb: {
       de: 'Gibt Volumen zurück, zeichnet Konturen nach und harmonisiert Proportionen. Immer mit dem Ziel, dass das Gesicht deins bleibt.',
       en: 'Restores volume, redraws contours and harmonises proportions. Always with the aim that your face stays yours.',
     },
     items: [
-      { name: { de: 'Lippenaugmentation', en: 'Lip augmentation' } },
-      { name: { de: 'Russian Lips', en: 'Russian lips' } },
-      { name: { de: 'Baby Doll Lips, natürliche Lippenaugmentation', en: 'Baby doll lips, natural lip augmentation' } },
-      { name: { de: 'Lippenkontur und Harmonisierung', en: 'Lip contour and harmonisation' } },
-      { name: { de: 'Kinnaufbau und Kinnprojektion', en: 'Chin augmentation and projection' } },
-      { name: { de: 'Jawline Contouring', en: 'Jawline contouring' } },
-      { name: { de: 'Wangen (Cheek Contouring)', en: 'Cheeks (cheek contouring)' } },
-      { name: { de: 'Nasolabialfalten', en: 'Nasolabial folds' } },
-      { name: { de: 'Marionettenfalten', en: 'Marionette lines' } },
-      { name: { de: 'Full-Face-Harmonisierung', en: 'Full-face harmonisation' } },
-      { name: { de: 'Profilharmonisierung', en: 'Profile harmonisation' } },
-      { name: { de: 'Nicht-operative Nasenkorrektur (Rhinofiller)', en: 'Non-surgical nose correction (rhinofiller)' } },
-      { name: { de: 'Individuelle Volumen- und Konturbehandlungen', en: 'Individual volume and contour treatments' } },
+      { name: { de: 'Lippen, 0,5 ml', en: 'Lips, 0.5 ml' }, priceFrom: 159 },
+      { name: { de: 'Lippen, 1 ml', en: 'Lips, 1 ml' }, priceFrom: 249 },
+      { name: { de: 'Russian Lips, 1 ml', en: 'Russian lips, 1 ml' }, priceFrom: 269 },
+      { name: { de: 'Kinnaufbau', en: 'Chin augmentation' }, priceFrom: 259 },
+      { name: { de: 'Jawline Contouring', en: 'Jawline contouring' }, priceFrom: 259 },
+      { name: { de: 'Wangen (Cheek Contouring)', en: 'Cheeks (cheek contouring)' }, priceFrom: 259 },
+      { name: { de: 'Nasolabialfalten', en: 'Nasolabial folds' }, priceFrom: 259 },
+      { name: { de: 'Marionettenfalten', en: 'Marionette lines' }, priceFrom: 259 },
+      { name: { de: 'Rhinofiller, nicht-operative Nasenkorrektur', en: 'Rhinofiller, non-surgical nose correction' }, priceFrom: 329 },
+      { name: { de: 'Tränenrinne, Augenregion', en: 'Tear trough, eye area' }, priceFrom: 329 },
+      { name: { de: 'Jeder weitere ml in derselben Sitzung', en: 'Each additional ml in the same session' }, priceFrom: 189 },
+      { name: { de: 'Full-Face- und Profilharmonisierung', en: 'Full-face and profile harmonisation' }, priceFrom: 649 },
     ],
   },
   {
@@ -310,57 +332,48 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
     num: '03',
     title: { de: 'Biostimulation und Hautqualität', en: 'Biostimulation and skin quality' },
     blurb: {
-      de: 'Regt die Haut an, selbst wieder Kollagen zu bilden. Weniger Volumen, mehr Struktur: für Gesicht, Hals, Dekolleté und die Augenregion.',
-      en: 'Encourages the skin to build its own collagen again. Less volume, more structure: for face, neck, décolleté and the eye area.',
+      de: 'Regt die Haut an, selbst wieder Kollagen zu bilden. Weniger Volumen, mehr Struktur: für Gesicht, Hals, Dekolleté, Augenregion und Kopfhaut.',
+      en: 'Encourages the skin to build its own collagen again. Less volume, more structure: for face, neck, décolleté, eye area and scalp.',
     },
     items: [
-      { name: { de: 'Poly-L-Milchsäure (Sculptra)', en: 'Poly-L-lactic acid (Sculptra)' } },
-      { name: { de: 'Calciumhydroxylapatit (Radiesse)', en: 'Calcium hydroxylapatite (Radiesse)' } },
-      { name: { de: 'Weitere Biostimulatoren je nach Indikation', en: 'Further biostimulators depending on indication' } },
-      { name: { de: 'Skinbooster (Profhilo und vergleichbare)', en: 'Skin boosters (Profhilo and comparable products)' } },
-      { name: { de: 'Mesotherapie', en: 'Mesotherapy' } },
-      { name: { de: 'Individuelle Skinbooster-Konzepte', en: 'Individual skin booster plans' } },
-      { name: { de: 'Gesicht, Hals und Dekolleté', en: 'Face, neck and décolleté' } },
-      { name: { de: 'Augenregion (periorbital)', en: 'Eye area (periorbital)' } },
+      { name: { de: 'Sculptra (Poly-L-Milchsäure)', en: 'Sculptra (poly-L-lactic acid)' }, priceFrom: 429 },
+      { name: { de: 'Radiesse (Calciumhydroxylapatit)', en: 'Radiesse (calcium hydroxylapatite)' }, priceFrom: 429 },
+      { name: { de: 'Profhilo', en: 'Profhilo' }, priceFrom: 259 },
+      { name: { de: 'Skinbooster', en: 'Skin booster' }, priceFrom: 229 },
+      { name: { de: 'Polynukleotide, Augenregion', en: 'Polynucleotides, eye area' }, priceFrom: 259 },
+      { name: { de: 'Polynukleotide, Gesicht', en: 'Polynucleotides, face' }, priceFrom: 279 },
+      { name: { de: 'Mesotherapie Gesicht', en: 'Mesotherapy, face' }, priceFrom: 149 },
+      { name: { de: 'Mesotherapie Hals und Dekolleté', en: 'Mesotherapy, neck and décolleté' }, priceFrom: 149 },
+      { name: { de: 'Haar-Mesotherapie', en: 'Hair mesotherapy' }, priceFrom: 149 },
     ],
   },
   {
     id: 'prp',
     num: '04',
-    title: { de: 'PRP und regenerative Behandlungen', en: 'PRP and regenerative treatments' },
+    title: { de: 'PRP und regenerative Therapien', en: 'PRP and regenerative therapies' },
     blurb: {
       de: 'Eigenblutbehandlung: Aus einer kleinen Blutprobe wird plättchenreiches Plasma gewonnen und gezielt in Haut oder Kopfhaut eingebracht.',
       en: 'Autologous blood treatment: platelet-rich plasma is prepared from a small blood sample and placed precisely into the skin or scalp.',
     },
     items: [
-      { name: { de: 'PRP Gesicht', en: 'PRP face' } },
-      { name: { de: 'PRP Kopfhaut und Haartherapie', en: 'PRP scalp and hair therapy' } },
-      { name: { de: 'PRP nach Haartransplantation', en: 'PRP after hair transplantation' } },
-      { name: { de: 'PRP kombiniert mit Microneedling', en: 'PRP combined with microneedling' } },
-      { name: { de: 'Regenerative Hautbehandlungen', en: 'Regenerative skin treatments' } },
-      { name: { de: 'Individuelle Kombinationstherapien', en: 'Individual combination therapies' } },
+      { name: { de: 'PRP Gesicht', en: 'PRP face' }, priceFrom: 229 },
+      { name: { de: 'PRP Kopfhaut und Haartherapie', en: 'PRP scalp and hair therapy' }, priceFrom: 229 },
+      { name: { de: 'PRP nach Haartransplantation', en: 'PRP after hair transplantation' }, priceFrom: 229 },
+      { name: { de: 'PRP mit Microneedling', en: 'PRP with microneedling' }, priceFrom: 269 },
+      { name: { de: 'Individuelle regenerative Kombinationstherapie', en: 'Individual regenerative combination therapy' }, priceFrom: 269 },
     ],
   },
   {
     id: 'microneedling',
     num: '05',
-    title: { de: 'Microneedling und Mesotherapie', en: 'Microneedling and mesotherapy' },
+    title: { de: 'Microneedling', en: 'Microneedling' },
     blurb: {
-      de: 'Medizinisches Microneedling und Wirkstoffe, die dort ankommen, wo sie gebraucht werden: für Hautbild, Pigmentierung und Haar.',
-      en: 'Medical microneedling and active ingredients that reach where they are needed: for skin texture, pigmentation and hair.',
+      de: 'Medizinisches Microneedling, auf Wunsch mit Wirkstoffen, die dort ankommen, wo sie gebraucht werden: für Hautbild und Hautstruktur.',
+      en: 'Medical microneedling, if you wish with active ingredients that reach where they are needed: for skin texture and structure.',
     },
     items: [
-      { name: { de: 'Medizinisches Microneedling', en: 'Medical microneedling' } },
-      {
-        name: {
-          de: 'Mesotherapie mit verschiedenen Wirkstoffkombinationen',
-          en: 'Mesotherapy with various active-ingredient combinations',
-        },
-      },
-      { name: { de: 'Hautregeneration und Hautqualität', en: 'Skin regeneration and skin quality' } },
-      { name: { de: 'Anti-Aging-Behandlungen', en: 'Anti-ageing treatments' } },
-      { name: { de: 'Pigmentierung und Hautstruktur', en: 'Pigmentation and skin texture' } },
-      { name: { de: 'Haar-Mesotherapie', en: 'Hair mesotherapy' } },
+      { name: { de: 'Medizinisches Microneedling', en: 'Medical microneedling' }, priceFrom: 149 },
+      { name: { de: 'Microneedling mit Mesotherapie', en: 'Microneedling with mesotherapy' }, priceFrom: 189 },
     ],
   },
   {
@@ -372,10 +385,12 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
       en: 'Absorbable threads that support contours and stimulate collagen. For gentle lifting without surgery.',
     },
     items: [
-      { name: { de: 'PDO-Fäden', en: 'PDO threads' } },
-      { name: { de: 'Fadenlifting', en: 'Thread lift' } },
-      { name: { de: 'Kollagenstimulierende Fäden', en: 'Collagen-stimulating threads' } },
-      { name: { de: 'Individuelle Kontur- und Straffungsbehandlungen', en: 'Individual contour and tightening treatments' } },
+      {
+        name: { de: 'PDO- und kollagenstimulierende Fäden', en: 'PDO and collagen-stimulating threads' },
+        priceFrom: 79,
+        unit: { de: 'pro Faden', en: 'per thread' },
+      },
+      { name: { de: 'Fadenlifting', en: 'Thread lift' }, priceFrom: 449 },
     ],
   },
   {
@@ -387,9 +402,9 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
       en: 'Vitamins and fluids delivered intravenously, individually composed and only on medical indication.',
     },
     items: [
-      { name: { de: 'Vitamininfusionen', en: 'Vitamin infusions' } },
-      { name: { de: 'Hydration- und Recovery-Infusionen', en: 'Hydration and recovery infusions' } },
-      { name: { de: 'Individuell zusammengestellte Infusionskonzepte', en: 'Individually composed infusion plans' } },
+      { name: { de: 'Vitamininfusion', en: 'Vitamin infusion' }, priceFrom: 89 },
+      { name: { de: 'Hydration-, Energy- oder Recovery-Infusion', en: 'Hydration, energy or recovery infusion' }, priceFrom: 129 },
+      { name: { de: 'Individuelle Premium-Infusion', en: 'Individual premium infusion' }, priceFrom: 179 },
     ],
   },
 ];
@@ -415,8 +430,8 @@ const FAQ: FaqEntry[] = [
   {
     q: { de: 'Was kostet eine Behandlung?', en: 'What does a treatment cost?' },
     a: {
-      de: 'Der Preis hängt von der Region, der Menge an Präparat und dem Aufwand ab und wird dir im Beratungsgespräch vor der Behandlung genannt, schriftlich und ohne Überraschungen. Ästhetische Behandlungen sind in der Regel Privatleistungen.',
-      en: 'The price depends on the area, the amount of product and the effort involved and is given to you in the consultation before treatment, in writing and without surprises. Aesthetic treatments are as a rule private services.',
+      de: 'Die Preisliste auf dieser Seite nennt Startpreise, zum Beispiel ab 109 € für eine Zone Botulinumtoxin oder ab 159 € für 0,5 ml Lippen. Der endgültige Preis hängt von Befund, Behandlungsumfang und Produktmenge ab und wird dir im Beratungsgespräch vor der Behandlung genannt, schriftlich und ohne Überraschungen. Ästhetische Behandlungen sind in der Regel Privatleistungen.',
+      en: 'The price list on this page gives starting prices, for example from €109 for one zone of botulinum toxin or from €159 for 0.5 ml of lip filler. The final price depends on the findings, the extent of treatment and the amount of product, and is given to you in the consultation before treatment, in writing and without surprises. Aesthetic treatments are as a rule private services.',
     },
   },
   {
@@ -453,6 +468,19 @@ function fmt(ym: YearMonth): string {
   return `${String(ym.m).padStart(2, '0')}/${ym.y}`;
 }
 
+/** „ab 109 €“ bzw. „from €109“, mit geschütztem Leerzeichen vor dem Euro und optionaler Einheit. */
+function priceLabel(item: TreatmentItem): Bi {
+  return {
+    de: `ab ${item.priceFrom}\u00a0€${item.unit ? ` ${item.unit.de}` : ''}`,
+    en: `from €${item.priceFrom}${item.unit ? ` ${item.unit.en}` : ''}`,
+  };
+}
+
+const PRICED_GROUPS: PricedGroup[] = TREATMENT_GROUPS.map((group) => ({
+  ...group,
+  items: group.items.map((item) => ({ ...item, price: priceLabel(item) })),
+}));
+
 /**
  * Behandlungsseite für die ästhetische Medizin mit Dr. med. Andrea Leo als
  * Kooperationsarzt. Eine Vertrauensseite: Porträt, belegbare Zahlen, die
@@ -488,7 +516,7 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
   readonly instagramUrl = INSTAGRAM_URL;
   readonly stats = STATS;
   readonly certs = CERTS;
-  readonly groups = TREATMENT_GROUPS;
+  readonly groups = PRICED_GROUPS;
   readonly faq = FAQ;
 
   /**
@@ -575,6 +603,25 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
             ),
           },
           sameAs: [INSTAGRAM_URL],
+          // Preisliste als Angebotskatalog, aus derselben Datenquelle wie die sichtbaren Preiskarten.
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: this.t('Preisliste Ästhetische Medizin', 'Price list aesthetic medicine'),
+            itemListElement: TREATMENT_GROUPS.map((group) => ({
+              '@type': 'OfferCatalog',
+              name: isEn ? group.title.en : group.title.de,
+              itemListElement: group.items.map((item) => ({
+                '@type': 'Offer',
+                itemOffered: { '@type': 'Service', name: isEn ? item.name.en : item.name.de },
+                priceCurrency: 'EUR',
+                priceSpecification: {
+                  '@type': 'PriceSpecification',
+                  minPrice: item.priceFrom,
+                  priceCurrency: 'EUR',
+                },
+              })),
+            })),
+          },
           workLocation: {
             '@type': 'Place',
             name: 'FareWell',

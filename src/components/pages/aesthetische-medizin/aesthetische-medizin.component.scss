@@ -728,27 +728,59 @@ ul {
   color: rgba($cream, 0.7);
 }
 
-.pills {
+// Preiskarte: Name links, Punktlinie, Startpreis rechts in Gold. Breite
+// Karten (Botulinumtoxin, Hyaluronsäure) setzen die Zeilen zweispaltig.
+.menu {
+  margin-top: 4px;
+}
+
+.menu-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  align-items: baseline;
+  gap: 10px;
+  padding: 9px 0;
+  border-top: 1px solid rgba($cream, 0.07);
+  break-inside: avoid;
+
+  &:first-child {
+    border-top: 0;
+  }
 }
 
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 13px;
-  border: 1px solid rgba($cream, 0.18);
-  border-radius: 999px;
-  font-size: 13px;
-  line-height: 1.3;
-  color: rgba($cream, 0.85);
+.menu-name {
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: rgba($cream, 0.88);
 }
 
-.pill-meta {
+.menu-detail {
+  display: block;
+  font-size: 12.5px;
+  color: rgba($cream, 0.62);
+}
+
+.menu-lead {
+  flex: 1;
+  min-width: 18px;
+  border-bottom: 1px dotted rgba($gold, 0.4);
+  transform: translateY(-4px);
+}
+
+.menu-price {
+  flex: none;
+  font-size: 14.5px;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
   color: $gold;
+}
+
+// Preis-Hinweis als Karte im Raster, damit die letzte Zelle nicht leer bleibt.
+// Zwei Klassen, weil .frame-note weiter unten mit eigenem Abstand folgt.
+.tx-grid > .frame-note--grid {
+  margin: 0;
+  padding: 30px 28px;
+  border-radius: 24px;
 }
 
 .tx-outro {
@@ -958,6 +990,11 @@ ul {
 
   .tx-card--wide {
     grid-column: 1 / -1;
+  }
+
+  .menu--cols {
+    columns: 2;
+    column-gap: 40px;
   }
 }
 

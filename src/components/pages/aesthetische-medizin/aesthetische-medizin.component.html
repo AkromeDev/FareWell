@@ -328,13 +328,13 @@
         </h2>
         <p class="section-lede" appReveal [revealDelay]="120">
           <span class="lang de"
-            >Sieben Bereiche, von der klassischen Faltenbehandlung bis zur regenerativen Medizin.
-            Was davon für dich sinnvoll ist, und was nicht, klärt das ärztliche Gespräch vorab.
-            Preis und Dauer richten sich nach Region und Aufwand und werden dort festgelegt.</span
+            >Sieben Bereiche, von der klassischen Faltenbehandlung bis zur regenerativen Medizin,
+            mit transparenten Startpreisen. Was davon für dich sinnvoll ist, und was nicht, klärt
+            das ärztliche Gespräch vorab; dort steht am Ende auch der endgültige Preis.</span
           ><span class="lang en"
-            >Seven areas, from classic wrinkle treatment to regenerative medicine. What makes sense
-            for you, and what does not, is settled in the medical consultation beforehand. Price
-            and duration depend on the area and the effort involved and are set there.</span
+            >Seven areas, from classic wrinkle treatment to regenerative medicine, with transparent
+            starting prices. What makes sense for you, and what does not, is settled in the medical
+            consultation beforehand; that is also where the final price is set.</span
           >
         </p>
       </div>
@@ -343,7 +343,7 @@
         @for (group of groups; track group.id) {
           <article
             class="tx-card"
-            [class.tx-card--wide]="$first"
+            [class.tx-card--wide]="group.wide"
             [id]="'leistung-' + group.id"
             appReveal
             [revealDelay]="($index % 2) * 90"
@@ -357,22 +357,44 @@
               <span class="lang de">{{ group.blurb.de }}</span
               ><span class="lang en">{{ group.blurb.en }}</span>
             </p>
-            <ul class="pills">
+            <ul class="menu" [class.menu--cols]="group.wide">
               @for (item of group.items; track $index) {
-                <li class="pill">
-                  <span class="lang de">{{ item.name.de }}</span
-                  ><span class="lang en">{{ item.name.en }}</span>
-                  @if (item.price) {
-                    <span class="pill-meta"
-                      ><span class="lang de">{{ item.price.de }}</span
-                      ><span class="lang en">{{ item.price.en }}</span></span
-                    >
-                  }
+                <li class="menu-row">
+                  <span class="menu-name">
+                    <span class="lang de">{{ item.name.de }}</span
+                    ><span class="lang en">{{ item.name.en }}</span>
+                    @if (item.detail) {
+                      <span class="menu-detail"
+                        ><span class="lang de">{{ item.detail.de }}</span
+                        ><span class="lang en">{{ item.detail.en }}</span></span
+                      >
+                    }
+                  </span>
+                  <span class="menu-lead" aria-hidden="true"></span>
+                  <span class="menu-price"
+                    ><span class="lang de">{{ item.price.de }}</span
+                    ><span class="lang en">{{ item.price.en }}</span></span
+                  >
                 </li>
               }
             </ul>
           </article>
         }
+
+        <aside class="frame-note frame-note--grid" appReveal [revealDelay]="90">
+          <strong><span class="lang de">Zu den Preisen</span><span class="lang en">About the prices</span></strong>
+          <span class="lang de"
+            >Alle Preise sind Startpreise („ab“) zur Orientierung. Der endgültige Preis richtet sich
+            nach Befund, Behandlungsumfang, Produktmenge und dem ärztlich festgelegten
+            Behandlungskonzept und wird dir vor der Behandlung genannt. Beratung und Aufklärung
+            gehen jeder Behandlung voraus. Stand der Preisliste: Oktober 2026.</span
+          ><span class="lang en"
+            >All prices are starting prices ("from") for orientation. The final price depends on the
+            findings, the extent of treatment, the amount of product and the treatment plan set by
+            the doctor, and is given to you before treatment. Consultation and informed consent
+            precede every treatment. Price list as of October 2026.</span
+          >
+        </aside>
       </div>
 
       <p class="tx-outro" appReveal>

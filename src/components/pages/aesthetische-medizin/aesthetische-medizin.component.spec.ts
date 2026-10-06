@@ -37,6 +37,18 @@ describe('AesthetischeMedizinComponent', () => {
     expect(robots?.getAttribute('content')).toContain('noindex');
   });
 
+  it('zeigt zu jeder Behandlung einen Startpreis in beiden Sprachen', () => {
+    const items = component.groups.flatMap((group) => group.items);
+    expect(items.length).toBeGreaterThan(40);
+    for (const item of items) {
+      expect(item.priceFrom).toBeGreaterThan(0);
+      expect(item.price.de).toMatch(/^ab \d+\u00a0€/);
+      expect(item.price.en).toMatch(/^from €\d+/);
+    }
+    const rows = fixture.nativeElement.querySelectorAll('.menu-row .menu-price .lang.de');
+    expect(rows.length).toBe(items.length);
+  });
+
   it('nennt die Art jeder Station als Text, nicht nur als Farbe', () => {
     const kinds = fixture.nativeElement.querySelectorAll('.tl-kind .lang.de');
     expect(kinds.length).toBe(component.timeline.length);
