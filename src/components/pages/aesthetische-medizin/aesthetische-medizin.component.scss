@@ -224,11 +224,11 @@ ul {
   box-shadow: 0 0 0 4px rgba($gold, 0.18);
 }
 
-// Porträt im Bogenrahmen mit versetztem Goldring. Die Vorlage ist 257 px
-// klein (aus dem Lebenslauf), deshalb bleibt die Darstellung unter 300 px.
+// Porträt im Bogenrahmen mit versetztem Goldring. Das Bild ist bereits im
+// Seitenverhältnis des Rahmens (4:5) zugeschnitten, 720 px breit für Retina.
 .portrait {
   position: relative;
-  width: min(290px, 68vw);
+  width: min(360px, 68vw);
   margin: 0 auto;
 }
 
@@ -258,7 +258,6 @@ ul {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 15%;
   }
 }
 

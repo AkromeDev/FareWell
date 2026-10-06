@@ -7,7 +7,8 @@ import { SeoService } from 'src/services/seo.service';
 
 const PAGE_PATH = '/behandlungen/aesthetische-medizin';
 const ORIGIN = 'https://farewell.salon';
-const PORTRAIT = 'assets/images/team/dr-andrea-leo.jpg';
+// Studio-Porträt vom 06.10.2026, auf 4:5 zugeschnitten (720x900), passend zum Bogenrahmen im Hero.
+const PORTRAIT = 'assets/images/team/dr-andrea-leo.webp';
 // Vorschaubild beim Teilen: JPEG in 1200x630, WebP zeigen mehrere Messenger nicht.
 const OG_IMAGE = `${ORIGIN}/assets/images/treatment/og-aesthetische-medizin.jpg`;
 const PHONE_HREF = 'tel:+4915757995694';
