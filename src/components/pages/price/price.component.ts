@@ -124,8 +124,8 @@ export class PriceComponent implements OnInit, OnDestroy {
     wellnessMassage: {
       qDe: 'Was kostet eine Wellness Massage in Nürnberg?',
       qEn: 'How much does a wellness massage cost in Nuremberg?',
-      aDe: 'Wellness Massagen kosten bei FareWell in Nürnberg ab 45 €: Teilkörpermassage 45 € (30 Min.), Rücken-Schulter-Nacken-Massage 58 € (45 Min.) oder 78 € (60 Min.), Aromaöl-Massage für Rücken, Schulter und Nacken 78 € (45 Min.) oder 90 € (60 Min.), Ganzkörpermassage mit Aromaölen 78 € (60 Min.) oder 120 € (90 Min.).',
-      aEn: 'Wellness massages at FareWell in Nuremberg start at €45: partial-body massage €45 (30 min), back, shoulder & neck massage €58 (45 min) or €78 (60 min), aroma-oil back, shoulder & neck massage €78 (45 min) or €90 (60 min), full-body massage with aroma oils €78 (60 min) or €120 (90 min).',
+      aDe: 'Wellness Massagen kosten bei FareWell in Nürnberg ab 45 €: Teilkörpermassage 45 € (30 Min.), Rücken-Schulter-Nacken-Massage 58 € (45 Min.) oder 78 € (60 Min.), Aromaöl-Massage für Rücken, Schulter und Nacken 78 € (45 Min.) oder 90 € (60 Min.), 5er-Paket 350 €, 10er-Paket 600 € (je 60 Min., 6 Monate gültig), Ganzkörpermassage mit Aromaölen 78 € (60 Min.) oder 120 € (90 Min.).',
+      aEn: 'Wellness massages at FareWell in Nuremberg start at €45: partial-body massage €45 (30 min), back, shoulder & neck massage €58 (45 min) or €78 (60 min), aroma-oil back, shoulder & neck massage €78 (45 min) or €90 (60 min), pack of 5 €350, pack of 10 €600 (60 min each, valid for 6 months), full-body massage with aroma oils €78 (60 min) or €120 (90 min).',
     },
     therapeutischeMassage: {
       qDe: 'Was kostet eine therapeutische Massage in Nürnberg?',
@@ -185,7 +185,8 @@ export class PriceComponent implements OnInit, OnDestroy {
   }
 
   duration(row: PriceRow): string {
-    return `${row.minutes} ${this.t('Min.', 'min')}`;
+    const each = `${row.minutes} ${this.t('Min.', 'min')}`;
+    return row.sessions ? `${row.sessions} × ${each}` : each;
   }
 
   /**
@@ -327,7 +328,7 @@ export class PriceComponent implements OnInit, OnDestroy {
     const suffix = row.delegation ? ` ${this.delegationLabel}` : '';
     return {
       '@type': 'Offer',
-      name: `${scope}${this.t(row.de, row.en)}${suffix} (${row.minutes} ${this.t('Min.', 'min')})`,
+      name: `${scope}${this.t(row.de, row.en)}${suffix} (${this.duration(row)})`,
       url: `${pageUrl}#${anchor}`,
       price,
       priceCurrency: 'EUR',

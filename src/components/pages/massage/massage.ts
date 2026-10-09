@@ -132,6 +132,42 @@ export class MassageComponent implements OnInit, OnDestroy {
                 itemOffered: {
                   '@type': 'Service',
                   name: this.t(
+                    'Aromaöl-Massage für Rücken, Schulter & Nacken',
+                    'Aroma-oil massage for back, shoulder & neck',
+                  ),
+                },
+                priceCurrency: 'EUR',
+                price: '78',
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: this.t(
+                    'Aromaöl-Massage für Rücken, Schulter & Nacken, 5er-Paket (5 × 60 Min.)',
+                    'Aroma-oil massage for back, shoulder & neck, pack of 5 (5 × 60 min)',
+                  ),
+                },
+                priceCurrency: 'EUR',
+                price: '350',
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: this.t(
+                    'Aromaöl-Massage für Rücken, Schulter & Nacken, 10er-Paket (10 × 60 Min.)',
+                    'Aroma-oil massage for back, shoulder & neck, pack of 10 (10 × 60 min)',
+                  ),
+                },
+                priceCurrency: 'EUR',
+                price: '600',
+              },
+              {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: this.t(
                     'Ganzkörpermassage mit Aromaölen & Klangschale',
                     'Full-body massage with aroma oils and singing bowl',
                   ),

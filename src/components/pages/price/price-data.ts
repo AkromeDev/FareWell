@@ -49,6 +49,11 @@ export interface PriceRow {
    * Zeile in der Tabelle und als Präfix im JSON-LD.
    */
   scope?: { de: string; en: string };
+  /**
+   * Paket aus mehreren gleich langen Terminen (5er-, 10er-Paket). `minutes`
+   * ist dann die Dauer je Termin, `price` der Gesamtpreis des Pakets.
+   */
+  sessions?: number;
 }
 
 /** Namenszusatz der Delegationsvarianten (Tag in der Tabelle, Name im JSON-LD). */
@@ -276,6 +281,8 @@ export const PRICE_TABLES = {
       { de: 'Rücken-Schulter-Nacken-Massage', en: 'Back, shoulder & neck massage', minutes: 60, price: 78 },
       { de: 'Aromaöl-Massage für Rücken, Schulter & Nacken', en: 'Aroma-oil massage for back, shoulder & neck', minutes: 45, price: 78 },
       { de: 'Aromaöl-Massage für Rücken, Schulter & Nacken', en: 'Aroma-oil massage for back, shoulder & neck', minutes: 60, price: 90 },
+      { de: 'Aromaöl-Massage für Rücken, Schulter & Nacken, 5er-Paket', en: 'Aroma-oil massage for back, shoulder & neck, pack of 5', minutes: 60, sessions: 5, price: 350 },
+      { de: 'Aromaöl-Massage für Rücken, Schulter & Nacken, 10er-Paket', en: 'Aroma-oil massage for back, shoulder & neck, pack of 10', minutes: 60, sessions: 10, price: 600 },
       { de: 'Ganzkörpermassage mit Aromaölen', en: 'Full-body massage with aroma oils', minutes: 60, price: 78 },
       { de: 'Ganzkörpermassage mit Aromaölen', en: 'Full-body massage with aroma oils', minutes: 90, price: 120 },
       { de: 'Teilkörpermassage', en: 'Partial-body massage', minutes: 30, price: 45 },
