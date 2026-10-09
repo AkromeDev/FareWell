@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { withUkDictionaries } from 'src/i18n/uk/dictionaries';
+import { languageBoundaryGuard } from 'src/services/language.service';
 
-type PageLang = 'de' | 'en';
+type PageLang = 'de' | 'en' | 'uk';
 
 interface PageMeta {
   title: string;
@@ -9,12 +11,14 @@ interface PageMeta {
 }
 
 /**
- * Zweisprachige Seiten: identische Routenstruktur unter / (deutsch) und
- * unter /en/ (englisch). Welche Sprache rendert, entscheidet die URL
- * (LanguageService); die title/description hier dokumentieren die
- * Ziel-Metadaten je Sprache — gesetzt werden sie von den Komponenten über
- * den SeoService. Nicht übersetzte Seiten (Legal, die englische
- * US-Forces-Sonderseite) leben ausschließlich im deutschen Baum.
+ * Mehrsprachige Seiten: identische Routenstruktur unter / (deutsch), unter
+ * /en/ (englisch) und unter /uk/ (ukrainisch). Welche Sprache rendert,
+ * entscheidet die URL (LanguageService); die title/description hier
+ * dokumentieren die Ziel-Metadaten je Sprache — gesetzt werden sie von den
+ * Komponenten über den SeoService (auf /uk/ per Wörterbuch aus dem deutschen
+ * Text, daher hier die englischen als Platzhalter). Nicht übersetzte Seiten
+ * (Legal, die englische US-Forces-Sonderseite) leben ausschließlich im
+ * deutschen Baum.
  */
 function localizedRoutes(lang: PageLang): Routes {
   const d = (de: PageMeta, en: PageMeta): PageMeta => (lang === 'de' ? de : en);
@@ -677,13 +681,21 @@ function localizedRoutes(lang: PageLang): Routes {
   ];
 }
 
-const routes: Routes = [
+const pageRoutes: Routes = [
   ...localizedRoutes('de'),
 
   // Englischer Spiegelbaum: gleiche Slugs unter /en/, gerendert auf Englisch.
   {
     path: 'en',
     children: localizedRoutes('en')
+  },
+
+  // Ukrainischer Spiegelbaum: gleiche Slugs unter /uk/ (ohne die Seiten in
+  // UK_EXCLUDED_PATHS). Jede Route lädt ihr Wörterbuch (src/i18n/uk)
+  // parallel zum Komponenten-Chunk.
+  {
+    path: 'uk',
+    children: withUkDictionaries(localizedRoutes('uk'))
   },
 
   {
@@ -757,6 +769,16 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'not-found'
+  }
+];
+
+// Eine Wurzel ohne Komponente, nur für den Wächter: Navigationen in den
+// ukrainischen Baum oder aus ihm heraus werden zum Seitenaufruf.
+const routes: Routes = [
+  {
+    path: '',
+    canActivateChild: [languageBoundaryGuard],
+    children: pageRoutes
   }
 ];
 

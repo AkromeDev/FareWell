@@ -147,8 +147,8 @@ export class LaserPromotionComponent implements OnInit, OnDestroy {
       largeImage: true,
     });
 
-    const isEn = this.language.lang() === 'en';
-    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+    const prefix = this.language.prefix();
+    const pageUrl = `https://farewell.salon${prefix}${PAGE_PATH}`;
 
     this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
@@ -205,7 +205,7 @@ export class LaserPromotionComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: this.t(PAGE_TITLE_DE, PAGE_TITLE_EN),
           description: this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN),
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           about: { '@id': `${pageUrl}#service` },
           primaryImageOfPage: { '@type': 'ImageObject', url: HERO_IMAGE_URL },
         },
@@ -213,7 +213,7 @@ export class LaserPromotionComponent implements OnInit, OnDestroy {
           '@type': 'FAQPage',
           '@id': `${pageUrl}#faq`,
           url: `${pageUrl}#faq`,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           mainEntity: this.faqEntries.map((entry) => ({
             '@type': 'Question',
             name: this.t(entry.question.de, entry.question.en),
@@ -230,7 +230,7 @@ export class LaserPromotionComponent implements OnInit, OnDestroy {
               '@type': 'ListItem',
               position: 1,
               name: 'FareWell',
-              item: isEn ? 'https://farewell.salon/en' : 'https://farewell.salon',
+              item: `https://farewell.salon${prefix}`,
             },
             {
               '@type': 'ListItem',

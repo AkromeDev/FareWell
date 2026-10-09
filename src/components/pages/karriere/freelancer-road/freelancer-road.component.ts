@@ -81,7 +81,7 @@ export class FreelancerRoadComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const isEn = this.language.lang() === 'en';
+    const prefix = this.language.prefix();
     const title = this.t(
       'Freelancer Road: der Weg in die Selbständigkeit bei FareWell Nürnberg',
       'Freelancer Road: The Path into Self-Employment at FareWell Nuremberg',
@@ -90,9 +90,9 @@ export class FreelancerRoadComponent implements OnInit, OnDestroy {
       'Alle Schritte in die Selbständigkeit als Kosmetiker:in, Masseur:in, Physio, Yoga-Lehrer:in oder Ärzt:in bei FareWell Nürnberg, in der richtigen Reihenfolge: Ämter, Nummern, Versicherungen, Website, Google-Profil und Marketing. Aus Joés eigener Gründung, mit abhakbarer Checkliste.',
       'Every step into self-employment as a beautician, massage therapist, physio, yoga teacher or physician at FareWell Nuremberg, in the right order: offices, phone numbers, insurance, website, Google profile and marketing. From Joé\'s own founding, with a checklist you can tick off.',
     );
-    const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${PAGE_PATH}`;
-    const homeUrl = isEn ? `${ORIGIN}/en` : ORIGIN;
-    const karriereUrl = `${ORIGIN}${isEn ? '/en' : ''}/karriere`;
+    const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
+    const homeUrl = `${ORIGIN}${prefix}`;
+    const karriereUrl = `${ORIGIN}${prefix}/karriere`;
 
     this.seo.setPageSeo({ title, description, path: PAGE_PATH });
 
@@ -105,7 +105,7 @@ export class FreelancerRoadComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: title,
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           isPartOf: { '@id': `${ORIGIN}/#website` },
           author: { '@type': 'Person', name: 'Joé Chatelain' },
         },

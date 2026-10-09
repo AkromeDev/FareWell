@@ -400,15 +400,14 @@ export class KarriereZeitenComponent {
   }
 
   private buildDays(): RenderedDay[] {
-    const isEn = this.language.lang() === 'en';
     const laneWidth = 100 / LANE_ORDER.length;
     /** Luft zwischen zwei Spuren, in Prozent der Spaltenbreite. */
     const gap = 2;
 
     return ZEIT_WOCHE.map((day: ZeitTag) => ({
       key: day.key,
-      head: isEn ? day.shortEn : day.shortDe,
-      full: isEn ? day.en : day.de,
+      head: this.t(day.shortDe, day.shortEn),
+      full: this.t(day.de, day.en),
       bands: day.bands.map((band) => ({
         band,
         top: bandTop(band),
@@ -466,7 +465,6 @@ export class KarriereZeitenComponent {
   }
 
   private buildTableRows(): ZeitTableRow[] {
-    const isEn = this.language.lang() === 'en';
     const closed = this.t('geschlossen', 'closed');
     const reserved = this.t(
       '(letzter Dienstag im Monat belegt: Yoga)',
@@ -476,7 +474,7 @@ export class KarriereZeitenComponent {
 
     return ZEIT_WOCHE.map((day) => ({
       key: day.key,
-      day: isEn ? day.en : day.de,
+      day: this.t(day.de, day.en),
       cells: LANE_ORDER.map((lane) => {
         const bands = day.bands
           .filter((band) => band.lane === lane)

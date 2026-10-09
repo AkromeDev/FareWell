@@ -62,7 +62,7 @@
                   {{ r.authorAttribution?.displayName ?? t('Anonym', 'Anonymous') }}
                 </div>
                 <div class="who__time">
-                  {{ r.relativePublishTimeDescription ?? '' }}
+                  {{ timeLabel(r) }}
                 </div>
               </div>
 
@@ -71,7 +71,11 @@
               </div>
             </div>
 
-            <p class="card__text" [class.is-expanded]="isExpanded(r)">
+            <p
+              class="card__text"
+              [class.is-expanded]="isExpanded(r)"
+              [attr.lang]="reviewLang(r)"
+            >
               <span class="card__text-inner">{{ reviewText(r) }}</span>
             </p>
 

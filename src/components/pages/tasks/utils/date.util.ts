@@ -1,3 +1,5 @@
+import type { Lang } from 'src/services/language.service';
+
 /**
  * Small, dependency-free date helpers. All "calendar day" reasoning is done in
  * the viewer's local time; timestamps are stored as ISO 8601 (UTC) elsewhere.
@@ -61,10 +63,10 @@ export function parseIso(iso: string | null | undefined): Date | null {
   return Number.isNaN(d.getTime()) ? null : d;
 }
 
-const LOCALE: Record<'de' | 'en', string> = { de: 'de-DE', en: 'en-GB' };
+const LOCALE: Record<Lang, string> = { de: 'de-DE', en: 'en-GB', uk: 'uk-UA' };
 
 /** Local date + time, e.g. "16.07.2026, 14:32" (exact, for tooltips/labels). */
-export function formatDateTime(iso: string, lang: 'de' | 'en'): string {
+export function formatDateTime(iso: string, lang: Lang): string {
   const d = parseIso(iso);
   if (!d) return '';
   return new Intl.DateTimeFormat(LOCALE[lang], {
@@ -74,14 +76,14 @@ export function formatDateTime(iso: string, lang: 'de' | 'en'): string {
 }
 
 /** Local date only, e.g. "16 Jul 2026". */
-export function formatDate(iso: string, lang: 'de' | 'en'): string {
+export function formatDate(iso: string, lang: Lang): string {
   const d = parseIso(iso);
   if (!d) return '';
   return new Intl.DateTimeFormat(LOCALE[lang], { dateStyle: 'medium' }).format(d);
 }
 
 /** Short weekday + day number for calendar headers, e.g. "Mi 16". */
-export function formatDayHeader(date: Date, lang: 'de' | 'en'): { weekday: string; day: string } {
+export function formatDayHeader(date: Date, lang: Lang): { weekday: string; day: string } {
   const weekday = new Intl.DateTimeFormat(LOCALE[lang], { weekday: 'short' }).format(date);
   return { weekday, day: `${date.getDate()}` };
 }
@@ -90,7 +92,7 @@ export function formatDayHeader(date: Date, lang: 'de' | 'en'): { weekday: strin
  * Human relative time ("2 hours ago", "in 3 days"). Coarse by design — the
  * exact timestamp stays available in a tooltip/secondary label.
  */
-export function relativeTime(iso: string, now: Date, lang: 'de' | 'en'): string {
+export function relativeTime(iso: string, now: Date, lang: Lang): string {
   const d = parseIso(iso);
   if (!d) return '';
   const diffMs = d.getTime() - now.getTime();

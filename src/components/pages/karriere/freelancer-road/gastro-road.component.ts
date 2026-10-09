@@ -53,7 +53,7 @@ export class GastroRoadComponent implements OnInit {
   }
 
   bi(text: Bi): string {
-    return this.language.lang() === 'en' ? text.en : text.de;
+    return this.language.t(text.de, text.en);
   }
 
   get stats(): GuideStat[] {

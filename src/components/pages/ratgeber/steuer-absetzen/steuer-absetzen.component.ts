@@ -67,8 +67,8 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const isEn = this.language.lang() === 'en';
-    const base = isEn ? `${ORIGIN}/en` : ORIGIN;
+    const prefix = this.language.prefix();
+    const base = `${ORIGIN}${prefix}`;
     const pageUrl = `${base}${PAGE_PATH}`;
     const pageTitle = this.t(PAGE_TITLE_DE, PAGE_TITLE_EN);
     const pageDescription = this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN);
@@ -91,7 +91,7 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
             'Deducting treatment costs from your taxes'
           ),
           description: pageDescription,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           datePublished: '2026-07-15',
           dateModified: '2026-07-15',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
@@ -111,7 +111,7 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: pageTitle,
           description: pageDescription,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
         },
         {
           '@type': 'BreadcrumbList',

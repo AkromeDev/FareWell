@@ -274,10 +274,10 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const t = (de: string, en: string) => this.t(de, en);
-    const isEn = this.language.lang() === 'en';
-    const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${PAGE_PATH}`;
-    const homeUrl = isEn ? `${ORIGIN}/en` : ORIGIN;
-    const inLanguage = isEn ? 'en' : 'de';
+    const prefix = this.language.prefix();
+    const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
+    const homeUrl = `${ORIGIN}${prefix}`;
+    const inLanguage = this.language.lang();
 
     const title = t(
       'Masseur:in und medizinische:r Bademeister:in (m/w/d) in Nürnberg: für blinde und sehbehinderte Bewerber:innen | FareWell',
@@ -367,7 +367,7 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
               '@type': 'ListItem',
               position: 2,
               name: t('Karriere', 'Careers'),
-              item: `${ORIGIN}${isEn ? '/en' : ''}/karriere`,
+              item: `${ORIGIN}${prefix}/karriere`,
             },
             {
               '@type': 'ListItem',

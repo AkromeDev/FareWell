@@ -20,6 +20,7 @@ import {
   sameLocalDay,
   startOfDay,
 } from '../utils/date.util';
+import type { Lang } from 'src/services/language.service';
 
 /** Tunable thresholds for the gradual urgency system (in days / hours). */
 const DUE_SOON_DAYS = 2;
@@ -364,7 +365,7 @@ export class RecurrenceService {
   }
 
   /** Human-readable recurrence description for cards and details. */
-  describeRecurrence(def: TaskDefinition, lang: 'de' | 'en'): string {
+  describeRecurrence(def: TaskDefinition, lang: Lang): string {
     const r = def.recurrence;
     const de = lang === 'de';
     switch (r.kind) {

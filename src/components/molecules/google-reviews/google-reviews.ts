@@ -219,6 +219,17 @@ export class GoogleReviewsComponent implements OnChanges {
     return (r.text?.text ?? r.originalText?.text ?? '').trim();
   }
 
+  /** Googles Zeitangabe kommt deutsch („vor 4 Monaten“); auf /uk/ übersetzt. */
+  timeLabel(r: GoogleReview): string {
+    const time = r.relativePublishTimeDescription ?? '';
+    return this.lang.t(time, time);
+  }
+
+  /** Sprache der Bewertung selbst (meist Deutsch), für die Sprachausgabe. */
+  reviewLang(r: GoogleReview): string | null {
+    return r.text?.languageCode ?? r.originalText?.languageCode ?? null;
+  }
+
   shouldShowReadMore(r: GoogleReview): boolean {
     const t = this.reviewText(r);
     return t.length > 240 || t.split('\n').length > 3;

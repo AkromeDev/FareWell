@@ -38,7 +38,7 @@
   overflow: clip;
   background: var(--m-bg);
   color: var(--m-text);
-  font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Outfit', 'Onest', 'Helvetica Neue', Arial, sans-serif;
   font-size: 17px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -71,6 +71,10 @@
   display: none;
 }
 .mojo[data-lang='en'] .lang.de {
+  display: none;
+}
+.mojo[data-lang='uk'] .lang.de:not([data-i18n='uk']),
+.mojo[data-lang='uk'] .lang.en:not([data-i18n='fallback']) {
   display: none;
 }
 

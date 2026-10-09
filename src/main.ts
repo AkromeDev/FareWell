@@ -4,6 +4,7 @@ import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/c
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { AppRoutingModule } from './app/app-routing.module';
+import { provideLanguage } from './i18n/uk/provide';
 
 if (environment.production) {
   enableProdMode();
@@ -12,6 +13,7 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(AppRoutingModule),
-    provideHttpClient(withFetch(), withInterceptorsFromDi())
+    provideHttpClient(withFetch(), withInterceptorsFromDi()),
+    provideLanguage()
   ]
 }).catch(err => console.error(err));

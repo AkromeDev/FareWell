@@ -555,11 +555,12 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const isEn = this.language.lang() === 'en';
-    const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${PAGE_PATH}`;
-    const homeUrl = isEn ? `${ORIGIN}/en` : ORIGIN;
+    const prefix = this.language.prefix();
+    const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
+    const homeUrl = `${ORIGIN}${prefix}`;
     const title = this.t(DE_TITLE, EN_TITLE);
     const description = this.t(DE_DESCRIPTION, EN_DESCRIPTION);
-    const inLanguage = isEn ? 'en' : 'de';
+    const inLanguage = this.language.lang();
 
     this.seo.setPageSeo({
       title,
@@ -663,7 +664,7 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
               '@type': 'ListItem',
               position: 2,
               name: this.t('Behandlungen', 'Treatments'),
-              item: `${ORIGIN}${isEn ? '/en' : ''}/behandlungen`,
+              item: `${ORIGIN}${prefix}/behandlungen`,
             },
             {
               '@type': 'ListItem',

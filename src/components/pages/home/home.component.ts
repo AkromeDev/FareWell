@@ -48,6 +48,8 @@ type ReviewCard = {
   name: string;
   time: string;
   text: string;
+  /** Sprache der Bewertung selbst (meist Deutsch), für die Sprachausgabe. */
+  lang: string | null;
 };
 
 @Component({
@@ -255,10 +257,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const name = (review.authorAttribution?.displayName ?? 'Google')
       // Gamer-Tags wie "Kevin Donath (DoughnutBot)" ohne Klammerzusatz zeigen.
       .replace(/\s*\([^)]*\)\s*$/, '');
+    const time = review.relativePublishTimeDescription ?? '';
     return {
       name,
-      time: review.relativePublishTimeDescription ?? '',
+      // Googles Zeitangabe kommt deutsch („vor 4 Monaten“); auf /uk/ über das
+      // Wörterbuch, auf /en/ bleibt sie wie bisher.
+      time: this.lang.t(time, time),
       text: this.truncate(flat, 220),
+      lang: review.text?.languageCode ?? review.originalText?.languageCode ?? null,
     };
   }
 
@@ -323,6 +329,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     // Wort-für-Wort-Highlight nur ohne prefers-reduced-motion; das reine
     // Ausblenden des Scroll-Hinweises ist keine Bewegung und bleibt aktiv.
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // Auf /uk/ erst übersetzen: danach steht jedes Wort in einem eigenen Span.
+      this.lang.translateDom(hostEl);
       const paragraphs = Array.from(
         hostEl.querySelectorAll<HTMLElement>('.manifest-copy')
       );
@@ -431,8 +439,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       largeImage: true,
     });
 
-    const isEn = this.lang.lang() === 'en';
-    const pageUrl = isEn ? 'https://farewell.salon/en' : 'https://farewell.salon/';
+    const prefix = this.lang.prefix();
+    const pageUrl = `https://farewell.salon${prefix || '/'}`;
 
     this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
@@ -503,7 +511,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           url: pageUrl,
           name: pageTitle,
           description: description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.lang.lang(),
           isPartOf: {
             '@id': 'https://farewell.salon/#website',
           },

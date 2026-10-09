@@ -152,9 +152,9 @@ export class HistorieComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const isEn = this.language.lang() === 'en';
-    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
-    const homeUrl = isEn ? 'https://farewell.salon/en' : 'https://farewell.salon';
+    const prefix = this.language.prefix();
+    const pageUrl = `https://farewell.salon${prefix}${PAGE_PATH}`;
+    const homeUrl = `https://farewell.salon${prefix}`;
     const title = this.t(PAGE_TITLE_DE, PAGE_TITLE_EN);
     const description = this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN);
 
@@ -175,7 +175,7 @@ export class HistorieComponent implements OnInit, OnDestroy {
           '@id': `${pageUrl}#article`,
           headline: title,
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           image: HERO_IMAGE_URL,
           about: this.t('Geschichte der Elektrolyse', 'History of electrolysis'),
           author: { '@id': 'https://farewell.salon/#organization' },
@@ -188,7 +188,7 @@ export class HistorieComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: title,
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           isPartOf: { '@id': 'https://farewell.salon/#website' },
           primaryImageOfPage: { '@type': 'ImageObject', url: HERO_IMAGE_URL },
         },

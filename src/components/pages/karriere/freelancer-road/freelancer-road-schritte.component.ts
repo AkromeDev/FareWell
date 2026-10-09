@@ -59,7 +59,7 @@ export class FreelancerRoadSchritteComponent implements OnInit, OnDestroy {
   }
 
   bi(text: Bi): string {
-    return this.language.lang() === 'en' ? text.en : text.de;
+    return this.language.t(text.de, text.en);
   }
 
   get stats(): GuideStat[] {
@@ -89,7 +89,7 @@ export class FreelancerRoadSchritteComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const isEn = this.language.lang() === 'en';
+    const prefix = this.language.prefix();
     const title = this.t(
       'Freelancer Road: alle Schritte als Checkliste | FareWell Nürnberg',
       'Freelancer Road: Every Step as a Checklist | FareWell Nuremberg',
@@ -98,9 +98,8 @@ export class FreelancerRoadSchritteComponent implements OnInit, OnDestroy {
       'Die abhakbare Checkliste in die Selbständigkeit bei FareWell Nürnberg: Gewerbe oder freier Beruf, Finanzamt, Kammer, Berufsgenossenschaft, Versicherung, Google-Profil, Website und Marketing. Mit Nummern, Adressen und Joés Erfahrungen. Dein Stand bleibt in deinem Browser.',
       'The tick-off checklist into self-employment at FareWell Nuremberg: trade or liberal profession, tax office, chamber, accident insurer, insurance, Google profile, website and marketing. With phone numbers, addresses and Joé\'s experience. Your progress stays in your browser.',
     );
-    const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${PAGE_PATH}`;
-    const homeUrl = isEn ? `${ORIGIN}/en` : ORIGIN;
-    const prefix = isEn ? '/en' : '';
+    const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
+    const homeUrl = `${ORIGIN}${prefix}`;
 
     this.seo.setPageSeo({ title, description, path: PAGE_PATH });
     this.seo.setJsonLd(this.jsonLdId, {
@@ -112,7 +111,7 @@ export class FreelancerRoadSchritteComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: title,
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           isPartOf: { '@id': `${ORIGIN}/#website` },
         },
         {

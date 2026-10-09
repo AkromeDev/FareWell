@@ -11,7 +11,8 @@
     Sprachumschaltung, kritisch inline.
 
     Zweisprachige Inhalte liegen als Paare im DOM (<span class="lang de">…</span>
-    <span class="lang en">…</span>); dieselbe Regel steht auch in styles.scss.
+    <span class="lang en">…</span>); dieselbe Regel steht auch in styles.scss
+    (dort auch zu den /uk/-Regeln).
     Das Haupt-Stylesheet wird aber asynchron geladen (media="print" onload),
     und Beasties nimmt diese Regel nicht ins kritische CSS auf. Ohne die Kopie
     hier wäre zwischen First Paint und Stylesheet BEIDE Sprachen sichtbar und
@@ -21,7 +22,9 @@
   -->
   <style>
     [data-lang='de'] .lang.en,
-    [data-lang='en'] .lang.de {
+    [data-lang='en'] .lang.de,
+    [data-lang='uk'] .lang.de:not([data-i18n='uk']),
+    [data-lang='uk'] .lang.en:not([data-i18n='fallback']) {
       display: none !important;
     }
   </style>

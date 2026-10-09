@@ -391,7 +391,7 @@
             <strong>{{ r.name }}</strong>
             <span class="review-stars" aria-hidden="true">★★★★★</span>
           </div>
-          <p>{{ r.text }}</p>
+          <p [attr.lang]="r.lang">{{ r.text }}</p>
           <span class="review-meta">{{ r.time }} · Google</span>
         </article>
         <article
@@ -403,7 +403,7 @@
             <strong>{{ r.name }}</strong>
             <span class="review-stars">★★★★★</span>
           </div>
-          <p>{{ r.text }}</p>
+          <p [attr.lang]="r.lang">{{ r.text }}</p>
           <span class="review-meta">{{ r.time }} · Google</span>
         </article>
       </div>
@@ -424,7 +424,7 @@
             <strong>{{ r.name }}</strong>
             <span class="review-stars" aria-hidden="true">★★★★★</span>
           </div>
-          <p>{{ r.text }}</p>
+          <p [attr.lang]="r.lang">{{ r.text }}</p>
           <span class="review-meta">{{ r.time }} · Google</span>
         </article>
         <article
@@ -436,7 +436,7 @@
             <strong>{{ r.name }}</strong>
             <span class="review-stars">★★★★★</span>
           </div>
-          <p>{{ r.text }}</p>
+          <p [attr.lang]="r.lang">{{ r.text }}</p>
           <span class="review-meta">{{ r.time }} · Google</span>
         </article>
       </div>

@@ -314,17 +314,19 @@ export class GuideZoneRechnerComponent implements OnDestroy {
    * beim DE/EN-Umschalten automatisch nachzieht.
    */
   get viewModel() {
-    const isDe = this.lang === 'de';
+    const lang = this.lang;
     const eur = (n: number) =>
-      isDe ? `${n.toLocaleString('de-DE')} €` : `€${n.toLocaleString('en-US')}`;
+      lang === 'en'
+        ? `€${n.toLocaleString('en-US')}`
+        : `${n.toLocaleString(lang === 'uk' ? 'uk-UA' : 'de-DE')} €`;
 
     const groups = CATALOG.map((g) => ({
-      name: isDe ? g.de : g.en,
+      name: this.t(g.de, g.en),
       zones: g.zones.map((z) => {
         const on = this.selected.has(z.key);
         return {
           key: z.key,
-          name: isDe ? z.de : z.en,
+          name: this.t(z.de, z.en),
           priceLabel: eur(z.price),
           on,
           mark: on ? '✓' : '+',
@@ -343,7 +345,7 @@ export class GuideZoneRechnerComponent implements OnDestroy {
       groups,
       chips: picked.map((z) => ({
         key: z.key,
-        name: isDe ? z.de : z.en,
+        name: this.t(z.de, z.en),
         priceLabel: eur(z.price),
       })),
       pickerLabel: this.pickerOpen
@@ -360,9 +362,10 @@ export class GuideZoneRechnerComponent implements OnDestroy {
         pct > 0
           ? this.t(`−${pct}% Zonen-Rabatt`, `−${pct}% area discount`)
           : this.t('ab 3 Zonen', 'from 3 areas'),
-      countLabel: isDe
-        ? `${n} ${n === 1 ? 'Zone' : 'Zonen'}`
-        : `${n} ${n === 1 ? 'area' : 'areas'}`,
+      countLabel: this.t(
+        `${n} ${n === 1 ? 'Zone' : 'Zonen'}`,
+        `${n} ${n === 1 ? 'area' : 'areas'}`
+      ),
       tierHint: this.tierHint(n, pct),
       barWidth: `${Math.min(100, (pct / 30) * 100)}%`,
     };

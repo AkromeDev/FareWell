@@ -5,6 +5,7 @@ import {
   karriereWeExpect,
   karriereWeGive,
 } from './karriere-content';
+import type { Lang } from 'src/services/language.service';
 
 /**
  * Baut den JSON-LD-Graph einer Karriere-Detailseite: JobPosting (für Google
@@ -94,12 +95,13 @@ function jobDescriptionHtml(t: Translate, cfg: KarriereJobConfig): string {
 
 export function buildKarriereJsonLd(
   t: Translate,
-  isEn: boolean,
+  lang: Lang,
   cfg: KarriereJobConfig
 ): object {
-  const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${cfg.path}`;
-  const homeUrl = isEn ? `${ORIGIN}/en` : ORIGIN;
-  const inLanguage = isEn ? 'en' : 'de';
+  const prefix = lang === 'de' ? '' : `/${lang}`;
+  const pageUrl = `${ORIGIN}${prefix}${cfg.path}`;
+  const homeUrl = `${ORIGIN}${prefix}`;
+  const inLanguage = lang;
 
   return {
     '@context': 'https://schema.org',
@@ -180,7 +182,7 @@ export function buildKarriereJsonLd(
             '@type': 'ListItem',
             position: 2,
             name: t('Karriere', 'Careers'),
-            item: `${ORIGIN}${isEn ? '/en' : ''}/karriere`,
+            item: `${ORIGIN}${prefix}/karriere`,
           },
           { '@type': 'ListItem', position: 3, name: cfg.breadcrumbName, item: pageUrl },
         ],

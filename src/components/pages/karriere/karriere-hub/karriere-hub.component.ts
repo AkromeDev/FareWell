@@ -216,7 +216,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const isEn = this.language.lang() === 'en';
+    const prefix = this.language.prefix();
     const title = this.t(
       'Karriere bei FareWell Nürnberg: freiberuflich arbeiten im Studio',
       'Careers at FareWell Nuremberg: Work Freelance in Our Studio',
@@ -225,8 +225,8 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
       'Offene Positionen bei FareWell Nürnberg für Selbständige: Kosmetik, Massage, Yoga, Tanz und ästhetische Medizin. Voll ausgestatteter Raum im Zentrum, keine feste Miete, flexible Zeiten und Hilfe beim eigenen Google-Business-Profil.',
       'Open positions at FareWell Nuremberg for freelancers: cosmetics, massage, yoga, dance and aesthetic medicine. A fully equipped room in the city centre, no fixed rent, flexible hours and help setting up your own Google Business profile.',
     );
-    const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${PAGE_PATH}`;
-    const homeUrl = isEn ? `${ORIGIN}/en` : ORIGIN;
+    const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
+    const homeUrl = `${ORIGIN}${prefix}`;
 
     this.seo.setPageSeo({ title, description, path: PAGE_PATH });
 
@@ -239,7 +239,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: title,
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           isPartOf: { '@id': `${ORIGIN}/#website` },
         },
         {
@@ -253,7 +253,7 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
             '@type': 'ListItem',
             position: index + 1,
             name: position.title,
-            url: `${ORIGIN}${isEn ? '/en' : ''}${position.path}`,
+            url: `${ORIGIN}${prefix}${position.path}`,
           })),
         },
         {

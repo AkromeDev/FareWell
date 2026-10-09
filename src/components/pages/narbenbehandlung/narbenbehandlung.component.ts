@@ -157,9 +157,9 @@ export class NarbenbehandlungComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const isEn = this.language.lang() === 'en';
-    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
-    const homeUrl = isEn ? 'https://farewell.salon/en' : 'https://farewell.salon';
+    const prefix = this.language.prefix();
+    const pageUrl = `https://farewell.salon${prefix}${PAGE_PATH}`;
+    const homeUrl = `https://farewell.salon${prefix}`;
     const title = this.t(DE_TITLE, EN_TITLE);
     const description = this.t(DE_DESCRIPTION, EN_DESCRIPTION);
 
@@ -207,7 +207,7 @@ export class NarbenbehandlungComponent implements OnInit, OnDestroy {
             name: this.t('Narbenbehandlung, 60 Minuten', 'Scar treatment, 60 minutes'),
             price: 250,
             priceCurrency: 'EUR',
-            url: `https://farewell.salon${isEn ? '/en' : ''}/price#narbenbehandlung`,
+            url: `https://farewell.salon${prefix}/price#narbenbehandlung`,
             priceSpecification: {
               '@type': 'UnitPriceSpecification',
               price: 250,
@@ -222,7 +222,7 @@ export class NarbenbehandlungComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: title,
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           isPartOf: { '@id': 'https://farewell.salon/#website' },
           about: { '@id': `${pageUrl}#service` },
           primaryImageOfPage: { '@type': 'ImageObject', url: HERO_IMAGE_URL },
@@ -230,7 +230,7 @@ export class NarbenbehandlungComponent implements OnInit, OnDestroy {
         {
           '@type': 'FAQPage',
           '@id': `${pageUrl}#faq`,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           mainEntity: this.faqEntries.map((entry) => ({
             '@type': 'Question',
             name: entry.question,
@@ -245,7 +245,7 @@ export class NarbenbehandlungComponent implements OnInit, OnDestroy {
               '@type': 'ListItem',
               position: 2,
               name: this.t('Behandlungen', 'Treatments'),
-              item: `https://farewell.salon${isEn ? '/en' : ''}/behandlungen`,
+              item: `https://farewell.salon${prefix}/behandlungen`,
             },
             {
               '@type': 'ListItem',

@@ -146,7 +146,7 @@ export abstract class KarriereDetailPage implements OnInit, OnDestroy {
     // garantiert denselben Wert tragen (Google verlangt diese Übereinstimmung).
     this.seo.setJsonLd(
       this.jsonLdId,
-      buildKarriereJsonLd((de, en) => this.t(de, en), this.language.lang() === 'en', {
+      buildKarriereJsonLd((de, en) => this.t(de, en), this.language.lang(), {
         ...cfg,
         jobStartDate: this.jobStartDate,
       })

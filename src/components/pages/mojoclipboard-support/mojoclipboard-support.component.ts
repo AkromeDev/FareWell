@@ -3,9 +3,8 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { StatsScrollComponent, StatsScrollItem } from 'src/components/molecules/stats-scroll/stats-scroll.component';
 import { SeoService } from 'src/services/seo.service';
-import { LanguageService } from 'src/services/language.service';
+import { Lang, LanguageService } from 'src/services/language.service';
 
-type PageLang = 'de' | 'en';
 
 const ORIGIN = 'https://farewell.salon';
 const PAGE_PATH = '/mojoclipboard-support';
@@ -50,8 +49,8 @@ export class MojoClipboardSupportComponent implements OnInit, OnDestroy {
   private readonly language = inject(LanguageService);
   private readonly jsonLdId = 'mojoclipboard-support-schema';
 
-  get lang(): PageLang {
-    return this.language.lang() === 'en' ? 'en' : 'de';
+  get lang(): Lang {
+    return this.language.lang();
   }
 
   t(de: string, en: string): string {
@@ -155,8 +154,8 @@ export class MojoClipboardSupportComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    const isEn = this.language.lang() === 'en';
-    const base = isEn ? `${ORIGIN}/en` : ORIGIN;
+    const prefix = this.language.prefix();
+    const base = `${ORIGIN}${prefix}`;
     const pageUrl = `${base}${PAGE_PATH}`;
     const pageTitle = this.t(PAGE_TITLE_DE, PAGE_TITLE_EN);
     const pageDescription = this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN);
@@ -185,7 +184,7 @@ export class MojoClipboardSupportComponent implements OnInit, OnDestroy {
         {
           '@type': 'FAQPage',
           '@id': `${pageUrl}#faq`,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           mainEntity: this.faqs.map(f => ({
             '@type': 'Question',
             name: this.t(f.q_de, f.q_en),
@@ -198,7 +197,7 @@ export class MojoClipboardSupportComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: pageTitle,
           description: pageDescription,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
         },
         {
           '@type': 'BreadcrumbList',

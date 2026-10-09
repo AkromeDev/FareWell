@@ -181,7 +181,7 @@ export class PriceComponent implements OnInit, OnDestroy {
     if (row.price === null) {
       return this.t('Kostenlos', 'Free');
     }
-    return this.lang === 'de' ? `${row.price} €` : `€${row.price}`;
+    return this.lang === 'en' ? `€${row.price}` : `${row.price} €`;
   }
 
   duration(row: PriceRow): string {
@@ -239,8 +239,8 @@ export class PriceComponent implements OnInit, OnDestroy {
    * in der Sprache der aktiven Route (DE unter /price, EN unter /en/price).
    */
   private buildJsonLd(): object {
-    const isEn = this.language.lang() === 'en';
-    const pageUrl = `${ORIGIN}${isEn ? '/en' : ''}${PAGE_PATH}`;
+    const prefix = this.language.prefix();
+    const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
 
     const services = PRICE_SERVICES.map((svc) => {
       const tables: PriceTable[] = svc.tables.map((key) => PRICE_TABLES[key]);
@@ -283,7 +283,7 @@ export class PriceComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: this.t(PAGE_TITLE_DE, PAGE_TITLE_EN),
           description: this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN),
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           mainEntity: this.faqOrder.map((key) => ({
             '@type': 'Question',
             name: this.t(this.faqs[key].qDe, this.faqs[key].qEn),
@@ -301,7 +301,7 @@ export class PriceComponent implements OnInit, OnDestroy {
               '@type': 'ListItem',
               position: 1,
               name: 'FareWell',
-              item: isEn ? `${ORIGIN}/en` : ORIGIN,
+              item: `${ORIGIN}${prefix}`,
             },
             {
               '@type': 'ListItem',

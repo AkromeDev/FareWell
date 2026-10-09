@@ -6,6 +6,7 @@ import {
   TaskUser,
   TaskUserId,
 } from '../models';
+import type { Lang } from 'src/services/language.service';
 
 /**
  * Central identity, permission and schedule configuration for the task system.
@@ -118,7 +119,7 @@ export function categoryById(id: string): TaskCategory | undefined {
   return CATEGORY_BY_ID.get(id);
 }
 
-export function categoryLabel(id: string, lang: 'de' | 'en'): string {
+export function categoryLabel(id: string, lang: Lang): string {
   const cat = CATEGORY_BY_ID.get(id);
   if (!cat) return id;
   return lang === 'de' ? cat.labelDe : cat.labelEn;

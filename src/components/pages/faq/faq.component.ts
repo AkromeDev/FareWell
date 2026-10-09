@@ -520,8 +520,8 @@ export class FaqComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const isEn = this.lang.lang() === 'en';
-    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+    const prefix = this.lang.prefix();
+    const pageUrl = `https://farewell.salon${prefix}${PAGE_PATH}`;
     const title = this.t(PAGE_TITLE_DE, PAGE_TITLE_EN);
     const description = this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN);
 
@@ -540,7 +540,7 @@ export class FaqComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: title,
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.lang.lang(),
           mainEntity: this.faqEntries.map((entry) => ({
             '@type': 'Question',
             name: entry.question,
@@ -557,7 +557,7 @@ export class FaqComponent implements OnInit, OnDestroy {
               '@type': 'ListItem',
               position: 1,
               name: 'FareWell',
-              item: isEn ? 'https://farewell.salon/en' : 'https://farewell.salon',
+              item: `https://farewell.salon${prefix}`,
             },
             { '@type': 'ListItem', position: 2, name: 'FAQ', item: pageUrl },
           ],

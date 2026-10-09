@@ -70,8 +70,8 @@ export class MassageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const isEn = this.language.lang() === 'en';
-    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+    const prefix = this.language.prefix();
+    const pageUrl = `https://farewell.salon${prefix}${PAGE_PATH}`;
     const pageTitle = this.t('Wellness Massage Nürnberg | FareWell', 'Wellness Massage Nuremberg | FareWell');
     const description = this.t(
       'Entspannende Wellness Massagen bei FareWell in Nürnberg: Rücken-Schulter-Nacken-Massage, Ganzkörpermassage mit Aromaölen und Teilkörpermassage.',
@@ -157,7 +157,7 @@ export class MassageComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: pageTitle,
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           isPartOf: { '@id': 'https://farewell.salon/#website' },
           about: { '@id': `${pageUrl}#service` },
           primaryImageOfPage: { '@type': 'ImageObject', url: HERO_IMAGE_URL },
@@ -169,13 +169,13 @@ export class MassageComponent implements OnInit, OnDestroy {
               '@type': 'ListItem',
               position: 1,
               name: 'FareWell',
-              item: isEn ? 'https://farewell.salon/en' : 'https://farewell.salon',
+              item: `https://farewell.salon${prefix}`,
             },
             {
               '@type': 'ListItem',
               position: 2,
               name: this.t('Behandlungen', 'Treatments'),
-              item: `https://farewell.salon${isEn ? '/en' : ''}/behandlungen`,
+              item: `https://farewell.salon${prefix}/behandlungen`,
             },
             {
               '@type': 'ListItem',

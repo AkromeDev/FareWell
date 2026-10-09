@@ -90,7 +90,7 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Outfit', 'Onest', 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.45;
@@ -236,13 +236,16 @@ a[href]:not(.no-underline):not(.gd a) {
 }
 
 // ---------------------------------------------------------------------------
-// Zweisprachigkeit (DE/EN) — global
+// Mehrsprachigkeit (DE/EN/UK) — global
 // ---------------------------------------------------------------------------
-// Die UI-Sprache steht als data-lang="de|en" auf <html> (LanguageService).
+// Die UI-Sprache steht als data-lang="de|en|uk" auf <html> (LanguageService).
 // Inhalte liegen als Paare nebeneinander im DOM:
 //   <span class="lang de">Deutsch</span><span class="lang en">English</span>
 // und werden per CSS umgeschaltet. So sind beide Sprachen vorgerendert und der
 // Wechsel im Header ist sofort sichtbar, ohne Nachladen.
+// Ukrainisch (src/i18n/uk) übersetzt den deutschen Block an Ort und Stelle und
+// markiert ihn mit data-i18n="uk"; fehlt die Übersetzung, wird der englische
+// Block als data-i18n="fallback" gezeigt. Alles Unmarkierte bleibt verborgen.
 // !important ist hier Absicht: Die Regel ist eine Invariante, keine Empfehlung.
 // Eine Komponentenregel wie `.rail-intro .lang { display: block }` hat mit dem
 // _ngcontent-Attribut eine höhere Spezifität und hat die inaktive Sprache
@@ -253,6 +256,11 @@ a[href]:not(.no-underline):not(.gd a) {
 }
 
 [data-lang='en'] .lang.de {
+  display: none !important;
+}
+
+[data-lang='uk'] .lang.de:not([data-i18n='uk']),
+[data-lang='uk'] .lang.en:not([data-i18n='fallback']) {
   display: none !important;
 }
 
@@ -301,6 +309,101 @@ a[href]:not(.no-underline):not(.gd a) {
         color: #fff;
       }
     }
+
+    // Pfeil für weitere Sprachen, durch eine feine Linie von EN getrennt.
+    // Ist eine dieser Sprachen aktiv, trägt er ihr Kürzel und das Gold.
+    .lang-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-left: 1px solid rgba($cream, 0.3);
+
+      &[aria-expanded='true'] {
+        background: rgba($cream, 0.14);
+        color: #fff;
+      }
+
+      &.is-active,
+      &.is-active:hover {
+        background: $gold;
+        color: $emerald-deep;
+      }
+    }
+  }
+
+  .lang-switch {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+
+  .lang-more__chevron {
+    width: 10px;
+    height: 6px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s ease;
+  }
+
+  .lang-more[aria-expanded='true'] .lang-more__chevron {
+    transform: rotate(180deg);
+  }
+
+  // Im Burger-Menü klappt die Liste direkt unter dem Umschalter auf.
+  .lang-menu {
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    min-width: 11rem;
+    background: rgba($emerald-deep, 0.96);
+    border: 1px solid rgba($cream, 0.2);
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+
+    &[hidden] {
+      display: none !important;
+    }
+
+    a {
+      display: block;
+      padding: 0.55rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      text-decoration: none;
+      color: rgba($cream, 0.9);
+      transition: background 0.2s ease, color 0.2s ease;
+
+      &:hover,
+      &:focus-visible {
+        background: rgba($cream, 0.12);
+        color: #fff;
+      }
+
+      &[aria-current='true'] {
+        color: $gold;
+      }
+    }
+  }
+}
+
+// Breite Leiste: .nav-links-container schneidet Überstehendes ab
+// (overflow: hidden), deshalb hängt die Liste fixed an der .nav-bar (deren
+// backdrop-filter sie zum Bezugsrahmen macht) und schließt rechtsbündig mit
+// dem Umschalter ab. Muss mit dem Burger-Breakpoint im Header übereinstimmen.
+@media (min-width: 1261px) {
+  .nav-lang .lang-menu {
+    position: fixed;
+    top: calc(100% - 6px);
+    right: clamp(20px, 4vw, 56px);
+    z-index: 5;
   }
 }
 

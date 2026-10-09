@@ -134,8 +134,8 @@ export class NadelepilationPromotionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const isEn = this.language.lang() === 'en';
-    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
+    const prefix = this.language.prefix();
+    const pageUrl = `https://farewell.salon${prefix}${PAGE_PATH}`;
     const title = this.t(PAGE_TITLE_DE, PAGE_TITLE_EN);
     const description = this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN);
 
@@ -203,7 +203,7 @@ export class NadelepilationPromotionComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: title,
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           about: { '@id': `${pageUrl}#service` },
           primaryImageOfPage: { '@type': 'ImageObject', url: HERO_IMAGE_URL },
         },
@@ -211,7 +211,7 @@ export class NadelepilationPromotionComponent implements OnInit, OnDestroy {
           '@type': 'FAQPage',
           '@id': `${pageUrl}#faq`,
           url: `${pageUrl}#faq`,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           mainEntity: this.faqEntries.map((entry) => ({
             '@type': 'Question',
             name: entry.question,
@@ -225,7 +225,7 @@ export class NadelepilationPromotionComponent implements OnInit, OnDestroy {
               '@type': 'ListItem',
               position: 1,
               name: 'FareWell',
-              item: isEn ? 'https://farewell.salon/en' : 'https://farewell.salon',
+              item: `https://farewell.salon${prefix}`,
             },
             {
               '@type': 'ListItem',

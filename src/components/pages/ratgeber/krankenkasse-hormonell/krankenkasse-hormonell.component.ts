@@ -94,11 +94,11 @@ export class KrankenkasseHormonellComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const isEn = this.language.lang() === 'en';
+    const prefix = this.language.prefix();
     const title = this.t(PAGE_TITLE_DE, PAGE_TITLE_EN);
     const description = this.t(PAGE_DESCRIPTION_DE, PAGE_DESCRIPTION_EN);
-    const pageUrl = `https://farewell.salon${isEn ? '/en' : ''}${PAGE_PATH}`;
-    const homeUrl = isEn ? 'https://farewell.salon/en' : 'https://farewell.salon';
+    const pageUrl = `https://farewell.salon${prefix}${PAGE_PATH}`;
+    const homeUrl = `https://farewell.salon${prefix}`;
 
     this.seo.setPageSeo({
       title,
@@ -118,7 +118,7 @@ export class KrankenkasseHormonellComponent implements OnInit, OnDestroy {
             'Hair removal with PCOS, hirsutism and hypertrichosis: insurance coverage',
           ),
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
           datePublished: '2026-08-27',
           dateModified: '2026-09-05',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
@@ -142,7 +142,7 @@ export class KrankenkasseHormonellComponent implements OnInit, OnDestroy {
           url: pageUrl,
           name: title,
           description,
-          inLanguage: isEn ? 'en' : 'de',
+          inLanguage: this.language.lang(),
         },
         {
           '@type': 'BreadcrumbList',
