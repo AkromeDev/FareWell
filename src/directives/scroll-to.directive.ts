@@ -1,4 +1,4 @@
-import { Directive, HostListener, Input, PLATFORM_ID, inject } from '@angular/core';
+import { Directive, HostListener, Input, PLATFORM_ID, booleanAttribute, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
@@ -7,6 +7,13 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class ScrollToDirective {
   @Input('appScrollTo') targetId!: string;
+
+  /**
+   * Schreibt das Ziel als #anker in die Adresszeile, damit sich die Stelle
+   * per kopiertem Link teilen lässt (Inhaltsverzeichnis). Opt-in, weil
+   * Sprünge wie „Zurück nach oben" im Footer keinen Anker hinterlassen sollen.
+   */
+  @Input({ alias: 'appScrollToHash', transform: booleanAttribute }) updateHash = false;
 
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
@@ -29,6 +36,14 @@ export class ScrollToDirective {
       behavior: reduceMotion ? 'auto' : 'smooth',
       block: 'start',
     });
+
+    if (this.updateHash) {
+      // replaceState statt pushState: kein Verlaufseintrag je Klick, und kein
+      // popstate, das der Router als Navigation verarbeiten würde. history.state
+      // bleibt erhalten, darin führt der Router seine navigationId.
+      const { pathname, search } = window.location;
+      history.replaceState(history.state, '', `${pathname}${search}#${this.targetId}`);
+    }
 
     // Ohne Fokuswechsel scrollt nur das Bild: preventDefault() nimmt dem
     // Browser die Sprungmarken-Navigation ab, und damit bliebe der Lesecursor

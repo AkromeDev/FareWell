@@ -13,7 +13,9 @@ export interface GuideTocItem {
  * Klebendes Inhaltsverzeichnis mit führenden Ordnungsnummern. Die Anker-Links
  * tragen den vollen Seitenpfad (wegen <base href="/"> würde ein nacktes
  * "#anker" zur Startseite auflösen — relevant vor der Hydration, ohne JS und
- * beim Öffnen in neuem Tab); appScrollTo übernimmt das sanfte Scrollen.
+ * beim Öffnen in neuem Tab); appScrollTo übernimmt das sanfte Scrollen und
+ * schreibt den Anker in die Adresszeile, damit sich ein Abschnitt per Link
+ * teilen lässt.
  */
 @Component({
   selector: 'app-guide-toc',
@@ -25,7 +27,7 @@ export interface GuideTocItem {
       <ol>
         @for (item of items; track item.id) {
           <li>
-            <a [href]="pagePath + '#' + item.id" [appScrollTo]="item.id">{{ item.label }}</a>
+            <a [href]="pagePath + '#' + item.id" [appScrollTo]="item.id" appScrollToHash>{{ item.label }}</a>
           </li>
         }
       </ol>

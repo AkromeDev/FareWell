@@ -68,6 +68,13 @@ export class GuideTopButtonComponent implements AfterViewInit, OnDestroy {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
+    // Den #anker, den das Inhaltsverzeichnis gesetzt hat, wieder entfernen:
+    // sonst teilt, wer oben angekommen die Adresse kopiert, einen Abschnitt.
+    const { pathname, search, hash } = window.location;
+    if (hash) {
+      history.replaceState(history.state, '', `${pathname}${search}`);
+    }
+
     // Gleiches Verhalten wie appScrollTo: ohne Fokuswechsel bliebe der
     // Lesecursor eines Screenreaders unten am Button stehen, während nur das
     // Bild nach oben springt.
