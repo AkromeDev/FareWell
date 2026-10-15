@@ -33,9 +33,9 @@ const TICK_STEP = 5;
 const DE_TITLE = 'Massage in Nürnberg: Ruslana Ivanova bei FareWell';
 const EN_TITLE = 'Massage in Nuremberg: Ruslana Ivanova at FareWell';
 const DE_DESCRIPTION =
-  'Wellness-, Sport- und Gesichtsmassage bei FareWell in Nürnberg mit Ruslana Ivanova: Masseurin seit 2018, zertifiziert in Wellness- und Sportmassage, Lifting-Gesichtsmassage, Bukkalmassage und modellierender Körpermassage.';
+  'Rücken-, Ganzkörper-, Anti-Cellulite-, Honig-, Schröpf- und Gesichtsmassage bei FareWell in Nürnberg mit Ruslana Ivanova: Masseurin seit 2018, fünf Massagezertifikate für Gesicht und Körper.';
 const EN_DESCRIPTION =
-  'Wellness, sports and facial massage at FareWell in Nuremberg with Ruslana Ivanova: massage therapist since 2018, certified in wellness and sports massage, lifting facial massage, buccal massage and sculpting body massage.';
+  'Back, full-body, anti-cellulite, honey, cupping and facial massage at FareWell in Nuremberg with Ruslana Ivanova: massage therapist since 2018, five massage certificates for face and body.';
 
 /** Zweisprachiger Text. Beide Fassungen stehen im DOM, das globale CSS blendet eine aus. */
 export interface Bi {
@@ -208,11 +208,11 @@ const STATS: Stat[] = [
   },
   {
     value: { de: 'Gesicht', en: 'Face' },
-    label: { de: 'Lifting-Gesichtsmassage und Bukkalmassage', en: 'Lifting facial massage and buccal massage' },
+    label: { de: 'Gesichtsmassage, zertifiziert in Lifting- und Bukkalmassage', en: 'Facial massage, certified in lifting and buccal massage' },
   },
   {
     value: { de: 'Körper', en: 'Body' },
-    label: { de: 'Wellness-, Sport- und modellierende Körpermassage', en: 'Wellness, sports and sculpting body massage' },
+    label: { de: 'Rücken, Ganzkörper, Anti-Cellulite, Honig und Schröpfen', en: 'Back, full body, anti-cellulite, honey and cupping' },
   },
 ];
 
@@ -250,65 +250,54 @@ const CERTS: CertGroup[] = [
 ];
 
 /**
- * Vorläufiges Angebot, abgeleitet aus ihren fünf Zertifikaten. Welche
- * Massagen sie bei FareWell wirklich anbietet, mit Dauer und Preis, ist mit
- * ihr noch nicht besprochen; bis dahin rendert jede Zeile „Preis folgt“.
+ * Ihre Massagen, wie sie sie Joé genannt hat (WhatsApp, Oktober 2026): Rücken,
+ * Ganzkörper, Anti-Cellulite, Honig, Schröpfen, Gesicht. Gruppen und
+ * Einordnungssätze stammen von uns. Dauer und Preis fehlen noch; bis dahin
+ * rendert jede Zeile „Preis folgt“.
  */
 const TREATMENT_GROUPS: TreatmentGroup[] = [
   {
-    id: 'gesicht',
+    id: 'entspannung',
     num: '01',
+    title: { de: 'Entspannung', en: 'Relaxation' },
+    blurb: {
+      de: 'Ruhige, fließende Griffe zum Abschalten: gezielt für Rücken, Schultern und Nacken oder als Massage für den ganzen Körper.',
+      en: 'Calm, flowing strokes to switch off: focused on back, shoulders and neck, or as a massage for the whole body.',
+    },
+    items: [
+      { name: { de: 'Rückenmassage', en: 'Back massage' } },
+      { name: { de: 'Ganzkörpermassage', en: 'Full-body massage' } },
+    ],
+  },
+  {
+    id: 'koerper',
+    num: '02',
+    title: { de: 'Intensive Körpermassagen', en: 'Intensive body massages' },
+    blurb: {
+      de: 'Kräftige Techniken, die das Gewebe durchkneten, mit Honig oder mit Schröpfgläsern. Ein Wohlfühlprogramm für Körper und Haut, kein Abnehmprogramm.',
+      en: 'Firm techniques that knead the tissue, with honey or with cupping glasses. A feel-good programme for body and skin, not a weight-loss programme.',
+    },
+    items: [
+      { name: { de: 'Anti-Cellulite-Massage', en: 'Anti-cellulite massage' } },
+      {
+        name: { de: 'Honigmassage', en: 'Honey massage' },
+        detail: { de: 'mit Honig, der beim Abheben der Hände ansaugt', en: 'with honey that creates suction as the hands lift off' },
+      },
+      {
+        name: { de: 'Schröpfmassage', en: 'Cupping massage' },
+        detail: { de: 'mit Schröpfgläsern, die über die Haut gleiten', en: 'with cupping glasses gliding over the skin' },
+      },
+    ],
+  },
+  {
+    id: 'gesicht',
+    num: '03',
     title: { de: 'Gesichtsmassage', en: 'Facial massage' },
     blurb: {
-      de: 'Von außen und, bei der Bukkalmassage, auch von innen über die Wange: Die Hände lockern die Gesichtsmuskulatur, die beim Kauen, Sprechen und Anspannen ständig arbeitet. Das Gesicht wirkt danach entspannter und frischer.',
-      en: 'From the outside and, with buccal massage, also from the inside through the cheek: the hands loosen the facial muscles that work constantly when chewing, talking and tensing. Afterwards the face looks more relaxed and fresher.',
+      de: 'Die Hände lockern die Gesichtsmuskulatur, die beim Kauen, Sprechen und Anspannen ständig arbeitet. Das Gesicht wirkt danach entspannter und frischer.',
+      en: 'The hands loosen the facial muscles that work constantly when chewing, talking and tensing. Afterwards the face looks more relaxed and fresher.',
     },
-    items: [
-      { name: { de: 'Lifting-Gesichtsmassage', en: 'Lifting facial massage' } },
-      {
-        name: { de: 'Bukkalmassage', en: 'Buccal massage' },
-        detail: { de: 'von innen über die Wange, mit Handschuhen', en: 'from inside the cheek, with gloves' },
-      },
-      { name: { de: 'Lifting- und Bukkalmassage kombiniert', en: 'Lifting and buccal massage combined' } },
-    ],
-  },
-  {
-    id: 'wellness',
-    num: '02',
-    title: { de: 'Wellnessmassage', en: 'Wellness massage' },
-    blurb: {
-      de: 'Ruhige, fließende Griffe für Entspannung und Erholung: als Ganzkörpermassage oder gezielt für Rücken, Schultern und Nacken.',
-      en: 'Calm, flowing strokes for relaxation and recovery: as a full-body massage or focused on back, shoulders and neck.',
-    },
-    items: [
-      { name: { de: 'Ganzkörpermassage', en: 'Full-body massage' } },
-      { name: { de: 'Rücken, Schultern und Nacken', en: 'Back, shoulders and neck' } },
-    ],
-  },
-  {
-    id: 'sport',
-    num: '03',
-    title: { de: 'Sportmassage', en: 'Sports massage' },
-    blurb: {
-      de: 'Kräftigere Griffe für Menschen, die viel trainieren: zur Lockerung vor der Belastung oder zur Regeneration danach.',
-      en: 'Firmer strokes for people who train a lot: to loosen up before exertion or to recover afterwards.',
-    },
-    items: [
-      { name: { de: 'Sportmassage', en: 'Sports massage' } },
-      { name: { de: 'Regenerationsmassage nach dem Training', en: 'Recovery massage after training' } },
-    ],
-  },
-  {
-    id: 'koerperformung',
-    num: '04',
-    title: { de: 'Modellierende Körpermassage', en: 'Sculpting body massage' },
-    blurb: {
-      de: 'Intensive, formende Griffe an Bauch, Hüften, Oberschenkeln und Po, die das Gewebe durchkneten und straffer wirken lassen. Ein Wohlfühlprogramm, kein Abnehmprogramm.',
-      en: 'Intensive, shaping strokes on abdomen, hips, thighs and buttocks that knead the tissue and make it look firmer. A feel-good programme, not a weight-loss programme.',
-    },
-    items: [
-      { name: { de: 'Modellierende Körpermassage', en: 'Sculpting body massage' } },
-    ],
+    items: [{ name: { de: 'Gesichtsmassage', en: 'Facial massage' } }],
   },
 ];
 
@@ -321,10 +310,10 @@ const FAQ: FaqEntry[] = [
     },
   },
   {
-    q: { de: 'Was ist eine Bukkalmassage?', en: 'What is a buccal massage?' },
+    q: { de: 'Was ist eine Honig- oder Schröpfmassage?', en: 'What is a honey or cupping massage?' },
     a: {
-      de: 'Eine Gesichtsmassage, bei der ein Teil der Griffe von innen erfolgt: Mit Handschuhen massiert Ruslana die Wangen- und Kaumuskulatur über die Mundschleimhaut, die andere Hand arbeitet von außen. So erreicht sie Muskeln, an die man von außen allein kaum herankommt.',
-      en: 'A facial massage in which part of the work is done from the inside: wearing gloves, Ruslana massages the cheek and jaw muscles through the inside of the mouth while the other hand works from outside. That reaches muscles that are hard to get to from the outside alone.',
+      de: 'Bei der Honigmassage wird Honig auf die Haut gegeben. Die Hände werden immer wieder aufgelegt und abgehoben, dabei entsteht ein leichter Sog. Bei der Schröpfmassage gleiten Gläser mit Unterdruck über die Haut. Beide sind intensiv, und nach dem Schröpfen sind rote Stellen auf der Haut normal, sie verschwinden nach einigen Tagen.',
+      en: 'In a honey massage, honey is applied to the skin. The hands are placed and lifted again and again, which creates a light suction. In a cupping massage, glasses under suction glide over the skin. Both are intense, and red marks after cupping are normal; they fade after a few days.',
     },
   },
   {
@@ -337,8 +326,8 @@ const FAQ: FaqEntry[] = [
   {
     q: { de: 'Wann sollte ich nicht massiert werden?', en: 'When should I not have a massage?' },
     a: {
-      de: 'Bei Fieber, akuten Entzündungen, frischen Verletzungen oder offenen Hautstellen im Massagebereich. Für die Gesichtsmassage gilt außerdem: Hattest du kürzlich Botulinumtoxin oder Filler im Gesicht, sag es vorher, dann wird gemeinsam entschieden, ab wann massiert werden kann. Das gilt auch in der Schwangerschaft und bei Erkrankungen, die dir dazu einfallen.',
-      en: 'With a fever, acute inflammation, fresh injuries or broken skin in the area. For facial massage also: if you recently had botulinum toxin or fillers in your face, mention it beforehand, and you will decide together when massage is fine again. The same goes for pregnancy and any condition you think might matter.',
+      de: 'Bei Fieber, akuten Entzündungen, frischen Verletzungen oder offenen Hautstellen im Massagebereich, und bei einer Honigallergie keine Honigmassage. Wer Blutverdünner nimmt, sagt es vor dem Schröpfen. Für die Gesichtsmassage gilt außerdem: Hattest du kürzlich Botulinumtoxin oder Filler im Gesicht, sag es vorher, dann wird gemeinsam entschieden, ab wann massiert werden kann. Das gilt auch in der Schwangerschaft und bei Erkrankungen, die dir dazu einfallen.',
+      en: 'With a fever, acute inflammation, fresh injuries or broken skin in the area, and no honey massage with a honey allergy. If you take blood thinners, say so before cupping. For facial massage also: if you recently had botulinum toxin or fillers in your face, mention it beforehand, and you will decide together when massage is fine again. The same goes for pregnancy and any condition you think might matter.',
     },
   },
   {
