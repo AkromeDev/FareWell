@@ -313,6 +313,27 @@ function localizedRoutes(lang: PageLang): Routes {
               description: 'Botulinum toxin, hyaluronic acid, skin boosters and PRP at FareWell in Nuremberg, performed by Dr. med. Andrea Leo: licensed physician since 2016, in Bavarian hospitals since 2017, in aesthetic medicine since 2018.'
             }
           )
+        },
+        // Massage mit Ruslana Ivanova als mögliche Kooperationspartnerin.
+        // Wie die ästhetische Medizin vorerst eine versteckte Vorschau für sie
+        // selbst: noindex, nicht in der Sitemap, nicht im Header, Footer oder
+        // in llms.txt verlinkt. Freigeschaltet erst mit Vertrag, Porträt und
+        // Preisliste mit Dauer.
+        {
+          path: 'massage-ruslana-ivanova',
+          loadComponent: () =>
+            import('../components/pages/massage-ruslana-ivanova/massage-ruslana-ivanova.component')
+              .then(m => m.MassageRuslanaIvanovaComponent),
+          data: d(
+            {
+              title: 'Massage in Nürnberg: Ruslana Ivanova bei FareWell',
+              description: 'Wellness-, Sport- und Gesichtsmassage bei FareWell in Nürnberg mit Ruslana Ivanova: Masseurin seit 2018, zertifiziert in Wellness- und Sportmassage, Lifting-Gesichtsmassage, Bukkalmassage und modellierender Körpermassage.'
+            },
+            {
+              title: 'Massage in Nuremberg: Ruslana Ivanova at FareWell',
+              description: 'Wellness, sports and facial massage at FareWell in Nuremberg with Ruslana Ivanova: massage therapist since 2018, certified in wellness and sports massage, lifting facial massage, buccal massage and sculpting body massage.'
+            }
+          )
         }
       ]
     },

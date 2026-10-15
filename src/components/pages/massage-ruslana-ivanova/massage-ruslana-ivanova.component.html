@@ -1,0 +1,524 @@
+<div class="am" [attr.lang]="lang">
+  <!-- ===================================================================== -->
+  <!-- Hero: Porträt und Versprechen                                          -->
+  <!-- ===================================================================== -->
+  <section class="hero" id="topSection">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow" appReveal>
+          <span class="lang de">FareWell · Nürnberg · Massage</span
+          ><span class="lang en">FareWell · Nuremberg · Massage</span>
+        </p>
+        <h1 class="hero-title">
+          <span class="hero-line" appReveal [revealDelay]="80"
+            ><span class="lang de">Massage für Gesicht</span
+            ><span class="lang en">Massage for face</span></span
+          >
+          <span class="hero-line hero-line--accent" appReveal [revealDelay]="200"
+            ><span class="lang de">und Körper.</span><span class="lang en">and body.</span></span
+          >
+        </h1>
+        <p class="hero-sub" appReveal [revealDelay]="340">
+          <span class="lang de"
+            >Wellness-, Sport- und Gesichtsmassage bei FareWell in Nürnberg, mit Ruslana Ivanova:
+            Masseurin seit 2018, zertifiziert in Wellness- und Sportmassage, Lifting-Gesichtsmassage,
+            Bukkalmassage und modellierender Körpermassage.</span
+          ><span class="lang en"
+            >Wellness, sports and facial massage at FareWell in Nuremberg, with Ruslana Ivanova: a
+            massage therapist since 2018, certified in wellness and sports massage, lifting facial
+            massage, buccal massage and sculpting body massage.</span
+          >
+        </p>
+        <div class="hero-ctas" appReveal [revealDelay]="460">
+          <a class="btn-gold no-underline" [href]="mailHref" (click)="trackLead('ruslana-hero')"
+            ><span class="lang de">Termin anfragen</span
+            ><span class="lang en">Request an appointment</span></a
+          >
+          <a class="btn-outline no-underline" href="#leistungen" [appScrollTo]="'leistungen'"
+            ><span class="lang de">Massagen ansehen</span
+            ><span class="lang en">See the massages</span></a
+          >
+        </div>
+        <p class="hero-pill" appReveal="fade" [revealDelay]="600">
+          <span class="pill-dot" aria-hidden="true"></span>
+          <span class="lang de">Fünf Zertifikate · Gesicht und Körper aus einer Hand</span
+          ><span class="lang en">Five certificates · face and body from one pair of hands</span>
+        </p>
+      </div>
+
+      <figure class="portrait" appReveal="scale" [revealDelay]="160">
+        <div class="portrait-ring">
+          <div class="portrait-frame">
+            @if (portrait) {
+              <img
+                [src]="portrait"
+                width="720"
+                height="900"
+                [alt]="t('Porträt von Ruslana Ivanova', 'Portrait of Ruslana Ivanova')"
+                fetchpriority="high"
+                decoding="async"
+              />
+            } @else {
+              <span class="portrait-initials" aria-hidden="true">{{ initials }}</span>
+            }
+          </div>
+        </div>
+        <figcaption class="portrait-card">
+          <span class="portrait-name">Ruslana Ivanova</span>
+          <span class="portrait-role"
+            ><span class="lang de">Masseurin · Gesicht und Körper</span
+            ><span class="lang en">Massage therapist · face and body</span></span
+          >
+          <span class="portrait-langs"
+            ><span class="sr-only"
+              ><span class="lang de">Sprachen: </span><span class="lang en">Languages: </span></span
+            >Українська · Deutsch</span
+          >
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Zahlen, die man nachprüfen kann                                        -->
+  <!-- ===================================================================== -->
+  <section class="stats-band" [attr.aria-label]="t('Eckdaten zu Ruslana Ivanova', 'Key facts about Ruslana Ivanova')">
+    <div class="wrap">
+      <ul class="stats">
+        @for (stat of stats; track $index) {
+          <li class="stat" appReveal [revealDelay]="$index * 80">
+            <span class="stat-value"
+              ><span class="lang de">{{ stat.value.de }}</span
+              ><span class="lang en">{{ stat.value.en }}</span></span
+            >
+            <span class="stat-label"
+              ><span class="lang de">{{ stat.label.de }}</span
+              ><span class="lang en">{{ stat.label.en }}</span></span
+            >
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Warum Ruslana                                                          -->
+  <!-- ===================================================================== -->
+  <section class="vertrauen" id="vertrauen">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Warum Ruslana</span><span class="lang en">Why Ruslana</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Eine Stunde, <em>die nur dir gehört.</em></span
+          ><span class="lang en">An hour <em>that is yours alone.</em></span>
+        </h2>
+        <p class="section-lede" appReveal [revealDelay]="120">
+          <span class="lang de"
+            >Eine gute Massage beginnt nicht mit den Händen, sondern mit der Frage, was du heute
+            brauchst: Ruhe, Lockerung nach dem Training oder ein entspanntes Gesicht. Ruslana hat
+            für jede dieser Antworten eine eigene Technik gelernt.</span
+          ><span class="lang en"
+            >A good massage does not begin with the hands but with the question of what you need
+            today: calm, loosening up after training or a relaxed face. Ruslana has learned a
+            technique of its own for each of those answers.</span
+          >
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card" appReveal>
+          <span class="card-num" aria-hidden="true">01</span>
+          <h3>
+            <span class="lang de">Gesicht und Körper</span><span class="lang en">Face and body</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Von der ruhigen Wellnessmassage bis zur Bukkalmassage, die die Gesichtsmuskeln auch
+              von innen erreicht. Zwei Zertifikate fürs Gesicht, drei für den Körper.</span
+            ><span class="lang en"
+              >From a calm wellness massage to buccal massage, which reaches the facial muscles from
+              the inside too. Two certificates for the face, three for the body.</span
+            >
+          </p>
+        </article>
+        <article class="card" appReveal [revealDelay]="100">
+          <span class="card-num" aria-hidden="true">02</span>
+          <h3>
+            <span class="lang de">Sanft oder kräftig</span><span class="lang en">Gentle or firm</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Wellnessmassage zum Abschalten, Sportmassage für Menschen, die viel trainieren. Wie
+              fest es sein darf, entscheidest du, und das gilt auch mitten in der Massage.</span
+            ><span class="lang en"
+              >Wellness massage to switch off, sports massage for people who train a lot. How firm
+              it should be is your call, and that holds in the middle of the massage too.</span
+            >
+          </p>
+        </article>
+        <article class="card" appReveal [revealDelay]="200">
+          <span class="card-num" aria-hidden="true">03</span>
+          <h3>
+            <span class="lang de">Gewohnt zuzuhören</span><span class="lang en">Used to listening</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Vier Jahre Patientenberatung in einem Diagnosezentrum, seit 2018 eigene Kundinnen und
+              Kunden. Wer so lange mit Menschen arbeitet, fragt nach, bevor er anfängt.</span
+            ><span class="lang en"
+              >Four years advising patients at a diagnostic centre, her own clients since 2018.
+              Someone who has worked with people that long asks before starting.</span
+            >
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Der Weg: Laufbahn als Zeitstrahl                                       -->
+  <!-- ===================================================================== -->
+  <section class="weg" id="weg">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Der Weg</span><span class="lang en">The path</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Von den Zahlen <em>zu den Händen.</em></span
+          ><span class="lang en">From numbers <em>to hands.</em></span>
+        </h2>
+        <p class="section-lede" appReveal [revealDelay]="120">
+          <span class="lang de"
+            >Studium der Finanzen und viele Jahre Buchhaltung in der Ukraine, seit 2018 die Massage,
+            seit 2025 selbständig in Deutschland. Jede Station mit Zeitraum, jedes Zertifikat mit
+            Datum.</span
+          ><span class="lang en"
+            >Finance studies and many years of accounting in Ukraine, massage since 2018,
+            self-employed in Germany since 2025. Every station with its dates, every certificate
+            with its date.</span
+          >
+        </p>
+      </div>
+
+      <div class="tl-wrap" appReveal>
+        <ul class="tl-legend" aria-hidden="true">
+          <li>
+            <span class="sw"></span>
+            <span class="lang de">Massage</span><span class="lang en">Massage</span>
+          </li>
+          <li>
+            <span class="sw sw--beruf"></span>
+            <span class="lang de">Beruf vor der Massage</span
+            ><span class="lang en">Work before massage</span>
+          </li>
+          <li>
+            <span class="sw sw--ausbildung"></span>
+            <span class="lang de">Studium</span><span class="lang en">Studies</span>
+          </li>
+          <li>
+            <span class="sw sw--zertifikat"></span>
+            <span class="lang de">Zertifikat</span><span class="lang en">Certificate</span>
+          </li>
+        </ul>
+
+        <div class="tl-head" aria-hidden="true">
+          <span></span>
+          <div class="tl-ticks">
+            @for (tick of ticks; track tick.year) {
+              <span class="tl-tick" [style.left.%]="tick.left">{{ tick.year }}</span>
+            }
+            <span class="tl-tick tl-tick--now"
+              ><span class="lang de">heute</span><span class="lang en">today</span></span
+            >
+          </div>
+        </div>
+
+        <ol class="tl" [style.--tl-period]="tickPeriod">
+          @for (row of timeline; track $index) {
+            <li class="tl-row" [class]="'tl-row--' + row.kind">
+              <div class="tl-label">
+                <span class="tl-when"
+                  ><span class="lang de">{{ row.when.de }}</span
+                  ><span class="lang en">{{ row.when.en }}</span></span
+                >
+                <span class="tl-top">
+                  <span class="tl-place"
+                    ><span class="lang de">{{ row.place.de }}</span
+                    ><span class="lang en">{{ row.place.en }}</span></span
+                  >
+                  <span class="tl-kind"
+                    ><span class="lang de">{{ row.kindLabel.de }}</span
+                    ><span class="lang en">{{ row.kindLabel.en }}</span></span
+                  >
+                </span>
+                <span class="tl-role"
+                  ><span class="lang de">{{ row.role.de }}</span
+                  ><span class="lang en">{{ row.role.en }}</span></span
+                >
+              </div>
+              <div class="tl-lane" aria-hidden="true">
+                @if (row.kind === 'zertifikat') {
+                  <span class="tl-dot" [style.left.%]="row.left"></span>
+                } @else {
+                  <span class="tl-bar" [style.left.%]="row.left" [style.width.%]="row.width"></span>
+                }
+              </div>
+            </li>
+          }
+        </ol>
+      </div>
+
+      <div class="certs">
+        @for (group of certs; track $index) {
+          <div class="cert-group" appReveal [revealDelay]="$index * 100">
+            <h3>
+              <span class="lang de">{{ group.title.de }}</span
+              ><span class="lang en">{{ group.title.en }}</span>
+            </h3>
+            <ul>
+              @for (item of group.items; track $index) {
+                <li>
+                  <span class="lang de">{{ item.de }}</span><span class="lang en">{{ item.en }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Statement                                                              -->
+  <!-- ===================================================================== -->
+  <section class="statement">
+    <blockquote appReveal>
+      <p>
+        <span class="lang de"
+          >Eine gute Massage merkt man nicht am Ende der Stunde. <em>Man merkt sie am nächsten
+          Morgen.</em></span
+        ><span class="lang en"
+          >You do not notice a good massage at the end of the hour. <em>You notice it the next
+          morning.</em></span
+        >
+      </p>
+    </blockquote>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Massagen                                                               -->
+  <!-- ===================================================================== -->
+  <section class="leistungen" id="leistungen">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Massagen</span><span class="lang en">Massages</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Was Ruslana <em>bei FareWell anbietet.</em></span
+          ><span class="lang en">What Ruslana <em>offers at FareWell.</em></span>
+        </h2>
+        <p class="section-lede" appReveal [revealDelay]="120">
+          <span class="lang de"
+            >Vier Bereiche, vom Gesicht bis zum ganzen Körper. Was dir heute guttut, besprecht ihr
+            vor der Massage in ein paar Minuten.</span
+          ><span class="lang en"
+            >Four areas, from the face to the whole body. What will do you good today, you settle
+            together in a few minutes before the massage.</span
+          >
+        </p>
+      </div>
+
+      <div class="tx-grid">
+        @for (group of groups; track group.id) {
+          <article
+            class="tx-card"
+            [class.tx-card--wide]="group.wide"
+            [id]="'leistung-' + group.id"
+            appReveal
+            [revealDelay]="($index % 2) * 90"
+          >
+            <span class="tx-num" aria-hidden="true">{{ group.num }}</span>
+            <h3>
+              <span class="lang de">{{ group.title.de }}</span
+              ><span class="lang en">{{ group.title.en }}</span>
+            </h3>
+            <p class="tx-blurb">
+              <span class="lang de">{{ group.blurb.de }}</span
+              ><span class="lang en">{{ group.blurb.en }}</span>
+            </p>
+            <ul class="menu" [class.menu--cols]="group.wide">
+              @for (item of group.items; track $index) {
+                <li class="menu-row">
+                  <span class="menu-name">
+                    <span class="lang de">{{ item.name.de }}</span
+                    ><span class="lang en">{{ item.name.en }}</span>
+                    @if (item.detail) {
+                      <span class="menu-detail"
+                        ><span class="lang de">{{ item.detail.de }}</span
+                        ><span class="lang en">{{ item.detail.en }}</span></span
+                      >
+                    }
+                  </span>
+                  <span class="menu-lead" aria-hidden="true"></span>
+                  <span class="menu-price"
+                    ><span class="lang de">{{ item.price.de }}</span
+                    ><span class="lang en">{{ item.price.en }}</span></span
+                  >
+                </li>
+              }
+            </ul>
+          </article>
+        }
+      </div>
+
+      <p class="frame-note" appReveal>
+        <strong><span class="lang de">Zu den Preisen</span><span class="lang en">About the prices</span></strong>
+        <span class="lang de"
+          >Preise und Dauer der einzelnen Massagen werden gerade festgelegt und stehen hier, sobald
+          sie feststehen. Bis dahin nennen wir dir den Preis gern auf Anfrage.</span
+        ><span class="lang en"
+          >Prices and durations of the individual massages are being set right now and will appear
+          here once they are final. Until then we are happy to tell you the price on request.</span
+        >
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Ablauf                                                                 -->
+  <!-- ===================================================================== -->
+  <section class="ablauf" id="ablauf">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Der Ablauf</span><span class="lang en">How it works</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Drei Schritte, <em>kein Zeitdruck.</em></span
+          ><span class="lang en">Three steps, <em>no time pressure.</em></span>
+        </h2>
+      </div>
+
+      <ol class="steps">
+        <li class="step" appReveal>
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>
+            <span class="lang de">Kurz ankommen</span><span class="lang en">Arrive and settle</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Du sagst, was dich heute verspannt, wie fest du es magst und ob es etwas gibt, das
+              Ruslana wissen sollte. Daraus wird deine Massage.</span
+            ><span class="lang en"
+              >You say what feels tense today, how firm you like it and whether there is anything
+              Ruslana should know. Your massage is built from that.</span
+            >
+          </p>
+        </li>
+        <li class="step" appReveal [revealDelay]="100">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3><span class="lang de">Massage</span><span class="lang en">Massage</span></h3>
+          <p>
+            <span class="lang de"
+              >In einem ruhigen, warmen Raum bei FareWell. Ist dir etwas zu fest oder zu sanft, sag
+              es einfach, auch mittendrin.</span
+            ><span class="lang en"
+              >In a quiet, warm room at FareWell. If anything is too firm or too gentle, just say
+              so, even in the middle.</span
+            >
+          </p>
+        </li>
+        <li class="step" appReveal [revealDelay]="200">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>
+            <span class="lang de">Nachklingen lassen</span><span class="lang en">Let it settle</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Danach ein Glas Wasser und ein paar Minuten Ruhe, bevor es weitergeht. Plan den Rest
+              des Tages, wenn es geht, ohne Eile.</span
+            ><span class="lang en"
+              >Afterwards a glass of water and a few minutes of quiet before you move on. If you
+              can, plan the rest of the day without rushing.</span
+            >
+          </p>
+        </li>
+      </ol>
+
+      <p class="frame-note" appReveal>
+        <strong><span class="lang de">Gut zu wissen</span><span class="lang en">Good to know</span></strong>
+        <span class="lang de"
+          >Die Massagen auf dieser Seite sind Wellnessanwendungen. Sie ersetzen keine ärztliche oder
+          physiotherapeutische Behandlung. Bei Fieber, akuten Entzündungen oder frischen
+          Verletzungen wird nicht massiert.</span
+        ><span class="lang en"
+          >The massages on this page are wellness treatments. They do not replace medical or
+          physiotherapy treatment. There is no massage with a fever, acute inflammation or fresh
+          injuries.</span
+        >
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Fragen                                                                 -->
+  <!-- ===================================================================== -->
+  <section class="fragen" id="fragen">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Häufige Fragen</span><span class="lang en">Common questions</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Was du <em>vorher wissen willst.</em></span
+          ><span class="lang en">What you <em>want to know first.</em></span>
+        </h2>
+      </div>
+
+      <div class="faq" appReveal>
+        @for (entry of faq; track $index) {
+          <details>
+            <summary>
+              <span class="lang de">{{ entry.q.de }}</span><span class="lang en">{{ entry.q.en }}</span>
+            </summary>
+            <p class="faq-a">
+              <span class="lang de">{{ entry.a.de }}</span><span class="lang en">{{ entry.a.en }}</span>
+            </p>
+          </details>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Abschluss                                                              -->
+  <!-- ===================================================================== -->
+  <section class="besuch" id="besuch">
+    <div class="wrap besuch-content">
+      <h2 appReveal>
+        <span class="lang de">Zeit für <em>eine Pause?</em></span
+        ><span class="lang en">Time for <em>a break?</em></span>
+      </h2>
+      <p class="besuch-info" appReveal [revealDelay]="120">
+        <span class="lang de"
+          >Frauentorgraben 5, 90443 Nürnberg. Zwei Minuten vom Hauptbahnhof.<br />Termine mit
+          Ruslana nach Vereinbarung.</span
+        ><span class="lang en"
+          >Frauentorgraben 5, 90443 Nuremberg. Two minutes from the main station.<br />Appointments
+          with Ruslana by arrangement.</span
+        >
+      </p>
+      <div class="besuch-ctas" appReveal [revealDelay]="240">
+        <a class="btn-gold no-underline" [href]="mailHref" (click)="trackLead('ruslana-besuch')"
+          ><span class="lang de">Termin anfragen</span
+          ><span class="lang en">Request an appointment</span></a
+        >
+        <a class="btn-outline no-underline" [href]="phoneHref">{{ phoneLabel }}</a>
+      </div>
+    </div>
+  </section>
+</div>

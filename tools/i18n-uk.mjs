@@ -36,6 +36,7 @@ const GROUP_RULES = [
   ['src/components/pages/tasks/', null],
   ['src/components/pages/legal/', null],
   ['src/components/pages/aesthetische-medizin/', null],
+  ['src/components/pages/massage-ruslana-ivanova/', null],
   ['src/components/pages/karriere/masseur-bademeister-karriere/', null],
   ['src/components/pages/ratgeber/mwst-us-streitkraefte/', null],
   ['src/components/pages/ratgeber/us-forces-vat-relief/', null],
