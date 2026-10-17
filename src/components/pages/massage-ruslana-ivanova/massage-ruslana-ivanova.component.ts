@@ -33,9 +33,9 @@ const TICK_STEP = 5;
 const DE_TITLE = 'Massage in Nürnberg: Ruslana Ivanova bei FareWell';
 const EN_TITLE = 'Massage in Nuremberg: Ruslana Ivanova at FareWell';
 const DE_DESCRIPTION =
-  'Rücken-, Ganzkörper-, Anti-Cellulite-, Honig-, Schröpf- und Gesichtsmassage bei FareWell in Nürnberg mit Ruslana Ivanova: Masseurin seit 2018, fünf Massagezertifikate für Gesicht und Körper.';
+  'Gesichts-, Rücken-, Nacken-Schulter-, Ganzkörper- und Anti-Cellulite-Massage mit Honig und Schröpfen bei FareWell in Nürnberg mit Ruslana Ivanova: Masseurin seit 2018, fünf Massagezertifikate für Gesicht und Körper.';
 const EN_DESCRIPTION =
-  'Back, full-body, anti-cellulite, honey, cupping and facial massage at FareWell in Nuremberg with Ruslana Ivanova: massage therapist since 2018, five massage certificates for face and body.';
+  'Facial, back, neck and shoulder, full-body and anti-cellulite massage with honey and cupping at FareWell in Nuremberg with Ruslana Ivanova: massage therapist since 2018, five massage certificates for face and body.';
 
 /** Zweisprachiger Text. Beide Fassungen stehen im DOM, das globale CSS blendet eine aus. */
 export interface Bi {
@@ -77,8 +77,8 @@ interface TreatmentItem {
   name: Bi;
   /** Startpreis in Euro; leer, solange keine Preisliste vorliegt. */
   priceFrom?: number;
-  /** Dauer in Minuten; leer, solange nicht bekannt. */
-  minutes?: number;
+  /** Dauer in Minuten als [von, bis]; bei fester Dauer beide gleich. */
+  minutes?: [number, number];
   /** Kleingedrucktes unter dem Namen. */
   detail?: Bi;
 }
@@ -212,7 +212,7 @@ const STATS: Stat[] = [
   },
   {
     value: { de: 'Körper', en: 'Body' },
-    label: { de: 'Rücken, Ganzkörper, Anti-Cellulite, Honig und Schröpfen', en: 'Back, full body, anti-cellulite, honey and cupping' },
+    label: { de: 'Rücken, Nacken, Ganzkörper und Anti-Cellulite mit Honig und Schröpfen', en: 'Back, neck, full body and anti-cellulite with honey and cupping' },
   },
 ];
 
@@ -250,54 +250,69 @@ const CERTS: CertGroup[] = [
 ];
 
 /**
- * Ihre Massagen, wie sie sie Joé genannt hat (WhatsApp, Oktober 2026): Rücken,
- * Ganzkörper, Anti-Cellulite, Honig, Schröpfen, Gesicht. Gruppen und
- * Einordnungssätze stammen von uns. Dauer und Preis fehlen noch; bis dahin
- * rendert jede Zeile „Preis folgt“.
+ * Ihr Angebot, wie sie es Joé am 16.10.2026 per WhatsApp geschickt hat: fünf
+ * Massagen mit Dauer und kurzer Beschreibung. Reihenfolge und Beschreibungen
+ * folgen ihren Worten, nur leicht geglättet. Preise fehlen noch; bis dahin
+ * rendert jede Zeile „Preis folgt“ mit der Dauer.
  */
 const TREATMENT_GROUPS: TreatmentGroup[] = [
   {
-    id: 'entspannung',
-    num: '01',
-    title: { de: 'Entspannung', en: 'Relaxation' },
-    blurb: {
-      de: 'Ruhige, fließende Griffe zum Abschalten: gezielt für Rücken, Schultern und Nacken oder als Massage für den ganzen Körper.',
-      en: 'Calm, flowing strokes to switch off: focused on back, shoulders and neck, or as a massage for the whole body.',
-    },
-    items: [
-      { name: { de: 'Rückenmassage', en: 'Back massage' } },
-      { name: { de: 'Ganzkörpermassage', en: 'Full-body massage' } },
-    ],
-  },
-  {
-    id: 'koerper',
-    num: '02',
-    title: { de: 'Intensive Körpermassagen', en: 'Intensive body massages' },
-    blurb: {
-      de: 'Kräftige Techniken, die das Gewebe durchkneten, mit Honig oder mit Schröpfgläsern. Ein Wohlfühlprogramm für Körper und Haut, kein Abnehmprogramm.',
-      en: 'Firm techniques that knead the tissue, with honey or with cupping glasses. A feel-good programme for body and skin, not a weight-loss programme.',
-    },
-    items: [
-      { name: { de: 'Anti-Cellulite-Massage', en: 'Anti-cellulite massage' } },
-      {
-        name: { de: 'Honigmassage', en: 'Honey massage' },
-        detail: { de: 'mit Honig, der beim Abheben der Hände ansaugt', en: 'with honey that creates suction as the hands lift off' },
-      },
-      {
-        name: { de: 'Schröpfmassage', en: 'Cupping massage' },
-        detail: { de: 'mit Schröpfgläsern, die über die Haut gleiten', en: 'with cupping glasses gliding over the skin' },
-      },
-    ],
-  },
-  {
     id: 'gesicht',
-    num: '03',
-    title: { de: 'Gesichtsmassage', en: 'Facial massage' },
+    num: '01',
+    title: { de: 'Gesicht', en: 'Face' },
     blurb: {
-      de: 'Die Hände lockern die Gesichtsmuskulatur, die beim Kauen, Sprechen und Anspannen ständig arbeitet. Das Gesicht wirkt danach entspannter und frischer.',
-      en: 'The hands loosen the facial muscles that work constantly when chewing, talking and tensing. Afterwards the face looks more relaxed and fresher.',
+      de: 'Entspannende und straffende Massage für Gesicht, Hals und Dekolleté. Sie fördert die Durchblutung und sorgt für einen frischen Teint.',
+      en: 'A relaxing, firming massage for face, neck and décolleté. It boosts circulation and leaves your complexion looking fresh.',
     },
-    items: [{ name: { de: 'Gesichtsmassage', en: 'Facial massage' } }],
+    items: [
+      {
+        name: { de: 'Gesichtsmassage', en: 'Facial massage' },
+        detail: { de: 'Gesicht, Hals und Dekolleté', en: 'face, neck and décolleté' },
+        minutes: [45, 60],
+      },
+    ],
+  },
+  {
+    id: 'entspannung',
+    num: '02',
+    title: { de: 'Rücken, Nacken und ganzer Körper', en: 'Back, neck and whole body' },
+    blurb: {
+      de: 'Gezielt dort, wo der Alltag sitzt, oder wohltuend für den ganzen Körper: baut Stress ab und gibt neue Energie.',
+      en: 'Focused where everyday life settles in, or soothing for the whole body: it relieves stress and gives you new energy.',
+    },
+    items: [
+      {
+        name: { de: 'Rückenmassage', en: 'Back massage' },
+        detail: { de: 'lockert die verspannte Muskulatur in Rücken und Lendenbereich', en: 'loosens tense muscles in the back and lower back' },
+        minutes: [60, 60],
+      },
+      {
+        name: { de: 'Nacken-Schulter-Massage', en: 'Neck and shoulder massage' },
+        detail: { de: 'gegen Verspannungen durch Alltag und Stress', en: 'for tension from everyday strain and stress' },
+        minutes: [30, 30],
+      },
+      {
+        name: { de: 'Ganzkörpermassage', en: 'Full-body massage' },
+        detail: { de: 'wohltuende Entspannung von Kopf bis Fuß', en: 'soothing relaxation from head to toe' },
+        minutes: [60, 90],
+      },
+    ],
+  },
+  {
+    id: 'anti-cellulite',
+    num: '03',
+    title: { de: 'Anti-Cellulite', en: 'Anti-cellulite' },
+    blurb: {
+      de: 'Intensive Massage für das Bindegewebe, kombiniert mit Honig- und Schröpftechniken. Sie fördert die Durchblutung und sorgt für ein glatteres Hautbild. Ein Wohlfühlprogramm für Körper und Haut, kein Abnehmprogramm.',
+      en: 'An intensive massage for the connective tissue, combined with honey and cupping techniques. It boosts circulation and leaves the skin looking smoother. A feel-good programme for body and skin, not a weight-loss programme.',
+    },
+    items: [
+      {
+        name: { de: 'Anti-Cellulite-Massage', en: 'Anti-cellulite massage' },
+        detail: { de: 'inklusive Honig- und Schröpfmassage', en: 'including honey and cupping massage' },
+        minutes: [60, 90],
+      },
+    ],
   },
 ];
 
@@ -333,8 +348,8 @@ const FAQ: FaqEntry[] = [
   {
     q: { de: 'Was kostet eine Massage?', en: 'What does a massage cost?' },
     a: {
-      de: 'Die Preise und Dauern für Ruslanas Massagen werden gerade festgelegt und erscheinen hier, sobald sie feststehen. Bis dahin nennen wir dir den Preis gern auf Anfrage.',
-      en: "Prices and durations for Ruslana's massages are being set right now and will appear here once they are final. Until then we are happy to tell you the price on request.",
+      de: 'Die Dauer steht bei jeder Massage. Die Preise werden gerade festgelegt und erscheinen hier, sobald sie feststehen. Bis dahin nennen wir dir den Preis gern auf Anfrage.',
+      en: "Each massage shows its duration. Prices are being set right now and will appear here once they are final. Until then we are happy to tell you the price on request.",
     },
   },
   {
@@ -350,16 +365,16 @@ function fmt(ym: YearMonth): string {
   return ym.m === null ? String(ym.y) : `${String(ym.m).padStart(2, '0')}/${ym.y}`;
 }
 
-/** „ab 60 €, 60 Min.“ bzw. „Preis folgt“, solange keine Preisliste vorliegt. */
+/** „ab 60 € · 60 Min.“ bzw. „Preis folgt · 45–60 Min.“, solange keine Preise vorliegen. */
 function priceLabel(item: TreatmentItem): Bi {
-  if (item.priceFrom === undefined) {
-    return { de: 'Preis folgt', en: 'price to follow' };
-  }
-  const minutes = item.minutes ? { de: `, ${item.minutes} Min.`, en: `, ${item.minutes} min` } : { de: '', en: '' };
-  return {
-    de: `ab ${item.priceFrom} €${minutes.de}`,
-    en: `from €${item.priceFrom}${minutes.en}`,
-  };
+  const price: Bi =
+    item.priceFrom === undefined
+      ? { de: 'Preis folgt', en: 'price to follow' }
+      : { de: `ab ${item.priceFrom}\u00a0€`, en: `from €${item.priceFrom}` };
+  if (!item.minutes) return price;
+  const [from, to] = item.minutes;
+  const span = from === to ? `${from}` : `${from}–${to}`;
+  return { de: `${price.de} · ${span}\u00a0Min.`, en: `${price.en} · ${span}\u00a0min` };
 }
 
 const PRICED_GROUPS: PricedGroup[] = TREATMENT_GROUPS.map((group) => ({

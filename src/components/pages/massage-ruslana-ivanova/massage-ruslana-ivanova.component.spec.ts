@@ -37,12 +37,13 @@ describe('MassageRuslanaIvanovaComponent', () => {
     expect(robots?.getAttribute('content')).toContain('noindex');
   });
 
-  it('zeigt zu jeder Massage einen Preis oder „Preis folgt“ in beiden Sprachen', () => {
+  it('zeigt zu jeder Massage einen Preis oder „Preis folgt“ und die Dauer, in beiden Sprachen', () => {
     const items = component.groups.flatMap((group) => group.items);
     expect(items.length).toBeGreaterThan(0);
     for (const item of items) {
       expect(item.price.de).toMatch(/^(ab \d+ €|Preis folgt)/);
-      expect(item.price.en).toMatch(/^(from €\d+|price to follow)/);
+      expect(item.price.en).toMatch(/^(from €\d+|price to follow)/);      expect(item.minutes).toBeDefined();
+      expect(item.price.de).toMatch(/ · \d+(–\d+)?\u00a0Min\.$/);
     }
     const rows = fixture.nativeElement.querySelectorAll('.menu-row .menu-price .lang.de');
     expect(rows.length).toBe(items.length);

@@ -327,11 +327,11 @@ function localizedRoutes(lang: PageLang): Routes {
           data: d(
             {
               title: 'Massage in Nürnberg: Ruslana Ivanova bei FareWell',
-              description: 'Rücken-, Ganzkörper-, Anti-Cellulite-, Honig-, Schröpf- und Gesichtsmassage bei FareWell in Nürnberg mit Ruslana Ivanova: Masseurin seit 2018, fünf Massagezertifikate für Gesicht und Körper.'
+              description: 'Gesichts-, Rücken-, Nacken-Schulter-, Ganzkörper- und Anti-Cellulite-Massage mit Honig und Schröpfen bei FareWell in Nürnberg mit Ruslana Ivanova: Masseurin seit 2018, fünf Massagezertifikate für Gesicht und Körper.'
             },
             {
               title: 'Massage in Nuremberg: Ruslana Ivanova at FareWell',
-              description: 'Back, full-body, anti-cellulite, honey, cupping and facial massage at FareWell in Nuremberg with Ruslana Ivanova: massage therapist since 2018, five massage certificates for face and body.'
+              description: 'Facial, back, neck and shoulder, full-body and anti-cellulite massage with honey and cupping at FareWell in Nuremberg with Ruslana Ivanova: massage therapist since 2018, five massage certificates for face and body.'
             }
           )
         }
