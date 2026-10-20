@@ -21,7 +21,7 @@ const SPECIAL_EN_TO_DE: Record<string, string> = {
 };
 
 /** Seiten ohne englisches Gegenstück (rechtlich bindende deutsche Texte u. Ä.). */
-const NON_LOCALIZED_PREFIXES = ['/impressum', '/datenschutz', '/agb', '/not-found'];
+const NON_LOCALIZED_PREFIXES = ['/impressum', '/datenschutz', '/agb', '/not-found', '/intern'];
 
 /**
  * Seiten ohne ukrainische Fassung: das MwSt-Paar für US-Streitkräfte
@@ -119,6 +119,13 @@ export class LanguageService {
     }
 
     const current = this.router.url.split('?')[0].split('#')[0] || '/';
+    // Interne Seiten (/intern/…) gibt es nur unter einer Adresse und sie
+    // schalten ihren Inhalt selbst um. Wegnavigieren würde die mit Passwort
+    // geöffnete Seite wieder schließen, also nur das UI umschalten.
+    if (current.startsWith('/intern/')) {
+      this.apply(lang);
+      return;
+    }
     const target = this.counterpartPath(current, lang) ?? (lang === 'uk' ? '/uk' : null);
 
     if (target !== null && this.isBrowser && this.crossesUkBoundary(lang)) {

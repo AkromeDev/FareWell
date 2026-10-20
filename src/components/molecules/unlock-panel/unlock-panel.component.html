@@ -1,0 +1,62 @@
+<section class="lock" aria-labelledby="lock-title">
+  <div class="lock-card">
+    <span class="lock-badge" aria-hidden="true"><app-qs-icon name="lock" [size]="28" /></span>
+    <p class="lock-eyebrow">
+      {{ primary().eyebrow }}
+      @if (secondary(); as s) {
+        <span class="lock-alt" lang="uk">{{ s.eyebrow }}</span>
+      }
+    </p>
+    <h1 id="lock-title" class="lock-title">{{ heading() }}</h1>
+    <p class="lock-text">
+      {{ primary().text }}
+      @if (secondary(); as s) {
+        <span class="lock-alt" lang="uk">{{ s.text }}</span>
+      }
+    </p>
+
+    <form class="lock-form" (submit)="submit($event)" novalidate>
+      <label class="lock-label" for="qs-password">
+        {{ primary().label }}
+        @if (secondary(); as s) {
+          <span class="lock-alt-inline" lang="uk"> · {{ s.label }}</span>
+        }
+      </label>
+      <div class="lock-row">
+        <input
+          #field
+          id="qs-password"
+          class="lock-input"
+          type="password"
+          autocomplete="current-password"
+          autocapitalize="off"
+          spellcheck="false"
+          [attr.aria-invalid]="error() ? 'true' : null"
+          [attr.aria-describedby]="error() ? 'qs-error' : 'qs-note'"
+          [disabled]="busy()"
+        />
+        <button class="lock-button" type="submit" [disabled]="busy()">
+          {{ busy() ? primary().busy : primary().button }}
+          @if (secondary(); as s) {
+            <span class="lock-alt-inline" lang="uk"> · {{ busy() ? s.busy : s.button }}</span>
+          }
+        </button>
+      </div>
+      <p id="qs-error" class="lock-error" role="alert" aria-live="assertive">
+        @if (error(); as e) {
+          {{ primary()[e] }}
+          @if (secondary(); as s) {
+            <span class="lock-alt" lang="uk">{{ s[e] }}</span>
+          }
+        }
+      </p>
+    </form>
+
+    <p id="qs-note" class="lock-note">
+      {{ primary().note }}
+      @if (secondary(); as s) {
+        <span class="lock-alt" lang="uk">{{ s.note }}</span>
+      }
+    </p>
+  </div>
+</section>

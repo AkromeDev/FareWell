@@ -1,0 +1,490 @@
+@if (state() !== 'open' || !content()) {
+  <app-unlock-panel
+    heading="Quick Start"
+    [langs]="lockLangs"
+    [error]="error()"
+    [busy]="state() === 'opening'"
+    (unlock)="unlock($event)"
+  />
+} @else {
+  @let c = content()!;
+  @let u = ui();
+  <div class="qs" [attr.lang]="lang()">
+    @if (isTest()) {
+      <p class="qs-test" role="status">{{ u.test }}</p>
+    }
+
+    <!-- ================================================================= -->
+    <!-- Hero: Name, Ziel, Zeitleiste                                       -->
+    <!-- ================================================================= -->
+    <header class="hero">
+      <div class="wrap">
+        <div class="hero-top">
+          <p class="eyebrow eyebrow--dark">Quick Start · {{ c.person.first }}</p>
+          @if (c.languages.length > 1) {
+            <div class="qs-lang" role="group" [attr.aria-label]="u.language">
+              @for (l of c.languages; track l) {
+                <button type="button" [class.on]="lang() === l" [attr.aria-pressed]="lang() === l" (click)="setLang(l)">
+                  {{ l === 'de' ? 'DE' : 'УКР' }}
+                </button>
+              }
+            </div>
+          }
+        </div>
+        <h1 id="qs-top" class="hero-title" tabindex="-1">{{ t(c.hero.goal) }}</h1>
+        <p class="hero-sub">{{ t(c.hero.sub) }}</p>
+        <p class="hero-person">{{ t(c.person.full) }} · {{ t(c.person.role) }}</p>
+
+        <div class="track" role="img" [attr.aria-label]="startLabel() + ' – ' + endLabel() + '. ' + countdown()">
+          <div class="track-dates" aria-hidden="true">
+            <span>{{ startLabel() }}</span>
+            @if (countdown()) {
+              <span class="track-count">{{ countdown() }}</span>
+            }
+            <span>{{ endLabel() }}</span>
+          </div>
+          <div class="track-bar" aria-hidden="true">
+            @for (band of monthBands(); track band.n) {
+              <span class="track-band" [style.left.%]="band.left" [style.width.%]="band.width">
+                <span class="track-band-label">{{ u.month }} {{ band.n }}</span>
+              </span>
+              @if (band.occasion; as o) {
+                <span class="track-occasion" [style.left.%]="o.left" [attr.title]="o.label">
+                  <app-qs-icon name="star" [size]="14" />
+                </span>
+              }
+            }
+            @if (todayPct() !== null) {
+              <span class="track-today" [style.left.%]="todayPct()"></span>
+            }
+          </div>
+        </div>
+
+        <nav class="chips" aria-label="Abschnitte">
+          @for (item of nav(); track item.id) {
+            <a class="chip no-underline" [href]="'#' + item.id">{{ item.label }}</a>
+          }
+        </nav>
+      </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- Ziel in Zahlen                                                     -->
+    <!-- ================================================================= -->
+    <section id="ziel" class="block" aria-labelledby="ziel-h">
+      <div class="wrap">
+        <p class="eyebrow">{{ u.goal }} <span class="flag">{{ u.proposal }}</span></p>
+        <h2 id="ziel-h" class="block-title">{{ t(c.hero.title) }}</h2>
+        <ul class="metrics">
+          @for (m of c.metrics; track $index) {
+            <li class="metric">
+              <span class="metric-icon"><app-qs-icon [name]="m.icon" [size]="26" /></span>
+              <strong class="metric-value">{{ m.value }}</strong>
+              <span class="metric-label">{{ t(m.label) }}</span>
+              @if (m.note) {
+                <span class="metric-note">{{ t(m.note) }}</span>
+              }
+            </li>
+          }
+        </ul>
+        @if (c.metricsNote) {
+          <p class="block-note">{{ t(c.metricsNote) }}</p>
+        }
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- Drei Monate: ein Video und ein Angebot je Monat                    -->
+    <!-- ================================================================= -->
+    <section id="plan" class="block block--sand" aria-labelledby="plan-h">
+      <div class="wrap">
+        <p class="eyebrow">{{ u.plan }}</p>
+        <h2 id="plan-h" class="block-title">{{ u.planTitle }}</h2>
+        <ol class="months">
+          @for (m of c.months; track m.n) {
+            <li class="month">
+              <div class="month-head">
+                <span class="month-n" aria-hidden="true">{{ m.n }}</span>
+                <span class="month-when">
+                  <span class="sr-only">{{ u.month }} {{ m.n }}: </span>{{ short(m.from) }} – {{ short(m.to) }}
+                </span>
+              </div>
+              <h3 class="month-theme">{{ t(m.theme) }}</h3>
+              @if (m.occasion) {
+                <p class="month-occasion">
+                  <app-qs-icon name="star" [size]="16" /> {{ short(m.occasion.date) }} {{ t(m.occasion.label) }}
+                </p>
+              }
+              <div class="month-item">
+                <span class="month-icon month-icon--video"><app-qs-icon name="video" /></span>
+                <div>
+                  <p class="month-kicker">{{ u.video }}</p>
+                  <p class="month-title">{{ t(m.video.title) }}</p>
+                  <p class="month-detail">{{ t(m.video.idea) }}</p>
+                </div>
+              </div>
+              <div class="month-item">
+                <span class="month-icon month-icon--offer"><app-qs-icon name="tag" /></span>
+                <div>
+                  <p class="month-kicker">{{ t(c.offerLabel) }}</p>
+                  <p class="month-title">{{ t(m.offer.title) }}</p>
+                  <p class="month-detail">{{ t(m.offer.detail) }}</p>
+                  @if (m.offer.code) {
+                    <p class="code"><span>{{ u.code }}</span> <strong>{{ m.offer.code }}</strong></p>
+                  }
+                  @if (m.offer.flag) {
+                    <p class="month-flag"><app-qs-icon name="alert" [size]="16" /> {{ t(m.offer.flag) }}</p>
+                  }
+                </div>
+              </div>
+            </li>
+          }
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- Wege: Kanäle und der Weg bis zum Stammkunden                       -->
+    <!-- ================================================================= -->
+    <section id="wege" class="block" aria-labelledby="wege-h">
+      <div class="wrap">
+        <p class="eyebrow">{{ u.ways }}</p>
+        <h2 id="wege-h" class="block-title">{{ t(c.funnel.title) }}</h2>
+        <ul class="channels">
+          @for (ch of c.funnel.channels; track $index) {
+            <li class="channel">
+              <span class="channel-icon"><app-qs-icon [name]="ch.icon" /></span>
+              <span class="channel-label">{{ t(ch.label) }}</span>
+              <span class="channel-detail">{{ t(ch.detail) }}</span>
+              @if (ch.badge) {
+                <span class="channel-badge">{{ t(ch.badge) }}</span>
+              }
+            </li>
+          }
+        </ul>
+        <div class="funnel-arrow" aria-hidden="true"><app-qs-icon name="arrow" [size]="28" /></div>
+        <ol class="steps">
+          @for (step of c.funnel.steps; track $index) {
+            <li class="step">
+              <span class="step-dot"><app-qs-icon [name]="step.icon" [size]="22" /></span>
+              <span class="step-label">{{ t(step.label) }}</span>
+            </li>
+          }
+        </ol>
+        @if (c.funnel.note) {
+          <p class="block-note">{{ t(c.funnel.note) }}</p>
+        }
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- Geld: wer bekommt wie viel                                         -->
+    <!-- ================================================================= -->
+    <section id="geld" class="block block--sand" aria-labelledby="geld-h">
+      <div class="wrap">
+        <p class="eyebrow">{{ u.money }}</p>
+        <h2 id="geld-h" class="block-title">{{ t(c.money.title) }}</h2>
+        <div class="money">
+          @for (split of c.money.splits; track $index) {
+            <app-qs-donut class="card" [title]="t(split.label)" [caption]="t(split.caption)" [parts]="splitParts(split)" />
+          }
+          @for (ex of c.money.examples; track $index) {
+            <app-qs-stack-bar class="card" [title]="t(ex.label)" [total]="euro(ex.total)" [parts]="exampleParts(ex)" [note]="t(ex.note)" />
+          }
+        </div>
+        @if (c.money.note) {
+          <p class="block-note">{{ t(c.money.note) }}</p>
+        }
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- Google Ads                                                         -->
+    <!-- ================================================================= -->
+    <section id="ads" class="block" aria-labelledby="ads-h">
+      <div class="wrap">
+        <p class="eyebrow">{{ u.ads }}</p>
+        <div class="ads">
+          <div class="ads-budget card card--dark">
+            <h2 id="ads-h" class="ads-amount">{{ euro(c.ads.budget) }}</h2>
+            <p class="ads-per">{{ u.perMonth }} · {{ t(c.ads.payer) }} {{ u.paidBy }}</p>
+            <div class="ads-funnel">
+              <p><app-qs-icon name="search" /> <strong>{{ c.ads.clicks[0] }}–{{ c.ads.clicks[1] }}</strong> {{ u.clicks }}</p>
+              <p><app-qs-icon name="target" /> <strong>{{ c.ads.leads[0] }}–{{ c.ads.leads[1] }}</strong> {{ u.leads }}</p>
+            </div>
+            <p class="ads-estimate">{{ u.estimate }}</p>
+          </div>
+          <div class="ads-words card">
+            <p class="words-title"><app-qs-icon name="check" [size]="18" /> {{ u.use }}</p>
+            <ul class="words">
+              @for (w of c.ads.words; track $index) {
+                <li class="word word--ok">{{ t(w) }}</li>
+              }
+            </ul>
+            @if (c.ads.avoid?.length) {
+              <p class="words-title words-title--no"><app-qs-icon name="alert" [size]="18" /> {{ u.avoid }}</p>
+              <ul class="words">
+                @for (w of c.ads.avoid; track $index) {
+                  <li class="word word--no">{{ t(w) }}</li>
+                }
+              </ul>
+            }
+            @if (c.ads.note) {
+              <p class="block-note">{{ t(c.ads.note) }}</p>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- Was nur diese Person betrifft                                      -->
+    <!-- ================================================================= -->
+    @for (s of c.sections; track s.id; let odd = $odd) {
+      <section [id]="s.id" class="block" [class.block--sand]="!odd" [attr.aria-labelledby]="s.id + '-h'">
+        <div class="wrap">
+          <p class="eyebrow">{{ t(s.eyebrow) }}</p>
+          <h2 [id]="s.id + '-h'" class="block-title">{{ t(s.title) }}</h2>
+          @if (s.intro) {
+            <p class="block-intro">{{ t(s.intro) }}</p>
+          }
+
+          @switch (s.kind) {
+            @case ('options') {
+              <ul class="options">
+                @for (o of s.options; track $index) {
+                  <li class="option card" [class.option--best]="o.recommended">
+                    <div class="option-head">
+                      <h3 class="option-name">{{ t(o.name) }}</h3>
+                      @if (o.recommended) {
+                        <span class="pill pill--best"><app-qs-icon name="check" [size]="14" /> {{ u.recommended }}</span>
+                      } @else if (o.tag) {
+                        <span class="pill">{{ t(o.tag) }}</span>
+                      }
+                    </div>
+                    <ol class="flow">
+                      @for (f of o.flow; track $index) {
+                        <li><app-qs-icon [name]="f.icon" [size]="18" /> {{ t(f.label) }}</li>
+                      }
+                    </ol>
+                    <p class="option-cost"><app-qs-icon name="euro" [size]="18" /> {{ t(o.cost) }}</p>
+                    <div class="procon">
+                      <ul class="pro" [attr.aria-label]="u.good">
+                        @for (g of o.good; track $index) {
+                          <li>{{ t(g) }}</li>
+                        }
+                      </ul>
+                      <ul class="con" [attr.aria-label]="u.bad">
+                        @for (b of o.bad; track $index) {
+                          <li>{{ t(b) }}</li>
+                        }
+                      </ul>
+                    </div>
+                  </li>
+                }
+              </ul>
+            }
+
+            @case ('rules') {
+              <ul class="rules">
+                @for (r of s.items; track $index) {
+                  <li class="rule rule--{{ r.status }}">
+                    <span class="rule-status">
+                      <app-qs-icon [name]="r.status === 'ok' ? 'check' : 'alert'" [size]="18" />
+                      {{ u.status[r.status] }}
+                    </span>
+                    <span class="rule-idea">{{ t(r.idea) }}</span>
+                    <span class="rule-instead">
+                      @if (r.status !== 'ok') {
+                        <span class="sr-only">{{ u.instead }}: </span>
+                        <app-qs-icon name="arrow" [size]="16" />
+                      }
+                      {{ t(r.instead) }}
+                    </span>
+                  </li>
+                }
+              </ul>
+            }
+
+            @case ('steps') {
+              <ol class="sign-steps">
+                @for (st of s.steps; track $index) {
+                  <li class="sign-step">
+                    <span class="sign-n" aria-hidden="true">{{ $index + 1 }}</span>
+                    <span class="sign-icon"><app-qs-icon [name]="st.icon" /></span>
+                    <span class="sign-label">{{ t(st.label) }}</span>
+                    @if (st.detail) {
+                      <span class="sign-detail">{{ t(st.detail) }}</span>
+                    }
+                  </li>
+                }
+              </ol>
+            }
+
+            @case ('levels') {
+              <div class="levels" role="img" [attr.aria-label]="t(s.title)">
+                <div class="levels-scale" aria-hidden="true">
+                  @for (lv of s.levels; track lv) {
+                    <span class="levels-step">{{ lv }}</span>
+                  }
+                  @for (mk of s.marks; track $index) {
+                    <span
+                      class="levels-mark levels-mark--{{ mk.tone }}"
+                      [class.levels-mark--low]="$odd"
+                      [style.left.%]="(mk.at / (s.levels.length - 1)) * 100"
+                    >
+                      <span class="levels-mark-date">{{ t(mk.date) }}</span>
+                      <span class="levels-mark-label">{{ t(mk.label) }}</span>
+                    </span>
+                  }
+                </div>
+              </div>
+              <ul class="sr-only">
+                @for (mk of s.marks; track $index) {
+                  <li>{{ t(mk.date) }}: {{ t(mk.label) }}</li>
+                }
+              </ul>
+            }
+
+            @case ('week') {
+              <div class="week-wrap card">
+                <p class="week-big">
+                  <strong>{{ s.minutesPerDay }}</strong> {{ u.minutes }} {{ u.perDay }}
+                </p>
+                <app-qs-week-plan [caption]="u.weekCaption" [unit]="u.minutes" [legend]="weekLegend(s)" [days]="weekDays(s)" />
+              </div>
+            }
+
+            @case ('courses') {
+              <ul class="courses">
+                @for (k of s.items; track $index) {
+                  <li class="course card" [class.course--best]="k.recommended">
+                    @if (k.recommended) {
+                      <span class="pill pill--best"><app-qs-icon name="check" [size]="14" /> {{ u.recommended }}</span>
+                    } @else if (k.tag) {
+                      <span class="pill">{{ t(k.tag) }}</span>
+                    }
+                    <h3 class="course-name">{{ t(k.name) }}</h3>
+                    <p class="course-line"><app-qs-icon name="euro" [size]="18" /> {{ t(k.cost) }}</p>
+                    <p class="course-line"><app-qs-icon name="clock" [size]="18" /> {{ t(k.when) }}</p>
+                    @if (k.url) {
+                      <a class="course-link" [href]="k.url" target="_blank" rel="noopener noreferrer">{{ k.url.replace('https://', '') }}</a>
+                    }
+                  </li>
+                }
+              </ul>
+            }
+
+            @case ('phrases') {
+              <ul class="phrases">
+                @for (p of s.items; track $index) {
+                  <li class="phrase">
+                    <span class="phrase-de" lang="de">{{ p.de }}</span>
+                    <span class="phrase-uk" lang="uk">{{ p.uk }}</span>
+                  </li>
+                }
+              </ul>
+            }
+
+            @case ('prices') {
+              <ul class="prices">
+                @for (p of s.items; track $index) {
+                  <li class="price card">
+                    <span class="price-name">{{ t(p.name) }}</span>
+                    <span class="price-min"><app-qs-icon name="clock" [size]="16" /> {{ p.minutes }} {{ u.minutes }}</span>
+                    <strong class="price-value">{{ euro(p.price) }}</strong>
+                    @if (p.note) {
+                      <span class="price-note">{{ t(p.note) }}</span>
+                    }
+                  </li>
+                }
+              </ul>
+            }
+          }
+
+          @if (s.note) {
+            <p class="block-note">{{ t(s.note) }}</p>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- ================================================================= -->
+    <!-- Aufgaben                                                           -->
+    <!-- ================================================================= -->
+    <section id="aufgaben" class="block" aria-labelledby="aufgaben-h">
+      <div class="wrap">
+        <p class="eyebrow">{{ u.todo }}</p>
+        <h2 id="aufgaben-h" class="block-title">{{ u.todoTitle }}</h2>
+        <div class="todo-cols">
+          @for (col of todoColumns(); track col.owner) {
+            <div class="todo-col card">
+              <h3 class="todo-owner">
+                <span class="avatar avatar--{{ col.owner }}" aria-hidden="true">{{ owners()[col.owner].charAt(0) }}</span>
+                {{ owners()[col.owner] }}
+                <span class="todo-count">{{ col.open }} {{ u.open }}</span>
+              </h3>
+              <ul class="todos">
+                @for (todo of col.items; track $index) {
+                  <li class="todo" [class.todo--done]="todo.done">
+                    <span class="todo-box" aria-hidden="true">
+                      @if (todo.done) {
+                        <app-qs-icon name="check" [size]="16" />
+                      }
+                    </span>
+                    <span class="todo-text">
+                      @if (todo.done) {
+                        <span class="sr-only">{{ u.done }}: </span>
+                      }
+                      {{ t(todo.text) }}
+                    </span>
+                    @if (todo.due) {
+                      <span class="todo-due">{{ u.due }} {{ todo.due.slice(0, 6) }}</span>
+                    }
+                  </li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- Fragen                                                             -->
+    <!-- ================================================================= -->
+    <section id="fragen" class="block block--sand" aria-labelledby="fragen-h">
+      <div class="wrap">
+        <p class="eyebrow">{{ u.questions }}</p>
+        <h2 id="fragen-h" class="block-title">{{ u.questionsTitle }}</h2>
+        <ol class="questions">
+          @for (q of c.questions; track $index) {
+            <li class="question card">
+              <span class="question-n" aria-hidden="true">{{ $index + 1 }}</span>
+              <p class="question-text">{{ t(q.text) }}</p>
+              @if (q.options?.length) {
+                <ul class="question-options">
+                  @for (o of q.options; track $index) {
+                    <li>{{ t(o) }}</li>
+                  }
+                </ul>
+              }
+              @if (q.hint) {
+                <p class="question-hint">{{ t(q.hint) }}</p>
+              }
+            </li>
+          }
+        </ol>
+      </div>
+    </section>
+
+    <footer class="qs-foot">
+      <div class="wrap">
+        <p>{{ u.footer(c.updated) }}</p>
+        <button type="button" class="lock-again" (click)="lockAgain()">
+          <app-qs-icon name="lock" [size]="18" /> {{ u.lockAgain }}
+        </button>
+      </div>
+    </footer>
+  </div>
+}

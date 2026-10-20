@@ -782,6 +782,38 @@ const pageRoutes: Routes = [
     }
   },
 
+  // Quick Start: interne, verschlüsselte Seiten für Leo und Ruslana (drei
+  // Monate Marketing ab 15.11.2026). noindex, nicht in der Sitemap, nirgends
+  // verlinkt, nur Deutsch (Ruslanas Seite schaltet intern auf Ukrainisch).
+  // Der Inhalt liegt versiegelt in src/assets/intern/, siehe
+  // tools/seal-intern.mjs; slug und path müssen zu tools/intern-pages.json passen.
+  {
+    path: 'intern/quick-start/leo',
+    loadComponent: () =>
+      import('../components/pages/intern/quick-start/quick-start.component')
+        .then(m => m.QuickStartComponent),
+    data: {
+      title: 'Quick Start | FareWell intern',
+      description: 'Interne Seite von FareWell. Sie öffnet sich mit einem Passwort.',
+      slug: 'quick-start-leo',
+      path: '/intern/quick-start/leo',
+      lockLangs: ['de']
+    }
+  },
+  {
+    path: 'intern/quick-start/ruslana',
+    loadComponent: () =>
+      import('../components/pages/intern/quick-start/quick-start.component')
+        .then(m => m.QuickStartComponent),
+    data: {
+      title: 'Quick Start | FareWell intern',
+      description: 'Interne Seite von FareWell. Sie öffnet sich mit einem Passwort.',
+      slug: 'quick-start-ruslana',
+      path: '/intern/quick-start/ruslana',
+      lockLangs: ['de', 'uk']
+    }
+  },
+
   {
     path: 'not-found',
     loadComponent: () =>

@@ -1,0 +1,17 @@
+{
+  "_hinweis": "Öffentlich und committet: welche internen Seiten es gibt, wo ihr Klartext liegt und unter welchem Schlüsselbund-Eintrag ihr Passwort steht. Kein Inhalt, kein Passwort. Siehe tools/seal-intern.mjs.",
+  "pages": [
+    {
+      "slug": "quick-start-leo",
+      "path": "/intern/quick-start/leo",
+      "source": "quick-start/leo/content.json",
+      "keychain": "farewell.salon intern quick-start-leo"
+    },
+    {
+      "slug": "quick-start-ruslana",
+      "path": "/intern/quick-start/ruslana",
+      "source": "quick-start/ruslana/content.json",
+      "keychain": "farewell.salon intern quick-start-ruslana"
+    }
+  ]
+}

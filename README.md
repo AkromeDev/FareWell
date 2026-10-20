@@ -48,6 +48,25 @@ no trailing slash. Two things keep that true:
    repo): `www.farewell.salon/*` must 301 to `https://farewell.salon/$1`, never
    the other way around – the on-page canonical tags point at the apex domain.
 
+## Internal pages (/intern/)
+
+Encrypted pages for single people (today: the Quick Start pages for Dr. Leo and
+Ruslana), built like the sealed team page of themojo.solutions. The route
+prerenders only a lock screen with `noindex`; the content ships as
+`src/assets/intern/<slug>.sealed.json` (PBKDF2-SHA256, AES-256-GCM) and is
+decrypted in the browser with that page's password. Nothing is stored.
+
+- **This repository is public, so the plain text never lives here.** It sits in
+  the FareWell project folder (`~/Claude/Projects/FareWell/domains/marketing/`,
+  override with `INTERN_QUELLE`), as listed in `tools/intern-pages.json`.
+- Each page has its own password in the macOS Keychain (service names in
+  `tools/intern-pages.json`). `npm run seal` seals what changed;
+  `npm run seal -- --check` compares every seal with its plain text.
+- A test seal (`SEAL_PASSWORD=...`) is marked `"test": true`, and
+  `npm run prerender` refuses to build while one is present.
+- On `/intern/` the header language switch does not navigate (that would close
+  the opened page); the page follows it instead.
+
 ## Running unit tests
 
 Run `npm test` (`ng test`) to execute the unit tests via
