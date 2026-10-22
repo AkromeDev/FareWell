@@ -166,13 +166,31 @@ export interface QsSteps extends QsSectionBase {
 export interface QsPrices extends QsSectionBase {
   kind: 'prices';
   /** highlight: die eine Massage, die hervorgehoben wird (z. B. die Groupon-Basis). */
-  items: { name: Txt; minutes: number; price: number; note?: Txt; highlight?: boolean }[];
+  items: { name: Txt; minutes?: number; price: number; note?: Txt; highlight?: boolean }[];
 }
 
 /** Ein Wochenrhythmus: wenige Aktionen, die sich Woche für Woche abwechseln. */
 export interface QsWeeks extends QsSectionBase {
   kind: 'weeks';
-  concepts: { key: string; label: Txt; detail: Txt; icon: QsIconName; tone: Tone; source?: Txt }[];
+  concepts: {
+    key: string;
+    /** Nummer der Idee, z. B. „01“. */
+    num?: string;
+    label: Txt;
+    /** Der Vorschlag, so wie er gemacht wurde. */
+    detail: Txt;
+    icon: QsIconName;
+    tone: Tone;
+    source?: Txt;
+    /** Wie oft: „im Wochenwechsel“, „einmal im Monat“, „läuft immer“. */
+    rhythm?: Txt;
+    /** Rechtliche Einschätzung des Vorschlags. */
+    status?: 'ok' | 'risk' | 'no';
+    /** Empfehlung: die Form, die geht. */
+    advice?: Txt;
+    /** Anmerkung, wo die Idee auch geschäftlich schwach ist. */
+    remark?: Txt;
+  }[];
   /** Jede Woche ab ihrem Montag (ISO-Datum) mit der Aktion, die dann läuft. */
   weeks: { from: string; key: string; note?: Txt }[];
 }

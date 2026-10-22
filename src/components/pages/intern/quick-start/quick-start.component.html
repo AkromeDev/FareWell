@@ -394,7 +394,9 @@
                       <span class="pill pill--gold"><app-qs-icon name="ticket" [size]="14" /> {{ u.highlight }}</span>
                     }
                     <span class="price-name">{{ t(p.name) }}</span>
-                    <span class="price-min"><app-qs-icon name="clock" [size]="16" /> {{ p.minutes }} {{ u.minutes }}</span>
+                    @if (p.minutes) {
+                      <span class="price-min"><app-qs-icon name="clock" [size]="16" /> {{ p.minutes }} {{ u.minutes }}</span>
+                    }
                     <strong class="price-value">{{ euro(p.price) }}</strong>
                     @if (p.note) {
                       <span class="price-note">{{ t(p.note) }}</span>
@@ -405,23 +407,20 @@
             }
 
             @case ('weeks') {
-              <ul class="concepts">
-                @for (k of s.concepts; track k.key) {
-                  <li class="concept concept--{{ k.tone }}">
-                    <span class="concept-icon"><app-qs-icon [name]="k.icon" /></span>
-                    <h3 class="concept-name">{{ t(k.label) }}</h3>
-                    <p class="concept-detail">{{ t(k.detail) }}</p>
-                    @if (k.source) {
-                      <p class="concept-source">{{ t(k.source) }}</p>
-                    }
-                  </li>
-                }
-              </ul>
               <ol class="weeks">
                 @for (w of weekCells(s); track w.from) {
                   <li class="wk wk--{{ w.tone }}" [class.wk--now]="w.current">
                     <span class="wk-date">{{ short(w.from) }} – {{ short(w.to) }}</span>
-                    <span class="wk-name"><app-qs-icon [name]="w.icon" [size]="18" /> {{ w.label }}</span>
+                    <span class="wk-name">
+                      <app-qs-icon [name]="w.icon" [size]="18" />
+                      @if (w.num) {
+                        <span class="wk-num">{{ w.num }}</span>
+                      }
+                      {{ w.label }}
+                    </span>
+                    @if (w.status) {
+                      <span class="lawtag lawtag--{{ w.status }}">{{ u.status[w.status] }}</span>
+                    }
                     @if (w.note) {
                       <span class="wk-note">{{ w.note }}</span>
                     }
@@ -431,6 +430,46 @@
                   </li>
                 }
               </ol>
+              <ul class="concepts">
+                @for (k of s.concepts; track k.key) {
+                  <li class="concept concept--{{ k.tone }}">
+                    <div class="concept-head">
+                      <span class="concept-icon"><app-qs-icon [name]="k.icon" /></span>
+                      @if (k.num) {
+                        <span class="concept-num">{{ k.num }}</span>
+                      }
+                      @if (k.status) {
+                        <span class="lawtag lawtag--{{ k.status }}">{{ u.status[k.status] }}</span>
+                      }
+                    </div>
+                    <h3 class="concept-name">{{ t(k.label) }}</h3>
+                    <p class="concept-detail">
+                      @if (k.advice) {
+                        <span class="concept-kicker">{{ u.proposal2 }}</span>
+                      }
+                      {{ t(k.detail) }}
+                    </p>
+                    @if (k.rhythm) {
+                      <p class="concept-rhythm"><app-qs-icon name="calendar" [size]="15" /> {{ t(k.rhythm) }}</p>
+                    }
+                    @if (k.advice) {
+                      <p class="concept-advice">
+                        <span class="concept-kicker">{{ u.advice }}</span>
+                        {{ t(k.advice) }}
+                      </p>
+                    }
+                    @if (k.remark) {
+                      <p class="concept-remark">
+                        <span class="concept-kicker">{{ u.remark }}</span>
+                        {{ t(k.remark) }}
+                      </p>
+                    }
+                    @if (k.source) {
+                      <p class="concept-source">{{ t(k.source) }}</p>
+                    }
+                  </li>
+                }
+              </ul>
             }
 
             @case ('partners') {

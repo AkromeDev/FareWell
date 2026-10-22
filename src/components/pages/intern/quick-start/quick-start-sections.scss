@@ -501,11 +501,11 @@
 // Wochenrhythmus: Aktionen als Karten, darunter die Wochen
 .concepts {
   list-style: none;
-  margin: 0 0 20px;
+  margin: 20px 0 0;
   padding: 0;
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
 }
 
 .concept {
@@ -523,8 +523,94 @@
   }
 }
 
+.concept-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .concept-icon {
   color: var(--qs-tone, var(--emerald));
+}
+
+.concept-num {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.concept-head .lawtag {
+  margin-left: auto;
+}
+
+.concept-kicker {
+  display: block;
+  margin-bottom: 1px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.concept-rhythm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.concept-advice {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(62, 90, 71, 0.08);
+  font-size: 0.93rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.concept-remark {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(184, 146, 74, 0.12);
+  font-size: 0.93rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+// Rechtliches Label: Farbe plus Wort, nie nur Farbe
+.lawtag {
+  justify-self: start;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &--ok {
+    background: #3e5a47;
+    color: #fff;
+  }
+
+  &--risk {
+    background: #f1e2bf;
+    color: #5a4416;
+  }
+
+  &--no {
+    background: #a4493d;
+    color: #fff;
+  }
+}
+
+.wk-num {
+  font-family: var(--font-serif);
+  font-weight: 400;
 }
 
 .concept-name {
@@ -578,7 +664,7 @@
 
 .wk-name {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
   font-weight: 600;
   font-size: 0.98rem;
