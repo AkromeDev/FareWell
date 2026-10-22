@@ -30,28 +30,30 @@
         <p class="gd-lede" appReveal [revealDelay]="60">
           <span class="lang de">
             Deine Krankenkasse kann die Epilation im Gesicht übernehmen. Der Knackpunkt ist meist
-            der Ärztevorbehalt, und dafür arbeitet FareWell mit einem delegierenden Arzt: unserem
-            medizinischen Berater Dr. med. univ. Noam Degner. Ob deine Kasse das anerkennt, ist von
-            Fall zu Fall verschieden, aber es ist ein Versuch wert.
+            der Ärztevorbehalt. Bei FareWell behandelt unsere geschulte Fachkraft, ärztlich
+            begleitet von unserem medizinischen Berater Dr. med. univ. Noam Degner. Ob deine Kasse
+            die Behandlung bei uns übernimmt, ist von Fall zu Fall verschieden, aber es ist ein
+            Versuch wert.
           </span>
           <span class="lang en">
             Your statutory health insurer can cover facial epilation. The sticking point is usually
-            the physician requirement (Ärztevorbehalt), and for that FareWell works with a
-            delegating doctor: our medical adviser Dr. med. univ. Noam Degner. Whether your insurer
-            accepts this varies from case to case, but it is worth a try.
+            the physician requirement (Ärztevorbehalt). At FareWell the treatment is carried out by
+            our trained specialist, with medical support from our medical adviser Dr. med. univ.
+            Noam Degner. Whether your insurer covers treatment with us varies from case to case,
+            but it is worth a try.
           </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
           <span class="lang de">
             Für viele trans Personen gehört die Haarentfernung im Gesicht fest zur Transition.
             Deine Krankenkasse kann die Kosten übernehmen, wenn die Behandlung als ärztliche
-            Leistung gilt. Genau daran scheitern Anträge sonst meistens. Dieser Leitfaden zeigt dir
+            Leistung gilt. Genau daran scheitern viele Anträge. Dieser Leitfaden zeigt dir
             Schritt für Schritt, wie du die Kostenübernahme beantragst.
           </span>
           <span class="lang en">
             For many trans people, facial hair removal is an integral part of their transition.
             Your statutory health insurer can cover the cost if the treatment counts as a medical
-            service, and that is exactly where applications otherwise tend to fail. This guide shows
+            service, and that is exactly where many applications fail. This guide shows
             you, step by step, how to apply for that coverage.
           </span>
         </p>
@@ -104,31 +106,31 @@
           [revealDelay]="60"
         >
           <span class="lang de">
-            Die Behandlung muss als ärztliche Leistung zählen; deshalb scheitern Anträge sonst
-            oft an reinen Kosmetikstudios.
+            Die Behandlung muss als ärztliche Leistung zählen. Daran scheitern viele Anträge,
+            besonders wenn die Behandlung nicht in einer ärztlichen Praxis stattfindet.
           </span>
           <span class="lang en">
-            The treatment has to count as a medical service, which is why applications otherwise
-            often fail at ordinary cosmetic studios.
+            The treatment has to count as a medical service. That is where many applications fail,
+            especially when the treatment does not take place in a medical practice.
           </span>
         </app-guide-card>
         <app-guide-card
           icon="🤝"
-          [heading]="t('Wie die Delegation helfen kann', 'How delegation can help')"
+          [heading]="t('Ärztliche Begleitung bei FareWell', 'Medical support at FareWell')"
           [revealDelay]="120"
         >
           <span class="lang de">
-            Unser medizinischer Berater Dr. med. univ. Noam Degner delegiert die Behandlung an
-            unser geschultes Team und bleibt medizinisch verantwortlich. So kann deine
-            Nadelepilation als ärztlich delegierte Leistung zählen.
-            Manche Kassen erkennen die Delegation an, andere bestehen auf einer ärztlichen Praxis,
-            das ist von Kasse zu Kasse verschieden.
+            Behandelt wird bei FareWell von unserer geschulten Fachkraft. Ärztlich begleitet wird
+            FareWell auf Grundlage eines Beratungsvertrags von Dr. med. univ. Noam Degner: Er wird
+            bei individuellen medizinischen Fragen, zur Beurteilung von Risiken und
+            Kontraindikationen sowie in Hygienefragen hinzugezogen. Ob deine Kasse das anerkennt
+            oder auf einer ärztlichen Praxis besteht, ist von Kasse zu Kasse verschieden.
           </span>
           <span class="lang en">
-            Our medical adviser Dr. med. univ. Noam Degner delegates the treatment to our trained
-            team and stays medically responsible. That way your electrolysis (Nadelepilation) can
-            count as a medically delegated service. Some
-            insurers accept delegation, others insist on a medical practice, it varies from insurer
+            At FareWell the treatment is carried out by our trained specialist. FareWell is
+            supported by Dr. med. univ. Noam Degner under a consulting contract: he is called in for
+            individual medical questions, to assess risks and contraindications, and on hygiene.
+            Whether your insurer accepts this or insists on a medical practice varies from insurer
             to insurer.
           </span>
         </app-guide-card>
@@ -219,8 +221,8 @@
           [revealDelay]="60"
         >
           <li>
-            <span class="lang de">Die ärztliche Delegation durch unseren medizinischen Berater.</span>
-            <span class="lang en">The medical delegation by our medical adviser.</span>
+            <span class="lang de">Ärztliche Begleitung durch unseren medizinischen Berater bei medizinischen Fragen, Risiken und Kontraindikationen.</span>
+            <span class="lang en">Medical support from our medical adviser on medical questions, risks and contraindications.</span>
           </li>
           <li>
             <span class="lang de">Einen Kostenvoranschlag für deinen Antrag.</span>
@@ -281,17 +283,17 @@
           <li>
             <span class="lang de">
               <strong>Kostenvoranschlag bei FareWell.</strong> Wir erstellen dir einen
-              Kostenvoranschlag für Nadelepilation und Diodenlaser im Rahmen der Delegation. Die
-              Preise je Zone findest du auf
-              <a [routerLink]="p('/price')" fragment="aerztliche-delegation"
+              Kostenvoranschlag für Nadelepilation und Diodenlaser, zu den Preisen mit ärztlicher
+              Begleitung. Die Preise findest du auf
+              <a [routerLink]="p('/price')" fragment="aerztliche-begleitung"
                 >unserer Preisseite</a
               >.
             </span>
             <span class="lang en">
               <strong>Cost estimate from FareWell.</strong> We prepare a cost estimate for
-              electrolysis (Nadelepilation) and the diode laser within the delegation. You will
-              find the prices per area on
-              <a [routerLink]="p('/price')" fragment="aerztliche-delegation">our price page</a>.
+              electrolysis (Nadelepilation) and the diode laser, at the prices with medical
+              support. You will find the prices on
+              <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">our price page</a>.
             </span>
           </li>
           <li>
@@ -377,12 +379,12 @@
           <li>
             <span class="lang de">
               Welche Methode anerkannt wird, hängt stark von deiner Kasse ab. Manche bewilligen nur
-              Laser, manche nur Nadelepilation, manche beides, mit oder ohne Delegation. Versprechen
-              lässt sich nichts, aber der Antrag ist einen Versuch wert.
+              Laser, manche nur Nadelepilation, manche beides. Versprechen lässt sich nichts, aber
+              der Antrag ist einen Versuch wert.
             </span>
             <span class="lang en">
               Which method gets recognised depends a lot on your insurer. Some approve only laser,
-              some only electrolysis, some both, with or without delegation. Nothing can be
+              some only electrolysis, some both. Nothing can be
               promised, but the application is worth a try.
             </span>
           </li>
@@ -436,14 +438,14 @@
       <div class="gd-read">
         <p appReveal style="color: var(--gd-muted)">
           <span class="lang de">
-            Beim Termin erstellen wir gemeinsam deinen Kostenvoranschlag und, über die ärztliche
-            Delegation, die unterschriebene Fassung für die Kasse. So musst du dich um die
-            Formalitäten nicht allein kümmern.
+            Beim Termin erstellen wir gemeinsam deinen Kostenvoranschlag. Dr. med. univ. Noam
+            Degner unterschreibt ihn für die ärztliche Begleitung mit, dann reichst du ihn bei
+            deiner Kasse ein. So musst du dich um die Formalitäten nicht allein kümmern.
           </span>
           <span class="lang en">
-            At the appointment we prepare your cost estimate together and, through the medical
-            delegation, the signed version for your insurer. That way you do not have to handle the
-            formalities on your own.
+            At the appointment we prepare your cost estimate together. Dr. med. univ. Noam Degner
+            co-signs it for the medical support, and you then submit it to your insurer. That way
+            you do not have to handle the formalities on your own.
           </span>
         </p>
       </div>

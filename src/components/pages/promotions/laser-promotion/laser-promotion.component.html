@@ -12,7 +12,7 @@
     [heading]="
       t('Laser-Haarentfernung in Nürnberg', 'Laser hair removal in Nuremberg')
     "
-    tagline="Für immer sanft."
+    [tagline]="t('Dauerhaft glatt.', 'Smooth for the long term.')"
     [lead]="
       t(
         'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser, präzise, schonend und für fast alle Körperzonen. Neugierig? Teste unsere Behandlung zum kleinen Preis: 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG. Und dauerhaft mehr Rabatt, je mehr Zonen du buchst.',
@@ -21,6 +21,7 @@
     "
     [image]="heroImage"
     [imageAlt]="heroImageAlt"
+    mobileCrop="top"
   />
 
   <app-guide-stats [stats]="stats" />
@@ -88,37 +89,47 @@
       [heading]="t('Warum der 4-Wellen-Diodenlaser?', 'Why the 4-wavelength diode laser?')"
       sectionId="vorteile"
     >
-      <p class="gd-lead-p gd-read" appReveal>
-        <span class="lang de">
+      <app-guide-media
+        image="assets/images/machines/laser.png"
+        [contain]="true"
+        [imageAlt]="
+          t(
+            'Der 4-Wellen-Diodenlaser, mit dem FareWell in Nürnberg die dauerhafte Haarentfernung durchführt',
+            'The 4-wavelength diode laser FareWell uses in Nuremberg for long-lasting hair removal'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
           Bei FareWell arbeiten wir mit einem Diodenlaser der neuesten Generation. Er kombiniert
           vier Wellenlängen in einem Gerät und erreicht damit unterschiedliche Tiefen und
           Strukturen der Haarwurzel, für eine besonders wirksame und zugleich schonende
           dauerhafte Haarentfernung.
-        </span>
-        <span class="lang en">
+        </p>
+        <p class="lang en">
           At FareWell we work with a diode laser of the latest generation. It combines four
           wavelengths in a single device and reaches different depths and structures of the hair
           root, for particularly effective yet gentle long-lasting hair removal.
-        </span>
-      </p>
-      <app-guide-checklist>
-        <li>
-          <span class="lang de">Vier Wellenlängen erreichen unterschiedliche Haartiefen und Haarstrukturen in einer Sitzung</span>
-          <span class="lang en">Four wavelengths reach different hair depths and structures in a single session</span>
-        </li>
-        <li>
-          <span class="lang de">KI-gestützte Hauterkennung analysiert deinen Hauttyp und passt die Behandlung automatisch an</span>
-          <span class="lang en">AI-assisted skin detection analyses your skin type and adjusts the treatment automatically</span>
-        </li>
-        <li>
-          <span class="lang de">Größere Zonen wie Beine oder Rücken sind in kurzer Zeit behandelt</span>
-          <span class="lang en">Larger areas like legs or back are treated in a short time</span>
-        </li>
-        <li>
-          <span class="lang de">Individuelle Haut- und Haaranalyse vor jeder Behandlung, für ein sicheres, angepasstes Setting</span>
-          <span class="lang en">Individual skin and hair analysis before every treatment, for a safe, tailored setting</span>
-        </li>
-      </app-guide-checklist>
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Vier Wellenlängen erreichen unterschiedliche Haartiefen und Haarstrukturen in einer Sitzung</span>
+            <span class="lang en">Four wavelengths reach different hair depths and structures in a single session</span>
+          </li>
+          <li>
+            <span class="lang de">KI-gestützte Hauterkennung analysiert deinen Hauttyp und passt die Behandlung automatisch an</span>
+            <span class="lang en">AI-assisted skin detection analyses your skin type and adjusts the treatment automatically</span>
+          </li>
+          <li>
+            <span class="lang de">Größere Zonen wie Beine oder Rücken sind in kurzer Zeit behandelt</span>
+            <span class="lang en">Larger areas like legs or back are treated in a short time</span>
+          </li>
+          <li>
+            <span class="lang de">Individuelle Haut- und Haaranalyse vor jeder Behandlung, für ein sicheres, angepasstes Setting</span>
+            <span class="lang en">Individual skin and hair analysis before every treatment, for a safe, tailored setting</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
       <app-guide-note variant="win" [label]="t('Dein Vorteil', 'Your benefit')">
         <span class="lang de">
           Wirksamer bei mehr Haut- und Haartypen als klassische IPL-Geräte, und deutlich
@@ -143,18 +154,27 @@
       "
       sectionId="dauerhaft-permanent"
     >
-      <p class="gd-lead-p gd-read" appReveal>
-        <span class="lang de">
+      <app-guide-media
+        image="assets/images/machines/laser-effect.png"
+        [imageAlt]="
+          t(
+            'Illustration: Laserlicht wird vom Melanin im Haar aufgenommen und erwärmt die Haarwurzel',
+            'Illustration: laser light is absorbed by the melanin in the hair and heats the hair root'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
           Ehrlichkeit gehört bei uns zur Beratung: <strong>Dauerhaft</strong> und
           <strong>permanent</strong> sind nicht dasselbe. Beide Methoden bekommst du bei
           FareWell, und wir sagen dir offen, welche zu dir passt.
-        </span>
-        <span class="lang en">
+        </p>
+        <p class="lang en">
           Honesty is part of our consultation: <strong>long-lasting</strong> and
           <strong>permanent</strong> are not the same thing. You get both methods at FareWell,
           and we tell you openly which one suits you.
-        </span>
-      </p>
+        </p>
+      </app-guide-media>
       <div class="gd-split">
         <app-guide-panel
           [heading]="t('Diodenlaser, dauerhaft', 'Diode laser, long-lasting')"
@@ -272,18 +292,27 @@
       [heading]="t('Alle Körperzonen', 'All body areas')"
       sectionId="zonen"
     >
-      <p class="gd-lead-p gd-read" appReveal>
-        <span class="lang de">
+      <app-guide-media
+        image="assets/images/body/legs.png"
+        [imageAlt]="
+          t(
+            'Beine als großes Behandlungsareal für die Diodenlaser-Haarentfernung',
+            'Legs as a large treatment area for diode laser hair removal'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
           Vom kleinen Detail bis zur großen Fläche. Sortiert ist der Katalog nach Zone, nicht nach
           Geschlecht, allein der Intimbereich nach Anatomie. Die Preise je Zone findest du
           transparent auf <a [routerLink]="p('/price')">unserer Preisseite</a>.
-        </span>
-        <span class="lang en">
+        </p>
+        <p class="lang en">
           From the smallest detail to large areas. The catalogue is sorted by area, not by gender,
           with only the intimate area split by anatomy. You'll find the price for each area
           transparently on <a [routerLink]="p('/price')">our price page</a>.
-        </span>
-      </p>
+        </p>
+      </app-guide-media>
       <div class="gd-split">
         <app-guide-panel [heading]="t('Beliebte Zonen', 'Popular areas')">
           <li>
@@ -437,6 +466,7 @@
     </app-guide-section>
 
     <app-guide-cta
+      [tagline]="t('Dauerhaft glatt.', 'Smooth for the long term.')"
       [heading]="
         t(
           'Sichere dir deine erste Behandlung zum kleinen Preis',

@@ -8,9 +8,17 @@
  * Gliederung wie im Buchungssystem: sortiert nach Methode, nicht nach
  * Geschlecht. Getrennt wird allein der Intimbereich, und zwar nach Anatomie
  * (Vulva / Penis), damit trans und nicht binäre Kund:innen buchen können, ohne
- * sich falsch einordnen zu müssen. Ebenfalls wie im Buchungssystem: Termine in
- * ärztlicher Delegation bilden eine eigene Liste (`aerztlicheDelegation`) und
+ * sich falsch einordnen zu müssen. Ebenfalls wie im Buchungssystem: Termine mit
+ * ärztlicher Begleitung bilden eine eigene Liste (`aerztlicheBegleitung`) und
  * stehen nicht als Variante unter der jeweiligen Basisleistung.
+ *
+ * „Ärztliche Begleitung" hieß bis Oktober 2026 „ärztliche Delegation". Nach der
+ * Mail von Dr. Degner vom 07.10.2026 beschreibt der Text, wie wir tatsächlich
+ * arbeiten: Behandelt wird von unserer Fachkraft, der Arzt wird auf Grundlage
+ * eines Beratungsvertrags bei medizinischen Fragen, Risiken, Kontraindikationen
+ * und Hygiene hinzugezogen. Keine ärztliche Anordnung oder Verantwortung je
+ * Behandlung behaupten, solange es die nicht gibt (gleicher Wortlaut wie im
+ * Kostenvoranschlag, FareWell/domains/clients/_generator/template.json).
  *
  * Hausregel: „permanente Haarentfernung" = allein die Nadelepilation
  * (Elektrolyse); „dauerhafte" = Laser, Microneedling, Body Forming und alle
@@ -36,14 +44,14 @@ export interface PriceRow {
    */
   addon?: boolean;
   /**
-   * Behandlung unter ärztlicher Delegation. Diese Zeilen stehen wie im
-   * Buchungssystem in einer eigenen Liste (Tabelle `aerztlicheDelegation`),
+   * Behandlung mit ärztlicher Begleitung. Diese Zeilen stehen wie im
+   * Buchungssystem in einer eigenen Liste (Tabelle `aerztlicheBegleitung`),
    * nicht als Untervariante bei der Basisleistung. Im JSON-LD hängt
-   * DELEGATION_DE/EN als Zusatz am Namen des Offers.
+   * BEGLEITUNG_DE/EN als Zusatz am Namen des Offers.
    */
-  delegation?: boolean;
+  begleitung?: boolean;
   /**
-   * Herkunft der Behandlung, nur in der Delegationsliste nötig: dort stehen
+   * Herkunft der Behandlung, nur in der Begleitungsliste nötig: dort stehen
    * Methoden nebeneinander, deren Namen für sich genommen mehrdeutig wären
    * („Intim komplett" gibt es für Vulva und Penis). Erscheint als leise zweite
    * Zeile in der Tabelle und als Präfix im JSON-LD.
@@ -56,9 +64,9 @@ export interface PriceRow {
   sessions?: number;
 }
 
-/** Namenszusatz der Delegationsvarianten (Tag in der Tabelle, Name im JSON-LD). */
-export const DELEGATION_DE = 'mit ärztlicher Delegation';
-export const DELEGATION_EN = 'with medical delegation';
+/** Namenszusatz der Begleitungsvarianten (Tag in der Tabelle, Name im JSON-LD). */
+export const BEGLEITUNG_DE = 'mit ärztlicher Begleitung';
+export const BEGLEITUNG_EN = 'with medical support';
 
 export interface PriceTable {
   /** Sichtbare Tabellenüberschrift (leer, wenn die Sektion nur eine Tabelle hat). */
@@ -138,7 +146,7 @@ export const PRICE_TABLES = {
     de: 'Intimbereich: Vulva',
     en: 'Intimate area: vulva',
     rows: [
-      { de: 'Bikinielinie', en: 'Bikini line', minutes: 15, price: 60 },
+      { de: 'Bikinilinie', en: 'Bikini line', minutes: 15, price: 60 },
       { de: 'Brazilian', en: 'Brazilian', minutes: 30, price: 100 },
       { de: 'Pofalte', en: 'Gluteal fold', minutes: 15, price: 60 },
       { de: 'Gesäß', en: 'Buttocks', minutes: 15, price: 60 },
@@ -168,11 +176,11 @@ export const PRICE_TABLES = {
   },
 
   /**
-   * Eigene Preisliste, genau wie im Buchungssystem: Delegationstermine stehen
-   * bei Salonkee getrennt und nicht als Variante unter der Basisleistung. Die
+   * Eigene Preisliste, genau wie im Buchungssystem: Termine mit ärztlicher
+   * Begleitung stehen bei Salonkee getrennt und nicht als Variante unter der Basisleistung. Die
    * Namen bleiben deshalb wortwörtlich, die Methode steht im `scope`.
    */
-  aerztlicheDelegation: {
+  aerztlicheBegleitung: {
     de: '',
     en: '',
     rows: [
@@ -181,7 +189,7 @@ export const PRICE_TABLES = {
         en: '60-minute session',
         minutes: 60,
         price: 120,
-        delegation: true,
+        begleitung: true,
         scope: { de: 'Nadelepilation', en: 'Electrolysis' },
       },
       {
@@ -189,7 +197,7 @@ export const PRICE_TABLES = {
         en: '120-minute session',
         minutes: 120,
         price: 240,
-        delegation: true,
+        begleitung: true,
         scope: { de: 'Nadelepilation', en: 'Electrolysis' },
       },
       {
@@ -197,7 +205,7 @@ export const PRICE_TABLES = {
         en: 'Complete lower face',
         minutes: 45,
         price: 250,
-        delegation: true,
+        begleitung: true,
         scope: { de: 'Laser, Gesicht & Kopf', en: 'Laser, face & head' },
       },
       {
@@ -205,7 +213,7 @@ export const PRICE_TABLES = {
         en: 'Complete back',
         minutes: 45,
         price: 250,
-        delegation: true,
+        begleitung: true,
         scope: { de: 'Laser, Körper', en: 'Laser, body' },
       },
       {
@@ -213,7 +221,7 @@ export const PRICE_TABLES = {
         en: 'Front intimate area (shaft, testicles, perineum, pubic area)',
         minutes: 45,
         price: 250,
-        delegation: true,
+        begleitung: true,
         scope: { de: 'Laser, Intimbereich Penis', en: 'Laser, intimate area penis' },
       },
       {
@@ -221,7 +229,7 @@ export const PRICE_TABLES = {
         en: 'Complete intimate area',
         minutes: 60,
         price: 300,
-        delegation: true,
+        begleitung: true,
         scope: { de: 'Laser, Intimbereich Penis', en: 'Laser, intimate area penis' },
       },
     ],
@@ -362,16 +370,16 @@ export const PRICE_SERVICES: PriceService[] = [
     tables: ['laserGesicht', 'laserKoerper', 'laserIntimVulva', 'laserIntimPenis'],
   },
   {
-    anchor: 'aerztliche-delegation',
-    nameDe: 'Behandlungen unter ärztlicher Verantwortung',
-    nameEn: 'Treatments under medical responsibility',
-    serviceTypeDe: 'Ärztliche Delegation',
-    serviceTypeEn: 'Medical delegation',
+    anchor: 'aerztliche-begleitung',
+    nameDe: 'Behandlungen mit ärztlicher Begleitung',
+    nameEn: 'Treatments with medical support',
+    serviceTypeDe: 'Ärztliche Begleitung',
+    serviceTypeEn: 'Medical support',
     descriptionDe:
-      'Nadelepilation und Laser in ärztlicher Delegation bei FareWell Nürnberg: Die Behandlung führen wir durch, die fachliche Verantwortung trägt unser begleitender Arzt. Eigene Preisliste, eigene Termine.',
+      'Nadelepilation und Laser mit ärztlicher Begleitung bei FareWell Nürnberg: Behandelt wird von unserer geschulten Fachkraft, ein Arzt begleitet FareWell auf Grundlage eines Beratungsvertrags und wird bei medizinischen Fragen, Risiken und Kontraindikationen hinzugezogen. Eigene Preisliste, eigene Termine.',
     descriptionEn:
-      'Electrolysis and laser under medical delegation at FareWell Nuremberg: we carry out the treatment, our accompanying physician holds the professional responsibility. Separate price list, separate appointments.',
-    tables: ['aerztlicheDelegation'],
+      'Electrolysis and laser with medical support at FareWell Nuremberg: the treatment is carried out by our trained specialist, and a physician supports FareWell under a consulting contract and is called in for medical questions, risks and contraindications. Separate price list, separate appointments.',
+    tables: ['aerztlicheBegleitung'],
   },
   {
     anchor: 'microneedling',

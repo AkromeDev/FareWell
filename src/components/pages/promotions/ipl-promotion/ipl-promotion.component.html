@@ -10,7 +10,7 @@
         'Looking for IPL in Nuremberg? Discover the more modern alternative'
       )
     "
-    tagline="Für immer sanft."
+    [tagline]="t('Gezielter als IPL.', 'More precise than IPL.')"
     [lead]="
       t(
         'Statt IPL setzen wir bewusst auf den 4-Wellen-Diodenlaser: präziser, wirksamer und für mehr Haut- und Haartypen geeignet. Neugierig? Teste unsere Behandlung zum kleinen Preis: 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG. Und dauerhaft mehr Rabatt, je mehr Zonen du buchst.',
@@ -19,6 +19,7 @@
     "
     [image]="heroImage"
     [imageAlt]="heroImageAlt"
+    mobileCrop="top"
   />
 
   <app-guide-stats [stats]="stats" />
@@ -60,7 +61,7 @@
     <app-guide-section
       class="gd-promo-section"
       index="01"
-      [heading]="t('Dein Neukunden-Angebot', 'Your new-client offer')"
+      [heading]="t('Preise & Neukunden-Rabatt', 'Prices & new-client discount')"
       sectionId="angebot"
     >
       <app-guide-zone-rechner />
@@ -86,18 +87,27 @@
       [heading]="t('IPL vs. Diodenlaser', 'IPL vs. diode laser')"
       sectionId="ipl-vs-laser"
     >
-      <p class="gd-lead-p gd-read" appReveal>
-        <span class="lang de">
+      <app-guide-media
+        image="assets/images/machines/laser-effect.png"
+        [imageAlt]="
+          t(
+            'Illustration: Der Diodenlaser bündelt sein Licht auf das Haarfollikel und erwärmt die Haarwurzel',
+            'Illustration: the diode laser focuses its light on the hair follicle and heats the hair root'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
           Beide Methoden arbeiten mit Licht, aber nicht gleich gut. Der entscheidende
           Unterschied: IPL streut sein Licht breit über die Haut, der Diodenlaser bündelt
           seine Energie gezielt auf das Haarfollikel.
-        </span>
-        <span class="lang en">
+        </p>
+        <p class="lang en">
           Both methods work with light, but not equally well. The decisive difference: IPL
           scatters its light broadly across the skin, while the diode laser focuses its
           energy directly on the hair follicle.
-        </span>
-      </p>
+        </p>
+      </app-guide-media>
       <div class="gd-split">
         <app-guide-panel [heading]="t('Klassisches IPL', 'Classic IPL')" dots="sand">
           <li>
@@ -154,28 +164,39 @@
       [heading]="t('Warum FareWell in Nürnberg?', 'Why FareWell in Nuremberg?')"
       sectionId="warum-farewell"
     >
-      <app-guide-checklist>
-        <li>
-          <span class="lang de">Spezialisierung auf Haarentfernung: Elektrolyse (permanent) und moderne Laser-Technologie (dauerhaft)</span>
-          <span class="lang en">Specialised in hair removal: electrolysis (permanent) and modern laser technology (long-lasting)</span>
-        </li>
-        <li>
-          <span class="lang de">4-Wellen-Diodenlaser der neuesten Generation mit KI-unterstützter Hautanalyse</span>
-          <span class="lang en">Latest-generation 4-wavelength diode laser with AI-assisted skin analysis</span>
-        </li>
-        <li>
-          <span class="lang de">Individuelle Haut- und Haaranalyse für einen abgestimmten Behandlungsplan</span>
-          <span class="lang en">Individual skin and hair analysis for a tailored treatment plan</span>
-        </li>
-        <li>
-          <span class="lang de">5,0 Sterne bei Google, ehrliche Beratung statt Verkaufsdruck</span>
-          <span class="lang en">5.0 stars on Google, honest advice instead of sales pressure</span>
-        </li>
-        <li>
-          <span class="lang de">Modernes Studio im Zentrum von Nürnberg, wenige Gehminuten vom Hauptbahnhof</span>
-          <span class="lang en">Modern studio in the centre of Nuremberg, a few minutes' walk from the main station</span>
-        </li>
-      </app-guide-checklist>
+      <app-guide-media
+        image="assets/images/farewell/studio.webp"
+        [imageAlt]="
+          t(
+            'Behandlungsraum im FareWell Studio in Nürnberg, wenige Gehminuten vom Hauptbahnhof',
+            'Treatment room in the FareWell studio in Nuremberg, a few minutes from the main station'
+          )
+        "
+        side="left"
+      >
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Spezialisierung auf Haarentfernung: Elektrolyse (permanent) und moderne Laser-Technologie (dauerhaft)</span>
+            <span class="lang en">Specialised in hair removal: electrolysis (permanent) and modern laser technology (long-lasting)</span>
+          </li>
+          <li>
+            <span class="lang de">4-Wellen-Diodenlaser der neuesten Generation mit KI-unterstützter Hautanalyse</span>
+            <span class="lang en">Latest-generation 4-wavelength diode laser with AI-assisted skin analysis</span>
+          </li>
+          <li>
+            <span class="lang de">Individuelle Haut- und Haaranalyse für einen abgestimmten Behandlungsplan</span>
+            <span class="lang en">Individual skin and hair analysis for a tailored treatment plan</span>
+          </li>
+          <li>
+            <span class="lang de">{{ ratingDe }} Sterne bei Google aus {{ ratingCount }} Bewertungen, ehrliche Beratung statt Verkaufsdruck</span>
+            <span class="lang en">{{ ratingEn }} stars on Google from {{ ratingCount }} reviews, honest advice instead of sales pressure</span>
+          </li>
+          <li>
+            <span class="lang de">Modernes Studio im Zentrum von Nürnberg, wenige Gehminuten vom Hauptbahnhof</span>
+            <span class="lang en">Modern studio in the centre of Nuremberg, a few minutes' walk from the main station</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
       <app-guide-note variant="tip" [label]="t('Gut zu wissen', 'Good to know')">
         <span class="lang de">
           Für helle, feine oder graue Haare, die weder Laser noch IPL erreichen, bieten wir
@@ -333,7 +354,10 @@
       </app-faq-item>
     </app-guide-section>
 
-    <app-guide-cta [heading]="t('Überzeug dich selbst, zum kleinen Preis', 'See for yourself, at a small price')">
+    <app-guide-cta
+      [tagline]="t('Dauerhaft glatt.', 'Smooth for the long term.')"
+      [heading]="t('Überzeug dich selbst, zum kleinen Preis', 'See for yourself, at a small price')"
+    >
       <span class="lang de">
         Buche online über Salonkee und gib den Code <strong>ERSTEBEHANDLUNG</strong> an, oder
         starte mit der kostenlosen Erstberatung, wenn du erst vergleichen möchtest.

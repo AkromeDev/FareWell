@@ -8,8 +8,8 @@
     [tagline]="t('Sanft in Form.', 'Softly sculpted.')"
     [lead]="
       t(
-        'Body Forming heißt bei uns: kosmetische Körperbehandlung mit Ultraschall Kavitation und Radiofrequenz, an einzelnen Zonen und bei Cellulite. Nicht invasiv, ohne Ausfallzeit, und am Bauch direkt nach der Sitzung messbar.',
-        'Body forming at FareWell means a cosmetic body treatment with ultrasound cavitation and radio frequency, on individual areas and for cellulite. Non-invasive, with no downtime, and measurable on the stomach straight after your session.'
+        'Body Forming heißt bei uns: kosmetische Körperbehandlung mit Ultraschall Kavitation und Radiofrequenz, an einzelnen Zonen und bei Cellulite. Nicht invasiv und ohne Ausfallzeit.',
+        'Body forming at FareWell means a cosmetic body treatment with ultrasound cavitation and radio frequency, on individual areas and for cellulite. Non-invasive and with no downtime.'
       )
     "
     [image]="heroImage"
@@ -25,15 +25,13 @@
         <p class="gd-lede" appReveal [revealDelay]="60">
           <span class="lang de">
             Ultraschall und Radiofrequenz wirken sanft im Gewebe, ganz ohne Nadeln, OP oder
-            Ausfallzeit. Am Bauch messen wir direkt nach einer Stunde meist 1 bis 3 Zentimeter
-            weniger Umfang. Eine kosmetische Körperbehandlung, keine medizinische Maßnahme und
-            keine Abnehmbehandlung.
+            Ausfallzeit. Eine kosmetische Körperbehandlung, keine medizinische Maßnahme und keine
+            Abnehmbehandlung.
           </span>
           <span class="lang en">
             Ultrasound and radio frequency work gently in the tissue, entirely without needles,
-            surgery or downtime. On the stomach we usually measure 1 to 3 centimetres less
-            circumference directly after an hour. A cosmetic body treatment, not a medical
-            procedure and not a weight-loss treatment.
+            surgery or downtime. A cosmetic body treatment, not a medical procedure and not a
+            weight-loss treatment.
           </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
@@ -161,36 +159,26 @@
       </app-guide-media>
       <app-guide-note variant="warn" [label]="t('Was du erwarten kannst', 'What to expect')">
         <span class="lang de">
-          Am besten lässt sich der Effekt <strong>am Bauch</strong> zeigen: Direkt nach einer
-          Sitzung von 60 Minuten messen wir dort meist <strong>1 bis 3 Zentimeter</strong> weniger
-          Umfang. An anderen Zonen ist die Veränderung schwerer zu messen, weil sich der Umfang
-          dort nicht so klar abnehmen lässt. Was danach passiert, hängt von dir mit ab: Das gelöste
-          Fett ist im Blut unterwegs und will abtransportiert werden. Body Forming bleibt dabei
-          eine kosmetische Anwendung, keine medizinische oder therapeutische Maßnahme und keine
-          Behandlung zur Gewichtsabnahme.
+          Wie dein Gewebe auf die Behandlung reagiert, ist individuell. Deshalb nennen wir dir
+          <strong>keine Zentimeter und keine Kilos</strong> und versprechen kein bestimmtes
+          Ergebnis. Body Forming bleibt eine kosmetische Anwendung, keine medizinische oder
+          therapeutische Maßnahme und keine Behandlung zur Gewichtsabnahme.
         </span>
         <span class="lang en">
-          The effect is easiest to show <strong>on the stomach</strong>: directly after a 60-minute
-          session we usually measure <strong>1 to 3 centimetres</strong> less circumference there.
-          On other areas the change is harder to measure, because circumference cannot be taken as
-          clearly. What happens next depends partly on you: the released fat travels in your
-          bloodstream and needs to be carried away. Body forming remains a cosmetic application,
-          not a medical or therapeutic procedure and not a weight-loss treatment.
+          How your tissue responds to the treatment is individual. That is why we give you
+          <strong>no centimetres and no kilos</strong> and promise no particular result. Body
+          forming remains a cosmetic application, not a medical or therapeutic procedure and not a
+          weight-loss treatment.
         </span>
       </app-guide-note>
       <app-guide-note variant="tip" [label]="t('Dein Anteil nach der Sitzung', 'Your part after the session')">
         <span class="lang de">
           <strong>Viel trinken</strong> und <strong>leichte Bewegung</strong> nach dem Termin, ein
-          Spaziergang genügt, damit das gelöste Fett abtransportiert und nicht direkt wieder
-          eingelagert wird. In Kombination mit einer gesunden Ernährung und einem leichten
-          Kaloriendefizit wird das Ergebnis deutlich besser, weil dein Körper das freigesetzte Fett
-          dann wirklich verbraucht.
+          Spaziergang genügt. Eine ausgewogene Ernährung unterstützt die Behandlung zusätzlich.
         </span>
         <span class="lang en">
           <strong>Drink plenty</strong> and get some <strong>light movement</strong> after your
-          appointment, a walk is enough, so the released fat is carried away instead of being stored
-          again straight away. Combined with a healthy diet and a slight calorie deficit the result
-          gets noticeably better, because your body then really uses the released fat.
+          appointment, a walk is enough. A balanced diet supports the treatment as well.
         </span>
       </app-guide-note>
     </app-guide-section>
@@ -201,11 +189,11 @@
       sectionId="cellulite"
     >
       <app-guide-media
-        image="assets/images/treatment/cellulite.webp"
+        image="assets/images/treatment/kavitation.webp"
         [imageAlt]="
           t(
-            'Cellulite Behandlung mit Ultraschall und Vakuum an Oberschenkeln und Gesäß',
-            'Cellulite treatment with ultrasound and vacuum on the thighs and buttocks'
+            'Behandlung mit dem Ultraschall-Handstück bei FareWell in Nürnberg',
+            'Treatment with the ultrasound handpiece at FareWell in Nuremberg'
           )
         "
         side="right"
@@ -419,11 +407,11 @@
       sectionId="hinweise"
     >
       <app-guide-media
-        image="assets/images/treatment/kavitation.webp"
+        image="assets/images/farewell/studio.webp"
         [imageAlt]="
           t(
-            'Vorbereitung und Nachsorge rund um die Body-Forming-Behandlung bei FareWell',
-            'Preparation and aftercare around the body forming treatment at FareWell'
+            'Ruhiger Behandlungsraum im FareWell Studio für Vorbereitung und Nachsorge beim Body Forming',
+            'Calm treatment room at the FareWell studio for body forming preparation and aftercare'
           )
         "
         side="right"

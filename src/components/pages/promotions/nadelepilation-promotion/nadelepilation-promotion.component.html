@@ -15,7 +15,7 @@
         'Needle epilation in Nuremberg: permanent hair removal'
       )
     "
-    tagline="Für immer glatt."
+    [tagline]="t('Für immer glatt.', 'Smooth for good.')"
     [lead]="
       t(
         'Nadelepilation ist die klassische Form der Elektrolyse: Über eine feine Sonde wird jedes Haar einzeln an der Wurzel verödet, permanent und unabhängig von der Haarfarbe. Neugierig? Teste die Behandlung zum kleinen Preis: 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG.',
@@ -70,19 +70,14 @@
       sectionId="angebot"
     >
       <app-guide-offer
-        [eyebrow]="
-          t(
-            'Neukunden-Aktion · nur für kurze Zeit',
-            'New-client offer · limited time only'
-          )
-        "
+        [eyebrow]="t('Neukunden-Aktion', 'New-client offer')"
         [headline]="
           t('50% auf deine erste Nadelepilation', '50% off your first needle epilation')
         "
         [sub]="
           t(
-            'Neugierig? Teste die permanente Haarentfernung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukund:innen.',
-            'Curious? Try permanent hair removal at a small price. Book online and enter the code when booking. Valid for new clients.'
+            'Neugierig? Teste die permanente Haarentfernung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukund:innen, Rabatte nicht kombinierbar.',
+            'Curious? Try permanent hair removal at a small price. Book online and enter the code when booking. Valid for new clients, discounts not combinable.'
           )
         "
         [badgeLabel]="t('Promo-Code', 'Promo code')"
@@ -109,37 +104,46 @@
       [heading]="t('Was ist Nadelepilation?', 'What is needle epilation?')"
       sectionId="methode"
     >
-      <p class="gd-lead-p gd-read" appReveal>
-        <span class="lang de">
+      <app-guide-media
+        image="assets/images/treatment/apilis.webp"
+        [imageAlt]="
+          t(
+            'Illustration: Eine feine Sonde wird entlang des Haares an die Haarwurzel geführt und verödet sie',
+            'Illustration: a fine probe is guided along the hair to the hair root and deactivates it'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
           Nadelepilation ist die ursprüngliche, nadelbasierte Form der Elektrolyse. Eine hauchfeine
           Sonde wird entlang des Haares in den Follikelkanal geführt, ohne die Haut zu durchstechen,
           und verödet die Haarwurzel mit einem kurzen Impuls. Genau dieses Haar wächst danach nicht
           mehr nach.
-        </span>
-        <span class="lang en">
+        </p>
+        <p class="lang en">
           Needle epilation is the original, needle-based form of electrolysis. An ultra-fine probe is
           guided along the hair into the follicle canal, without piercing the skin, and deactivates
           the hair root with a short pulse. That specific hair no longer grows back afterwards.
-        </span>
-      </p>
-      <app-guide-checklist>
-        <li>
-          <span class="lang de">Wirklich permanent: die einzige rechtlich als permanent anerkannte Methode in Deutschland</span>
-          <span class="lang en">Truly permanent: the only method legally recognised as permanent in Germany</span>
-        </li>
-        <li>
-          <span class="lang de">Unabhängig von der Haarfarbe, auch helle, graue, rote und feine Haare</span>
-          <span class="lang en">Independent of hair colour, including light, grey, red and fine hair</span>
-        </li>
-        <li>
-          <span class="lang de">Höchste Präzision, jedes einzelne Haar wird gezielt behandelt</span>
-          <span class="lang en">Maximum precision, every single hair is treated in a targeted way</span>
-        </li>
-        <li>
-          <span class="lang de">Von einer staatlich geprüften, auf Elektrolyse spezialisierten Kosmetikerin durchgeführt</span>
-          <span class="lang en">Carried out by a state-certified beautician specialised in electrolysis</span>
-        </li>
-      </app-guide-checklist>
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Wirklich permanent: die einzige rechtlich als permanent anerkannte Methode in Deutschland</span>
+            <span class="lang en">Truly permanent: the only method legally recognised as permanent in Germany</span>
+          </li>
+          <li>
+            <span class="lang de">Unabhängig von der Haarfarbe, auch helle, graue, rote und feine Haare</span>
+            <span class="lang en">Independent of hair colour, including light, grey, red and fine hair</span>
+          </li>
+          <li>
+            <span class="lang de">Höchste Präzision, jedes einzelne Haar wird gezielt behandelt</span>
+            <span class="lang en">Maximum precision, every single hair is treated in a targeted way</span>
+          </li>
+          <li>
+            <span class="lang de">Von einer auf Elektrolyse spezialisierten Kosmetikerin durchgeführt</span>
+            <span class="lang en">Carried out by a beautician specialised in electrolysis</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
       <app-guide-note variant="win" [label]="t('Dein Vorteil', 'Your benefit')">
         <span class="lang de">
           Weil die Nadelepilation nicht auf Farbpigmente angewiesen ist, wirkt sie dort, wo
@@ -159,16 +163,25 @@
       [heading]="t('Nadelepilation oder Laser?', 'Needle epilation or laser?')"
       sectionId="vergleich"
     >
-      <p class="gd-lead-p gd-read" appReveal>
-        <span class="lang de">
+      <app-guide-media
+        image="assets/images/treatment/chin.webp"
+        [imageAlt]="
+          t(
+            'Nadelepilation am Kinn: Jedes Haar wird einzeln mit feiner Sonde behandelt',
+            'Electrolysis on the chin: each hair is treated individually with a fine probe'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
           Ehrlichkeit gehört bei uns zur Beratung. Beide Methoden bekommst du bei FareWell, und wir
           sagen dir offen, welche zu deinem Haar, deiner Zone und deinem Ziel passt.
-        </span>
-        <span class="lang en">
+        </p>
+        <p class="lang en">
           Honesty is part of our consultation. You get both methods at FareWell, and we tell you
           openly which one suits your hair, your area and your goal.
-        </span>
-      </p>
+        </p>
+      </app-guide-media>
       <div class="gd-split">
         <app-guide-panel
           [heading]="t('Nadelepilation, permanent', 'Needle epilation, permanent')"
@@ -268,12 +281,12 @@
         </li>
         <li>
           <span class="lang de">
-            <strong>Das Ergebnis.</strong> Behandelte Follikel wachsen nicht mehr nach, Zone für
-            Zone wirst du dauerhaft und endgültig haarfrei.
+            <strong>Das Ergebnis.</strong> Aus behandelten Haarwurzeln wächst kein Haar mehr nach,
+            Zone für Zone wirst du permanent haarfrei.
           </span>
           <span class="lang en">
-            <strong>The result.</strong> Treated follicles no longer grow back, and area by area you
-            become permanently and definitively hair-free.
+            <strong>The result.</strong> Treated hair roots grow no more hair, and area by area you
+            become permanently hair-free.
           </span>
         </li>
       </app-guide-steps>
@@ -349,6 +362,7 @@
     </app-guide-section>
 
     <app-guide-cta
+      [tagline]="t('Für immer glatt.', 'Smooth for good.')"
       [heading]="
         t(
           'Sichere dir deine erste Behandlung zum kleinen Preis',

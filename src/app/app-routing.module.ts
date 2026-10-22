@@ -49,11 +49,11 @@ function localizedRoutes(lang: PageLang): Routes {
       data: d(
         {
           title: 'Epilation über die Krankenkasse: Leitfaden für trans Personen | FareWell Nürnberg',
-          description: 'So bekommst du deine Haarentfernung im Gesicht als Kassenleistung: Ärztevorbehalt, ärztliche Delegation bei FareWell, Antrag in 6 Schritten, Fristen und Widerspruch.'
+          description: 'So bekommst du deine Haarentfernung im Gesicht als Kassenleistung: Ärztevorbehalt, ärztliche Begleitung bei FareWell, Antrag in 6 Schritten, Fristen und Widerspruch.'
         },
         {
           title: 'Health Insurance Coverage for Hair Removal: a Guide for Trans People | FareWell Nuremberg',
-          description: 'How facial hair removal becomes a covered benefit in Germany: the physician requirement, medical delegation at FareWell, the application in 6 steps, deadlines and objections.'
+          description: 'How facial hair removal becomes a covered benefit in Germany: the physician requirement, medical support at FareWell, the application in 6 steps, deadlines and objections.'
         }
       )
     },
@@ -594,11 +594,11 @@ function localizedRoutes(lang: PageLang): Routes {
       data: d(
         {
           title: 'Ärztin / Arzt (m/w/d) für Botox & ästhetische Medizin in Nürnberg | Karriere bei FareWell',
-          description: 'FareWell Nürnberg sucht approbierte Ärzt:innen mit Injektionserfahrung für ein eigenes Angebot mit Botulinumtoxin: Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete, eingebettet in unser bestehendes Delegationsmodell.'
+          description: 'FareWell Nürnberg sucht approbierte Ärzt:innen mit Injektionserfahrung für ein eigenes Angebot mit Botulinumtoxin: Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete, in einem Studio, das bereits mit ärztlicher Begleitung arbeitet.'
         },
         {
           title: 'Physician (m/f/d) for Botox & Aesthetic Medicine in Nuremberg | Careers at FareWell',
-          description: 'FareWell Nuremberg is looking for licensed physicians with injection experience to build their own botulinum toxin offering: a room in the city centre, online booking, flexible hours, no fixed rent, embedded in our existing medical delegation model.'
+          description: 'FareWell Nuremberg is looking for licensed physicians with injection experience to build their own botulinum toxin offering: a room in the city centre, online booking, flexible hours, no fixed rent, in a studio that already works with medical support.'
         }
       )
     },

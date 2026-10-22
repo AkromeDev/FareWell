@@ -4,6 +4,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { SeoService } from 'src/services/seo.service';
 import { LanguageService } from 'src/services/language.service';
+import googleReviewsJson from 'src/assets/data/google-reviews.json';
+import type { GooglePlaceReviewsResponse } from 'src/components/molecules/google-reviews/google-reviews';
 import {
   GUIDE_COMPONENTS,
   GuideLang,
@@ -19,6 +21,15 @@ const PAGE_DESCRIPTION_DE =
 const PAGE_DESCRIPTION_EN =
   'Instead of IPL: long-lasting hair removal with the more precise 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG. Up to 30% ongoing discount, the more areas you book.';
 const HERO_IMAGE = 'assets/images/treatment/laser2.webp';
+
+/**
+ * Google-Bewertung aus derselben Datei wie die Startseite
+ * (src/assets/data/google-reviews.json, `npm run update:google-reviews`), nie
+ * von Hand eingetragen. Abgerundet auf eine Nachkommastelle, damit die Seite
+ * nie mehr Sterne zeigt, als die Daten hergeben.
+ */
+const GOOGLE = (googleReviewsJson as GooglePlaceReviewsResponse).data;
+const GOOGLE_RATING = Math.floor((GOOGLE.rating ?? 0) * 10 + 1e-9) / 10;
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 const HERO_IMAGE_ALT_DE =
   'FareWell Studio in Nürnberg für professionelle dauerhafte Haarreduktion mit 4-Wellen-Diodenlaser';
@@ -44,6 +55,9 @@ export class IplPromotionComponent implements OnInit, OnDestroy {
   private readonly jsonLdId = 'ipl-promotion-schema';
 
   readonly heroImage = HERO_IMAGE;
+  readonly ratingDe = GOOGLE_RATING.toFixed(1).replace('.', ',');
+  readonly ratingEn = GOOGLE_RATING.toFixed(1);
+  readonly ratingCount = GOOGLE.userRatingCount ?? 0;
 
   get lang(): GuideLang {
     return this.language.lang();
@@ -84,7 +98,7 @@ export class IplPromotionComponent implements OnInit, OnDestroy {
 
   get toc(): GuideTocItem[] {
     return [
-      { id: 'angebot', label: this.t('Neukunden-Angebot', 'New-client offer') },
+      { id: 'angebot', label: this.t('Preise & Neukunden-Rabatt', 'Prices & new-client discount') },
       { id: 'ipl-vs-laser', label: this.t('IPL vs. Diodenlaser', 'IPL vs. diode laser') },
       { id: 'warum-farewell', label: this.t('Warum FareWell', 'Why FareWell') },
       { id: 'ablauf', label: this.t('So läuft es ab', 'How it works') },

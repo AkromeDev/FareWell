@@ -15,7 +15,7 @@
         'Radiofrequency microneedling in Nuremberg'
       )
     "
-    tagline="Strahlend schön."
+    [tagline]="t('Strahlend schön.', 'Radiantly beautiful.')"
     [lead]="
       t(
         'Radiofrequenz-Microneedling regt deine natürliche Kollagenbildung an und strafft die Haut von innen, bei kurzer Ausfallzeit. Neugierig? Teste die Behandlung zum kleinen Preis: 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG.',
@@ -70,19 +70,14 @@
       sectionId="angebot"
     >
       <app-guide-offer
-        [eyebrow]="
-          t(
-            'Neukunden-Aktion · nur für kurze Zeit',
-            'New-client offer · limited time only'
-          )
-        "
+        [eyebrow]="t('Neukunden-Aktion', 'New-client offer')"
         [headline]="
           t('50% auf deine erste Microneedling-Behandlung', '50% off your first microneedling treatment')
         "
         [sub]="
           t(
-            'Neugierig? Teste die Hautverjüngung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukund:innen.',
-            'Curious? Try skin rejuvenation at a small price. Book online and enter the code when booking. Valid for new clients.'
+            'Neugierig? Teste die Hautverjüngung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukund:innen, Rabatte nicht kombinierbar.',
+            'Curious? Try skin rejuvenation at a small price. Book online and enter the code when booking. Valid for new clients, discounts not combinable.'
           )
         "
         [badgeLabel]="t('Promo-Code', 'Promo code')"
@@ -109,37 +104,46 @@
       [heading]="t('Wie Radiofrequenz-Microneedling wirkt', 'How radiofrequency microneedling works')"
       sectionId="wirkung"
     >
-      <p class="gd-lead-p gd-read" appReveal>
-        <span class="lang de">
+      <app-guide-media
+        image="assets/images/treatment/microneedling4.webp"
+        [imageAlt]="
+          t(
+            'Wirkprinzip des RF-Microneedling: Mikrokanäle und Radiofrequenz-Wärme in der Tiefe',
+            'How RF microneedling works: micro-channels and radiofrequency warmth deep in the skin'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
           Feine Nadeln setzen kontrollierte Mikrokanäle in die Haut und geben gleichzeitig
           Radiofrequenz-Wärme in die tieferen Schichten ab. Dieser doppelte Reiz aktiviert die
           natürliche Regeneration, die Haut baut neues Kollagen und Elastin auf und wirkt von innen
           heraus straffer und frischer.
-        </span>
-        <span class="lang en">
+        </p>
+        <p class="lang en">
           Fine needles create controlled micro-channels in the skin while delivering radiofrequency
           heat into the deeper layers. This double stimulus activates natural regeneration, the skin
           builds new collagen and elastin and looks firmer and fresher from within.
-        </span>
-      </p>
-      <app-guide-checklist>
-        <li>
-          <span class="lang de">Regt Kollagen- und Elastinbildung an, für festere, elastischere Haut</span>
-          <span class="lang en">Stimulates collagen and elastin production for firmer, more elastic skin</span>
-        </li>
-        <li>
-          <span class="lang de">Verfeinert das Hautbild bei Fältchen, Poren und Aknenarben</span>
-          <span class="lang en">Refines the complexion with fine lines, pores and acne scars</span>
-        </li>
-        <li>
-          <span class="lang de">Individuell angepasste Eindringtiefe und Intensität je nach Hautzustand</span>
-          <span class="lang en">Individually adjusted needle depth and intensity depending on skin condition</span>
-        </li>
-        <li>
-          <span class="lang de">Vergleichsweise kurze Ausfallzeit, meist nur eine leichte Rötung</span>
-          <span class="lang en">Comparatively short downtime, usually only slight redness</span>
-        </li>
-      </app-guide-checklist>
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Regt Kollagen- und Elastinbildung an, für festere, elastischere Haut</span>
+            <span class="lang en">Stimulates collagen and elastin production for firmer, more elastic skin</span>
+          </li>
+          <li>
+            <span class="lang de">Verfeinert das Hautbild bei Fältchen, Poren und Aknenarben</span>
+            <span class="lang en">Refines the complexion with fine lines, pores and acne scars</span>
+          </li>
+          <li>
+            <span class="lang de">Individuell angepasste Eindringtiefe und Intensität je nach Hautzustand</span>
+            <span class="lang en">Individually adjusted needle depth and intensity depending on skin condition</span>
+          </li>
+          <li>
+            <span class="lang de">Vergleichsweise kurze Ausfallzeit, meist nur eine leichte Rötung</span>
+            <span class="lang en">Comparatively short downtime, usually only slight redness</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
       <app-guide-note variant="win" [label]="t('Dein Vorteil', 'Your benefit')">
         <span class="lang de">
           Die Kombination aus Microneedling und Radiofrequenz wirkt tiefer als klassisches
@@ -157,16 +161,25 @@
       [heading]="t('Wobei Microneedling besonders hilft', 'What microneedling especially helps with')"
       sectionId="anwendung"
     >
-      <p class="gd-lead-p gd-read" appReveal>
-        <span class="lang de">
+      <app-guide-media
+        image="assets/images/treatment/microneedling6.webp"
+        [imageAlt]="
+          t(
+            'RF-Microneedling im FareWell Studio in Nürnberg, abgestimmt auf Hautzustand und Ziel',
+            'RF microneedling at the FareWell studio in Nuremberg, tailored to skin condition and goal'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
           Ob feine Linien, unruhiges Hautbild oder müde Haut, in der kostenlosen Erstberatung schauen
           wir uns deine Haut an und stimmen die Behandlung genau auf dein Ziel ab.
-        </span>
-        <span class="lang en">
+        </p>
+        <p class="lang en">
           Whether fine lines, an uneven complexion or tired skin, in the free initial consultation we
           look at your skin and tailor the treatment precisely to your goal.
-        </span>
-      </p>
+        </p>
+      </app-guide-media>
       <div class="gd-split">
         <app-guide-panel [heading]="t('Ideal bei', 'Ideal for')" tone="forest">
           <li>
@@ -333,7 +346,7 @@
     </app-guide-section>
 
     <app-guide-cta
-      tagline="Strahlend schön."
+      [tagline]="t('Strahlend schön.', 'Radiantly beautiful.')"
       [heading]="
         t(
           'Sichere dir deine erste Behandlung zum kleinen Preis',

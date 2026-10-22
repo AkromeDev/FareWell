@@ -153,16 +153,16 @@
       </div>
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
-          Die Nadelepilation gibt es auch in ärztlicher Delegation, zu eigenen Preisen und
+          Die Nadelepilation gibt es auch mit ärztlicher Begleitung, zu eigenen Preisen und
           ausschließlich als volle Stunde. Diese Termine stehen in einer eigenen Liste:
-          <a [routerLink]="p('/price')" fragment="aerztliche-delegation">Behandlungen unter
-          ärztlicher Verantwortung</a>.
+          <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">Behandlungen mit
+          ärztlicher Begleitung</a>.
         </span>
         <span class="lang en">
-          Electrolysis is also available under medical delegation, at its own prices and in full
+          Electrolysis is also available with medical support, at its own prices and in full
           hours only. Those appointments have their own list:
-          <a [routerLink]="p('/price')" fragment="aerztliche-delegation">treatments under medical
-          responsibility</a>.
+          <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">treatments with medical
+          support</a>.
         </span>
       </p>
       <div class="gd-read">
@@ -231,18 +231,18 @@
       }
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
-          Mehrere Komplettpakete bieten wir zusätzlich in ärztlicher Delegation an, zu eigenen
+          Mehrere Komplettpakete bieten wir zusätzlich mit ärztlicher Begleitung an, zu eigenen
           Preisen: unteres Gesicht komplett, Rücken komplett und den Intimbereich. Einzelne Zonen
-          behandeln wir nicht in Delegation. Die Preise stehen in einer eigenen Liste:
-          <a [routerLink]="p('/price')" fragment="aerztliche-delegation">Behandlungen unter
-          ärztlicher Verantwortung</a>.
+          gibt es nicht mit ärztlicher Begleitung. Die Preise stehen in einer eigenen Liste:
+          <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">Behandlungen mit
+          ärztlicher Begleitung</a>.
         </span>
         <span class="lang en">
-          Several complete packages are also available under medical delegation, at their own
+          Several complete packages are also available with medical support, at their own
           prices: complete lower face, complete back and the intimate area. Single areas are not
-          treated under delegation. The prices have their own list:
-          <a [routerLink]="p('/price')" fragment="aerztliche-delegation">treatments under medical
-          responsibility</a>.
+          offered with medical support. The prices have their own list:
+          <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">treatments with medical
+          support</a>.
         </span>
       </p>
       <div class="gd-read">
@@ -266,29 +266,38 @@
       </div>
     </app-guide-section>
 
-    <!-- 04 · Behandlungen unter ärztlicher Verantwortung -->
+    <!-- 04 · Behandlungen mit ärztlicher Begleitung. Der Text beschreibt, wie
+         wir tatsächlich arbeiten (Mail Dr. Degner, 07.10.2026): keine ärztliche
+         Anordnung oder Verantwortung je Behandlung behaupten. -->
+    <!-- Alter Anker (bis 10/2026): Links auf /price#aerztliche-delegation aus
+         Mails, Kostenvoranschlägen und Suchergebnissen landen weiter hier.
+         Leer und ohne Inhalt, also unsichtbar für Screenreader und Layout. -->
+    <span id="aerztliche-delegation"></span>
     <app-guide-section
       index="04"
       [heading]="
         t(
-          'Behandlungen unter ärztlicher Verantwortung: Preise',
-          'Treatments under medical responsibility: prices'
+          'Behandlungen mit ärztlicher Begleitung: Preise',
+          'Treatments with medical support: prices'
         )
       "
-      sectionId="aerztliche-delegation"
+      sectionId="aerztliche-begleitung"
     >
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
-          Einen Teil unserer Behandlungen bieten wir zusätzlich in ärztlicher Delegation an.
-          Behandelt wird wie immer bei uns im Studio, die fachliche Verantwortung trägt dabei
-          unser begleitender Arzt. Diese Termine haben eigene Preise und stehen deshalb, wie im
-          Buchungssystem, in einer eigenen Liste.
+          Einen Teil unserer Behandlungen bieten wir zusätzlich mit ärztlicher Begleitung an.
+          Behandelt wird wie immer bei uns im Studio, von unserer geschulten Fachkraft. Ein Arzt
+          begleitet FareWell auf Grundlage eines Beratungsvertrags: Er wird bei individuellen
+          medizinischen Fragen, zur Beurteilung von Risiken und Kontraindikationen sowie in
+          Hygienefragen hinzugezogen. Diese Termine haben eigene Preise und stehen deshalb, wie
+          im Buchungssystem, in einer eigenen Liste.
         </span>
         <span class="lang en">
-          Some of our treatments are also available under medical delegation. The treatment takes
-          place in our studio as always, while our accompanying physician holds the professional
-          responsibility. These appointments have their own prices and therefore their own list,
-          exactly as in our booking system.
+          Some of our treatments are also available with medical support. The treatment takes
+          place in our studio as always, carried out by our trained specialist. A physician
+          supports FareWell under a consulting contract and is called in for individual medical
+          questions, to assess risks and contraindications, and on hygiene. These appointments
+          have their own prices and therefore their own list, exactly as in our booking system.
         </span>
       </p>
       <div
@@ -297,7 +306,7 @@
         tabindex="0"
         role="region"
         [attr.aria-label]="
-          t('Preise mit ärztlicher Delegation', 'Prices with medical delegation')
+          t('Preise mit ärztlicher Begleitung', 'Prices with medical support')
         "
       >
         <table>
@@ -308,7 +317,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (row of tables.aerztlicheDelegation.rows; track $index) {
+            @for (row of tables.aerztlicheBegleitung.rows; track $index) {
               <tr>
                 <td>
                   {{ t(row.de, row.en) }}
@@ -325,13 +334,13 @@
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
           Die Nadelepilation buchst du hier ausschließlich als volle Stunde, kürzere Einheiten
-          gibt es in Delegation nicht. Beim Laser gilt die Delegation nur für die
-          Komplettpakete, einzelne Zonen behandeln wir regulär.
+          gibt es mit ärztlicher Begleitung nicht. Beim Laser gilt die ärztliche Begleitung nur
+          für die Komplettpakete, einzelne Zonen behandeln wir regulär.
         </span>
         <span class="lang en">
-          Electrolysis is booked in full hours only here, shorter units are not available under
-          delegation. For the laser, delegation applies to the complete packages only; single
-          areas are treated regularly.
+          Electrolysis is booked in full hours only here, shorter units are not available with
+          medical support. For the laser, medical support applies to the complete packages only;
+          single areas are treated regularly.
         </span>
       </p>
       <div class="gd-read">
@@ -340,24 +349,26 @@
           [label]="t('Warum das wichtig sein kann', 'Why this can matter')"
         >
           <span class="lang de">
-            Viele Krankenkassen verlangen für eine Kostenübernahme, dass die Haarentfernung
-            ärztlich delegiert erfolgt. Ob deine Kasse zahlt, entscheidet allein deine Kasse, und
-            das fällt von Fall zu Fall unterschiedlich aus. Ein Versuch ist es wert: Im
+            Möchtest du die Kostenübernahme bei deiner Krankenkasse beantragen, gilt diese
+            Preisliste. Ob und in welchem Umfang deine Kasse zahlt, entscheidet allein deine Kasse,
+            und das fällt von Fall zu Fall unterschiedlich aus. Beginne die Behandlung deshalb am
+            besten erst, wenn ihre schriftliche Zusage vorliegt. Im
             <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">Leitfaden zur Krankenkasse</a>
             steht Schritt für Schritt, wie du den Antrag aufsetzt.
           </span>
           <span class="lang en">
-            Many German health insurers require hair removal to be medically delegated before they
-            will consider covering it. Whether yours pays is decided by your insurer alone, and it
-            varies case by case. It is worth a try: our
+            If you would like to apply to your health insurer to cover the cost, this price list
+            applies. Whether and how much your insurer pays is decided by your insurer alone, and it
+            varies case by case. So it is best to start the treatment only once you have their
+            written approval. Our
             <a [routerLink]="p('/ratgeber/epilation-krankenkasse')">guide to health insurance</a>
             walks through the application step by step (in German).
           </span>
         </app-guide-note>
         <app-faq-item
-          [question]="t(faqs['aerztlicheDelegation'].qDe, faqs['aerztlicheDelegation'].qEn)"
+          [question]="t(faqs['aerztlicheBegleitung'].qDe, faqs['aerztlicheBegleitung'].qEn)"
         >
-          <p>{{ t(faqs['aerztlicheDelegation'].aDe, faqs['aerztlicheDelegation'].aEn) }}</p>
+          <p>{{ t(faqs['aerztlicheBegleitung'].aDe, faqs['aerztlicheBegleitung'].aEn) }}</p>
         </app-faq-item>
       </div>
     </app-guide-section>
@@ -542,24 +553,17 @@
       <div class="gd-read">
         <app-guide-note variant="warn" [label]="t('Was du erwarten kannst', 'What to expect')">
           <span class="lang de">
-            Am deutlichsten ist der Effekt am Bauch: Direkt nach einer Sitzung von 60 Minuten
-            messen wir dort meist 1 bis 3 Zentimeter weniger Umfang. Das gelöste Fett ist danach im
-            Blut unterwegs, deshalb zählt dein Anteil: viel trinken und leichte Bewegung nach dem
-            Termin, damit es abtransportiert und nicht direkt wieder eingelagert wird. Zusammen mit
-            einer gesunden Ernährung und einem leichten Kaloriendefizit fällt das Ergebnis deutlich
-            besser aus, weil dein Körper das freigesetzte Fett dann wirklich verbraucht. Body
-            Forming bleibt eine kosmetische Anwendung, keine medizinische Maßnahme und keine
-            Behandlung zur Gewichtsabnahme.
+            Body Forming ist eine kosmetische Anwendung, keine medizinische Maßnahme und keine
+            Behandlung zur Gewichtsabnahme. Wie dein Gewebe darauf reagiert, ist individuell,
+            deshalb versprechen wir weder Zentimeter noch Kilos noch ein bestimmtes Ergebnis. Was
+            du selbst beitragen kannst: viel trinken und leichte Bewegung nach dem Termin, dazu
+            eine ausgewogene Ernährung.
           </span>
           <span class="lang en">
-            The effect shows most clearly on the stomach: directly after a 60-minute session we
-            usually measure 1 to 3 centimetres less circumference there. The released fat then
-            travels in your bloodstream, which is why your part counts: drink plenty and get some
-            light movement after your appointment, so it is carried away instead of being stored
-            again straight away. Together with a healthy diet and a slight calorie deficit the
-            result is noticeably better, because your body then really uses the released fat. Body
-            forming remains a cosmetic application, not a medical procedure and not a weight-loss
-            treatment.
+            Body forming is a cosmetic application, not a medical procedure and not a weight-loss
+            treatment. How your tissue responds is individual, so we promise neither centimetres
+            nor kilos nor any particular result. What you can contribute yourself: drink plenty and
+            get some light movement after your appointment, along with a balanced diet.
           </span>
         </app-guide-note>
         <app-guide-note variant="tip" [label]="t('Kur-Empfehlung', 'Recommended course')">
@@ -783,12 +787,12 @@
           [revealDelay]="60"
         >
           <span class="lang de">
-            Für trans Personen: Wie die Haarentfernung im Gesicht zur Kassenleistung wird, mit
-            ärztlicher Delegation bei FareWell.
+            Für trans Personen: Wie du bei deiner Krankenkasse die Kostenübernahme für die
+            Haarentfernung im Gesicht beantragst.
           </span>
           <span class="lang en">
-            For trans people: how facial hair removal becomes a covered benefit, with medical
-            delegation at FareWell (guide in German).
+            For trans people: how to apply to your health insurer to cover facial hair removal
+            (guide in German).
           </span>
           <a [routerLink]="p('/ratgeber/epilation-krankenkasse')" [attr.aria-label]="t('Zum Leitfaden: Epilation über die Krankenkasse', 'Read the guide: Insurance-covered epilation')">{{ t('Zum Leitfaden', 'Read the guide') }}</a>
         </app-guide-card>

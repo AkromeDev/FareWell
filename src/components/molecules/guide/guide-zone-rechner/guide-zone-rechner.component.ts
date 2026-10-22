@@ -64,7 +64,7 @@ const CATALOG: ZoneGroupDef[] = [
     de: 'Intimbereich',
     en: 'Intimate area',
     zones: [
-      { key: 'bikini', de: 'Bikinielinie', en: 'Bikini line', price: 60 },
+      { key: 'bikini', de: 'Bikinilinie', en: 'Bikini line', price: 60 },
       { key: 'brazilian', de: 'Brazilian', en: 'Brazilian', price: 100 },
       { key: 'damm', de: 'Damm', en: 'Perineum', price: 60 },
       { key: 'pofalte', de: 'Pofalte', en: 'Gluteal fold', price: 60 },

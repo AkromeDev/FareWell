@@ -201,8 +201,8 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
         icon: '💉',
         title: t('Botox & ästhetische Medizin', 'Botox & aesthetic medicine'),
         text: t(
-          'Für approbierte Ärzt:innen mit Injektionserfahrung: ein eigenes ästhetisches Angebot, eingebettet in unser bestehendes Modell mit ärztlicher Verantwortung.',
-          'For licensed physicians with injection experience: your own aesthetic offering, embedded in our existing model with medical responsibility.',
+          'Für approbierte Ärzt:innen mit Injektionserfahrung: ein eigenes ästhetisches Angebot, in einem Studio, das bereits mit ärztlicher Begleitung arbeitet.',
+          'For licensed physicians with injection experience: your own aesthetic offering, in a studio that already works with medical support.',
         ),
         path: '/karriere/botox-nuernberg',
         linkLabel: more,

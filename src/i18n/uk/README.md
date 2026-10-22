@@ -146,7 +146,8 @@ Lokativ *у Нюрнберзі*. „FareWell Nürnberg“ → *FareWell Нюрн
 | Attest | медичний висновок (Attest) |
 | Kostenvoranschlag | кошторис (Kostenvoranschlag) |
 | Ärztevorbehalt | вимога, щоб процедуру виконував лікар (Arztvorbehalt) |
-| ärztliche Delegation | делегування лікарем |
+| ärztliche Delegation (alter Begriff, bis 10/2026; nicht mehr verwenden) | делегування лікарем |
+| ärztliche Begleitung (seit 10/2026 auf der ganzen Website) | лікарський супровід |
 | Medizinischer Dienst (MD) | медична служба каси (MD) |
 | Hausarzt / Hausärztin | сімейний лікар (Hausarzt) |
 | Hirsutismus / Hypertrichose | гірсутизм / гіпертрихоз |

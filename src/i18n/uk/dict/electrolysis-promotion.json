@@ -21,7 +21,6 @@
   "<0>Kostenlose Erstberatung.</0>Wir schauen uns Haut und Haare an, erklären dir die Methode und sagen dir ehrlich, was realistisch ist.": "<0>Безкоштовна перша консультація.</0> Ми оглядаємо шкіру та волосся, пояснюємо метод і чесно кажемо, чого реально очікувати.",
   "<0>Dein Behandlungsplan.</0>Zone, Intensität und Abstände stimmen wir individuell auf dich und deine Haut ab.": "<0>Ваш план процедур.</0> Зону, інтенсивність та інтервали ми індивідуально підбираємо під вас і вашу шкіру.",
   "<0>Die Sitzungen.</0>Jedes Haar wird einzeln behandelt. Weil Haare in Zyklen wachsen, sind mehrere Sitzungen im Abstand von einigen Wochen nötig.": "<0>Сеанси.</0> Кожну волосину обробляють окремо. Оскільки волосся росте циклами, потрібно кілька сеансів з інтервалом у кілька тижнів.",
-  "<0>Das Ergebnis.</0>Behandelte Follikel wachsen nicht mehr nach, Zone für Zone wirst du dauerhaft und endgültig haarfrei.": "<0>Результат.</0> З оброблених фолікулів волосся більше не відростає, і зона за зоною ви назавжди й остаточно позбуваєтеся волосся.",
   "Ja. Elektrolyse ist die einzige in Deutschland rechtlich als permanent anerkannte Methode der Haarentfernung. Jede behandelte Haarwurzel wird endgültig verödet und wächst nicht mehr nach, im Unterschied zu Laser und IPL, die den Haarwuchs „nur\" dauerhaft reduzieren.": "Так. Електроепіляція є єдиним методом видалення волосся, який у Німеччині юридично визнано остаточним. Кожен оброблений корінь волосся руйнується назавжди й більше не відростає, на відміну від лазера та IPL, які «лише» тривало зменшують ріст волосся.",
   "Die meisten empfinden pro Haar ein kurzes, warmes Prickeln. Wir stimmen die Intensität individuell auf dich ab und tasten uns gemeinsam an ein angenehmes Setting heran, damit die Behandlung so komfortabel wie möglich ist.": "Більшість людей відчувають на кожній волосині коротке тепле поколювання. Ми індивідуально підбираємо інтенсивність під вас і разом поступово знаходимо комфортні налаштування, щоб процедура була якомога приємнішою.",
   "Für alle. Weil die Elektrolyse nicht auf Farbpigmente angewiesen ist, wirkt sie auch bei hellen, grauen, roten oder sehr feinen Haaren und unabhängig von der Hormonlage, etwa bei PCOS. Genau dort, wo<0>Laser</0>und IPL an ihre Grenzen kommen.": "Для всіх. Оскільки електроепіляція не залежить від пігменту, вона діє також на світле, сиве, руде чи дуже тонке волосся й незалежно від гормонального фону, наприклад у разі СПКЯ (синдрому полікістозних яєчників). Саме там, де можливості <0>лазера</0> та IPL вичерпуються.",
@@ -34,9 +33,7 @@
   "Kurz gesagt": "Коротко",
   "Inhalt": "Зміст",
   "Preise & Neukunden-Rabatt": "Ціни та знижка для нових клієнтів",
-  "Neukunden-Aktion · nur für kurze Zeit": "Акція для нових клієнтів · лише обмежений час",
   "50% auf deine erste Elektrolyse-Behandlung": "Знижка 50% на першу процедуру електроепіляції",
-  "Neugierig? Teste die permanente Haarentfernung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukund:innen.": "Цікаво? Спробуйте остаточне видалення волосся за невелику ціну. Запишіться онлайн і вкажіть код під час бронювання. Діє для нових клієнтів і клієнток.",
   "Promo-Code": "Промокод",
   "Code kopieren": "Скопіювати код",
   "Kopiert!": "Скопійовано!",
@@ -76,5 +73,11 @@
   "50% Rabatt auf die erste Elektrolyse-Behandlung": "Знижка 50% на першу процедуру електроепіляції",
   "Neukundenangebot für die erste Behandlung zur permanenten Haarentfernung bei FareWell in Nürnberg. Code: ERSTEBEHANDLUNG.": "Пропозиція для нових клієнтів: перша процедура остаточного видалення волосся у студії FareWell в Нюрнберзі. Код: ERSTEBEHANDLUNG.",
   "Neukund:innen": "Нові клієнти та клієнтки",
-  "Elektrolyse Aktion Nürnberg": "Акція на електроепіляцію в Нюрнберзі"
+  "Elektrolyse Aktion Nürnberg": "Акція на електроепіляцію в Нюрнберзі",
+  "Für immer glatt.": "Гладко назавжди.",
+  "Neukunden-Aktion": "Акція для нових клієнтів",
+  "Neugierig? Teste die permanente Haarentfernung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukund:innen, Rabatte nicht kombinierbar.": "Зацікавилися? Спробуйте остаточне видалення волосся за невелику ціну. Запишіться онлайн і вкажіть код під час бронювання. Діє для нових клієнтів і клієнток, знижки не поєднуються.",
+  "Illustration: Eine feine Sonde wird entlang des Haares an die Haarwurzel geführt und verödet sie": "Ілюстрація: тонкий зонд уздовж волосини доходить до волосяного кореня й деактивує його",
+  "Nadelepilation am Kinn: Jedes Haar wird einzeln mit feiner Sonde behandelt": "Електроепіляція на підборідді: кожну волосину обробляють окремо тонким зондом",
+  "<0>Das Ergebnis.</0>Aus behandelten Haarwurzeln wächst kein Haar mehr nach, Zone für Zone wirst du permanent haarfrei.": "<0>Результат.</0> Волосся з оброблених коренів більше не відростає, і зона за зоною ви остаточно позбуваєтеся волосся."
 }

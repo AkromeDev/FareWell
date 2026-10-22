@@ -101,7 +101,6 @@
   "Füße": "Стопи",
   "Beine komplett": "Ноги повністю",
   "Intimbereich": "Інтимна зона",
-  "Bikinielinie": "Лінія бікіні",
   "Brazilian": "Глибоке бікіні",
   "Damm": "Промежина",
   "Pofalte": "Міжсіднична складка",
@@ -147,5 +146,6 @@
   "vor einem Monat": "місяць тому",
   "vor {0} Monaten": "{0} міс. тому",
   "vor einem Jahr": "рік тому",
-  "vor {0} Jahren": "{0} р. тому"
+  "vor {0} Jahren": "{0} р. тому",
+  "Bikinilinie": "Лінія бікіні"
 }

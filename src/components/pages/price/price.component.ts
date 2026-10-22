@@ -11,8 +11,8 @@ import {
   GuideTocItem,
 } from 'src/components/molecules/guide';
 import {
-  DELEGATION_DE,
-  DELEGATION_EN,
+  BEGLEITUNG_DE,
+  BEGLEITUNG_EN,
   PRICE_SERVICES,
   PRICE_TABLES,
   PriceRow,
@@ -88,20 +88,20 @@ export class PriceComponent implements OnInit, OnDestroy {
     nadelepilation: {
       qDe: 'Was kostet Nadelepilation (Elektrolyse) in Nürnberg?',
       qEn: 'How much does electrolysis (needle epilation) cost in Nuremberg?',
-      aDe: 'Bei FareWell in Nürnberg kostet die Nadelepilation 40 € für 30 Minuten, 60 € für 45 Minuten, 80 € für 60 Minuten und 160 € für 120 Minuten. Mit ärztlicher Delegation kostet die Sitzung 120 € für 60 Minuten und 240 € für 120 Minuten; diese Termine gibt es ausschließlich als volle Stunde. Abgerechnet wird nach Sitzungsdauer, für alle gleich. Die Behandlungsvorbereitung mit Betäubungscreme kostet 20 €, die Beratung ist kostenlos.',
-      aEn: 'At FareWell in Nuremberg, electrolysis costs €40 for 30 minutes, €60 for 45 minutes, €80 for 60 minutes and €160 for 120 minutes. With medical delegation, a session costs €120 for 60 minutes and €240 for 120 minutes; these appointments are available in full hours only. It is charged by session length, the same for everyone. Preparation with numbing cream costs €20, and the consultation is free.',
+      aDe: 'Bei FareWell in Nürnberg kostet die Nadelepilation 40 € für 30 Minuten, 60 € für 45 Minuten, 80 € für 60 Minuten und 160 € für 120 Minuten. Mit ärztlicher Begleitung kostet die Sitzung 120 € für 60 Minuten und 240 € für 120 Minuten; diese Termine gibt es ausschließlich als volle Stunde. Abgerechnet wird nach Sitzungsdauer, für alle gleich. Die Behandlungsvorbereitung mit Betäubungscreme kostet 20 €, die Beratung ist kostenlos.',
+      aEn: 'At FareWell in Nuremberg, electrolysis costs €40 for 30 minutes, €60 for 45 minutes, €80 for 60 minutes and €160 for 120 minutes. With medical support, a session costs €120 for 60 minutes and €240 for 120 minutes; these appointments are available in full hours only. It is charged by session length, the same for everyone. Preparation with numbing cream costs €20, and the consultation is free.',
     },
     laser: {
       qDe: 'Was kostet Laser Haarentfernung in Nürnberg?',
       qEn: 'How much does laser hair removal cost in Nuremberg?',
-      aDe: 'Laser Haarentfernung kostet bei FareWell in Nürnberg ab 30 € pro Zone. Beispiele: Achseln 60 €, Oberlippe 50 €, Rücken komplett 120 €, Beine komplett 180 €, Intim vorne 180 € (Penis), Intim komplett 200 € (Vulva) beziehungsweise 220 € (Penis), ganzer Körper 750 €. Mit ärztlicher Delegation kosten die Komplettpakete 250 € (unteres Gesicht komplett, Rücken komplett, Intim vorne) und 300 € (Intim komplett). Alle Preise gelten pro Sitzung und inklusive 19% MwSt.',
-      aEn: 'Laser hair removal at FareWell in Nuremberg starts at €30 per area. Examples: underarms €60, upper lip €50, complete back €120, complete legs €180, front intimate area €180 (penis), complete intimate area €200 (vulva) or €220 (penis), full body €750. With medical delegation, the complete packages cost €250 (complete lower face, complete back, front intimate area) and €300 (complete intimate area). All prices are per session and include 19% VAT.',
+      aDe: 'Laser Haarentfernung kostet bei FareWell in Nürnberg ab 30 € pro Zone. Beispiele: Achseln 60 €, Oberlippe 50 €, Rücken komplett 120 €, Beine komplett 180 €, Intim vorne 180 € (Penis), Intim komplett 200 € (Vulva) beziehungsweise 220 € (Penis), ganzer Körper 750 €. Mit ärztlicher Begleitung kosten die Komplettpakete 250 € (unteres Gesicht komplett, Rücken komplett, Intim vorne) und 300 € (Intim komplett). Alle Preise gelten pro Sitzung und inklusive 19% MwSt.',
+      aEn: 'Laser hair removal at FareWell in Nuremberg starts at €30 per area. Examples: underarms €60, upper lip €50, complete back €120, complete legs €180, front intimate area €180 (penis), complete intimate area €200 (vulva) or €220 (penis), full body €750. With medical support, the complete packages cost €250 (complete lower face, complete back, front intimate area) and €300 (complete intimate area). All prices are per session and include 19% VAT.',
     },
-    aerztlicheDelegation: {
-      qDe: 'Was kostet eine Behandlung in ärztlicher Delegation in Nürnberg?',
-      qEn: 'How much does a treatment under medical delegation cost in Nuremberg?',
-      aDe: 'Bei FareWell in Nürnberg kosten die Behandlungen unter ärztlicher Verantwortung: Nadelepilation 120 € für 60 Minuten und 240 € für 120 Minuten, Laser unteres Gesicht komplett 250 €, Laser Rücken komplett 250 €, Laser Intim vorne 250 € und Laser Intim komplett 300 €. Die Nadelepilation in Delegation wird ausschließlich als volle Stunde gebucht, beim Laser gilt sie nur für die Komplettpakete und nicht für einzelne Zonen. Ob deine Krankenkasse die Kosten übernimmt, entscheidet allein deine Kasse.',
-      aEn: 'At FareWell in Nuremberg, treatments under medical responsibility cost: electrolysis €120 for 60 minutes and €240 for 120 minutes, laser complete lower face €250, laser complete back €250, laser front intimate area €250 and laser complete intimate area €300. Electrolysis under delegation is booked in full hours only; for the laser it applies to the complete packages, not to single areas. Whether your health insurer covers the cost is decided by your insurer alone.',
+    aerztlicheBegleitung: {
+      qDe: 'Was kostet eine Behandlung mit ärztlicher Begleitung in Nürnberg?',
+      qEn: 'How much does a treatment with medical support cost in Nuremberg?',
+      aDe: 'Bei FareWell in Nürnberg kosten die Behandlungen mit ärztlicher Begleitung: Nadelepilation 120 € für 60 Minuten und 240 € für 120 Minuten, Laser unteres Gesicht komplett 250 €, Laser Rücken komplett 250 €, Laser Intim vorne 250 € und Laser Intim komplett 300 €. Die Nadelepilation mit ärztlicher Begleitung wird ausschließlich als volle Stunde gebucht, beim Laser gilt sie nur für die Komplettpakete und nicht für einzelne Zonen. Ob deine Krankenkasse die Kosten übernimmt, entscheidet allein deine Kasse.',
+      aEn: 'At FareWell in Nuremberg, treatments with medical support cost: electrolysis €120 for 60 minutes and €240 for 120 minutes, laser complete lower face €250, laser complete back €250, laser front intimate area €250 and laser complete intimate area €300. Electrolysis with medical support is booked in full hours only; for the laser it applies to the complete packages, not to single areas. Whether your health insurer covers the cost is decided by your insurer alone.',
     },
     microneedling: {
       qDe: 'Was kostet Radiofrequenz Microneedling in Nürnberg?',
@@ -139,7 +139,7 @@ export class PriceComponent implements OnInit, OnDestroy {
   private readonly faqOrder: (keyof PriceComponent['faqs'])[] = [
     'nadelepilation',
     'laser',
-    'aerztlicheDelegation',
+    'aerztlicheBegleitung',
     'microneedling',
     'narbenbehandlung',
     'bodyForming',
@@ -190,7 +190,7 @@ export class PriceComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Methode hinter einer Zeile der Delegationsliste („Nadelepilation", „Laser,
+   * Methode hinter einer Zeile der Begleitungsliste („Nadelepilation", „Laser,
    * Intimbereich Penis"). Nur dort gesetzt, weil die Namen aus dem
    * Buchungssystem für sich genommen mehrdeutig wären.
    */
@@ -198,9 +198,9 @@ export class PriceComponent implements OnInit, OnDestroy {
     return row.scope ? this.t(row.scope.de, row.scope.en) : '';
   }
 
-  /** Namenszusatz der Delegationsangebote im JSON-LD. */
-  get delegationLabel(): string {
-    return this.t(DELEGATION_DE, DELEGATION_EN);
+  /** Namenszusatz der Begleitungsangebote im JSON-LD. */
+  get begleitungLabel(): string {
+    return this.t(BEGLEITUNG_DE, BEGLEITUNG_EN);
   }
 
   get stats(): GuideStat[] {
@@ -221,8 +221,8 @@ export class PriceComponent implements OnInit, OnDestroy {
       { id: 'nadelepilation', label: this.t('Nadelepilation (Elektrolyse)', 'Electrolysis') },
       { id: 'laser', label: this.t('Laser (4 Wellen Diodenlaser)', 'Laser (diode laser)') },
       {
-        id: 'aerztliche-delegation',
-        label: this.t('Unter ärztlicher Verantwortung', 'Under medical responsibility'),
+        id: 'aerztliche-begleitung',
+        label: this.t('Mit ärztlicher Begleitung', 'With medical support'),
       },
       { id: 'microneedling', label: this.t('Radiofrequenz Microneedling', 'RF microneedling') },
       { id: 'narbenbehandlung', label: this.t('Narbenbehandlung', 'Scar treatment') },
@@ -318,14 +318,14 @@ export class PriceComponent implements OnInit, OnDestroy {
 
   private buildOffer(pageUrl: string, anchor: string, table: PriceTable, row: PriceRow): object {
     // Herkunft der Zeile schlägt die Tabellenüberschrift: in der
-    // Delegationsliste hat die Tabelle keine Überschrift, dafür trägt jede
+    // Begleitungsliste hat die Tabelle keine Überschrift, dafür trägt jede
     // Zeile ihre Methode.
     const label = this.scopeLabel(row) || this.t(table.de, table.en);
     const scope = label ? `${label}, ` : '';
     const price = row.price ?? 0;
-    // In der Tabelle steht die Delegation als Sektionsüberschrift, im Offer
+    // In der Tabelle steht die Begleitung als Sektionsüberschrift, im Offer
     // muss sie am Namen hängen, weil das Offer für sich allein gelesen wird.
-    const suffix = row.delegation ? ` ${this.delegationLabel}` : '';
+    const suffix = row.begleitung ? ` ${this.begleitungLabel}` : '';
     return {
       '@type': 'Offer',
       name: `${scope}${this.t(row.de, row.en)}${suffix} (${this.duration(row)})`,

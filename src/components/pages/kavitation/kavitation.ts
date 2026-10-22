@@ -108,8 +108,8 @@ export class KavitationComponent implements OnInit, OnDestroy {
       {
         question: this.t('Wie funktioniert Body Forming?', 'How does body forming work?'),
         answer: this.t(
-          'Ultraschallwellen werden gezielt in das Gewebe abgegeben und erzeugen dort Mikro-Impulse; die Radiofrequenz erwärmt das Gewebe zusätzlich. Am deutlichsten zeigt sich das am Bauch: Direkt nach einer Sitzung von 60 Minuten messen wir dort meist 1 bis 3 Zentimeter weniger Umfang. Das gelöste Fett ist danach im Blut unterwegs, deshalb solltest du viel trinken und dich nach dem Termin leicht bewegen. Es bleibt ein kosmetisches Verfahren und kein Ersatz für eine medizinische Therapie, und es ist keine Behandlung zur Gewichtsabnahme.',
-          'Ultrasound waves are directed precisely into the tissue, creating micro-impulses; the radio frequency additionally warms the tissue. This shows most clearly on the stomach: directly after a 60-minute session we usually measure 1 to 3 centimetres less circumference there. The released fat then travels in your bloodstream, so drink plenty and get some light movement after your appointment. It remains a cosmetic procedure and no replacement for medical therapy, and it is not a weight-loss treatment.',
+          'Ultraschallwellen werden gezielt in das Gewebe abgegeben und erzeugen dort Mikro-Impulse; die Radiofrequenz erwärmt das Gewebe zusätzlich. Wie dein Gewebe darauf reagiert, ist individuell, deshalb versprechen wir weder Zentimeter noch ein bestimmtes Ergebnis. Nach dem Termin helfen viel trinken und leichte Bewegung. Es bleibt ein kosmetisches Verfahren und kein Ersatz für eine medizinische Therapie, und es ist keine Behandlung zur Gewichtsabnahme.',
+          'Ultrasound waves are directed precisely into the tissue, creating micro-impulses; the radio frequency additionally warms the tissue. How your tissue responds is individual, so we promise neither centimetres nor any particular result. After your appointment, drinking plenty and light movement help. It remains a cosmetic procedure and no replacement for medical therapy, and it is not a weight-loss treatment.',
         ),
       },
       {
@@ -129,8 +129,8 @@ export class KavitationComponent implements OnInit, OnDestroy {
       {
         question: this.t('Wie viele Sitzungen sind sinnvoll?', 'How many sessions make sense?'),
         answer: this.t(
-          'Je nach Ziel und Zone sind oft 5 bis 10 Sitzungen sinnvoll, mit einem Abstand von etwa 2 bis 4 Tagen. Wie stark der Effekt ausfällt, hängt auch davon ab, wie gut du die Behandlung unterstützt: viel trinken, leichte Bewegung und idealerweise ein leichtes Kaloriendefizit, damit dein Körper das freigesetzte Fett verbraucht.',
-          'Depending on your goal and the area, 5 to 10 sessions often make sense, spaced about 2 to 4 days apart. How strong the effect is also depends on how well you support the treatment: drink plenty, get light movement and ideally keep a slight calorie deficit, so your body uses the released fat.',
+          'Je nach Ziel und Zone sind oft 5 bis 10 Sitzungen sinnvoll, mit einem Abstand von etwa 2 bis 4 Tagen. Unterstützen kannst du die Behandlung selbst: viel trinken, leichte Bewegung und eine ausgewogene Ernährung.',
+          'Depending on your goal and the area, 5 to 10 sessions often make sense, spaced about 2 to 4 days apart. You can support the treatment yourself: drink plenty, get light movement and eat a balanced diet.',
         ),
       },
     ];

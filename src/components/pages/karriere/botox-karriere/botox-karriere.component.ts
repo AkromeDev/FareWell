@@ -12,8 +12,10 @@ const PAGE_PATH = '/karriere/botox-nuernberg';
 /**
  * Stellenseite für ästhetische Medizin (Botulinumtoxin). Einziger Beruf mit
  * harter Zugangsvoraussetzung: Botulinumtoxin ist verschreibungspflichtig und
- * die Injektion approbierten Ärzt:innen vorbehalten. Die Tätigkeit fügt sich
- * in das bestehende Delegationsmodell ein, das auch die Preisseite beschreibt.
+ * die Injektion approbierten Ärzt:innen vorbehalten. Die Ärztin oder der Arzt
+ * behandelt in eigener Verantwortung; die Seite verweist auf die Behandlungen
+ * mit ärztlicher Begleitung, die auch die Preisseite beschreibt (bis Oktober
+ * 2026 „ärztliche Delegation“, siehe price-data.ts).
  */
 @Component({
   standalone: true,
@@ -50,8 +52,8 @@ export class BotoxKarriereComponent extends KarriereDetailPage {
         'Physician (m/f/d) for Botox & Aesthetic Medicine in Nuremberg | Careers at FareWell'
       ),
       description: t(
-        'FareWell Nürnberg sucht approbierte Ärzt:innen mit Injektionserfahrung für ein eigenes Angebot mit Botulinumtoxin: Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete, eingebettet in unser bestehendes Delegationsmodell.',
-        'FareWell Nuremberg is looking for licensed physicians with injection experience to build their own botulinum toxin offering: a room in the city centre, online booking, flexible hours, no fixed rent, embedded in our existing medical delegation model.'
+        'FareWell Nürnberg sucht approbierte Ärzt:innen mit Injektionserfahrung für ein eigenes Angebot mit Botulinumtoxin: Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete, in einem Studio, das bereits mit ärztlicher Begleitung arbeitet.',
+        'FareWell Nuremberg is looking for licensed physicians with injection experience to build their own botulinum toxin offering: a room in the city centre, online booking, flexible hours, no fixed rent, in a studio that already works with medical support.'
       ),
       jobTitle: t(
         'Ärztin / Arzt (m/w/d) für ästhetische Medizin: Botulinumtoxin, freiberuflich',
@@ -153,14 +155,14 @@ export class BotoxKarriereComponent extends KarriereDetailPage {
               'How is the work embedded legally?'
             ),
             answer: t(
-              'Du behandelst in eigener ärztlicher Verantwortung, mit eigener Aufklärung, eigener Dokumentation und eigener Berufshaftpflicht. FareWell stellt Raum, Termine, Buchungssystem und Sichtbarkeit. Mit ärztlicher Verantwortung im Haus arbeiten wir bereits: Einen Teil unserer kosmetischen Behandlungen bieten wir unter ärztlicher Delegation an. Dein Angebot fügt sich direkt in diese Struktur ein.',
-              'You treat under your own medical responsibility, with your own informed consent process, your own documentation and your own liability insurance. FareWell provides the room, the appointments, the booking system and the visibility. We already work with medical responsibility in the house: some of our cosmetic treatments are offered under medical delegation. Your offering fits directly into that structure.'
+              'Du behandelst in eigener ärztlicher Verantwortung, mit eigener Aufklärung, eigener Dokumentation und eigener Berufshaftpflicht. FareWell stellt Raum, Termine, Buchungssystem und Sichtbarkeit. Mit einem Arzt arbeiten wir bereits zusammen: Einen Teil unserer kosmetischen Behandlungen bieten wir mit ärztlicher Begleitung an. Dein Angebot ergänzt das.',
+              'You treat under your own medical responsibility, with your own informed consent process, your own documentation and your own liability insurance. FareWell provides the room, the appointments, the booking system and the visibility. We already work with a physician: some of our cosmetic treatments are offered with medical support. Your offering adds to that.'
             ),
             linkPath: '/price',
-            linkFragment: 'aerztliche-delegation',
+            linkFragment: 'aerztliche-begleitung',
             linkLabel: t(
-              'Behandlungen unter ärztlicher Delegation ansehen',
-              'See the treatments under medical delegation'
+              'Behandlungen mit ärztlicher Begleitung ansehen',
+              'See the treatments with medical support'
             ),
           },
           {

@@ -15,7 +15,7 @@
         'Electrolysis in Nuremberg: permanent hair removal'
       )
     "
-    tagline="Für immer glatt."
+    [tagline]="t('Für immer glatt.', 'Smooth for good.')"
     [lead]="
       t(
         'Elektrolyse ist die einzige in Deutschland rechtlich als permanent anerkannte Methode: Jede Haarwurzel wird einzeln und endgültig verödet. Neugierig? Teste die Behandlung zum kleinen Preis: 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG.',
@@ -70,19 +70,14 @@
       sectionId="angebot"
     >
       <app-guide-offer
-        [eyebrow]="
-          t(
-            'Neukunden-Aktion · nur für kurze Zeit',
-            'New-client offer · limited time only'
-          )
-        "
+        [eyebrow]="t('Neukunden-Aktion', 'New-client offer')"
         [headline]="
           t('50% auf deine erste Elektrolyse-Behandlung', '50% off your first electrolysis treatment')
         "
         [sub]="
           t(
-            'Neugierig? Teste die permanente Haarentfernung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukund:innen.',
-            'Curious? Try permanent hair removal at a small price. Book online and enter the code when booking. Valid for new clients.'
+            'Neugierig? Teste die permanente Haarentfernung zum kleinen Preis. Online buchen und den Code bei der Buchung angeben. Gilt für Neukund:innen, Rabatte nicht kombinierbar.',
+            'Curious? Try permanent hair removal at a small price. Book online and enter the code when booking. Valid for new clients, discounts not combinable.'
           )
         "
         [badgeLabel]="t('Promo-Code', 'Promo code')"
@@ -109,36 +104,45 @@
       [heading]="t('Warum Elektrolyse wirklich permanent ist', 'Why electrolysis is truly permanent')"
       sectionId="permanent"
     >
-      <p class="gd-lead-p gd-read" appReveal>
-        <span class="lang de">
+      <app-guide-media
+        image="assets/images/treatment/apilis.webp"
+        [imageAlt]="
+          t(
+            'Illustration: Eine feine Sonde wird entlang des Haares an die Haarwurzel geführt und verödet sie',
+            'Illustration: a fine probe is guided along the hair to the hair root and deactivates it'
+          )
+        "
+        side="right"
+      >
+        <p class="lang de">
           Bei der Elektrolyse wird eine feine Sonde entlang des Haares an die Wurzel geführt und
           das Follikel gezielt verödet. Dadurch wächst genau dieses Haar nicht mehr nach, endgültig
           und unabhängig von Haarfarbe oder Hormonlage.
-        </span>
-        <span class="lang en">
+        </p>
+        <p class="lang en">
           In electrolysis a fine probe is guided along the hair to the root and the follicle is
           deactivated in a targeted way. That specific hair no longer grows back, for good and
           independently of hair colour or hormones.
-        </span>
-      </p>
-      <app-guide-checklist>
-        <li>
-          <span class="lang de">Die einzige in Deutschland rechtlich als permanent anerkannte Methode der Haarentfernung</span>
-          <span class="lang en">The only hair removal method legally recognised as permanent in Germany</span>
-        </li>
-        <li>
-          <span class="lang de">Jede Haarwurzel wird einzeln und endgültig verödet</span>
-          <span class="lang en">Every hair root is deactivated individually and for good</span>
-        </li>
-        <li>
-          <span class="lang de">Wirkt bei jedem Haut- und Haartyp, auch bei hellen, feinen oder grauen Haaren</span>
-          <span class="lang en">Works on every skin and hair type, including light, fine or grey hair</span>
-        </li>
-        <li>
-          <span class="lang de">Präzise genug für Gesicht und kleinste Zonen</span>
-          <span class="lang en">Precise enough for the face and the smallest areas</span>
-        </li>
-      </app-guide-checklist>
+        </p>
+        <app-guide-checklist>
+          <li>
+            <span class="lang de">Die einzige in Deutschland rechtlich als permanent anerkannte Methode der Haarentfernung</span>
+            <span class="lang en">The only hair removal method legally recognised as permanent in Germany</span>
+          </li>
+          <li>
+            <span class="lang de">Jede Haarwurzel wird einzeln und endgültig verödet</span>
+            <span class="lang en">Every hair root is deactivated individually and for good</span>
+          </li>
+          <li>
+            <span class="lang de">Wirkt bei jedem Haut- und Haartyp, auch bei hellen, feinen oder grauen Haaren</span>
+            <span class="lang en">Works on every skin and hair type, including light, fine or grey hair</span>
+          </li>
+          <li>
+            <span class="lang de">Präzise genug für Gesicht und kleinste Zonen</span>
+            <span class="lang en">Precise enough for the face and the smallest areas</span>
+          </li>
+        </app-guide-checklist>
+      </app-guide-media>
       <app-guide-note variant="win" [label]="t('Dein Vorteil', 'Your benefit')">
         <span class="lang de">
           Elektrolyse wirkt völlig unabhängig von Haarfarbe und Hormonlage, auch bei hormonell
@@ -157,16 +161,25 @@
       [heading]="t('Für wen sich Elektrolyse besonders eignet', 'Who electrolysis is especially suited to')"
       sectionId="geeignet"
     >
-      <p class="gd-lead-p gd-read" appReveal>
-        <span class="lang de">
+      <app-guide-media
+        image="assets/images/treatment/chin.webp"
+        [imageAlt]="
+          t(
+            'Nadelepilation am Kinn: Jedes Haar wird einzeln mit feiner Sonde behandelt',
+            'Electrolysis on the chin: each hair is treated individually with a fine probe'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
           Weil die Elektrolyse jedes Haar einzeln behandelt, ist sie unschlagbar präzise, ideal
           überall dort, wo andere Methoden nicht ausreichen.
-        </span>
-        <span class="lang en">
+        </p>
+        <p class="lang en">
           Because electrolysis treats each hair individually, it is unbeatably precise, ideal
           everywhere other methods fall short.
-        </span>
-      </p>
+        </p>
+      </app-guide-media>
       <div class="gd-split">
         <app-guide-panel [heading]="t('Ideal bei', 'Ideal for')" tone="forest">
           <li>
@@ -263,12 +276,12 @@
         </li>
         <li>
           <span class="lang de">
-            <strong>Das Ergebnis.</strong> Behandelte Follikel wachsen nicht mehr nach, Zone für
-            Zone wirst du dauerhaft und endgültig haarfrei.
+            <strong>Das Ergebnis.</strong> Aus behandelten Haarwurzeln wächst kein Haar mehr nach,
+            Zone für Zone wirst du permanent haarfrei.
           </span>
           <span class="lang en">
-            <strong>The result.</strong> Treated follicles no longer grow back, and area by area you
-            become permanently and definitively hair-free.
+            <strong>The result.</strong> Treated hair roots grow no more hair, and area by area you
+            become permanently hair-free.
           </span>
         </li>
       </app-guide-steps>
@@ -346,6 +359,7 @@
     </app-guide-section>
 
     <app-guide-cta
+      [tagline]="t('Für immer glatt.', 'Smooth for good.')"
       [heading]="
         t(
           'Sichere dir deine erste Behandlung zum kleinen Preis',
