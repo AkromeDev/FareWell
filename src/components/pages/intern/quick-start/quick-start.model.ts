@@ -165,10 +165,45 @@ export interface QsSteps extends QsSectionBase {
 /** Preise als Etiketten, z. B. ein Preisvorschlag. */
 export interface QsPrices extends QsSectionBase {
   kind: 'prices';
-  items: { name: Txt; minutes: number; price: number; note?: Txt }[];
+  /** highlight: die eine Massage, die hervorgehoben wird (z. B. die Groupon-Basis). */
+  items: { name: Txt; minutes: number; price: number; note?: Txt; highlight?: boolean }[];
 }
 
-export type QsSection = QsOptions | QsRules | QsWeek | QsCourses | QsPhrases | QsLevels | QsSteps | QsPrices;
+/** Ein Wochenrhythmus: wenige Aktionen, die sich Woche für Woche abwechseln. */
+export interface QsWeeks extends QsSectionBase {
+  kind: 'weeks';
+  concepts: { key: string; label: Txt; detail: Txt; icon: QsIconName; tone: Tone; source?: Txt }[];
+  /** Jede Woche ab ihrem Montag (ISO-Datum) mit der Aktion, die dann läuft. */
+  weeks: { from: string; key: string; note?: Txt }[];
+}
+
+/** Partner (z. B. Hotels), jeder mit eigenem Code und dem Stand der Gespräche. */
+export interface QsPartners extends QsSectionBase {
+  kind: 'partners';
+  flow: { icon: QsIconName; label: Txt }[];
+  offer: { title: Txt; detail: Txt };
+  items: {
+    name: string;
+    address: string;
+    /** Gehminuten von der Frauentorgraben 5, geschätzt. */
+    walk?: number;
+    code: string;
+    status: 'plan' | 'besucht' | 'dabei' | 'nein';
+    note?: Txt;
+  }[];
+}
+
+export type QsSection =
+  | QsOptions
+  | QsRules
+  | QsWeek
+  | QsCourses
+  | QsPhrases
+  | QsLevels
+  | QsSteps
+  | QsPrices
+  | QsWeeks
+  | QsPartners;
 
 export interface QsTodo {
   owner: Owner;

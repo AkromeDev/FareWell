@@ -13,10 +13,12 @@ import {
   Owner,
   QsExample,
   QsLang,
+  QsPartners,
   QsSection,
   QsSplit,
   QsTodo,
   QsWeek,
+  QsWeeks,
   QuickStartContent,
   Txt,
   daysBetween,
@@ -73,6 +75,11 @@ const UI = {
     test: 'Testsiegel: diese Fassung ist nur zur Vorschau versiegelt und darf so nicht online gehen.',
     language: 'Sprache',
     weekCaption: 'Wochenplan Deutsch, Minuten pro Tag',
+    thisWeek: 'diese Woche',
+    walk: (n: number) => `${n} Min. zu Fuß`,
+    partnersIn: (n: number, total: number) => `${n} von ${total} dabei`,
+    partnerStatus: { plan: 'geplant', besucht: 'besucht', dabei: 'dabei', nein: 'abgesagt' },
+    highlight: 'Groupon Basis',
   },
   uk: {
     nav: { ziel: 'Мета', plan: 'План', wege: 'Шляхи', geld: 'Гроші', ads: 'Google', todo: 'Завдання', fragen: 'Питання' },
@@ -116,6 +123,11 @@ const UI = {
     test: 'Тестова печатка: ця версія лише для перегляду і не може бути опублікована.',
     language: 'Мова',
     weekCaption: 'Тижневий план німецької, хвилин на день',
+    thisWeek: 'цей тиждень',
+    walk: (n: number) => `${n} хв пішки`,
+    partnersIn: (n: number, total: number) => `${n} з ${total} вже партнери`,
+    partnerStatus: { plan: 'заплановано', besucht: 'відвідано', dabei: 'партнер', nein: 'відмовився' },
+    highlight: 'база для Groupon',
   },
 };
 
@@ -150,7 +162,7 @@ function dueKey(due?: string): string {
   selector: 'app-quick-start',
   imports: [QsIconComponent, UnlockPanelComponent, QsDonutComponent, QsStackBarComponent, QsWeekPlanComponent],
   templateUrl: './quick-start.component.html',
-  styleUrl: './quick-start.component.scss',
+  styleUrls: ['./quick-start.component.scss', './quick-start-sections.scss'],
 })
 export class QuickStartComponent {
   private readonly route = inject(ActivatedRoute);
@@ -324,6 +336,32 @@ export class QuickStartComponent {
 
   weekDays(section: QsWeek): WeekDay[] {
     return section.days.map((d) => ({ day: this.t(d.day), parts: d.parts }));
+  }
+
+  /** Die Wochen des Rhythmus mit Ende, Aktion und der Markierung „diese Woche“. */
+  weekCells(section: QsWeeks) {
+    const today = this.today();
+    const byKey = new Map(section.concepts.map((k) => [k.key, k]));
+    return section.weeks.map((w) => {
+      const concept = byKey.get(w.key);
+      const offset = today ? daysBetween(w.from, today) : -1;
+      const end = new Date(Date.UTC(+w.from.slice(0, 4), +w.from.slice(5, 7) - 1, +w.from.slice(8, 10) + 6));
+      return {
+        from: w.from,
+        to: end.toISOString().slice(0, 10),
+        label: this.t(concept?.label),
+        icon: concept?.icon ?? 'spark',
+        tone: concept?.tone ?? 'muted',
+        note: this.t(w.note),
+        current: offset >= 0 && offset <= 6,
+      };
+    });
+  }
+
+  partnerCount(section: QsPartners): { done: number; total: number; pct: number } {
+    const done = section.items.filter((p) => p.status === 'dabei').length;
+    const total = section.items.length;
+    return { done, total, pct: total ? (done / total) * 100 : 0 };
   }
 
   /** Navigation: feste Abschnitte plus die der Person, in Seitenreihenfolge. */

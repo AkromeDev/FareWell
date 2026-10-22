@@ -36,6 +36,7 @@ const PATHS = {
   mail: 'M3 5h18v14H3z M3 6l9 7 9-7',
   hand: 'M7 11V5a1.5 1.5 0 0 1 3 0v5 M10 10V3.5a1.5 1.5 0 0 1 3 0V10 M13 10V4.5a1.5 1.5 0 0 1 3 0V11 M16 11V7.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-1a7 7 0 0 1-5.6-2.8L3 15a1.5 1.5 0 0 1 2.3-2L7 14',
   arrow: 'M4 12h16 M14 6l6 6-6 6',
+  hotel: 'M4 21V4h11v17 M15 9h5v12 M2 21h20 M7.5 8h4 M7.5 12h4 M7.5 16h4 M17.5 13h.01 M17.5 17h.01',
 } as const;
 
 export type QsIconName = keyof typeof PATHS;

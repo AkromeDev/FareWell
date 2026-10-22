@@ -389,12 +389,85 @@
             @case ('prices') {
               <ul class="prices">
                 @for (p of s.items; track $index) {
-                  <li class="price card">
+                  <li class="price card" [class.price--star]="p.highlight">
+                    @if (p.highlight) {
+                      <span class="pill pill--gold"><app-qs-icon name="ticket" [size]="14" /> {{ u.highlight }}</span>
+                    }
                     <span class="price-name">{{ t(p.name) }}</span>
                     <span class="price-min"><app-qs-icon name="clock" [size]="16" /> {{ p.minutes }} {{ u.minutes }}</span>
                     <strong class="price-value">{{ euro(p.price) }}</strong>
                     @if (p.note) {
                       <span class="price-note">{{ t(p.note) }}</span>
+                    }
+                  </li>
+                }
+              </ul>
+            }
+
+            @case ('weeks') {
+              <ul class="concepts">
+                @for (k of s.concepts; track k.key) {
+                  <li class="concept concept--{{ k.tone }}">
+                    <span class="concept-icon"><app-qs-icon [name]="k.icon" /></span>
+                    <h3 class="concept-name">{{ t(k.label) }}</h3>
+                    <p class="concept-detail">{{ t(k.detail) }}</p>
+                    @if (k.source) {
+                      <p class="concept-source">{{ t(k.source) }}</p>
+                    }
+                  </li>
+                }
+              </ul>
+              <ol class="weeks">
+                @for (w of weekCells(s); track w.from) {
+                  <li class="wk wk--{{ w.tone }}" [class.wk--now]="w.current">
+                    <span class="wk-date">{{ short(w.from) }} – {{ short(w.to) }}</span>
+                    <span class="wk-name"><app-qs-icon [name]="w.icon" [size]="18" /> {{ w.label }}</span>
+                    @if (w.note) {
+                      <span class="wk-note">{{ w.note }}</span>
+                    }
+                    @if (w.current) {
+                      <span class="wk-now">{{ u.thisWeek }}</span>
+                    }
+                  </li>
+                }
+              </ol>
+            }
+
+            @case ('partners') {
+              <ol class="steps">
+                @for (step of s.flow; track $index) {
+                  <li class="step">
+                    <span class="step-dot"><app-qs-icon [name]="step.icon" [size]="22" /></span>
+                    <span class="step-label">{{ t(step.label) }}</span>
+                  </li>
+                }
+              </ol>
+              <div class="partner-offer">
+                <span class="partner-offer-icon"><app-qs-icon name="tag" [size]="28" /></span>
+                <div>
+                  <p class="partner-offer-title">{{ t(s.offer.title) }}</p>
+                  <p class="partner-offer-detail">{{ t(s.offer.detail) }}</p>
+                </div>
+              </div>
+              @let count = partnerCount(s);
+              <div class="partner-meter" role="img" [attr.aria-label]="u.partnersIn(count.done, count.total)">
+                <span class="partner-meter-bar" aria-hidden="true"><span [style.width.%]="count.pct"></span></span>
+                <span class="partner-meter-label" aria-hidden="true">{{ u.partnersIn(count.done, count.total) }}</span>
+              </div>
+              <ul class="partners">
+                @for (p of s.items; track p.code) {
+                  <li class="partner card">
+                    <div class="partner-head">
+                      <h3 class="partner-name">{{ p.name }}</h3>
+                      <span class="pill pstatus pstatus--{{ p.status }}">{{ u.partnerStatus[p.status] }}</span>
+                    </div>
+                    <p class="partner-line"><app-qs-icon name="pin" [size]="16" /> {{ p.address }}</p>
+                    @if (p.walk) {
+                      <p class="partner-line"><app-qs-icon name="clock" [size]="16" /> {{ u.walk(p.walk) }}</p>
+                    }
+                    <p class="code"><span>{{ u.code }}</span> <strong>{{ p.code }}</strong></p>
+                    @if (p.note) {
+                      <p class="partner-note">{{ t(p.note) }}</p>
                     }
                   </li>
                 }
