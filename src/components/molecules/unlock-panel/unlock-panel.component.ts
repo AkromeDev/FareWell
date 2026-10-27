@@ -33,7 +33,7 @@ const WORDS: Record<UnlockLang, LockWords> = {
     wrong: 'Dieses Passwort öffnet die Seite nicht.',
     missing: 'Diese Seite ist noch nicht freigegeben.',
     broken: 'Die Seite ließ sich nicht lesen. Bitte Joé Bescheid geben.',
-    note: 'Nichts wird gespeichert oder gesendet. Neu laden schließt die Seite wieder.',
+    note: 'Dein Passwort wird weder gespeichert noch gesendet. Neu laden schließt die Seite wieder.',
   },
   uk: {
     eyebrow: 'Внутрішня сторінка · FareWell',
@@ -45,7 +45,7 @@ const WORDS: Record<UnlockLang, LockWords> = {
     wrong: 'Цей пароль не відкриває сторінку.',
     missing: 'Ця сторінка ще не готова.',
     broken: 'Сторінку не вдалося прочитати. Будь ласка, напиши Жое.',
-    note: 'Нічого не зберігається і не надсилається. Після перезавантаження сторінка знову закрита.',
+    note: 'Твій пароль не зберігається і не надсилається. Після перезавантаження сторінка знову закрита.',
   },
 };
 

@@ -1,4 +1,4 @@
-import { Component, afterNextRender, computed, inject, signal, viewChild } from '@angular/core';
+import { Component, DestroyRef, afterNextRender, computed, inject, signal, viewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QsIconComponent } from 'src/components/atoms/qs-icon/qs-icon.component';
 import { QsDonutComponent } from 'src/components/molecules/qs-charts/qs-donut.component';
@@ -7,6 +7,7 @@ import { QsWeekPlanComponent, WeekDay, WeekLegend } from 'src/components/molecul
 import { ChartPart } from 'src/components/molecules/qs-charts/tones';
 import { UnlockError, UnlockPanelComponent } from 'src/components/molecules/unlock-panel/unlock-panel.component';
 import { InternSealService, SealedEnvelope } from 'src/services/intern-seal.service';
+import { InternTick, InternTicksService } from 'src/services/intern-ticks.service';
 import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
 import {
@@ -24,6 +25,7 @@ import {
   daysBetween,
   euro,
   shortDate,
+  todoKey,
   tx,
 } from './quick-start.model';
 
@@ -60,6 +62,8 @@ const UI = {
     due: 'bis',
     done: 'erledigt',
     open: 'offen',
+    tickNote: 'Zum Abhaken anklicken. Ihr seht beide dieselben Häkchen. Gespeichert wird nur das Häkchen, nie der Text.',
+    tickError: 'Das Häkchen ließ sich gerade nicht speichern. Bitte später noch einmal.',
     questions: 'Zu klären',
     questionsTitle: 'Fragen an dich',
     to: 'an',
@@ -111,6 +115,8 @@ const UI = {
     due: 'до',
     done: 'зроблено',
     open: 'відкрито',
+    tickNote: 'Натисни, щоб відмітити. Ви обоє бачите ті самі позначки. Зберігається лише позначка, ніколи не текст.',
+    tickError: 'Позначку зараз не вдалося зберегти. Спробуй, будь ласка, пізніше.',
     questions: 'Треба з’ясувати',
     questionsTitle: 'Питання до тебе',
     to: 'до',
@@ -175,6 +181,8 @@ export class QuickStartComponent {
   private readonly seal = inject(InternSealService);
   private readonly seo = inject(SeoService);
   private readonly language = inject(LanguageService);
+  private readonly ticksStore = inject(InternTicksService);
+  private readonly destroyRef = inject(DestroyRef);
 
   private readonly panel = viewChild(UnlockPanelComponent);
 
@@ -186,6 +194,16 @@ export class QuickStartComponent {
   readonly content = signal<QuickStartContent | null>(null);
   readonly isTest = signal(false);
   readonly today = signal<string | null>(null);
+
+  /** Die gemeinsamen Häkchen nach Kennung; null, solange sie nicht geladen sind: dann ist die Liste nur zum Lesen. */
+  readonly ticks = signal<Map<string, InternTick> | null>(null);
+  readonly tickError = signal(false);
+  readonly canTick = computed(() => this.ticks() !== null);
+  /** Kennung im Speicher je Aufgabe (todoKey → Hash), nach dem Öffnen berechnet. */
+  private readonly tickIds = signal<Map<string, string>>(new Map());
+  /** Häkchen werden nacheinander gespeichert; solange eins unterwegs ist, wird nicht neu geladen. */
+  private saving = 0;
+  private saveQueue: Promise<unknown> = Promise.resolve();
 
   private envelope: SealedEnvelope | null = null;
 
@@ -211,7 +229,19 @@ export class QuickStartComponent {
       noindex: true,
       alternates: false,
     });
-    afterNextRender(() => this.today.set(isoToday()));
+    afterNextRender(() => {
+      this.today.set(isoToday());
+      // Was die andere Person abgehakt hat: jede Minute und beim Zurückkehren auf die Seite neu laden.
+      const refresh = () => {
+        if (document.visibilityState === 'visible') void this.refreshTicks();
+      };
+      const timer = setInterval(refresh, 60_000);
+      document.addEventListener('visibilitychange', refresh);
+      this.destroyRef.onDestroy(() => {
+        clearInterval(timer);
+        document.removeEventListener('visibilitychange', refresh);
+      });
+    });
   }
 
   /** Text in der aktuellen Sprache. */
@@ -248,6 +278,7 @@ export class QuickStartComponent {
       this.isTest.set(this.envelope.test);
       this.content.set(opened);
       this.state.set('open');
+      void this.startTicks(opened);
       // Nach dem Öffnen an den Anfang, damit der Fokus nicht im leeren Formular hängt.
       setTimeout(() => document.getElementById('qs-top')?.focus());
     } catch {
@@ -258,9 +289,67 @@ export class QuickStartComponent {
 
   lockAgain(): void {
     this.content.set(null);
+    this.ticks.set(null);
+    this.tickIds.set(new Map());
+    this.tickError.set(false);
     this.state.set('locked');
     this.error.set('');
     window.scrollTo({ top: 0 });
+  }
+
+  // --- Häkchen --------------------------------------------------------------
+
+  /** Lädt die gemeinsamen Häkchen, wenn die Seite einen sync-Schlüssel hat. */
+  private async startTicks(content: QuickStartContent): Promise<void> {
+    if (!content.sync) return;
+    const ids = new Map<string, string>();
+    for (const todo of content.todos) {
+      const key = todoKey(todo);
+      ids.set(key, await this.ticksStore.itemId(content.sync, key));
+    }
+    this.tickIds.set(ids);
+    await this.refreshTicks();
+  }
+
+  /** Holt den Stand vom Speicher. Schlägt das fehl, bleibt der bisherige Stand stehen. */
+  private async refreshTicks(): Promise<void> {
+    const secret = this.content()?.sync;
+    if (!secret || this.saving > 0) return;
+    const loaded = await this.ticksStore.load(secret);
+    // Inzwischen geschlossen, gewechselt oder abgehakt: dieser Stand ist schon alt.
+    if (!loaded || this.content()?.sync !== secret || this.saving > 0) return;
+    this.ticks.set(loaded);
+  }
+
+  /** Erledigt: das gemeinsame Häkchen, sonst der Stand aus dem Inhalt. */
+  isDone(todo: QsTodo): boolean {
+    const id = this.tickIds().get(todoKey(todo));
+    const tick = id ? this.ticks()?.get(id) : undefined;
+    return tick ? tick.done : (todo.done ?? false);
+  }
+
+  /** Hakt ab oder wieder auf, sofort auf dem Bildschirm; geht das Speichern schief, springt es zurück. */
+  async toggleTodo(todo: QsTodo): Promise<void> {
+    const secret = this.content()?.sync;
+    const id = this.tickIds().get(todoKey(todo));
+    const ticks = this.ticks();
+    if (!secret || !id || !ticks) return;
+    const before = ticks.get(id);
+    const done = !this.isDone(todo);
+    this.ticks.set(new Map(ticks).set(id, { done, at: new Date().toISOString() }));
+    this.tickError.set(false);
+    this.saving++;
+    const run = this.saveQueue.then(() => this.ticksStore.set(secret, id, done));
+    this.saveQueue = run;
+    const saved = await run;
+    this.saving--;
+    if (!saved && this.content()?.sync === secret) {
+      const next = new Map(this.ticks() ?? []);
+      if (before) next.set(id, before);
+      else next.delete(id);
+      this.ticks.set(next);
+      this.tickError.set(true);
+    }
   }
 
   // --- Zeitleiste -----------------------------------------------------------
@@ -398,7 +487,11 @@ export class QuickStartComponent {
     return order
       .filter((o, i) => order.indexOf(o) === i && byOwner.has(o))
       .map((owner) => {
-        const items = [...byOwner.get(owner)!].sort((a, b) => Number(a.done ?? false) - Number(b.done ?? false) || dueKey(a.due).localeCompare(dueKey(b.due)));
+        // Nur nach Datum: eine abgehakte Aufgabe bleibt stehen, statt unter dem Finger wegzuspringen.
+        const items = byOwner
+          .get(owner)!
+          .map((todo) => ({ todo, key: todoKey(todo), done: this.isDone(todo) }))
+          .sort((a, b) => dueKey(a.todo.due).localeCompare(dueKey(b.todo.due)));
         return { owner, items, open: items.filter((i) => !i.done).length };
       });
   });

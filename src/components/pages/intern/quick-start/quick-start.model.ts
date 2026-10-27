@@ -29,6 +29,11 @@ export interface QuickStartContent {
   /** Start und Ende als ISO-Datum, z. B. „2026-11-15“. */
   start: string;
   end: string;
+  /**
+   * Geheimer Schlüssel für die gemeinsamen Häkchen der Aufgaben, 64 Hex-Zeichen.
+   * Nie ändern, sonst sind die Häkchen weg. Fehlt er, ist die Liste nur zum Lesen.
+   */
+  sync?: string;
   hero: { title: Txt; goal: Txt; sub: Txt };
   /** Was jeden Monat neben dem Video steht: „Rabatt des Monats“ oder, beim Arzt, „Thema des Monats“. */
   offerLabel: Txt;
@@ -224,11 +229,19 @@ export type QsSection =
   | QsPartners;
 
 export interface QsTodo {
+  /** Feste Kennung fürs Häkchen. Fehlt sie, gilt der deutsche Text: wer ihn ändert, verliert das Häkchen. */
+  id?: string;
   owner: Owner;
   text: Txt;
   /** Fällig am, DD.MM.YYYY. */
   due?: string;
+  /** Stand aus dem Inhalt; ein gemeinsames Häkchen geht vor. */
   done?: boolean;
+}
+
+/** Woran das Häkchen einer Aufgabe hängt. */
+export function todoKey(todo: QsTodo): string {
+  return todo.id ?? tx(todo.text, 'de');
 }
 
 export interface QsQuestion {

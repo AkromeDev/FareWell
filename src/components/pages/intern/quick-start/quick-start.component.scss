@@ -783,7 +783,7 @@
 
 .todo {
   display: grid;
-  grid-template-columns: 22px 1fr auto;
+  grid-template-columns: 1fr auto;
   gap: 10px;
   align-items: start;
   padding: 10px 0;
@@ -792,6 +792,21 @@
   &--done .todo-text {
     color: var(--ink-dim);
     text-decoration: line-through;
+  }
+}
+
+.todo-main {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: start;
+
+  &--click {
+    cursor: pointer;
+
+    &:hover .todo-box {
+      border-color: var(--emerald);
+    }
   }
 }
 
@@ -808,6 +823,20 @@
   .todo--done & {
     background: var(--emerald);
     border-color: var(--emerald);
+  }
+
+  .todo-input:focus-visible + & {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+}
+
+// Bleibt leer im Baum, damit Screenreader die Meldung hören, sobald sie kommt.
+.todo-error {
+  color: var(--qs-rose);
+
+  &:empty {
+    margin: 0;
   }
 }
 

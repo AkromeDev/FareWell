@@ -537,21 +537,35 @@
                 <span class="todo-count">{{ col.open }} {{ u.open }}</span>
               </h3>
               <ul class="todos">
-                @for (todo of col.items; track $index) {
-                  <li class="todo" [class.todo--done]="todo.done">
-                    <span class="todo-box" aria-hidden="true">
-                      @if (todo.done) {
-                        <app-qs-icon name="check" [size]="16" />
-                      }
-                    </span>
-                    <span class="todo-text">
-                      @if (todo.done) {
-                        <span class="sr-only">{{ u.done }}: </span>
-                      }
-                      {{ t(todo.text) }}
-                    </span>
-                    @if (todo.due) {
-                      <span class="todo-due">{{ u.due }} {{ todo.due.slice(0, 6) }}</span>
+                @for (item of col.items; track item.key) {
+                  <li class="todo" [class.todo--done]="item.done">
+                    @if (canTick()) {
+                      <label class="todo-main todo-main--click">
+                        <input type="checkbox" class="todo-input sr-only" [checked]="item.done" (change)="toggleTodo(item.todo)" />
+                        <span class="todo-box" aria-hidden="true">
+                          @if (item.done) {
+                            <app-qs-icon name="check" [size]="16" />
+                          }
+                        </span>
+                        <span class="todo-text">{{ t(item.todo.text) }}</span>
+                      </label>
+                    } @else {
+                      <span class="todo-main">
+                        <span class="todo-box" aria-hidden="true">
+                          @if (item.done) {
+                            <app-qs-icon name="check" [size]="16" />
+                          }
+                        </span>
+                        <span class="todo-text">
+                          @if (item.done) {
+                            <span class="sr-only">{{ u.done }}: </span>
+                          }
+                          {{ t(item.todo.text) }}
+                        </span>
+                      </span>
+                    }
+                    @if (item.todo.due) {
+                      <span class="todo-due">{{ u.due }} {{ item.todo.due.slice(0, 6) }}</span>
                     }
                   </li>
                 }
@@ -559,6 +573,14 @@
             </div>
           }
         </div>
+        @if (canTick()) {
+          <p class="block-note">{{ u.tickNote }}</p>
+        }
+        <p class="block-note todo-error" role="status" aria-live="polite">
+          @if (tickError()) {
+            {{ u.tickError }}
+          }
+        </p>
       </div>
     </section>
 
