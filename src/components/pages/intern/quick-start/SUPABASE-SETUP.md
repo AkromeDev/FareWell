@@ -41,6 +41,7 @@ create table public.qs_ticks (
 -- RLS an und keine Policies: direkt kommt niemand an die Tabellen, nur über die Funktionen.
 alter table public.qs_pages enable row level security;
 alter table public.qs_ticks enable row level security;
+revoke all on public.qs_pages, public.qs_ticks from anon, authenticated;
 
 -- Alle Häkchen einer Seite. Ein falscher Schlüssel bekommt eine leere Liste.
 create function public.qs_ticks_get(p_secret text)
@@ -79,6 +80,9 @@ grant execute on function public.qs_tick_set(text, text, boolean) to anon, authe
 insert into public.qs_pages (page, label) values
   ('b2caf4e54257305be7342e6dc86170af8a5aa6824b6c919bebfe4ada0d9ff840', 'quick-start-ruslana'),
   ('00ad612173e2b9eecbbc323a9b242455e276f455bf3f3035f99ef01fa44ad368', 'quick-start-leo');
+
+-- Die Schnittstelle kennt die zwei Funktionen sofort, nicht erst beim nächsten Neuladen.
+notify pgrst, 'reload schema';
 ```
 
 Die zwei Hashes sind nicht geheim: aus ihnen lässt sich der Schlüssel nicht zurückrechnen.
