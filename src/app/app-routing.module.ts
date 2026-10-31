@@ -603,6 +603,22 @@ function localizedRoutes(lang: PageLang): Routes {
       )
     },
     {
+      path: 'karriere/raum-mieten-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/karriere/raum-mieten/raum-mieten.component')
+          .then(m => m.RaumMietenComponent),
+      data: d(
+        {
+          title: 'Raum mieten in Nürnberg für Kosmetik, Massage & Yoga | FareWell',
+          description: 'Behandlungsraum zur Untermiete in Nürnberg, Frauentorgraben 5: feste Miete ab 200 € im Monat oder 0 € Fixkosten mit Umsatzbeteiligung. Für selbständige Kosmetiker:innen, Masseur:innen, Yoga- und Tanzlehrer:innen.'
+        },
+        {
+          title: 'Rent a Room in Nuremberg for Beauty, Massage & Yoga | FareWell',
+          description: 'A treatment room to sublet in Nuremberg, Frauentorgraben 5: a fixed rent from 200 € a month, or 0 € fixed costs on a revenue share. For freelance beauticians, massage therapists, yoga and dance teachers.'
+        }
+      )
+    },
+    {
       path: 'karriere',
       loadComponent: () =>
         import('../components/pages/karriere/karriere-hub/karriere-hub.component')

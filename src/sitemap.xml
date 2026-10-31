@@ -166,19 +166,19 @@
   <!-- Karriere: Übersicht plus je eine Stellenseite (JobPosting-Markup). -->
   <url>
     <loc>https://farewell.salon/karriere</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://farewell.salon/karriere/kosmetik-nuernberg</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://farewell.salon/karriere/masseur-nuernberg</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.6</priority>
   </url>
 
@@ -190,13 +190,13 @@
 
   <url>
     <loc>https://farewell.salon/karriere/physiotherapeut-nuernberg</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://farewell.salon/karriere/freelancer-road</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.6</priority>
   </url>
 
@@ -208,19 +208,25 @@
 
   <url>
     <loc>https://farewell.salon/karriere/yoga-nuernberg</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://farewell.salon/karriere/tanzlehrer-nuernberg</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://farewell.salon/karriere/botox-nuernberg</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-10-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://farewell.salon/karriere/raum-mieten-nuernberg</loc>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.6</priority>
   </url>
 
@@ -275,16 +281,17 @@
   <url><loc>https://farewell.salon/en/ratgeber/epilation-krankenkasse</loc><lastmod>2026-09-05</lastmod><priority>0.5</priority></url>
   <url><loc>https://farewell.salon/en/ratgeber/epilation-krankenkasse-hormonell</loc><lastmod>2026-09-05</lastmod><priority>0.5</priority></url>
   <url><loc>https://farewell.salon/en/ratgeber/haarentfernung-steuer-absetzen</loc><lastmod>2026-08-27</lastmod><priority>0.5</priority></url>
-  <url><loc>https://farewell.salon/en/karriere</loc><lastmod>2026-08-31</lastmod><priority>0.4</priority></url>
-  <url><loc>https://farewell.salon/en/karriere/kosmetik-nuernberg</loc><lastmod>2026-08-07</lastmod><priority>0.4</priority></url>
-  <url><loc>https://farewell.salon/en/karriere/masseur-nuernberg</loc><lastmod>2026-08-31</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere</loc><lastmod>2026-10-31</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/kosmetik-nuernberg</loc><lastmod>2026-10-31</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/masseur-nuernberg</loc><lastmod>2026-10-31</lastmod><priority>0.4</priority></url>
   <url><loc>https://farewell.salon/en/karriere/masseur-bademeister-blind-nuernberg</loc><lastmod>2026-08-31</lastmod><priority>0.4</priority></url>
-  <url><loc>https://farewell.salon/en/karriere/physiotherapeut-nuernberg</loc><lastmod>2026-08-31</lastmod><priority>0.4</priority></url>
-  <url><loc>https://farewell.salon/en/karriere/freelancer-road</loc><lastmod>2026-09-18</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/physiotherapeut-nuernberg</loc><lastmod>2026-10-31</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/freelancer-road</loc><lastmod>2026-10-31</lastmod><priority>0.4</priority></url>
   <url><loc>https://farewell.salon/en/karriere/freelancer-road/schritte</loc><lastmod>2026-09-18</lastmod><priority>0.3</priority></url>
-  <url><loc>https://farewell.salon/en/karriere/yoga-nuernberg</loc><lastmod>2026-08-07</lastmod><priority>0.4</priority></url>
-  <url><loc>https://farewell.salon/en/karriere/tanzlehrer-nuernberg</loc><lastmod>2026-08-07</lastmod><priority>0.4</priority></url>
-  <url><loc>https://farewell.salon/en/karriere/botox-nuernberg</loc><lastmod>2026-08-07</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/yoga-nuernberg</loc><lastmod>2026-10-31</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/tanzlehrer-nuernberg</loc><lastmod>2026-10-31</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/botox-nuernberg</loc><lastmod>2026-10-31</lastmod><priority>0.4</priority></url>
+  <url><loc>https://farewell.salon/en/karriere/raum-mieten-nuernberg</loc><lastmod>2026-10-31</lastmod><priority>0.4</priority></url>
   <url><loc>https://farewell.salon/en/mojoclipboard-support</loc><lastmod>2026-07-24</lastmod><priority>0.3</priority></url>
   <url><loc>https://farewell.salon/en/laser-haarentfernung-aktion-nuernberg</loc><lastmod>2026-07-24</lastmod><priority>0.7</priority></url>
   <url><loc>https://farewell.salon/en/ipl-dauerhafte-haarentfernung-aktion-nuernberg</loc><lastmod>2026-07-24</lastmod><priority>0.7</priority></url>

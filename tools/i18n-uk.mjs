@@ -71,6 +71,7 @@ const GROUP_RULES = [
   ['src/components/pages/karriere/yoga-karriere/', 'yoga-karriere'],
   ['src/components/pages/karriere/tanz-karriere/', 'tanz-karriere'],
   ['src/components/pages/karriere/botox-karriere/', 'botox-karriere'],
+  ['src/components/pages/karriere/raum-mieten/', 'raum-mieten'],
   ['src/components/pages/karriere/freelancer-road/gastro-road', 'gastro-road'],
   ['src/components/pages/karriere/freelancer-road/freelancer-road', 'freelancer-road'],
   ['src/components/pages/karriere/freelancer-road/', 'road'],

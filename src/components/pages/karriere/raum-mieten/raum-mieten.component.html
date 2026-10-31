@@ -1,0 +1,252 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+
+  <app-guide-hero
+    [kicker]="t('FareWell · Nürnberg · Raum mieten', 'FareWell · Nuremberg · Room for rent')"
+    [heading]="
+      t(
+        'Raum mieten in Nürnberg: einmieten statt neu eröffnen',
+        'Rent a room in Nuremberg: move in instead of opening your own'
+      )
+    "
+    tagline="Für immer sanft."
+    [lead]="
+      t(
+        'Du willst dich als Kosmetiker:in, Masseur:in oder Yoga-Lehrer:in selbständig machen und suchst Räume? Bei FareWell mietest du dich in ein eingerichtetes Studio im Zentrum ein: zur festen Miete ab 200 € im Monat oder ganz ohne Fixkosten mit Umsatzbeteiligung.',
+        'Want to go freelance as a beautician, massage therapist or yoga teacher and looking for a room? At FareWell you move into a fully set-up studio in the city centre: at a fixed rent from 200 € a month, or with no fixed costs at all on a revenue share.'
+      )
+    "
+    image="assets/images/farewell/studio.webp"
+    [imageAlt]="t('Der FareWell Salon in Nürnberg', 'The FareWell salon in Nuremberg')"
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Um dich selbständig zu machen, brauchst du kein eigenes Studio. Bei FareWell mietest du
+            dich in einen eingerichteten Raum ein und baust dort dein eigenes Angebot auf: eigene
+            Kund:innen, eigene Preise, eigener Name.
+          </span>
+          <span class="lang en">
+            You do not need a studio of your own to go freelance. At FareWell you move into a
+            set-up room and build your own offering there: your own clients, your own prices, your
+            own name.
+          </span>
+        </p>
+        <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
+          <span class="lang de">
+            FareWell ist ein Kosmetikstudio am Frauentorgraben 5, wenige Minuten vom Nürnberger
+            Hauptbahnhof. Mehrere Selbständige arbeiten hier bereits unter einem Dach, jede und
+            jeder mit eigenem Fach.
+          </span>
+          <span class="lang en">
+            FareWell is a beauty studio at Frauentorgraben 5, a few minutes from Nuremberg main
+            station. Several freelancers already work here under one roof, each with their own
+            craft.
+          </span>
+        </p>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <app-guide-section
+      index="01"
+      [heading]="t('Zwei Wege in den Raum', 'Two ways into the room')"
+      sectionId="modelle"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Du entscheidest, wie du zahlst. Beide Wege führen in denselben Raum, mit denselben
+          Zeitfenstern.
+        </span>
+        <span class="lang en">
+          You decide how you pay. Both ways lead into the same room, with the same time slots.
+        </span>
+      </p>
+
+      <div class="gd-cards gd-cards--2">
+        <app-guide-card
+          icon="🔑"
+          [heading]="t('Feste Miete, ab 200 € im Monat', 'Fixed rent, from 200 € a month')"
+        >
+          <span class="lang de">
+            Du zahlst einen festen Betrag und behältst alles, was du einnimmst. Planbar für alle,
+            die schon Stammkundschaft mitbringen. Ein fester Tag pro Woche kostet 200 € im Monat;
+            für mehr Tage oder einzelne Abende machen wir dir ein Angebot.
+          </span>
+          <span class="lang en">
+            You pay a fixed amount and keep everything you take in. Predictable for anyone who
+            already brings regular clients. One fixed day a week costs 200 € a month; for more
+            days or single evenings we will make you an offer.
+          </span>
+        </app-guide-card>
+
+        <app-guide-card
+          icon="🤝"
+          [heading]="t('Umsatzbeteiligung, 0 € Fixkosten', 'Revenue share, 0 € fixed costs')"
+          [revealDelay]="60"
+        >
+          <span class="lang de">
+            Keine Miete und kein Fixum: FareWell bekommt einen kleineren Anteil an dem, was du
+            tatsächlich umsetzt. Läuft ein Monat ruhig, zahlst du weniger.
+            <a [routerLink]="p('/karriere')" fragment="deal">So funktioniert der Deal</a>
+          </span>
+          <span class="lang en">
+            No rent and no flat fee: FareWell receives a smaller share of what you actually take
+            in. If a month is quiet, you pay less.
+            <a [routerLink]="p('/karriere')" fragment="deal">How the deal works</a>
+          </span>
+        </app-guide-card>
+      </div>
+
+      <div class="gd-read">
+        <app-guide-note variant="tip" [label]="t('Welcher Weg passt?', 'Which way fits?')">
+          <span class="lang de">
+            Faustregel: Wer schon einen vollen Kalender mitbringt, fährt mit der festen Miete meist
+            günstiger. Wer neu startet oder ein neues Angebot ausprobiert, trägt mit der
+            Umsatzbeteiligung kein Risiko.
+          </span>
+          <span class="lang en">
+            Rule of thumb: if you already bring a full calendar, a fixed rent usually works out
+            cheaper. If you are starting out or testing a new offering, the revenue share carries
+            no risk for you.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-guide-section
+      index="02"
+      [heading]="t('Der Raum und das Haus', 'The room and the house')"
+      sectionId="raum"
+    >
+      <div class="gd-read">
+        <app-guide-checklist>
+          <li>
+            {{
+              t(
+                'Ein eingerichteter Behandlungsraum mitten in Nürnberg, Frauentorgraben 5, wenige Minuten vom Hauptbahnhof',
+                'A fully set-up treatment room in the centre of Nuremberg, Frauentorgraben 5, a few minutes from the main station'
+              )
+            }}
+          </li>
+          <li>
+            {{
+              t(
+                'Ein eigener Raum für Massage und Körperarbeit, unabhängig von den Kosmetikzeiten',
+                'A room of its own for massage and bodywork, independent of the beauty hours'
+              )
+            }}
+          </li>
+          <li>
+            {{
+              t(
+                'Ein ruhiger Raum für kleine Gruppen und Einzelstunden, für Yoga, Tanz und andere Kurse',
+                'A quiet room for small groups and one-to-one sessions, for yoga, dance and other classes'
+              )
+            }}
+          </li>
+          <li>
+            {{
+              t(
+                'Immer nur eine Kosmetikerin zur gleichen Zeit: Dein Angebot ergänzt das Studio, statt es zu doppeln',
+                'Only ever one beautician at a time: your offering complements the studio rather than duplicating it'
+              )
+            }}
+          </li>
+          <li>
+            {{
+              t(
+                'Ein kleines Haus, in dem mehrere Selbständige sich die Räume teilen',
+                'A small house in which several freelancers share the rooms'
+              )
+            }}
+          </li>
+        </app-guide-checklist>
+
+        <app-guide-note variant="win" [label]="t('Was dazugehört', 'What is included')">
+          <span class="lang de">
+            Mit Umsatzbeteiligung ist alles dabei, was auf unseren Stellenseiten steht: Online-Buchung
+            über Salonkee, Wäsche, Hilfe beim eigenen Google-Business-Profil und ein Platz auf
+            unseren Kanälen. Was zur festen Miete dazugehört, legen wir im Gespräch gemeinsam fest.
+          </span>
+          <span class="lang en">
+            On a revenue share, everything listed on our job pages is included: online booking via
+            Salonkee, laundry, help with your own Google Business profile and a place on our
+            channels. What comes with a fixed rent we agree together in conversation.
+          </span>
+        </app-guide-note>
+      </div>
+    </app-guide-section>
+
+    <app-karriere-zeiten [role]="'uebersicht'" index="03" />
+
+    <app-guide-section
+      index="04"
+      [heading]="t('Für wen der Raum passt', 'Who the room suits')"
+      sectionId="berufe"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Für alle, die selbständig arbeiten und einen Ort in der Innenstadt brauchen. Zu jedem
+          Beruf gibt es eine eigene Seite mit Zeiten, Ausstattung und den Fragen, die dein Fach
+          betreffen.
+        </span>
+        <span class="lang en">
+          For anyone who works freelance and needs a place in the city centre. Each profession has
+          its own page with hours, equipment and the questions that concern your craft.
+        </span>
+      </p>
+
+      <div class="gd-cards gd-cards--2">
+        @for (beruf of berufe; track beruf.path; let i = $index) {
+          <app-guide-card [icon]="beruf.icon" [heading]="beruf.title" [revealDelay]="i * 60">
+            {{ beruf.text }}
+            <a
+              [routerLink]="p(beruf.path)"
+              [attr.aria-label]="t('Mehr erfahren', 'Learn more') + ': ' + beruf.title"
+              >{{ t('Mehr erfahren', 'Learn more') }}</a
+            >
+          </app-guide-card>
+        }
+      </div>
+    </app-guide-section>
+
+    <app-karriere-faq index="05" [entries]="faq" />
+
+    <app-karriere-apply
+      [subject]="t('Anfrage: Raum mieten bei FareWell', 'Enquiry: renting a room at FareWell')"
+      [headingOverride]="t('Raum anfragen', 'Ask about the room')"
+      [buttonOverride]="t('Jetzt anfragen', 'Send an enquiry')"
+    >
+      <span class="lang de">
+        Schreib uns, was du anbietest, an welchen Tagen oder Zeiten du den Raum brauchst und ob du
+        lieber eine feste Miete oder die Umsatzbeteiligung möchtest. Wir melden uns mit einem
+        Angebot und laden dich zu einem ersten Gespräch ins Studio ein.
+      </span>
+      <span class="lang en">
+        Write to us about what you offer, on which days or at which times you need the room, and
+        whether you would rather pay a fixed rent or work on the revenue share. We will come back
+        to you with an offer and invite you to a first conversation at the studio.
+      </span>
+    </app-karriere-apply>
+
+    <p class="gd-fine" style="margin-top: 2rem; text-align: center">
+      <span class="lang de">
+        Du suchst eher eine Zusammenarbeit als einen Raum?
+        <a [routerLink]="p('/karriere')">Alle offenen Positionen bei FareWell</a>
+      </span>
+      <span class="lang en">
+        Looking for a collaboration rather than a room?
+        <a [routerLink]="p('/karriere')">All open positions at FareWell</a>
+      </span>
+    </p>
+  </div>
+
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+</div>

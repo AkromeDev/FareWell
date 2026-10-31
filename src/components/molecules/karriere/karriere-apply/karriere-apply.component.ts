@@ -66,6 +66,8 @@ export class KarriereApplyComponent {
   /** Anker-id, damit Karten von der Hub-Seite hierher springen können. */
   @Input() sectionId = 'bewerben';
   @Input() headingOverride = '';
+  /** Knopftext überschreiben, z. B. „Jetzt anfragen“ auf der Raum-mieten-Seite. */
+  @Input() buttonOverride = '';
   /**
    * Eintrittstermin im Klartext. Muss wortgleich im JobPosting stehen; wird
    * von KarriereDetailPage.jobStartDate geliefert. Leer = nicht anzeigen.
@@ -90,7 +92,7 @@ export class KarriereApplyComponent {
   }
 
   get mailLabel(): string {
-    return this.language.t('Jetzt bewerben', 'Apply now');
+    return this.buttonOverride || this.language.t('Jetzt bewerben', 'Apply now');
   }
 
   get mailHref(): string {

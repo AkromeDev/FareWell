@@ -1,4 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import {
   GuideNoteComponent,
@@ -30,6 +31,7 @@ import {
     GuidePanelComponent,
     GuideNoteComponent,
     RevealOnScrollDirective,
+    RouterLink,
   ],
   template: `
     <app-guide-section [index]="index" [heading]="heading" [sectionId]="sectionId">
@@ -64,6 +66,21 @@ import {
           }}
         </app-guide-note>
 
+        <app-guide-note variant="tip" [label]="t('Lieber eine feste Miete?', 'Prefer a fixed rent?')">
+          <span class="lang de">
+            Wer schon Stammkundschaft mitbringt und lieber planbar zahlt, kann den Raum auch zu
+            einer festen Miete nutzen: ab 200 € im Monat für einen festen Tag pro Woche, mehr Tage
+            auf Anfrage.
+            <a [routerLink]="p('/karriere/raum-mieten-nuernberg')">Raum mieten in Nürnberg</a>
+          </span>
+          <span class="lang en">
+            If you already bring regular clients and prefer a predictable cost, you can also use
+            the room at a fixed rent: from 200 € a month for one fixed day a week, more days on
+            request.
+            <a [routerLink]="p('/karriere/raum-mieten-nuernberg')">Rent a room in Nuremberg</a>
+          </span>
+        </app-guide-note>
+
         <app-guide-note variant="tip" [label]="t('Du bleibst selbständig', 'You stay independent')">
           {{
             t(
@@ -94,6 +111,10 @@ export class KarriereDealComponent {
 
   t(de: string, en: string): string {
     return this.language.t(de, en);
+  }
+
+  p(path: string): string {
+    return this.language.localizePath(path);
   }
 
   get heading(): string {

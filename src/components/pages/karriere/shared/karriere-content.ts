@@ -188,8 +188,8 @@ export function karriereWeGive(t: Translate): KarriereDealItem[] {
     {
       title: t('Keine feste Miete', 'No fixed rent'),
       text: t(
-        'Du zahlst keine Raummiete und kein Fixum. Wir arbeiten mit einer Umsatzbeteiligung, die wir vor dem Start gemeinsam festlegen.',
-        'You pay no room rent and no flat fee. We work with a revenue share that we agree together before you start.'
+        'Du zahlst keine Raummiete und kein Fixum. Wir arbeiten mit einer Umsatzbeteiligung, die wir vor dem Start gemeinsam festlegen. Wer lieber planbar zahlt, kann den Raum auch zu einer festen Miete nutzen, ab 200 € im Monat für einen festen Tag pro Woche.',
+        'You pay no room rent and no flat fee. We work with a revenue share that we agree together before you start. If you prefer a predictable cost, you can also use the room at a fixed rent, from 200 € a month for one fixed day a week.'
       ),
     },
   ];
@@ -272,8 +272,8 @@ export function karriereFaqEntries(
           'What does using the space cost me, and how does the model work?'
         ),
         answer: t(
-          'Du zahlst keine feste Miete und kein Fixum. Wir arbeiten mit einer Umsatzbeteiligung: Du behältst den größeren Teil von dem, was du tatsächlich einnimmst, FareWell einen kleineren Anteil für Raum, Buchungssystem, Rahmen und Sichtbarkeit. Ausgenommen sind Umsätze über Plattformen wie Groupon oder Urban Sports Club: Davon nehmen wir nichts, die bleiben zu 100% bei dir. Die genaue Aufteilung und den Abrechnungsrhythmus halten wir im Erstgespräch schriftlich fest, bevor du startest.',
-          'You pay no fixed rent and no flat fee. We work with a revenue share: you keep the larger part of what you actually take in, FareWell keeps a smaller share for the room, the booking system, the frame around it and the visibility. Revenue from platforms such as Groupon or Urban Sports Club is excluded: we take nothing from it, 100% stays with you. We put the exact split and the settlement rhythm in writing at the first meeting, before you start.'
+          'Du zahlst keine feste Miete und kein Fixum. Wir arbeiten mit einer Umsatzbeteiligung: Du behältst den größeren Teil von dem, was du tatsächlich einnimmst, FareWell einen kleineren Anteil für Raum, Buchungssystem, Rahmen und Sichtbarkeit. Ausgenommen sind Umsätze über Plattformen wie Groupon oder Urban Sports Club: Davon nehmen wir nichts, die bleiben zu 100% bei dir. Die genaue Aufteilung und den Abrechnungsrhythmus halten wir im Erstgespräch schriftlich fest, bevor du startest. Wenn dir eine planbare feste Miete lieber ist, geht auch das: ab 200 € im Monat für einen festen Tag pro Woche, mehr Tage auf Anfrage.',
+          'You pay no fixed rent and no flat fee. We work with a revenue share: you keep the larger part of what you actually take in, FareWell keeps a smaller share for the room, the booking system, the frame around it and the visibility. Revenue from platforms such as Groupon or Urban Sports Club is excluded: we take nothing from it, 100% stays with you. We put the exact split and the settlement rhythm in writing at the first meeting, before you start. If you would rather pay a predictable fixed rent, that works too: from 200 € a month for one fixed day a week, more days on request.'
         ),
       },
       overrides.model
