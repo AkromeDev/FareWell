@@ -201,6 +201,19 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       path: '/behandlungen/level-44',
       image: 'assets/images/partner/level44-session-raum.jpg',
     },
+    {
+      num: '07',
+      titleDe: 'Ästhetische Medizin',
+      titleEn: 'Aesthetic Medicine',
+      descDe:
+        'Botulinumtoxin und Hyaluronsäure, ärztlich durchgeführt von Dr. med. Andrea Leo.',
+      descEn:
+        'Botulinum toxin and hyaluronic acid, performed by Dr. med. Andrea Leo.',
+      altDe: 'Dr. med. Andrea Leo, Arzt für ästhetische Medizin bei FareWell in Nürnberg',
+      altEn: 'Dr. med. Andrea Leo, physician for aesthetic medicine at FareWell in Nuremberg',
+      path: '/behandlungen/aesthetische-medizin',
+      image: 'assets/images/team/dr-andrea-leo.webp',
+    },
   ];
 
   scrollRail(direction: 1 | -1): void {

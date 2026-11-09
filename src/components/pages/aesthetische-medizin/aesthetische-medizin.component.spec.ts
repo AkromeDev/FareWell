@@ -32,9 +32,9 @@ describe('AesthetischeMedizinComponent', () => {
     }
   });
 
-  it('bleibt eine Vorschau: noindex, solange Vertrag und Preisliste fehlen', () => {
+  it('ist freigeschaltet: indexierbar', () => {
     const robots = document.querySelector('meta[name="robots"]');
-    expect(robots?.getAttribute('content')).toContain('noindex');
+    expect(robots?.getAttribute('content') ?? '').not.toContain('noindex');
   });
 
   it('zeigt zu jeder Behandlung einen Startpreis in beiden Sprachen', () => {

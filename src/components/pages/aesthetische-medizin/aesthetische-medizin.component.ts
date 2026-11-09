@@ -18,7 +18,6 @@ const PHONE_LABEL = '+49 157 5799 5694';
  * Anfrage per Mail an das Studio. Danach: Salonkee-Deeplink hier eintragen und
  * die beiden Beratungs-CTAs im Template auf target="_blank" umstellen.
  */
-const CONTACT_EMAIL = 'info@farewell.salon';
 const INSTAGRAM_URL = 'https://www.instagram.com/dr.leoaesthet1c/';
 
 /** Erstes Jahr der Zeitachse (Studienbeginn). */
@@ -486,10 +485,8 @@ const PRICED_GROUPS: PricedGroup[] = TREATMENT_GROUPS.map((group) => ({
  * Kooperationsarzt. Eine Vertrauensseite: Porträt, belegbare Zahlen, die
  * Laufbahn als Zeitstrahl, Qualifikationen, dann erst das Angebot.
  *
- * Status: versteckte Vorschau für den Arzt selbst (Zusage vom 24.09.2026).
- * Deshalb noindex, nicht in der Sitemap, nicht im Header, Footer oder in
- * llms.txt verlinkt. Vor der Freischaltung gehören Vertrag, Nachweise und
- * Preisliste auf den Tisch, siehe Personalordner.
+ * Status: freigeschaltet von Joé am 09.11.2026: indexierbar, in der Sitemap,
+ * im Menü „Behandlungen“ und in llms.txt. Gebucht wird über Salonkee.
  *
  * Der Zeitstrahl ist eine semantische Liste (jede Station mit Zeitraum, Ort,
  * Rolle und Art als Text); die Balken sind reine Dekoration (aria-hidden), auf
@@ -537,19 +534,21 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
     return this.language.t(de, en);
   }
 
-  get mailHref(): string {
-    const subject = this.t('Beratung ästhetische Medizin', 'Consultation: aesthetic medicine');
-    return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`;
-  }
+  /**
+   * Salonkee-Buchung seiner Botulinumtoxin-Zonen (serviceID 234759); dort sind
+   * auch Einzelbehandlungen (234760) und Masseter, Platysma, Hyperhidrose
+   * (234761) buchbar.
+   */
+  readonly bookingHref = 'https://salonkee.de/checkout/farewell?serviceID=234759';
 
-  /** Lead-Ereignis wie bei den Buchungs-Buttons der Startseite; die Mail öffnet normal weiter. */
+  /** Lead-Ereignis wie bei den Buchungs-Buttons der Startseite; der Link öffnet normal weiter. */
   trackLead(location: string): void {
     if (!this.isBrowser || typeof window.gtag !== 'function') return;
     window.gtag('event', 'generate_lead', {
       event_category: 'engagement',
       event_label: 'Beratung ästhetische Medizin',
       location,
-      destination: 'mail',
+      destination: 'salonkee',
     });
   }
 
@@ -572,8 +571,6 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
         'An aesthetic treatment at FareWell in Nuremberg',
       ),
       largeImage: true,
-      // Vorschau für den Arzt; wird erst mit Vertrag, Nachweisen und Preisliste indexierbar.
-      noindex: true,
     });
 
     this.seo.setJsonLd(this.jsonLdId, {

@@ -295,9 +295,7 @@ function localizedRoutes(lang: PageLang): Routes {
           )
         },
         // Ästhetische Medizin mit Dr. med. Andrea Leo als Kooperationsarzt.
-        // Vorerst eine versteckte Vorschau für den Arzt selbst: noindex, nicht
-        // in der Sitemap, nicht im Header, Footer oder in llms.txt verlinkt.
-        // Freigeschaltet wird sie erst mit Vertrag, Nachweisen und Preisliste.
+        // Freigeschaltet am 09.11.2026: indexierbar, Sitemap, Menü, llms.txt.
         {
           path: 'aesthetische-medizin',
           loadComponent: () =>

@@ -124,6 +124,15 @@ export class HeaderComponent implements OnInit {
         ),
         route: this.p('/behandlungen/level-44'),
         image: 'assets/images/partner/level44-session-raum.jpg'
+      },
+      {
+        title: t('Ästhetische Medizin', 'Aesthetic Medicine'),
+        description: t(
+          'Botulinumtoxin und Hyaluronsäure, ärztlich durchgeführt von Dr. med. Andrea Leo.',
+          'Botulinum toxin and hyaluronic acid, performed by Dr. med. Andrea Leo.'
+        ),
+        route: this.p('/behandlungen/aesthetische-medizin'),
+        image: 'assets/images/team/dr-andrea-leo.webp'
       }
     ];
   }

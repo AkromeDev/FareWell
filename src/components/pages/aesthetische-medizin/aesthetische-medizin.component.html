@@ -31,9 +31,9 @@
           >
         </p>
         <div class="hero-ctas" appReveal [revealDelay]="460">
-          <a class="btn-gold no-underline" [href]="mailHref" (click)="trackLead('aesthetik-hero')"
-            ><span class="lang de">Beratung anfragen</span
-            ><span class="lang en">Request a consultation</span></a
+          <a class="btn-gold no-underline" [href]="bookingHref" target="_blank" rel="noopener noreferrer" (click)="trackLead('aesthetik-hero')"
+            ><span class="lang de">Termin buchen</span
+            ><span class="lang en">Book an appointment</span></a
           >
           <a class="btn-outline no-underline" href="#leistungen" [appScrollTo]="'leistungen'"
             ><span class="lang de">Behandlungen ansehen</span
@@ -543,9 +543,9 @@
         >
       </p>
       <div class="besuch-ctas" appReveal [revealDelay]="240">
-        <a class="btn-gold no-underline" [href]="mailHref" (click)="trackLead('aesthetik-besuch')"
-          ><span class="lang de">Beratung anfragen</span
-          ><span class="lang en">Request a consultation</span></a
+        <a class="btn-gold no-underline" [href]="bookingHref" target="_blank" rel="noopener noreferrer" (click)="trackLead('aesthetik-besuch')"
+          ><span class="lang de">Termin buchen</span
+          ><span class="lang en">Book an appointment</span></a
         >
         <a class="btn-outline no-underline" [href]="phoneHref">{{ phoneLabel }}</a>
       </div>

@@ -60,6 +60,12 @@
   </url>
 
   <url>
+    <loc>https://farewell.salon/behandlungen/aesthetische-medizin</loc>
+    <lastmod>2026-11-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://farewell.salon/behandlungen/level-44</loc>
     <lastmod>2026-11-09</lastmod>
     <priority>0.7</priority>
@@ -289,6 +295,7 @@
   <url><loc>https://farewell.salon/en/behandlungen/kavitation</loc><lastmod>2026-07-24</lastmod><priority>0.6</priority></url>
   <url><loc>https://farewell.salon/en/behandlungen/wellness-massage</loc><lastmod>2026-07-24</lastmod><priority>0.7</priority></url>
   <url><loc>https://farewell.salon/en/behandlungen/therapeutische-massage</loc><lastmod>2026-07-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://farewell.salon/en/behandlungen/aesthetische-medizin</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
   <url><loc>https://farewell.salon/en/behandlungen/level-44</loc><lastmod>2026-11-09</lastmod><priority>0.7</priority></url>
   <url><loc>https://farewell.salon/en/price</loc><lastmod>2026-07-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://farewell.salon/en/zeit</loc><lastmod>2026-07-16</lastmod><priority>0.5</priority></url>
