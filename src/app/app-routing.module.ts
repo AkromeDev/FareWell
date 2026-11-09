@@ -334,6 +334,25 @@ function localizedRoutes(lang: PageLang): Routes {
               description: 'Facial, back, neck and shoulder, full-body and anti-cellulite massage with honey and cupping at FareWell in Nuremberg with Ruslana Ivanova: massage therapist since 2018, five massage certificates for face and body.'
             }
           )
+        },
+        // LEVEL 44 mit Franziska Preusche als Kooperationspartnerin: 9D Breathwork
+        // und Soul Touch. Anders als die beiden Vorschauen oben zum Start bestimmt:
+        // indexierbar, in der Sitemap und in llms.txt, ohne ukrainische Fassung.
+        {
+          path: 'level-44',
+          loadComponent: () =>
+            import('../components/pages/level-44/level-44.component')
+              .then(m => m.Level44Component),
+          data: d(
+            {
+              title: 'LEVEL 44 bei FareWell: 9D Breathwork und Soul Touch in Nürnberg',
+              description: '9D Breathwork und Soul Touch mit Franziska Preusche bei FareWell in Nürnberg. Geführte Atemreisen über Kopfhörer und achtsame Körperarbeit. Erste Journeys am 15.11. und 29.11.2026, 11:00 Uhr.'
+            },
+            {
+              title: 'LEVEL 44 at FareWell: 9D Breathwork and Soul Touch in Nuremberg',
+              description: '9D Breathwork and Soul Touch with Franziska Preusche at FareWell in Nuremberg. Guided breath journeys on headphones and mindful bodywork. First journeys on 15 and 29 November 2026, 11:00.'
+            }
+          )
         }
       ]
     },

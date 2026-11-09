@@ -1,0 +1,831 @@
+<div class="am" [attr.lang]="lang">
+  <!-- ===================================================================== -->
+  <!-- 1. Kopf: Signet, Claim, erste Termine                                  -->
+  <!-- ===================================================================== -->
+  <section class="hero" id="topSection">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow" appReveal>
+          <span class="lang de">LEVEL 44 bei FareWell · Nürnberg</span
+          ><span class="lang en">LEVEL 44 at FareWell · Nuremberg</span>
+        </p>
+        <h1 class="hero-title">
+          <span class="hero-line" appReveal [revealDelay]="80"
+            ><span class="lang de">Erleben statt</span
+            ><span class="lang en">Experience instead</span></span
+          >
+          <span class="hero-line hero-line--accent" appReveal [revealDelay]="200"
+            ><span class="lang de">funktionieren.</span><span class="lang en">of functioning.</span></span
+          >
+        </h1>
+        <p class="hero-sub" appReveal [revealDelay]="340">
+          <span class="lang de"
+            >Wann hast du dir zuletzt erlaubt, einfach nur zu sein? Ohne etwas leisten zu müssen.
+            Ohne Erwartungen zu erfüllen. Ohne ständig an das Nächste zu denken.</span
+          ><span class="lang en"
+            >When did you last allow yourself simply to be? Without having to achieve anything.
+            Without meeting expectations. Without constantly thinking of the next thing.</span
+          >
+        </p>
+        <p class="hero-sub" appReveal [revealDelay]="400">
+          <span class="lang de"
+            >Unser Alltag fordert uns heraus. Wir funktionieren, organisieren, halten durch und
+            verlieren dabei manchmal das Gefühl für uns selbst. LEVEL 44 lädt dich ein, für einen
+            Moment auszusteigen: aus dem Gedankenkarussell, aus dem ständigen Müssen. Zurück in
+            deinen Körper, zurück in den gegenwärtigen Moment. Mit 9D Breathwork und Soul Touch
+            begleite ich dich durch intensive Atemerfahrungen und achtsame Körperarbeit. Es geht
+            nicht darum, dich zu optimieren, sondern darum, dir selbst bewusster zu begegnen.</span
+          ><span class="lang en"
+            >Everyday life challenges us. We function, organise, keep going, and sometimes lose the
+            feeling for ourselves along the way. LEVEL 44 invites you to step out for a moment: out
+            of the carousel of thoughts, out of the constant having-to. Back into your body, back
+            into the present moment. With 9D Breathwork and Soul Touch I guide you through intensive
+            breath experiences and mindful bodywork. It is not about optimising yourself, but about
+            meeting yourself more consciously.</span
+          >
+        </p>
+        <div class="hero-ctas" appReveal [revealDelay]="460">
+          <a class="btn-gold no-underline" href="#breathwork" [appScrollTo]="'breathwork'"
+            ><span class="lang de">9D Breathwork entdecken</span
+            ><span class="lang en">Discover 9D Breathwork</span></a
+          >
+          <a class="btn-outline no-underline" href="#soul-touch" [appScrollTo]="'soul-touch'"
+            ><span class="lang de">Soul Touch erleben</span
+            ><span class="lang en">Experience Soul Touch</span></a
+          >
+          <a
+            class="btn-outline no-underline"
+            [href]="bookingUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="trackLead('level44-hero')"
+            ><span class="lang de">Jetzt Termin buchen</span
+            ><span class="lang en">Book now</span></a
+          >
+        </div>
+        <p class="hero-pill" appReveal="fade" [revealDelay]="600">
+          <span class="pill-dot" aria-hidden="true"></span>
+          <span class="lang de">Weniger funktionieren. Mehr fühlen.</span
+          ><span class="lang en">Less functioning. More feeling.</span>
+        </p>
+      </div>
+
+      <figure class="portrait" appReveal="scale" [revealDelay]="160">
+        <div class="portrait-ring">
+          <div class="portrait-frame">
+            <div class="portrait-logo">
+              <img [src]="signet" width="720" height="331" alt="LEVEL 44" decoding="async" />
+            </div>
+          </div>
+        </div>
+        <figcaption class="portrait-card">
+          <span class="portrait-name">Franziska Preusche</span>
+          <span class="portrait-role"
+            ><span class="lang de">Gründerin von LEVEL 44</span
+            ><span class="lang en">Founder of LEVEL 44</span></span
+          >
+          <span class="portrait-langs">9D Breathwork · Soul Touch</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="stats-band" [attr.aria-label]="t('Eckdaten zu LEVEL 44', 'Key facts about LEVEL 44')">
+    <div class="wrap">
+      <ul class="stats">
+        @for (stat of stats; track $index) {
+          <li class="stat" appReveal [revealDelay]="$index * 80">
+            <span class="stat-value"
+              ><span class="lang de">{{ stat.value.de }}</span
+              ><span class="lang en">{{ stat.value.en }}</span></span
+            >
+            <span class="stat-label"
+              ><span class="lang de">{{ stat.label.de }}</span
+              ><span class="lang en">{{ stat.label.en }}</span></span
+            >
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 2. Was ist 9D Breathwork?                                              -->
+  <!-- ===================================================================== -->
+  <section class="vertrauen" id="breathwork">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Was ist 9D Breathwork?</span
+          ><span class="lang en">What is 9D Breathwork?</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Eine Reise durch <em>Atem, Klang und Bewusstsein.</em></span
+          ><span class="lang en">A journey through <em>breath, sound and awareness.</em></span>
+        </h2>
+        <p class="section-lede" appReveal [revealDelay]="120">
+          <span class="lang de"
+            >9D Breathwork ist eine immersive Atemerfahrung, die bewusste Atemtechniken mit einer
+            vielschichtigen Klanglandschaft verbindet. Über Kopfhörer erlebst du Musik, räumliche
+            Klangeffekte, gesprochene Impulse und verschiedene Audioelemente, die dich durch deine
+            persönliche Journey begleiten.</span
+          ><span class="lang en"
+            >9D Breathwork is an immersive breath experience that combines conscious breathing
+            techniques with a many-layered soundscape. On headphones you hear music, spatial sound
+            effects, spoken prompts and various audio elements that accompany you through your
+            personal journey.</span
+          >
+        </p>
+        <p class="section-lede" appReveal [revealDelay]="160">
+          <span class="lang de"
+            >Du liegst bequem auf einer Matte, folgst der angeleiteten Atmung und lässt dich von der
+            Journey begleiten. Je nach Format wechseln sich aktivierende Atemphasen, emotionale
+            Impulse, Ruhe und Integration ab. Du musst nichts Bestimmtes erleben. Jede Atemreise ist
+            individuell.</span
+          ><span class="lang en"
+            >You lie comfortably on a mat, follow the guided breathing and let the journey carry
+            you. Depending on the format, activating breath phases, emotional prompts, quiet and
+            integration take turns. You do not have to experience anything in particular. Every
+            breath journey is individual.</span
+          >
+        </p>
+      </div>
+
+      <div class="split">
+        <div appReveal>
+          <h3 class="block-title">
+            <span class="lang de">Was eine 9D Journey dir ermöglichen kann</span
+            ><span class="lang en">What a 9D journey can make possible</span>
+          </h3>
+          <p class="block-intro">
+            <span class="lang de">Eine Breathwork Experience kann dir Raum geben für:</span
+            ><span class="lang en">A breathwork experience can give you room for:</span>
+          </p>
+          <ul class="check-list">
+            @for (item of benefits; track $index) {
+              <li>
+                <span class="lang de">{{ item.de }}</span
+                ><span class="lang en">{{ item.en }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+        <aside class="frame-note frame-note--side" appReveal [revealDelay]="100">
+          <strong><span class="lang de">Gut zu wissen</span><span class="lang en">Good to know</span></strong>
+          <span class="lang de"
+            >Manche Teilnehmende berichten von emotionaler Entlastung, mehr Klarheit oder einem
+            besseren Wohlbefinden. Die Erfahrungen sind individuell und können nicht garantiert
+            werden. 9D Breathwork ersetzt keine medizinische oder psychotherapeutische
+            Behandlung.</span
+          ><span class="lang en"
+            >Some participants report emotional relief, more clarity or a better sense of
+            wellbeing. Experiences are individual and cannot be guaranteed. 9D Breathwork does not
+            replace medical or psychotherapeutic treatment.</span
+          >
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 3. Die neun Elemente                                                   -->
+  <!-- ===================================================================== -->
+  <section class="alt-band" id="elemente">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Die 9D Experience</span><span class="lang en">The 9D experience</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Die <em>neun Elemente.</em></span
+          ><span class="lang en">The <em>nine elements.</em></span>
+        </h2>
+      </div>
+      <ol class="nine">
+        @for (item of nine; track $index) {
+          <li class="nine-item" appReveal [revealDelay]="($index % 3) * 80">
+            <span class="tx-num" aria-hidden="true">{{ $index + 1 }}</span>
+            <h3>
+              <span class="lang de">{{ item.title.de }}</span
+              ><span class="lang en">{{ item.title.en }}</span>
+            </h3>
+            <p>
+              <span class="lang de">{{ item.text.de }}</span
+              ><span class="lang en">{{ item.text.en }}</span>
+            </p>
+          </li>
+        }
+      </ol>
+      <p class="small-note">
+        <span class="lang de"
+          >Die neun Bezeichnungen entsprechen den Methodenelementen im 9D-Informationsmaterial. Sie
+          sind nicht als neun wissenschaftlich nachgewiesene Bewusstseinsdimensionen zu
+          verstehen.</span
+        ><span class="lang en"
+          >The nine names follow the method elements in the 9D information material. They are not to
+          be understood as nine scientifically proven dimensions of consciousness.</span
+        >
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 4. Hörprobe: Wistia erst nach Klick                                    -->
+  <!-- ===================================================================== -->
+  <section id="hoerprobe">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Hörprobe</span><span class="lang en">Listening sample</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Schließe die Augen. Setze deine Kopfhörer auf. <em>Und höre selbst.</em></span
+          ><span class="lang en">Close your eyes. Put on your headphones. <em>And listen for yourself.</em></span>
+        </h2>
+        <p class="section-lede" appReveal [revealDelay]="120">
+          <span class="lang de"
+            >9D Breathwork lässt sich nur schwer mit Worten beschreiben. Nimm dir fünf Minuten, finde
+            einen ruhigen Platz und tauche in die Klangwelt ein.</span
+          ><span class="lang en"
+            >9D Breathwork is hard to describe in words. Take five minutes, find a quiet place and
+            immerse yourself in the sound world.</span
+          >
+        </p>
+      </div>
+
+      <div class="audio" appReveal>
+        <p class="audio-hint">
+          <strong>
+            <span aria-hidden="true">🎧 </span
+            ><span class="lang de">Bitte Kopfhörer verwenden!</span
+            ><span class="lang en">Please use headphones!</span>
+          </strong>
+          <span class="lang de"
+            >Für das räumliche 9D-Klangerlebnis empfehlen wir Stereo-Kopfhörer. Über Handy- oder
+            Laptoplautsprecher kommen die binauralen und räumlichen Klangelemente nicht in gleicher
+            Weise zur Geltung.</span
+          ><span class="lang en"
+            >For the spatial 9D sound experience we recommend stereo headphones. On phone or laptop
+            speakers the binaural and spatial sound elements do not come across in the same
+            way.</span
+          >
+        </p>
+        <p class="audio-title">
+          <span class="lang de">9D Breathwork: 5 Minuten Binaural Relaxation</span
+          ><span class="lang en">9D Breathwork: 5 minutes of binaural relaxation</span>
+        </p>
+        @if (audioUrl) {
+          <div class="audio-player">
+            <iframe
+              [src]="audioUrl"
+              title="9D Breathwork 5 Minuten Binaural Relaxation"
+              allow="autoplay; fullscreen"
+            ></iframe>
+          </div>
+        } @else {
+          <div class="audio-gate">
+            <p>
+              <span class="lang de"
+                >Beim Abspielen wird der Player von Wistia (Wistia, Inc., USA) geladen. Dabei werden
+                Daten an Wistia übertragen. Mehr in der </span
+              ><span class="lang en"
+                >Playing it loads the player from Wistia (Wistia, Inc., USA), which transfers data to
+                Wistia. More in the </span
+              ><a [routerLink]="datenschutzLink"
+                ><span class="lang de">Datenschutzerklärung</span
+                ><span class="lang en">privacy policy</span></a
+              >.
+            </p>
+            <button type="button" class="btn-gold" (click)="loadAudio()">
+              <span class="lang de">Hörprobe abspielen</span
+              ><span class="lang en">Play the sample</span>
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 5. Gruppen- und Private Experiences                                    -->
+  <!-- ===================================================================== -->
+  <section class="leistungen alt-band" id="experiences">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Experiences</span><span class="lang en">Experiences</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">In der Gruppe <em>oder ganz für dich.</em></span
+          ><span class="lang en">In a group <em>or just for you.</em></span>
+        </h2>
+      </div>
+
+      <div class="tx-grid">
+        @for (offer of offers; track offer.id) {
+          <article class="tx-card" [id]="'offer-' + offer.id" appReveal [revealDelay]="($index % 2) * 90">
+            <img class="offer-signet" [src]="signet" width="720" height="331" alt="" loading="lazy" decoding="async" />
+            <h3>
+              <span class="lang de">{{ offer.title.de }}</span
+              ><span class="lang en">{{ offer.title.en }}</span>
+            </h3>
+            <p class="offer-tag">
+              <span class="lang de">{{ offer.tag.de }}</span
+              ><span class="lang en">{{ offer.tag.en }}</span>
+            </p>
+            <p class="tx-blurb">
+              <span class="lang de">{{ offer.text.de }}</span
+              ><span class="lang en">{{ offer.text.en }}</span>
+            </p>
+            @if (offer.includes) {
+              <p class="offer-sub"><span class="lang de">Enthalten</span><span class="lang en">Included</span></p>
+              <ul class="check-list">
+                @for (item of offer.includes; track $index) {
+                  <li>
+                    <span class="lang de">{{ item.de }}</span
+                    ><span class="lang en">{{ item.en }}</span>
+                  </li>
+                }
+              </ul>
+            }
+            @for (fact of offer.facts; track $index) {
+              <p class="offer-facts">
+                <span class="lang de">{{ fact.de }}</span
+                ><span class="lang en">{{ fact.en }}</span>
+              </p>
+            }
+            <div class="offer-cta">
+              @if (offer.cta) {
+                <a
+                  class="btn-gold no-underline"
+                  [href]="bookingUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  (click)="trackLead('level44-' + offer.id)"
+                  ><span class="lang de">{{ offer.cta.de }}</span
+                  ><span class="lang en">{{ offer.cta.en }}</span></a
+                >
+              }
+              @if (offer.later) {
+                <span class="offer-later"
+                  ><span class="lang de">{{ offer.later.de }}</span
+                  ><span class="lang en">{{ offer.later.en }}</span></span
+                >
+              }
+            </div>
+          </article>
+        }
+
+        @if (showOnline) {
+          <article class="tx-card" id="offer-online" appReveal [revealDelay]="90">
+            <img class="offer-signet" [src]="signet" width="720" height="331" alt="" loading="lazy" decoding="async" />
+            <h3>
+              <span class="lang de">9D Breathwork Live Online</span
+              ><span class="lang en">9D Breathwork Live Online</span>
+            </h3>
+            <p class="tx-blurb">
+              <span class="lang de"
+                >Zusätzlich bietet Franziska eine Live-Journey online an. Die Termine und die
+                Buchung laufen über LEVEL 44, nicht über FareWell.</span
+              ><span class="lang en"
+                >Franziska also offers a live journey online. Dates and booking are handled by
+                LEVEL 44, not by FareWell.</span
+              >
+            </p>
+            <p class="offer-facts">
+              <span class="lang de">Einmal pro Woche, voraussichtlich mittwochs 19:00 Uhr · ca. 2 Stunden · 49&nbsp;€</span
+              ><span class="lang en">Once a week, probably Wednesdays at 19:00 · about 2 hours · €49</span>
+            </p>
+            <div class="offer-cta">
+              <a class="btn-outline no-underline" [href]="level44Url" target="_blank" rel="noopener noreferrer"
+                ><span class="lang de">Termine auf level44.live</span
+                ><span class="lang en">Dates on level44.live</span></a
+              >
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- Ablauf der Gruppe                                                      -->
+  <!-- ===================================================================== -->
+  <section class="ablauf" id="ablauf">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Der Ablauf</span><span class="lang en">How it works</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Drei Schritte <em>durch deine Journey.</em></span
+          ><span class="lang en">Three steps <em>through your journey.</em></span>
+        </h2>
+      </div>
+      <ol class="steps">
+        <li class="step" appReveal>
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3><span class="lang de">Ankommen und Einführung</span><span class="lang en">Arrival and introduction</span></h3>
+          <p>
+            <span class="lang de">Einführung in Atemtechnik, Ablauf und Sicherheitshinweise.</span
+            ><span class="lang en">An introduction to the breathing technique, the process and the safety notes.</span>
+          </p>
+        </li>
+        <li class="step" appReveal [revealDelay]="100">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3><span class="lang de">Die Atemreise</span><span class="lang en">The breath journey</span></h3>
+          <p>
+            <span class="lang de">Die geführte 9D Journey über Kopfhörer, liegend auf einer Matte.</span
+            ><span class="lang en">The guided 9D journey on headphones, lying on a mat.</span>
+          </p>
+        </li>
+        <li class="step" appReveal [revealDelay]="200">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3><span class="lang de">Integration</span><span class="lang en">Integration</span></h3>
+          <p>
+            <span class="lang de">Nachspüren, Ankommen, Reflektieren.</span
+            ><span class="lang en">Feeling what follows, arriving, reflecting.</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 6. Soul Touch                                                          -->
+  <!-- ===================================================================== -->
+  <section class="alt-band" id="soul-touch">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>Soul Touch</p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Nicht einfach entspannen, <em>sondern wieder bei dir ankommen.</em></span
+          ><span class="lang en">Not just relaxing, <em>but arriving back with yourself.</em></span>
+        </h2>
+        <p class="section-lede" appReveal [revealDelay]="120">
+          <span class="lang de"
+            >Emotionale Körperarbeit und bewusstes Loslassen. Wie oft hören wir erst auf unseren
+            Körper, wenn er sich bemerkbar macht? Soul Touch ist eine achtsame, individuell
+            gestaltete Bodywork Experience, die Berührung, bewusste Atmung, Präsenz und persönliche
+            Intention verbindet. Es ist keine klassische Wellnessmassage. Du bleibst bekleidet, es
+            wird kein Öl verwendet.</span
+          ><span class="lang en"
+            >Emotional bodywork and conscious letting go. How often do we only listen to our body
+            once it makes itself felt? Soul Touch is a mindful, individually shaped bodywork
+            experience that combines touch, conscious breathing, presence and personal intention. It
+            is not a classic wellness massage. You stay dressed and no oil is used.</span
+          >
+        </p>
+        <p class="section-lede" appReveal [revealDelay]="160">
+          <span class="lang de"
+            ><strong>Deine Intention.</strong> Jede Session beginnt mit einem Gespräch: Was bewegt
+            dich gerade? Was möchtest du bewusst loslassen? Was braucht heute deine Aufmerksamkeit?
+            Ausgehend davon gestalten wir die Session mit achtsamen Berührungen, Atemimpulsen und
+            Momenten der Stille. Emotionen dürfen auftauchen, müssen es aber nicht. Nichts wird
+            erzwungen. Deine Grenzen und dein Wohlbefinden stehen die ganze Zeit im Mittelpunkt.</span
+          ><span class="lang en"
+            ><strong>Your intention.</strong> Every session begins with a conversation: what is moving
+            you right now? What would you like to consciously let go of? What needs your attention
+            today? From there we shape the session with mindful touch, breath prompts and moments of
+            silence. Emotions may come up, but they do not have to. Nothing is forced. Your limits and
+            your wellbeing are at the centre the whole time.</span
+          >
+        </p>
+      </div>
+
+      <div class="cards">
+        @for (offer of soulTouch; track offer.id) {
+          <article class="card" [id]="'offer-' + offer.id" appReveal [revealDelay]="$index * 100">
+            <img class="offer-signet" [src]="signet" width="720" height="331" alt="" loading="lazy" decoding="async" />
+            <h3>
+              <span class="lang de">{{ offer.title.de }}</span
+              ><span class="lang en">{{ offer.title.en }}</span>
+            </h3>
+            <p class="offer-tag">
+              <span class="lang de">{{ offer.tag.de }}</span
+              ><span class="lang en">{{ offer.tag.en }}</span>
+            </p>
+            <p class="card-text">
+              <span class="lang de">{{ offer.text.de }}</span
+              ><span class="lang en">{{ offer.text.en }}</span>
+            </p>
+          </article>
+        }
+      </div>
+      <p class="small-note">
+        <span class="lang de">Alle Zeiten inklusive Einführungsgespräch und Nachruhe.</span
+        ><span class="lang en">All times include the introductory conversation and resting afterwards.</span>
+      </p>
+      <div class="prices-cta" appReveal>
+        <a
+          class="btn-gold no-underline"
+          [href]="bookingUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          (click)="trackLead('level44-soul-touch')"
+          ><span class="lang de">Soul Touch buchen</span><span class="lang en">Book Soul Touch</span></a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 7. Preise und Buchung                                                  -->
+  <!-- ===================================================================== -->
+  <section id="preise">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Preise und Buchung</span><span class="lang en">Prices and booking</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Alle Angebote <em>auf einen Blick.</em></span
+          ><span class="lang en">Every offer <em>at a glance.</em></span>
+        </h2>
+      </div>
+
+      <table class="prices" appReveal>
+        <caption>
+          <span class="lang de">Preise und Dauer der Angebote von LEVEL 44 bei FareWell</span
+          ><span class="lang en">Prices and durations of the LEVEL 44 offers at FareWell</span>
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col"><span class="lang de">Angebot</span><span class="lang en">Offer</span></th>
+            <th scope="col"><span class="lang de">Dauer</span><span class="lang en">Duration</span></th>
+            <th scope="col"><span class="lang de">Preis</span><span class="lang en">Price</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of prices; track $index) {
+            <tr>
+              <th scope="row">
+                <span class="lang de">{{ row.name.de }}</span
+                ><span class="lang en">{{ row.name.en }}</span>
+              </th>
+              <td>
+                <span class="lang de">{{ row.duration.de }}</span
+                ><span class="lang en">{{ row.duration.en }}</span>
+              </td>
+              <td>
+                <span class="lang de">{{ row.price.de }}</span
+                ><span class="lang en">{{ row.price.en }}</span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <p class="prices-note" appReveal>
+        <span class="lang de"
+          ><strong>Bei FareWell:</strong> donnerstags Soul Touch, Private Experiences und
+          gegebenenfalls die Evening Journey um 19:30 Uhr. Jeden zweiten Sonntag um 11:00 Uhr die 9D
+          Group Experience, danach ein exklusiver Soul Touch Integrationsplatz. Gebucht wird direkt
+          über Salonkee. Vor der ersten Teilnahme füllst du eine kurze Gesundheitsauskunft aus.</span
+        ><span class="lang en"
+          ><strong>At FareWell:</strong> on Thursdays Soul Touch, private experiences and possibly
+          the evening journey at 19:30. Every second Sunday at 11:00 the 9D Group Experience, followed
+          by one exclusive Soul Touch integration place. You book directly through Salonkee. Before
+          taking part for the first time you fill in a short health form.</span
+        >
+      </p>
+      <div class="prices-cta" appReveal>
+        <a
+          class="btn-gold no-underline"
+          [href]="bookingUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          (click)="trackLead('level44-preise')"
+          ><span class="lang de">Alle verfügbaren Termine ansehen</span
+          ><span class="lang en">See all available dates</span></a
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="statement">
+    <blockquote appReveal>
+      <p>
+        <span class="lang de">Weniger funktionieren. <em>Mehr fühlen.</em></span
+        ><span class="lang en">Less functioning. <em>More feeling.</em></span>
+      </p>
+    </blockquote>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 8. Über Franziska                                                      -->
+  <!-- ===================================================================== -->
+  <section id="franziska">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Über Franziska</span><span class="lang en">About Franziska</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          Franziska Preusche, <em><span class="lang de">Gründerin von LEVEL 44.</span
+          ><span class="lang en">founder of LEVEL 44.</span></em>
+        </h2>
+      </div>
+      <div class="prose prose--narrow" appReveal>
+        <p>
+          <span class="lang de"
+            >Ich glaube, dass persönliche Veränderung nicht nur im Denken stattfindet, sondern auch
+            im Erleben: im bewussten Atmen, im Wahrnehmen unseres Körpers, in Momenten, in denen wir
+            nicht versuchen, jemand anderes zu werden.</span
+          ><span class="lang en"
+            >I believe that personal change happens not only in thinking but also in experiencing: in
+            conscious breathing, in noticing our body, in moments when we are not trying to become
+            someone else.</span
+          >
+        </p>
+        <p>
+          <span class="lang de"
+            >Mit LEVEL 44 möchte ich Räume schaffen, in denen Menschen sich selbst bewusster begegnen
+            können, ohne Leistungsdruck und ohne die Erwartung, etwas Bestimmtes fühlen oder erreichen
+            zu müssen. Meine Arbeit verbindet 9D Breathwork, achtsame Körperarbeit und persönliche
+            Reflexion.</span
+          ><span class="lang en"
+            >With LEVEL 44 I want to create spaces in which people can meet themselves more
+            consciously, without pressure to perform and without the expectation of having to feel
+            or achieve anything in particular. My work combines 9D Breathwork, mindful bodywork and
+            personal reflection.</span
+          >
+        </p>
+        <p>
+          <span class="lang de">Franziska ist selbständige Kooperationspartnerin bei FareWell. </span
+          ><span class="lang en">Franziska is a self-employed cooperation partner at FareWell. </span>
+          <span class="lang de">Mehr über LEVEL 44: </span
+          ><span class="lang en">More about LEVEL 44: </span
+          ><a [href]="level44Url" target="_blank" rel="noopener noreferrer">level44.live</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 9. Vorbereitung, Sicherheit, FAQ                                       -->
+  <!-- ===================================================================== -->
+  <section class="alt-band" id="sicherheit">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Vorbereitung und Sicherheit</span
+          ><span class="lang en">Preparation and safety</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Was du <em>vorher wissen solltest.</em></span
+          ><span class="lang en">What you <em>should know first.</em></span>
+        </h2>
+      </div>
+
+      <div class="split">
+        <div class="prose" appReveal>
+          <h3 class="block-title">
+            <span class="lang de">Vor deiner Breathwork Experience</span
+            ><span class="lang en">Before your breathwork experience</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Plane ausreichend Zeit vor und nach deiner Journey ein. Trage bequeme Kleidung, iss
+              vorher nichts Schweres und komm möglichst ohne Zeitdruck. Intensive Atemtechniken
+              können körperliche und emotionale Reaktionen auslösen, etwa Schwindel, Kribbeln,
+              Muskelanspannung oder starke Gefühle. Du kannst die Atemtechnik jederzeit anpassen, zur
+              natürlichen Atmung zurückkehren oder die Session beenden.</span
+            ><span class="lang en"
+              >Allow enough time before and after your journey. Wear comfortable clothes, do not eat
+              anything heavy beforehand and try to come without time pressure. Intensive breathing
+              techniques can trigger physical and emotional reactions, such as dizziness, tingling,
+              muscle tension or strong feelings. You can adapt the breathing technique at any time,
+              return to natural breathing or end the session.</span
+            >
+          </p>
+          <h3 class="block-title block-title--next">
+            <span class="lang de">Nach deiner Journey</span
+            ><span class="lang en">After your journey</span>
+          </h3>
+          <p>
+            <span class="lang de"
+              >Eine Breathwork Experience kann noch eine Weile nachwirken. Du musst sie nicht sofort
+              verstehen oder in Worte fassen. Nimm dir Zeit, im Alltag anzukommen, trink ausreichend
+              und ruh dich aus, wenn du es brauchst.</span
+            ><span class="lang en"
+              >A breathwork experience can resonate for a while. You do not have to understand it or
+              put it into words right away. Take time to arrive back in everyday life, drink enough
+              and rest if you need to.</span
+            >
+          </p>
+          <p>
+            <span class="lang de">Fragen zur Reflexion:</span
+            ><span class="lang en">Questions for reflection:</span>
+          </p>
+          <ul class="check-list">
+            @for (item of reflection; track $index) {
+              <li>
+                <span class="lang de">{{ item.de }}</span
+                ><span class="lang en">{{ item.en }}</span>
+              </li>
+            }
+          </ul>
+          <p class="after-list">
+            <span class="lang de"
+              >Bei anhaltenden oder belastenden Beschwerden such dir bitte professionelle
+              Unterstützung.</span
+            ><span class="lang en"
+              >If symptoms persist or weigh on you, please seek professional support.</span
+            >
+          </p>
+        </div>
+
+        <aside class="frame-note frame-note--side" appReveal [revealDelay]="100">
+          <strong><span class="lang de">Kontraindikationen</span><span class="lang en">Contraindications</span></strong>
+          <span class="lang de"
+            >Intensive Atemarbeit ist nicht für alle Menschen geeignet. Unter anderem in diesen
+            Fällen ist eine Teilnahme ausgeschlossen oder vorher eine ärztliche Abklärung nötig:</span
+          ><span class="lang en"
+            >Intensive breathwork is not suitable for everyone. Among others, in these cases taking
+            part is ruled out or medical clearance is needed first:</span
+          >
+          <ul class="check-list check-list--inset">
+            @for (item of contraindications; track $index) {
+              <li>
+                <span class="lang de">{{ item.de }}</span
+                ><span class="lang en">{{ item.en }}</span>
+              </li>
+            }
+          </ul>
+          <span class="lang de"
+            >Die Liste ist nicht abschließend. Vor der Teilnahme ist eine gesundheitliche
+            Selbstauskunft nötig; die Kontraindikationen werden anhand der aktuellen offiziellen
+            9D-Vorgaben geprüft. Für Soul Touch gelten eigene Vorsichtsmaßnahmen, vor allem bei akuten
+            Infektionen, bestimmten Hauterkrankungen, frischen Verletzungen und anderen medizinisch
+            relevanten Beschwerden. Die Angebote ersetzen keine medizinische oder
+            psychotherapeutische Behandlung.</span
+          ><span class="lang en"
+            >This list is not exhaustive. A health self-declaration is needed before taking part; the
+            contraindications are checked against the current official 9D guidelines. Soul Touch has
+            its own precautions, above all with acute infections, certain skin conditions, fresh
+            injuries and other medically relevant complaints. The offers do not replace medical or
+            psychotherapeutic treatment.</span
+          >
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="fragen" id="fragen">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Häufige Fragen</span><span class="lang en">Common questions</span>
+        </p>
+      </div>
+      <div class="faq" appReveal>
+        @for (entry of faq; track $index) {
+          <details>
+            <summary>
+              <span class="lang de">{{ entry.q.de }}</span><span class="lang en">{{ entry.q.en }}</span>
+            </summary>
+            <p class="faq-a">
+              <span class="lang de">{{ entry.a.de }}</span><span class="lang en">{{ entry.a.en }}</span>
+            </p>
+          </details>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 10. Abschluss und Instagram                                            -->
+  <!-- ===================================================================== -->
+  <section class="besuch" id="besuch">
+    <div class="wrap besuch-content">
+      <img class="besuch-signet" [src]="signet" width="720" height="331" alt="LEVEL 44" loading="lazy" decoding="async" />
+      <h2 appReveal>
+        <span class="lang de">Weniger funktionieren. <em>Mehr fühlen.</em></span
+        ><span class="lang en">Less functioning. <em>More feeling.</em></span>
+      </h2>
+      <p class="besuch-info" appReveal [revealDelay]="120">
+        <span class="lang de">FareWell · Frauentorgraben 5, 90443 Nürnberg. Zwei Minuten vom Hauptbahnhof.</span
+        ><span class="lang en">FareWell · Frauentorgraben 5, 90443 Nuremberg. Two minutes from the main station.</span>
+      </p>
+      <div class="besuch-ctas" appReveal [revealDelay]="240">
+        <a
+          class="btn-gold no-underline"
+          [href]="bookingUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          (click)="trackLead('level44-besuch')"
+          ><span class="lang de">Jetzt Termin buchen</span><span class="lang en">Book now</span></a
+        >
+        <a class="btn-outline no-underline" [href]="phoneHref">{{ phoneLabel }}</a>
+      </div>
+      <p class="besuch-links" appReveal [revealDelay]="300">
+        <a [href]="instagramUrl" target="_blank" rel="noopener noreferrer"
+          ><span class="lang de">LEVEL 44 auf Instagram: </span
+          ><span class="lang en">LEVEL 44 on Instagram: </span>&#64;level44.live</a
+        >
+        <a [href]="level44Url" target="_blank" rel="noopener noreferrer">level44.live</a>
+      </p>
+    </div>
+  </section>
+</div>
