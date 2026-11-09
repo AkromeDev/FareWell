@@ -364,7 +364,7 @@
               @if (offer.cta) {
                 <a
                   class="btn-gold no-underline"
-                  [href]="bookingUrl"
+                  [href]="offerUrl(offer)"
                   target="_blank"
                   rel="noopener noreferrer"
                   (click)="trackLead('level44-' + offer.id)"
@@ -539,7 +539,7 @@
       <div class="prices-cta" appReveal>
         <a
           class="btn-gold no-underline"
-          [href]="bookingUrl"
+          [href]="soulTouchUrl"
           target="_blank"
           rel="noopener noreferrer"
           (click)="trackLead('level44-soul-touch')"

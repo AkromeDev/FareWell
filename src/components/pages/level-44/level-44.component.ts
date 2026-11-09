@@ -50,6 +50,12 @@ const WISTIA_EMBED = 'https://fast.wistia.net/embed/iframe/nx15jjlaj3?web_compon
  */
 const SHOW_ONLINE = false;
 
+const SOUL_TOUCH_SERVICE_ID = 234768;
+
+function checkoutUrl(serviceId: number): string {
+  return `https://salonkee.de/checkout/farewell?serviceID=${serviceId}`;
+}
+
 const DE_TITLE = 'LEVEL 44 bei FareWell: 9D Breathwork und Soul Touch in Nürnberg';
 const EN_TITLE = 'LEVEL 44 at FareWell: 9D Breathwork and Soul Touch in Nuremberg';
 const DE_DESCRIPTION =
@@ -81,6 +87,8 @@ export interface Offer {
   facts: Bi[];
   /** „Enthalten“-Liste. */
   includes?: Bi[];
+  /** Salonkee-Dienstleistung mit eigenem Buchungslink; Kurse haben keinen und führen auf die Salonseite. */
+  serviceId?: number;
   /** Beschriftung des Buchungsbuttons; leer, solange es noch keine buchbaren Termine gibt. */
   cta?: Bi;
   /** Hinweis statt Button. */
@@ -230,6 +238,7 @@ const OFFERS: Offer[] = [
       { de: 'Reflexionsimpulse für danach', en: 'Reflection prompts for afterwards' },
     ],
     facts: [{ de: 'Ca. 120 Minuten · 249 €', en: 'About 120 minutes · €249' }],
+    serviceId: 234765,
     cta: { de: 'Private Experience buchen', en: 'Book the private experience' },
   },
   {
@@ -248,6 +257,7 @@ const OFFERS: Offer[] = [
       { de: 'Abschließende Reflexion', en: 'Closing reflection' },
     ],
     facts: [{ de: 'Ca. 210 Minuten · 333 €', en: 'About 210 minutes · €333' }],
+    serviceId: 234766,
     cta: { de: 'Premium Experience buchen', en: 'Book the premium experience' },
   },
 ];
@@ -399,10 +409,8 @@ const FAQ: FaqEntry[] = [
  * Wortwahl: kein „Therapy“, „Therapie“ oder „Hypnosetherapie“ als Angebotsname
  * (sie ist keine Heilpraktikerin). Nur echte Bilder, keine Stock- oder KI-Bilder.
  *
- * Salonkee: alle Buttons führen auf die Salonseite. Einzeltermine haben dort
- * eigene Buchungslinks (salonkee.de/checkout/farewell?serviceID=…): Private
- * 234765, Premium 234766, Soul Touch 234768. Eintragen, sobald sie öffentlich
- * buchbar sind; bis dahin meldet Salonkee „Dienstleistung nicht verfügbar“.
+ * Salonkee: Einzeltermine buchen direkt über ihren eigenen Link. Die Gruppen und
+ * der Abend sind dort Kurse ohne eigenen Link und führen auf die Salonseite.
  */
 @Component({
   selector: 'app-level-44',
@@ -446,6 +454,12 @@ export class Level44Component implements OnInit, OnDestroy {
 
   get bookingUrl(): string {
     return `https://salonkee.de/salon/farewell?lang=${this.language.lang() === 'en' ? 'en' : 'de'}`;
+  }
+
+  readonly soulTouchUrl = checkoutUrl(SOUL_TOUCH_SERVICE_ID);
+
+  offerUrl(offer: Offer): string {
+    return offer.serviceId ? checkoutUrl(offer.serviceId) : this.bookingUrl;
   }
 
   get datenschutzLink(): string {
