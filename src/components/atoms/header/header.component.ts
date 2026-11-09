@@ -117,22 +117,13 @@ export class HeaderComponent implements OnInit {
         image: 'assets/images/treatment/kavitation.webp'
       },
       {
-        title: t('Wellness Massage', 'Wellness Massage'),
+        title: t('LEVEL 44 Breathwork', 'LEVEL 44 Breathwork'),
         description: t(
-          'Entspannung, Regeneration & neue Leichtigkeit mit wohltuenden Wellness-Massagen.',
-          'Relaxation, recovery and new lightness with soothing wellness massages.'
+          '9D Breathwork und Soul Touch: geführte Atemreisen über Kopfhörer und achtsame Körperarbeit.',
+          '9D Breathwork and Soul Touch: guided breath journeys on headphones and mindful bodywork.'
         ),
-        route: this.p('/behandlungen/wellness-massage'),
-        image: 'assets/images/treatment/massage-hero.jpg'
-      },
-      {
-        title: t('Therapeutische Massage', 'Therapeutic Massage'),
-        description: t(
-          'Gezielte Behandlung bei Verspannungen, sportlicher Belastung & für individuelle Regeneration.',
-          'Targeted work for tension, sports strain and individual recovery.'
-        ),
-        route: this.p('/behandlungen/therapeutische-massage'),
-        image: 'assets/images/massages/tm%20massaging.jpg'
+        route: this.p('/behandlungen/level-44'),
+        image: 'assets/images/partner/level44-session-raum.jpg'
       }
     ];
   }

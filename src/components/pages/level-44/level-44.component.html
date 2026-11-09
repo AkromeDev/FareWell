@@ -5,6 +5,7 @@
   <section class="hero" id="topSection">
     <div class="wrap hero-grid">
       <div class="hero-copy">
+        <img class="hero-logo" [src]="signet" width="720" height="331" alt="LEVEL 44" decoding="async" />
         <p class="eyebrow hero-eyebrow" appReveal>
           <span class="lang de">LEVEL 44 bei FareWell · Nürnberg</span
           ><span class="lang en">LEVEL 44 at FareWell · Nuremberg</span>
@@ -73,9 +74,14 @@
       <figure class="portrait" appReveal="scale" [revealDelay]="160">
         <div class="portrait-ring">
           <div class="portrait-frame">
-            <div class="portrait-logo">
-              <img [src]="signet" width="720" height="331" alt="LEVEL 44" decoding="async" />
-            </div>
+            <img
+              [src]="photoHero"
+              width="720"
+              height="900"
+              [alt]="t('Franziska Preusche im Saal von FareWell, vorne die 9D-Kopfhörer', 'Franziska Preusche in the FareWell hall, with the 9D headphones in front')"
+              fetchpriority="high"
+              decoding="async"
+            />
           </div>
         </div>
         <figcaption class="portrait-card">
@@ -448,6 +454,20 @@
           </p>
         </li>
       </ol>
+      <ul class="gallery">
+        @for (photo of gallery; track photo.src) {
+          <li appReveal [revealDelay]="$index * 100">
+            <img
+              [src]="photo.src"
+              width="1000"
+              height="750"
+              [alt]="t(photo.alt.de, photo.alt.en)"
+              loading="lazy"
+              decoding="async"
+            />
+          </li>
+        }
+      </ul>
     </div>
   </section>
 
@@ -626,7 +646,18 @@
           ><span class="lang en">founder of LEVEL 44.</span></em>
         </h2>
       </div>
-      <div class="prose prose--narrow" appReveal>
+      <div class="split about">
+      <figure class="about-photo" appReveal>
+        <img
+          [src]="photoPortrait"
+          width="720"
+          height="900"
+          [alt]="t('Franziska Preusche während einer Session bei FareWell', 'Franziska Preusche during a session at FareWell')"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+      <div class="prose" appReveal>
         <p>
           <span class="lang de"
             >Ich glaube, dass persönliche Veränderung nicht nur im Denken stattfindet, sondern auch
@@ -658,6 +689,7 @@
           ><span class="lang en">More about LEVEL 44: </span
           ><a [href]="level44Url" target="_blank" rel="noopener noreferrer">level44.live</a>
         </p>
+      </div>
       </div>
     </div>
   </section>

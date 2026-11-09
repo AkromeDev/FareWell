@@ -11,8 +11,28 @@ const PAGE_PATH = '/behandlungen/level-44';
 const ORIGIN = 'https://farewell.salon';
 /** Ihr Original-Signet aus der Mail vom 03.11.2026. Nur einbinden, nie nachzeichnen. */
 const SIGNET = 'assets/images/partner/level44-signet.png';
-/** Vorschaubild beim Teilen: der Salon, bis es echte Session-Bilder gibt (keine Stock- oder KI-Bilder). */
-const OG_IMAGE = `${ORIGIN}/assets/images/farewell/studio.webp`;
+/**
+ * Echte Bilder ihrer Session bei FareWell am 01.11.2026, von Joé zur Nutzung
+ * freigegeben (09.11.2026). Originale: FareWell/domains/media/photo/level-44/.
+ */
+const PHOTO_HERO = 'assets/images/partner/level44-franziska.jpg';
+const PHOTO_PORTRAIT = 'assets/images/partner/level44-franziska-portrait.jpg';
+const GALLERY: { src: string; alt: Bi }[] = [
+  {
+    src: 'assets/images/partner/level44-session-raum.jpg',
+    alt: { de: 'Teilnehmende liegen mit Kopfhörern und Augenmaske auf Matten im Saal von FareWell', en: 'Participants lying on mats with headphones and eye masks in the FareWell hall' },
+  },
+  {
+    src: 'assets/images/partner/level44-session-gruppe.jpg',
+    alt: { de: 'Gruppe bei einer 9D Journey am Abend, leuchtende Kopfhörer im warmen Licht', en: 'A group during an evening 9D journey, glowing headphones in warm light' },
+  },
+  {
+    src: 'assets/images/partner/level44-kopfhoerer.jpg',
+    alt: { de: 'Die 9D-Kopfhörer im Koffer, blau leuchtend', en: 'The 9D headphones glowing blue in their case' },
+  },
+];
+/** Vorschaubild beim Teilen. */
+const OG_IMAGE = `${ORIGIN}/assets/images/partner/level44-session-raum.jpg`;
 const PHONE_HREF = 'tel:+4915757995694';
 const PHONE_LABEL = '+49 157 5799 5694';
 const LEVEL44_URL = 'https://level44.live';
@@ -25,10 +45,10 @@ const INSTAGRAM_URL = 'https://www.instagram.com/level44.live/';
  */
 const WISTIA_EMBED = 'https://fast.wistia.net/embed/iframe/nx15jjlaj3?web_component=true&seo=true';
 /**
- * Online-Journeys gehören nicht zu FareWell und hängen an Joés Antwort auf ihre
- * Provisionsfrage vom 03.11.2026. Auf false stellen, dann verschwindet der Block.
+ * Online-Journeys vorerst nicht auf der Seite (Joé, 09.11.2026): offen, ob sie
+ * sie von hier aus anbietet. Wenn ja, gelten auch dafür die 30 %. Dann auf true.
  */
-const SHOW_ONLINE = true;
+const SHOW_ONLINE = false;
 
 const DE_TITLE = 'LEVEL 44 bei FareWell: 9D Breathwork und Soul Touch in Nürnberg';
 const EN_TITLE = 'LEVEL 44 at FareWell: 9D Breathwork and Soul Touch in Nuremberg';
@@ -377,11 +397,12 @@ const FAQ: FaqEntry[] = [
  * dem Merge nach main; die offenen Punkte stehen im Personalordner.
  *
  * Wortwahl: kein „Therapy“, „Therapie“ oder „Hypnosetherapie“ als Angebotsname
- * (sie ist keine Heilpraktikerin). Kein Portrait und keine Session-Bilder, bis
- * echte da sind; solange steht ihr Signet im Bogenrahmen.
+ * (sie ist keine Heilpraktikerin). Nur echte Bilder, keine Stock- oder KI-Bilder.
  *
- * Salonkee: solange die Leistungen dort nicht angelegt sind, führen alle Buttons
- * auf die Salonseite. Danach Deeplinks in bookingUrl() je Angebot eintragen.
+ * Salonkee: alle Buttons führen auf die Salonseite. Einzeltermine haben dort
+ * eigene Buchungslinks (salonkee.de/checkout/farewell?serviceID=…): Private
+ * 234765, Premium 234766, Soul Touch 234768. Eintragen, sobald sie öffentlich
+ * buchbar sind; bis dahin meldet Salonkee „Dienstleistung nicht verfügbar“.
  */
 @Component({
   selector: 'app-level-44',
@@ -398,6 +419,9 @@ export class Level44Component implements OnInit, OnDestroy {
   private readonly jsonLdId = 'level-44-schema';
 
   readonly signet = SIGNET;
+  readonly photoHero = PHOTO_HERO;
+  readonly photoPortrait = PHOTO_PORTRAIT;
+  readonly gallery = GALLERY;
   readonly phoneHref = PHONE_HREF;
   readonly phoneLabel = PHONE_LABEL;
   readonly level44Url = LEVEL44_URL;

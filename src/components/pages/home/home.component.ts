@@ -190,30 +190,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       num: '06',
-      titleDe: 'Wellness Massage',
-      titleEn: 'Wellness Massage',
+      titleDe: 'LEVEL 44 Breathwork',
+      titleEn: 'LEVEL 44 Breathwork',
       descDe:
-        'Entspannung, Regeneration & neue Leichtigkeit mit wohltuenden Wellness-Massagen.',
+        '9D Breathwork und Soul Touch: geführte Atemreisen über Kopfhörer und achtsame Körperarbeit.',
       descEn:
-        'Relaxation, recovery and new lightness with soothing wellness massages.',
-      altDe: 'Wellness-Massage im FareWell Studio in Nürnberg',
-      altEn: 'Wellness massage at the FareWell studio in Nuremberg',
-      path: '/behandlungen/wellness-massage',
-      image: 'assets/images/treatment/massage-hero.jpg',
-    },
-    {
-      num: '07',
-      titleDe: 'Therapeutische Massage',
-      titleEn: 'Therapeutic Massage',
-      descDe:
-        'Gezielte Behandlung bei Verspannungen, sportlicher Belastung & für individuelle Regeneration.',
-      descEn:
-        'Targeted work for tension, sports strain and individual recovery.',
-      altDe:
-        'Therapeutische Massage gegen Verspannungen bei FareWell in Nürnberg',
-      altEn: 'Therapeutic massage for muscle tension at FareWell in Nuremberg',
-      path: '/behandlungen/therapeutische-massage',
-      image: 'assets/images/massages/tm%20massaging.jpg',
+        '9D Breathwork and Soul Touch: guided breath journeys on headphones and mindful bodywork.',
+      altDe: '9D Breathwork mit Franziska Preusche bei FareWell in Nürnberg',
+      altEn: '9D Breathwork with Franziska Preusche at FareWell in Nuremberg',
+      path: '/behandlungen/level-44',
+      image: 'assets/images/partner/level44-session-raum.jpg',
     },
   ];
 

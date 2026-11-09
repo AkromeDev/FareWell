@@ -36,6 +36,10 @@ describe('Level44Component', () => {
     expect(text).not.toMatch(/Hypnosetherapie|Hypnotherapy|Soul Touch Therapy/i);
   });
 
+  it('zeigt die Online-Journeys vorerst nicht', () => {
+    expect(fixture.nativeElement.querySelector('#offer-online')).toBeNull();
+  });
+
   it('ist indexierbar', () => {
     const robots = document.querySelector('meta[name="robots"]');
     expect(robots?.getAttribute('content') ?? '').not.toContain('noindex');

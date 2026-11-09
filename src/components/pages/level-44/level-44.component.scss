@@ -289,20 +289,6 @@ ul {
   color: rgba($cream, 0.65);
 }
 
-// Solange kein Porträt vorliegt, steht ihr Signet im Bogenrahmen, auf ihrem Creme.
-.portrait-logo {
-  display: grid;
-  place-items: center;
-  height: 100%;
-  padding: 18%;
-  background: #f5f1ea;
-
-  img {
-    height: auto;
-    object-fit: contain;
-  }
-}
-
 // ---------------------------------------------------------------------------
 // Zahlen
 // ---------------------------------------------------------------------------
@@ -820,16 +806,46 @@ ul {
   margin-top: 10px;
 }
 
-.prose--narrow {
-  max-width: 760px;
-}
-
 .block-title--next {
   margin-top: 28px;
 }
 
 .after-list {
   margin-top: 16px !important;
+}
+
+.hero-logo {
+  display: block;
+  width: 110px;
+  height: auto;
+  margin-bottom: 22px;
+}
+
+.gallery {
+  display: grid;
+  gap: 14px;
+  margin-top: clamp(36px, 5vw, 56px);
+  padding: 0;
+  list-style: none;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+}
+
+.about-photo {
+  max-width: 420px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 999px 999px 26px 26px;
+    border: 1px solid rgba($gold, 0.5);
+  }
 }
 
 .small-note {
@@ -1109,6 +1125,10 @@ button.btn-gold {
 }
 
 @media (min-width: 640px) {
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .nine {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
