@@ -1,0 +1,266 @@
+@use 'themes/theme-entry' as *;
+
+// ===========================================================================
+// Gemeinsame Gestaltung der Promotionen: Übersicht, Botox-Seite und
+// Anzeigenseite. Dieselbe „Emerald Immersive"-Familie wie die Kooperationsseiten.
+// ===========================================================================
+
+:host {
+  display: block;
+  background: $emerald-deep;
+  color: $cream;
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: clip;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+
+section {
+  padding: clamp(56px, 8vh, 100px) 0;
+}
+
+.hero {
+  padding-top: clamp(130px, 18vh, 190px);
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: $sage-bright;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $font-fraunces;
+  font-weight: 400;
+  color: $cream;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 0 0 22px;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1.05;
+
+  em {
+    font-style: italic;
+    color: $gold;
+  }
+}
+
+h2 {
+  margin: 0 0 26px;
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1.12;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+p {
+  margin: 0 0 16px;
+  max-width: 68ch;
+  color: rgba($cream, 0.82);
+}
+
+.lead {
+  font-size: clamp(18px, 1.6vw, 21px);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.btn-gold,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.btn-gold {
+  background: $gold;
+  color: $emerald-deep;
+  font-weight: 700;
+  padding: 18px 34px;
+  transition: background 220ms ease;
+
+  &:hover {
+    background: $gold-bright;
+    color: $emerald-deep;
+  }
+}
+
+.btn-outline {
+  border: 1.5px solid rgba($cream, 0.4);
+  color: $cream;
+  font-weight: 600;
+  padding: 17px 30px;
+  transition: border-color 220ms ease, color 220ms ease;
+
+  &:hover {
+    border-color: $gold;
+    color: $gold;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  background: $emerald-card;
+  border: 1px solid rgba($cream, 0.1);
+  border-radius: 16px;
+  color: $cream;
+  text-decoration: none;
+
+  p {
+    margin-bottom: 18px;
+    font-size: 15px;
+  }
+
+  .tag {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $gold;
+  }
+
+  .more {
+    margin-top: auto;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $gold;
+  }
+}
+
+a.card {
+  transition: border-color 220ms ease;
+
+  &:hover {
+    border-color: $gold;
+    color: $cream;
+  }
+}
+
+.prices {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba($cream, 0.12);
+  }
+
+  .price {
+    flex: none;
+    font-weight: 700;
+    color: $gold;
+    white-space: nowrap;
+  }
+
+  small {
+    display: block;
+    font-size: 13px;
+    color: rgba($cream, 0.6);
+  }
+}
+
+.note {
+  margin-top: 22px;
+  font-size: 14px;
+  color: rgba($cream, 0.65);
+}
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+
+  li {
+    counter-increment: step;
+    position: relative;
+    padding: 0 0 22px 52px;
+
+    &::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid $gold;
+      border-radius: 50%;
+      font-weight: 700;
+      color: $gold;
+    }
+  }
+}
+
+.faq details {
+  border-bottom: 1px solid rgba($cream, 0.14);
+  padding: 18px 0;
+}
+
+.faq summary {
+  cursor: pointer;
+  font-family: $font-fraunces;
+  font-size: 20px;
+  color: $cream;
+}
+
+.faq details p {
+  margin: 14px 0 4px;
+}
+
+.alt {
+  background: $emerald-abyss;
+}
+
+[id] {
+  scroll-margin-top: 90px;
+}
+
+.card-title {
+  margin: 0 0 8px;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.2;
+}

@@ -133,6 +133,15 @@
       </a>
 
       <a
+        [routerLink]="p('/promotionen')"
+        routerLinkActive="active"
+        (click)="setActiveTab('promotionen')"
+        class="nav-link"
+      >
+        <span class="lang de">Promotionen</span><span class="lang en">Promotions</span>
+      </a>
+
+      <a
         [routerLink]="p('/karriere')"
         routerLinkActive="active"
         (click)="setActiveTab('karriere')"

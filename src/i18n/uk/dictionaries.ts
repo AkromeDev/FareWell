@@ -17,6 +17,9 @@ export const UK_EXCLUDED_PATHS: readonly string[] = [
   'behandlungen/aesthetische-medizin',
   'behandlungen/massage-ruslana-ivanova',
   'behandlungen/level-44',
+  'promotionen',
+  'promotionen/botox-nuernberg',
+  'promotionen/aesthetische-medizin-nuernberg',
   'karriere/masseur-bademeister-blind-nuernberg',
 ];
 

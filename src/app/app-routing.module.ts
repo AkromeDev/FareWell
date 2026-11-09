@@ -654,6 +654,57 @@ function localizedRoutes(lang: PageLang): Routes {
       )
     },
 
+    // Die Promotionen im Kopf der Seite: Übersicht, Botox-Seite für Suche und
+    // KI-Dienste, und die wirkstofffreie Zielseite der Google Anzeigen (noindex).
+    {
+      path: 'promotionen',
+      loadComponent: () =>
+        import('../components/pages/promotions/promotionen-hub/promotionen-hub.component')
+          .then(m => m.PromotionenHubComponent),
+      data: d(
+        {
+          title: 'Promotionen und Aktionen in Nürnberg | FareWell',
+          description: 'Alle aktuellen Promotionen von FareWell in Nürnberg: Botox bei Dr. med. Andrea Leo, 50 % auf die erste Laser, Elektrolyse oder Microneedling Behandlung.'
+        },
+        {
+          title: 'Promotions and offers in Nuremberg | FareWell',
+          description: 'All current FareWell promotions in Nuremberg: Botox with Dr. med. Andrea Leo, 50% off your first laser, electrolysis or microneedling treatment.'
+        }
+      )
+    },
+    {
+      path: 'promotionen/botox-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/promotions/botox-promotion/botox-promotion.component')
+          .then(m => m.BotoxPromotionComponent),
+      data: d(
+        {
+          title: 'Botox Nürnberg: Preise ab 89 €, Dr. med. Andrea Leo | FareWell',
+          description: 'Botox in Nürnberg bei Dr. med. Andrea Leo, bei FareWell am Frauentorgraben 5. Einzelne Regionen ab 89 €, eine Zone ab 109 €. Ab 16.11.2026 bei FareWell.'
+        },
+        {
+          title: 'Botox in Nuremberg: prices from €89, Dr. med. Andrea Leo | FareWell',
+          description: 'Botox in Nuremberg with Dr. med. Andrea Leo, at FareWell, Frauentorgraben 5. Single regions from €89, one zone from €109. At FareWell from 16 November 2026.'
+        }
+      )
+    },
+    {
+      path: 'promotionen/aesthetische-medizin-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/promotions/aesthetik-promotion/aesthetik-promotion.component')
+          .then(m => m.AesthetikPromotionComponent),
+      data: d(
+        {
+          title: 'Ästhetische Medizin in Nürnberg: Dr. med. Andrea Leo | FareWell',
+          description: 'Faltenbehandlung, Lippen, Hyaluron, Mesotherapie und Fadenlifting beim Arzt in Nürnberg. Dr. med. Andrea Leo bei FareWell, Frauentorgraben 5.'
+        },
+        {
+          title: 'Aesthetic medicine in Nuremberg: Dr. med. Andrea Leo | FareWell',
+          description: 'Wrinkle treatment, lips, hyaluronic acid, mesotherapy and thread lifts with a physician in Nuremberg. Dr. med. Andrea Leo at FareWell, Frauentorgraben 5.'
+        }
+      )
+    },
+
     {
       path: 'laser-haarentfernung-aktion-nuernberg',
       loadComponent: () =>

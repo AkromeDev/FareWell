@@ -1,0 +1,89 @@
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">{{ t('FareWell · Nürnberg', 'FareWell · Nuremberg') }}</p>
+    <h1>{{ t('Ästhetische Medizin', 'Aesthetic medicine') }} <em>{{ t('beim Arzt', 'with a physician') }}</em></h1>
+    <p class="lead">
+      {{ t(
+        'Faltenbehandlung, Lippen, Hyaluron, Mesotherapie und Fadenlifting mit Dr. med. Andrea Leo. Ab dem 16.11.2026 bei FareWell, am Frauentorgraben 5, zwei Minuten vom Hauptbahnhof.',
+        'Wrinkle treatment, lips, hyaluronic acid, mesotherapy and thread lifts with Dr. med. Andrea Leo. At FareWell from 16 November 2026, at Frauentorgraben 5, two minutes from the main station.'
+      ) }}
+    </p>
+    <div class="ctas">
+      <a class="btn-gold" [href]="phoneHref">{{ phoneLabel }}</a>
+      <a class="btn-outline" [href]="mailHref">{{ mailLabel }}</a>
+      <a class="btn-outline" [href]="bookingUrl" target="_blank" rel="noopener noreferrer">{{ t('Online buchen', 'Book online') }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="behandlungen">
+  <div class="wrap">
+    <h2>{{ t('Behandlungen und Preise', 'Treatments and prices') }}</h2>
+    <div class="grid">
+      @for (group of priceGroups; track group.id) {
+        <div class="card" [id]="group.id">
+          <h3>{{ bi(group.title) }}</h3>
+          @if (group.blurb) {
+            <p>{{ bi(group.blurb) }}</p>
+          }
+          <ul class="prices">
+            @for (item of group.items; track item.name.de) {
+              <li>
+                <span>
+                  {{ bi(item.name) }}
+                  @if (item.detail) {
+                    <small>{{ bi(item.detail) }}</small>
+                  }
+                </span>
+                <span class="price">{{ t('ab', 'from') }} {{ item.priceFrom }} €</span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+    <p class="note">
+      {{ t(
+        'Startpreise. Der endgültige Preis hängt von Befund, Umfang und Produktmenge ab und wird dir vor der Behandlung genannt.',
+        'Starting prices. The final price depends on findings, scope and amount of product, and you are told it before the treatment.'
+      ) }}
+    </p>
+  </div>
+</section>
+
+<section id="ablauf">
+  <div class="wrap">
+    <h2>{{ t('So läuft es ab', 'How it works') }}</h2>
+    <ol class="steps">
+      @for (step of steps; track step.title.de) {
+        <li>
+          <h3>{{ bi(step.title) }}</h3>
+          <p>{{ bi(step.text) }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="alt faq" id="fragen">
+  <div class="wrap">
+    <h2>{{ t('Häufige Fragen', 'Common questions') }}</h2>
+    @for (entry of faq; track entry.q.de) {
+      <details>
+        <summary>{{ bi(entry.q) }}</summary>
+        <p>{{ bi(entry.a) }}</p>
+      </details>
+    }
+  </div>
+</section>
+
+<section id="besuch">
+  <div class="wrap">
+    <h2>{{ t('Anfahrt und Kontakt', 'Directions and contact') }}</h2>
+    <p>FareWell, Frauentorgraben 5, 90443 {{ t('Nürnberg', 'Nuremberg') }}</p>
+    <div class="ctas">
+      <a class="btn-gold" [href]="phoneHref">{{ phoneLabel }}</a>
+      <a class="btn-outline" [href]="mailHref">{{ mailLabel }}</a>
+    </div>
+  </div>
+</section>

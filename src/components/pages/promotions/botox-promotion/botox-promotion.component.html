@@ -1,0 +1,86 @@
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">{{ t('Promotionen · Ästhetische Medizin', 'Promotions · Aesthetic medicine') }}</p>
+    <h1>{{ t('Botox in', 'Botox in') }} <em>{{ t('Nürnberg', 'Nuremberg') }}</em></h1>
+    <p class="lead">
+      {{ t(
+        'Beim Arzt, mit offenen Preisen. Dr. med. Andrea Leo behandelt ab dem 16.11.2026 persönlich bei FareWell, am Frauentorgraben 5, zwei Minuten vom Hauptbahnhof.',
+        'With a physician, with open prices. Dr. med. Andrea Leo treats in person at FareWell from 16 November 2026, at Frauentorgraben 5, two minutes from the main station.'
+      ) }}
+    </p>
+    <p>
+      {{ t(
+        'Einzelne Regionen ab 89 €, eine Zone ab 109 €. Approbierter Arzt seit 2016, seit 2018 in der ästhetischen Medizin.',
+        'Single regions from €89, one zone from €109. A licensed physician since 2016, in aesthetic medicine since 2018.'
+      ) }}
+    </p>
+    <div class="ctas">
+      <a class="btn-gold" [href]="bookingUrl" target="_blank" rel="noopener noreferrer">{{ t('Termin buchen', 'Book now') }}</a>
+      <a class="btn-outline" [href]="phoneHref">{{ phoneLabel }}</a>
+    </div>
+  </div>
+</section>
+
+@if (promotions.length) {
+  <section class="alt" id="aktuelle-promotion">
+    <div class="wrap">
+      <h2>{{ t('Aktuelle Promotion', 'Current promotion') }}</h2>
+      <div class="grid">
+        @for (promo of promotions; track promo.title.de) {
+          <div class="card">
+            <h3>{{ bi(promo.title) }}</h3>
+            <p>{{ bi(promo.text) }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+}
+
+<section class="alt" id="preise">
+  <div class="wrap">
+    <h2>{{ t('Was kostet Botox bei FareWell?', 'How much is Botox at FareWell?') }}</h2>
+    <div class="grid">
+      @for (group of priceGroups; track group.id) {
+        <div class="card">
+          <h3>{{ bi(group.title) }}</h3>
+          @if (group.blurb) {
+            <p>{{ bi(group.blurb) }}</p>
+          }
+          <ul class="prices">
+            @for (item of group.items; track item.name.de) {
+              <li>
+                <span>{{ bi(item.name) }}</span>
+                <span class="price">{{ t('ab', 'from') }} {{ item.priceFrom }} €</span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+    <p class="note">
+      {{ t(
+        'Startpreise. Der endgültige Preis hängt von Befund, Umfang und Produktmenge ab und wird dir im Beratungsgespräch vor der Behandlung genannt. Ästhetische Behandlungen sind in der Regel Privatleistungen.',
+        'Starting prices. The final price depends on findings, scope and amount of product, and you are told it in the consultation before the treatment. Aesthetic treatments are usually private services.'
+      ) }}
+    </p>
+    <p class="note">
+      <a [routerLink]="hubLink">{{ t('Alle Promotionen von FareWell', 'All FareWell promotions') }}</a>
+    </p>
+  </div>
+</section>
+
+<section class="faq" id="fragen">
+  <div class="wrap">
+    <h2>{{ t('Häufige Fragen zu Botox in Nürnberg', 'Common questions about Botox in Nuremberg') }}</h2>
+    @for (entry of faq; track entry.q.de) {
+      <details>
+        <summary>{{ bi(entry.q) }}</summary>
+        <p>{{ bi(entry.a) }}</p>
+      </details>
+    }
+    <div class="ctas">
+      <a class="btn-gold" [href]="bookingUrl" target="_blank" rel="noopener noreferrer">{{ t('Termin buchen', 'Book now') }}</a>
+    </div>
+  </div>
+</section>
