@@ -53,9 +53,14 @@ export class AppComponent {
 
         // Nur der Pfad: Query (gclid, utm_*) und Fragment gehören nicht in
         // die Canonical-URL, sonst zeigt jeder Anzeigenklick auf eine eigene.
+        // Eine Route kann ihn mit data.canonical festlegen (die beiden Seiten
+        // des A/B-Tests der Promotionen zeigen so auf /promotionen).
         const canonical = this.document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
         if (canonical) {
-          const path = e.urlAfterRedirects.split(/[?#]/)[0] || '/';
+          let leaf = this.router.routerState.snapshot.root;
+          while (leaf.firstChild) leaf = leaf.firstChild;
+          const fixed = leaf.data['canonical'] as string | undefined;
+          const path = fixed ?? (e.urlAfterRedirects.split(/[?#]/)[0] || '/');
           canonical.href = `https://farewell.salon${path}`;
         }
       });

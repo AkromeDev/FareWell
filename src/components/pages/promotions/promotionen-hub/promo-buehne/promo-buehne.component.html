@@ -1,0 +1,138 @@
+<div class="fb">
+  <div class="wrap top">
+    <div>
+      <p class="eyebrow">FareWell · {{ t('Nürnberg', 'Nuremberg') }}</p>
+      <h1 class="h1">{{ t('Unsere', 'Our') }} <em>{{ t('Promotionen', 'promotions') }}</em></h1>
+    </div>
+    <p class="lead">
+      {{
+        t(
+          'Alle laufenden Aktionen an einem Ort, am Frauentorgraben 5, zwei Minuten vom Hauptbahnhof.',
+          'All current offers in one place, at Frauentorgraben 5, two minutes from the main station.'
+        )
+      }}
+    </p>
+  </div>
+
+  <section
+    class="stage"
+    #stage
+    [class.is-drag]="dragging()"
+    [attr.aria-label]="t('Aktionen zum Drehen', 'Offers to spin')"
+    [attr.aria-roledescription]="t('Karussell', 'carousel')"
+  >
+    <div class="ghost" #ghost aria-hidden="true">{{ bi(active().figure) }}</div>
+    <div class="floor" aria-hidden="true"></div>
+    <div class="ring" #ring>
+      @for (o of offers; track o.id; let i = $index) {
+        <div class="slot" [style.--a]="i * step + 'deg'">
+          <div class="flip" [class.is-flipped]="flipped() === i">
+            <button
+              class="face card"
+              type="button"
+              tabindex="-1"
+              [attr.aria-label]="t('Zeige', 'Show') + ': ' + bi(o.title)"
+              (click)="pick(i)"
+            >
+              <img class="card-img" [src]="o.image" alt="" draggable="false" [style.object-position]="o.imagePos" />
+              <span class="card-shade"></span>
+              <span class="card-tag">{{ bi(o.tag) }}</span>
+              <span class="card-val">
+                <span class="card-num">{{ bi(o.value) }}</span>
+                <span class="card-name">{{ bi(o.short) }}</span>
+              </span>
+              <span class="dim" aria-hidden="true"></span>
+            </button>
+            <button
+              class="face back"
+              type="button"
+              tabindex="-1"
+              [attr.aria-label]="t('Rückseite', 'Back') + ', ' + bi(o.tag) + ': ' + bi(o.fact)"
+              (click)="pick(i)"
+            >
+              <span class="back-frame" aria-hidden="true"></span>
+              <span class="back-tag">{{ bi(o.tag) }}</span>
+              <span class="back-logo" aria-hidden="true">FareWell.</span>
+              <span class="back-rule" aria-hidden="true"></span>
+              <span class="back-fact">{{ bi(o.fact) }}</span>
+              <span class="back-foot">{{ bi(o.foot) }}</span>
+              <span class="dim dim-b" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="arrows">
+      <button class="arrow" type="button" [attr.aria-label]="t('Vorherige Aktion', 'Previous offer')" (click)="prev()">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+      </button>
+      <button class="arrow" type="button" [attr.aria-label]="t('Nächste Aktion', 'Next offer')" (click)="next()">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+      </button>
+    </div>
+    <div class="under">
+      <button class="turn" type="button" [attr.aria-pressed]="flipped() === activeIndex()" (click)="toggleFlip()">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 9" /><path d="M20 4v5h-5" /><path d="M20 12a8 8 0 0 1-13.7 5.6L4 15" /><path d="M4 20v-5h5" /></svg>
+        {{ flipLabel() }}
+      </button>
+      <p class="hint" aria-hidden="true">{{ t('oder ziehen zum Drehen', 'or drag to spin') }}</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="tabs" role="group" [attr.aria-label]="t('Aktion wählen', 'Choose an offer')">
+      @for (o of offers; track o.id; let i = $index) {
+        <button class="tab" type="button" [class.is-on]="activeIndex() === i" [attr.aria-pressed]="activeIndex() === i" (click)="tab(i)">
+          {{ bi(o.tag) }}
+        </button>
+      }
+    </div>
+
+    <article class="detail" #detail aria-live="polite">
+      <div class="d-left in">
+        <p class="d-tag">{{ bi(active().tag) }}</p>
+        <h2 class="d-title">{{ bi(active().title) }}</h2>
+        <p class="d-text">{{ bi(active().text) }}</p>
+      </div>
+      <div class="d-right in">
+        @if (prices().length) {
+          <ul class="prices">
+            @for (p of prices(); track p.name) {
+              <li><span>{{ p.name }}</span><b>{{ p.price }}</b></li>
+            }
+          </ul>
+          @if (active().zones; as z) {
+            <p class="fine">{{ bi(z.note) }}</p>
+          }
+        }
+        @if (active().withCode) {
+          <button class="code" type="button" (click)="copy()">
+            <span class="code-txt">{{ code }}</span>
+            <span class="code-lbl">{{ copyLabel() }}</span>
+          </button>
+          <p class="fine">{{ t('Gilt für Neukund:innen, Rabatte nicht kombinierbar.', 'Valid for new clients, discounts not combinable.') }}</p>
+        }
+        <div class="actions">
+          <a class="btn-outline" [routerLink]="link(active().path)" (click)="offerClick()">{{ t('Mehr erfahren', 'Learn more') }}</a>
+          <a
+            class="btn-gold"
+            [href]="bookingUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="bookAria()"
+            (click)="book($event, 'buehne-' + active().id)"
+          >{{ bookLabel() }}</a>
+        </div>
+      </div>
+    </article>
+
+    <section class="steps" aria-labelledby="fb-steps-h">
+      <h2 class="steps-h" id="fb-steps-h">{{ t('So löst du den', 'How to redeem the') }} <em>{{ t('Code', 'code') }}</em> {{ t('ein', '') }}</h2>
+      <ol>
+        <li><span>1</span><p>{{ t('Online über Salonkee buchen.', 'Book online through Salonkee.') }}</p></li>
+        <li><span>2</span><p>{{ t('Den Code ERSTEBEHANDLUNG bei der Buchung angeben.', 'Enter the code ERSTEBEHANDLUNG when booking.') }}</p></li>
+        <li><span>3</span><p>{{ t('Gilt für Neukund:innen, Rabatte nicht kombinierbar.', 'Valid for new clients, discounts not combinable.') }}</p></li>
+      </ol>
+    </section>
+  </div>
+</div>

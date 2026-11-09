@@ -1,25 +1,35 @@
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">FareWell · {{ t('Nürnberg', 'Nuremberg') }}</p>
-    <h1>{{ t('Unsere', 'Our') }} <em>{{ t('Promotionen', 'promotions') }}</em></h1>
-    <p class="lead">
-      {{ t(
-        'Alle laufenden Aktionen an einem Ort, am Frauentorgraben 5, zwei Minuten vom Hauptbahnhof.',
-        'All current offers in one place, at Frauentorgraben 5, two minutes from the main station.'
-      ) }}
-    </p>
-  </div>
-</section>
+@switch (variant) {
+  @case ('a') {
+    <app-promo-feld />
+  }
+  @case ('b') {
+    <app-promo-buehne />
+  }
+  @default {
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">FareWell · {{ t('Nürnberg', 'Nuremberg') }}</p>
+        <h1>{{ t('Unsere', 'Our') }} <em>{{ t('Promotionen', 'promotions') }}</em></h1>
+        <p class="lead">
+          {{ t(
+            'Alle laufenden Aktionen an einem Ort, am Frauentorgraben 5, zwei Minuten vom Hauptbahnhof.',
+            'All current offers in one place, at Frauentorgraben 5, two minutes from the main station.'
+          ) }}
+        </p>
+      </div>
+    </section>
 
-<section>
-  <div class="wrap grid">
-    @for (card of cards; track card.path) {
-      <a class="card" [routerLink]="link(card.path)">
-        <p class="tag">{{ bi(card.tag) }}</p>
-        <h2 class="card-title">{{ bi(card.title) }}</h2>
-        <p>{{ bi(card.text) }}</p>
-        <span class="more">{{ t('Mehr erfahren', 'Learn more') }}</span>
-      </a>
-    }
-  </div>
-</section>
+    <section>
+      <div class="wrap grid">
+        @for (card of cards; track card.path) {
+          <a class="card" [routerLink]="link(card.path)">
+            <p class="tag">{{ bi(card.tag) }}</p>
+            <h2 class="card-title">{{ bi(card.title) }}</h2>
+            <p>{{ bi(card.text) }}</p>
+            <span class="more">{{ t('Mehr erfahren', 'Learn more') }}</span>
+          </a>
+        }
+      </div>
+    </section>
+  }
+}

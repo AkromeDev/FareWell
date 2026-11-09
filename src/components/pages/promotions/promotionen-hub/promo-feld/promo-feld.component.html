@@ -1,0 +1,176 @@
+<div class="fa" #root>
+  <section
+    class="hero"
+    #hero
+    [class.is-revealed]="revealed()"
+    [class.is-done]="done()"
+    aria-labelledby="fa-h1"
+  >
+    <div class="ground" aria-hidden="true"></div>
+    <div class="digit" #digit aria-hidden="true">{{ fifty() }}</div>
+    <canvas class="field" #canvas aria-hidden="true"></canvas>
+
+    <!-- Nur auf Touch-Geräten: zeigt, dass man hier wischen kann. -->
+    <div class="swipe" aria-hidden="true">
+      <span class="swipe-trail"></span>
+      <span class="swipe-dot"></span>
+      <span class="swipe-label">{{ t('Wischen', 'Swipe') }}</span>
+    </div>
+
+    <div class="copy" #copyBox>
+      <p class="eyebrow">FareWell · {{ t('Nürnberg', 'Nuremberg') }}</p>
+      <h1 class="h1" id="fa-h1">
+        <span class="line"><span>{{ t('Unsere', 'Our') }}</span></span>&ngsp;<span class="line"><em>{{ t('Promotionen', 'promotions') }}</em></span>
+      </h1>
+      <p class="lead">
+        {{
+          t(
+            'Alle laufenden Aktionen an einem Ort, am Frauentorgraben 5, zwei Minuten vom Hauptbahnhof.',
+            'All current offers in one place, at Frauentorgraben 5, two minutes from the main station.'
+          )
+        }}
+      </p>
+    </div>
+
+    <div class="bar">
+      <div class="bar-hint">
+        <p class="hint">
+          <span class="hint-mouse">{{ t('Fahr mit der Maus durch das Feld.', 'Move your mouse through the field.') }}</span>
+          <span class="hint-touch">{{ t('Wisch durch das Feld.', 'Swipe through the field.') }}</span>
+          {{ t('Darunter wartet dein Code.', 'Your code is waiting underneath.') }}
+        </p>
+        <span class="progress" aria-hidden="true"><i #prog></i></span>
+        <button class="ghost" type="button" (click)="revealNow()">
+          {{ t('Code direkt zeigen', 'Show the code now') }}
+        </button>
+      </div>
+      <div class="bar-code">
+        <p class="bar-title">
+          <em>{{ fifty() }}</em> {{ t('auf deine erste Behandlung', 'off your first treatment') }}
+        </p>
+        <button class="code" type="button" (click)="copy('hero')">
+          <span class="code-txt">{{ code }}</span>
+          <span class="code-lbl" aria-live="polite">{{ copyLabel() }}</span>
+        </button>
+        <a
+          class="btn-gold"
+          [href]="bookingUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          [attr.aria-label]="bookAria()"
+          (click)="book($event, 'feld')"
+        >{{ bookLabel() }}</a>
+        <button class="replay" type="button" (click)="replay()">{{ t('Noch einmal', 'Play again') }}</button>
+        <p class="fine bar-terms">
+          {{
+            t(
+              'Für Neukund:innen bei Laser, Elektrolyse, Nadelepilation und Microneedling. Online buchen und den Code bei der Buchung angeben. Rabatte nicht kombinierbar.',
+              'For new clients on laser, electrolysis, needle epilation and microneedling. Book online and enter the code when booking. Discounts not combinable.'
+            )
+          }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="offers" aria-labelledby="fa-h2">
+    <div class="wrap">
+      <h2 class="h2" id="fa-h2">{{ t('Alle laufenden', 'All current') }} <em>{{ t('Aktionen', 'offers') }}</em></h2>
+      <div class="rows-wrap" #list>
+        <div class="float" #float [class.is-on]="floatOn()" aria-hidden="true">
+          @for (o of offers; track o.id; let i = $index) {
+            <img class="float-img" [class.is-on]="hover() === i" [src]="o.image" alt="" loading="lazy" [style.object-position]="o.imagePos" />
+          }
+        </div>
+        <ul class="rows">
+          @for (o of offers; track o.id; let i = $index) {
+            <li class="row" [class.is-open]="open() === i" [style.transition-delay.ms]="i * 60" (mouseenter)="hover.set(i)">
+              <h3 class="row-h">
+                <button
+                  class="row-btn"
+                  type="button"
+                  [attr.aria-expanded]="open() === i"
+                  [attr.aria-controls]="'fa-panel-' + o.id"
+                  (click)="toggle(i)"
+                >
+                  <span class="row-tag">{{ bi(o.tag) }}</span>
+                  <span class="row-title">{{ bi(o.title) }}</span>
+                  <span class="row-val">{{ bi(o.value) }}</span>
+                  <span class="row-plus" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>
+                  </span>
+                </button>
+              </h3>
+              <div class="row-panel" [id]="'fa-panel-' + o.id">
+                <div class="row-inner">
+                  <div class="panel-grid">
+                    <div class="panel-body">
+                      <p class="panel-text">{{ bi(o.text) }}</p>
+                      @if (o.zones; as z) {
+                        <div class="zones">
+                          <p class="zones-l">{{ bi(z.label) }}</p>
+                          <div class="chips" role="group" [attr.aria-label]="t('Anzahl der Zonen', 'Number of zones')">
+                            @for (opt of z.options; track $index; let j = $index) {
+                              <button
+                                class="chip"
+                                type="button"
+                                [class.is-on]="zoneIndex(o.id) === j"
+                                [attr.aria-pressed]="zoneIndex(o.id) === j"
+                                (click)="pickZone(o.id, j)"
+                              >{{ opt }}</button>
+                            }
+                          </div>
+                          <p class="zones-out" aria-live="polite">{{ bi(z.results[zoneIndex(o.id)]) }}</p>
+                          <p class="fine">{{ bi(z.note) }}</p>
+                        </div>
+                      }
+                      <div class="actions">
+                        @if (o.withCode) {
+                          <button class="code" type="button" (click)="copy(o.id)">
+                            <span class="code-txt">{{ code }}</span>
+                            <span class="code-lbl">{{ copyLabel() }}</span>
+                          </button>
+                        }
+                        <a class="btn-outline" [routerLink]="link(o.path)" (click)="offerClick(o.id)">{{ t('Mehr erfahren', 'Learn more') }}</a>
+                        <a
+                          class="btn-gold"
+                          [href]="bookingUrl"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          [attr.aria-label]="bookAria()"
+                          (click)="book($event, 'feld-' + o.id)"
+                        >{{ bookLabel() }}</a>
+                      </div>
+                      @if (o.withCode) {
+                        <p class="fine">{{ t('Gilt für Neukund:innen, Rabatte nicht kombinierbar.', 'Valid for new clients, discounts not combinable.') }}</p>
+                      }
+                    </div>
+                    <img class="panel-img" [src]="o.image" [alt]="bi(o.imageAlt)" loading="lazy" [style.object-position]="o.imagePos" />
+                  </div>
+                </div>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" #cta aria-labelledby="fa-cta-h">
+    <div class="wrap cta-in">
+      <div>
+        <h2 class="cta-h" id="fa-cta-h">{{ t('Online buchen,', 'Book online,') }} <em>{{ t('Code angeben.', 'enter the code.') }}</em></h2>
+        <p class="cta-p">{{ t('Frauentorgraben 5, zwei Minuten vom Hauptbahnhof.', 'Frauentorgraben 5, two minutes from the main station.') }}</p>
+      </div>
+      <a
+        class="magnet"
+        #magnet
+        [href]="bookingUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        [attr.aria-label]="bookAria()"
+        (click)="book($event, 'feld-ende')"
+      >{{ bookLabel() }}</a>
+    </div>
+  </section>
+</div>
