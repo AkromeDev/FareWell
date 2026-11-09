@@ -121,7 +121,7 @@ const STATS: Stat[] = [
   },
   {
     value: { de: '49 €', en: '€49' },
-    label: { de: 'Einführungspreis, regulär 77 €', en: 'Introductory price, regularly €77' },
+    label: { de: 'für deine erste Journey mit dem Code LEVEL44START, regulär 99 €', en: 'for your first journey with the code LEVEL44START, regularly €99' },
   },
 ];
 
@@ -191,7 +191,7 @@ const OFFERS: Offer[] = [
     facts: [
       { de: 'Jeden zweiten Sonntag, 11:00 Uhr. Start: So 15.11. THE AWAKENING, So 29.11. LETTING GO', en: 'Every second Sunday, 11:00. Starting Sun 15 Nov THE AWAKENING, Sun 29 Nov LETTING GO' },
       { de: 'Ca. 2,5–3 Stunden inklusive Einführung und Integration · höchstens 12 Plätze', en: 'About 2.5–3 hours including introduction and integration · 12 places at most' },
-      { de: '49 € Einführungspreis, regulär 77 €', en: '€49 introductory price, regularly €77' },
+      { de: '99 € · deine erste Journey 49 € mit dem Code LEVEL44START (einmal pro Person, nur für Neukunden)', en: '€99 · your first journey €49 with the code LEVEL44START (once per person, new clients only)' },
     ],
     cta: { de: 'Nächste Journey buchen', en: 'Book the next journey' },
   },
@@ -219,8 +219,8 @@ const OFFERS: Offer[] = [
       de: 'Eine geführte 9D Atemreise nach einem vollen Tag, mit immersiver Klangwelt und Zeit zur Integration.',
       en: 'A guided 9D breath journey after a full day, with an immersive sound world and time for integration.',
     },
-    facts: [{ de: 'Geplant donnerstags, 19:30 Uhr · 77 €, 49 € Einführungspreis bei ausgewählten Terminen', en: 'Planned on Thursdays, 19:30 · €77, €49 introductory price on selected dates' }],
-    later: { de: 'Start und genaue Dauer folgen.', en: 'Start date and exact duration to follow.' },
+    facts: [{ de: 'Geplant donnerstags, 19:30 Uhr · ca. 3 Stunden · 99 €, deine erste Journey 49 € mit dem Code LEVEL44START', en: 'Planned on Thursdays, 19:30 · about 3 hours · €99, your first journey €49 with the code LEVEL44START' }],
+    later: { de: 'Start folgt.', en: 'Start date to follow.' },
   },
   {
     id: 'private',
@@ -299,7 +299,7 @@ const PRICES: PriceRow[] = [
   {
     name: { de: '9D Group Experience (So 11:00, max. 12)', en: '9D Group Experience (Sun 11:00, max. 12)' },
     duration: { de: 'ca. 2,5–3 Std.', en: 'about 2.5–3 h' },
-    price: { de: '49 € Einführung · 77 € regulär', en: '€49 introductory · €77 regular' },
+    price: { de: '99 € · erste Journey 49 € (Code LEVEL44START)', en: '€99 · first journey €49 (code LEVEL44START)' },
   },
   {
     name: { de: 'Group + Soul Touch Integration (1 Platz)', en: 'Group + Soul Touch Integration (1 place)' },
@@ -308,8 +308,8 @@ const PRICES: PriceRow[] = [
   },
   {
     name: { de: '9D Evening Experience (Do 19:30)', en: '9D Evening Experience (Thu 19:30)' },
-    duration: { de: 'folgt', en: 'to follow' },
-    price: { de: '77 € · 49 € Einführung', en: '€77 · €49 introductory' },
+    duration: { de: 'ca. 3 Std.', en: 'about 3 h' },
+    price: { de: '99 € · erste Journey 49 € (Code LEVEL44START)', en: '€99 · first journey €49 (code LEVEL44START)' },
   },
   {
     name: { de: '9D Private Experience', en: '9D Private Experience' },
