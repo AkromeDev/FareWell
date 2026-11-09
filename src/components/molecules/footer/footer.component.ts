@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { ConsentService } from 'src/services/consent.service';
 import { LanguageService } from 'src/services/language.service';
@@ -22,6 +22,13 @@ export class FooterComponent {
   readonly lang = inject(LanguageService);
 
   private readonly consent = inject(ConsentService);
+
+  private readonly router = inject(Router);
+
+  /** Die wirkstofffreie Zielseite der Google Anzeigen, siehe aesthetik-promotion. */
+  get isAdLandingPage(): boolean {
+    return this.router.url.split(/[?#]/)[0].endsWith('/promotionen/aesthetische-medizin-nuernberg');
+  }
 
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';
 

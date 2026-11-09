@@ -136,10 +136,13 @@
           ><span class="lang de">Tanzlehrer:in</span
           ><span class="lang en">Dance teacher</span></a
         >
+        <!-- Nicht auf der Zielseite der Google Anzeigen: dort darf kein Wirkstoffname stehen. -->
+        @if (!isAdLandingPage) {
         <a [routerLink]="p('/karriere/botox-nuernberg')" class="no-underline"
           ><span class="lang de">Botox &amp; ästhetische Medizin</span
           ><span class="lang en">Botox &amp; aesthetic medicine</span></a
         >
+        }
       </div>
 
       <div class="links-row legal-row">
