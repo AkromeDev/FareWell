@@ -22,3 +22,10 @@ disposable" has been wrong before. A move costs nothing and is always reversible
 If a command fails with `Operation not permitted` on an unlink, that is this rule
 being enforced by the sandbox — do not ask for delete permission, move the file
 to `bin/` and carry on.
+
+## Shared AI chat & SEO strategy
+
+farewell.salon is one of three coordinated sites. Before changing page structure,
+structured data, links to the partner sites, analytics events or anything for the chat
+assistant, read `AI-SEO-STRATEGY.md` at the base of the project. It holds the rules that
+bind this code and says where the full plan lives.
