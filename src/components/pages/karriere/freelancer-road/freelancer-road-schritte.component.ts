@@ -91,12 +91,12 @@ export class FreelancerRoadSchritteComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const prefix = this.language.prefix();
     const title = this.t(
-      'Freelancer Road: alle Schritte als Checkliste | FareWell Nürnberg',
-      'Freelancer Road: Every Step as a Checklist | FareWell Nuremberg',
+      'Freelancer Road: alle Schritte als Checkliste | FareWell',
+      'Freelancer Road: Every Step as a Checklist | FareWell',
     );
     const description = this.t(
-      'Die abhakbare Checkliste in die Selbständigkeit bei FareWell Nürnberg: Gewerbe oder freier Beruf, Finanzamt, Kammer, Berufsgenossenschaft, Versicherung, Google-Profil, Website und Marketing. Mit Nummern, Adressen und Joés Erfahrungen. Dein Stand bleibt in deinem Browser.',
-      'The tick-off checklist into self-employment at FareWell Nuremberg: trade or liberal profession, tax office, chamber, accident insurer, insurance, Google profile, website and marketing. With phone numbers, addresses and Joé\'s experience. Your progress stays in your browser.',
+      'Die Checkliste in die Selbständigkeit bei FareWell Nürnberg: Gewerbe, Finanzamt, Kammer, Versicherung, Google-Profil, Website. Dein Stand bleibt bei dir.',
+      'The checklist into self-employment at FareWell Nuremberg: trade, tax office, chamber, insurance, Google profile, website. Your progress stays with you.',
     );
     const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
     const homeUrl = `${ORIGIN}${prefix}`;

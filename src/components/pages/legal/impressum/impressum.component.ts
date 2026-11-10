@@ -14,7 +14,7 @@ export class ImpressumComponent implements OnInit {
   ngOnInit(): void {
     this.seo.setPageSeo({
       title: 'Impressum | FareWell Nürnberg',
-      description: 'Impressum von FareWell, Beauty Studio in Nürnberg.',
+      description: 'Impressum von FareWell, Kosmetikstudio für permanente und dauerhafte Haarentfernung am Frauentorgraben 5 in Nürnberg, mit Kontakt und Angaben.',
       path: '/impressum',
     });
   }

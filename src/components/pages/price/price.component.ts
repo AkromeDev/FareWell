@@ -22,13 +22,13 @@ import {
 const PAGE_PATH = '/price';
 const ORIGIN = 'https://farewell.salon';
 const PAGE_TITLE_DE =
-  'Preise Nürnberg: Laser, Nadelepilation, Microneedling & Massage | FareWell';
+  'Preise: Laser, Nadelepilation & mehr | FareWell Nürnberg';
 const PAGE_TITLE_EN =
-  'Prices Nuremberg: Laser, Electrolysis, Microneedling & Massage | FareWell';
+  'Prices: Laser, Electrolysis & More | FareWell Nuremberg';
 const PAGE_DESCRIPTION_DE =
-  'Alle Preise bei FareWell Nürnberg: Laser ab 30 €, Nadelepilation ab 40 €, Microneedling ab 180 €, Body Forming ab 80 €, Massage ab 45 €. Beratung kostenlos.';
+  'Preise bei FareWell Nürnberg: Laser ab 30 €, Nadelepilation ab 40 €, Microneedling ab 180 €, Body Forming ab 80 €, Massage ab 45 €. Beratung gratis.';
 const PAGE_DESCRIPTION_EN =
-  'All prices at FareWell Nuremberg: laser from €30, electrolysis from €40, RF microneedling from €180, body forming from €80, massage from €45. Free consultation.';
+  'Prices at FareWell Nuremberg: laser from €30, electrolysis from €40, RF microneedling from €180, body forming from €80, massage from €45. Free advice.';
 
 const ORGANIZATION_ID = 'https://farewell.salon/#organization';
 

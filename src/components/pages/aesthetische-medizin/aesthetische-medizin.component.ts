@@ -25,12 +25,12 @@ const AXIS_START = 2008;
 /** Abstand der Jahresmarken auf der Zeitachse in Jahren. */
 const TICK_STEP = 4;
 
-const DE_TITLE = 'Ästhetische Medizin in Nürnberg: Dr. med. Andrea Leo bei FareWell';
-const EN_TITLE = 'Aesthetic Medicine in Nuremberg: Dr. med. Andrea Leo at FareWell';
+const DE_TITLE = 'Ästhetische Medizin Nürnberg: Dr. med. Andrea Leo | FareWell';
+const EN_TITLE = 'Aesthetic Medicine Nuremberg: Dr. med. Andrea Leo | FareWell';
 const DE_DESCRIPTION =
-  'Botulinumtoxin, Hyaluronsäure, Skinbooster und PRP bei FareWell in Nürnberg, durchgeführt von Dr. med. Andrea Leo: approbierter Arzt seit 2016, seit 2017 in Kliniken in Bayern, seit 2018 in der ästhetischen Medizin. Ärztliche Beratung auf Deutsch, Englisch und Italienisch.';
+  'Botulinumtoxin, Hyaluronsäure, Skinbooster und PRP bei FareWell Nürnberg, durch Dr. med. Andrea Leo, approbierter Arzt seit 2016. Auch auf Italienisch.';
 const EN_DESCRIPTION =
-  'Botulinum toxin, hyaluronic acid, skin boosters and PRP at FareWell in Nuremberg, performed by Dr. med. Andrea Leo: licensed physician since 2016, in Bavarian hospitals since 2017, in aesthetic medicine since 2018. Medical consultations in German, English and Italian.';
+  'Botulinum toxin, hyaluronic acid, skin boosters and PRP at FareWell Nuremberg, by Dr. med. Andrea Leo, licensed physician since 2016. English and Italian.';
 
 /** Zweisprachiger Text. Beide Fassungen stehen im DOM, das globale CSS blendet eine aus. */
 export interface Bi {

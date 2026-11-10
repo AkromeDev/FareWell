@@ -14,12 +14,12 @@ import {
 } from 'src/components/molecules/guide';
 
 const PAGE_PATH = '/ipl-dauerhafte-haarentfernung-aktion-nuernberg';
-const PAGE_TITLE_DE = 'IPL-Haarentfernung in Nürnberg? Die modernere Alternative | FareWell';
-const PAGE_TITLE_EN = 'IPL Hair Removal in Nuremberg? The More Modern Alternative | FareWell';
+const PAGE_TITLE_DE = 'IPL-Haarentfernung Nürnberg? Die Alternative | FareWell';
+const PAGE_TITLE_EN = 'IPL Hair Removal Nuremberg? The Alternative | FareWell';
 const PAGE_DESCRIPTION_DE =
-  'Statt IPL: dauerhafte Haarentfernung mit dem präziseren 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.';
+  'Statt IPL: dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 50% auf die erste Behandlung mit dem Code ERSTEBEHANDLUNG.';
 const PAGE_DESCRIPTION_EN =
-  'Instead of IPL: long-lasting hair removal with the more precise 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG. Up to 30% ongoing discount, the more areas you book.';
+  'Instead of IPL: long-lasting hair removal with the 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG.';
 const HERO_IMAGE = 'assets/images/treatment/laser2.webp';
 
 /**

@@ -12,13 +12,13 @@ import {
 
 const PAGE_PATH = '/ratgeber/kavitation-ultraschall-fettreduktion';
 const PAGE_TITLE_DE =
-  'Kavitation, Ultraschall-Fettreduktion & Cellulite: der Ratgeber | FareWell Nürnberg';
+  'Kavitation & Ultraschall-Fettreduktion: Ratgeber | FareWell';
 const PAGE_TITLE_EN =
-  'Cavitation, Ultrasound Fat Reduction & Cellulite: the Guide | FareWell Nuremberg';
+  'Cavitation & Ultrasound Fat Reduction: Guide | FareWell';
 const PAGE_DESCRIPTION_DE =
-  'Kavitation, Ultraschall-Fettreduktion und Cellulite-Behandlung in Nürnberg: wie sie wirken, der Rhythmus als Kur (alle 2–4 Tage), Vorbereitung, Nachsorge und für wen sie nicht geeignet sind.';
+  'Kavitation, Ultraschall und Cellulite-Behandlung in Nürnberg: wie sie wirken, der Rhythmus (alle 2–4 Tage), Nachsorge und für wen sie nicht passen.';
 const PAGE_DESCRIPTION_EN =
-  'Cavitation, ultrasound fat reduction and cellulite treatment in Nuremberg: how they work, the course rhythm (every 2–4 days), preparation, aftercare and who they are not suitable for.';
+  'Cavitation, ultrasound and cellulite treatment in Nuremberg: how they work, the course rhythm (every 2–4 days), aftercare and who they do not suit.';
 
 @Component({
   standalone: true,

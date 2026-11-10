@@ -416,12 +416,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // -------------------------------------------------------------------------
   ngOnInit(): void {
     const pageTitle = this.t(
-      'FareWell – Kosmetikstudio & dauerhafte Haarentfernung | Nürnberg',
+      'FareWell Nürnberg: Kosmetikstudio, dauerhafte Haarentfernung',
       'FareWell – Beauty Studio & Hair Removal | Nuremberg'
     );
     const description = this.t(
       'FareWell Nürnberg: spezialisiert auf Elektrolyse (permanente Haarentfernung), Laserbehandlungen, Microneedling und weitere Beauty Behandlungen.',
-      'FareWell in Nuremberg specialises in electrolysis (permanent hair removal), laser hair removal, RF microneedling and body treatments. Consultations in English, near the main station.'
+      'FareWell Nuremberg: electrolysis for permanent hair removal, laser, RF microneedling and body treatments. Consultations in English, near the main station.'
     );
     const imageAlt = this.t(
       'FareWell Studio in Nürnberg für permanente und dauerhafte Haarentfernung sowie ästhetische Behandlungen',

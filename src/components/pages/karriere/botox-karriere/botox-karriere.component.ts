@@ -48,8 +48,8 @@ export class BotoxKarriereComponent extends KarriereDetailPage {
     return {
       path: PAGE_PATH,
       title: t(
-        'Ärztin / Arzt (m/w/d) für Botox & ästhetische Medizin in Nürnberg | Karriere bei FareWell',
-        'Physician (m/f/d) for Botox & Aesthetic Medicine in Nuremberg | Careers at FareWell'
+        'Ärztin / Arzt (m/w/d) für Botox in Nürnberg | FareWell',
+        'Physician (m/f/d) for Botox in Nuremberg | FareWell'
       ),
       description: t(
         'FareWell Nürnberg sucht approbierte Ärzt:innen mit Injektionserfahrung für ein eigenes Angebot mit Botulinumtoxin: Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete, in einem Studio, das bereits mit ärztlicher Begleitung arbeitet.',

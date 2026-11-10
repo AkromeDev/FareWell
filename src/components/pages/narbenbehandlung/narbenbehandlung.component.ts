@@ -14,12 +14,12 @@ const PAGE_PATH = '/behandlungen/narbenbehandlung';
 const HERO_IMAGE = 'assets/images/treatment/microneedling4.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 
-const DE_TITLE = 'Narbenbehandlung Nürnberg: Aknenarben & Dehnungsstreifen | FareWell';
-const EN_TITLE = 'Scar Treatment Nuremberg: Acne Scars & Stretch Marks | FareWell';
+const DE_TITLE = 'Narbenbehandlung Nürnberg: Aknenarben & Dehnungsstreifen';
+const EN_TITLE = 'Scar Treatment Nuremberg: Acne Scars & Stretch Marks';
 const DE_DESCRIPTION =
-  'Narbenbehandlung mit Radiofrequenz Microneedling in Nürnberg: Aknenarben, Narben nach OP und Verletzungen, Dehnungsstreifen. 250 € pro Sitzung, Beratung kostenlos.';
+  'Narbenbehandlung mit RF Microneedling in Nürnberg: Aknenarben, Narben nach OP und Verletzungen, Dehnungsstreifen. 250 € pro Sitzung, Beratung gratis.';
 const EN_DESCRIPTION =
-  'Scar treatment with RF microneedling in Nuremberg: acne scars, scars after surgery or injury, stretch marks. €250 per session, free consultation, English spoken.';
+  'Scar treatment with RF microneedling in Nuremberg: acne scars, scars after surgery or injury, stretch marks. €250 per session, free consultation.';
 const HERO_ALT_DE =
   'Narbenbehandlung mit Radiofrequenz Microneedling bei FareWell in Nürnberg';
 const HERO_ALT_EN =

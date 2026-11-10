@@ -15,9 +15,9 @@ const HERO_IMAGE = 'assets/images/treatment/laser.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 
 const DE_TITLE = 'Diodenlaser Haarentfernung Nürnberg | FareWell';
-const EN_TITLE = 'Laser Hair Removal Nuremberg (4-Wavelength Diode Laser) | FareWell';
+const EN_TITLE = 'Laser Hair Removal Nuremberg: 4-Wavelength Diode | FareWell';
 const DE_DESCRIPTION =
-  'Moderne Diodenlaser Haarentfernung in Nürnberg: effektive und schonende dauerhafte Haarreduktion.';
+  'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg: schonende Haarreduktion für Gesicht und Körper, kostenlose Beratung bei FareWell.';
 const EN_DESCRIPTION =
   'Modern diode laser hair removal in Nuremberg: effective, gentle, long-lasting hair reduction for larger body areas. Free consultation, English spoken.';
 const HERO_ALT_DE =

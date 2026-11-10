@@ -14,7 +14,7 @@ export class AgbComponent implements OnInit {
   ngOnInit(): void {
     this.seo.setPageSeo({
       title: 'AGB | FareWell Nürnberg',
-      description: 'Allgemeine Geschäftsbedingungen von FareWell Nürnberg.',
+      description: 'Allgemeine Geschäftsbedingungen von FareWell, Kosmetikstudio am Frauentorgraben 5 in Nürnberg: Termine, Absagen, Zahlung und Gutscheine.',
       path: '/agb',
     });
   }

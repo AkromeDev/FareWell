@@ -14,9 +14,9 @@ import { KostenvoranschlagUnterlagenComponent } from 'src/components/molecules/k
 
 const PAGE_PATH = '/ratgeber/epilation-krankenkasse';
 const PAGE_TITLE_DE =
-  'Epilation über die Krankenkasse: Leitfaden für trans Personen | FareWell Nürnberg';
+  'Epilation auf Krankenkasse: Leitfaden für trans Personen';
 const PAGE_TITLE_EN =
-  'Health Insurance Coverage for Hair Removal: a Guide for Trans People | FareWell Nuremberg';
+  'Hair Removal on Health Insurance: a Guide for Trans People';
 const PAGE_DESCRIPTION_DE =
   'So bekommst du deine Haarentfernung im Gesicht als Kassenleistung: Ärztevorbehalt, ärztliche Begleitung bei FareWell, Antrag in 6 Schritten, Fristen und Widerspruch.';
 const PAGE_DESCRIPTION_EN =

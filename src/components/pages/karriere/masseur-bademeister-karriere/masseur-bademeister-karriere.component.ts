@@ -280,12 +280,12 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
     const inLanguage = this.language.lang();
 
     const title = t(
-      'Masseur:in und medizinische:r Bademeister:in (m/w/d) in Nürnberg: für blinde und sehbehinderte Bewerber:innen | FareWell',
-      'Massage Therapist (m/f/d) in Nuremberg: a Role for Blind and Visually Impaired Applicants | FareWell'
+      'Masseur:in & med. Bademeister:in, blind (m/w/d) | FareWell',
+      'Massage Therapist, Blind or Low Vision (m/f/d) | FareWell'
     );
     const description = t(
-      'FareWell Nürnberg sucht eine:n Masseur:in und medizinische:n Bademeister:in, blind oder sehbehindert: Festanstellung oder selbständige Tätigkeit, eingerichteter Arbeitsplatz, stufenfreier Weg von der U-Bahn, Blindenführhund willkommen.',
-      'FareWell Nuremberg is hiring a blind or visually impaired massage therapist (Masseur und medizinischer Bademeister): permanent employment or freelance work, an adapted workplace, a step-free route from the U-Bahn and a welcome for guide dogs.'
+      'FareWell Nürnberg sucht Masseur:in und med. Bademeister:in, blind oder sehbehindert: fest oder selbständig, stufenfrei ab U-Bahn, Führhund willkommen.',
+      'FareWell Nuremberg is hiring a blind or visually impaired massage therapist: employed or freelance, step-free from the U-Bahn, guide dogs welcome.'
     );
 
     this.seo.setPageSeo({

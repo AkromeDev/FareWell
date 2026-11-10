@@ -11,9 +11,9 @@ import {
 
 const PAGE_PATH = '/ratgeber/us-forces-vat-relief';
 const PAGE_URL = `https://farewell.salon${PAGE_PATH}`;
-const PAGE_TITLE = 'US Forces VAT Relief in Germany: NF1 Forms & Remonon Explained | FareWell Nürnberg';
+const PAGE_TITLE = 'US Forces VAT Relief in Germany: NF1 & Remonon | FareWell';
 const PAGE_DESCRIPTION =
-  'How US Forces members stop paying the 19% German VAT: NF1 and NF2 forms, the Remonon app, the five rules to keep it valid, plus 20% off laser hair removal for life.';
+  'How US Forces members stop paying 19% German VAT: NF1 and NF2 forms, the Remonon app, the five rules to keep it valid, plus 20% off laser for life.';
 
 @Component({
   standalone: true,

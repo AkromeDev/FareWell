@@ -11,12 +11,12 @@ import {
 } from 'src/components/molecules/guide';
 
 const PAGE_PATH = '/ratgeber';
-const PAGE_TITLE_DE = 'Ratgeber: Haarentfernung, Körper & Kostenübernahme | FareWell Nürnberg';
+const PAGE_TITLE_DE = 'Ratgeber: Haarentfernung & Kostenübernahme | FareWell';
 const PAGE_TITLE_EN = 'Guides: Hair Removal, Body & Coverage | FareWell Nuremberg';
 const PAGE_DESCRIPTION_DE =
-  'Alle Ratgeber von FareWell Nürnberg an einem Ort: Elektrolyse oder Laser, Körperbehandlungen mit Ultraschall, Kostenübernahme durch die Krankenkasse, Steuer und Mehrwertsteuerbefreiung für US-Streitkräfte.';
+  'Die Ratgeber von FareWell Nürnberg: Elektrolyse oder Laser, Ultraschall für den Körper, Krankenkasse, Steuer und MwSt-Befreiung für US-Streitkräfte.';
 const PAGE_DESCRIPTION_EN =
-  "FareWell Nuremberg's guides in one place: electrolysis or laser, ultrasound body treatments, insurance coverage, tax deductions and VAT exemption for US Forces.";
+  "FareWell Nuremberg's guides: electrolysis or laser, ultrasound body treatments, insurance coverage, tax deductions and VAT relief for US Forces.";
 
 @Component({
   standalone: true,

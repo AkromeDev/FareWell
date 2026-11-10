@@ -14,12 +14,12 @@ const PAGE_PATH = '/behandlungen/kavitation';
 const HERO_IMAGE = 'assets/images/treatment/kavitation2.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 
-const DE_TITLE = 'Body Forming Nürnberg: Ultraschall Kavitation & Cellulite | FareWell';
-const EN_TITLE = 'Body Forming Nuremberg: Ultrasound Cavitation & Cellulite | FareWell';
+const DE_TITLE = 'Body Forming Nürnberg: Kavitation & Cellulite | FareWell';
+const EN_TITLE = 'Body Forming Nuremberg: Cavitation & Cellulite | FareWell';
 const DE_DESCRIPTION =
   'Kosmetisches Body Forming in Nürnberg mit Ultraschall Kavitation und Radiofrequenz: Cellulite Behandlung und lokale Zonen, ab 80 €. Keine Abnehmbehandlung.';
 const EN_DESCRIPTION =
-  'Cosmetic body forming in Nuremberg with ultrasound cavitation and radio frequency: cellulite treatment and local areas, from €80. Not a weight-loss treatment.';
+  'Cosmetic body forming in Nuremberg with ultrasound cavitation and radio frequency: cellulite and local areas, from €80. Not a weight-loss treatment.';
 const HERO_ALT_DE =
   'FareWell Studio in Nürnberg für Body Forming mit Ultraschall Kavitation und Radiofrequenz';
 const HERO_ALT_EN =

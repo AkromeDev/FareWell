@@ -11,8 +11,8 @@ import {
 } from 'src/components/molecules/guide';
 
 const PAGE_PATH = '/nadelepilation-angebot-nuernberg';
-const PAGE_TITLE_DE = 'Nadelepilation Angebot Nürnberg: permanente Haarentfernung | FareWell';
-const PAGE_TITLE_EN = 'Needle Epilation Offer Nuremberg: Permanent Hair Removal | FareWell';
+const PAGE_TITLE_DE = 'Nadelepilation Angebot Nürnberg: permanente Haarentfernung';
+const PAGE_TITLE_EN = 'Needle Epilation Offer Nuremberg: Permanent Hair Removal';
 const PAGE_DESCRIPTION_DE =
   'Permanente Haarentfernung mit Nadelepilation (Elektrolyse) in Nürnberg. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG.';
 const PAGE_DESCRIPTION_EN =

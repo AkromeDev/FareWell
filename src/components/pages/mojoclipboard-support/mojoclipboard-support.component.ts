@@ -9,12 +9,12 @@ import { Lang, LanguageService } from 'src/services/language.service';
 const ORIGIN = 'https://farewell.salon';
 const PAGE_PATH = '/mojoclipboard-support';
 const PAGE_TITLE_DE =
-  'MojoClipboard: Support & Anleitung | Zwischenablage-Verlauf für den Mac';
+  'MojoClipboard: Support & Anleitung für den Mac';
 const PAGE_TITLE_EN = 'MojoClipboard: Support & Guide | Clipboard History for Mac';
 const PAGE_DESCRIPTION_DE =
-  'Support für MojoClipboard, die kostenlose macOS-Menüleisten-App für den Zwischenablage-Verlauf (macOS 14 Sonoma+). Drück ⌃⌘V, um den Verlauf zu öffnen. Datenschutz-first: keine Daten, nichts verlässt dein Gerät.';
+  'Support für MojoClipboard, die kostenlose Menüleisten-App für den Zwischenablage-Verlauf (ab macOS 14). ⌃⌘V öffnet ihn. Nichts verlässt dein Gerät.';
 const PAGE_DESCRIPTION_EN =
-  'Support for MojoClipboard, the free macOS menu-bar clipboard-history app (macOS 14 Sonoma+). Press ⌃⌘V to open your history. Privacy-first: no data collected, nothing leaves your device.';
+  'Support for MojoClipboard, the free macOS menu-bar clipboard history app (macOS 14 and later). Press ⌃⌘V to open it. Nothing leaves your device.';
 
 interface Stat {
   value_de: string;

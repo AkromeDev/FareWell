@@ -11,8 +11,8 @@ import {
 } from 'src/components/molecules/guide';
 
 const PAGE_PATH = '/elektrolyse-permanente-haarentfernung-aktion-nuernberg';
-const PAGE_TITLE_DE = 'Elektrolyse Aktion Nürnberg: permanente Haarentfernung | FareWell';
-const PAGE_TITLE_EN = 'Electrolysis Offer Nuremberg: Permanent Hair Removal | FareWell';
+const PAGE_TITLE_DE = 'Elektrolyse Aktion Nürnberg: permanente Haarentfernung';
+const PAGE_TITLE_EN = 'Electrolysis Offer Nuremberg: Permanent Hair Removal';
 const PAGE_DESCRIPTION_DE =
   'Permanente Haarentfernung mit Elektrolyse in Nürnberg. 50% Rabatt auf die erste Behandlung für Neukund:innen mit dem Code ERSTEBEHANDLUNG.';
 const PAGE_DESCRIPTION_EN =

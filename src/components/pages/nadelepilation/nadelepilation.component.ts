@@ -17,9 +17,9 @@ const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 const DE_TITLE = 'Elektrolyse / Nadelepilation in Nürnberg | FareWell';
 const EN_TITLE = 'Electrolysis (Nadelepilation) in Nuremberg | FareWell';
 const DE_DESCRIPTION =
-  'Professionelle Elektrolyse (Nadelepilation) in Nürnberg: die einzige wirklich permanente Haarentfernungsmethode.';
+  'Elektrolyse (Nadelepilation) bei FareWell in Nürnberg: die einzige permanente Haarentfernung, für jede Haarfarbe und jeden Hauttyp. Beratung kostenlos.';
 const EN_DESCRIPTION =
-  'Professional electrolysis in Nuremberg: the only truly permanent hair removal method. Works on every hair colour and skin type. Free initial consultation in English.';
+  'Electrolysis in Nuremberg: the only truly permanent hair removal method, for every hair colour and skin type. Free first consultation in English.';
 const HERO_ALT_DE =
   'Elektrolyse / Nadelepilation bei FareWell in Nürnberg: permanente Haarentfernung';
 const HERO_ALT_EN =

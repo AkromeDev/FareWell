@@ -14,7 +14,7 @@ const PAGE_PATH = '/behandlungen/microneedling-radiofrequenz';
 const HERO_IMAGE = 'assets/images/treatment/microneedling2.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 
-const DE_TITLE = 'Radiofrequenz Microneedling Nürnberg: Hautverjüngung | FareWell';
+const DE_TITLE = 'Radiofrequenz Microneedling Nürnberg | FareWell';
 const EN_TITLE = 'RF Microneedling Nuremberg: Skin Rejuvenation | FareWell';
 const DE_DESCRIPTION =
   'Microneedling mit Radiofrequenz in Nürnberg: Hautverjüngung für Gesicht, Hals, Dekolleté und Brust, ab 180 €. Beratung kostenlos.';

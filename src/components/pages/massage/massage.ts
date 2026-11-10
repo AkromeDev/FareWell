@@ -75,7 +75,7 @@ export class MassageComponent implements OnInit, OnDestroy {
     const pageTitle = this.t('Wellness Massage Nürnberg | FareWell', 'Wellness Massage Nuremberg | FareWell');
     const description = this.t(
       'Entspannende Wellness Massagen bei FareWell in Nürnberg: Rücken-Schulter-Nacken-Massage, Ganzkörpermassage mit Aromaölen und Teilkörpermassage.',
-      'Relaxing wellness massages at FareWell in Nuremberg: back, shoulder and neck massage, full-body massage with aroma oils, and partial-body massage. English spoken.',
+      'Wellness massages at FareWell in Nuremberg: back, shoulder and neck massage, full-body massage with aroma oils and partial-body massage. English spoken.',
     );
 
     this.seo.setPageSeo({

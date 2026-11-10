@@ -13,12 +13,12 @@ import {
 import { GROUPON_BEISPIELE, type GrouponBeispiel } from 'src/components/molecules/karriere';
 
 const PAGE_PATH = '/karriere/masseur-nuernberg/onboarding';
-const PAGE_TITLE_DE = 'Onboarding Massage: so arbeiten wir zusammen | FareWell Nürnberg';
-const PAGE_TITLE_EN = 'Massage Onboarding: How We Work Together | FareWell Nuremberg';
+const PAGE_TITLE_DE = 'Onboarding Massage: so arbeiten wir zusammen | FareWell';
+const PAGE_TITLE_EN = 'Massage Onboarding: How We Work Together | FareWell';
 const PAGE_DESCRIPTION_DE =
-  'Der Onboarding-Leitfaden für selbständige Masseur:innen bei FareWell Nürnberg: Probe-Session, Leistungen, 70/30-Abrechnung, Kundengewinnung und der geteilte Raum. Auf Deutsch und Englisch.';
+  'Onboarding für selbständige Masseur:innen bei FareWell Nürnberg: Probe-Session, Leistungen, 70/30-Abrechnung, Kundengewinnung und der geteilte Raum.';
 const PAGE_DESCRIPTION_EN =
-  'The onboarding guide for freelance massage therapists at FareWell Nuremberg: trial session, services, the 70/30 split, winning clients and the shared space. In German and English.';
+  'Onboarding for freelance massage therapists at FareWell Nuremberg: trial session, services, the 70/30 split, winning clients and the shared space.';
 
 /**
  * Zweisprachige Onboarding-Seite für Masseur:innen. Kurze Texte laufen über

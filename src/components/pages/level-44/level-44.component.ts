@@ -56,12 +56,12 @@ function checkoutUrl(serviceId: number): string {
   return `https://salonkee.de/checkout/farewell?serviceID=${serviceId}`;
 }
 
-const DE_TITLE = 'LEVEL 44 bei FareWell: 9D Breathwork und Soul Touch in Nürnberg';
-const EN_TITLE = 'LEVEL 44 at FareWell: 9D Breathwork and Soul Touch in Nuremberg';
+const DE_TITLE = '9D Breathwork Nürnberg: LEVEL 44 bei FareWell';
+const EN_TITLE = '9D Breathwork Nuremberg: LEVEL 44 at FareWell';
 const DE_DESCRIPTION =
-  '9D Breathwork und Soul Touch mit Franziska Preusche bei FareWell in Nürnberg. Geführte Atemreisen über Kopfhörer und achtsame Körperarbeit. Erste Journeys am 15.11. und 29.11.2026, 11:00 Uhr.';
+  '9D Breathwork und Soul Touch mit Franziska Preusche bei FareWell in Nürnberg: geführte Atemreisen über Kopfhörer. Erste Journeys am 15.11. und 29.11.2026.';
 const EN_DESCRIPTION =
-  '9D Breathwork and Soul Touch with Franziska Preusche at FareWell in Nuremberg. Guided breath journeys on headphones and mindful bodywork. First journeys on 15 and 29 November 2026, 11:00.';
+  '9D Breathwork and Soul Touch with Franziska Preusche at FareWell Nuremberg: guided breath journeys on headphones. First journeys 15 and 29 November 2026.';
 
 /** Zweisprachiger Text. Beide Fassungen stehen im DOM, das globale CSS blendet eine aus. */
 export interface Bi {

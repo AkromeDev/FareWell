@@ -218,12 +218,12 @@ export class KarriereHubComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const prefix = this.language.prefix();
     const title = this.t(
-      'Karriere bei FareWell Nürnberg: freiberuflich arbeiten im Studio',
+      'Karriere bei FareWell Nürnberg: freiberuflich im Studio',
       'Careers at FareWell Nuremberg: Work Freelance in Our Studio',
     );
     const description = this.t(
-      'Offene Positionen bei FareWell Nürnberg für Selbständige: Kosmetik, Massage, Yoga, Tanz und ästhetische Medizin. Voll ausgestatteter Raum im Zentrum, keine feste Miete, flexible Zeiten und Hilfe beim eigenen Google-Business-Profil.',
-      'Open positions at FareWell Nuremberg for freelancers: cosmetics, massage, yoga, dance and aesthetic medicine. A fully equipped room in the city centre, no fixed rent, flexible hours and help setting up your own Google Business profile.',
+      'Offene Positionen für Selbständige bei FareWell Nürnberg: Kosmetik, Massage, Yoga, Tanz und ästhetische Medizin. Raum im Zentrum, keine feste Miete.',
+      'Open positions for freelancers at FareWell Nuremberg: cosmetics, massage, yoga, dance and aesthetic medicine. A room in the city centre, no fixed rent.',
     );
     const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
     const homeUrl = `${ORIGIN}${prefix}`;
