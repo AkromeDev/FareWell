@@ -1,3 +1,8 @@
+import {
+  FRANZISKA_PREUSCHE_ID,
+  LEVEL44_BRAND_ID,
+  LEVEL44_PAGE,
+} from 'src/app/domain/entities';
 import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -123,6 +128,15 @@ const STATS: Stat[] = [
     value: { de: '49 €', en: '€49' },
     label: { de: 'Einführungspreis, regulär 77 €', en: 'Introductory price, regularly €77' },
   },
+];
+
+/**
+ * The dated sessions the page lists (STATS above and the group offer below).
+ * Each gets its own Event in the structured data. Keep the three in step.
+ */
+const SESSIONS = [
+  { date: '2026-11-15', time: '11:00', journey: 'THE AWAKENING' },
+  { date: '2026-11-29', time: '11:00', journey: 'LETTING GO' },
 ];
 
 const BENEFITS: Bi[] = [
@@ -509,13 +523,14 @@ export class Level44Component implements OnInit, OnDestroy {
       '@graph': [
         {
           '@type': 'Person',
-          '@id': `${pageUrl}#person`,
+          '@id': FRANZISKA_PREUSCHE_ID,
           name: 'Franziska Preusche',
           givenName: 'Franziska',
           familyName: 'Preusche',
           jobTitle: this.t('Gründerin von LEVEL 44', 'Founder of LEVEL 44'),
           url: pageUrl,
           sameAs: [LEVEL44_URL, INSTAGRAM_URL],
+          brand: { '@id': LEVEL44_BRAND_ID },
           description,
           workLocation: {
             '@type': 'Place',
@@ -530,6 +545,49 @@ export class Level44Component implements OnInit, OnDestroy {
           },
         },
         {
+          '@type': 'Brand',
+          '@id': LEVEL44_BRAND_ID,
+          name: 'LEVEL 44',
+          logo: `${ORIGIN}/${SIGNET}`,
+          url: LEVEL44_URL,
+          sameAs: [INSTAGRAM_URL],
+        },
+        // One Event per dated session the page lists (SESSIONS above).
+        ...SESSIONS.map((session) => ({
+          '@type': 'Event',
+          '@id': `${LEVEL44_PAGE}#event-${session.date}`,
+          name: `9D Group Experience: ${session.journey}`,
+          description: this.t(
+            'Geführte 9D Atemreise über Kopfhörer in der Gruppe, mit Einführung und Integration, ca. 2,5–3 Stunden.',
+            'Guided 9D breath journey on headphones in a group, with introduction and integration, about 2.5–3 hours.',
+          ),
+          startDate: `${session.date}T${session.time}:00+01:00`,
+          eventStatus: 'https://schema.org/EventScheduled',
+          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+          maximumAttendeeCapacity: 12,
+          location: {
+            '@type': 'Place',
+            name: 'FareWell',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'Frauentorgraben 5',
+              postalCode: '90443',
+              addressLocality: 'Nürnberg',
+              addressCountry: 'DE',
+            },
+          },
+          organizer: { '@id': FRANZISKA_PREUSCHE_ID },
+          performer: { '@id': FRANZISKA_PREUSCHE_ID },
+          image: OG_IMAGE,
+          url: pageUrl,
+          offers: {
+            '@type': 'Offer',
+            price: 49,
+            priceCurrency: 'EUR',
+            url: this.bookingUrl,
+          },
+        })),
+        {
           '@type': 'WebPage',
           '@id': `${pageUrl}#webpage`,
           url: pageUrl,
@@ -537,7 +595,7 @@ export class Level44Component implements OnInit, OnDestroy {
           description,
           inLanguage,
           isPartOf: { '@id': `${ORIGIN}/#website` },
-          about: { '@id': `${pageUrl}#person` },
+          about: { '@id': FRANZISKA_PREUSCHE_ID },
         },
         {
           '@type': 'FAQPage',
