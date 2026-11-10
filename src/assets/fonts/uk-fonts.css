@@ -1,0 +1,54 @@
+/*
+ * Cyrillic fallbacks for the /uk pages (Outfit and Fraunces have no Cyrillic).
+ * Loaded only on /uk by LanguageService. Lora and Onest, SIL Open Font
+ * License 1.1, hosted on this site; unicode-range keeps the browser to the
+ * Cyrillic files.
+ */
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/assets/fonts/lora-italic-cyrillic-ext-ca80630d.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/assets/fonts/lora-italic-cyrillic-2bc6e7fc.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/assets/fonts/lora-cyrillic-ext-d0d358cf.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/assets/fonts/lora-cyrillic-66e1b8c7.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/assets/fonts/onest-cyrillic-ext-8b55db31.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/assets/fonts/onest-cyrillic-c3f42230.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}

@@ -41,10 +41,11 @@ const PREFIX: Record<Lang, string> = { de: '', en: '/en', uk: '/uk' };
 /**
  * Outfit und Fraunces haben keine kyrillischen Zeichen. Auf /uk/-Seiten
  * springen Onest und Lora ein (in den font-family-Listen direkt dahinter);
- * dank unicode-range lädt der Browser nur deren kyrillische Dateien.
+ * dank unicode-range lädt der Browser nur deren kyrillische Dateien. Die
+ * Schriften liegen auf dieser Website (src/assets/fonts), keine Anfrage an
+ * Dritte.
  */
-const UK_FONTS_HREF =
-  'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Onest:wght@300..700&display=swap';
+const UK_FONTS_HREF = '/assets/fonts/uk-fonts.css';
 
 /**
  * Zentrale, seitenübergreifende UI-Sprache (DE/EN/UK).
