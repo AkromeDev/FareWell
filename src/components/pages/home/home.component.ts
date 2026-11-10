@@ -417,7 +417,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     const pageTitle = this.t(
       'FareWell – Kosmetikstudio & dauerhafte Haarentfernung | Nürnberg',
-      'FareWell – Kosmetikstudio & dauerhafte Haarentfernung | Nürnberg'
+      'FareWell – Beauty Studio & Hair Removal | Nuremberg'
     );
     const description = this.t(
       'FareWell Nürnberg: spezialisiert auf Elektrolyse (permanente Haarentfernung), Laserbehandlungen, Microneedling und weitere Beauty Behandlungen.',
