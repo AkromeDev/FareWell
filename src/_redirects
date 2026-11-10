@@ -1,4 +1,11 @@
 # Cloudflare Pages SPA fallback.
 # Prerendered routes are served as static files directly; any unknown path
 # falls back to the app shell so Angular can route it (e.g. to /not-found).
+# A/B-Test /promotionen: die Adressen der ersten Fassung (09.11.2026) führen
+# zurück auf /promotionen, das jetzt abwechselnd beide Seiten zeigt.
+/promotionen/feld             /promotionen       302
+/promotionen/drehbuehne       /promotionen       302
+/en/promotionen/feld          /en/promotionen    302
+/en/promotionen/drehbuehne    /en/promotionen    302
+
 /*    /index.html    200

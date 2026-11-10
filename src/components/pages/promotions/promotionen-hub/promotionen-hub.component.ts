@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { AnalyticsService } from 'src/services/analytics.service';
 import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
-import { PromoExperimentService, PromoVariant } from '../promo-experiment.service';
+import { PROMO_VARIANT_PATHS, PromoExperimentService, PromoVariant } from '../promo-experiment.service';
 import { PROMO_OFFERS } from '../promotion-offers';
 import { Bi, ORIGIN } from '../promotion-page.model';
 import { PromoBuehneComponent } from './promo-buehne/promo-buehne.component';
@@ -14,12 +15,11 @@ const PAGE_PATH = '/promotionen';
  * Der Reiter „Promotionen" im Kopf der Seite: eine Adresse für alle Aktionen,
  * damit Suchmaschinen und KI-Dienste sie gesammelt finden.
  *
- * A/B-Test seit 09.11.2026 (promo-experiment.service.ts): dieselbe Komponente
- * rendert /promotionen/feld (Variante A „Das Feld") und
- * /promotionen/drehbuehne (Variante B „Die Drehbühne"); im Browser leitet
- * /promotionen auf eine davon weiter. Vorgerendert zeigt /promotionen die
- * schlichte Kartenübersicht, so lesen Suchmaschinen und KI-Dienste ohne
- * JavaScript alle Aktionen. Alle drei setzen den canonical auf /promotionen.
+ * A/B-Test seit 09.11.2026 (promo-experiment.service.ts): im Browser zeigt
+ * /promotionen abwechselnd Variante A „Das Feld" und Variante B „Die
+ * Drehbühne", bei gleicher Adresse. Vorgerendert zeigt sie die schlichte
+ * Kartenübersicht, so lesen Suchmaschinen und KI-Dienste ohne JavaScript
+ * alle Aktionen.
  *
  * Die Anzeigenseite /promotionen/aesthetische-medizin-nuernberg steht bewusst
  * nicht hier: sie ist nur das Ziel der Google Anzeigen.
@@ -35,11 +35,19 @@ export class PromotionenHubComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
   private readonly language = inject(LanguageService);
   private readonly experiment = inject(PromoExperimentService);
+  private readonly analytics = inject(AnalyticsService);
   private readonly jsonLdId = 'promotionen-schema';
 
   readonly cards = PROMO_OFFERS;
-  /** Auf /promotionen/feld 'a', auf /promotionen/drehbuehne 'b', sonst null (Übersicht). */
-  readonly variant: PromoVariant | null = inject(ActivatedRoute).snapshot.data['promoVariant'] ?? null;
+  /** Im Browser abwechselnd 'a' oder 'b', im Prerender null (Übersicht). */
+  readonly variant: PromoVariant | null = this.experiment.next();
+
+  constructor() {
+    // Vor NavigationEnd, damit schon der Seitenaufruf unter dem Pfad der Variante zählt.
+    if (this.variant) {
+      this.analytics.setVirtualPath(this.language.prefix() + PROMO_VARIANT_PATHS[this.variant]);
+    }
+  }
 
   t(de: string, en: string): string {
     return this.language.t(de, en);
@@ -85,13 +93,14 @@ export class PromotionenHubComponent implements OnInit, OnDestroy {
         })),
       },
     });
-    if (this.variant) {
-      this.experiment.enter(this.variant);
-      this.experiment.track('promo_view');
-    }
+    if (this.variant) this.experiment.track('promo_view');
   }
 
   ngOnDestroy(): void {
     this.seo.clearJsonLd(this.jsonLdId);
+    if (this.variant) {
+      this.experiment.leave();
+      this.analytics.setVirtualPath(null);
+    }
   }
 }
