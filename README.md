@@ -27,13 +27,16 @@ guide (`/ratgeber/mehrwertsteuer-us-streitkraefte`) and the English one
 Legal pages stay German-only.
 
 **The `/en/` pages are indexable and are meant to stay that way.** They carry
-`index,follow`, they are listed in `src/sitemap.xml`, and hreflang pairs
+`index,follow`, they are listed in the sitemap, and hreflang pairs
 (de / en / x-default) are emitted on every bilingual page by
 `SeoService.setPageSeo`. Do not reintroduce a `noindex` switch for the `/en/`
 prefix — only individually private pages (404, staff task pages) opt out, via
 the per-page `noindex` flag on `PageSeo`.
 
-When adding a new bilingual page, add **both** URLs to `src/sitemap.xml`.
+The sitemap is generated at build time by `tools/generate-sitemap.mjs` (part of
+`npm run prerender`): every prerendered page with `index,follow` and a canonical
+on itself is listed. `tools/sitemap-meta.json` holds `lastmod` and `priority`
+per address; update a page's `lastmod` there when its content changes.
 
 ## URL canonicalization (SEO)
 

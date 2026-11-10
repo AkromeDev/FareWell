@@ -1,0 +1,33 @@
+# Cloudflare Pages response headers.
+#
+# The Content Security Policy is REPORT-ONLY on purpose: it blocks nothing,
+# browsers only log what would be blocked (the console shows it). Switch the
+# header name to Content-Security-Policy only after the console stays quiet on
+# every page with consent given and refused. It lists the sources the site
+# really uses: Google tag and Tag Manager with Ads, Google Fonts (until they
+# are hosted here), Cloudflare Web Analytics, the Supabase project of the task
+# pages, the Wistia player on the LEVEL 44 page and Google review photos.
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://lh3.googleusercontent.com https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://www.google.de https://googleads.g.doubleclick.net https://*.doubleclick.net; connect-src 'self' https://kpwiujyprexemkfmvjhk.supabase.co wss://kpwiujyprexemkfmvjhk.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://www.google.com https://*.doubleclick.net https://cloudflareinsights.com; frame-src https://fast.wistia.net https://www.googletagmanager.com https://td.doubleclick.net; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
+
+# Angular's build output carries a content hash in every file name: cache for a year.
+/chunk-*
+  Cache-Control: public, max-age=31536000, immutable
+/main-*
+  Cache-Control: public, max-age=31536000, immutable
+/polyfills-*
+  Cache-Control: public, max-age=31536000, immutable
+/styles-*
+  Cache-Control: public, max-age=31536000, immutable
+/media/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images and fonts keep their names when they change, so a shorter cache.
+/assets/images/*
+  Cache-Control: public, max-age=2592000
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
