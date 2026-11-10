@@ -123,7 +123,7 @@ export class HeaderComponent implements OnInit {
           '9D Breathwork and Soul Touch: guided breath journeys on headphones and mindful bodywork.'
         ),
         route: this.p('/behandlungen/level-44'),
-        image: 'assets/images/partner/level44-session-raum.jpg'
+        image: 'assets/images/partner/level44-breathwork-gastgeberin.webp'
       },
       {
         title: t('Ästhetische Medizin', 'Aesthetic Medicine'),

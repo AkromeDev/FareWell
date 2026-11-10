@@ -15,7 +15,7 @@ const SIGNET = 'assets/images/partner/level44-signet.png';
  * Echte Bilder ihrer Session bei FareWell am 01.11.2026, von Joé zur Nutzung
  * freigegeben (09.11.2026). Originale: FareWell/domains/media/photo/level-44/.
  */
-const PHOTO_HERO = 'assets/images/partner/level44-franziska.jpg';
+const PHOTO_HERO = 'assets/images/partner/level44-breathwork-gastgeberin.webp';
 const PHOTO_PORTRAIT = 'assets/images/partner/level44-franziska-portrait.jpg';
 const GALLERY: { src: string; alt: Bi }[] = [
   {
@@ -32,7 +32,7 @@ const GALLERY: { src: string; alt: Bi }[] = [
   },
 ];
 /** Vorschaubild beim Teilen. */
-const OG_IMAGE = `${ORIGIN}/assets/images/partner/level44-session-raum.jpg`;
+const OG_IMAGE = `${ORIGIN}/assets/images/partner/level44-breathwork-gastgeberin.jpg`;
 const PHONE_HREF = 'tel:+4915757995694';
 const PHONE_LABEL = '+49 157 5799 5694';
 const LEVEL44_URL = 'https://level44.live';

@@ -258,6 +258,8 @@ ul {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Querformat 4:3 im Bogen 4:5: Gesicht und Kopfhörer im Bild halten. */
+    object-position: 48% 40%;
   }
 }
 
