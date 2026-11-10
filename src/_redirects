@@ -10,6 +10,13 @@
 /tasks/*            /    200
 /massage-tasks/*    /    200
 
+# A/B-Test /promotionen: die Adressen der ersten Fassung (09.11.2026) führen
+# zurück auf /promotionen, das jetzt abwechselnd beide Seiten zeigt.
+/promotionen/feld             /promotionen       302
+/promotionen/drehbuehne       /promotionen       302
+/en/promotionen/feld          /en/promotionen    302
+/en/promotionen/drehbuehne    /en/promotionen    302
+
 # Moved pages (301). The Botox page left /promotionen on 10.11.2026: a medical
 # treatment is not a promotion.
 /promotionen/botox-nuernberg        /behandlungen/botox-nuernberg        301

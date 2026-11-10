@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
-import { CanMatchFn, RedirectCommand, Router } from '@angular/router';
+import { AnalyticsService } from 'src/services/analytics.service';
 import { BOOKING_URL, PROMO_CODE } from './promotion-offers';
 
 export type PromoVariant = 'a' | 'b';
@@ -14,47 +14,61 @@ export const PROMO_VARIANT_PATHS: Record<PromoVariant, string> = {
   b: '/promotionen/drehbuehne',
 };
 
+/** Merkt sich die zuletzt gezeigte Variante, nur mit Einwilligung in Statistik. */
+const MEMORY_KEY = 'fw_promo_ab';
+
 /**
- * A/B-Test der Seite /promotionen (Joé, 09.11.2026): jeder zweite Besuch
- * landet auf /promotionen/feld (Variante A „Das Feld"), der andere auf
- * /promotionen/drehbuehne (Variante B „Die Drehbühne"). Weil es zwei Adressen
- * sind, zeigt Google Analytics jede Variante als eigene Seite, mit ihren
- * Aufrufen und Buchungsklicks; zusätzlich trägt jedes Ereignis promo_test und
- * promo_variant.
+ * A/B-Test der Seite /promotionen (Joé, 09.11.2026, abwechselnd seit
+ * 10.11.2026): /promotionen zeigt im Browser abwechselnd Variante A „Das Feld"
+ * und Variante B „Die Drehbühne", bei jedem Öffnen die andere. Die Adresse
+ * bleibt /promotionen, damit Neuladen, Lesezeichen und die Vorschläge der
+ * Adresszeile immer wieder zum Wechsel führen.
  *
- * Suchmaschinen: /promotionen bleibt die Seite für Suche und KI-Dienste
- * (vorgerendert mit allen Aktionen). Beide Varianten setzen ihren canonical
- * auf /promotionen, wie Google es für A/B-Tests empfiehlt, und stehen nicht in
- * der Sitemap. Die Weiterleitung passiert im Browser und ist vorübergehend.
+ * Google Analytics sieht jede Variante trotzdem als eigene Seite:
+ * AnalyticsService meldet den Aufruf als /promotionen/feld oder
+ * /promotionen/drehbuehne, mit Suchparametern wie gclid. Jedes Ereignis trägt
+ * zusätzlich promo_test und promo_variant.
  *
- * Die Zuteilung lebt nur im Arbeitsspeicher: kein Cookie, kein localStorage,
- * also kein Zugriff auf das Endgerät nach § 25 TDDDG. Solange der Besuch dauert,
- * bleibt die Variante gleich; ein neuer Besuch wird neu gelost.
+ * Suchmaschinen und KI-Dienste: vorgerendert zeigt /promotionen die schlichte
+ * Übersicht mit allen Aktionen, ohne JavaScript lesbar. Die alten Adressen
+ * /promotionen/feld und /promotionen/drehbuehne leiten vorübergehend (302) auf
+ * /promotionen weiter.
+ *
+ * Gedächtnis: innerhalb eines Besuchs im Arbeitsspeicher. Über das Neuladen
+ * hinweg nur, wenn der Besuch der Statistik zugestimmt hat (localStorage,
+ * Schlüssel fw_promo_ab); ohne Einwilligung wird nichts auf dem Endgerät
+ * gespeichert oder gelesen (§ 25 TDDDG), und das erste Öffnen eines Besuchs
+ * wird halb und halb gelost.
  */
 @Injectable({ providedIn: 'root' })
 export class PromoExperimentService {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private assigned: PromoVariant | null = null;
+  private readonly analytics = inject(AnalyticsService);
+  private last: PromoVariant | null = null;
   private current: PromoVariant | null = null;
   private readonly once = new Set<string>();
 
-  /** Lost die Variante dieses Besuchs aus, halb und halb; im Prerender null. */
-  assign(): PromoVariant | null {
+  /** Die Variante für dieses Öffnen von /promotionen, immer die andere als zuletzt; im Prerender null. */
+  next(): PromoVariant | null {
     if (!this.isBrowser) return null;
-    if (!this.assigned) this.assigned = Math.random() < 0.5 ? 'a' : 'b';
-    return this.assigned;
+    const last = this.last ?? this.remembered();
+    const variant: PromoVariant = last ? (last === 'a' ? 'b' : 'a') : Math.random() < 0.5 ? 'a' : 'b';
+    this.last = variant;
+    this.current = variant;
+    this.once.clear();
+    this.remember(variant);
+    return variant;
   }
 
-  /** Eine Variantenseite ist offen; wer direkt dort landet, bleibt bei ihr. */
-  enter(variant: PromoVariant): void {
-    this.current = variant;
-    if (!this.assigned) this.assigned = variant;
+  /** Die Seite ist zu; Ereignisse danach gehören zu keiner Variante. */
+  leave(): void {
+    this.current = null;
   }
 
   /** Ein Testereignis; ohne gtag oder außerhalb einer Variante still. */
   track(name: string, params: Record<string, unknown> = {}): void {
     if (!this.isBrowser || !this.current || !window.gtag) return;
-    window.gtag('event', name, { promo_test: PROMO_TEST, promo_variant: this.current, ...params });
+    window.gtag('event', name, { ...this.tags(), ...params });
   }
 
   /** Wie track, aber nur einmal pro Besuch und Schlüssel. */
@@ -90,11 +104,7 @@ export class PromoExperimentService {
       destination: 'salonkee',
       event_callback: open,
     };
-    if (this.current) {
-      params['promo_test'] = PROMO_TEST;
-      params['promo_variant'] = this.current;
-    }
-    window.gtag('event', 'generate_lead', params);
+    window.gtag('event', 'generate_lead', { ...params, ...this.tags() });
     setTimeout(open, 800);
   }
 
@@ -124,25 +134,40 @@ export class PromoExperimentService {
       return 'fail';
     }
   }
-}
 
-/**
- * Wächter auf /promotionen: im Browser geht es zur ausgelosten Variante
- * (Adresszeile ersetzt, Suchparameter wie gclid bleiben erhalten). Im
- * Prerender bleibt /promotionen die Übersicht für Suchmaschinen.
- *
- * @param prefix Sprachpräfix des Routenbaums: '' oder '/en'.
- */
-export function promoSplit(prefix: string): CanMatchFn {
-  return () => {
-    const variant = inject(PromoExperimentService).assign();
-    if (!variant) return true;
-    const router = inject(Router);
-    const from = router.getCurrentNavigation()?.extractedUrl;
-    const tree = router.createUrlTree([prefix + PROMO_VARIANT_PATHS[variant]], {
-      queryParams: from?.queryParams,
-      fragment: from?.fragment ?? undefined,
-    });
-    return new RedirectCommand(tree, { replaceUrl: true });
-  };
+  /** Test, Variante und die Adresse, unter der GA die Variante führt. */
+  private tags(): Record<string, unknown> {
+    if (!this.current) return {};
+    const tags: Record<string, unknown> = { promo_test: PROMO_TEST, promo_variant: this.current };
+    const location = this.analytics.virtualLocation();
+    if (location) tags['page_location'] = location;
+    return tags;
+  }
+
+  private mayRemember(): boolean {
+    try {
+      return window.fwConsent?.state()?.an === true;
+    } catch {
+      return false;
+    }
+  }
+
+  private remembered(): PromoVariant | null {
+    if (!this.mayRemember()) return null;
+    try {
+      const v = window.localStorage.getItem(MEMORY_KEY);
+      return v === 'a' || v === 'b' ? v : null;
+    } catch {
+      return null;
+    }
+  }
+
+  private remember(variant: PromoVariant): void {
+    if (!this.mayRemember()) return;
+    try {
+      window.localStorage.setItem(MEMORY_KEY, variant);
+    } catch {
+      // Speicher gesperrt: dann wechselt es nur innerhalb des Besuchs
+    }
+  }
 }

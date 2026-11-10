@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { withUkDictionaries } from 'src/i18n/uk/dictionaries';
 import { languageBoundaryGuard } from 'src/services/language.service';
-import { promoSplit } from '../components/pages/promotions/promo-experiment.service';
 
 type PageLang = 'de' | 'en' | 'uk';
 
@@ -674,15 +673,14 @@ function localizedRoutes(lang: PageLang): Routes {
 
     // Die Promotionen im Kopf der Seite: Übersicht, Botox-Seite für Suche und
     // KI-Dienste, und die wirkstofffreie Zielseite der Google Anzeigen (noindex).
-    // A/B-Test seit 09.11.2026 (promo-experiment.service.ts): im Browser schickt
-    // der Wächter jeden zweiten Besuch auf /promotionen/feld, den anderen auf
-    // /promotionen/drehbuehne. Im Prerender bleibt /promotionen die Übersicht
-    // für Suchmaschinen und KI-Dienste; beide Varianten zeigen per canonical
-    // auf sie.
+    // A/B-Test seit 09.11.2026 (promo-experiment.service.ts): im Browser zeigt
+    // /promotionen abwechselnd die beiden Varianten, bei gleicher Adresse. Im
+    // Prerender bleibt es die Übersicht für Suchmaschinen und KI-Dienste. Die
+    // Adressen der ersten Fassung (/promotionen/feld, /promotionen/drehbuehne)
+    // führen zurück auf /promotionen, im Server schon per src/_redirects.
     {
       path: 'promotionen',
       pathMatch: 'full',
-      canMatch: [promoSplit(prefix)],
       loadComponent: () =>
         import('../components/pages/promotions/promotionen-hub/promotionen-hub.component')
           .then(m => m.PromotionenHubComponent),
@@ -697,38 +695,8 @@ function localizedRoutes(lang: PageLang): Routes {
         }
       )
     },
-    {
-      path: 'promotionen/feld',
-      loadComponent: () =>
-        import('../components/pages/promotions/promotionen-hub/promotionen-hub.component')
-          .then(m => m.PromotionenHubComponent),
-      data: { ...d(
-        {
-          title: 'Promotionen und Aktionen in Nürnberg | FareWell',
-          description: 'Alle aktuellen Promotionen von FareWell in Nürnberg: Botox bei Dr. med. Andrea Leo, 50 % auf die erste Laser, Elektrolyse oder Microneedling Behandlung.'
-        },
-        {
-          title: 'Promotions and offers in Nuremberg | FareWell',
-          description: 'All current FareWell promotions in Nuremberg: Botox with Dr. med. Andrea Leo, 50% off your first laser, electrolysis or microneedling treatment.'
-        }
-      ), promoVariant: 'a', canonical: `${prefix}/promotionen` }
-    },
-    {
-      path: 'promotionen/drehbuehne',
-      loadComponent: () =>
-        import('../components/pages/promotions/promotionen-hub/promotionen-hub.component')
-          .then(m => m.PromotionenHubComponent),
-      data: { ...d(
-        {
-          title: 'Promotionen und Aktionen in Nürnberg | FareWell',
-          description: 'Alle aktuellen Promotionen von FareWell in Nürnberg: Botox bei Dr. med. Andrea Leo, 50 % auf die erste Laser, Elektrolyse oder Microneedling Behandlung.'
-        },
-        {
-          title: 'Promotions and offers in Nuremberg | FareWell',
-          description: 'All current FareWell promotions in Nuremberg: Botox with Dr. med. Andrea Leo, 50% off your first laser, electrolysis or microneedling treatment.'
-        }
-      ), promoVariant: 'b', canonical: `${prefix}/promotionen` }
-    },
+    { path: 'promotionen/feld', redirectTo: `${prefix}/promotionen`, pathMatch: 'full' },
+    { path: 'promotionen/drehbuehne', redirectTo: `${prefix}/promotionen`, pathMatch: 'full' },
     {
       path: 'promotionen/aesthetische-medizin-nuernberg',
       loadComponent: () =>
