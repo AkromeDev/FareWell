@@ -10,9 +10,10 @@
   <!--
     Sprachumschaltung, kritisch inline.
 
-    Zweisprachige Inhalte liegen als Paare im DOM (<span class="lang de">…</span>
+    Zweisprachige Inhalte liegen im Browser als Paare im DOM (<span class="lang de">…</span>
     <span class="lang en">…</span>); dieselbe Regel steht auch in styles.scss
-    (dort auch zu den /uk/-Regeln).
+    (dort auch zu den /uk/-Regeln). Die vorgerenderte Datei enthält nur noch
+    die Sprache ihrer Adresse (src/i18n/strip-inactive-language.ts).
     Das Haupt-Stylesheet wird aber asynchron geladen (media="print" onload),
     und Beasties nimmt diese Regel nicht ins kritische CSS auf. Ohne die Kopie
     hier wäre zwischen First Paint und Stylesheet BEIDE Sprachen sichtbar und
