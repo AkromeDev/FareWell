@@ -6,7 +6,14 @@
 # every page with consent given and refused. It lists the sources the site
 # really uses: Google tag and Tag Manager with Ads, Cloudflare Web Analytics, the Supabase project of the task
 # pages, the Wistia player on the LEVEL 44 page and Google review photos.
+#
+# "! Link" turns off the Link headers Cloudflare builds from the page's
+# relative <link rel="modulepreload" href="chunk-…"> tags: a browser resolves
+# them against the page address, so on /behandlungen/… they pointed at
+# /behandlungen/chunk-….js and failed with 404 (seen on the live site too).
+# The same preloads stay in the HTML, where <base href="/"> resolves them.
 /*
+  ! Link
   Strict-Transport-Security: max-age=31536000
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
