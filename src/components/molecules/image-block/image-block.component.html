@@ -10,6 +10,8 @@
     [class.contain]="fit === 'contain' || aspectRatio === 'auto'"
     [src]="src"
     [alt]="alt"
+    [attr.width]="dims.width"
+    [attr.height]="dims.height"
     loading="lazy"
     decoding="async"
     fetchpriority="low"
@@ -36,7 +38,7 @@
     aria-label="Bild in Vollbild"
     (click)="closeFullscreen()"
   >
-    <img class="fs-image" [src]="src" [alt]="alt" />
+    <img class="fs-image" [src]="src" [alt]="alt" [attr.width]="dims.width" [attr.height]="dims.height" loading="lazy" decoding="async" />
     <button
       class="fs-close"
       type="button"

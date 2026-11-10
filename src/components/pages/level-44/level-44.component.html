@@ -88,6 +88,8 @@
           <div class="portrait-frame">
             <img
               [src]="photoHero"
+              [attr.srcset]="srcsetOf(photoHero)"
+              sizes="(max-width: 900px) 90vw, 45vw"
               width="1600"
               height="1200"
               [alt]="t('Franziska Preusche, Gastgeberin der LEVEL 44 Breathwork-Reise, mit leuchtenden 9D-Kopfhörern im FareWell Salon', 'Franziska Preusche, host of the LEVEL 44 breathwork journey, with glowing 9D headphones in the FareWell salon')"

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ShadowOptions, DesignTokens } from 'src/models';
+import { sizeOf } from 'src/services/responsive-images';
 
 @Component({
   selector: 'app-image-section',
@@ -32,6 +33,11 @@ export class ImageSectionComponent {
   @Input() backgroundColor: string = 'transparent';
   @Input() imagePriority: 'high' | 'auto' = 'auto';
   @Input() imageLoading: 'eager' | 'lazy' = 'lazy';
+
+  /** Intrinsic size for width/height; the box itself is sized in CSS. */
+  get dims(): { width: number; height: number } {
+    return sizeOf(this.normalizedBackgroundImage);
+  }
 
   get normalizedBackgroundImage(): string {
     if (!this.backgroundImage) {

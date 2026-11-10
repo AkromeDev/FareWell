@@ -5,6 +5,10 @@
   <img
     class="hero-bg"
     src="assets/images/farewell/studio.webp"
+    srcset="/assets/images/farewell/studio-480w.webp 480w, /assets/images/farewell/studio-948w.webp 948w"
+    sizes="100vw"
+    width="948"
+    height="642"
     [alt]="t(
       'FareWell Studio in Nürnberg für permanente und dauerhafte Haarentfernung',
       'FareWell studio in Nuremberg for permanent and long-lasting hair removal'
@@ -163,6 +167,10 @@
       <div class="card-media">
         <img
           [src]="svc.image"
+          [attr.srcset]="srcsetOf(svc.image)"
+          sizes="(max-width: 700px) 85vw, 420px"
+          [attr.width]="sizeOf(svc.image).width"
+          [attr.height]="sizeOf(svc.image).height"
           [alt]="t(svc.altDe, svc.altEn)"
           loading="lazy"
           decoding="async"

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { sizeOf } from 'src/services/responsive-images';
 
 /**
  * Bild-neben-Text-Block im Guide-Look: ein gerahmtes Foto neben projiziertem
@@ -26,6 +27,8 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
       <figure class="gd-media__fig">
         <img
           [src]="image"
+          [attr.width]="sizeOf(image).width"
+          [attr.height]="sizeOf(image).height"
           [alt]="imageAlt"
           loading="lazy"
           decoding="async"
@@ -44,6 +47,9 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
   `,
 })
 export class GuideMediaComponent {
+  /** Intrinsic image size for width/height (src/services/responsive-images.ts). */
+  readonly sizeOf = sizeOf;
+
   @Input({ required: true }) image!: string;
   @Input({ required: true }) imageAlt!: string;
   /** Bildseite am Desktop. 'right' (Standard) oder 'left'. */

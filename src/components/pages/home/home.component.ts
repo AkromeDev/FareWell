@@ -22,6 +22,7 @@ import type {
   GooglePlaceReviewsResponse,
   GoogleReview,
 } from 'src/components/molecules/google-reviews/google-reviews';
+import { sizeOf, srcsetOf } from 'src/services/responsive-images';
 
 declare global {
   interface Window {
@@ -117,6 +118,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // -------------------------------------------------------------------------
   // Behandlungen — gleiche sieben Behandlungen wie im Header-Mega-Menü.
   // -------------------------------------------------------------------------
+  readonly srcsetOf = srcsetOf;
+  readonly sizeOf = sizeOf;
+
   readonly services: ServiceCard[] = [
     {
       num: '01',

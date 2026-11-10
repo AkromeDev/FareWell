@@ -15,6 +15,7 @@ import { LanguageService } from 'src/services/language.service';
 import { PromoExperimentService } from '../../promo-experiment.service';
 import { Bi } from '../../promotion-page.model';
 import { BOOKING_URL, PROMO_CODE, PROMO_OFFERS } from '../../promotion-offers';
+import { sizeOf, srcsetOf } from 'src/services/responsive-images';
 
 const STEP = 360 / PROMO_OFFERS.length;
 
@@ -41,6 +42,8 @@ export class PromoBuehneComponent {
   private readonly zone = inject(NgZone);
 
   readonly offers = PROMO_OFFERS;
+  readonly srcsetOf = srcsetOf;
+  readonly sizeOf = sizeOf;
   readonly code = PROMO_CODE;
   readonly bookingUrl = BOOKING_URL;
   readonly step = STEP;

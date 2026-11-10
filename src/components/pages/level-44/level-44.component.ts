@@ -11,6 +11,7 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { Lang, LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
+import { sizeOf, srcsetOf } from 'src/services/responsive-images';
 
 const PAGE_PATH = '/behandlungen/level-44';
 const ORIGIN = 'https://farewell.salon';
@@ -442,6 +443,7 @@ export class Level44Component implements OnInit, OnDestroy {
 
   readonly signet = SIGNET;
   readonly photoHero = PHOTO_HERO;
+  readonly srcsetOf = srcsetOf;
   readonly photoPortrait = PHOTO_PORTRAIT;
   readonly gallery = GALLERY;
   readonly phoneHref = PHONE_HREF;

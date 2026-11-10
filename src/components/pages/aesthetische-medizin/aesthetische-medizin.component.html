@@ -52,6 +52,8 @@
           <div class="portrait-frame">
             <img
               [src]="portrait"
+              [attr.srcset]="srcsetOf(portrait)"
+              sizes="(max-width: 900px) 80vw, 420px"
               width="720"
               height="900"
               [alt]="t('Porträt von Dr. med. Andrea Leo', 'Portrait of Dr. med. Andrea Leo')"

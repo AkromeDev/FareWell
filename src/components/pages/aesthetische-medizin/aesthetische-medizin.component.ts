@@ -11,6 +11,7 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { Lang, LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
+import { sizeOf, srcsetOf } from 'src/services/responsive-images';
 
 const PAGE_PATH = '/behandlungen/aesthetische-medizin';
 const ORIGIN = 'https://farewell.salon';
@@ -515,6 +516,7 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
   private readonly jsonLdId = 'aesthetische-medizin-schema';
 
   readonly portrait = PORTRAIT;
+  readonly srcsetOf = srcsetOf;
   readonly phoneHref = PHONE_HREF;
   readonly phoneLabel = PHONE_LABEL;
   readonly instagramUrl = INSTAGRAM_URL;
