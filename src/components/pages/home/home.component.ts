@@ -196,10 +196,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         '9D Breathwork und Soul Touch: geführte Atemreisen über Kopfhörer und achtsame Körperarbeit.',
       descEn:
         '9D Breathwork and Soul Touch: guided breath journeys on headphones and mindful bodywork.',
-      altDe: '9D Breathwork mit Franziska Preusche bei FareWell in Nürnberg',
-      altEn: '9D Breathwork with Franziska Preusche at FareWell in Nuremberg',
+      altDe: 'Gastgeberin der LEVEL 44 Breathwork-Reise mit leuchtenden 9D-Kopfhörern im FareWell Salon',
+      altEn: 'Host of the LEVEL 44 breathwork journey with glowing 9D headphones in the FareWell salon',
       path: '/behandlungen/level-44',
-      image: 'assets/images/partner/level44-session-raum.jpg',
+      image: 'assets/images/partner/level44-breathwork-gastgeberin.webp',
     },
     {
       num: '07',
