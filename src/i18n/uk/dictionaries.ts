@@ -20,7 +20,7 @@ export const UK_EXCLUDED_PATHS: readonly string[] = [
   'promotionen',
   'promotionen/feld',
   'promotionen/drehbuehne',
-  'promotionen/botox-nuernberg',
+  'behandlungen/botox-nuernberg',
   'promotionen/aesthetische-medizin-nuernberg',
   'karriere/masseur-bademeister-blind-nuernberg',
 ];

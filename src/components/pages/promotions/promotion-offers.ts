@@ -47,7 +47,7 @@ const CODE_FOOT: Bi = { de: `Code ${PROMO_CODE}`, en: `Code ${PROMO_CODE}` };
 export const PROMO_OFFERS: readonly PromoOffer[] = [
   {
     id: 'botox',
-    path: '/promotionen/botox-nuernberg',
+    path: '/behandlungen/botox-nuernberg',
     tag: { de: 'Ästhetische Medizin', en: 'Aesthetic medicine' },
     title: { de: 'Botox in Nürnberg', en: 'Botox in Nuremberg' },
     text: {

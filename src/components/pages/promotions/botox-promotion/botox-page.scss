@@ -1,0 +1,50 @@
+@use 'themes/theme-entry' as *;
+
+// Ergänzt promotion-page.scss um die Bausteine des Seitenmusters.
+
+.answer {
+  max-width: 62ch;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 0 28px;
+  margin: 0;
+
+  .fact {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba($cream, 0.12);
+  }
+
+  dt {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: $gold;
+  }
+
+  dd {
+    margin: 6px 0 0;
+    font-size: 15px;
+  }
+}
+
+.doctor {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) 1fr;
+  gap: clamp(20px, 4vw, 48px);
+  align-items: center;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.doctor-photo {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 16px;
+}

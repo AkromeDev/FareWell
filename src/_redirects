@@ -9,3 +9,8 @@
 # and a rewrite onto a redirect falls through to the 404.
 /tasks/*            /    200
 /massage-tasks/*    /    200
+
+# Moved pages (301). The Botox page left /promotionen on 10.11.2026: a medical
+# treatment is not a promotion.
+/promotionen/botox-nuernberg        /behandlungen/botox-nuernberg        301
+/en/promotionen/botox-nuernberg     /en/behandlungen/botox-nuernberg     301

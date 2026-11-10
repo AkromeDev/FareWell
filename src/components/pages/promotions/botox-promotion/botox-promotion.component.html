@@ -1,17 +1,14 @@
+<!-- Seitenmuster (AI-SEO-STRATEGY.md): Überschrift mit Ort, Antwortblock,
+     Faktentabelle, Preise als Text, wer behandelt, Buchung, Anfahrt, FAQ.
+     Kurz gehalten: die medizinische Tiefe gehört auf Dr. Leos eigene Website. -->
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">{{ t('Promotionen · Ästhetische Medizin', 'Promotions · Aesthetic medicine') }}</p>
+    <p class="eyebrow">{{ t('Behandlungen · Ästhetische Medizin', 'Treatments · Aesthetic medicine') }}</p>
     <h1>{{ t('Botox in', 'Botox in') }} <em>{{ t('Nürnberg', 'Nuremberg') }}</em></h1>
-    <p class="lead">
+    <p class="lead answer">
       {{ t(
-        'Beim Arzt, mit offenen Preisen. Dr. med. Andrea Leo behandelt ab dem 16.11.2026 persönlich bei FareWell, am Frauentorgraben 5, zwei Minuten vom Hauptbahnhof.',
-        'With a physician, with open prices. Dr. med. Andrea Leo treats in person at FareWell from 16 November 2026, at Frauentorgraben 5, two minutes from the main station.'
-      ) }}
-    </p>
-    <p>
-      {{ t(
-        'Einzelne Regionen ab 89 €, eine Zone ab 109 €. Approbierter Arzt seit 2016, seit 2018 in der ästhetischen Medizin.',
-        'Single regions from €89, one zone from €109. A licensed physician since 2016, in aesthetic medicine since 2018.'
+        'Botox in Nürnberg bekommst du bei FareWell am Frauentorgraben 5, zwei Minuten vom Hauptbahnhof. Ab dem 16.11.2026 behandelt Dr. med. Andrea Leo persönlich, approbierter Arzt seit 2016. Einzelne Regionen kosten ab 89 €, eine Zone ab 109 €. Den Termin buchst du online über Salonkee oder telefonisch.',
+        'You can get Botox in Nuremberg at FareWell, Frauentorgraben 5, two minutes from the main station. From 16 November 2026 Dr. med. Andrea Leo treats in person, a licensed physician since 2016. Single regions cost from €89, one zone from €109. Book online through Salonkee or by phone.'
       ) }}
     </p>
     <div class="ctas">
@@ -21,8 +18,22 @@
   </div>
 </section>
 
+<section class="alt" id="fakten">
+  <div class="wrap">
+    <h2>{{ t('Auf einen Blick', 'At a glance') }}</h2>
+    <dl class="facts">
+      @for (fact of facts; track fact.label.de) {
+        <div class="fact">
+          <dt>{{ bi(fact.label) }}</dt>
+          <dd>{{ bi(fact.value) }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+</section>
+
 @if (promotions.length) {
-  <section class="alt" id="aktuelle-promotion">
+  <section id="aktuelle-promotion">
     <div class="wrap">
       <h2>{{ t('Aktuelle Promotion', 'Current promotion') }}</h2>
       <div class="grid">
@@ -37,9 +48,10 @@
   </section>
 }
 
-<section class="alt" id="preise">
+<section id="preise">
   <div class="wrap">
     <h2>{{ t('Was kostet Botox bei FareWell?', 'How much is Botox at FareWell?') }}</h2>
+    <p>{{ priceSentence }}</p>
     <div class="grid">
       @for (group of priceGroups; track group.id) {
         <div class="card">
@@ -64,13 +76,66 @@
         'Starting prices. The final price depends on findings, scope and amount of product, and you are told it in the consultation before the treatment. Aesthetic treatments are usually private services.'
       ) }}
     </p>
-    <p class="note">
-      <a [routerLink]="hubLink">{{ t('Alle Promotionen von FareWell', 'All FareWell promotions') }}</a>
-    </p>
   </div>
 </section>
 
-<section class="faq" id="fragen">
+<section class="alt" id="arzt">
+  <div class="wrap doctor">
+    <img
+      class="doctor-photo"
+      src="assets/images/team/dr-andrea-leo.webp"
+      width="320"
+      height="400"
+      loading="lazy"
+      decoding="async"
+      alt="Dr. med. Andrea Leo"
+    />
+    <div>
+      <h2>{{ t('Wer behandelt?', 'Who treats you?') }}</h2>
+      <p>
+        {{ t(
+          'Dr. med. Andrea Leo, approbierter Arzt seit 2016 und seit 2018 in der ästhetischen Medizin. Er behandelt persönlich, klärt dich vorher auf und nennt dir den Preis vor der Behandlung. Beratung auf Deutsch, Englisch und Italienisch.',
+          'Dr. med. Andrea Leo, a licensed physician since 2016 and in aesthetic medicine since 2018. He treats in person, explains everything first and tells you the price before the treatment. Consultations in German, English and Italian.'
+        ) }}
+      </p>
+      <p>
+        <a [routerLink]="aestheticLink">{{ t('Mehr über Dr. Leo und die ästhetische Medizin bei FareWell', 'More about Dr. Leo and aesthetic medicine at FareWell') }}</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="termin">
+  <div class="wrap">
+    <h2>{{ t('Termin und Anfahrt', 'Booking and getting here') }}</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>{{ t('So buchst du', 'How to book') }}</h3>
+        <p>
+          {{ t(
+            'Online über Salonkee oder telefonisch unter ' + phoneLabel + '.',
+            'Online through Salonkee or by phone at ' + phoneLabel + '.'
+          ) }}
+        </p>
+        <div class="ctas">
+          <a class="btn-gold" [href]="bookingUrl" target="_blank" rel="noopener noreferrer">{{ t('Termin buchen', 'Book now') }}</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>{{ t('So findest du uns', 'How to find us') }}</h3>
+        <p>
+          {{ t(
+            'FareWell, Frauentorgraben 5, 90443 Nürnberg. Zwei Minuten zu Fuß vom Hauptbahnhof.',
+            'FareWell, Frauentorgraben 5, 90443 Nuremberg. Two minutes on foot from the main station.'
+          ) }}
+        </p>
+        <p><a [href]="mapsUrl" target="_blank" rel="noopener noreferrer">{{ t('In Google Maps öffnen', 'Open in Google Maps') }}</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq alt" id="fragen">
   <div class="wrap">
     <h2>{{ t('Häufige Fragen zu Botox in Nürnberg', 'Common questions about Botox in Nuremberg') }}</h2>
     @for (entry of faq; track entry.q.de) {

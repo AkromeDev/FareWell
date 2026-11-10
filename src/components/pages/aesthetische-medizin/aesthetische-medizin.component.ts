@@ -6,6 +6,7 @@ import {
 } from 'src/app/domain/entities';
 import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { Lang, LanguageService } from 'src/services/language.service';
@@ -503,7 +504,7 @@ const PRICED_GROUPS: PricedGroup[] = TREATMENT_GROUPS.map((group) => ({
 @Component({
   selector: 'app-aesthetische-medizin',
   standalone: true,
-  imports: [RevealOnScrollDirective, ScrollToDirective],
+  imports: [RevealOnScrollDirective, ScrollToDirective, RouterLink],
   templateUrl: './aesthetische-medizin.component.html',
   styleUrls: ['./aesthetische-medizin.component.scss'],
 })
@@ -534,6 +535,10 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
 
   get lang(): Lang {
     return this.language.lang();
+  }
+
+  get botoxLink(): string {
+    return this.language.localizePath('/behandlungen/botox-nuernberg');
   }
 
   t(de: string, en: string): string {
