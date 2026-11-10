@@ -4,6 +4,8 @@
 # (tools/flatten-prerender.mjs), so there is no catch-all: an unknown address
 # gets 404.html with status 404. Only routes that render in the browser alone
 # (RenderMode.Client in src/app/app.routes.server.ts) need a rewrite to the
-# app shell. A new client-only route needs its own line here.
-/tasks/*            /index.html    200
-/massage-tasks/*    /index.html    200
+# app shell. A new client-only route needs its own line here. The target is
+# "/" and not "/index.html": Cloudflare answers /index.html with a 308 to /,
+# and a rewrite onto a redirect falls through to the 404.
+/tasks/*            /    200
+/massage-tasks/*    /    200
