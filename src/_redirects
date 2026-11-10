@@ -1,4 +1,9 @@
-# Cloudflare Pages SPA fallback.
-# Prerendered routes are served as static files directly; any unknown path
-# falls back to the app shell so Angular can route it (e.g. to /not-found).
-/*    /index.html    200
+# Cloudflare Pages rewrites and redirects.
+#
+# Every route of the app is prerendered to its own HTML file
+# (tools/flatten-prerender.mjs), so there is no catch-all: an unknown address
+# gets 404.html with status 404. Only routes that render in the browser alone
+# (RenderMode.Client in src/app/app.routes.server.ts) need a rewrite to the
+# app shell. A new client-only route needs its own line here.
+/tasks/*            /index.html    200
+/massage-tasks/*    /index.html    200
