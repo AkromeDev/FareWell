@@ -32,15 +32,15 @@
             Deine Krankenkasse kann die Epilation im Gesicht übernehmen. Nicht, weil jemand trans
             ist, sondern weil krankhafter Haarwuchs medizinisch behandlungsbedürftig sein kann. Bei
             einer Hormonstörung gilt genau derselbe Gedanke. Der Knackpunkt ist meist der
-            Ärztevorbehalt. Bei FareWell behandelt unsere geschulte Fachkraft, ärztlich begleitet
-            von unserem medizinischen Berater Dr. med. univ. Noam Degner.
+            Ärztevorbehalt. Bei FareWell behandelt unsere geschulte Elektrolyse-Fachkraft in eigener Verantwortung,
+            nicht im Auftrag eines Arztes.
           </span>
           <span class="lang en">
             Your statutory health insurer can cover facial epilation. Not because someone is trans,
             but because pathological hair growth can require medical treatment. With a hormonal
             disorder the very same reasoning applies. The sticking point is usually the physician
-            requirement (Ärztevorbehalt). At FareWell the treatment is carried out by our trained
-            specialist, with medical support from our medical adviser Dr. med. univ. Noam Degner.
+            requirement (Ärztevorbehalt). At FareWell the treatment is carried out by our trained electrolysis specialist on our
+            own responsibility, not on a doctor's orders.
           </span>
         </p>
         <p appReveal [revealDelay]="120" style="color: var(--gd-muted)">
@@ -50,7 +50,7 @@
             Befund mit eigener Diagnose. Ob deine Kasse zahlt, ist von Fall zu
             Fall verschieden, versprechen lässt sich nichts. Aber der Antrag ist einen Versuch wert,
             und dieser Leitfaden zeigt dir Schritt für Schritt, wie du ihn aufsetzt. Die
-            <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">Preise je Sitzung</a>
+            <a [routerLink]="p('/price')" fragment="krankenkasse">Preise je Sitzung</a>
             stehen offen auf unserer Preisseite, die
             <a href="https://salonkee.de/salon/farewell?lang=de" target="_blank" rel="noopener noreferrer">kostenlose Erstberatung</a>
             buchst du direkt online.
@@ -61,7 +61,7 @@
             hair is, medically, a finding with a diagnosis of its own. Whether your insurer pays
             varies from case to case, and nothing can be promised. But the application is worth a
             try, and this guide shows you step by step how to put it together. The
-            <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">prices per session</a>
+            <a [routerLink]="p('/price')" fragment="krankenkasse">prices per session</a>
             are listed openly on our price page, and you can book the
             <a href="https://salonkee.de/salon/farewell?lang=en" target="_blank" rel="noopener noreferrer">free initial consultation</a>
             online.
@@ -113,31 +113,38 @@
         >
           <span class="lang de">
             Die Behandlung muss als ärztliche Leistung zählen. Daran scheitern viele Anträge,
-            besonders wenn die Behandlung nicht in einer ärztlichen Praxis stattfindet.
+            besonders wenn die Behandlung nicht in einer ärztlichen Praxis stattfindet. FareWell ist
+            ein Kosmetikstudio, keine Praxis; ob deine Kasse die Behandlung bei uns trotzdem
+            übernimmt, entscheidet sie im Einzelfall.
           </span>
           <span class="lang en">
             The treatment has to count as a medical service. That is where many applications fail,
-            especially when the treatment does not take place in a medical practice.
+            especially when the treatment does not take place in a medical practice. FareWell is a
+            beauty studio, not a practice; whether your insurer still covers treatment with us is
+            decided case by case.
           </span>
         </app-guide-card>
         <app-guide-card
           icon="🤝"
-          [heading]="t('Ärztliche Begleitung bei FareWell', 'Medical support at FareWell')"
+          [heading]="t('Der kooperierende Arzt bei FareWell', 'The cooperating physician at FareWell')"
           [revealDelay]="120"
         >
           <span class="lang de">
-            Behandelt wird bei FareWell von unserer geschulten Fachkraft. Ärztlich begleitet wird
-            FareWell auf Grundlage eines Beratungsvertrags von Dr. med. univ. Noam Degner: Er wird
-            bei individuellen medizinischen Fragen, zur Beurteilung von Risiken und
-            Kontraindikationen sowie in Hygienefragen hinzugezogen. Ob deine Kasse das anerkennt
-            oder auf einer ärztlichen Praxis besteht, ist von Kasse zu Kasse verschieden.
+            Behandelt wird bei FareWell von unserer geschulten Elektrolyse-Fachkraft, in eigener
+            Verantwortung und auf eigene Rechnung. Ein kooperierender Arzt, Dr. med. univ. Noam
+            Degner, berät FareWell auf Grundlage eines Beratungsvertrags und kann bei individuellen
+            medizinischen Fragen sowie zur Beurteilung von Risiken und Kontraindikationen
+            hinzugezogen werden. Er ordnet die Behandlung nicht an, führt sie nicht durch und
+            beaufsichtigt sie nicht. Ob deine Kasse das anerkennt oder auf einer ärztlichen Praxis
+            besteht, ist von Kasse zu Kasse verschieden.
           </span>
           <span class="lang en">
-            At FareWell the treatment is carried out by our trained specialist. FareWell is
-            supported by Dr. med. univ. Noam Degner under a consulting contract: he is called in for
-            individual medical questions, to assess risks and contraindications, and on hygiene.
-            Whether your insurer accepts this or insists on a medical practice varies from insurer
-            to insurer.
+            At FareWell the treatment is carried out by our trained electrolysis specialist, on our
+            own responsibility and account. A cooperating physician, Dr. med. univ. Noam Degner,
+            advises FareWell under a consulting contract and can be consulted on individual medical
+            questions and to assess risks and contraindications. He does not order, perform or
+            supervise the treatment. Whether your insurer accepts this or insists on a medical
+            practice varies from insurer to insurer.
           </span>
         </app-guide-card>
         <app-guide-card
@@ -264,8 +271,8 @@
           [revealDelay]="60"
         >
           <li>
-            <span class="lang de">Ärztliche Begleitung durch unseren medizinischen Berater bei medizinischen Fragen, Risiken und Kontraindikationen.</span>
-            <span class="lang en">Medical support from our medical adviser on medical questions, risks and contraindications.</span>
+            <span class="lang de">Einen kooperierenden Arzt, der bei individuellen medizinischen Fragen, Risiken und Kontraindikationen hinzugezogen werden kann.</span>
+            <span class="lang en">A cooperating physician who can be consulted on individual medical questions, risks and contraindications.</span>
           </li>
           <li>
             <span class="lang de">Einen Kostenvoranschlag für deinen Antrag.</span>
@@ -486,17 +493,17 @@
           <li>
             <span class="lang de">
               <strong>Kostenvoranschlag bei FareWell.</strong> Wir erstellen dir einen
-              Kostenvoranschlag für die Nadelepilation, zu den Preisen mit ärztlicher Begleitung,
-              und zwar nur dafür. Die Preise findest du auf
-              <a [routerLink]="p('/price')" fragment="aerztliche-begleitung"
+              Kostenvoranschlag für die Nadelepilation, zu den Preisen für den Kassenantrag, und
+              zwar nur dafür. Die Preise findest du auf
+              <a [routerLink]="p('/price')" fragment="krankenkasse"
                 >unserer Preisseite</a
               >.
             </span>
             <span class="lang en">
               <strong>Cost estimate from FareWell.</strong> We prepare a cost estimate for
-              electrolysis (Nadelepilation), at the prices with medical support, and for nothing
-              else. You will find the prices on
-              <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">our price page</a>.
+              electrolysis (Nadelepilation), at the prices for insurance applications, and for
+              nothing else. You will find the prices on
+              <a [routerLink]="p('/price')" fragment="krankenkasse">our price page</a>.
             </span>
           </li>
           <li>
@@ -607,15 +614,18 @@
               Manche Kassen erstatten nur, wenn die Behandlung selbst in einer ärztlichen Praxis
               stattfindet und von dort abgerechnet wird. Das Bundessozialgericht hat 2020
               entschieden, dass die Nadelepilation an geschultes Personal delegiert werden darf,
-              wenn eine Ärztin oder ein Arzt sie anordnet und dafür verantwortlich bleibt. Wie deine
-              Kasse das handhabt, klärst du am besten vorher schriftlich mit ihr.
+              wenn eine Ärztin oder ein Arzt sie anordnet und dafür verantwortlich bleibt. Diese
+              Konstellation gibt es bei FareWell nicht: Bei uns ordnet kein Arzt die Behandlung an,
+              behandelt wird in eigener Verantwortung unserer Fachkraft. Wie deine Kasse das
+              handhabt, klärst du am besten vorher schriftlich mit ihr.
             </span>
             <span class="lang en">
               Some insurers only reimburse when the treatment itself takes place in a medical
               practice and is billed from there. In 2020 the Federal Social Court held that
               electrolysis may be delegated to trained staff where a doctor orders it and remains
-              responsible for it. How your insurer handles that is best clarified with them in
-              writing beforehand.
+              responsible for it. That is not the set-up at FareWell: no doctor orders the treatment
+              here, and our specialist treats on FareWell's own responsibility. How your insurer
+              handles that is best clarified with them in writing beforehand.
             </span>
           </li>
           <li>
@@ -677,14 +687,14 @@
       <div class="gd-read">
         <p appReveal style="color: var(--gd-muted)">
           <span class="lang de">
-            Beim Termin erstellen wir gemeinsam deinen Kostenvoranschlag. Dr. med. univ. Noam
-            Degner unterschreibt ihn für die ärztliche Begleitung mit, dann reichst du ihn bei
-            deiner Kasse ein. So musst du dich um die Formalitäten nicht allein kümmern.
+            Beim Termin erstellen wir gemeinsam deinen Kostenvoranschlag. Unser kooperierender Arzt
+            prüft ihn und zeichnet ihn mit, dann reichst du ihn bei deiner Kasse ein. So musst du
+            dich um die Formalitäten nicht allein kümmern.
           </span>
           <span class="lang en">
-            At the appointment we prepare your cost estimate together. Dr. med. univ. Noam Degner
-            co-signs it for the medical support, and you then submit it to your insurer. That way
-            you do not have to handle the formalities on your own.
+            At the appointment we prepare your cost estimate together. Our cooperating physician
+            reviews and co-signs it, and you then submit it to your insurer. That way you do not
+            have to handle the formalities on your own.
           </span>
         </p>
       </div>
