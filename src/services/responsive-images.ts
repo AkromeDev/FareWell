@@ -46,3 +46,9 @@ export function sizeOf(path: string): { width: number; height: number } {
   const entry = entryOf(path) ?? SIZES[keyOf(path)];
   return entry ? { width: entry.width, height: entry.height } : { width: 1600, height: 1200 };
 }
+
+/** The smallest variant, for small thumbnails such as CSS backgrounds in menus. */
+export function smallestOf(path: string): string {
+  const entry = entryOf(path);
+  return entry ? `/${entry.variants[0].src}` : path;
+}
