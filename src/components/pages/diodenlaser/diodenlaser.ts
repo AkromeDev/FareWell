@@ -171,20 +171,7 @@ export class Diodenlaser implements OnInit, OnDestroy {
           ),
           serviceType: this.t('Diodenlaser Haarentfernung', 'Diode laser hair removal'),
           areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
-          provider: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressCountry: 'DE',
-            },
-          },
+          provider: { '@id': 'https://farewell.salon/#organization' },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
             name: this.t('Diodenlaser-Areale', 'Diode laser areas'),

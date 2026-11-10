@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
-import { Bi, FaqEntry, ORIGIN, PHONE_HREF, PHONE_LABEL, PriceGroup, physicianNode } from '../promotion-page.model';
+import { Bi, FaqEntry, ORIGIN, PHONE_HREF, PHONE_LABEL, PriceGroup } from '../promotion-page.model';
+import { DR_LEO_PRACTICE_ID, drLeoPersonNode, drLeoPracticeNode } from 'src/app/domain/entities';
 
 const PAGE_PATH = '/promotionen/botox-nuernberg';
 
@@ -163,19 +164,19 @@ export class BotoxPromotionComponent implements OnInit, OnDestroy {
       'Botox in Nürnberg bei Dr. med. Andrea Leo, bei FareWell am Frauentorgraben 5. Einzelne Regionen ab 89 €, eine Zone ab 109 €. Ab 16.11.2026 bei FareWell.',
       'Botox in Nuremberg with Dr. med. Andrea Leo at FareWell, Frauentorgraben 5. Single regions from €89, one zone from €109. From 16 November 2026.',
     );
-    const physicianId = `${pageUrl}#physician`;
 
     this.seo.setPageSeo({ title, description, path: PAGE_PATH });
     this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
-        physicianNode(physicianId),
+        drLeoPersonNode((de, en) => this.t(de, en)),
+        drLeoPracticeNode(),
         {
           '@type': 'Service',
           '@id': `${pageUrl}#service`,
           name: this.t('Botox in Nürnberg', 'Botox in Nuremberg'),
           serviceType: 'Botox',
-          provider: { '@id': physicianId },
+          provider: { '@id': DR_LEO_PRACTICE_ID },
           areaServed: { '@type': 'City', name: 'Nürnberg' },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',

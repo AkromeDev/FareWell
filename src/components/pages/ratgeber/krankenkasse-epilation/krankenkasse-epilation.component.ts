@@ -116,13 +116,7 @@ export class KrankenkasseEpilationComponent implements OnInit, OnDestroy {
           dateModified: '2026-09-05',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
           author: { '@id': 'https://farewell.salon/#organization' },
-          publisher: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-          },
+          publisher: { '@id': 'https://farewell.salon/#organization' },
           mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
         },
         {

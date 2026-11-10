@@ -96,13 +96,7 @@ export class KoerperbehandlungenComponent implements OnInit, OnDestroy {
           dateModified: '2026-07-24',
           image: ['https://farewell.salon/assets/images/treatment/kavitation3.webp'],
           author: { '@id': 'https://farewell.salon/#organization' },
-          publisher: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-          },
+          publisher: { '@id': 'https://farewell.salon/#organization' },
           mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
         },
         {

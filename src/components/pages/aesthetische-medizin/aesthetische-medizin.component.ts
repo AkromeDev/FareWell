@@ -1,3 +1,9 @@
+import {
+  DR_LEO_PERSON_ID,
+  DR_LEO_PRACTICE_ID,
+  drLeoPersonNode,
+  drLeoPracticeNode,
+} from 'src/app/domain/entities';
 import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
@@ -576,18 +582,14 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
     this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
-        {
-          '@type': 'Physician',
-          '@id': `${pageUrl}#physician`,
-          name: 'Dr. med. Andrea Leo',
-          honorificPrefix: 'Dr. med.',
-          givenName: 'Andrea',
-          familyName: 'Leo',
+        // Dr. Leo and his practice carry the ids of his own site
+        // (src/app/domain/entities.ts). He is an independent cooperation
+        // doctor: the treatments are his practice's service, and the practice
+        // sits inside the studio. No phone or mail on this site.
+        drLeoPersonNode(this.t.bind(this), {
           image: `${ORIGIN}/${PORTRAIT}`,
           url: pageUrl,
-          description,
           knowsLanguage: ['de', 'en', 'it', 'hu'],
-          knowsAbout: TREATMENT_GROUPS.map((group) => (isEn ? group.title.en : group.title.de)),
           alumniOf: {
             '@type': 'CollegeOrUniversity',
             name: this.t('Semmelweis Universität', 'Semmelweis University'),
@@ -600,37 +602,34 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
               'Licence to practise medicine (Germany, 2016)',
             ),
           },
-          sameAs: [INSTAGRAM_URL],
-          // Preisliste als Angebotskatalog, aus derselben Datenquelle wie die sichtbaren Preiskarten.
+        }),
+        drLeoPracticeNode(),
+        {
+          '@type': 'Service',
+          '@id': `${pageUrl}#service`,
+          name: this.t('Ästhetische Medizin in Nürnberg', 'Aesthetic medicine in Nuremberg'),
+          description,
+          serviceType: TREATMENT_GROUPS.map((group) => (isEn ? group.title.en : group.title.de)),
+          provider: { '@id': DR_LEO_PRACTICE_ID },
+          areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
           hasOfferCatalog: {
-            '@type': 'OfferCatalog',
-            name: this.t('Preisliste Ästhetische Medizin', 'Price list aesthetic medicine'),
-            itemListElement: TREATMENT_GROUPS.map((group) => ({
               '@type': 'OfferCatalog',
-              name: isEn ? group.title.en : group.title.de,
-              itemListElement: group.items.map((item) => ({
-                '@type': 'Offer',
-                itemOffered: { '@type': 'Service', name: isEn ? item.name.en : item.name.de },
-                priceCurrency: 'EUR',
-                priceSpecification: {
-                  '@type': 'PriceSpecification',
-                  minPrice: item.priceFrom,
+              name: this.t('Preisliste Ästhetische Medizin', 'Price list aesthetic medicine'),
+              itemListElement: TREATMENT_GROUPS.map((group) => ({
+                '@type': 'OfferCatalog',
+                name: isEn ? group.title.en : group.title.de,
+                itemListElement: group.items.map((item) => ({
+                  '@type': 'Offer',
+                  itemOffered: { '@type': 'Service', name: isEn ? item.name.en : item.name.de },
                   priceCurrency: 'EUR',
-                },
+                  priceSpecification: {
+                    '@type': 'PriceSpecification',
+                    minPrice: item.priceFrom,
+                    priceCurrency: 'EUR',
+                  },
+                })),
               })),
-            })),
-          },
-          workLocation: {
-            '@type': 'Place',
-            name: 'FareWell',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressCountry: 'DE',
             },
-          },
         },
         {
           '@type': 'WebPage',
@@ -640,7 +639,8 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
           description,
           inLanguage,
           isPartOf: { '@id': `${ORIGIN}/#website` },
-          about: { '@id': `${pageUrl}#physician` },
+          about: { '@id': `${pageUrl}#service` },
+          mentions: { '@id': DR_LEO_PERSON_ID },
           primaryImageOfPage: { '@type': 'ImageObject', url: `${ORIGIN}/${PORTRAIT}` },
         },
         {

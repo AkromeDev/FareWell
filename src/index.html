@@ -81,7 +81,9 @@
   <meta name="twitter:image" content="https://farewell.salon/assets/images/farewell/og-studio.jpg">
   <meta name="twitter:image:alt" content="Empfang im FareWell Kosmetikstudio in Nürnberg">
 
-  <!-- 🏢 Structured Data -->
+  <!-- 🏢 Structured Data: the one full description of FareWell on every page.
+       Pages refer to it only by "@id" (src/app/domain/entities.ts, ORG_ID);
+       none of them may carry a second BeautySalon node. -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -107,8 +109,37 @@
         "name": "Nürnberg"
       },
       "priceRange": "€€",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.44677,
+        "longitude": 11.07501
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "10:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "00:00",
+          "closes": "00:00"
+        }
+      ],
       "sameAs": [
-        "https://www.instagram.com/farewell.salon/"
+        "https://g.co/kgs/ycCwT2s",
+        "https://www.instagram.com/farewell.salon/",
+        "https://www.facebook.com/share/14PfPkcmpKs/?mibextid=wwXIfr",
+        "https://www.linkedin.com/company/farewell-gmbh/about/",
+        "https://salonkee.de/salon/farewell"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -160,6 +191,24 @@
               "@type": "Service",
               "name": "Massage",
               "description": "Entspannende Massagebehandlungen."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Ästhetische Medizin",
+              "description": "Ärztliche ästhetische Behandlungen durch den Kooperationsarzt Dr. med. Andrea Leo, in eigener ärztlicher Verantwortung.",
+              "provider": { "@id": "https://drleoaesthetic.de/#practice" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "9D Breathwork",
+              "description": "Geführte Atemreisen über Kopfhörer mit LEVEL 44 und Franziska Preusche.",
+              "provider": { "@id": "https://farewell.salon/behandlungen/level-44#franziska-preusche" }
             }
           }
         ]

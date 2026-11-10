@@ -125,14 +125,12 @@ export function buildKarriereJsonLd(
             'Fully flexible working hours, no obligation to be present without booked appointments'
           ),
         ...(cfg.jobStartDate ? { jobStartDate: cfg.jobStartDate } : {}),
+        // FareWell is described in full by the static block in index.html; the
+        // name and logo stay here because the job search reads them directly.
         hiringOrganization: {
-          '@type': 'BeautySalon',
           '@id': `${ORIGIN}/#organization`,
-          name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-          alternateName: 'FareWell',
-          url: ORIGIN,
+          name: 'FareWell',
           logo: LOGO_URL,
-          sameAs: ['https://www.instagram.com/farewell.salon/'],
         },
         jobLocation: {
           '@type': 'Place',

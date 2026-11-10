@@ -443,58 +443,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
+      // FareWell itself is described once, by the static block in index.html.
       '@graph': [
-        {
-          '@type': 'BeautySalon',
-          '@id': 'https://farewell.salon/#organization',
-          name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-          alternateName: 'FareWell',
-          url: 'https://farewell.salon',
-          image: this.heroImageUrl,
-          telephone: '+4915757995694',
-          priceRange: '€€',
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: 'Frauentorgraben 5',
-            postalCode: '90443',
-            addressLocality: 'Nürnberg',
-            addressCountry: 'DE',
-          },
-          geo: {
-            '@type': 'GeoCoordinates',
-            latitude: 49.44677,
-            longitude: 11.07501,
-          },
-          openingHoursSpecification: [
-            {
-              '@type': 'OpeningHoursSpecification',
-              dayOfWeek: [
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-              ],
-              opens: '10:00',
-              closes: '20:00',
-            },
-            {
-              '@type': 'OpeningHoursSpecification',
-              dayOfWeek: 'Saturday',
-              opens: '08:00',
-              closes: '17:00',
-            },
-            // Sonntag explizit als geschlossen markieren (opens = closes),
-            // statt den Tag nur wegzulassen.
-            {
-              '@type': 'OpeningHoursSpecification',
-              dayOfWeek: 'Sunday',
-              opens: '00:00',
-              closes: '00:00',
-            },
-          ],
-          sameAs: ['https://www.instagram.com/farewell.salon/'],
-        },
         {
           '@type': 'WebSite',
           '@id': 'https://farewell.salon/#website',

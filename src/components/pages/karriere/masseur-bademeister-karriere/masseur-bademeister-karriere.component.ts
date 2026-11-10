@@ -323,9 +323,8 @@ export class MasseurBademeisterKarriereComponent implements OnInit, OnDestroy {
       // wäre über die Google-Jobsuche nicht auffindbar.
       employmentType: ['FULL_TIME', 'PART_TIME', 'CONTRACTOR'],
       hiringOrganization: {
-        '@type': 'Organization',
+        '@id': `${ORIGIN}/#organization`,
         name: 'FareWell',
-        sameAs: ORIGIN,
         logo: LOGO_URL,
       },
       jobLocation: {
