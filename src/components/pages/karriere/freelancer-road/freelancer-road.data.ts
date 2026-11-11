@@ -227,8 +227,8 @@ export const PHASES: Phase[] = [
           en: 'Joé wrote the business and financial plan for FareWell in German and French and is happy to share the structure and the logic behind the numbers.',
         },
         joe: {
-          de: 'Bei mir lief es genau in dieser Reihenfolge: erst die IHK, wo jemand alles mit mir durchgegangen ist, dann mit der Bescheinigung zu Bank und Agentur für Arbeit. Beide haben ohne Einwände zugestimmt.',
-          en: 'For me it went in exactly this order: the chamber of commerce first, where someone went through everything with me, then the bank and the employment agency with the certificate. Both agreed without objection.',
+          de: 'Bei mir lief es genau in dieser Reihenfolge: erst die IHK, dann mit der Bescheinigung zu Bank und Agentur für Arbeit, und beide haben ohne Einwände zugestimmt. Der Service der IHK ist hervorragend. Wer mich dort betreut hat, war super hilfsbereit, hat meinen Plan in zwei Runden mit mir geprüft und mir am Telefon erklärt, was die einzelnen Teile bedeuten.',
+          en: 'For me it went in exactly this order: the chamber of commerce first, then the bank and the employment agency with the certificate, and both agreed without objection. The chamber\'s service is excellent. My contact there was extremely helpful, went through my plan with me in two rounds of checks and explained on the phone what the different parts mean.',
         },
         links: [
           { label: { de: 'Vorlagen der Unternehmenswerkstatt', en: 'Unternehmenswerkstatt templates' }, url: 'https://www.uwd.de/group/p49198' },
