@@ -2,9 +2,10 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
-import { Bi, FaqEntry, ORIGIN, PHONE_HREF, PHONE_LABEL, PriceGroup, physicianNode } from '../promotion-page.model';
+import { Bi, FaqEntry, ORIGIN, PHONE_HREF, PHONE_LABEL, PriceGroup } from '../promotion-page.model';
+import { DR_LEO_PRACTICE_ID, drLeoPersonNode, drLeoPracticeNode } from 'src/app/domain/entities';
 
-const PAGE_PATH = '/promotionen/botox-nuernberg';
+const PAGE_PATH = '/behandlungen/botox-nuernberg';
 
 /** Preise aus seiner Preisliste vom 02.10.2026, wie in Salonkee. Startpreise. */
 const PRICE_GROUPS: PriceGroup[] = [
@@ -67,8 +68,8 @@ const FAQ: FaqEntry[] = [
   {
     q: { de: 'Wo ist Botox in Nürnberg günstig?', en: 'Where is Botox affordable in Nuremberg?' },
     a: {
-      de: 'Vergleiche den Preis pro Zone und frag, wer behandelt. Bei FareWell stehen die Preise offen auf dieser Seite: einzelne Regionen ab 89 €, eine Zone ab 109 €. Laufende Aktionen findest du unter farewell.salon/promotionen. Ein niedriger Preis ersetzt nie die ärztliche Beratung.',
-      en: 'Compare the price per zone and ask who treats you. At FareWell the prices are open on this page: single regions from €89, one zone from €109. Current offers are at farewell.salon/promotionen. A low price never replaces medical advice.',
+      de: 'Vergleiche den Preis pro Zone und frag, wer behandelt. Bei FareWell stehen die Preise offen auf dieser Seite: einzelne Regionen ab 89 €, eine Zone ab 109 €. Ein niedriger Preis ersetzt nie die ärztliche Beratung.',
+      en: 'Compare the price per zone and ask who treats you. At FareWell the prices are open on this page: single regions from €89, one zone from €109. A low price never replaces medical advice.',
     },
   },
   {
@@ -100,6 +101,20 @@ const FAQ: FaqEntry[] = [
     },
   },
   {
+    q: { de: 'Wie buche ich einen Termin?', en: 'How do I book an appointment?' },
+    a: {
+      de: 'Online über Salonkee oder telefonisch unter +49 157 5799 5694. Den endgültigen Preis nennt dir Dr. Leo im Beratungsgespräch vor der Behandlung.',
+      en: 'Online through Salonkee or by phone at +49 157 5799 5694. Dr. Leo tells you the final price in the consultation before the treatment.',
+    },
+  },
+  {
+    q: { de: 'Wie komme ich zu FareWell?', en: 'How do I get to FareWell?' },
+    a: {
+      de: 'FareWell liegt am Frauentorgraben 5, 90443 Nürnberg, zwei Minuten zu Fuß vom Hauptbahnhof.',
+      en: 'FareWell is at Frauentorgraben 5, 90443 Nuremberg, two minutes on foot from the main station.',
+    },
+  },
+  {
     q: { de: 'In welchen Sprachen kann ich mich beraten lassen?', en: 'Which languages can I be advised in?' },
     a: {
       de: 'Auf Deutsch, Englisch und Italienisch, Dr. Leos Muttersprache. Ungarisch spricht er ebenfalls.',
@@ -107,6 +122,38 @@ const FAQ: FaqEntry[] = [
     },
   },
 ];
+
+/** Faktentabelle: nur, was diese Seite ohnehin sagt. Dauer und Ausfallzeit fehlen bewusst. */
+const FACTS: { label: Bi; value: Bi }[] = [
+  {
+    label: { de: 'Wer behandelt', en: 'Who treats' },
+    value: { de: 'Dr. med. Andrea Leo, approbierter Arzt seit 2016', en: 'Dr. med. Andrea Leo, licensed physician since 2016' },
+  },
+  {
+    label: { de: 'Wo', en: 'Where' },
+    value: { de: 'FareWell, Frauentorgraben 5, Nürnberg', en: 'FareWell, Frauentorgraben 5, Nuremberg' },
+  },
+  { label: { de: 'Ab wann', en: 'From' }, value: { de: '16.11.2026', en: '16 November 2026' } },
+  {
+    label: { de: 'Preis', en: 'Price' },
+    value: { de: 'Einzelne Regionen ab 89 €, eine Zone ab 109 €', en: 'Single regions from €89, one zone from €109' },
+  },
+  {
+    label: { de: 'Wirkung', en: 'Effect' },
+    value: { de: 'Setzt nach drei bis sieben Tagen ein, voll nach etwa zwei Wochen', en: 'Starts after three to seven days, full after about two weeks' },
+  },
+  {
+    label: { de: 'Hält', en: 'Lasts' },
+    value: { de: 'In der Regel drei bis sechs Monate, individuell', en: 'Usually three to six months, individually' },
+  },
+  { label: { de: 'Sprachen', en: 'Languages' }, value: { de: 'Deutsch, Englisch, Italienisch', en: 'German, English, Italian' } },
+  {
+    label: { de: 'Buchung', en: 'Booking' },
+    value: { de: 'Online über Salonkee oder telefonisch', en: 'Online through Salonkee or by phone' },
+  },
+];
+
+const MAPS_URL = 'https://g.co/kgs/ycCwT2s';
 
 /**
  * Die Botox-Seite für Suche und KI-Dienste: indexierbar, in Sitemap und llms.txt.
@@ -123,7 +170,7 @@ const FAQ: FaqEntry[] = [
   standalone: true,
   imports: [RouterLink],
   templateUrl: './botox-promotion.component.html',
-  styleUrls: ['../promotion-page.scss'],
+  styleUrls: ['../promotion-page.scss', './botox-page.scss'],
 })
 export class BotoxPromotionComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
@@ -135,13 +182,30 @@ export class BotoxPromotionComponent implements OnInit, OnDestroy {
   readonly faq = FAQ;
   readonly phoneHref = PHONE_HREF;
   readonly phoneLabel = PHONE_LABEL;
+  readonly facts = FACTS;
+  readonly mapsUrl = MAPS_URL;
 
   get bookingUrl(): string {
     return `https://salonkee.de/salon/farewell?lang=${this.language.lang() === 'en' ? 'en' : 'de'}`;
   }
 
-  get hubLink(): string {
-    return this.language.localizePath('/promotionen');
+  get aestheticLink(): string {
+    return this.language.localizePath('/behandlungen/aesthetische-medizin');
+  }
+
+  /** Die Zonenpreise als Satz, aus PRICE_GROUPS. */
+  get priceSentence(): string {
+    const zones = PRICE_GROUPS.find((g) => g.id === 'zonen')?.items ?? [];
+    const regions = PRICE_GROUPS.find((g) => g.id === 'regionen')?.items ?? [];
+    const fromRegions = Math.min(...regions.map((i) => i.priceFrom));
+    const words = (name: string, list: string[]) => name.replace(/^(\d+)/, (n) => list[Number(n)] ?? n);
+    const de = zones.map((z) => `${words(z.name.de, ['', 'eine', 'zwei', 'drei', 'vier'])} ab ${z.priceFrom} €`);
+    const en = zones.map((z) => `${words(z.name.en, ['', 'one', 'two', 'three', 'four'])} from €${z.priceFrom}`);
+    const join = (parts: string[], and: string) => `${parts.slice(0, -1).join(', ')} ${and} ${parts[parts.length - 1]}`;
+    return this.t(
+      `Bei FareWell kostet ${join(de, 'und')}. Einzelne Regionen beginnen bei ${fromRegions} €.`,
+      `Prices at FareWell: ${join(en, 'and')}. Single regions start at €${fromRegions}.`,
+    );
   }
 
   t(de: string, en: string): string {
@@ -156,26 +220,26 @@ export class BotoxPromotionComponent implements OnInit, OnDestroy {
     const prefix = this.language.prefix();
     const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
     const title = this.t(
-      'Botox Nürnberg: Preise ab 89 €, Dr. med. Andrea Leo | FareWell',
-      'Botox in Nuremberg: prices from €89, Dr. med. Andrea Leo | FareWell',
+      'Botox Nürnberg: ab 89 €, Dr. med. Andrea Leo | FareWell',
+      'Botox Nuremberg: from €89, Dr. med. Andrea Leo | FareWell',
     );
     const description = this.t(
       'Botox in Nürnberg bei Dr. med. Andrea Leo, bei FareWell am Frauentorgraben 5. Einzelne Regionen ab 89 €, eine Zone ab 109 €. Ab 16.11.2026 bei FareWell.',
-      'Botox in Nuremberg with Dr. med. Andrea Leo, at FareWell, Frauentorgraben 5. Single regions from €89, one zone from €109. At FareWell from 16 November 2026.',
+      'Botox in Nuremberg with Dr. med. Andrea Leo at FareWell, Frauentorgraben 5. Single regions from €89, one zone from €109. From 16 November 2026.',
     );
-    const physicianId = `${pageUrl}#physician`;
 
     this.seo.setPageSeo({ title, description, path: PAGE_PATH });
     this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
-        physicianNode(physicianId),
+        drLeoPersonNode((de, en) => this.t(de, en)),
+        drLeoPracticeNode(),
         {
           '@type': 'Service',
           '@id': `${pageUrl}#service`,
           name: this.t('Botox in Nürnberg', 'Botox in Nuremberg'),
           serviceType: 'Botox',
-          provider: { '@id': physicianId },
+          provider: { '@id': DR_LEO_PRACTICE_ID },
           areaServed: { '@type': 'City', name: 'Nürnberg' },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
@@ -190,6 +254,29 @@ export class BotoxPromotionComponent implements OnInit, OnDestroy {
               },
             })),
           },
+        },
+        {
+          '@type': 'WebPage',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: title,
+          description,
+          inLanguage: this.language.lang(),
+          isPartOf: { '@id': `${ORIGIN}/#website` },
+          about: { '@id': `${pageUrl}#service` },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'FareWell', item: `${ORIGIN}${prefix}` },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: this.t('Behandlungen', 'Treatments'),
+              item: `${ORIGIN}${prefix}/behandlungen`,
+            },
+            { '@type': 'ListItem', position: 3, name: this.t('Botox in Nürnberg', 'Botox in Nuremberg'), item: pageUrl },
+          ],
         },
         {
           '@type': 'FAQPage',

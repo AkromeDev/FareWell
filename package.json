@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --configuration production",
-    "prerender": "node tools/seal-intern.mjs --release && ng run FareWell:prerender && node tools/flatten-prerender.mjs",
+    "prerender": "node tools/seal-intern.mjs --release && ng run FareWell:prerender && node tools/flatten-prerender.mjs && node tools/generate-sitemap.mjs",
     "seal": "node tools/seal-intern.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

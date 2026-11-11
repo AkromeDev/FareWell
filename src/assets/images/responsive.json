@@ -1,0 +1,390 @@
+{
+ "responsive": {
+  "assets/images/farewell/studio.webp": {
+   "width": 948,
+   "height": 642,
+   "variants": [
+    {
+     "src": "assets/images/farewell/studio-480w.webp",
+     "width": 480
+    },
+    {
+     "src": "assets/images/farewell/studio-948w.webp",
+     "width": 948
+    }
+   ]
+  },
+  "assets/images/treatment/nadelepilation.jpg": {
+   "width": 2860,
+   "height": 2064,
+   "variants": [
+    {
+     "src": "assets/images/treatment/nadelepilation-480w.webp",
+     "width": 480
+    },
+    {
+     "src": "assets/images/treatment/nadelepilation-960w.webp",
+     "width": 960
+    },
+    {
+     "src": "assets/images/treatment/nadelepilation-1600w.webp",
+     "width": 1600
+    }
+   ]
+  },
+  "assets/images/treatment/diodenlaser.webp": {
+   "width": 1536,
+   "height": 1024,
+   "variants": [
+    {
+     "src": "assets/images/treatment/diodenlaser-480w.webp",
+     "width": 480
+    },
+    {
+     "src": "assets/images/treatment/diodenlaser-960w.webp",
+     "width": 960
+    },
+    {
+     "src": "assets/images/treatment/diodenlaser-1536w.webp",
+     "width": 1536
+    }
+   ]
+  },
+  "assets/images/treatment/microneedling.webp": {
+   "width": 1600,
+   "height": 2405,
+   "variants": [
+    {
+     "src": "assets/images/treatment/microneedling-480w.webp",
+     "width": 480
+    },
+    {
+     "src": "assets/images/treatment/microneedling-960w.webp",
+     "width": 960
+    },
+    {
+     "src": "assets/images/treatment/microneedling-1600w.webp",
+     "width": 1600
+    }
+   ]
+  },
+  "assets/images/treatment/microneedling4.webp": {
+   "width": 1536,
+   "height": 1024,
+   "variants": [
+    {
+     "src": "assets/images/treatment/microneedling4-480w.webp",
+     "width": 480
+    },
+    {
+     "src": "assets/images/treatment/microneedling4-960w.webp",
+     "width": 960
+    },
+    {
+     "src": "assets/images/treatment/microneedling4-1536w.webp",
+     "width": 1536
+    }
+   ]
+  },
+  "assets/images/treatment/kavitation.webp": {
+   "width": 1024,
+   "height": 1536,
+   "variants": [
+    {
+     "src": "assets/images/treatment/kavitation-480w.webp",
+     "width": 480
+    },
+    {
+     "src": "assets/images/treatment/kavitation-960w.webp",
+     "width": 960
+    },
+    {
+     "src": "assets/images/treatment/kavitation-1024w.webp",
+     "width": 1024
+    }
+   ]
+  },
+  "assets/images/partner/level44-breathwork-gastgeberin.webp": {
+   "width": 1600,
+   "height": 1200,
+   "variants": [
+    {
+     "src": "assets/images/partner/level44-breathwork-gastgeberin-480w.webp",
+     "width": 480
+    },
+    {
+     "src": "assets/images/partner/level44-breathwork-gastgeberin-960w.webp",
+     "width": 960
+    },
+    {
+     "src": "assets/images/partner/level44-breathwork-gastgeberin-1600w.webp",
+     "width": 1600
+    }
+   ]
+  },
+  "assets/images/team/dr-andrea-leo.webp": {
+   "width": 720,
+   "height": 900,
+   "variants": [
+    {
+     "src": "assets/images/team/dr-andrea-leo-480w.webp",
+     "width": 480
+    },
+    {
+     "src": "assets/images/team/dr-andrea-leo-720w.webp",
+     "width": 720
+    }
+   ]
+  },
+  "assets/images/treatment/laser2.webp": {
+   "width": 1536,
+   "height": 1024,
+   "variants": [
+    {
+     "src": "assets/images/treatment/laser2-480w.webp",
+     "width": 480
+    },
+    {
+     "src": "assets/images/treatment/laser2-960w.webp",
+     "width": 960
+    },
+    {
+     "src": "assets/images/treatment/laser2-1536w.webp",
+     "width": 1536
+    }
+   ]
+  },
+  "assets/images/treatment/nadel.jpg": {
+   "width": 1024,
+   "height": 681,
+   "variants": [
+    {
+     "src": "assets/images/treatment/nadel-480w.webp",
+     "width": 480
+    },
+    {
+     "src": "assets/images/treatment/nadel-960w.webp",
+     "width": 960
+    },
+    {
+     "src": "assets/images/treatment/nadel-1024w.webp",
+     "width": 1024
+    }
+   ]
+  }
+ },
+ "sizes": {
+  "assets/images/body/chest.png": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/body/legs.png": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/farewell/Historie-Washington-DC-Electrolysis.jpg": {
+   "width": 3829,
+   "height": 2701
+  },
+  "assets/images/farewell/calculate.png": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/farewell/calendar.jpg": {
+   "width": 1024,
+   "height": 681
+  },
+  "assets/images/farewell/calendar2.png": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/farewell/og-studio.jpg": {
+   "width": 1200,
+   "height": 630
+  },
+  "assets/images/logo/android-chrome-192x192.png": {
+   "width": 192,
+   "height": 192
+  },
+  "assets/images/logo/android-chrome-512x512.png": {
+   "width": 512,
+   "height": 512
+  },
+  "assets/images/logo/apple-touch-icon.png": {
+   "width": 180,
+   "height": 180
+  },
+  "assets/images/logo/farewell-transparent.png": {
+   "width": 1000,
+   "height": 1000
+  },
+  "assets/images/logo/favicon-16x16.png": {
+   "width": 16,
+   "height": 16
+  },
+  "assets/images/logo/favicon-32x32.png": {
+   "width": 32,
+   "height": 32
+  },
+  "assets/images/machines/laser-effect.png": {
+   "width": 1024,
+   "height": 1024
+  },
+  "assets/images/machines/laser.png": {
+   "width": 1514,
+   "height": 5009
+  },
+  "assets/images/massages/tm Beratung.jpg": {
+   "width": 1652,
+   "height": 952
+  },
+  "assets/images/massages/tm consultation.jpg": {
+   "width": 1605,
+   "height": 980
+  },
+  "assets/images/massages/tm flex 2.jpg": {
+   "width": 1609,
+   "height": 977
+  },
+  "assets/images/massages/tm massaging 2.jpg": {
+   "width": 1717,
+   "height": 916
+  },
+  "assets/images/massages/tm massaging.jpg": {
+   "width": 1690,
+   "height": 931
+  },
+  "assets/images/massages/tn flex.png": {
+   "width": 1654,
+   "height": 951
+  },
+  "assets/images/partner/level44-breathwork-gastgeberin.jpg": {
+   "width": 1600,
+   "height": 1200
+  },
+  "assets/images/partner/level44-franziska-portrait.jpg": {
+   "width": 720,
+   "height": 900
+  },
+  "assets/images/partner/level44-kopfhoerer.jpg": {
+   "width": 1000,
+   "height": 750
+  },
+  "assets/images/partner/level44-session-gruppe.jpg": {
+   "width": 1000,
+   "height": 750
+  },
+  "assets/images/partner/level44-session-raum.jpg": {
+   "width": 1000,
+   "height": 750
+  },
+  "assets/images/partner/level44-signet.png": {
+   "width": 720,
+   "height": 331
+  },
+  "assets/images/separator/proportions.png": {
+   "width": 1024,
+   "height": 1024
+  },
+  "assets/images/separator/proportions.webp": {
+   "width": 1024,
+   "height": 1024
+  },
+  "assets/images/separator/separator.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/apilis.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/armpit.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/cellulite.webp": {
+   "width": 1472,
+   "height": 704
+  },
+  "assets/images/treatment/chin.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/cycles.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/hands.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/he-leaves2.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/kavitation2.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/kavitation3.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/kavitation4.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/kavitationExplained.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/laser.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/massage-aroma.png": {
+   "width": 1080,
+   "height": 700
+  },
+  "assets/images/treatment/massage-back.webp": {
+   "width": 1080,
+   "height": 1350
+  },
+  "assets/images/treatment/massage-hero.jpg": {
+   "width": 1257,
+   "height": 1133
+  },
+  "assets/images/treatment/massage-intro.png": {
+   "width": 1080,
+   "height": 700
+  },
+  "assets/images/treatment/massage-partial.webp": {
+   "width": 1080,
+   "height": 1080
+  },
+  "assets/images/treatment/microneedling2.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/microneedling5.webp": {
+   "width": 1536,
+   "height": 965
+  },
+  "assets/images/treatment/microneedling6.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/microneedling7.webp": {
+   "width": 1536,
+   "height": 1024
+  },
+  "assets/images/treatment/og-aesthetische-medizin.jpg": {
+   "width": 1200,
+   "height": 630
+  },
+  "assets/images/treatment/og-kosmetik.jpg": {
+   "width": 1200,
+   "height": 630
+  }
+ }
+}

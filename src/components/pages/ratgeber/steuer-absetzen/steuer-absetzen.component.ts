@@ -13,12 +13,12 @@ import {
 const ORIGIN = 'https://farewell.salon';
 const PAGE_PATH = '/ratgeber/haarentfernung-steuer-absetzen';
 const PAGE_TITLE_DE =
-  'Haarentfernung von der Steuer absetzen: Leitfaden für trans Personen | FareWell Nürnberg';
-const PAGE_TITLE_EN = 'Deducting Hair Removal Costs from German Tax: a Guide | FareWell Nuremberg';
+  'Haarentfernung von der Steuer absetzen | FareWell Nürnberg';
+const PAGE_TITLE_EN = 'Deducting Hair Removal from German Tax | FareWell Nuremberg';
 const PAGE_DESCRIPTION_DE =
-  'Laser und Nadelepilation als außergewöhnliche Belastung absetzen: welche Nachweise das Finanzamt verlangt, wie du vorgehst und was FareWell dir dafür ausstellt.';
+  'Laser und Nadelepilation als außergewöhnliche Belastung absetzen: welche Nachweise das Finanzamt verlangt und was FareWell dir dafür ausstellt.';
 const PAGE_DESCRIPTION_EN =
-  'How to deduct laser and electrolysis costs as an extraordinary burden on your German tax return: required proof, the step-by-step process, and the documents FareWell provides.';
+  'How to deduct laser and electrolysis costs as an extraordinary burden on your German tax return: the proof required and the documents FareWell provides.';
 
 @Component({
   standalone: true,
@@ -96,13 +96,7 @@ export class SteuerAbsetzenComponent implements OnInit, OnDestroy {
           dateModified: '2026-07-15',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
           author: { '@id': 'https://farewell.salon/#organization' },
-          publisher: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-          },
+          publisher: { '@id': 'https://farewell.salon/#organization' },
           mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
         },
         {

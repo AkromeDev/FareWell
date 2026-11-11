@@ -25,12 +25,12 @@ import { KostenvoranschlagUnterlagenComponent } from 'src/components/molecules/k
  * „Hirsutismus“ nicht auf der Trans-Seite.
  */
 const PAGE_PATH = '/ratgeber/epilation-krankenkasse-hormonell';
-const PAGE_TITLE_DE = 'Hirsutismus & PCOS: Haarentfernung auf Kasse? | FareWell Nürnberg';
-const PAGE_TITLE_EN = 'Hirsutism & PCOS: Hair Removal on Insurance? | FareWell Nuremberg';
+const PAGE_TITLE_DE = 'Hirsutismus & PCOS: Haarentfernung auf Kasse? | FareWell';
+const PAGE_TITLE_EN = 'Hirsutism & PCOS: Hair Removal on Insurance? | FareWell';
 const PAGE_DESCRIPTION_DE =
   'Hirsutismus durch PCOS, AGS oder die Wechseljahre: welche Abklärung nötig ist, was ins ärztliche Attest gehört und wie ein Antrag bei der Kasse abläuft.';
 const PAGE_DESCRIPTION_EN =
-  'Hirsutism from PCOS, CAH or the menopause: which work-up is needed, what belongs in the medical certificate and how an application to a German insurer works.';
+  'Hirsutism from PCOS, CAH or the menopause: which work-up is needed, what goes in the medical certificate and how to apply to a German insurer.';
 
 @Component({
   standalone: true,
@@ -123,13 +123,7 @@ export class KrankenkasseHormonellComponent implements OnInit, OnDestroy {
           dateModified: '2026-09-05',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
           author: { '@id': 'https://farewell.salon/#organization' },
-          publisher: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-          },
+          publisher: { '@id': 'https://farewell.salon/#organization' },
           about: this.t(
             'Kostenübernahme der Haarentfernung bei PCOS, Hirsutismus und Hypertrichose',
             'Insurance coverage of hair removal with PCOS, hirsutism and hypertrichosis',

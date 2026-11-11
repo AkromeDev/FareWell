@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { sizeOf } from 'src/services/responsive-images';
 
 export interface GuideGalleryItem {
   src: string;
@@ -23,6 +24,8 @@ export interface GuideGalleryItem {
         <figure class="gd-gallery__item">
           <img
             [src]="item.src"
+            [attr.width]="sizeOf(item.src).width"
+            [attr.height]="sizeOf(item.src).height"
             [alt]="item.alt"
             loading="lazy"
             decoding="async"
@@ -36,6 +39,9 @@ export interface GuideGalleryItem {
   `,
 })
 export class GuideGalleryComponent {
+  /** Intrinsic image size for width/height (src/services/responsive-images.ts). */
+  readonly sizeOf = sizeOf;
+
   @Input({ required: true }) items: GuideGalleryItem[] = [];
   /** Mindestbreite pro Kachel (steuert die Spaltenzahl). */
   @Input() minWidth = '220px';

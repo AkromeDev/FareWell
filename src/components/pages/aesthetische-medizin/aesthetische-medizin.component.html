@@ -52,6 +52,8 @@
           <div class="portrait-frame">
             <img
               [src]="portrait"
+              [attr.srcset]="srcsetOf(portrait)"
+              sizes="(max-width: 900px) 80vw, 420px"
               width="720"
               height="900"
               [alt]="t('Porträt von Dr. med. Andrea Leo', 'Portrait of Dr. med. Andrea Leo')"
@@ -404,6 +406,15 @@
         ><span class="lang en"
           >Treatments can be combined depending on the findings. Dr. Leo puts together an
           individual plan.</span
+        >
+      </p>
+      <p class="tx-outro" appReveal>
+        <span class="lang de"
+          >Preise, Ablauf und Fragen zu Botox im Überblick:
+          <a [routerLink]="botoxLink">Botox in Nürnberg</a>.</span
+        ><span class="lang en"
+          >Prices, process and questions about Botox at a glance:
+          <a [routerLink]="botoxLink">Botox in Nuremberg</a>.</span
         >
       </p>
     </div>

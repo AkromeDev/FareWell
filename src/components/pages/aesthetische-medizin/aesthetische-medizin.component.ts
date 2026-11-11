@@ -1,9 +1,17 @@
+import {
+  DR_LEO_PERSON_ID,
+  DR_LEO_PRACTICE_ID,
+  drLeoPersonNode,
+  drLeoPracticeNode,
+} from 'src/app/domain/entities';
 import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { Lang, LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
+import { sizeOf, srcsetOf } from 'src/services/responsive-images';
 
 const PAGE_PATH = '/behandlungen/aesthetische-medizin';
 const ORIGIN = 'https://farewell.salon';
@@ -25,12 +33,12 @@ const AXIS_START = 2008;
 /** Abstand der Jahresmarken auf der Zeitachse in Jahren. */
 const TICK_STEP = 4;
 
-const DE_TITLE = 'Ästhetische Medizin in Nürnberg: Dr. med. Andrea Leo bei FareWell';
-const EN_TITLE = 'Aesthetic Medicine in Nuremberg: Dr. med. Andrea Leo at FareWell';
+const DE_TITLE = 'Ästhetische Medizin Nürnberg: Dr. med. Andrea Leo | FareWell';
+const EN_TITLE = 'Aesthetic Medicine Nuremberg: Dr. med. Andrea Leo | FareWell';
 const DE_DESCRIPTION =
-  'Botulinumtoxin, Hyaluronsäure, Skinbooster und PRP bei FareWell in Nürnberg, durchgeführt von Dr. med. Andrea Leo: approbierter Arzt seit 2016, seit 2017 in Kliniken in Bayern, seit 2018 in der ästhetischen Medizin. Ärztliche Beratung auf Deutsch, Englisch und Italienisch.';
+  'Botulinumtoxin, Hyaluronsäure, Skinbooster und PRP bei FareWell Nürnberg, durch Dr. med. Andrea Leo, approbierter Arzt seit 2016. Auch auf Italienisch.';
 const EN_DESCRIPTION =
-  'Botulinum toxin, hyaluronic acid, skin boosters and PRP at FareWell in Nuremberg, performed by Dr. med. Andrea Leo: licensed physician since 2016, in Bavarian hospitals since 2017, in aesthetic medicine since 2018. Medical consultations in German, English and Italian.';
+  'Botulinum toxin, hyaluronic acid, skin boosters and PRP at FareWell Nuremberg, by Dr. med. Andrea Leo, licensed physician since 2016. English and Italian.';
 
 /** Zweisprachiger Text. Beide Fassungen stehen im DOM, das globale CSS blendet eine aus. */
 export interface Bi {
@@ -497,7 +505,7 @@ const PRICED_GROUPS: PricedGroup[] = TREATMENT_GROUPS.map((group) => ({
 @Component({
   selector: 'app-aesthetische-medizin',
   standalone: true,
-  imports: [RevealOnScrollDirective, ScrollToDirective],
+  imports: [RevealOnScrollDirective, ScrollToDirective, RouterLink],
   templateUrl: './aesthetische-medizin.component.html',
   styleUrls: ['./aesthetische-medizin.component.scss'],
 })
@@ -508,6 +516,7 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
   private readonly jsonLdId = 'aesthetische-medizin-schema';
 
   readonly portrait = PORTRAIT;
+  readonly srcsetOf = srcsetOf;
   readonly phoneHref = PHONE_HREF;
   readonly phoneLabel = PHONE_LABEL;
   readonly instagramUrl = INSTAGRAM_URL;
@@ -528,6 +537,10 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
 
   get lang(): Lang {
     return this.language.lang();
+  }
+
+  get botoxLink(): string {
+    return this.language.localizePath('/behandlungen/botox-nuernberg');
   }
 
   t(de: string, en: string): string {
@@ -576,18 +589,14 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
     this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
       '@graph': [
-        {
-          '@type': 'Physician',
-          '@id': `${pageUrl}#physician`,
-          name: 'Dr. med. Andrea Leo',
-          honorificPrefix: 'Dr. med.',
-          givenName: 'Andrea',
-          familyName: 'Leo',
+        // Dr. Leo and his practice carry the ids of his own site
+        // (src/app/domain/entities.ts). He is an independent cooperation
+        // doctor: the treatments are his practice's service, and the practice
+        // sits inside the studio. No phone or mail on this site.
+        drLeoPersonNode(this.t.bind(this), {
           image: `${ORIGIN}/${PORTRAIT}`,
           url: pageUrl,
-          description,
           knowsLanguage: ['de', 'en', 'it', 'hu'],
-          knowsAbout: TREATMENT_GROUPS.map((group) => (isEn ? group.title.en : group.title.de)),
           alumniOf: {
             '@type': 'CollegeOrUniversity',
             name: this.t('Semmelweis Universität', 'Semmelweis University'),
@@ -600,37 +609,34 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
               'Licence to practise medicine (Germany, 2016)',
             ),
           },
-          sameAs: [INSTAGRAM_URL],
-          // Preisliste als Angebotskatalog, aus derselben Datenquelle wie die sichtbaren Preiskarten.
+        }),
+        drLeoPracticeNode(),
+        {
+          '@type': 'Service',
+          '@id': `${pageUrl}#service`,
+          name: this.t('Ästhetische Medizin in Nürnberg', 'Aesthetic medicine in Nuremberg'),
+          description,
+          serviceType: TREATMENT_GROUPS.map((group) => (isEn ? group.title.en : group.title.de)),
+          provider: { '@id': DR_LEO_PRACTICE_ID },
+          areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
           hasOfferCatalog: {
-            '@type': 'OfferCatalog',
-            name: this.t('Preisliste Ästhetische Medizin', 'Price list aesthetic medicine'),
-            itemListElement: TREATMENT_GROUPS.map((group) => ({
               '@type': 'OfferCatalog',
-              name: isEn ? group.title.en : group.title.de,
-              itemListElement: group.items.map((item) => ({
-                '@type': 'Offer',
-                itemOffered: { '@type': 'Service', name: isEn ? item.name.en : item.name.de },
-                priceCurrency: 'EUR',
-                priceSpecification: {
-                  '@type': 'PriceSpecification',
-                  minPrice: item.priceFrom,
+              name: this.t('Preisliste Ästhetische Medizin', 'Price list aesthetic medicine'),
+              itemListElement: TREATMENT_GROUPS.map((group) => ({
+                '@type': 'OfferCatalog',
+                name: isEn ? group.title.en : group.title.de,
+                itemListElement: group.items.map((item) => ({
+                  '@type': 'Offer',
+                  itemOffered: { '@type': 'Service', name: isEn ? item.name.en : item.name.de },
                   priceCurrency: 'EUR',
-                },
+                  priceSpecification: {
+                    '@type': 'PriceSpecification',
+                    minPrice: item.priceFrom,
+                    priceCurrency: 'EUR',
+                  },
+                })),
               })),
-            })),
-          },
-          workLocation: {
-            '@type': 'Place',
-            name: 'FareWell',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressCountry: 'DE',
             },
-          },
         },
         {
           '@type': 'WebPage',
@@ -640,7 +646,8 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
           description,
           inLanguage,
           isPartOf: { '@id': `${ORIGIN}/#website` },
-          about: { '@id': `${pageUrl}#physician` },
+          about: { '@id': `${pageUrl}#service` },
+          mentions: { '@id': DR_LEO_PERSON_ID },
           primaryImageOfPage: { '@type': 'ImageObject', url: `${ORIGIN}/${PORTRAIT}` },
         },
         {

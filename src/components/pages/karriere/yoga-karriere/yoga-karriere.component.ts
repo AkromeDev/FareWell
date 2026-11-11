@@ -41,12 +41,12 @@ export class YogaKarriereComponent extends KarriereDetailPage {
     return {
       path: PAGE_PATH,
       title: t(
-        'Yoga-Lehrer:in (m/w/d) in Nürnberg: freiberuflich | Karriere bei FareWell',
-        'Yoga Teacher (m/f/d) in Nuremberg: Freelance | Careers at FareWell'
+        'Yoga-Lehrer:in (m/w/d) Nürnberg, freiberuflich | FareWell',
+        'Yoga Teacher (m/f/d) in Nuremberg, Freelance | FareWell'
       ),
       description: t(
-        'FareWell Nürnberg sucht selbständige Yoga-Lehrer:innen, die ein eigenes Kursangebot aufbauen wollen: ruhiger Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete und Hilfe beim eigenen Google-Business-Profil.',
-        'FareWell Nuremberg is looking for freelance yoga teachers who want to build their own class offering: a quiet room in the city centre, online booking, flexible hours, no fixed rent and help setting up your own Google Business profile.'
+        'FareWell Nürnberg sucht selbständige Yoga-Lehrer:innen für ein eigenes Kursangebot: ruhiger Raum im Zentrum, Online-Buchung, keine feste Miete.',
+        'FareWell Nuremberg is looking for freelance yoga teachers to build their own classes: a quiet room in the city centre, online booking, no fixed rent.'
       ),
       jobTitle: t(
         'Yoga-Lehrer:in (m/w/d): freiberufliche Zusammenarbeit',

@@ -1,3 +1,8 @@
+import {
+  FRANZISKA_PREUSCHE_ID,
+  LEVEL44_BRAND_ID,
+  LEVEL44_PAGE,
+} from 'src/app/domain/entities';
 import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -6,6 +11,7 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { Lang, LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
+import { sizeOf, srcsetOf } from 'src/services/responsive-images';
 
 const PAGE_PATH = '/behandlungen/level-44';
 const ORIGIN = 'https://farewell.salon';
@@ -56,12 +62,12 @@ function checkoutUrl(serviceId: number): string {
   return `https://salonkee.de/checkout/farewell?serviceID=${serviceId}`;
 }
 
-const DE_TITLE = 'LEVEL 44 bei FareWell: 9D Breathwork und Soul Touch in Nürnberg';
-const EN_TITLE = 'LEVEL 44 at FareWell: 9D Breathwork and Soul Touch in Nuremberg';
+const DE_TITLE = '9D Breathwork Nürnberg: LEVEL 44 bei FareWell';
+const EN_TITLE = '9D Breathwork Nuremberg: LEVEL 44 at FareWell';
 const DE_DESCRIPTION =
-  '9D Breathwork und Soul Touch mit Franziska Preusche bei FareWell in Nürnberg. Geführte Atemreisen über Kopfhörer und achtsame Körperarbeit. Erste Journeys am 15.11. und 29.11.2026, 11:00 Uhr.';
+  '9D Breathwork und Soul Touch mit Franziska Preusche bei FareWell in Nürnberg: geführte Atemreisen über Kopfhörer. Erste Journeys am 15.11. und 29.11.2026.';
 const EN_DESCRIPTION =
-  '9D Breathwork and Soul Touch with Franziska Preusche at FareWell in Nuremberg. Guided breath journeys on headphones and mindful bodywork. First journeys on 15 and 29 November 2026, 11:00.';
+  '9D Breathwork and Soul Touch with Franziska Preusche at FareWell Nuremberg: guided breath journeys on headphones. First journeys 15 and 29 November 2026.';
 
 /** Zweisprachiger Text. Beide Fassungen stehen im DOM, das globale CSS blendet eine aus. */
 export interface Bi {
@@ -123,6 +129,15 @@ const STATS: Stat[] = [
     value: { de: '49 €', en: '€49' },
     label: { de: 'Einführungspreis, regulär 77 €', en: 'Introductory price, regularly €77' },
   },
+];
+
+/**
+ * The dated sessions the page lists (STATS above and the group offer below).
+ * Each gets its own Event in the structured data. Keep the three in step.
+ */
+const SESSIONS = [
+  { date: '2026-11-15', time: '11:00', journey: 'THE AWAKENING' },
+  { date: '2026-11-29', time: '11:00', journey: 'LETTING GO' },
 ];
 
 const BENEFITS: Bi[] = [
@@ -428,6 +443,7 @@ export class Level44Component implements OnInit, OnDestroy {
 
   readonly signet = SIGNET;
   readonly photoHero = PHOTO_HERO;
+  readonly srcsetOf = srcsetOf;
   readonly photoPortrait = PHOTO_PORTRAIT;
   readonly gallery = GALLERY;
   readonly phoneHref = PHONE_HREF;
@@ -509,13 +525,14 @@ export class Level44Component implements OnInit, OnDestroy {
       '@graph': [
         {
           '@type': 'Person',
-          '@id': `${pageUrl}#person`,
+          '@id': FRANZISKA_PREUSCHE_ID,
           name: 'Franziska Preusche',
           givenName: 'Franziska',
           familyName: 'Preusche',
           jobTitle: this.t('Gründerin von LEVEL 44', 'Founder of LEVEL 44'),
           url: pageUrl,
           sameAs: [LEVEL44_URL, INSTAGRAM_URL],
+          brand: { '@id': LEVEL44_BRAND_ID },
           description,
           workLocation: {
             '@type': 'Place',
@@ -530,6 +547,49 @@ export class Level44Component implements OnInit, OnDestroy {
           },
         },
         {
+          '@type': 'Brand',
+          '@id': LEVEL44_BRAND_ID,
+          name: 'LEVEL 44',
+          logo: `${ORIGIN}/${SIGNET}`,
+          url: LEVEL44_URL,
+          sameAs: [INSTAGRAM_URL],
+        },
+        // One Event per dated session the page lists (SESSIONS above).
+        ...SESSIONS.map((session) => ({
+          '@type': 'Event',
+          '@id': `${LEVEL44_PAGE}#event-${session.date}`,
+          name: `9D Group Experience: ${session.journey}`,
+          description: this.t(
+            'Geführte 9D Atemreise über Kopfhörer in der Gruppe, mit Einführung und Integration, ca. 2,5–3 Stunden.',
+            'Guided 9D breath journey on headphones in a group, with introduction and integration, about 2.5–3 hours.',
+          ),
+          startDate: `${session.date}T${session.time}:00+01:00`,
+          eventStatus: 'https://schema.org/EventScheduled',
+          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+          maximumAttendeeCapacity: 12,
+          location: {
+            '@type': 'Place',
+            name: 'FareWell',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'Frauentorgraben 5',
+              postalCode: '90443',
+              addressLocality: 'Nürnberg',
+              addressCountry: 'DE',
+            },
+          },
+          organizer: { '@id': FRANZISKA_PREUSCHE_ID },
+          performer: { '@id': FRANZISKA_PREUSCHE_ID },
+          image: OG_IMAGE,
+          url: pageUrl,
+          offers: {
+            '@type': 'Offer',
+            price: 49,
+            priceCurrency: 'EUR',
+            url: this.bookingUrl,
+          },
+        })),
+        {
           '@type': 'WebPage',
           '@id': `${pageUrl}#webpage`,
           url: pageUrl,
@@ -537,7 +597,7 @@ export class Level44Component implements OnInit, OnDestroy {
           description,
           inLanguage,
           isPartOf: { '@id': `${ORIGIN}/#website` },
-          about: { '@id': `${pageUrl}#person` },
+          about: { '@id': FRANZISKA_PREUSCHE_ID },
         },
         {
           '@type': 'FAQPage',

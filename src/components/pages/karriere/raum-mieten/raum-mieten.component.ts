@@ -237,12 +237,12 @@ export class RaumMietenComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const prefix = this.language.prefix();
     const title = this.t(
-      'Raum mieten in Nürnberg für Kosmetik, Massage & Yoga | FareWell',
-      'Rent a Room in Nuremberg for Beauty, Massage & Yoga | FareWell'
+      'Raum mieten Nürnberg: Kosmetik, Massage & Yoga | FareWell',
+      'Rent a Room in Nuremberg: Beauty, Massage & Yoga'
     );
     const description = this.t(
-      'Behandlungsraum zur Untermiete in Nürnberg, Frauentorgraben 5: feste Miete ab 200 € im Monat oder 0 € Fixkosten mit Umsatzbeteiligung. Für selbständige Kosmetiker:innen, Masseur:innen, Yoga- und Tanzlehrer:innen.',
-      'A treatment room to sublet in Nuremberg, Frauentorgraben 5: a fixed rent from 200 € a month, or 0 € fixed costs on a revenue share. For freelance beauticians, massage therapists, yoga and dance teachers.'
+      'Behandlungsraum zur Untermiete am Frauentorgraben 5, Nürnberg: ab 200 € im Monat oder 0 € Fixkosten mit Umsatzbeteiligung. Für Selbständige.',
+      'A treatment room to sublet at Frauentorgraben 5, Nuremberg: from 200 € a month, or 0 € fixed costs on a revenue share. For freelancers.'
     );
     const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
     const homeUrl = `${ORIGIN}${prefix}`;

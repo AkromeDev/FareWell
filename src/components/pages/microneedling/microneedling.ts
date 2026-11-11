@@ -14,7 +14,7 @@ const PAGE_PATH = '/behandlungen/microneedling-radiofrequenz';
 const HERO_IMAGE = 'assets/images/treatment/microneedling2.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 
-const DE_TITLE = 'Radiofrequenz Microneedling Nürnberg: Hautverjüngung | FareWell';
+const DE_TITLE = 'Radiofrequenz Microneedling Nürnberg | FareWell';
 const EN_TITLE = 'RF Microneedling Nuremberg: Skin Rejuvenation | FareWell';
 const DE_DESCRIPTION =
   'Microneedling mit Radiofrequenz in Nürnberg: Hautverjüngung für Gesicht, Hals, Dekolleté und Brust, ab 180 €. Beratung kostenlos.';
@@ -187,20 +187,7 @@ export class MicroneedlingComponent implements OnInit, OnDestroy {
           ),
           serviceType: this.t('Hautverjüngung', 'Skin rejuvenation'),
           areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
-          provider: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressCountry: 'DE',
-            },
-          },
+          provider: { '@id': 'https://farewell.salon/#organization' },
         },
         {
           '@type': 'WebPage',

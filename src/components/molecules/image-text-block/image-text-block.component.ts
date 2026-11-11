@@ -4,6 +4,7 @@ import { TitleComponent } from 'src/components/atoms/title/title.component';
 import { ParagraphComponent } from 'src/components/atoms/paragraph/paragraph.component';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { DesignTokens, ParagraphOptions } from 'src/models';
+import { sizeOf } from 'src/services/responsive-images';
 
 @Component({
   selector: 'app-image-text-block',
@@ -19,6 +20,11 @@ export class ImageTextBlockComponent {
   @Input() imagePosition: 'left' | 'right' = 'right';
 
   @Input() resize: boolean = false;
+
+  /** Intrinsic size for width/height; the box itself is sized in CSS. */
+  get dims(): { width: number; height: number } {
+    return sizeOf(this.backgroundImage);
+  }
 
   get inverseTextColor(): ParagraphOptions.Color {
     return this.theme === 'dark' ? 'light' : 'dark';

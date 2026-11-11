@@ -22,6 +22,7 @@ import type {
   GooglePlaceReviewsResponse,
   GoogleReview,
 } from 'src/components/molecules/google-reviews/google-reviews';
+import { sizeOf, srcsetOf } from 'src/services/responsive-images';
 
 declare global {
   interface Window {
@@ -117,6 +118,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // -------------------------------------------------------------------------
   // Behandlungen — gleiche sieben Behandlungen wie im Header-Mega-Menü.
   // -------------------------------------------------------------------------
+  readonly srcsetOf = srcsetOf;
+  readonly sizeOf = sizeOf;
+
   readonly services: ServiceCard[] = [
     {
       num: '01',
@@ -213,6 +217,19 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       altEn: 'Dr. med. Andrea Leo, physician for aesthetic medicine at FareWell in Nuremberg',
       path: '/behandlungen/aesthetische-medizin',
       image: 'assets/images/team/dr-andrea-leo.webp',
+    },
+    {
+      num: '08',
+      titleDe: 'Botox in Nürnberg',
+      titleEn: 'Botox in Nuremberg',
+      descDe:
+        'Bei Dr. med. Andrea Leo, ab 16.11.2026 bei FareWell. Einzelne Regionen ab 89 €, eine Zone ab 109 €.',
+      descEn:
+        'With Dr. med. Andrea Leo, at FareWell from 16 November 2026. Single regions from €89, one zone from €109.',
+      altDe: 'Das Studio von FareWell am Frauentorgraben 5 in Nürnberg',
+      altEn: 'The FareWell studio at Frauentorgraben 5 in Nuremberg',
+      path: '/behandlungen/botox-nuernberg',
+      image: 'assets/images/farewell/studio.webp',
     },
   ];
 
@@ -416,12 +433,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // -------------------------------------------------------------------------
   ngOnInit(): void {
     const pageTitle = this.t(
-      'FareWell – Kosmetikstudio & dauerhafte Haarentfernung | Nürnberg',
-      'FareWell – Kosmetikstudio & dauerhafte Haarentfernung | Nürnberg'
+      'FareWell Nürnberg: Kosmetikstudio, dauerhafte Haarentfernung',
+      'FareWell – Beauty Studio & Hair Removal | Nuremberg'
     );
     const description = this.t(
       'FareWell Nürnberg: spezialisiert auf Elektrolyse (permanente Haarentfernung), Laserbehandlungen, Microneedling und weitere Beauty Behandlungen.',
-      'FareWell in Nuremberg specialises in electrolysis (permanent hair removal), laser hair removal, RF microneedling and body treatments. Consultations in English, near the main station.'
+      'FareWell Nuremberg: electrolysis for permanent hair removal, laser, RF microneedling and body treatments. Consultations in English, near the main station.'
     );
     const imageAlt = this.t(
       'FareWell Studio in Nürnberg für permanente und dauerhafte Haarentfernung sowie ästhetische Behandlungen',
@@ -443,58 +460,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.seo.setJsonLd(this.jsonLdId, {
       '@context': 'https://schema.org',
+      // FareWell itself is described once, by the static block in index.html.
       '@graph': [
-        {
-          '@type': 'BeautySalon',
-          '@id': 'https://farewell.salon/#organization',
-          name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-          alternateName: 'FareWell',
-          url: 'https://farewell.salon',
-          image: this.heroImageUrl,
-          telephone: '+4915757995694',
-          priceRange: '€€',
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: 'Frauentorgraben 5',
-            postalCode: '90443',
-            addressLocality: 'Nürnberg',
-            addressCountry: 'DE',
-          },
-          geo: {
-            '@type': 'GeoCoordinates',
-            latitude: 49.44677,
-            longitude: 11.07501,
-          },
-          openingHoursSpecification: [
-            {
-              '@type': 'OpeningHoursSpecification',
-              dayOfWeek: [
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-              ],
-              opens: '10:00',
-              closes: '20:00',
-            },
-            {
-              '@type': 'OpeningHoursSpecification',
-              dayOfWeek: 'Saturday',
-              opens: '08:00',
-              closes: '17:00',
-            },
-            // Sonntag explizit als geschlossen markieren (opens = closes),
-            // statt den Tag nur wegzulassen.
-            {
-              '@type': 'OpeningHoursSpecification',
-              dayOfWeek: 'Sunday',
-              opens: '00:00',
-              closes: '00:00',
-            },
-          ],
-          sameAs: ['https://www.instagram.com/farewell.salon/'],
-        },
         {
           '@type': 'WebSite',
           '@id': 'https://farewell.salon/#website',

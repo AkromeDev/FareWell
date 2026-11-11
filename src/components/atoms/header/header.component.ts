@@ -4,6 +4,7 @@ import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { GuideLangToggleComponent } from 'src/components/molecules/guide/guide-lang-toggle/guide-lang-toggle.component';
 import { LanguageService } from 'src/services/language.service';
+import { smallestOf } from 'src/services/responsive-images';
 
 declare global {
   interface Window {
@@ -26,6 +27,9 @@ type TreatmentCard = {
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  /** Menu cards are small: they load the 480 px variant (tools/responsive-images.mjs). */
+  readonly smallestOf = smallestOf;
+
   scrolled: boolean = false;
   activeTab: string = 'home';
   menuOpen: boolean = false;
@@ -128,8 +132,8 @@ export class HeaderComponent implements OnInit {
       {
         title: t('Ästhetische Medizin', 'Aesthetic Medicine'),
         description: t(
-          'Botulinumtoxin und Hyaluronsäure, ärztlich durchgeführt von Dr. med. Andrea Leo.',
-          'Botulinum toxin and hyaluronic acid, performed by Dr. med. Andrea Leo.'
+          'Faltenbehandlung und Hyaluronsäure, ärztlich durchgeführt von Dr. med. Andrea Leo.',
+          'Wrinkle treatment and hyaluronic acid, performed by Dr. med. Andrea Leo.'
         ),
         route: this.p('/behandlungen/aesthetische-medizin'),
         image: 'assets/images/team/dr-andrea-leo.webp'

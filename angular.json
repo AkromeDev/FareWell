@@ -27,10 +27,15 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/sitemap.xml",
               "src/robots.txt",
               "src/llms.txt",
-              "src/_redirects"
+              "src/_redirects",
+              "src/_headers",
+              {
+                "glob": "security.txt",
+                "input": "src/.well-known",
+                "output": ".well-known"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -87,10 +92,15 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/sitemap.xml",
               "src/robots.txt",
               "src/llms.txt",
-              "src/_redirects"
+              "src/_redirects",
+              "src/_headers",
+              {
+                "glob": "security.txt",
+                "input": "src/.well-known",
+                "output": ".well-known"
+              }
             ],
             "styles": [
               "src/styles.scss"

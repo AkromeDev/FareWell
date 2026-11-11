@@ -40,12 +40,12 @@ export class TanzKarriereComponent extends KarriereDetailPage {
     return {
       path: PAGE_PATH,
       title: t(
-        'Tanzlehrer:in (m/w/d) in Nürnberg: freiberuflich | Karriere bei FareWell',
-        'Dance Teacher (m/f/d) in Nuremberg: Freelance | Careers at FareWell'
+        'Tanzlehrer:in (m/w/d) Nürnberg, freiberuflich | FareWell',
+        'Dance Teacher (m/f/d) in Nuremberg, Freelance | FareWell'
       ),
       description: t(
-        'FareWell Nürnberg sucht selbständige Tanzlehrer:innen mit eigenem Konzept: flexibler Raum im Zentrum für Einzelunterricht, Paare und kleine Gruppen, Online-Buchung, flexible Zeiten und keine feste Miete.',
-        'FareWell Nuremberg is looking for freelance dance teachers with a concept of their own: a flexible room in the city centre for one-to-one lessons, couples and small groups, online booking, flexible hours and no fixed rent.'
+        'FareWell Nürnberg sucht selbständige Tanzlehrer:innen: Raum im Zentrum für Einzelunterricht, Paare und kleine Gruppen, Online-Buchung, keine feste Miete.',
+        'FareWell Nuremberg is looking for freelance dance teachers: a room in the city centre for one-to-one lessons, couples and small groups, no fixed rent.'
       ),
       jobTitle: t(
         'Tanzlehrer:in (m/w/d): freiberufliche Zusammenarbeit',

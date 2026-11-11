@@ -37,12 +37,12 @@ export class KosmetikKarriereComponent extends KarriereDetailPage {
     return {
       path: PAGE_PATH,
       title: t(
-        'Kosmetiker:in (m/w/d) in Nürnberg: freiberuflich | Karriere bei FareWell',
-        'Beautician (m/f/d) in Nuremberg: Freelance | Careers at FareWell'
+        'Kosmetiker:in (m/w/d) Nürnberg, freiberuflich | FareWell',
+        'Beautician (m/f/d) in Nuremberg, Freelance | FareWell'
       ),
       description: t(
-        'FareWell Nürnberg sucht selbständige Kosmetiker:innen mit eigenem Konzept: voll ausgestatteter Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete und Hilfe beim eigenen Google-Business-Profil.',
-        'FareWell Nuremberg is looking for freelance beauticians with a concept of their own: a fully equipped room in the city centre, online booking, flexible hours, no fixed rent and help setting up your own Google Business profile.'
+        'FareWell Nürnberg sucht selbständige Kosmetiker:innen mit eigenem Konzept: ausgestatteter Raum im Zentrum, Online-Buchung, keine feste Miete.',
+        'FareWell Nuremberg is looking for freelance beauticians with their own concept: an equipped room in the city centre, online booking, no fixed rent.'
       ),
       jobTitle: t(
         'Kosmetiker:in (m/w/d): freiberufliche Zusammenarbeit',

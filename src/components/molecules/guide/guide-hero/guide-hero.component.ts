@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { sizeOf } from 'src/services/responsive-images';
 
 /**
  * Vollflächiger Seiten-Hero der Guide-/FAQ-Seiten: Bild mit Ken-Burns-Zoom,
@@ -19,6 +20,8 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
           [class.gd-hero__img--crop-top]="mobileCrop === 'top'"
           [src]="image"
           [alt]="imageAlt"
+          [attr.width]="sizeOf(image).width"
+          [attr.height]="sizeOf(image).height"
           fetchpriority="high"
           decoding="async"
         />
@@ -31,7 +34,7 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
           </div>
         } @else if (logo) {
           <div class="gd-hero__brand" appReveal [revealDelay]="40">
-            <img [src]="logo" [alt]="logoAlt" decoding="async" />
+            <img [src]="logo" [alt]="logoAlt" [attr.width]="sizeOf(logo).width" [attr.height]="sizeOf(logo).height" decoding="async" />
           </div>
         }
         <h1 class="gd-hero__title" appReveal [revealDelay]="60">{{ heading }}</h1>
@@ -46,6 +49,9 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
   `,
 })
 export class GuideHeroComponent {
+  /** Intrinsic image size for width/height (src/services/responsive-images.ts). */
+  readonly sizeOf = sizeOf;
+
   @Input({ required: true }) kicker!: string;
   @Input({ required: true }) heading!: string;
   @Input() tagline = '';

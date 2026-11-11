@@ -14,7 +14,7 @@ export class DatenschutzComponent implements OnInit {
   ngOnInit(): void {
     this.seo.setPageSeo({
       title: 'Datenschutzerklärung | FareWell Nürnberg',
-      description: 'Datenschutzerklärung von FareWell Nürnberg.',
+      description: 'Datenschutzerklärung von FareWell Nürnberg: welche Daten beim Besuch dieser Website verarbeitet werden, auf welcher Grundlage und welche Rechte du hast.',
       path: '/datenschutz',
     });
   }

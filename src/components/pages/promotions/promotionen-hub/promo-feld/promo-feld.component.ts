@@ -15,6 +15,7 @@ import { LanguageService } from 'src/services/language.service';
 import { PromoExperimentService } from '../../promo-experiment.service';
 import { Bi } from '../../promotion-page.model';
 import { BOOKING_URL, OfferId, PROMO_CODE, PROMO_OFFERS } from '../../promotion-offers';
+import { sizeOf, srcsetOf } from 'src/services/responsive-images';
 
 /** Anteil gemähter Haare, ab dem der Code erscheint, und ab dem der Rest von selbst geht. */
 const REVEAL_AT = 0.22;
@@ -52,6 +53,8 @@ export class PromoFeldComponent {
   private readonly zone = inject(NgZone);
 
   readonly offers = PROMO_OFFERS;
+  readonly srcsetOf = srcsetOf;
+  readonly sizeOf = sizeOf;
   readonly code = PROMO_CODE;
   readonly bookingUrl = BOOKING_URL;
 

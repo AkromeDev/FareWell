@@ -79,7 +79,7 @@
       <div class="rows-wrap" #list>
         <div class="float" #float [class.is-on]="floatOn()" aria-hidden="true">
           @for (o of offers; track o.id; let i = $index) {
-            <img class="float-img" [class.is-on]="hover() === i" [src]="o.image" alt="" loading="lazy" [style.object-position]="o.imagePos" />
+            <img class="float-img" [class.is-on]="hover() === i" [src]="o.image" [attr.srcset]="srcsetOf(o.image)" sizes="(max-width: 700px) 80vw, 420px" [attr.width]="sizeOf(o.image).width" [attr.height]="sizeOf(o.image).height" alt="" loading="lazy" decoding="async" [style.object-position]="o.imagePos" />
           }
         </div>
         <ul class="rows">
@@ -145,7 +145,7 @@
                         <p class="fine">{{ t('Gilt für Neukund:innen, Rabatte nicht kombinierbar.', 'Valid for new clients, discounts not combinable.') }}</p>
                       }
                     </div>
-                    <img class="panel-img" [src]="o.image" [alt]="bi(o.imageAlt)" loading="lazy" [style.object-position]="o.imagePos" />
+                    <img class="panel-img" [src]="o.image" [attr.srcset]="srcsetOf(o.image)" sizes="(max-width: 700px) 90vw, 480px" [attr.width]="sizeOf(o.image).width" [attr.height]="sizeOf(o.image).height" [alt]="bi(o.imageAlt)" loading="lazy" decoding="async" [style.object-position]="o.imagePos" />
                   </div>
                 </div>
               </div>

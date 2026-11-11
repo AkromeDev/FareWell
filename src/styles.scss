@@ -241,8 +241,11 @@ a[href]:not(.no-underline):not(.gd a) {
 // Die UI-Sprache steht als data-lang="de|en|uk" auf <html> (LanguageService).
 // Inhalte liegen als Paare nebeneinander im DOM:
 //   <span class="lang de">Deutsch</span><span class="lang en">English</span>
-// und werden per CSS umgeschaltet. So sind beide Sprachen vorgerendert und der
-// Wechsel im Header ist sofort sichtbar, ohne Nachladen.
+// und werden per CSS umgeschaltet. Im Browser stehen beide Sprachen im DOM und
+// der Wechsel im Header ist sofort sichtbar, ohne Nachladen. Die vorgerenderte
+// HTML-Datei enthält dagegen nur die Sprache ihrer Adresse:
+// src/i18n/strip-inactive-language.ts entfernt beim Prerendern genau das, was
+// diese Regeln ausblenden (der Browser rendert die Seite ohnehin neu).
 // Ukrainisch (src/i18n/uk) übersetzt den deutschen Block an Ort und Stelle und
 // markiert ihn mit data-i18n="uk"; fehlt die Übersetzung, wird der englische
 // Block als data-i18n="fallback" gezeigt. Alles Unmarkierte bleibt verborgen.

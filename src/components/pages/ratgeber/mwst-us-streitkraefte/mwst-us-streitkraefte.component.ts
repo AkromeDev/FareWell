@@ -11,9 +11,9 @@ import {
 
 const PAGE_PATH = '/ratgeber/mehrwertsteuer-us-streitkraefte';
 const PAGE_URL = `https://farewell.salon${PAGE_PATH}`;
-const PAGE_TITLE = "Mehrwertsteuerbefreiung für US-Streitkräfte (SOFA): so funktioniert's | FareWell Nürnberg";
+const PAGE_TITLE = "MwSt-Befreiung für US-Streitkräfte (SOFA) | FareWell";
 const PAGE_DESCRIPTION =
-  'NF1-Formular oder Remonon-App: So kaufen Angehörige der US-Streitkräfte in Deutschland ohne die 19% Mehrwertsteuer ein. Schritt für Schritt, mit FareWell als Beispiel.';
+  'NF1-Formular oder Remonon-App: So kaufen Angehörige der US-Streitkräfte in Deutschland ohne 19% Mehrwertsteuer ein, Schritt für Schritt erklärt.';
 
 @Component({
   standalone: true,
@@ -68,13 +68,7 @@ export class MwstUsStreitkraefteComponent implements OnInit, OnDestroy {
           dateModified: '2026-07-15',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
           author: { '@id': 'https://farewell.salon/#organization' },
-          publisher: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-          },
+          publisher: { '@id': 'https://farewell.salon/#organization' },
           mainEntityOfPage: { '@id': `${PAGE_URL}#webpage` },
         },
         {

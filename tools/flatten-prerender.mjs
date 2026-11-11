@@ -9,9 +9,13 @@
  * router links all use the slash-less form, so the deploy artifact must be
  * flat — otherwise every canonical tag points at a redirecting URL.
  *
- * The root `index.html` stays put; it serves `/` and the SPA fallback.
+ * The root `index.html` stays put; it serves `/`.
+ *
+ * The prerendered not-found page is also copied to `404.html`: with no
+ * catch-all rewrite in `_redirects`, Cloudflare Pages answers every unknown
+ * address with that file and status 404 (the page itself carries noindex).
  */
-import { existsSync, readdirSync, renameSync, rmdirSync } from 'node:fs';
+import { copyFileSync, existsSync, readdirSync, renameSync, rmdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = join(import.meta.dirname, '..', 'dist', 'farewell', 'browser');
@@ -39,3 +43,11 @@ function walk(dir) {
 
 walk(root);
 console.log(`flatten-prerender: flattened ${flattened} routes in ${root}`);
+
+const notFound = join(root, 'not-found.html');
+if (!existsSync(notFound)) {
+  console.error('flatten-prerender: not-found.html missing, cannot write 404.html');
+  process.exit(1);
+}
+copyFileSync(notFound, join(root, '404.html'));
+console.log('flatten-prerender: wrote 404.html from not-found.html');

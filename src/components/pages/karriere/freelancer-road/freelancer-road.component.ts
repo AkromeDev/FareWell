@@ -83,12 +83,12 @@ export class FreelancerRoadComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const prefix = this.language.prefix();
     const title = this.t(
-      'Freelancer Road: der Weg in die Selbständigkeit bei FareWell Nürnberg',
-      'Freelancer Road: The Path into Self-Employment at FareWell Nuremberg',
+      'Freelancer Road: Weg in die Selbständigkeit | FareWell',
+      'Freelancer Road: the Path to Self-Employment | FareWell',
     );
     const description = this.t(
-      'Alle Schritte in die Selbständigkeit als Kosmetiker:in, Masseur:in, Physio, Yoga-Lehrer:in oder Ärzt:in bei FareWell Nürnberg, in der richtigen Reihenfolge: Ämter, Nummern, Versicherungen, Website, Google-Profil und Marketing. Aus Joés eigener Gründung, mit abhakbarer Checkliste.',
-      'Every step into self-employment as a beautician, massage therapist, physio, yoga teacher or physician at FareWell Nuremberg, in the right order: offices, phone numbers, insurance, website, Google profile and marketing. From Joé\'s own founding, with a checklist you can tick off.',
+      'Alle Schritte in die Selbständigkeit bei FareWell Nürnberg, in der richtigen Reihenfolge: Ämter, Versicherungen, Website, Google-Profil und Marketing.',
+      'Every step into self-employment at FareWell Nuremberg, in the right order: offices, insurance, website, Google profile and marketing, as a checklist.',
     );
     const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
     const homeUrl = `${ORIGIN}${prefix}`;

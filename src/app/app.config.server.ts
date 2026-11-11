@@ -10,10 +10,11 @@ import { serverRoutes } from './app.routes.server';
 import { LanguageService } from 'src/services/language.service';
 import { provideLanguage } from 'src/i18n/uk/provide';
 import { finalizeUkDocument } from 'src/i18n/uk/server';
+import { stripInactiveLanguage } from 'src/i18n/strip-inactive-language';
 
 // Server/prerender bootstrap. Mirrors the browser providers from main.ts
 // (router + HttpClient + language) so routes can be prerendered, plus server
-// rendering and the Ukrainian finishing pass.
+// rendering and the language finishing pass (one language per HTML file).
 export const config: ApplicationConfig = {
   providers: [
     importProvidersFrom(AppRoutingModule),
@@ -27,8 +28,12 @@ export const config: ApplicationConfig = {
         const doc = inject(DOCUMENT);
         const language = inject(LanguageService);
         return () => {
-          if (language.lang() !== 'uk') return;
+          if (language.lang() !== 'uk') {
+            stripInactiveLanguage(doc);
+            return;
+          }
           const misses = finalizeUkDocument(doc);
+          stripInactiveLanguage(doc);
           // tools/i18n-uk.mjs check setzt die Variable und sammelt hier alle
           // Texte, für die noch keine Übersetzung existiert.
           const report = process.env['I18N_UK_REPORT'];

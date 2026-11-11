@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
+import { sizeOf } from 'src/services/responsive-images';
 
 /**
  * Einzelnes Schaubild im Guide-Look: gerahmtes Bild mit optionaler Bildunter-
@@ -16,6 +17,8 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
     <figure class="gd-figure" [class.gd-figure--wide]="wide" appReveal>
       <img
         [src]="image"
+        [attr.width]="sizeOf(image).width"
+        [attr.height]="sizeOf(image).height"
         [alt]="imageAlt"
         loading="lazy"
         decoding="async"
@@ -27,6 +30,9 @@ import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
   `,
 })
 export class GuideFigureComponent {
+  /** Intrinsic image size for width/height (src/services/responsive-images.ts). */
+  readonly sizeOf = sizeOf;
+
   @Input({ required: true }) image!: string;
   @Input({ required: true }) imageAlt!: string;
   @Input() caption = '';

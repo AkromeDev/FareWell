@@ -69,12 +69,12 @@ export class PhysioKarriereComponent extends KarriereDetailPage {
     return {
       path: PAGE_PATH,
       title: t(
-        'Physiotherapeut:in (m/w/d) in Nürnberg: freiberuflich auf Privatbasis | Karriere bei FareWell',
-        'Physiotherapist (m/f/d) in Nuremberg: Freelance, Private Practice | Careers at FareWell',
+        'Physiotherapeut:in (m/w/d) Nürnberg, privat | FareWell',
+        'Physiotherapist (m/f/d) Nuremberg, Private | FareWell',
       ),
       description: t(
-        'FareWell Nürnberg sucht Physiotherapeut:innen zur freiberuflichen Zusammenarbeit auf Privatbasis: Massage und Körperarbeit ohne Kassenrezepte, moderner Salon im Zentrum, flexible Zeiten und ein eigener Kundenstamm.',
-        'FareWell Nuremberg is looking for freelance physiotherapists working privately: massage and bodywork without health-insurance prescriptions, a modern central salon, flexible hours and your own client base.',
+        'FareWell Nürnberg sucht Physiotherapeut:innen, freiberuflich auf Privatbasis: Massage und Körperarbeit ohne Kassenrezepte, Salon im Zentrum.',
+        'FareWell Nuremberg is looking for freelance physiotherapists working privately: massage and bodywork without insurance prescriptions, central salon.',
       ),
       jobTitle: t(
         'Physiotherapeut / Physiotherapeutin (m/w/d): freiberufliche Zusammenarbeit auf Privatbasis',

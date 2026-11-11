@@ -111,20 +111,7 @@ export class TherapeutischeMassageComponent implements OnInit, OnDestroy {
           ),
           serviceType: this.t('Therapeutische Massage', 'Therapeutic massage'),
           areaServed: { '@type': 'City', name: 'Nürnberg' },
-          provider: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressCountry: 'DE',
-            },
-          },
+          provider: { '@id': 'https://farewell.salon/#organization' },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
             name: this.t('Therapeutische Massage-Angebote', 'Therapeutic massage offers'),

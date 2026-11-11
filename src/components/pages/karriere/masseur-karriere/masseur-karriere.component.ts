@@ -38,11 +38,11 @@ export class MasseurKarriereComponent extends KarriereDetailPage {
     return {
       path: PAGE_PATH,
       title: t(
-        'Masseur:in (m/w/d) in Nürnberg: freiberuflich | Karriere bei FareWell',
-        'Massage Therapist (m/f/d) in Nuremberg: Freelance | Careers at FareWell'
+        'Masseur:in (m/w/d) Nürnberg, freiberuflich | FareWell',
+        'Massage Therapist (m/f/d) Nuremberg, Freelance | FareWell'
       ),
       description: t(
-        'FareWell Nürnberg sucht Masseur:in zur freiberuflichen Zusammenarbeit: moderner Salon im Zentrum, flexible Arbeitszeiten, Online-Buchungssystem und eigener Kundenstamm.',
+        'FareWell Nürnberg sucht Masseur:in, freiberuflich: moderner Salon im Zentrum, flexible Arbeitszeiten, Online-Buchung und ein eigener Kundenstamm.',
         'FareWell Nuremberg is looking for a freelance massage therapist: modern central salon, flexible hours, an online booking system and your own client base.'
       ),
       jobTitle: t(

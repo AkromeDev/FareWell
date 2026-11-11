@@ -9,15 +9,16 @@ import {
   GuideStat,
   GuideTocItem,
 } from 'src/components/molecules/guide';
+import { PRICE_TABLES, PriceRow } from '../price/price-data';
 
 const PAGE_PATH = '/behandlungen/diodenlaser-4-wellen';
 const HERO_IMAGE = 'assets/images/treatment/laser.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 
 const DE_TITLE = 'Diodenlaser Haarentfernung Nürnberg | FareWell';
-const EN_TITLE = 'Laser Hair Removal Nuremberg (4-Wavelength Diode Laser) | FareWell';
+const EN_TITLE = 'Laser Hair Removal Nuremberg: 4-Wavelength Diode | FareWell';
 const DE_DESCRIPTION =
-  'Moderne Diodenlaser Haarentfernung in Nürnberg: effektive und schonende dauerhafte Haarreduktion.';
+  'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg: schonende Haarreduktion für Gesicht und Körper, kostenlose Beratung bei FareWell.';
 const EN_DESCRIPTION =
   'Modern diode laser hair removal in Nuremberg: effective, gentle, long-lasting hair reduction for larger body areas. Free consultation, English spoken.';
 const HERO_ALT_DE =
@@ -49,6 +50,29 @@ export class Diodenlaser implements OnInit, OnDestroy {
 
   get heroImageAlt(): string {
     return this.t(HERO_ALT_DE, HERO_ALT_EN);
+  }
+
+  /**
+   * Prices as one sentence, built from the price list (price-data.ts). Only
+   * facts the site already states; the device model and the terms are not
+   * on the site yet and are left out on purpose.
+   */
+  get priceFact(): string {
+    const from = (rows: PriceRow[]) =>
+      Math.min(...rows.filter((r) => !r.addon && r.price !== null).map((r) => r.price as number));
+    const face = from(PRICE_TABLES.laserGesicht.rows);
+    const body = from(PRICE_TABLES.laserKoerper.rows);
+    const intim = from([...PRICE_TABLES.laserIntimVulva.rows, ...PRICE_TABLES.laserIntimPenis.rows]);
+    const fullBody = PRICE_TABLES.laserKoerper.rows.find((r) => r.de === 'Ganzer Körper')?.price;
+    const all = Math.min(face, body, intim);
+    return this.t(
+      `Laser-Haarentfernung kostet bei FareWell ab ${all} € pro Zone: Gesicht ab ${face} €, Körper ab ${body} €, Intimbereich ab ${intim} €` +
+        (fullBody ? `, der ganze Körper ${fullBody} €. ` : '. ') +
+        'Behandelt wird mit dem 4-Wellen-Diodenlaser mit KI-gestützter Hauttyp-Erkennung. Die Erstberatung ist kostenlos.',
+      `Laser hair removal at FareWell costs from €${all} per area: face from €${face}, body from €${body}, intimate area from €${intim}` +
+        (fullBody ? `, the full body €${fullBody}. ` : '. ') +
+        'We use the 4-wavelength diode laser with AI-assisted skin-type detection. The first consultation is free.',
+    );
   }
 
   t(de: string, en: string): string {
@@ -171,20 +195,7 @@ export class Diodenlaser implements OnInit, OnDestroy {
           ),
           serviceType: this.t('Diodenlaser Haarentfernung', 'Diode laser hair removal'),
           areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
-          provider: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressCountry: 'DE',
-            },
-          },
+          provider: { '@id': 'https://farewell.salon/#organization' },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
             name: this.t('Diodenlaser-Areale', 'Diode laser areas'),

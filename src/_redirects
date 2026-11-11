@@ -1,6 +1,15 @@
-# Cloudflare Pages SPA fallback.
-# Prerendered routes are served as static files directly; any unknown path
-# falls back to the app shell so Angular can route it (e.g. to /not-found).
+# Cloudflare Pages rewrites and redirects.
+#
+# Every route of the app is prerendered to its own HTML file
+# (tools/flatten-prerender.mjs), so there is no catch-all: an unknown address
+# gets 404.html with status 404. Only routes that render in the browser alone
+# (RenderMode.Client in src/app/app.routes.server.ts) need a rewrite to the
+# app shell. A new client-only route needs its own line here. The target is
+# "/" and not "/index.html": Cloudflare answers /index.html with a 308 to /,
+# and a rewrite onto a redirect falls through to the 404.
+/tasks/*            /    200
+/massage-tasks/*    /    200
+
 # A/B-Test /promotionen: die Adressen der ersten Fassung (09.11.2026) führen
 # zurück auf /promotionen, das jetzt abwechselnd beide Seiten zeigt.
 /promotionen/feld             /promotionen       302
@@ -8,4 +17,7 @@
 /en/promotionen/feld          /en/promotionen    302
 /en/promotionen/drehbuehne    /en/promotionen    302
 
-/*    /index.html    200
+# Moved pages (301). The Botox page left /promotionen on 10.11.2026: a medical
+# treatment is not a promotion.
+/promotionen/botox-nuernberg        /behandlungen/botox-nuernberg        301
+/en/promotionen/botox-nuernberg     /en/behandlungen/botox-nuernberg     301

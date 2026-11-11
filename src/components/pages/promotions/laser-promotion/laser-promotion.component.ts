@@ -11,12 +11,12 @@ import {
 } from 'src/components/molecules/guide';
 
 const PAGE_PATH = '/laser-haarentfernung-aktion-nuernberg';
-const PAGE_TITLE_DE = 'Laser-Haarentfernung in Nürnberg: 50% Rabatt auf die erste Behandlung | FareWell';
-const PAGE_TITLE_EN = 'Laser Hair Removal in Nuremberg: 50% Off Your First Treatment | FareWell';
+const PAGE_TITLE_DE = 'Laser-Haarentfernung Nürnberg: 50% auf die erste Behandlung';
+const PAGE_TITLE_EN = 'Laser Hair Removal Nuremberg: 50% Off First Treatment';
 const PAGE_DESCRIPTION_DE =
-  'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg. 50% Rabatt auf deine erste Behandlung mit dem Code ERSTEBEHANDLUNG. Dauerhaft bis zu 30% Rabatt, je mehr Zonen du buchst.';
+  'Dauerhafte Haarentfernung mit dem 4-Wellen-Diodenlaser in Nürnberg: 50% auf die erste Behandlung mit ERSTEBEHANDLUNG, bis zu 30% je mehr Zonen.';
 const PAGE_DESCRIPTION_EN =
-  'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg. 50% off your first treatment with the code ERSTEBEHANDLUNG. Up to 30% ongoing discount, the more areas you book.';
+  'Long-lasting hair removal with the 4-wavelength diode laser in Nuremberg: 50% off your first treatment with ERSTEBEHANDLUNG, up to 30% for more areas.';
 const HERO_IMAGE = 'assets/images/treatment/laser2.webp';
 const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 const HERO_IMAGE_ALT_DE =
@@ -166,20 +166,7 @@ export class LaserPromotionComponent implements OnInit, OnDestroy {
           ),
           serviceType: this.t('Laser Haarentfernung', 'Laser hair removal'),
           areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
-          provider: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressCountry: 'DE',
-            },
-          },
+          provider: { '@id': 'https://farewell.salon/#organization' },
           offers: {
             '@type': 'Offer',
             name: this.t(

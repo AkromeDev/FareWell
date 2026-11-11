@@ -8,6 +8,8 @@
       class="image-section-bg"
       [src]="normalizedBackgroundImage"
       [alt]="backgroundAlt"
+      [attr.width]="dims.width"
+      [attr.height]="dims.height"
       [attr.fetchpriority]="resolvedFetchPriority"
       [attr.loading]="resolvedImageLoading"
       [attr.decoding]="imageDecoding"

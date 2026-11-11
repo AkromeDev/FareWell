@@ -75,7 +75,7 @@ export class MassageComponent implements OnInit, OnDestroy {
     const pageTitle = this.t('Wellness Massage Nürnberg | FareWell', 'Wellness Massage Nuremberg | FareWell');
     const description = this.t(
       'Entspannende Wellness Massagen bei FareWell in Nürnberg: Rücken-Schulter-Nacken-Massage, Ganzkörpermassage mit Aromaölen und Teilkörpermassage.',
-      'Relaxing wellness massages at FareWell in Nuremberg: back, shoulder and neck massage, full-body massage with aroma oils, and partial-body massage. English spoken.',
+      'Wellness massages at FareWell in Nuremberg: back, shoulder and neck massage, full-body massage with aroma oils and partial-body massage. English spoken.',
     );
 
     this.seo.setPageSeo({
@@ -100,20 +100,7 @@ export class MassageComponent implements OnInit, OnDestroy {
           ),
           serviceType: this.t('Wellness Massage', 'Wellness massage'),
           areaServed: { '@type': 'City', name: 'Nürnberg' },
-          provider: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressCountry: 'DE',
-            },
-          },
+          provider: { '@id': 'https://farewell.salon/#organization' },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
             name: this.t('Massage-Angebote', 'Massage options'),

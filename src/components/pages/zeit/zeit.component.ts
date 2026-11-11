@@ -9,7 +9,7 @@ const PAGE_PATH = '/zeit';
 const PAGE_TITLE_DE = 'Behandlungsdauer | FareWell Nürnberg';
 const PAGE_TITLE_EN = 'Electrolysis Treatment Time Calculator | FareWell Nuremberg';
 const PAGE_DESCRIPTION_DE =
-  'Informationen zur Dauer unserer Beauty Behandlungen bei FareWell Nürnberg.';
+  'Wie lange dauert die Elektrolyse bei FareWell Nürnberg? Der Zeit-Rechner schätzt Sitzungen und Gesamtdauer für deine Zone und plant deine Termine.';
 const PAGE_DESCRIPTION_EN =
   'How long does permanent hair removal take? Calculate your personal electrolysis treatment time per body area at FareWell Nuremberg.';
 

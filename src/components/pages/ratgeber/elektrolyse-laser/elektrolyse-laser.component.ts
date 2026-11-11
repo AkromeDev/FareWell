@@ -12,13 +12,13 @@ import {
 
 const PAGE_PATH = '/ratgeber/elektrolyse-oder-laser';
 const PAGE_TITLE_DE =
-  'Elektrolyse oder Laser? Der ehrliche Vergleich zur Haarentfernung | FareWell Nürnberg';
+  'Elektrolyse oder Laser? Der ehrliche Vergleich | FareWell';
 const PAGE_TITLE_EN =
-  'Electrolysis or Laser? An Honest Hair-Removal Comparison | FareWell Nuremberg';
+  'Electrolysis or Laser? An Honest Comparison | FareWell';
 const PAGE_DESCRIPTION_DE =
-  'Elektrolyse (Nadelepilation) oder Diodenlaser? Permanent vs. dauerhaft, Haut- und Haartypen, Zonen, Sitzungen und Kosten, ehrlich verglichen, mit einer klaren Empfehlung für deine Situation.';
+  'Elektrolyse oder Diodenlaser? Permanent oder dauerhaft, Haut- und Haartypen, Zonen, Sitzungen und Kosten, ehrlich verglichen, mit klarer Empfehlung.';
 const PAGE_DESCRIPTION_EN =
-  'Electrolysis (Nadelepilation) or the diode laser? Permanent vs. long-lasting, skin and hair types, areas, sessions and cost, compared honestly, with a clear recommendation for your situation.';
+  'Electrolysis or diode laser? Permanent or long-lasting, skin and hair types, areas, sessions and cost, compared honestly, with a clear recommendation.';
 
 @Component({
   standalone: true,
@@ -103,13 +103,7 @@ export class ElektrolyseLaserComponent implements OnInit, OnDestroy {
           dateModified: '2026-07-24',
           image: ['https://farewell.salon/assets/images/farewell/studio.webp'],
           author: { '@id': 'https://farewell.salon/#organization' },
-          publisher: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-          },
+          publisher: { '@id': 'https://farewell.salon/#organization' },
           mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
         },
         {

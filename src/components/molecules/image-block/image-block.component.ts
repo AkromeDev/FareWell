@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, HostListener, ElementRef } from
 import { CommonModule } from '@angular/common';
 import { RevealOnScrollDirective } from 'src/directives/reveal.directive';
 import { DesignTokens } from 'src/models';
+import { sizeOf } from 'src/services/responsive-images';
 
 @Component({
   selector: 'app-image-block',
@@ -19,6 +20,11 @@ export class ImageBlockComponent {
   @Input() fit: 'cover' | 'contain' = 'cover';
   @Input() rounded = true;
   @Input() enableFullscreen = true;
+
+  /** Intrinsic size for width/height; the box itself is sized in CSS. */
+  get dims(): { width: number; height: number } {
+    return sizeOf(this.src);
+  }
   @Output() fullscreenChange = new EventEmitter<boolean>();
 
   isOverlayOpen = false;

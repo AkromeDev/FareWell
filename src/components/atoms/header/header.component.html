@@ -180,7 +180,7 @@
         [routerLink]="t.route"
         (click)="setActiveTab('behandlungen')"
       >
-        <div class="card-image" [style.backgroundImage]="'url(' + t.image + ')'">
+        <div class="card-image" [style.backgroundImage]="'url(' + smallestOf(t.image) + ')'">
           <div class="image-overlay"></div>
           <div class="card-title">{{ t.title }}</div>
         </div>

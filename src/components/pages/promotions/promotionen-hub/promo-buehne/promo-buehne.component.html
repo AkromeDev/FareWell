@@ -34,7 +34,7 @@
               [attr.aria-label]="t('Zeige', 'Show') + ': ' + bi(o.title)"
               (click)="pick(i)"
             >
-              <img class="card-img" [src]="o.image" alt="" draggable="false" [style.object-position]="o.imagePos" />
+              <img class="card-img" [src]="o.image" [attr.srcset]="srcsetOf(o.image)" sizes="(max-width: 700px) 70vw, 360px" [attr.width]="sizeOf(o.image).width" [attr.height]="sizeOf(o.image).height" alt="" draggable="false" decoding="async" [style.object-position]="o.imagePos" />
               <span class="card-shade"></span>
               <span class="card-tag">{{ bi(o.tag) }}</span>
               <span class="card-val">

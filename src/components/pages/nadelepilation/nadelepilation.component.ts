@@ -9,6 +9,7 @@ import {
   GuideStat,
   GuideTocItem,
 } from 'src/components/molecules/guide';
+import { PRICE_TABLES } from '../price/price-data';
 
 const PAGE_PATH = '/behandlungen/nadelepilation';
 const HERO_IMAGE = 'assets/images/treatment/nadel.jpg';
@@ -17,9 +18,9 @@ const HERO_IMAGE_URL = `https://farewell.salon/${HERO_IMAGE}`;
 const DE_TITLE = 'Elektrolyse / Nadelepilation in Nürnberg | FareWell';
 const EN_TITLE = 'Electrolysis (Nadelepilation) in Nuremberg | FareWell';
 const DE_DESCRIPTION =
-  'Professionelle Elektrolyse (Nadelepilation) in Nürnberg: die einzige wirklich permanente Haarentfernungsmethode.';
+  'Elektrolyse (Nadelepilation) bei FareWell in Nürnberg: die einzige permanente Haarentfernung, für jede Haarfarbe und jeden Hauttyp. Beratung kostenlos.';
 const EN_DESCRIPTION =
-  'Professional electrolysis in Nuremberg: the only truly permanent hair removal method. Works on every hair colour and skin type. Free initial consultation in English.';
+  'Electrolysis in Nuremberg: the only truly permanent hair removal method, for every hair colour and skin type. Free first consultation in English.';
 const HERO_ALT_DE =
   'Elektrolyse / Nadelepilation bei FareWell in Nürnberg: permanente Haarentfernung';
 const HERO_ALT_EN =
@@ -57,6 +58,37 @@ export class NadelepilationComponent implements OnInit, OnDestroy {
 
   p(path: string): string {
     return this.language.localizePath(path);
+  }
+
+  /**
+   * The price per time unit as one sentence, for readers and for the AI
+   * answers that quote it. Built from the price list (price-data.ts), so it
+   * changes with the prices.
+   */
+  get priceFact(): string {
+    const rows = PRICE_TABLES.nadelepilation.rows;
+    const sessions = rows.filter((row) => !row.addon && row.price !== null);
+    const base = sessions.reduce((a, b) => (a.minutes <= b.minutes ? a : b));
+    const hour = sessions.find((row) => row.minutes === 60);
+    const numbing = rows.find((row) => row.addon);
+    const lengths = sessions.map((row) => row.minutes);
+    const list = (items: number[], and: string) =>
+      items.length > 1 ? `${items.slice(0, -1).join(', ')} ${and} ${items[items.length - 1]}` : `${items[0]}`;
+    const de = [
+      `Elektrolyse kostet bei FareWell ${base.price} € pro ${base.minutes} Minuten` +
+        (hour ? `, eine Stunde ${hour.price} €.` : '.'),
+      `Sitzungen gibt es mit ${list(lengths, 'und')} Minuten.`,
+      numbing ? `Betäubungscreme auf Wunsch ${numbing.price} €.` : '',
+      'Die Erstberatung ist kostenlos.',
+    ];
+    const en = [
+      `Electrolysis at FareWell costs €${base.price} per ${base.minutes} minutes` +
+        (hour ? `, one hour €${hour.price}.` : '.'),
+      `Sessions are available in ${list(lengths, 'and')} minutes.`,
+      numbing ? `Numbing cream on request €${numbing.price}.` : '',
+      'The first consultation is free.',
+    ];
+    return this.t(de.filter(Boolean).join(' '), en.filter(Boolean).join(' '));
   }
 
   get stats(): GuideStat[] {
@@ -154,20 +186,7 @@ export class NadelepilationComponent implements OnInit, OnDestroy {
           ),
           serviceType: this.t('Elektrolyse / Nadelepilation', 'Electrolysis (Nadelepilation)'),
           areaServed: { '@type': 'City', name: this.t('Nürnberg', 'Nuremberg') },
-          provider: {
-            '@type': 'BeautySalon',
-            '@id': 'https://farewell.salon/#organization',
-            name: 'FareWell – Kosmetikstudio & dauerhafte Haarentfernung',
-            alternateName: 'FareWell',
-            url: 'https://farewell.salon',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressCountry: 'DE',
-            },
-          },
+          provider: { '@id': 'https://farewell.salon/#organization' },
         },
         {
           '@type': 'WebPage',

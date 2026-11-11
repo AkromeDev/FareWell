@@ -32,7 +32,8 @@ const ORIGIN = 'https://farewell.salon';
 /**
  * Ukrainische Seiten (/uk/…) erst nach einer Durchsicht durch Muttersprachler
  * indexieren lassen. Solange false: noindex,follow und kein hreflang="uk".
- * Beim Umstellen auch den /uk/-Block in sitemap.xml eintragen.
+ * Beim Umstellen erscheinen die /uk/-Seiten von selbst in der Sitemap
+ * (tools/generate-sitemap.mjs nimmt jede indexierbare Seite auf).
  */
 export const UK_PREFIX_INDEXABLE = false;
 

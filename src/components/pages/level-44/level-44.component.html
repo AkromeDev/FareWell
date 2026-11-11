@@ -11,14 +11,26 @@
           ><span class="lang en">LEVEL 44 at FareWell · Nuremberg</span>
         </p>
         <h1 class="hero-title">
-          <span class="hero-line" appReveal [revealDelay]="80"
-            ><span class="lang de">Erleben statt</span
-            ><span class="lang en">Experience instead</span></span
-          >
+          <span class="hero-line" appReveal [revealDelay]="80">9D Breathwork</span>
           <span class="hero-line hero-line--accent" appReveal [revealDelay]="200"
-            ><span class="lang de">funktionieren.</span><span class="lang en">of functioning.</span></span
+            ><span class="lang de">in Nürnberg</span><span class="lang en">in Nuremberg</span></span
           >
         </h1>
+        <p class="hero-claim" appReveal [revealDelay]="260">
+          <span class="lang de">Erleben statt funktionieren.</span
+          ><span class="lang en">Experience instead of functioning.</span>
+        </p>
+        <p class="hero-sub hero-lead" appReveal [revealDelay]="300">
+          <span class="lang de"
+            >9D Breathwork ist eine geführte Atemreise über Kopfhörer mit räumlicher Klangwelt.
+            Franziska Preusche leitet sie bei FareWell am Frauentorgraben 5 in Nürnberg, ab 49 €
+            zum Einführungspreis.</span
+          ><span class="lang en"
+            >9D Breathwork is a guided breath journey on headphones with a spatial sound world.
+            Franziska Preusche leads it at FareWell, Frauentorgraben 5 in Nuremberg, from €49 at the
+            introductory price.</span
+          >
+        </p>
         <p class="hero-sub" appReveal [revealDelay]="340">
           <span class="lang de"
             >Wann hast du dir zuletzt erlaubt, einfach nur zu sein? Ohne etwas leisten zu müssen.
@@ -76,6 +88,8 @@
           <div class="portrait-frame">
             <img
               [src]="photoHero"
+              [attr.srcset]="srcsetOf(photoHero)"
+              sizes="(max-width: 900px) 90vw, 45vw"
               width="1600"
               height="1200"
               [alt]="t('Franziska Preusche, Gastgeberin der LEVEL 44 Breathwork-Reise, mit leuchtenden 9D-Kopfhörern im FareWell Salon', 'Franziska Preusche, host of the LEVEL 44 breathwork journey, with glowing 9D headphones in the FareWell salon')"

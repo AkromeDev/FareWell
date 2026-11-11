@@ -3,16 +3,17 @@
 
 <head>
   <meta charset="utf-8">
-  <title>FareWell – Kosmetikstudio & dauerhafte Haarentfernung | Nürnberg</title>
+  <title>FareWell Nürnberg: Kosmetikstudio, dauerhafte Haarentfernung</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!--
     Sprachumschaltung, kritisch inline.
 
-    Zweisprachige Inhalte liegen als Paare im DOM (<span class="lang de">…</span>
+    Zweisprachige Inhalte liegen im Browser als Paare im DOM (<span class="lang de">…</span>
     <span class="lang en">…</span>); dieselbe Regel steht auch in styles.scss
-    (dort auch zu den /uk/-Regeln).
+    (dort auch zu den /uk/-Regeln). Die vorgerenderte Datei enthält nur noch
+    die Sprache ihrer Adresse (src/i18n/strip-inactive-language.ts).
     Das Haupt-Stylesheet wird aber asynchron geladen (media="print" onload),
     und Beasties nimmt diese Regel nicht ins kritische CSS auf. Ohne die Kopie
     hier wäre zwischen First Paint und Stylesheet BEIDE Sprachen sichtbar und
@@ -36,17 +37,83 @@
   <link rel="manifest" href="/assets/images/logo/site.webmanifest">
   <meta name="theme-color" content="#0A130D">
 
-  <!-- 🎨 Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..650;1,9..144,300..600&family=Hurricane&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..650;1,9..144,300..600&family=Hurricane&display=swap"></noscript>
+  <!-- 🎨 Fonts: hosted on this site (src/assets/fonts), no request to a third
+       party. Outfit, Fraunces and Hurricane, SIL Open Font License 1.1.
+       Latin and Latin Extended only; unicode-range loads a file when a page
+       needs it. Outfit (body text) is preloaded. -->
+  <link rel="preload" href="/assets/fonts/outfit-latin-92684e4a.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: italic;
+      font-weight: 300 600;
+      font-display: swap;
+      src: url('/assets/fonts/fraunces-italic-latin-ext-1e0d114a.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: italic;
+      font-weight: 300 600;
+      font-display: swap;
+      src: url('/assets/fonts/fraunces-italic-latin-4af9c759.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 300 650;
+      font-display: swap;
+      src: url('/assets/fonts/fraunces-latin-ext-f120089b.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 300 650;
+      font-display: swap;
+      src: url('/assets/fonts/fraunces-latin-48282a41.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Hurricane';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/assets/fonts/hurricane-latin-ext-13b6ff84.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Hurricane';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/assets/fonts/hurricane-latin-be3cd392.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Outfit';
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: swap;
+      src: url('/assets/fonts/outfit-latin-ext-9e38b3f1.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Outfit';
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: swap;
+      src: url('/assets/fonts/outfit-latin-92684e4a.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
 
   <!-- 🔎 Canonical -->
   <link rel="canonical" href="https://farewell.salon/">
 
   <!-- ⚡️ Preload image -->
-  <link rel="preload" as="image" href="/assets/images/farewell/studio.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/images/farewell/studio.webp" imagesrcset="/assets/images/farewell/studio-480w.webp 480w, /assets/images/farewell/studio-948w.webp 948w" imagesizes="100vw" fetchpriority="high" />
 
   <!-- 💄 Default SEO -->
   <meta name="description"
@@ -60,7 +127,7 @@
   <meta property="og:locale" content="de_DE">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="FareWell">
-  <meta property="og:title" content="FareWell – Kosmetikstudio & dauerhafte Haarentfernung | Nürnberg">
+  <meta property="og:title" content="FareWell Nürnberg: Kosmetikstudio, dauerhafte Haarentfernung">
   <meta property="og:description"
     content="FareWell in Nürnberg: spezialisiert auf Elektrolyse zur permanenten Haarentfernung, Diodenlaser, Microneedling und weitere Beauty Behandlungen.">
   <meta property="og:url" content="https://farewell.salon/">
@@ -75,13 +142,15 @@
 
   <!-- 🐦 Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="FareWell – Kosmetikstudio & dauerhafte Haarentfernung | Nürnberg">
+  <meta name="twitter:title" content="FareWell Nürnberg: Kosmetikstudio, dauerhafte Haarentfernung">
   <meta name="twitter:description"
     content="FareWell in Nürnberg: spezialisiert auf Elektrolyse zur permanenten Haarentfernung, Diodenlaser, Microneedling und weitere Beauty Behandlungen.">
   <meta name="twitter:image" content="https://farewell.salon/assets/images/farewell/og-studio.jpg">
   <meta name="twitter:image:alt" content="Empfang im FareWell Kosmetikstudio in Nürnberg">
 
-  <!-- 🏢 Structured Data -->
+  <!-- 🏢 Structured Data: the one full description of FareWell on every page.
+       Pages refer to it only by "@id" (src/app/domain/entities.ts, ORG_ID);
+       none of them may carry a second BeautySalon node. -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -107,8 +176,37 @@
         "name": "Nürnberg"
       },
       "priceRange": "€€",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.44677,
+        "longitude": 11.07501
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "10:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "00:00",
+          "closes": "00:00"
+        }
+      ],
       "sameAs": [
-        "https://www.instagram.com/farewell.salon/"
+        "https://g.co/kgs/ycCwT2s",
+        "https://www.instagram.com/farewell.salon/",
+        "https://www.facebook.com/share/14PfPkcmpKs/?mibextid=wwXIfr",
+        "https://www.linkedin.com/company/farewell-gmbh/about/",
+        "https://salonkee.de/salon/farewell"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -160,6 +258,24 @@
               "@type": "Service",
               "name": "Massage",
               "description": "Entspannende Massagebehandlungen."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Ästhetische Medizin",
+              "description": "Ärztliche ästhetische Behandlungen durch den Kooperationsarzt Dr. med. Andrea Leo, in eigener ärztlicher Verantwortung.",
+              "provider": { "@id": "https://drleoaesthetic.de/#practice" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "9D Breathwork",
+              "description": "Geführte Atemreisen über Kopfhörer mit LEVEL 44 und Franziska Preusche.",
+              "provider": { "@id": "https://farewell.salon/behandlungen/level-44#franziska-preusche" }
             }
           }
         ]
