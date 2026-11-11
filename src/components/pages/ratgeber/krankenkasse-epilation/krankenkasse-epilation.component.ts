@@ -18,9 +18,9 @@ const PAGE_TITLE_DE =
 const PAGE_TITLE_EN =
   'Hair Removal on Health Insurance: a Guide for Trans People';
 const PAGE_DESCRIPTION_DE =
-  'So bekommst du deine Haarentfernung im Gesicht als Kassenleistung: Ärztevorbehalt, ärztliche Begleitung bei FareWell, Antrag in 6 Schritten, Fristen und Widerspruch.';
+  'So bekommst du deine Haarentfernung im Gesicht als Kassenleistung: Ärztevorbehalt, wer bei FareWell behandelt, Antrag in 6 Schritten, Fristen und Widerspruch.';
 const PAGE_DESCRIPTION_EN =
-  'How facial hair removal becomes a covered benefit in Germany: the physician requirement, medical support at FareWell, the application in 6 steps, deadlines and objections.';
+  'How facial hair removal becomes a covered benefit in Germany: the physician requirement, who treats at FareWell, the application in 6 steps, deadlines and objections.';
 
 @Component({
   standalone: true,

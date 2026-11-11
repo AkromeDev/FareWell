@@ -153,16 +153,14 @@
       </div>
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
-          Die Nadelepilation gibt es auch mit ärztlicher Begleitung, zu eigenen Preisen und
-          ausschließlich als volle Stunde. Diese Termine stehen in einer eigenen Liste:
-          <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">Behandlungen mit
-          ärztlicher Begleitung</a>.
+          Beantragst du die Kostenübernahme bei deiner Krankenkasse, gilt für die Nadelepilation
+          eine eigene Preisliste, ausschließlich als volle Stunde und inklusive Betäubungscreme: <a
+          [routerLink]="p('/price')" fragment="krankenkasse">Preise für den Kassenantrag</a>.
         </span>
         <span class="lang en">
-          Electrolysis is also available with medical support, at its own prices and in full
-          hours only. Those appointments have their own list:
-          <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">treatments with medical
-          support</a>.
+          If you apply to your health insurer for cost coverage, electrolysis has its own price
+          list, in full hours only and including numbing cream: <a [routerLink]="p('/price')"
+          fragment="krankenkasse">prices for insurance applications</a>.
         </span>
       </p>
       <div class="gd-read">
@@ -231,18 +229,16 @@
       }
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
-          Mehrere Komplettpakete bieten wir zusätzlich mit ärztlicher Begleitung an, zu eigenen
-          Preisen: unteres Gesicht komplett, Rücken komplett und den Intimbereich. Einzelne Zonen
-          gibt es nicht mit ärztlicher Begleitung. Die Preise stehen in einer eigenen Liste:
-          <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">Behandlungen mit
-          ärztlicher Begleitung</a>.
+          Für den Kassenantrag gibt es drei Komplettpakete zu eigenen Preisen: unteres Gesicht
+          komplett, Rücken komplett und den Intimbereich. Einzelne Zonen stehen nicht auf dieser
+          Liste. Die Preise stehen in einer eigenen Liste: <a [routerLink]="p('/price')"
+          fragment="krankenkasse">Preise für den Kassenantrag</a>.
         </span>
         <span class="lang en">
-          Several complete packages are also available with medical support, at their own
-          prices: complete lower face, complete back and the intimate area. Single areas are not
-          offered with medical support. The prices have their own list:
-          <a [routerLink]="p('/price')" fragment="aerztliche-begleitung">treatments with medical
-          support</a>.
+          For insurance applications there are three complete packages at their own prices: complete
+          lower face, complete back and the intimate area. Single areas are not on that list. The
+          prices have their own list: <a [routerLink]="p('/price')" fragment="krankenkasse">prices
+          for insurance applications</a>.
         </span>
       </p>
       <div class="gd-read">
@@ -266,38 +262,44 @@
       </div>
     </app-guide-section>
 
-    <!-- 04 · Behandlungen mit ärztlicher Begleitung. Der Text beschreibt, wie
-         wir tatsächlich arbeiten (Mail Dr. Degner, 07.10.2026): keine ärztliche
-         Anordnung oder Verantwortung je Behandlung behaupten. -->
-    <!-- Alter Anker (bis 10/2026): Links auf /price#aerztliche-delegation aus
-         Mails, Kostenvoranschlägen und Suchergebnissen landen weiter hier.
-         Leer und ohne Inhalt, also unsichtbar für Screenreader und Layout. -->
+    <!-- 04 · Preise für den Kassenantrag. Keine zweite Kategorie von Behandlung,
+         nur die Preisliste für Kund:innen, die die Kostenübernahme beantragen
+         (Mails Dr. Degner, 07.10. und 21.10.2026): keine ärztliche Anordnung,
+         Aufsicht oder Verantwortung behaupten. -->
+    <!-- Alte Anker (bis 10/2026 „aerztliche-delegation", bis 11/2026
+         „aerztliche-begleitung"): Links aus Mails, Kostenvoranschlägen und
+         Suchergebnissen landen weiter hier. Leer und ohne Inhalt, also
+         unsichtbar für Screenreader und Layout. -->
     <span id="aerztliche-delegation"></span>
+    <span id="aerztliche-begleitung"></span>
     <app-guide-section
       index="04"
       [heading]="
         t(
-          'Behandlungen mit ärztlicher Begleitung: Preise',
-          'Treatments with medical support: prices'
+          'Kostenübernahme durch die Krankenkasse: Preise',
+          'Health insurance applications: prices'
         )
       "
-      sectionId="aerztliche-begleitung"
+      sectionId="krankenkasse"
     >
       <p class="gd-lead-p gd-read" appReveal>
         <span class="lang de">
-          Einen Teil unserer Behandlungen bieten wir zusätzlich mit ärztlicher Begleitung an.
-          Behandelt wird wie immer bei uns im Studio, von unserer geschulten Fachkraft. Ein Arzt
-          begleitet FareWell auf Grundlage eines Beratungsvertrags: Er wird bei individuellen
-          medizinischen Fragen, zur Beurteilung von Risiken und Kontraindikationen sowie in
-          Hygienefragen hinzugezogen. Diese Termine haben eigene Preise und stehen deshalb, wie
-          im Buchungssystem, in einer eigenen Liste.
+          Beantragst du die Kostenübernahme bei deiner Krankenkasse, gilt diese Preisliste. Die
+          Behandlung ist dieselbe wie sonst auch: bei uns im Studio, von unserer geschulten
+          Fachkraft, in eigener Verantwortung. Die Preise sind Endpreise inklusive Betäubungscreme;
+          dazu gehören der schriftliche Kostenvoranschlag für deinen Antrag und die Rechnungen, die
+          genau dazu passen. Ein kooperierender Arzt kann bei individuellen medizinischen Fragen und
+          Risiken hinzugezogen werden; er ordnet die Behandlung nicht an und führt sie nicht durch.
+          Wie im Buchungssystem stehen diese Termine in einer eigenen Liste.
         </span>
         <span class="lang en">
-          Some of our treatments are also available with medical support. The treatment takes
-          place in our studio as always, carried out by our trained specialist. A physician
-          supports FareWell under a consulting contract and is called in for individual medical
-          questions, to assess risks and contraindications, and on hygiene. These appointments
-          have their own prices and therefore their own list, exactly as in our booking system.
+          If you apply to your health insurer for cost coverage, this price list applies. The
+          treatment is the same as always: in our studio, carried out by our trained specialist, on
+          our own responsibility. The prices are final prices including numbing cream; they come
+          with the written cost estimate for your application and invoices that match it exactly. A
+          cooperating physician can be consulted on individual medical questions and risks; he does
+          not order or perform the treatment. As in our booking system, these appointments have
+          their own list.
         </span>
       </p>
       <div
@@ -306,7 +308,7 @@
         tabindex="0"
         role="region"
         [attr.aria-label]="
-          t('Preise mit ärztlicher Begleitung', 'Prices with medical support')
+          t('Preise für den Kassenantrag', 'Prices for insurance applications')
         "
       >
         <table>
@@ -317,7 +319,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (row of tables.aerztlicheBegleitung.rows; track $index) {
+            @for (row of tables.kassenantrag.rows; track $index) {
               <tr>
                 <td>
                   {{ t(row.de, row.en) }}
@@ -333,14 +335,14 @@
       </div>
       <p class="gd-read" appReveal style="color: var(--gd-muted)">
         <span class="lang de">
-          Die Nadelepilation buchst du hier ausschließlich als volle Stunde, kürzere Einheiten
-          gibt es mit ärztlicher Begleitung nicht. Beim Laser gilt die ärztliche Begleitung nur
-          für die Komplettpakete, einzelne Zonen behandeln wir regulär.
+          Die Nadelepilation buchst du hier ausschließlich als volle Stunde, kürzere Einheiten gibt
+          es auf dieser Liste nicht. Beim Laser gilt die Liste nur für die Komplettpakete, einzelne
+          Zonen behandeln wir zu den regulären Preisen.
         </span>
         <span class="lang en">
-          Electrolysis is booked in full hours only here, shorter units are not available with
-          medical support. For the laser, medical support applies to the complete packages only;
-          single areas are treated regularly.
+          Electrolysis is booked in full hours only here; shorter units are not on this list. For
+          the laser, the list covers the complete packages only; single areas are treated at the
+          regular prices.
         </span>
       </p>
       <div class="gd-read">
@@ -366,9 +368,9 @@
           </span>
         </app-guide-note>
         <app-faq-item
-          [question]="t(faqs['aerztlicheBegleitung'].qDe, faqs['aerztlicheBegleitung'].qEn)"
+          [question]="t(faqs['kassenantrag'].qDe, faqs['kassenantrag'].qEn)"
         >
-          <p>{{ t(faqs['aerztlicheBegleitung'].aDe, faqs['aerztlicheBegleitung'].aEn) }}</p>
+          <p>{{ t(faqs['kassenantrag'].aDe, faqs['kassenantrag'].aEn) }}</p>
         </app-faq-item>
       </div>
     </app-guide-section>

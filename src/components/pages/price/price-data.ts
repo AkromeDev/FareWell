@@ -8,17 +8,21 @@
  * Gliederung wie im Buchungssystem: sortiert nach Methode, nicht nach
  * Geschlecht. Getrennt wird allein der Intimbereich, und zwar nach Anatomie
  * (Vulva / Penis), damit trans und nicht binäre Kund:innen buchen können, ohne
- * sich falsch einordnen zu müssen. Ebenfalls wie im Buchungssystem: Termine mit
- * ärztlicher Begleitung bilden eine eigene Liste (`aerztlicheBegleitung`) und
- * stehen nicht als Variante unter der jeweiligen Basisleistung.
+ * sich falsch einordnen zu müssen. Ebenfalls wie im Buchungssystem: die Preise
+ * für Kassenanträge bilden eine eigene Liste (`kassenantrag`) und stehen nicht
+ * als Variante unter der jeweiligen Basisleistung.
  *
- * „Ärztliche Begleitung" hieß bis Oktober 2026 „ärztliche Delegation". Nach der
- * Mail von Dr. Degner vom 07.10.2026 beschreibt der Text, wie wir tatsächlich
- * arbeiten: Behandelt wird von unserer Fachkraft, der Arzt wird auf Grundlage
- * eines Beratungsvertrags bei medizinischen Fragen, Risiken, Kontraindikationen
- * und Hygiene hinzugezogen. Keine ärztliche Anordnung oder Verantwortung je
- * Behandlung behaupten, solange es die nicht gibt (gleicher Wortlaut wie im
- * Kostenvoranschlag, FareWell/domains/clients/_generator/template.json).
+ * Diese Liste hieß bis Oktober 2026 „ärztliche Delegation", dann kurz
+ * „ärztliche Begleitung". Seit November 2026 (Mails von Dr. Degner vom 07.10.
+ * und 21.10.2026) beschreibt die Website keine zweite Kategorie von Behandlung
+ * mehr: Behandelt wird immer gleich, von unserer Fachkraft in eigener
+ * Verantwortung. Die Liste ist allein die Preisliste für Kund:innen, die die
+ * Kostenübernahme bei ihrer Krankenkasse beantragen (Endpreise inklusive
+ * Betäubungscreme, dazu der Kostenvoranschlag und die passenden Rechnungen).
+ * Ein kooperierender Arzt kann bei medizinischen Fragen hinzugezogen werden;
+ * keine ärztliche Anordnung, Aufsicht oder Verantwortung behaupten, solange es
+ * die nicht gibt (gleicher Stand wie im Kostenvoranschlag,
+ * FareWell/domains/clients/_generator/template.json).
  *
  * Hausregel: „permanente Haarentfernung" = allein die Nadelepilation
  * (Elektrolyse); „dauerhafte" = Laser, Microneedling, Body Forming und alle
@@ -44,14 +48,14 @@ export interface PriceRow {
    */
   addon?: boolean;
   /**
-   * Behandlung mit ärztlicher Begleitung. Diese Zeilen stehen wie im
-   * Buchungssystem in einer eigenen Liste (Tabelle `aerztlicheBegleitung`),
-   * nicht als Untervariante bei der Basisleistung. Im JSON-LD hängt
-   * BEGLEITUNG_DE/EN als Zusatz am Namen des Offers.
+   * Preis für den Kassenantrag. Diese Zeilen stehen wie im Buchungssystem in
+   * einer eigenen Liste (Tabelle `kassenantrag`), nicht als Untervariante bei
+   * der Basisleistung. Im JSON-LD hängt KASSE_DE/EN als Zusatz am Namen des
+   * Offers.
    */
-  begleitung?: boolean;
+  kasse?: boolean;
   /**
-   * Herkunft der Behandlung, nur in der Begleitungsliste nötig: dort stehen
+   * Herkunft der Behandlung, nur in der Kassenliste nötig: dort stehen
    * Methoden nebeneinander, deren Namen für sich genommen mehrdeutig wären
    * („Intim komplett" gibt es für Vulva und Penis). Erscheint als leise zweite
    * Zeile in der Tabelle und als Präfix im JSON-LD.
@@ -64,9 +68,9 @@ export interface PriceRow {
   sessions?: number;
 }
 
-/** Namenszusatz der Begleitungsvarianten (Tag in der Tabelle, Name im JSON-LD). */
-export const BEGLEITUNG_DE = 'mit ärztlicher Begleitung';
-export const BEGLEITUNG_EN = 'with medical support';
+/** Namenszusatz der Kassenpreise (Name im JSON-LD). */
+export const KASSE_DE = 'für den Kassenantrag';
+export const KASSE_EN = 'for insurance applications';
 
 export interface PriceTable {
   /** Sichtbare Tabellenüberschrift (leer, wenn die Sektion nur eine Tabelle hat). */
@@ -176,11 +180,12 @@ export const PRICE_TABLES = {
   },
 
   /**
-   * Eigene Preisliste, genau wie im Buchungssystem: Termine mit ärztlicher
-   * Begleitung stehen bei Salonkee getrennt und nicht als Variante unter der Basisleistung. Die
-   * Namen bleiben deshalb wortwörtlich, die Methode steht im `scope`.
+   * Eigene Preisliste, genau wie im Buchungssystem: die Termine für
+   * Kassenanträge stehen bei Salonkee getrennt und nicht als Variante unter
+   * der Basisleistung. Die Namen bleiben deshalb wortwörtlich, die Methode
+   * steht im `scope`. Endpreise inklusive Betäubungscreme.
    */
-  aerztlicheBegleitung: {
+  kassenantrag: {
     de: '',
     en: '',
     rows: [
@@ -189,7 +194,7 @@ export const PRICE_TABLES = {
         en: '60-minute session',
         minutes: 60,
         price: 120,
-        begleitung: true,
+        kasse: true,
         scope: { de: 'Nadelepilation', en: 'Electrolysis' },
       },
       {
@@ -197,7 +202,7 @@ export const PRICE_TABLES = {
         en: '120-minute session',
         minutes: 120,
         price: 240,
-        begleitung: true,
+        kasse: true,
         scope: { de: 'Nadelepilation', en: 'Electrolysis' },
       },
       {
@@ -205,7 +210,7 @@ export const PRICE_TABLES = {
         en: 'Complete lower face',
         minutes: 45,
         price: 250,
-        begleitung: true,
+        kasse: true,
         scope: { de: 'Laser, Gesicht & Kopf', en: 'Laser, face & head' },
       },
       {
@@ -213,7 +218,7 @@ export const PRICE_TABLES = {
         en: 'Complete back',
         minutes: 45,
         price: 250,
-        begleitung: true,
+        kasse: true,
         scope: { de: 'Laser, Körper', en: 'Laser, body' },
       },
       {
@@ -221,7 +226,7 @@ export const PRICE_TABLES = {
         en: 'Front intimate area (shaft, testicles, perineum, pubic area)',
         minutes: 45,
         price: 250,
-        begleitung: true,
+        kasse: true,
         scope: { de: 'Laser, Intimbereich Penis', en: 'Laser, intimate area penis' },
       },
       {
@@ -229,7 +234,7 @@ export const PRICE_TABLES = {
         en: 'Complete intimate area',
         minutes: 60,
         price: 300,
-        begleitung: true,
+        kasse: true,
         scope: { de: 'Laser, Intimbereich Penis', en: 'Laser, intimate area penis' },
       },
     ],
@@ -370,16 +375,16 @@ export const PRICE_SERVICES: PriceService[] = [
     tables: ['laserGesicht', 'laserKoerper', 'laserIntimVulva', 'laserIntimPenis'],
   },
   {
-    anchor: 'aerztliche-begleitung',
-    nameDe: 'Behandlungen mit ärztlicher Begleitung',
-    nameEn: 'Treatments with medical support',
-    serviceTypeDe: 'Ärztliche Begleitung',
-    serviceTypeEn: 'Medical support',
+    anchor: 'krankenkasse',
+    nameDe: 'Preise für den Kassenantrag',
+    nameEn: 'Prices for insurance applications',
+    serviceTypeDe: 'Kostenübernahme durch die Krankenkasse',
+    serviceTypeEn: 'Health insurance cost coverage',
     descriptionDe:
-      'Nadelepilation und Laser mit ärztlicher Begleitung bei FareWell Nürnberg: Behandelt wird von unserer geschulten Fachkraft, ein Arzt begleitet FareWell auf Grundlage eines Beratungsvertrags und wird bei medizinischen Fragen, Risiken und Kontraindikationen hinzugezogen. Eigene Preisliste, eigene Termine.',
+      'Preisliste für Kund:innen, die die Kostenübernahme bei ihrer Krankenkasse beantragen: Nadelepilation und Laser bei FareWell Nürnberg, Endpreise inklusive Betäubungscreme, mit schriftlichem Kostenvoranschlag für den Antrag. Behandelt wird wie immer von unserer geschulten Fachkraft in eigener Verantwortung; ein kooperierender Arzt kann bei medizinischen Fragen hinzugezogen werden. Ob die Kasse zahlt, entscheidet die Kasse. Eigene Preisliste, eigene Termine.',
     descriptionEn:
-      'Electrolysis and laser with medical support at FareWell Nuremberg: the treatment is carried out by our trained specialist, and a physician supports FareWell under a consulting contract and is called in for medical questions, risks and contraindications. Separate price list, separate appointments.',
-    tables: ['aerztlicheBegleitung'],
+      'Price list for clients applying to their health insurer for cost coverage: electrolysis and laser at FareWell Nuremberg, final prices including numbing cream, with a written cost estimate for the application. The treatment is carried out as always by our trained specialist on our own responsibility; a cooperating physician can be consulted on medical questions. Whether the insurer pays is the insurer\'s decision. Separate price list, separate appointments.',
+    tables: ['kassenantrag'],
   },
   {
     anchor: 'microneedling',

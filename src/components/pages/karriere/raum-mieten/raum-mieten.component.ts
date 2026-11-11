@@ -146,8 +146,8 @@ export class RaumMietenComponent implements OnInit, OnDestroy {
         icon: '💉',
         title: t('Ärzt:in für ästhetische Medizin', 'Physician for aesthetic medicine'),
         text: t(
-          'Mit Approbation und Injektionserfahrung, in einem Studio, das bereits mit ärztlicher Begleitung arbeitet.',
-          'With a medical licence and injection experience, in a studio that already works with medical support.'
+          'Mit Approbation und Injektionserfahrung, in einem Studio, das bereits mit einem kooperierenden Arzt zusammenarbeitet.',
+          'With a medical licence and injection experience, in a studio that already works with a cooperating physician.'
         ),
         path: '/karriere/botox-nuernberg',
       },

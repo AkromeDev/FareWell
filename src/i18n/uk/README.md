@@ -89,7 +89,7 @@ Russismen: *брати участь* (nicht приймати участь), *п�
   *косметолог(иня)*, *викладач(ка) йоги*.
 - Benannte Personen behalten das grammatische Geschlecht, das der deutsche
   Text ihnen gibt (*Anna, unsere erste Masseurin* → *масажистка*;
-  *Dr. med. univ. Noam Degner, unser medizinischer Berater* → *консультант*).
+  *Dr. med. univ. Noam Degner, unser kooperierender Arzt* → *лікар*).
   Joé spricht in der Ich-Form: wo das Ukrainische ein Geschlecht verlangt
   (Vergangenheit: *я заснував*), männliche Formen, sonst neutral formulieren.
 
@@ -147,7 +147,9 @@ Lokativ *у Нюрнберзі*. „FareWell Nürnberg“ → *FareWell Нюрн
 | Kostenvoranschlag | кошторис (Kostenvoranschlag) |
 | Ärztevorbehalt | вимога, щоб процедуру виконував лікар (Arztvorbehalt) |
 | ärztliche Delegation (alter Begriff, bis 10/2026; nicht mehr verwenden) | делегування лікарем |
-| ärztliche Begleitung (seit 10/2026 auf der ganzen Website) | лікарський супровід |
+| ärztliche Begleitung (alter Begriff, 10/2026; nicht mehr verwenden) | лікарський супровід |
+| kooperierender Arzt (seit 11/2026: berät, ordnet nicht an, behandelt nicht) | лікар, що співпрацює з FareWell |
+| Preise für den Kassenantrag (die eigene Preisliste, keine zweite Behandlungsart) | ціни для заяви до каси |
 | Medizinischer Dienst (MD) | медична служба каси (MD) |
 | Hausarzt / Hausärztin | сімейний лікар (Hausarzt) |
 | Hirsutismus / Hypertrichose | гірсутизм / гіпертрихоз |

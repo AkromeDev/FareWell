@@ -13,9 +13,10 @@ const PAGE_PATH = '/karriere/botox-nuernberg';
  * Stellenseite für ästhetische Medizin (Botulinumtoxin). Einziger Beruf mit
  * harter Zugangsvoraussetzung: Botulinumtoxin ist verschreibungspflichtig und
  * die Injektion approbierten Ärzt:innen vorbehalten. Die Ärztin oder der Arzt
- * behandelt in eigener Verantwortung; die Seite verweist auf die Behandlungen
- * mit ärztlicher Begleitung, die auch die Preisseite beschreibt (bis Oktober
- * 2026 „ärztliche Delegation“, siehe price-data.ts).
+ * behandelt in eigener Verantwortung. Die Seite erwähnt den kooperierenden
+ * Arzt, der FareWell auf Grundlage eines Beratungsvertrags berät; sie
+ * behauptet keine Behandlungen „mit ärztlicher Begleitung" mehr (Mails
+ * Dr. Degner, 07.10. und 21.10.2026, siehe price-data.ts).
  */
 @Component({
   standalone: true,
@@ -52,8 +53,8 @@ export class BotoxKarriereComponent extends KarriereDetailPage {
         'Physician (m/f/d) for Botox in Nuremberg | FareWell'
       ),
       description: t(
-        'FareWell Nürnberg sucht approbierte Ärzt:innen mit Injektionserfahrung für ein eigenes Angebot mit Botulinumtoxin: Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete, in einem Studio, das bereits mit ärztlicher Begleitung arbeitet.',
-        'FareWell Nuremberg is looking for licensed physicians with injection experience to build their own botulinum toxin offering: a room in the city centre, online booking, flexible hours, no fixed rent, in a studio that already works with medical support.'
+        'FareWell Nürnberg sucht approbierte Ärzt:innen mit Injektionserfahrung für ein eigenes Angebot mit Botulinumtoxin: Raum im Zentrum, Online-Buchung, flexible Zeiten, keine feste Miete, in einem Studio, das bereits mit einem kooperierenden Arzt zusammenarbeitet.',
+        'FareWell Nuremberg is looking for licensed physicians with injection experience to build their own botulinum toxin offering: a room in the city centre, online booking, flexible hours, no fixed rent, in a studio that already works with a cooperating physician.'
       ),
       jobTitle: t(
         'Ärztin / Arzt (m/w/d) für ästhetische Medizin: Botulinumtoxin, freiberuflich',
@@ -155,14 +156,8 @@ export class BotoxKarriereComponent extends KarriereDetailPage {
               'How is the work embedded legally?'
             ),
             answer: t(
-              'Du behandelst in eigener ärztlicher Verantwortung, mit eigener Aufklärung, eigener Dokumentation und eigener Berufshaftpflicht. FareWell stellt Raum, Termine, Buchungssystem und Sichtbarkeit. Mit einem Arzt arbeiten wir bereits zusammen: Einen Teil unserer kosmetischen Behandlungen bieten wir mit ärztlicher Begleitung an. Dein Angebot ergänzt das.',
-              'You treat under your own medical responsibility, with your own informed consent process, your own documentation and your own liability insurance. FareWell provides the room, the appointments, the booking system and the visibility. We already work with a physician: some of our cosmetic treatments are offered with medical support. Your offering adds to that.'
-            ),
-            linkPath: '/price',
-            linkFragment: 'aerztliche-begleitung',
-            linkLabel: t(
-              'Behandlungen mit ärztlicher Begleitung ansehen',
-              'See the treatments with medical support'
+              'Du behandelst in eigener ärztlicher Verantwortung, mit eigener Aufklärung, eigener Dokumentation und eigener Berufshaftpflicht. FareWell stellt Raum, Termine, Buchungssystem und Sichtbarkeit. Mit einem Arzt arbeiten wir bereits zusammen: Ein kooperierender Arzt berät FareWell auf Grundlage eines Beratungsvertrags bei medizinischen Fragen. Dein Angebot ergänzt das.',
+              'You treat under your own medical responsibility, with your own informed consent process, your own documentation and your own liability insurance. FareWell provides the room, the appointments, the booking system and the visibility. We already work with a physician: a cooperating physician advises FareWell under a consulting contract on medical questions. Your offering adds to that.'
             ),
           },
           {
