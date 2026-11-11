@@ -132,8 +132,8 @@ export class HeaderComponent implements OnInit {
       {
         title: t('Ästhetische Medizin', 'Aesthetic Medicine'),
         description: t(
-          'Botulinumtoxin und Hyaluronsäure, ärztlich durchgeführt von Dr. med. Andrea Leo.',
-          'Botulinum toxin and hyaluronic acid, performed by Dr. med. Andrea Leo.'
+          'Faltenbehandlung und Hyaluronsäure, ärztlich durchgeführt von Dr. med. Andrea Leo.',
+          'Wrinkle treatment and hyaluronic acid, performed by Dr. med. Andrea Leo.'
         ),
         route: this.p('/behandlungen/aesthetische-medizin'),
         image: 'assets/images/team/dr-andrea-leo.webp'
