@@ -210,6 +210,10 @@ export const PHASES: Phase[] = [
             en: 'The templates of the Unternehmenswerkstatt Mittelfranken are what banks and chambers expect. Financial plan over three years, including your private expenses.',
           },
           {
+            de: 'Mit dem Entwurf gehst du zur IHK Nürnberg für Mittelfranken. Sie teilt dir jemanden aus ihrem Team zu, der Businessplan und Finanzplan Punkt für Punkt mit dir durchgeht. Danach stellt die IHK die Tragfähigkeitsbescheinigung aus, die das Formular der Agentur für Arbeit verlangt.',
+            en: 'Take the draft to the IHK Nürnberg für Mittelfranken (chamber of commerce). They assign you a member of their staff who goes through the business plan and the financial plan with you, point by point. The chamber then issues the viability certificate that the employment agency form asks for.',
+          },
+          {
             de: 'Steuern gehören in die Kosten. Das war der erste Fehler, den mir jemand aus meinem Plan gestrichen hat.',
             en: 'Taxes belong in the costs. That was the first mistake someone crossed out of my plan.',
           },
@@ -221,6 +225,10 @@ export const PHASES: Phase[] = [
         farewell: {
           de: 'Joé hat Businessplan und Finanzplan für FareWell auf Deutsch und Französisch geschrieben und teilt Struktur und Zahlenlogik gern mit dir.',
           en: 'Joé wrote the business and financial plan for FareWell in German and French and is happy to share the structure and the logic behind the numbers.',
+        },
+        joe: {
+          de: 'Bei mir lief es genau in dieser Reihenfolge: erst die IHK, wo jemand alles mit mir durchgegangen ist, dann mit der Bescheinigung zu Bank und Agentur für Arbeit. Beide haben ohne Einwände zugestimmt.',
+          en: 'For me it went in exactly this order: the chamber of commerce first, where someone went through everything with me, then the bank and the employment agency with the certificate. Both agreed without objection.',
         },
         links: [
           { label: { de: 'Vorlagen der Unternehmenswerkstatt', en: 'Unternehmenswerkstatt templates' }, url: 'https://www.uwd.de/group/p49198' },
@@ -236,8 +244,8 @@ export const PHASES: Phase[] = [
         },
         details: [
           {
-            de: 'Gründungszuschuss der Agentur für Arbeit: nur aus der Arbeitslosigkeit heraus, mit noch mindestens 150 Tagen Restanspruch und einer Tragfähigkeitsbescheinigung von IHK oder HWK.',
-            en: 'The start-up grant of the employment agency: only out of unemployment, with at least 150 days of remaining entitlement and a viability certificate from the chamber.',
+            de: 'Gründungszuschuss der Agentur für Arbeit: nur aus der Arbeitslosigkeit heraus, mit noch mindestens 150 Tagen Restanspruch. Die Reihenfolge: erst die IHK, die deinen Plan mit dir prüft und die Tragfähigkeitsbescheinigung ausstellt, dann Bank und Agentur für Arbeit. Für Handwerksberufe bietet die HWK dasselbe an.',
+            en: 'The start-up grant of the employment agency: only out of unemployment, with at least 150 days of remaining entitlement. The order: first the chamber of commerce, which checks your plan with you and issues the viability certificate, then the bank and the employment agency. For crafts, the chamber of crafts offers the same.',
           },
           {
             de: 'Im Finanzplan für den Gründungszuschuss den Zuschuss selbst nicht als Einnahme eintragen. Das hat mir die Beraterin ausdrücklich gesagt.',
