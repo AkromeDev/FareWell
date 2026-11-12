@@ -7,7 +7,7 @@ The full plan (research, the audit of this site, reasons, roadmap) is kept outsi
 - Living document: https://claude.ai/artifact/LBBmnNW5NULQVyqCjAaJw5 (private link)
 - Markdown export of 10.11.2026: `domains/marketing/seo/2026-11-10_AI-Chat-SEO-Strategy.md` in the FareWell project folder
 
-If this file and the plan differ, the plan wins. State on 10.11.2026: the plan is written and nothing from it is implemented yet. Open tasks live in the plan's roadmap, not here.
+If this file and the plan differ, the plan wins. State on 11.11.2026: eleven of the twelve fixes from the plan's audit of this site are live, through pull request 3 (merged on 11.11.2026). Two of them are partial: four descriptions keep Joé's own longer wording (finding 5), and the laser page still lacks device model, NiSV line and terms (finding 8). Open is finding 11, the Google tag that loads before consent, which Joé decides. Open tasks live in the plan's roadmap, not here.
 
 ## The three sites
 

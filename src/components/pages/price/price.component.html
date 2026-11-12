@@ -828,6 +828,21 @@
           </span>
           <a [routerLink]="p('/ratgeber/us-forces-vat-relief')" [attr.aria-label]="t('Zum Leitfaden (EN): US Forces VAT relief in Germany', 'Read the guide: US Forces VAT relief in Germany')">{{ t('Zum Leitfaden (EN)', 'Read the guide') }}</a>
         </app-guide-card>
+        <app-guide-card
+          icon="💉"
+          [heading]="t('Botox in Nürnberg', 'Botox in Nuremberg')"
+          [revealDelay]="240"
+        >
+          <span class="lang de">
+            Bei Dr. med. Andrea Leo, ab 16.11.2026 bei FareWell. Einzelne Regionen ab 89 €, eine Zone
+            ab 109 €.
+          </span>
+          <span class="lang en">
+            With Dr. med. Andrea Leo, at FareWell from 16 November 2026. Single regions from €89, one
+            zone from €109.
+          </span>
+          <a [routerLink]="p('/behandlungen/botox-nuernberg')">{{ t('Zur Seite Botox in Nürnberg', 'Read about Botox in Nuremberg') }}</a>
+        </app-guide-card>
       </div>
     </app-guide-section>
 
