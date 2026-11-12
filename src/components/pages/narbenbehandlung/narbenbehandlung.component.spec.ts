@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { NarbenbehandlungComponent } from './narbenbehandlung.component';
 
 describe('NarbenbehandlungComponent', () => {
@@ -7,7 +8,8 @@ describe('NarbenbehandlungComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NarbenbehandlungComponent]
+      imports: [NarbenbehandlungComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(NarbenbehandlungComponent);

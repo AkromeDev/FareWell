@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { MicroneedlingComponent } from './microneedling';
 
 describe('MicroneedlingComponent', () => {
@@ -7,7 +8,8 @@ describe('MicroneedlingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MicroneedlingComponent]
+      imports: [MicroneedlingComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MicroneedlingComponent);

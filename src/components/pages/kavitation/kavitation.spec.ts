@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { KavitationComponent } from './kavitation';
 
 describe('Kavitation', () => {
@@ -7,7 +8,8 @@ describe('Kavitation', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [KavitationComponent]
+      imports: [KavitationComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(KavitationComponent);

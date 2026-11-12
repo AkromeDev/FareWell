@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Diodenlaser } from './diodenlaser';
 
 describe('Diodenlaser', () => {
@@ -7,7 +8,8 @@ describe('Diodenlaser', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Diodenlaser]
+      imports: [Diodenlaser],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(Diodenlaser);

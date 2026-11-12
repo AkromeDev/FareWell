@@ -1,14 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { HistorieComponent } from './historie.component';
 
-describe('ValuesComponent', () => {
+describe('HistorieComponent', () => {
   let component: HistorieComponent;
   let fixture: ComponentFixture<HistorieComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HistorieComponent ]
+      imports: [ HistorieComponent ],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 
