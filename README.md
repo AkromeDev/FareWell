@@ -5,6 +5,12 @@ Marketing website for **FareWell**, a beauty & wellness studio in Nürnberg
 and massage). Built with **Angular 20** (standalone components) with SSR /
 prerendering, deployed as a static site to [farewell.salon](https://farewell.salon).
 
+## Architecture
+
+[`ARCHITECTURE.md`](ARCHITECTURE.md) says how the code is cut today: what runs, where each layer
+sits, the groups the folders show, every outside thing the site reaches, and where the code does
+not follow the layers yet.
+
 ## Install
 
 Run `npm ci`: it installs exactly what `package-lock.json` holds. `.npmrc` keeps
