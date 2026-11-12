@@ -5,6 +5,12 @@ Marketing website for **FareWell**, a beauty & wellness studio in Nürnberg
 and massage). Built with **Angular 20** (standalone components) with SSR /
 prerendering, deployed as a static site to [farewell.salon](https://farewell.salon).
 
+## Install
+
+Run `npm ci`: it installs exactly what `package-lock.json` holds. `.npmrc` keeps
+install scripts off (`ignore-scripts=true`) and saves versions exactly
+(`save-exact=true`); the build, the prerender and the tests need no install script.
+
 ## Development server
 
 Run `npm start` (`ng serve`) for a dev server and open `http://localhost:4200/`.
