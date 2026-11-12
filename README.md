@@ -11,6 +11,9 @@ Run `npm ci`: it installs exactly what `package-lock.json` holds. `.npmrc` keeps
 install scripts off (`ignore-scripts=true`) and saves versions exactly
 (`save-exact=true`); the build, the prerender and the tests need no install script.
 
+`npm run age` asks the npm registry when each locked version was published and refuses
+one younger than seven days. Run it before a changed lockfile is committed.
+
 ## Development server
 
 Run `npm start` (`ng serve`) for a dev server and open `http://localhost:4200/`.

@@ -12,7 +12,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "update:google-reviews": "node src/assets/scripts/update-google-reviews.mjs",
-    "supabase:keepalive": "node tools/supabase-keepalive.mjs"
+    "supabase:keepalive": "node tools/supabase-keepalive.mjs",
+    "age": "python3 -I tools/package-age.py package-lock.json"
   },
   "dependencies": {
     "@angular/animations": "20.3.15",
