@@ -23,12 +23,14 @@
         <p class="hero-sub hero-lead" appReveal [revealDelay]="300">
           <span class="lang de"
             >9D Breathwork ist eine geführte Atemreise über Kopfhörer mit räumlicher Klangwelt.
-            Franziska Preusche leitet sie bei FareWell am Frauentorgraben 5 in Nürnberg, ab 49 €
-            zum Einführungspreis.</span
+            Franziska Preusche leitet sie bei FareWell am Frauentorgraben 5 in Nürnberg. Eine
+            Journey in der Gruppe kostet {{ groupPrice.de }}, deine erste {{ firstPrice.de }} mit dem
+            Code {{ code }}. Gebucht wird über Salonkee.</span
           ><span class="lang en"
             >9D Breathwork is a guided breath journey on headphones with a spatial sound world.
-            Franziska Preusche leads it at FareWell, Frauentorgraben 5 in Nuremberg, from €49 at the
-            introductory price.</span
+            Franziska Preusche leads it at FareWell, Frauentorgraben 5 in Nuremberg. A group
+            journey costs {{ groupPrice.en }}, your first one {{ firstPrice.en }} with the code
+            {{ code }}. You book through Salonkee.</span
           >
         </p>
         <p class="hero-sub" appReveal [revealDelay]="340">
@@ -130,6 +132,95 @@
   </section>
 
   <!-- ===================================================================== -->
+  <!-- Termine: jede Zeile kommt aus src/app/domain/level44.json. Die LEVEL 44 -->
+  <!-- Website verlinkt auf #termine, die id bleibt.                           -->
+  <!-- ===================================================================== -->
+  <section class="alt-band" id="termine">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" appReveal>
+          <span class="lang de">Termine in Nürnberg</span><span class="lang en">Dates in Nuremberg</span>
+        </p>
+        <h2 class="section-title" appReveal [revealDelay]="60">
+          <span class="lang de">Die nächsten <em>9D Journeys bei FareWell.</em></span
+          ><span class="lang en">The next <em>9D journeys at FareWell.</em></span>
+        </h2>
+      </div>
+      @if (dates.length) {
+        <ul class="cards dates">
+          @for (date of dates; track date.id) {
+            <li class="card" [id]="'termin-' + date.id" appReveal [revealDelay]="$index * 100">
+              <span class="card-num"
+                ><span class="lang de">{{ date.dateDe }}</span
+                ><span class="lang en">{{ date.dateEn }}</span></span
+              >
+              <h3>
+                @if (brandPublic) {
+                  <a
+                    [href]="date.journeyUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    (click)="trackCrosslink('termin-' + date.id)"
+                    >{{ date.journey }}</a
+                  >
+                } @else {
+                  {{ date.journey }}
+                }
+              </h3>
+              <p class="offer-tag">
+                <span class="lang de">{{ date.time }} bis {{ date.endTime }} Uhr · 9D Group Experience</span
+                ><span class="lang en">{{ date.time }} to {{ date.endTime }} · 9D Group Experience</span>
+              </p>
+              <p>
+                <span class="lang de"
+                  >{{ groupPrice.de }}, deine erste Journey {{ firstPrice.de }} mit dem Code {{ code }}
+                  ({{ firstVisitRule.de }}). Höchstens {{ maxPlaces }} Plätze. Bei FareWell,
+                  Frauentorgraben 5, Nürnberg.</span
+                ><span class="lang en"
+                  >{{ groupPrice.en }}, your first journey {{ firstPrice.en }} with the code {{ code }}
+                  ({{ firstVisitRule.en }}). {{ maxPlaces }} places at most. At FareWell,
+                  Frauentorgraben 5, Nuremberg.</span
+                >
+              </p>
+              <div class="offer-cta">
+                <a
+                  class="btn-gold no-underline"
+                  [href]="bookingUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  (click)="trackLead('level44-termin-' + date.id)"
+                  ><span class="lang de">Platz über Salonkee buchen</span
+                  ><span class="lang en">Book a place through Salonkee</span></a
+                >
+              </div>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="section-lede">
+          <span class="lang de"
+            >Der nächste Termin steht noch nicht im Kalender. Die 9D Group Experience ist für jeden
+            zweiten Sonntag um 11:00 Uhr geplant; sobald ein Termin feststeht, steht er hier und in
+            Salonkee.</span
+          ><span class="lang en"
+            >The next date is not in the calendar yet. The 9D Group Experience is planned for every
+            second Sunday at 11:00; as soon as a date is set, it appears here and in Salonkee.</span
+          >
+        </p>
+      }
+      <p class="small-note">
+        <span class="lang de"
+          >Bitte lies vor dem Buchen die <a href="#sicherheit" [appScrollTo]="'sicherheit'">Kontraindikationen</a>.
+          Vor der ersten Teilnahme füllst du vor Ort eine kurze Gesundheitsauskunft aus.</span
+        ><span class="lang en"
+          >Please read the <a href="#sicherheit" [appScrollTo]="'sicherheit'">contraindications</a> before
+          booking. Before taking part for the first time you fill in a short health form on site.</span
+        >
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
   <!-- 2. Was ist 9D Breathwork?                                              -->
   <!-- ===================================================================== -->
   <section class="vertrauen" id="breathwork">
@@ -221,6 +312,7 @@
           ><span class="lang en">The <em>nine elements.</em></span>
         </h2>
       </div>
+      @if (!brandPublic) {
       <ol class="nine">
         @for (item of nine; track $index) {
           <li class="nine-item" appReveal [revealDelay]="($index % 3) * 80">
@@ -246,6 +338,40 @@
           be understood as nine scientifically proven dimensions of consciousness.</span
         >
       </p>
+      } @else {
+        <!-- Arbeitsteilung: die Methode erklärt ihre eigene Website, hier steht nur der Hinweis. -->
+        <p class="section-lede">
+          <span class="lang de"
+            >Neun Elemente aus Atem und Klang machen eine 9D Journey aus, von der räumlichen
+            Klangwelt bis zum somatischen Breathwork. Was jedes Element ist und welche Journeys es
+            gibt, erklärt Franziska auf ihrer eigenen Website.</span
+          ><span class="lang en"
+            >Nine elements of breath and sound make up a 9D journey, from the spatial sound world to
+            somatic breathwork. Franziska explains each element and every journey on her own
+            website.</span
+          >
+        </p>
+        <div class="prices-cta pointer-ctas">
+          <a
+            class="btn-outline no-underline"
+            [href]="methodUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="trackCrosslink('elemente-methode')"
+            ><span class="lang de">Was ist 9D Breathwork? Auf {{ siteLabel }}</span
+            ><span class="lang en">What is 9D Breathwork? On {{ siteLabel }}</span></a
+          >
+          <a
+            class="btn-outline no-underline"
+            [href]="journeysUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="trackCrosslink('elemente-journeys')"
+            ><span class="lang de">Alle Journeys auf {{ siteLabel }}</span
+            ><span class="lang en">All journeys on {{ siteLabel }}</span></a
+          >
+        </div>
+      }
     </div>
   </section>
 
@@ -375,7 +501,7 @@
               </p>
             }
             <div class="offer-cta">
-              @if (offer.cta) {
+              @if (offer.cta && isBookable(offer)) {
                 <a
                   class="btn-gold no-underline"
                   [href]="offerUrl(offer)"
@@ -386,7 +512,7 @@
                   ><span class="lang en">{{ offer.cta.en }}</span></a
                 >
               }
-              @if (offer.later) {
+              @if (offer.later && !isBookable(offer)) {
                 <span class="offer-later"
                   ><span class="lang de">{{ offer.later.de }}</span
                   ><span class="lang en">{{ offer.later.en }}</span></span
@@ -396,30 +522,29 @@
           </article>
         }
 
-        @if (showOnline) {
+        @if (brandPublic) {
+          <!-- Online-Sessions gehören zu ihrer eigenen Website (Arbeitsteilung). -->
           <article class="tx-card" id="offer-online" appReveal [revealDelay]="90">
             <img class="offer-signet" [src]="signet" width="720" height="331" alt="" loading="lazy" decoding="async" />
-            <h3>
-              <span class="lang de">9D Breathwork Live Online</span
-              ><span class="lang en">9D Breathwork Live Online</span>
-            </h3>
+            <h3>9D Breathwork Live Online</h3>
             <p class="tx-blurb">
               <span class="lang de"
-                >Zusätzlich bietet Franziska eine Live-Journey online an. Die Termine und die
-                Buchung laufen über LEVEL 44, nicht über FareWell.</span
+                >Franziska bietet 9D Breathwork auch live online an. Alles dazu steht auf ihrer
+                eigenen Website, nicht bei FareWell.</span
               ><span class="lang en"
-                >Franziska also offers a live journey online. Dates and booking are handled by
-                LEVEL 44, not by FareWell.</span
+                >Franziska also offers 9D Breathwork live online. Everything about it is on her own
+                website, not at FareWell.</span
               >
             </p>
-            <p class="offer-facts">
-              <span class="lang de">Einmal pro Woche, voraussichtlich mittwochs 19:00 Uhr · ca. 2 Stunden · 49&nbsp;€</span
-              ><span class="lang en">Once a week, probably Wednesdays at 19:00 · about 2 hours · €49</span>
-            </p>
             <div class="offer-cta">
-              <a class="btn-outline no-underline" [href]="level44Url" target="_blank" rel="noopener noreferrer"
-                ><span class="lang de">Termine auf level44.live</span
-                ><span class="lang en">Dates on level44.live</span></a
+              <a
+                class="btn-outline no-underline"
+                [href]="onlineUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                (click)="trackCrosslink('online')"
+                ><span class="lang de">Online-Sessions auf {{ siteLabel }}</span
+                ><span class="lang en">Online sessions on {{ siteLabel }}</span></a
               >
             </div>
           </article>
@@ -672,6 +797,7 @@
         />
       </figure>
       <div class="prose" appReveal>
+        @if (!brandPublic) {
         <p>
           <span class="lang de"
             >Ich glaube, dass persönliche Veränderung nicht nur im Denken stattfindet, sondern auch
@@ -696,12 +822,27 @@
             personal reflection.</span
           >
         </p>
+        } @else {
+        <!-- Arbeitsteilung: Franziska stellt sich auf ihrer eigenen Website vor. -->
+        <p>
+          <span class="lang de"
+            >Franziska Preusche hat LEVEL 44 gegründet und leitet die Journeys bei FareWell selbst.
+            Wer sie ist und wie sie arbeitet, erzählt sie auf ihrer eigenen Website: </span
+          ><span class="lang en"
+            >Franziska Preusche founded LEVEL 44 and leads the journeys at FareWell herself. Who she
+            is and how she works, she tells on her own website: </span
+          ><a [href]="aboutUrl" target="_blank" rel="noopener noreferrer" (click)="trackCrosslink('franziska-about')"
+            ><span class="lang de">Über Franziska auf {{ siteLabel }}</span
+            ><span class="lang en">About Franziska on {{ siteLabel }}</span></a
+          >
+        </p>
+        }
         <p>
           <span class="lang de">Franziska ist selbständige Kooperationspartnerin bei FareWell. </span
           ><span class="lang en">Franziska is a self-employed cooperation partner at FareWell. </span>
           <span class="lang de">Mehr über LEVEL 44: </span
           ><span class="lang en">More about LEVEL 44: </span
-          ><a [href]="level44Url" target="_blank" rel="noopener noreferrer">level44.live</a>
+          ><a [href]="level44Url" target="_blank" rel="noopener noreferrer" (click)="trackCrosslink('franziska')">{{ siteLabel }}</a>
         </p>
       </div>
       </div>
@@ -870,7 +1011,7 @@
           ><span class="lang de">LEVEL 44 auf Instagram: </span
           ><span class="lang en">LEVEL 44 on Instagram: </span>&#64;level44.live</a
         >
-        <a [href]="level44Url" target="_blank" rel="noopener noreferrer">level44.live</a>
+        <a [href]="level44Url" target="_blank" rel="noopener noreferrer" (click)="trackCrosslink('besuch')">{{ siteLabel }}</a>
       </p>
     </div>
   </section>
