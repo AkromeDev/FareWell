@@ -369,6 +369,24 @@ ul {
   }
 }
 
+// Termine (level44.json): dieselben Karten, als Liste.
+.dates {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .card p + p {
+    margin-top: 10px;
+  }
+}
+
+// Zwei Verweise auf ihre eigene Website nebeneinander.
+.pointer-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .card-num {
   display: inline-block;
   padding: 5px 12px;

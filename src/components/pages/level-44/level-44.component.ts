@@ -1,8 +1,25 @@
 import {
   FRANZISKA_PREUSCHE_ID,
   LEVEL44_BRAND_ID,
-  LEVEL44_PAGE,
+  ORG_REF,
 } from 'src/app/domain/entities';
+import {
+  LEVEL44,
+  LEVEL44_SITE_LABEL,
+  Level44OfferId,
+  Level44Session,
+  euroDe,
+  euroEn,
+  level44BookingUrl,
+  level44EventId,
+  level44Minutes,
+  level44Offer,
+  level44Price,
+  level44SalonUrl,
+  level44SiteUrl,
+  sessionWhen,
+  upcomingSessions,
+} from 'src/app/domain/level44';
 import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -41,8 +58,9 @@ const GALLERY: { src: string; alt: Bi }[] = [
 const OG_IMAGE = `${ORIGIN}/assets/images/partner/level44-breathwork-gastgeberin.jpg`;
 const PHONE_HREF = 'tel:+4915757995694';
 const PHONE_LABEL = '+49 157 5799 5694';
-const LEVEL44_URL = 'https://level44.live';
-const INSTAGRAM_URL = 'https://www.instagram.com/level44.live/';
+/** Ihre eigene Website und ihr Instagram: aus level44.json, dort einmal geschrieben. */
+const LEVEL44_URL = LEVEL44.brandSite.origin;
+const INSTAGRAM_URL = LEVEL44.brandSite.instagram;
 /**
  * Die Hörprobe aus ihrer Mail vom 03.11.2026. Wistia lädt von einem US-Server,
  * deshalb Zwei-Klick-Lösung: der iframe entsteht erst nach dem Klick. Das
@@ -51,23 +69,62 @@ const INSTAGRAM_URL = 'https://www.instagram.com/level44.live/';
  */
 const WISTIA_EMBED = 'https://fast.wistia.net/embed/iframe/nx15jjlaj3?web_component=true&seo=true';
 /**
- * Online-Journeys vorerst nicht auf der Seite (Joé, 09.11.2026): offen, ob sie
- * sie von hier aus anbietet. Wenn ja, gelten auch dafür die 30 %. Dann auf true.
+ * Preise, Dauer, Termine, der Code für die erste Journey, die Platzzahl und
+ * alle Buchungslinks stehen in src/app/domain/level44.json und nirgends sonst.
+ * Dieselbe Datei liest die LEVEL 44 Website (https://farewell.salon/data/level44.json).
+ * Salonkee ist die Wahrheit: einen Preis erst dort ändern, dann in der Datei.
  */
-const SHOW_ONLINE = false;
+const GROUP_PRICE = level44Price('group');
+const EVENING_PRICE = level44Price('evening');
+const FIRST_PRICE = LEVEL44.firstVisit.price;
+const CODE = LEVEL44.firstVisit.code;
+const MAX_PLACES = LEVEL44.groupMaxPlaces;
+/** Der Abend dauert so lang wie sein Platz im Kalender, in Stunden. */
+const EVENING_HOURS = level44Minutes('evening') / 60;
 
-const SOUL_TOUCH_SERVICE_ID = 234768;
-
-function checkoutUrl(serviceId: number): string {
-  return `https://salonkee.de/checkout/farewell?serviceID=${serviceId}`;
-}
+/**
+ * Arbeitsteilung mit ihrer eigenen Website (AI-SEO-STRATEGY.md, „The three sites“).
+ * false: ihre Website ist noch nicht öffentlich, diese Seite ist das Zuhause der
+ * Marke und erklärt auch die Methode und stellt Franziska vor. true: Methode,
+ * Journeys, Online-Sessions und Franziska selbst stehen auf ihrer Website, hier
+ * bleibt der Ort: Termine, Preise, Buchung, Anfahrt, Kontraindikationen, FAQ.
+ * Der Wert steht in level44.json (brandSite.public).
+ */
+const BRAND_SITE_PUBLIC = LEVEL44.brandSite.public;
 
 const DE_TITLE = '9D Breathwork Nürnberg: LEVEL 44 bei FareWell';
 const EN_TITLE = '9D Breathwork Nuremberg: LEVEL 44 at FareWell';
-const DE_DESCRIPTION =
-  '9D Breathwork und Soul Touch mit Franziska Preusche bei FareWell in Nürnberg: geführte Atemreisen über Kopfhörer. Erste Journeys am 15.11. und 29.11.2026.';
-const EN_DESCRIPTION =
-  '9D Breathwork and Soul Touch with Franziska Preusche at FareWell Nuremberg: guided breath journeys on headphones. First journeys 15 and 29 November 2026.';
+const DE_DESCRIPTION_BASE =
+  '9D Breathwork und Soul Touch mit Franziska Preusche bei FareWell in Nürnberg: geführte Atemreisen über Kopfhörer.';
+const EN_DESCRIPTION_BASE =
+  '9D Breathwork and Soul Touch with Franziska Preusche at FareWell Nuremberg: guided breath journeys on headphones.';
+
+/**
+ * Der letzte Satz der Beschreibung nennt die nächsten Termine aus level44.json.
+ * Mit null, einem oder zwei Terminen bleibt die Beschreibung zwischen 120 und
+ * 155 Zeichen (level-44.component.spec.ts prüft alle drei Fälle).
+ */
+export function level44Description(sessions: Level44Session[]): Bi {
+  const next = sessions.slice(0, 2).map((session) => sessionWhen(session));
+  const short = (when: { dateDe: string }) => when.dateDe.slice(3, 9);
+  const shortEn = (when: { dateEn: string }) => when.dateEn.split(' ').slice(1, 3).join(' ');
+  if (next.length === 0) {
+    return {
+      de: `${DE_DESCRIPTION_BASE} Jeden zweiten Sonntag um 11:00 Uhr.`,
+      en: `${EN_DESCRIPTION_BASE} Every second Sunday at 11:00.`,
+    };
+  }
+  if (next.length === 1) {
+    return {
+      de: `${DE_DESCRIPTION_BASE} Nächste Journey am ${next[0].dateDe.slice(3)}.`,
+      en: `${EN_DESCRIPTION_BASE} Next journey on ${next[0].dateEn.slice(4)}.`,
+    };
+  }
+  return {
+    de: `${DE_DESCRIPTION_BASE} Nächste Termine: ${short(next[0])} und ${next[1].dateDe.slice(3)}.`,
+    en: `${EN_DESCRIPTION_BASE} Next journeys ${shortEn(next[0])} and ${next[1].dateEn.slice(4)}.`,
+  };
+}
 
 /** Zweisprachiger Text. Beide Fassungen stehen im DOM, das globale CSS blendet eine aus. */
 export interface Bi {
@@ -86,6 +143,7 @@ interface NineElement {
 }
 
 export interface Offer {
+  /** Bei Breathwork die id des Angebots in level44.json. */
   id: string;
   title: Bi;
   tag: Bi;
@@ -93,9 +151,10 @@ export interface Offer {
   facts: Bi[];
   /** „Enthalten“-Liste. */
   includes?: Bi[];
-  /** Salonkee-Dienstleistung mit eigenem Buchungslink; Kurse haben keinen und führen auf die Salonseite. */
-  serviceId?: number;
-  /** Beschriftung des Buchungsbuttons; leer, solange es noch keine buchbaren Termine gibt. */
+  /**
+   * Beschriftung des Buchungsbuttons. Gezeigt wird er nur, wenn das Angebot laut
+   * level44.json buchbar ist; wohin er führt, steht dort (directLink, salonkeeServiceId).
+   */
   cta?: Bi;
   /** Hinweis statt Button. */
   later?: Bi;
@@ -112,33 +171,35 @@ interface FaqEntry {
   a: Bi;
 }
 
+/** Die Eckdaten unter dem Kopf. Jede Zahl kommt aus level44.json. */
 const STATS: Stat[] = [
   {
-    value: { de: 'So 15.11.', en: 'Sun 15 Nov' },
-    label: { de: 'Erste Journey um 11:00: THE AWAKENING', en: 'First journey at 11:00: THE AWAKENING' },
+    value: { de: euroDe(GROUP_PRICE), en: euroEn(GROUP_PRICE) },
+    label: { de: 'pro Journey in der Gruppe, ca. 2,5–3 Stunden', en: 'per group journey, about 2.5–3 hours' },
   },
   {
-    value: { de: 'So 29.11.', en: 'Sun 29 Nov' },
-    label: { de: 'Zweite Journey um 11:00: LETTING GO', en: 'Second journey at 11:00: LETTING GO' },
+    value: { de: euroDe(FIRST_PRICE), en: euroEn(FIRST_PRICE) },
+    label: { de: `für deine erste Journey mit dem Code ${CODE}`, en: `for your first journey with the code ${CODE}` },
   },
   {
-    value: { de: '12', en: '12' },
+    value: { de: String(MAX_PLACES), en: String(MAX_PLACES) },
     label: { de: 'Plätze höchstens in jeder Gruppe', en: 'places at most in each group' },
   },
   {
-    value: { de: '49 €', en: '€49' },
-    label: { de: 'Einführungspreis, regulär 77 €', en: 'Introductory price, regularly €77' },
+    value: { de: 'So 11:00', en: 'Sun 11:00' },
+    label: { de: 'jeden zweiten Sonntag bei FareWell', en: 'every second Sunday at FareWell' },
   },
 ];
 
-/**
- * The dated sessions the page lists (STATS above and the group offer below).
- * Each gets its own Event in the structured data. Keep the three in step.
- */
-const SESSIONS = [
-  { date: '2026-11-15', time: '11:00', journey: 'THE AWAKENING' },
-  { date: '2026-11-29', time: '11:00', journey: 'LETTING GO' },
-];
+/** Der Satz zum Preis der ersten Journey, überall derselbe. */
+const FIRST_VISIT: Bi = {
+  de: `deine erste Journey ${euroDe(FIRST_PRICE)} mit dem Code ${CODE}`,
+  en: `your first journey ${euroEn(FIRST_PRICE)} with the code ${CODE}`,
+};
+const FIRST_VISIT_RULE: Bi = {
+  de: 'einmal pro Person, nur für Neukunden',
+  en: 'once per person, new clients only',
+};
 
 const BENEFITS: Bi[] = [
   { de: 'bewusste Wahrnehmung deiner Gefühle und Körperempfindungen', en: 'conscious awareness of your feelings and physical sensations' },
@@ -194,7 +255,24 @@ const NINE: NineElement[] = [
   },
 ];
 
-const OFFERS: Offer[] = [
+/** Ein Breathwork-Angebot dieser Seite; seine id ist die des Angebots in level44.json. */
+interface BreathOffer extends Offer {
+  id: Level44OfferId;
+}
+
+/** Ein Termin, wie die Liste oben auf der Seite ihn zeigt. */
+interface DateRow {
+  id: string;
+  dateDe: string;
+  dateEn: string;
+  time: string;
+  endTime: string;
+  journey: string;
+  /** Die Seite der Journey auf ihrer Website. Verlinkt wird sie erst, wenn die öffentlich ist. */
+  journeyUrl: string;
+}
+
+const OFFERS: BreathOffer[] = [
   {
     id: 'group',
     title: { de: '9D Group Experience', en: '9D Group Experience' },
@@ -204,9 +282,9 @@ const OFFERS: Offer[] = [
       en: 'One journey, one shared room and your own very personal experience. Each journey has its own focus, for example conscious letting go, inner clarity or a new beginning. Nobody expects you to feel anything in particular or to share anything with the group.',
     },
     facts: [
-      { de: 'Jeden zweiten Sonntag, 11:00 Uhr. Start: So 15.11. THE AWAKENING, So 29.11. LETTING GO', en: 'Every second Sunday, 11:00. Starting Sun 15 Nov THE AWAKENING, Sun 29 Nov LETTING GO' },
-      { de: 'Ca. 2,5–3 Stunden inklusive Einführung und Integration · höchstens 12 Plätze', en: 'About 2.5–3 hours including introduction and integration · 12 places at most' },
-      { de: '49 € Einführungspreis, regulär 77 €', en: '€49 introductory price, regularly €77' },
+      { de: 'Jeden zweiten Sonntag, 11:00 Uhr. Die nächsten Termine stehen oben auf dieser Seite.', en: 'Every second Sunday, 11:00. The next dates are at the top of this page.' },
+      { de: `Ca. 2,5–3 Stunden inklusive Einführung und Integration · höchstens ${MAX_PLACES} Plätze`, en: `About 2.5–3 hours including introduction and integration · ${MAX_PLACES} places at most` },
+      { de: `${euroDe(GROUP_PRICE)} · ${FIRST_VISIT.de} (${FIRST_VISIT_RULE.de})`, en: `${euroEn(GROUP_PRICE)} · ${FIRST_VISIT.en} (${FIRST_VISIT_RULE.en})` },
     ],
     cta: { de: 'Nächste Journey buchen', en: 'Book the next journey' },
   },
@@ -223,8 +301,9 @@ const OFFERS: Offer[] = [
       { de: 'Gemeinsame Integration', en: 'Shared integration' },
       { de: 'Danach 60 Minuten Soul Touch', en: 'Then 60 minutes of Soul Touch' },
     ],
-    facts: [{ de: '148 € Einführungspreis, regulär 176 € · ein Platz pro Termin', en: '€148 introductory price, regularly €176 · one place per date' }],
+    facts: [{ de: `${euroDe(level44Price('group-integration'))} · ein Platz pro Termin`, en: `${euroEn(level44Price('group-integration'))} · one place per date` }],
     cta: { de: 'Experience mit Integration buchen', en: 'Book the experience with integration' },
+    later: { de: 'Online noch nicht buchbar. Bitte frag uns direkt.', en: 'Not bookable online yet. Please ask us directly.' },
   },
   {
     id: 'evening',
@@ -234,8 +313,9 @@ const OFFERS: Offer[] = [
       de: 'Eine geführte 9D Atemreise nach einem vollen Tag, mit immersiver Klangwelt und Zeit zur Integration.',
       en: 'A guided 9D breath journey after a full day, with an immersive sound world and time for integration.',
     },
-    facts: [{ de: 'Geplant donnerstags, 19:30 Uhr · 77 €, 49 € Einführungspreis bei ausgewählten Terminen', en: 'Planned on Thursdays, 19:30 · €77, €49 introductory price on selected dates' }],
-    later: { de: 'Start und genaue Dauer folgen.', en: 'Start date and exact duration to follow.' },
+    facts: [{ de: `Geplant donnerstags, 19:30 Uhr · ca. ${EVENING_HOURS} Stunden · ${euroDe(EVENING_PRICE)}, ${FIRST_VISIT.de}`, en: `Planned on Thursdays, 19:30 · about ${EVENING_HOURS} hours · ${euroEn(EVENING_PRICE)}, ${FIRST_VISIT.en}` }],
+    cta: { de: 'Evening Experience buchen', en: 'Book the evening experience' },
+    later: { de: 'Start folgt.', en: 'Start date to follow.' },
   },
   {
     id: 'private',
@@ -252,8 +332,7 @@ const OFFERS: Offer[] = [
       { de: 'Integrationsgespräch', en: 'Integration conversation' },
       { de: 'Reflexionsimpulse für danach', en: 'Reflection prompts for afterwards' },
     ],
-    facts: [{ de: 'Ca. 120 Minuten · 249 €', en: 'About 120 minutes · €249' }],
-    serviceId: 234765,
+    facts: [{ de: `Ca. ${level44Minutes('private')} Minuten · ${euroDe(level44Price('private'))}`, en: `About ${level44Minutes('private')} minutes · ${euroEn(level44Price('private'))}` }],
     cta: { de: 'Private Experience buchen', en: 'Book the private experience' },
   },
   {
@@ -271,17 +350,24 @@ const OFFERS: Offer[] = [
       { de: 'Soul Touch Körperarbeit', en: 'Soul Touch bodywork' },
       { de: 'Abschließende Reflexion', en: 'Closing reflection' },
     ],
-    facts: [{ de: 'Ca. 210 Minuten · 333 €', en: 'About 210 minutes · €333' }],
-    serviceId: 234766,
+    facts: [{ de: `Ca. ${level44Minutes('premium')} Minuten · ${euroDe(level44Price('premium'))}`, en: `About ${level44Minutes('premium')} minutes · ${euroEn(level44Price('premium'))}` }],
     cta: { de: 'Premium Experience buchen', en: 'Book the premium experience' },
   },
 ];
+
+/** „60 Minuten · 99 €“ für eine der drei Soul Touch Längen, aus level44.json. */
+function soulTouchTag(id: Level44OfferId): Bi {
+  return {
+    de: `${level44Minutes(id)} Minuten · ${euroDe(level44Price(id))}`,
+    en: `${level44Minutes(id)} minutes · ${euroEn(level44Price(id))}`,
+  };
+}
 
 const SOUL_TOUCH: Offer[] = [
   {
     id: 'reset',
     title: { de: 'The Reset', en: 'The Reset' },
-    tag: { de: '60 Minuten · 99 €', en: '60 minutes · €99' },
+    tag: soulTouchTag('soul-touch-60'),
     text: {
       de: 'Eine bewusste Auszeit mit kurzem Gespräch, achtsamer Körperarbeit und Raum zum Nachspüren.',
       en: 'A conscious time-out with a short conversation, mindful bodywork and room to feel what follows.',
@@ -291,7 +377,7 @@ const SOUL_TOUCH: Offer[] = [
   {
     id: 'deep-release',
     title: { de: 'Deep Release', en: 'Deep Release' },
-    tag: { de: '90 Minuten · 149 €', en: '90 minutes · €149' },
+    tag: soulTouchTag('soul-touch-90'),
     text: {
       de: 'Mehr Zeit für deine Intention, achtsame Berührung und begleitete Körperwahrnehmung.',
       en: 'More time for your intention, mindful touch and guided body awareness.',
@@ -301,7 +387,7 @@ const SOUL_TOUCH: Offer[] = [
   {
     id: 'full',
     title: { de: 'Full Experience', en: 'Full Experience' },
-    tag: { de: '120 Minuten · 199 €', en: '120 minutes · €199' },
+    tag: soulTouchTag('soul-touch-120'),
     text: {
       de: 'Zwei Stunden für Intention, individuelle Körperarbeit, bewusste Atmung und Integration, ohne Zeitdruck.',
       en: 'Two hours for intention, individual bodywork, conscious breathing and integration, with no time pressure.',
@@ -310,46 +396,60 @@ const SOUL_TOUCH: Offer[] = [
   },
 ];
 
+/** „ca. 120 Min.“ und „249 €“ einer Zeile der Preistabelle, aus level44.json. */
+const minutesCell = (id: Level44OfferId, about = false): Bi => ({
+  de: `${about ? 'ca. ' : ''}${level44Minutes(id)} Min.`,
+  en: `${about ? 'about ' : ''}${level44Minutes(id)} min`,
+});
+const priceCell = (id: Level44OfferId): Bi => ({
+  de: euroDe(level44Price(id)),
+  en: euroEn(level44Price(id)),
+});
+const firstVisitCell = (id: Level44OfferId): Bi => ({
+  de: `${euroDe(level44Price(id))} · erste Journey ${euroDe(FIRST_PRICE)} (Code ${CODE})`,
+  en: `${euroEn(level44Price(id))} · first journey ${euroEn(FIRST_PRICE)} (code ${CODE})`,
+});
+
 const PRICES: PriceRow[] = [
   {
-    name: { de: '9D Group Experience (So 11:00, max. 12)', en: '9D Group Experience (Sun 11:00, max. 12)' },
+    name: { de: `9D Group Experience (So 11:00, max. ${MAX_PLACES})`, en: `9D Group Experience (Sun 11:00, max. ${MAX_PLACES})` },
     duration: { de: 'ca. 2,5–3 Std.', en: 'about 2.5–3 h' },
-    price: { de: '49 € Einführung · 77 € regulär', en: '€49 introductory · €77 regular' },
+    price: firstVisitCell('group'),
   },
   {
     name: { de: 'Group + Soul Touch Integration (1 Platz)', en: 'Group + Soul Touch Integration (1 place)' },
-    duration: { de: 'Group + 60 Min.', en: 'Group + 60 min' },
-    price: { de: '148 € Einführung · 176 € regulär', en: '€148 introductory · €176 regular' },
+    duration: { de: `Group + ${level44Minutes('soul-touch-60')} Min.`, en: `Group + ${level44Minutes('soul-touch-60')} min` },
+    price: priceCell('group-integration'),
   },
   {
     name: { de: '9D Evening Experience (Do 19:30)', en: '9D Evening Experience (Thu 19:30)' },
-    duration: { de: 'folgt', en: 'to follow' },
-    price: { de: '77 € · 49 € Einführung', en: '€77 · €49 introductory' },
+    duration: { de: `ca. ${EVENING_HOURS} Std.`, en: `about ${EVENING_HOURS} h` },
+    price: firstVisitCell('evening'),
   },
   {
     name: { de: '9D Private Experience', en: '9D Private Experience' },
-    duration: { de: 'ca. 120 Min.', en: 'about 120 min' },
-    price: { de: '249 €', en: '€249' },
+    duration: minutesCell('private', true),
+    price: priceCell('private'),
   },
   {
     name: { de: '9D Private Premium (mit Soul Touch)', en: '9D Private Premium (with Soul Touch)' },
-    duration: { de: 'ca. 210 Min.', en: 'about 210 min' },
-    price: { de: '333 €', en: '€333' },
+    duration: minutesCell('premium', true),
+    price: priceCell('premium'),
   },
   {
     name: { de: 'Soul Touch: The Reset', en: 'Soul Touch: The Reset' },
-    duration: { de: '60 Min.', en: '60 min' },
-    price: { de: '99 €', en: '€99' },
+    duration: minutesCell('soul-touch-60'),
+    price: priceCell('soul-touch-60'),
   },
   {
     name: { de: 'Soul Touch: Deep Release', en: 'Soul Touch: Deep Release' },
-    duration: { de: '90 Min.', en: '90 min' },
-    price: { de: '149 €', en: '€149' },
+    duration: minutesCell('soul-touch-90'),
+    price: priceCell('soul-touch-90'),
   },
   {
     name: { de: 'Soul Touch: Full Experience', en: 'Soul Touch: Full Experience' },
-    duration: { de: '120 Min.', en: '120 min' },
-    price: { de: '199 €', en: '€199' },
+    duration: minutesCell('soul-touch-120'),
+    price: priceCell('soul-touch-120'),
   },
 ];
 
@@ -426,6 +526,10 @@ const FAQ: FaqEntry[] = [
  *
  * Salonkee: Einzeltermine buchen direkt über ihren eigenen Link. Die Gruppen und
  * der Abend sind dort Kurse ohne eigenen Link und führen auf die Salonseite.
+ *
+ * Eine Quelle: jede Zahl, jeder Termin und jeder Buchungslink kommt aus
+ * src/app/domain/level44.json. Die Arbeitsteilung mit ihrer eigenen Website
+ * schaltet brandSite.public in derselben Datei (siehe BRAND_SITE_PUBLIC oben).
  */
 @Component({
   selector: 'app-level-44',
@@ -450,7 +554,30 @@ export class Level44Component implements OnInit, OnDestroy {
   readonly phoneLabel = PHONE_LABEL;
   readonly level44Url = LEVEL44_URL;
   readonly instagramUrl = INSTAGRAM_URL;
-  readonly showOnline = SHOW_ONLINE;
+  /** „level44.live“, aus der Adresse in level44.json. */
+  readonly siteLabel = LEVEL44_SITE_LABEL;
+  /** Arbeitsteilung: true, sobald ihre eigene Website öffentlich ist. */
+  readonly brandPublic = BRAND_SITE_PUBLIC;
+  readonly methodUrl = level44SiteUrl('method');
+  readonly journeysUrl = level44SiteUrl('journeys');
+  readonly onlineUrl = level44SiteUrl('online');
+  readonly aboutUrl = level44SiteUrl('about');
+  readonly code = CODE;
+  readonly maxPlaces = MAX_PLACES;
+  readonly groupPrice: Bi = { de: euroDe(GROUP_PRICE), en: euroEn(GROUP_PRICE) };
+  readonly firstPrice: Bi = { de: euroDe(FIRST_PRICE), en: euroEn(FIRST_PRICE) };
+  readonly firstVisitRule = FIRST_VISIT_RULE;
+  /**
+   * Die Termine aus level44.json, die noch nicht vorbei sind: beim Prerendern
+   * zum Zeitpunkt des Builds, im Browser zum Zeitpunkt des Besuchs.
+   */
+  private readonly sessions: Level44Session[] = upcomingSessions(Date.now());
+  readonly dates: DateRow[] = this.sessions.map((session) => ({
+    id: session.id,
+    ...sessionWhen(session),
+    journey: session.journey,
+    journeyUrl: level44SiteUrl('journey', session.journeySlug),
+  }));
   readonly stats = STATS;
   readonly benefits = BENEFITS;
   readonly nine = NINE;
@@ -468,14 +595,28 @@ export class Level44Component implements OnInit, OnDestroy {
     return this.language.lang();
   }
 
-  get bookingUrl(): string {
-    return `https://salonkee.de/salon/farewell?lang=${this.language.lang() === 'en' ? 'en' : 'de'}`;
+  /** Salonkee kennt Deutsch und Englisch. */
+  private get bookingLang(): 'de' | 'en' {
+    return this.language.lang() === 'en' ? 'en' : 'de';
   }
 
-  readonly soulTouchUrl = checkoutUrl(SOUL_TOUCH_SERVICE_ID);
+  /** Die Salonseite in Salonkee: von dort bucht man die Gruppen (Kurse ohne eigenen Link). */
+  get bookingUrl(): string {
+    return level44SalonUrl(this.bookingLang);
+  }
 
-  offerUrl(offer: Offer): string {
-    return offer.serviceId ? checkoutUrl(offer.serviceId) : this.bookingUrl;
+  /** Die drei Soul Touch Längen sind eine Dienstleistung in Salonkee, die Länge wählt man dort. */
+  get soulTouchUrl(): string {
+    return level44BookingUrl('soul-touch-60', this.bookingLang);
+  }
+
+  offerUrl(offer: BreathOffer): string {
+    return level44BookingUrl(offer.id, this.bookingLang);
+  }
+
+  /** Buchbar ist, was in Salonkee einen Termin oder einen eigenen Link hat (level44.json). */
+  isBookable(offer: BreathOffer): boolean {
+    return level44Offer(offer.id).bookable;
   }
 
   get datenschutzLink(): string {
@@ -502,13 +643,28 @@ export class Level44Component implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Ein Link zu ihrer eigenen Website: das gemeinsame Ereignis crosslink_click
+   * (AI-SEO-STRATEGY.md, „Shared analytics events“). Der Link öffnet normal weiter.
+   */
+  trackCrosslink(location: string): void {
+    if (!this.isBrowser || typeof window.gtag !== 'function') return;
+    window.gtag('event', 'crosslink_click', {
+      from_site: 'farewell.salon',
+      from_page: PAGE_PATH,
+      to_site: LEVEL44_SITE_LABEL,
+      location,
+    });
+  }
+
   ngOnInit(): void {
     const isEn = this.language.lang() === 'en';
     const prefix = this.language.prefix();
     const pageUrl = `${ORIGIN}${prefix}${PAGE_PATH}`;
     const homeUrl = `${ORIGIN}${prefix}`;
     const title = this.t(DE_TITLE, EN_TITLE);
-    const description = this.t(DE_DESCRIPTION, EN_DESCRIPTION);
+    const descriptions = level44Description(this.sessions);
+    const description = this.t(descriptions.de, descriptions.en);
     const inLanguage = this.language.lang();
 
     this.seo.setPageSeo({
@@ -554,39 +710,32 @@ export class Level44Component implements OnInit, OnDestroy {
           url: LEVEL44_URL,
           sameAs: [INSTAGRAM_URL],
         },
-        // One Event per dated session the page lists (SESSIONS above).
-        ...SESSIONS.map((session) => ({
+        // One Event per dated session of level44.json that still lies ahead. The id is
+        // the same on the LEVEL 44 site; the place is FareWell, by reference to the
+        // organisation block that src/index.html puts on every page.
+        ...this.sessions.map((session) => ({
           '@type': 'Event',
-          '@id': `${LEVEL44_PAGE}#event-${session.date}`,
-          name: `9D Group Experience: ${session.journey}`,
+          '@id': level44EventId(session),
+          name: `${level44Offer('group').name}: ${session.journey}`,
           description: this.t(
             'Geführte 9D Atemreise über Kopfhörer in der Gruppe, mit Einführung und Integration, ca. 2,5–3 Stunden.',
             'Guided 9D breath journey on headphones in a group, with introduction and integration, about 2.5–3 hours.',
           ),
-          startDate: `${session.date}T${session.time}:00+01:00`,
+          startDate: session.start,
+          endDate: session.end,
           eventStatus: 'https://schema.org/EventScheduled',
           eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-          maximumAttendeeCapacity: 12,
-          location: {
-            '@type': 'Place',
-            name: 'FareWell',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'Frauentorgraben 5',
-              postalCode: '90443',
-              addressLocality: 'Nürnberg',
-              addressCountry: 'DE',
-            },
-          },
+          maximumAttendeeCapacity: MAX_PLACES,
+          location: ORG_REF,
           organizer: { '@id': FRANZISKA_PREUSCHE_ID },
           performer: { '@id': FRANZISKA_PREUSCHE_ID },
           image: OG_IMAGE,
           url: pageUrl,
           offers: {
             '@type': 'Offer',
-            price: 49,
-            priceCurrency: 'EUR',
-            url: this.bookingUrl,
+            price: GROUP_PRICE,
+            priceCurrency: LEVEL44.currency,
+            url: level44SalonUrl(this.bookingLang, false),
           },
         })),
         {

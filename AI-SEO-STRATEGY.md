@@ -15,7 +15,7 @@ If this file and the plan differ, the plan wins. State on 10.11.2026: the plan i
 | --- | --- | --- |
 | farewell.salon (this repository) | The place | Everything that happens at Frauentorgraben 5, with prices and booking: hair removal, skin and body treatments, aesthetic medicine with place and price, 9D Breathwork in Nürnberg with dates |
 | Dr. med. Andrea Leo's site, drleoaesthetic.de | The doctor | His name and brand, each medical treatment in depth, English and Italian |
-| Breathwork site (later, only once it can stand alone) | The method | The LEVEL 44 brand, what 9D is, online sessions. Until then `/behandlungen/level-44` here is its home |
+| LEVEL 44, Franziska Preusche's site (built, hidden from search engines, domain not connected on 13.11.2026) | The method | The LEVEL 44 brand, what 9D is, the journeys, online sessions, Franziska herself. Until it is public, `/behandlungen/level-44` here is the brand's home |
 
 - One primary page per search across all sites. The other site supports with a link and its own, different text.
 - No text is copied between the sites. This site stays short: place, price, booking. The doctor's site goes deep.
@@ -45,6 +45,17 @@ Every real thing has one id. It is described fully on one site and only referenc
 - Breathwork never gets a medical type.
 - FAQPage only holds questions that are visible on the page.
 
+## LEVEL 44: one source for two sites
+
+Since 13.11.2026 this site and the LEVEL 44 site print the same prices, dates and booking links, from one file.
+
+- **The file** is `src/app/domain/level44.json`: prices, durations, the dated sessions, the first visit code, the number of places, the Salonkee links and the shared ids. `src/app/domain/level44.ts` is its typed reader. `/behandlungen/level-44` takes every number, date and booking link from it, and `src/app/domain/entities.ts` takes the ids of Franziska Preusche and the brand from it.
+- **Its public address** is `https://farewell.salon/data/level44.json`. The build copies the same file there (`angular.json`, assets); there is no second copy in this repository. The LEVEL 44 site reads that address when it is built and keeps a copy for builds without network.
+- **Salonkee is the truth.** A price or a date changes in Salonkee first, then in this file, never in a component. `src/app/domain/level44.spec.ts` checks the file.
+- **The roles.** This site is the place: dates, prices, booking, arrival, contraindications, FAQ. Her site is the brand: what 9D is, the journeys, online sessions, Franziska herself. Each links to the other where a reader needs it.
+- **One switch.** `brandSite.public` in the file is `false` while her site is hidden. While it is false, `/behandlungen/level-44` stays the home of the brand, with the method and the text about her, and no link leads into her site. Set to `true`, the nine elements and the text about her shrink to a pointer to her site, each date links to its journey there, and one card names her online sessions. The same value decides where "LEVEL 44" in the footer leads.
+- **The same ids on both sites.** FareWell, Franziska Preusche, the brand and each session keep the ids of the table above. Each session's Event is described here, with FareWell as its place by reference, and only referenced on her site.
+
 ## Page pattern
 
 Every page that should bring bookings follows this order.
@@ -61,9 +72,9 @@ Every page that should bring bookings follows this order.
 
 ## Cross-links
 
-- A footer block "Unter einem Dach" names the three sites with one plain line each. It is the same on every page and carries no keyword text.
+- A footer block "Unter einem Dach" names the three sites with one plain line each. It is the same on every page and carries no keyword text. Built on 13.11.2026: the name is the link, and it leads to the partner's own website only once that site is public (`src/app/domain/partner-sites.ts`); until then to this site's page about them.
 - In the text a link stands where a reader would want it. The aesthetic medicine page links to the matching treatment page on the doctor's site. Breathwork is linked without any medical promise.
-- Every site books through the same Salonkee account, `salonkee.de/salon/farewell`. The link names the site and the page it came from, and the click is counted.
+- Every site books through the same Salonkee account, `salonkee.de/salon/farewell`. The link names the site and the page it came from, and the click is counted. On `/behandlungen/level-44` the links carry `utm_source=farewell.salon&utm_medium=website&utm_campaign=level-44`; a link to a partner's own site fires `crosslink_click`.
 - No link exchanges and no bought links.
 
 ## Build standard
@@ -104,3 +115,4 @@ All three sites use the same names.
 - It never promises results, never judges someone's skin or hair, never gives medical advice and says nothing about named competitors.
 - It says at the first contact that it is an AI assistant. By default nothing a visitor types is stored.
 - Build: a small Rust service on Cloudflare Workers under `/api/chat`, one knowledge file generated at build time, a plain TypeScript widget in this code, no new npm dependency, no third party script.
+- The rules above are data since 13.11.2026: `src/app/domain/assistant-rules.json` holds what it answers, where it hands over, where it refers, what it never says and the four fixed answers. Nothing runs yet. `src/llms.txt` carries the same referrals in its section "Wer beantwortet was", for any AI that reads the site today.

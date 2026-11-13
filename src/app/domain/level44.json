@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "updated": "2026-11-13",
+  "owner": "farewell.salon. This file lives in the repository AkromeDev/FareWell at src/app/domain/level44.json and is published at https://farewell.salon/data/level44.json. The LEVEL 44 site reads the published file when it is built and keeps a copy. Change a fact here, never in the copy.",
+  "source": "Salonkee, salon 'farewell', service group 43284 '9D Breathwork & Soul Touch', read on 2026-11-13. Salonkee is the truth for prices: change a price there first, then here. The Evening Experience and Group + Soul Touch Integration have no date in Salonkee yet, so they cannot be booked online. Online sessions are not in Salonkee: Franziska Preusche's mail of 2026-11-03 plans them weekly, about 2 hours, 49 €; where they are booked is not decided, so price and booking are null.",
+  "currency": "EUR",
+  "ids": {
+    "organization": "https://farewell.salon/#organization",
+    "person": "https://farewell.salon/behandlungen/level-44#franziska-preusche",
+    "brand": "https://farewell.salon/behandlungen/level-44#brand",
+    "eventPrefix": "https://farewell.salon/behandlungen/level-44#event-"
+  },
+  "place": {
+    "name": "FareWell",
+    "street": "Frauentorgraben 5",
+    "postalCode": "90443",
+    "city": "Nürnberg",
+    "country": "DE",
+    "site": "https://farewell.salon",
+    "page": "https://farewell.salon/behandlungen/level-44",
+    "anchors": {
+      "dates": "termine",
+      "prices": "preise",
+      "safety": "sicherheit",
+      "visit": "besuch"
+    }
+  },
+  "brandSite": {
+    "origin": "https://level44.live",
+    "public": false,
+    "instagram": "https://www.instagram.com/level44.live/",
+    "paths": {
+      "method": "/discover-9d",
+      "journeys": "/journeys",
+      "journey": "/journeys/",
+      "online": "/live",
+      "about": "/about",
+      "safety": "/safety"
+    }
+  },
+  "booking": {
+    "provider": "Salonkee",
+    "salon": "https://salonkee.de/salon/farewell",
+    "service": "https://salonkee.de/checkout/farewell?serviceID="
+  },
+  "firstVisit": {
+    "code": "LEVEL44START",
+    "price": 49,
+    "offers": ["group", "evening"],
+    "oncePerPerson": true,
+    "newClientsOnly": true
+  },
+  "groupMaxPlaces": 12,
+  "offers": [
+    {
+      "id": "group",
+      "name": "9D Group Experience",
+      "format": "group",
+      "price": 99,
+      "minutes": 180,
+      "salonkeeServiceId": 234762,
+      "directLink": false,
+      "bookable": true
+    },
+    {
+      "id": "group-integration",
+      "name": "9D Group Experience + Soul Touch Integration",
+      "format": "group",
+      "price": 148,
+      "minutes": null,
+      "salonkeeServiceId": null,
+      "directLink": false,
+      "bookable": false
+    },
+    {
+      "id": "evening",
+      "name": "9D Evening Experience",
+      "format": "group",
+      "price": 99,
+      "minutes": 180,
+      "salonkeeServiceId": null,
+      "directLink": false,
+      "bookable": false
+    },
+    {
+      "id": "private",
+      "name": "9D Private Experience",
+      "format": "private",
+      "price": 249,
+      "minutes": 120,
+      "salonkeeServiceId": 234765,
+      "directLink": true,
+      "bookable": true
+    },
+    {
+      "id": "premium",
+      "name": "9D Private Premium Experience",
+      "format": "private",
+      "price": 333,
+      "minutes": 210,
+      "salonkeeServiceId": 234766,
+      "directLink": true,
+      "bookable": true
+    },
+    {
+      "id": "soul-touch-60",
+      "name": "Soul Touch: The Reset",
+      "format": "soul-touch",
+      "price": 99,
+      "minutes": 60,
+      "salonkeeServiceId": 234768,
+      "directLink": true,
+      "bookable": true
+    },
+    {
+      "id": "soul-touch-90",
+      "name": "Soul Touch: Deep Release",
+      "format": "soul-touch",
+      "price": 149,
+      "minutes": 90,
+      "salonkeeServiceId": 234768,
+      "directLink": true,
+      "bookable": true
+    },
+    {
+      "id": "soul-touch-120",
+      "name": "Soul Touch: Full Experience",
+      "format": "soul-touch",
+      "price": 199,
+      "minutes": 120,
+      "salonkeeServiceId": 234768,
+      "directLink": true,
+      "bookable": true
+    },
+    {
+      "id": "online",
+      "name": "9D Breathwork Live Online",
+      "format": "online",
+      "price": null,
+      "minutes": null,
+      "salonkeeServiceId": null,
+      "directLink": false,
+      "bookable": false
+    }
+  ],
+  "sessions": [
+    {
+      "id": "2026-11-15",
+      "offer": "group",
+      "journey": "THE AWAKENING",
+      "journeySlug": "awakening",
+      "start": "2026-11-15T11:00:00+01:00",
+      "end": "2026-11-15T14:00:00+01:00"
+    },
+    {
+      "id": "2026-11-29",
+      "offer": "group",
+      "journey": "LETTING GO",
+      "journeySlug": "letting-go",
+      "start": "2026-11-29T11:00:00+01:00",
+      "end": "2026-11-29T14:00:00+01:00"
+    }
+  ]
+}

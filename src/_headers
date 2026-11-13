@@ -32,6 +32,14 @@
 /media/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Shared facts that another of our sites reads when it is built
+# (/data/level44.json, the same file as src/app/domain/level44.json). Five
+# minutes, so a changed price or date is picked up at once. A data file, not a
+# page: kept out of search results.
+/data/*
+  Cache-Control: public, max-age=300
+  X-Robots-Tag: noindex
+
 # Images and fonts keep their names when they change, so a shorter cache.
 /assets/images/*
   Cache-Control: public, max-age=2592000

@@ -1,3 +1,5 @@
+import { LEVEL44 } from './level44';
+
 /**
  * Shared ids for structured data (AI-SEO-STRATEGY.md, "Shared ids").
  *
@@ -19,10 +21,15 @@ export const ORG_REF = { '@id': ORG_ID } as const;
 export const DR_LEO_PERSON_ID = 'https://drleoaesthetic.de/#dr-andrea-leo';
 export const DR_LEO_PRACTICE_ID = 'https://drleoaesthetic.de/#practice';
 
-/** Franziska Preusche and her brand LEVEL 44, described on this site until she has a domain. */
-export const LEVEL44_PAGE = `${ORIGIN}/behandlungen/level-44`;
-export const FRANZISKA_PREUSCHE_ID = `${LEVEL44_PAGE}#franziska-preusche`;
-export const LEVEL44_BRAND_ID = `${LEVEL44_PAGE}#brand`;
+/**
+ * Franziska Preusche and her brand LEVEL 44, described on this site until she
+ * has a domain. The ids are written once, in level44.json, which the LEVEL 44
+ * site reads too: both sites name the person, the brand, the sessions and
+ * FareWell by the same ids. entities.spec.ts checks that ORG_ID matches it.
+ */
+export const LEVEL44_PAGE = LEVEL44.place.page;
+export const FRANZISKA_PREUSCHE_ID = LEVEL44.ids.person;
+export const LEVEL44_BRAND_ID = LEVEL44.ids.brand;
 
 const SALON_ADDRESS = {
   '@type': 'PostalAddress',
