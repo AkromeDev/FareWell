@@ -1,0 +1,83 @@
+<div class="gd" [attr.data-lang]="lang" [attr.lang]="lang">
+  <app-guide-progress />
+
+  <app-guide-hero
+    kicker="Party4Friends"
+    icon="🥂"
+    image=""
+    [heading]="t('Im Salon feiern: die Regeln, Schritt für Schritt.', 'Partying at the salon: the rules, step by step.')"
+    [lead]="
+      t(
+        'Ihr wollt bei mir im Salon feiern? Sehr gern. Hier steht alles, was ich mir wünsche, von der ersten Nachricht bis zum Putzen am Tag danach. Klickt euch durch, hakt ab, was erledigt ist, und schreibt dazu, wer sich kümmert.',
+        'You want to party at my salon? Very happy to. Here is everything I ask for, from the first message to the cleaning the day after. Click through, tick off what is done, and note who takes care of what.'
+      )
+    "
+  />
+
+  <app-guide-stats [stats]="stats" />
+
+  <div class="gd-wrap">
+    <div class="gd-intro">
+      <div class="gd-read">
+        <p class="gd-kick" appReveal>{{ t('Kurz gesagt', 'In short') }}</p>
+        <p class="gd-lede" appReveal [revealDelay]="60">
+          <span class="lang de">
+            Der Salon ist mein Arbeitsplatz, und ich leihe ihn euch gern. Dafür bitte ich um wenig:
+            redet mit mir, bevor etwas feststeht, haltet die Hausregeln ein, und gebt ihn so zurück,
+            wie ihr ihn bekommen habt.
+          </span>
+          <span class="lang en">
+            The salon is where I work, and I am happy to lend it to you. In return I ask for little:
+            talk to me before anything is fixed, keep the house rules, and hand it back the way you
+            found it.
+          </span>
+        </p>
+        <app-guide-note variant="warn" [label]="t('Was ich nicht mag', 'What I do not like')">
+          <ul class="fr-list">
+            <li>
+              <span class="lang de">Fehlende Kommunikation: Entscheidungen, die ich als Letzter erfahre, oder Absprachen zu zweit, die nie in der Gruppe ankommen.</span>
+              <span class="lang en">A lack of communication: decisions I find out about last, or arrangements between two people that never reach the group.</span>
+            </li>
+            <li>
+              <span class="lang de">Neue Mitorganisator:innen oder ein zusammengelegtes Fest, ohne dass ich gefragt wurde.</span>
+              <span class="lang en">New co-organisers or a merged party without asking me.</span>
+            </li>
+            <li>
+              <span class="lang de">Abgesprochenes, das danach still geändert wird, zum Beispiel der Einladungstext.</span>
+              <span class="lang en">Agreed things that are quietly changed afterwards, for example the invitation text.</span>
+            </li>
+            <li>
+              <span class="lang de">Aufgaben ohne Namen und Bitten am Vorabend.</span>
+              <span class="lang en">Tasks without a name and requests the night before.</span>
+            </li>
+            <li>
+              <span class="lang de">Lange Funkstille, wo ein kurzes Nein gereicht hätte.</span>
+              <span class="lang en">Long silence where a short no would have done.</span>
+            </li>
+          </ul>
+        </app-guide-note>
+        <app-guide-note variant="tip" [label]="t('Die Beispiele', 'The examples')">
+          <span class="lang de">
+            In den Kästen „Joés Erfahrung" steht, was bei den bisherigen Feiern passiert ist, ohne
+            Namen. Nicht als Vorwurf, sondern damit ihr seht, was ich meine.
+          </span>
+          <span class="lang en">
+            The boxes "Joé's experience" tell what happened at past parties, without names. Not as
+            a reproach, but so you can see what I mean.
+          </span>
+        </app-guide-note>
+      </div>
+      <app-guide-toc [items]="toc" [label]="t('Inhalt', 'Contents')" />
+    </div>
+
+    <!-- Auswahl, Fortschritt, Werkzeuge und alle Etappen: gemeinsam mit der Freelancer Road -->
+    <app-road-checklist />
+
+    <p class="gd-fine" style="margin-top: 3rem; text-align: center">
+      <span class="lang de">FareWell · Party4Friends · Stand {{ stand }}</span>
+      <span class="lang en">FareWell · Party4Friends · as of {{ stand }}</span>
+    </p>
+  </div>
+
+  <app-guide-top-button [label]="t('Nach oben', 'Back to top')" />
+</div>

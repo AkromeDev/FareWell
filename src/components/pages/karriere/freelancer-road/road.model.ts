@@ -80,6 +80,8 @@ export interface RoadCopy {
   emptyPhase: Bi;
   storageNote: Bi;
   resetConfirm: Bi;
+  /** Platzhalter im Notizfeld; ohne Angabe der der Freelancer Road. */
+  notePlaceholder?: Bi;
 }
 
 export interface RoadDefinition<P extends string = string> {

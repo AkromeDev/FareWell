@@ -23,6 +23,7 @@ export const UK_EXCLUDED_PATHS: readonly string[] = [
   'behandlungen/botox-nuernberg',
   'promotionen/aesthetische-medizin-nuernberg',
   'karriere/masseur-bademeister-blind-nuernberg',
+  'party4friends',
 ];
 
 export function loadUkCommon(): Promise<void> {
