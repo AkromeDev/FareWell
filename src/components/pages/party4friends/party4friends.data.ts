@@ -396,20 +396,6 @@ export const PARTY_PHASES: Phase<PartyId>[] = [
         ],
       },
       {
-        id: 'spaete-bitten',
-        weight: 'empfohlen',
-        title: { de: 'Keine Bitten am Vorabend', en: 'No requests the night before' },
-        summary: {
-          de: 'Was ihr von mir oder den anderen braucht, steht spätestens zwei Tage vorher in der Gruppe.',
-          en: 'Whatever you need from me or the others is in the group two days before at the latest.',
-        },
-        joe: {
-          de: 'Am Abend vor einer Feier kam noch die Bitte, eine bestimmte Glühbirne mitzubringen, mit einem „Sorry für die späte Anfrage". Eine Kleinigkeit, aber typisch: was am Vortag auffällt, hätte auf die Liste gehört.',
-          en: 'The evening before a party there was still a request to bring a particular light bulb, with a "sorry for asking so late". A small thing, but typical: whatever you notice the day before belonged on the list.',
-        },
-        details: [],
-      },
-      {
         id: 'aufbau',
         weight: 'pflicht',
         title: { de: 'Aufbau: Zeiten mit mir abmachen', en: 'Setting up: agree the times with me' },
