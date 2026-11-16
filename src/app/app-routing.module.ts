@@ -323,11 +323,11 @@ function localizedRoutes(lang: PageLang): Routes {
           data: d(
             {
               title: 'Botox Nürnberg: ab 89 €, Dr. med. Andrea Leo | FareWell',
-              description: 'Botox in Nürnberg bei Dr. med. Andrea Leo, bei FareWell am Frauentorgraben 5. Einzelne Regionen ab 89 €, eine Zone ab 109 €. Ab 16.11.2026 bei FareWell.'
+              description: 'Botox in Nürnberg bei Dr. med. Andrea Leo, bei FareWell am Frauentorgraben 5. Einzelne Regionen ab 89 €, eine Zone 99 €. Ab 16.11.2026 bei FareWell.'
             },
             {
               title: 'Botox Nuremberg: from €89, Dr. med. Andrea Leo | FareWell',
-              description: 'Botox in Nuremberg with Dr. med. Andrea Leo at FareWell, Frauentorgraben 5. Single regions from €89, one zone from €109. From 16 November 2026.'
+              description: 'Botox in Nuremberg with Dr. med. Andrea Leo at FareWell, Frauentorgraben 5. Single regions from €89, one zone €99. From 16 November 2026.'
             }
           )
         },

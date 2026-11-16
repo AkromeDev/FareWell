@@ -374,7 +374,15 @@
                   </span>
                   <span class="menu-lead" aria-hidden="true"></span>
                   <span class="menu-price"
-                    ><span class="lang de">{{ item.price.de }}</span
+                    >@if (item.wasPrice) {
+                      <s class="menu-was" aria-hidden="true"
+                        ><span class="lang de">{{ item.wasPrice.shown.de }}</span
+                        ><span class="lang en">{{ item.wasPrice.shown.en }}</span></s
+                      ><span class="sr-only"
+                        ><span class="lang de">{{ item.wasPrice.spoken.de }}</span
+                        ><span class="lang en">{{ item.wasPrice.spoken.en }}</span></span
+                      >
+                    }<span class="lang de">{{ item.price.de }}</span
                     ><span class="lang en">{{ item.price.en }}</span></span
                   >
                 </li>
@@ -386,15 +394,15 @@
         <aside class="frame-note frame-note--grid" appReveal [revealDelay]="90">
           <strong><span class="lang de">Zu den Preisen</span><span class="lang en">About the prices</span></strong>
           <span class="lang de"
-            >Alle Preise sind Startpreise („ab“) zur Orientierung. Der endgültige Preis richtet sich
-            nach Befund, Behandlungsumfang, Produktmenge und dem ärztlich festgelegten
+            >Preise mit „ab“ sind Startpreise zur Orientierung, die übrigen sind Festpreise. Bei einem
+            Startpreis richtet sich der endgültige Preis nach Befund, Behandlungsumfang, Produktmenge und dem ärztlich festgelegten
             Behandlungskonzept und wird dir vor der Behandlung genannt. Beratung und Aufklärung
-            gehen jeder Behandlung voraus. Stand der Preisliste: Oktober 2026.</span
+            gehen jeder Behandlung voraus. Stand der Preisliste: November 2026.</span
           ><span class="lang en"
-            >All prices are starting prices ("from") for orientation. The final price depends on the
-            findings, the extent of treatment, the amount of product and the treatment plan set by
+            >Prices marked "from" are starting prices for orientation, the others are fixed prices.
+            For a starting price, the final price depends on the findings, the extent of treatment, the amount of product and the treatment plan set by
             the doctor, and is given to you before treatment. Consultation and informed consent
-            precede every treatment. Price list as of October 2026.</span
+            precede every treatment. Price list as of November 2026.</span
           >
         </aside>
       </div>

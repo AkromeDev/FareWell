@@ -37,15 +37,18 @@ describe('AesthetischeMedizinComponent', () => {
     expect(robots?.getAttribute('content') ?? '').not.toContain('noindex');
   });
 
-  it('zeigt zu jeder Behandlung einen Startpreis in beiden Sprachen', () => {
+  it('zeigt zu jeder Behandlung einen Start- oder Festpreis in beiden Sprachen', () => {
     const items = component.groups.flatMap((group) => group.items);
     expect(items.length).toBeGreaterThan(40);
     for (const item of items) {
       expect(item.priceFrom).toBeGreaterThan(0);
-      expect(item.price.de).toMatch(/^ab \d+\u00a0€/);
-      expect(item.price.en).toMatch(/^from €\d+/);
+      expect(item.price.de).toMatch(item.fixed ? /^\d+\u00a0€/ : /^ab \d+\u00a0€/);
+      expect(item.price.en).toMatch(item.fixed ? /^€\d+/ : /^from €\d+/);
     }
-    const rows = fixture.nativeElement.querySelectorAll('.menu-row .menu-price .lang.de');
+    const lips = items.find((item) => item.name.de === 'Lippen, 1 ml');
+    expect(lips?.price.de).toBe('180\u00a0€');
+    expect(lips?.wasPrice?.spoken.de).toBe('statt 249\u00a0€, jetzt');
+    const rows = fixture.nativeElement.querySelectorAll('.menu-row .menu-price > .lang.de');
     expect(rows.length).toBe(items.length);
   });
 

@@ -74,8 +74,12 @@ export interface TimelineRow extends Station {
 /** Eine Zeile der Preisliste: Startpreis („ab“) in Euro, optional mit Zusatz und Einheit. */
 interface TreatmentItem {
   name: Bi;
-  /** Startpreis in Euro laut Preisliste vom 02.10.2026. */
+  /** Startpreis in Euro laut Preisliste vom 02.10.2026, oder mit `fixed` der Festpreis vom 15.11.2026. */
   priceFrom: number;
+  /** Festpreis, ohne „ab“ gezeigt (Dr. Leo, 15.11.2026). */
+  fixed?: boolean;
+  /** Früherer Preis, durchgestrichen neben dem Preis, solange ein Angebot läuft. */
+  was?: number;
   /** Kleingedrucktes unter dem Namen, z. B. die Beispielzonen. */
   detail?: Bi;
   /** Einheit hinter dem Preis, z. B. „pro Faden“. */
@@ -95,6 +99,8 @@ interface TreatmentGroup {
 /** Zeile mit fertig formatiertem Preis für das Template. */
 export interface PricedItem extends TreatmentItem {
   price: Bi;
+  /** Der durchgestrichene frühere Preis und was ein Screenreader dazu sagt. */
+  wasPrice?: { shown: Bi; spoken: Bi };
 }
 
 export interface PricedGroup extends Omit<TreatmentGroup, 'items'> {
@@ -294,10 +300,11 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
       {
         name: { de: '1 Zone', en: '1 zone' },
         detail: { de: 'z. B. Stirn, Glabella oder Krähenfüße', en: 'e.g. forehead, glabella or crow\'s feet' },
-        priceFrom: 109,
+        priceFrom: 99,
+        fixed: true,
       },
-      { name: { de: '2 Zonen', en: '2 zones' }, priceFrom: 179 },
-      { name: { de: '3 Zonen', en: '3 zones' }, priceFrom: 229 },
+      { name: { de: '2 Zonen', en: '2 zones' }, priceFrom: 149, fixed: true },
+      { name: { de: '3 Zonen', en: '3 zones' }, priceFrom: 199, fixed: true },
       { name: { de: '4 Zonen', en: '4 zones' }, priceFrom: 279 },
       { name: { de: 'Brow Lift', en: 'Brow lift' }, priceFrom: 99 },
       { name: { de: 'Bunny Lines', en: 'Bunny lines' }, priceFrom: 89 },
@@ -305,9 +312,9 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
       { name: { de: 'Lip Flip', en: 'Lip flip' }, priceFrom: 89 },
       { name: { de: 'Kinn (Pflastersteinkinn)', en: 'Chin (cobblestone chin)' }, priceFrom: 89 },
       { name: { de: 'Mundwinkel (DAO)', en: 'Corners of the mouth (DAO)' }, priceFrom: 89 },
-      { name: { de: 'Masseter, Bruxismus (Zähneknirschen)', en: 'Masseter, bruxism (teeth grinding)' }, priceFrom: 219 },
-      { name: { de: 'Nefertiti Lift (Platysma)', en: 'Nefertiti lift (platysma)' }, priceFrom: 219 },
-      { name: { de: 'Hyperhidrose (übermäßiges Schwitzen)', en: 'Hyperhidrosis (excessive sweating)' }, priceFrom: 250 },
+      { name: { de: 'Masseter, Bruxismus (Zähneknirschen)', en: 'Masseter, bruxism (teeth grinding)' }, priceFrom: 199, fixed: true },
+      { name: { de: 'Nefertiti Lift (Platysma)', en: 'Nefertiti lift (platysma)' }, priceFrom: 149, fixed: true },
+      { name: { de: 'Hyperhidrose (übermäßiges Schwitzen)', en: 'Hyperhidrosis (excessive sweating)' }, priceFrom: 199, fixed: true },
     ],
   },
   {
@@ -321,7 +328,7 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
     },
     items: [
       { name: { de: 'Lippen, 0,5 ml', en: 'Lips, 0.5 ml' }, priceFrom: 159 },
-      { name: { de: 'Lippen, 1 ml', en: 'Lips, 1 ml' }, priceFrom: 249 },
+      { name: { de: 'Lippen, 1 ml', en: 'Lips, 1 ml' }, detail: { de: 'Herbst-Special bis 20.12.2026', en: 'Autumn special until 20 Dec 2026' }, priceFrom: 180, fixed: true, was: 249 },
       { name: { de: 'Russian Lips, 1 ml', en: 'Russian lips, 1 ml' }, priceFrom: 269 },
       { name: { de: 'Kinnaufbau', en: 'Chin augmentation' }, priceFrom: 259 },
       { name: { de: 'Jawline Contouring', en: 'Jawline contouring' }, priceFrom: 259 },
@@ -437,8 +444,8 @@ const FAQ: FaqEntry[] = [
   {
     q: { de: 'Was kostet eine Behandlung?', en: 'What does a treatment cost?' },
     a: {
-      de: 'Die Preisliste auf dieser Seite nennt Startpreise, zum Beispiel ab 109 € für eine Zone Botulinumtoxin oder ab 159 € für 0,5 ml Lippen. Der endgültige Preis hängt von Befund, Behandlungsumfang und Produktmenge ab und wird dir im Beratungsgespräch vor der Behandlung genannt, schriftlich und ohne Überraschungen. Ästhetische Behandlungen sind in der Regel Privatleistungen.',
-      en: 'The price list on this page gives starting prices, for example from €109 for one zone of botulinum toxin or from €159 for 0.5 ml of lip filler. The final price depends on the findings, the extent of treatment and the amount of product, and is given to you in the consultation before treatment, in writing and without surprises. Aesthetic treatments are as a rule private services.',
+      de: 'Die Preisliste auf dieser Seite nennt Fest- und Startpreise, zum Beispiel 99 € als Festpreis für eine Zone Botulinumtoxin oder ab 159 € für 0,5 ml Lippen. Bei einem Startpreis hängt der endgültige Preis von Befund, Behandlungsumfang und Produktmenge ab und wird dir im Beratungsgespräch vor der Behandlung genannt, schriftlich und ohne Überraschungen. Ästhetische Behandlungen sind in der Regel Privatleistungen.',
+      en: 'The price list on this page gives fixed and starting prices, for example a fixed €99 for one zone of botulinum toxin or from €159 for 0.5 ml of lip filler. For a starting price, the final price depends on the findings, the extent of treatment and the amount of product, and is given to you in the consultation before treatment, in writing and without surprises. Aesthetic treatments are as a rule private services.',
     },
   },
   {
@@ -475,17 +482,31 @@ function fmt(ym: YearMonth): string {
   return `${String(ym.m).padStart(2, '0')}/${ym.y}`;
 }
 
-/** „ab 109 €“ bzw. „from €109“, mit geschütztem Leerzeichen vor dem Euro und optionaler Einheit. */
+/**
+ * „ab 89 €“ bzw. „from €89“, bei einem Festpreis „99 €“ bzw. „€99“, mit geschütztem
+ * Leerzeichen vor dem Euro und optionaler Einheit.
+ */
 function priceLabel(item: TreatmentItem): Bi {
+  const de = `${item.priceFrom}\u00a0€`;
+  const en = `€${item.priceFrom}`;
   return {
-    de: `ab ${item.priceFrom}\u00a0€${item.unit ? ` ${item.unit.de}` : ''}`,
-    en: `from €${item.priceFrom}${item.unit ? ` ${item.unit.en}` : ''}`,
+    de: `${item.fixed ? '' : 'ab '}${de}${item.unit ? ` ${item.unit.de}` : ''}`,
+    en: `${item.fixed ? '' : 'from '}${en}${item.unit ? ` ${item.unit.en}` : ''}`,
+  };
+}
+
+/** Der frühere Preis eines Angebots: sichtbar durchgestrichen, vorgelesen als „statt 249 €, jetzt“. */
+function wasPrice(item: TreatmentItem): PricedItem['wasPrice'] {
+  if (item.was === undefined) return undefined;
+  return {
+    shown: { de: `${item.was}\u00a0€`, en: `€${item.was}` },
+    spoken: { de: `statt ${item.was}\u00a0€, jetzt`, en: `instead of €${item.was}, now` },
   };
 }
 
 const PRICED_GROUPS: PricedGroup[] = TREATMENT_GROUPS.map((group) => ({
   ...group,
-  items: group.items.map((item) => ({ ...item, price: priceLabel(item) })),
+  items: group.items.map((item) => ({ ...item, price: priceLabel(item), wasPrice: wasPrice(item) })),
 }));
 
 /**
