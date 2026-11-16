@@ -23,7 +23,7 @@ const PRICE_GROUPS: PriceGroup[] = [
     title: { de: 'Lippen', en: 'Lips' },
     items: [
       { name: { de: 'Lippen 0,5 ml', en: 'Lips 0.5 ml' }, priceFrom: 159 },
-      { name: { de: 'Lippen 1 ml', en: 'Lips 1 ml' }, detail: { de: 'Herbst-Special bis 20.12.2026', en: 'Autumn special until 20 Dec 2026' }, priceFrom: 180, fixed: true, was: 249 },
+      { name: { de: 'Lippen 1 ml', en: 'Lips 1 ml' }, detail: { de: 'Herbst-Special', en: 'Autumn special' }, priceFrom: 180, fixed: true, was: 249 },
     ],
   },
   {
