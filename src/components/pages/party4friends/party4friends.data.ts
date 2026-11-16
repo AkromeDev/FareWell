@@ -506,20 +506,21 @@ export const PARTY_PHASES: Phase<PartyId>[] = [
   {
     id: 'bezahlung',
     index: '05',
-    tag: { de: 'Unter Freunden', en: 'Among friends' },
+    tag: { de: 'Fair für alle', en: 'Fair for everyone' },
     title: { de: 'Bezahlung', en: 'Payment' },
     lead: {
-      de: 'Für Feiern unter Freunden mag ich ein einfaches Modell, das niemanden extra kostet.',
-      en: 'For parties among friends I like a simple model that costs nobody anything extra.',
+      de: 'Eine Miete für den Salon gibt es nicht. Unter Freunden bekomme ich, was von den Getränken übrig bleibt. Bei einem halb offenen Event bekomme ich einen Anteil am Gewinn.',
+      en: 'There is no rent for the salon. Among friends I get whatever is left from the drinks. At a semi-open event I get a share of the profit.',
     },
     steps: [
       {
         id: 'getraenkebeitrag',
         weight: 'pflicht',
+        professions: ['freunde'],
         title: { de: 'Ein Beitrag für die Getränke, der Überschuss geht an mich', en: 'A contribution for drinks, the surplus goes to me' },
         summary: {
-          de: 'Ihr bittet eure Gäste um einen Beitrag für die Getränke. Was nach dem Einkauf übrig bleibt, gebt ihr mir nach der Feier.',
-          en: 'You ask your guests for a contribution towards the drinks. Whatever is left after the shopping, you give me after the party.',
+          de: 'Ihr bittet eure Gäste um einen Beitrag für die Getränke. Was nach dem Einkauf übrig bleibt, gebt ihr mir nach der Feier. Weitere Kosten gibt es für Freunde nicht.',
+          en: 'You ask your guests for a contribution towards the drinks. Whatever is left after the shopping, you give me after the party. There are no further costs for friends.',
         },
         details: [
           {
@@ -535,6 +536,30 @@ export const PARTY_PHASES: Phase<PartyId>[] = [
           de: 'Die dreifache Geburtstagsfeier hat es so gemacht: Die Gäste haben etwas für die Getränke gegeben, und den Gewinn haben mir die Organisator:innen danach gegeben. Für Freunde finde ich das genau richtig.',
           en: 'The triple birthday party did it like this: the guests chipped in for the drinks, and afterwards the organisers gave me the profit. For friends I think that is exactly right.',
         },
+      },
+      {
+        id: 'gewinnanteil',
+        weight: 'pflicht',
+        professions: HALBOFFEN,
+        title: { de: '35 % des Gewinns gehen an mich', en: '35% of the profit goes to me' },
+        summary: {
+          de: 'Bei einem halb offenen Event bekomme ich 35 % des Gewinns, also von dem, was nach allen Ausgaben übrig bleibt. Ihr gebt es mir nach der Feier.',
+          en: 'At a semi-open event I get 35% of the profit, meaning what is left after all expenses. You give it to me after the party.',
+        },
+        details: [
+          {
+            de: 'Gewinn ist alles, was reinkommt (Eintritt, Getränke, Spenden), weniger das, was ihr für die Feier ausgegeben habt.',
+            en: 'Profit is everything that comes in (entry, drinks, donations) minus what you spent on the party.',
+          },
+          {
+            de: 'Hebt die Kassenzettel auf und schickt mir die Abrechnung in die Gruppe: was reinkam, was ausgegeben wurde, was übrig bleibt.',
+            en: 'Keep the receipts and send me the tally in the group: what came in, what was spent, what is left.',
+          },
+          {
+            de: 'Bietet zwei Wege zum Zahlen an. Ein QR-Code allein war für manche Gäste am Handy umständlich.',
+            en: 'Offer two ways to pay. A QR code on its own was awkward on the phone for some guests.',
+          },
+        ],
       },
     ],
   },
