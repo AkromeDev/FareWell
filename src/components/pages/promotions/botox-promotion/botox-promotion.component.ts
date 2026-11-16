@@ -7,16 +7,16 @@ import { DR_LEO_PRACTICE_ID, drLeoPersonNode, drLeoPracticeNode } from 'src/app/
 
 const PAGE_PATH = '/behandlungen/botox-nuernberg';
 
-/** Preise aus seiner Preisliste vom 02.10.2026, wie in Salonkee. Startpreise. */
+/** Preise aus seiner Preisliste vom 02.10.2026, wie in Salonkee. Startpreise, außer den Festpreisen vom 15.11.2026 (`fixed`). */
 const PRICE_GROUPS: PriceGroup[] = [
   {
     id: 'zonen',
     title: { de: 'Nach Zonen', en: 'By zones' },
     blurb: { de: 'Zum Beispiel Stirn, Zornesfalte oder Krähenfüße.', en: 'For example forehead, frown lines or crow\'s feet.' },
     items: [
-      { name: { de: '1 Zone', en: '1 zone' }, priceFrom: 109 },
-      { name: { de: '2 Zonen', en: '2 zones' }, priceFrom: 179 },
-      { name: { de: '3 Zonen', en: '3 zones' }, priceFrom: 229 },
+      { name: { de: '1 Zone', en: '1 zone' }, priceFrom: 99, fixed: true },
+      { name: { de: '2 Zonen', en: '2 zones' }, priceFrom: 149, fixed: true },
+      { name: { de: '3 Zonen', en: '3 zones' }, priceFrom: 199, fixed: true },
       { name: { de: '4 Zonen', en: '4 zones' }, priceFrom: 279 },
     ],
   },
@@ -36,9 +36,9 @@ const PRICE_GROUPS: PriceGroup[] = [
     id: 'mehr',
     title: { de: 'Masseter, Nefertiti Lift, Schwitzen', en: 'Masseter, Nefertiti lift, sweating' },
     items: [
-      { name: { de: 'Masseter, Bruxismus (Zähneknirschen)', en: 'Masseter, bruxism (teeth grinding)' }, priceFrom: 219 },
-      { name: { de: 'Nefertiti Lift (Platysma)', en: 'Nefertiti lift (platysma)' }, priceFrom: 219 },
-      { name: { de: 'Hyperhidrose (übermäßiges Schwitzen)', en: 'Hyperhidrosis (excessive sweating)' }, priceFrom: 250 },
+      { name: { de: 'Masseter, Bruxismus (Zähneknirschen)', en: 'Masseter, bruxism (teeth grinding)' }, priceFrom: 199, fixed: true },
+      { name: { de: 'Nefertiti Lift (Platysma)', en: 'Nefertiti lift (platysma)' }, priceFrom: 149, fixed: true },
+      { name: { de: 'Hyperhidrose (übermäßiges Schwitzen)', en: 'Hyperhidrosis (excessive sweating)' }, priceFrom: 199, fixed: true },
     ],
   },
 ];
@@ -61,15 +61,15 @@ const FAQ: FaqEntry[] = [
   {
     q: { de: 'Was kostet Botox in Nürnberg?', en: 'How much does Botox cost in Nuremberg?' },
     a: {
-      de: 'Bei FareWell kostet eine Zone ab 109 €, zwei Zonen ab 179 €, drei Zonen ab 229 € und vier Zonen ab 279 €. Einzelne Regionen wie Bunny Lines oder Lip Flip beginnen bei 89 €. Der endgültige Preis hängt von Befund, Umfang und Produktmenge ab und wird dir vor der Behandlung genannt.',
-      en: 'At FareWell one zone starts at €109, two zones at €179, three zones at €229 and four zones at €279. Single regions such as bunny lines or a lip flip start at €89. The final price depends on findings, scope and amount of product, and you are told it before the treatment.',
+      de: 'Bei FareWell kostet eine Zone 99 €, zwei Zonen 149 €, drei Zonen 199 € und vier Zonen ab 279 €. Einzelne Regionen wie Bunny Lines oder Lip Flip beginnen bei 89 €. Bei einem Startpreis hängt der endgültige Preis von Befund, Umfang und Produktmenge ab und wird dir vor der Behandlung genannt.',
+      en: 'At FareWell one zone costs €99, two zones €149, three zones €199, and four zones start at €279. Single regions such as bunny lines or a lip flip start at €89. For a starting price, the final price depends on findings, scope and amount of product, and you are told it before the treatment.',
     },
   },
   {
     q: { de: 'Wo ist Botox in Nürnberg günstig?', en: 'Where is Botox affordable in Nuremberg?' },
     a: {
-      de: 'Vergleiche den Preis pro Zone und frag, wer behandelt. Bei FareWell stehen die Preise offen auf dieser Seite: einzelne Regionen ab 89 €, eine Zone ab 109 €. Ein niedriger Preis ersetzt nie die ärztliche Beratung.',
-      en: 'Compare the price per zone and ask who treats you. At FareWell the prices are open on this page: single regions from €89, one zone from €109. A low price never replaces medical advice.',
+      de: 'Vergleiche den Preis pro Zone und frag, wer behandelt. Bei FareWell stehen die Preise offen auf dieser Seite: einzelne Regionen ab 89 €, eine Zone 99 €. Ein niedriger Preis ersetzt nie die ärztliche Beratung.',
+      en: 'Compare the price per zone and ask who treats you. At FareWell the prices are open on this page: single regions from €89, one zone €99. A low price never replaces medical advice.',
     },
   },
   {
@@ -136,7 +136,7 @@ const FACTS: { label: Bi; value: Bi }[] = [
   { label: { de: 'Ab wann', en: 'From' }, value: { de: '16.11.2026', en: '16 November 2026' } },
   {
     label: { de: 'Preis', en: 'Price' },
-    value: { de: 'Einzelne Regionen ab 89 €, eine Zone ab 109 €', en: 'Single regions from €89, one zone from €109' },
+    value: { de: 'Einzelne Regionen ab 89 €, eine Zone 99 €', en: 'Single regions from €89, one zone €99' },
   },
   {
     label: { de: 'Wirkung', en: 'Effect' },
@@ -199,8 +199,8 @@ export class BotoxPromotionComponent implements OnInit, OnDestroy {
     const regions = PRICE_GROUPS.find((g) => g.id === 'regionen')?.items ?? [];
     const fromRegions = Math.min(...regions.map((i) => i.priceFrom));
     const words = (name: string, list: string[]) => name.replace(/^(\d+)/, (n) => list[Number(n)] ?? n);
-    const de = zones.map((z) => `${words(z.name.de, ['', 'eine', 'zwei', 'drei', 'vier'])} ab ${z.priceFrom} €`);
-    const en = zones.map((z) => `${words(z.name.en, ['', 'one', 'two', 'three', 'four'])} from €${z.priceFrom}`);
+    const de = zones.map((z) => `${words(z.name.de, ['', 'eine', 'zwei', 'drei', 'vier'])} ${z.fixed ? '' : 'ab '}${z.priceFrom} €`);
+    const en = zones.map((z) => `${words(z.name.en, ['', 'one', 'two', 'three', 'four'])} ${z.fixed ? '' : 'from '}€${z.priceFrom}`);
     const join = (parts: string[], and: string) => `${parts.slice(0, -1).join(', ')} ${and} ${parts[parts.length - 1]}`;
     return this.t(
       `Bei FareWell kostet ${join(de, 'und')}. Einzelne Regionen beginnen bei ${fromRegions} €.`,
@@ -224,8 +224,8 @@ export class BotoxPromotionComponent implements OnInit, OnDestroy {
       'Botox Nuremberg: from €89, Dr. med. Andrea Leo | FareWell',
     );
     const description = this.t(
-      'Botox in Nürnberg bei Dr. med. Andrea Leo, bei FareWell am Frauentorgraben 5. Einzelne Regionen ab 89 €, eine Zone ab 109 €. Ab 16.11.2026 bei FareWell.',
-      'Botox in Nuremberg with Dr. med. Andrea Leo at FareWell, Frauentorgraben 5. Single regions from €89, one zone from €109. From 16 November 2026.',
+      'Botox in Nürnberg bei Dr. med. Andrea Leo, bei FareWell am Frauentorgraben 5. Einzelne Regionen ab 89 €, eine Zone 99 €. Ab 16.11.2026 bei FareWell.',
+      'Botox in Nuremberg with Dr. med. Andrea Leo at FareWell, Frauentorgraben 5. Single regions from €89, one zone €99. From 16 November 2026.',
     );
 
     this.seo.setPageSeo({ title, description, path: PAGE_PATH });
@@ -249,7 +249,7 @@ export class BotoxPromotionComponent implements OnInit, OnDestroy {
               name: this.bi(item.name),
               priceSpecification: {
                 '@type': 'PriceSpecification',
-                minPrice: item.priceFrom,
+                ...(item.fixed ? { price: item.priceFrom } : { minPrice: item.priceFrom }),
                 priceCurrency: 'EUR',
               },
             })),

@@ -7,7 +7,12 @@ export interface Bi {
 export interface PriceLine {
   name: Bi;
   detail?: Bi;
+  /** Preis in Euro: ein Startpreis („ab“), außer `fixed` ist gesetzt. */
   priceFrom: number;
+  /** Festpreis, ohne „ab“ gezeigt (Dr. Leo, 15.11.2026). */
+  fixed?: boolean;
+  /** Früherer Preis, durchgestrichen neben dem Preis, solange ein Angebot läuft. */
+  was?: number;
 }
 
 export interface PriceGroup {

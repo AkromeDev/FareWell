@@ -223,9 +223,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       titleDe: 'Botox in Nürnberg',
       titleEn: 'Botox in Nuremberg',
       descDe:
-        'Bei Dr. med. Andrea Leo, ab 16.11.2026 bei FareWell. Einzelne Regionen ab 89 €, eine Zone ab 109 €.',
+        'Bei Dr. med. Andrea Leo, ab 16.11.2026 bei FareWell. Einzelne Regionen ab 89 €, eine Zone 99 €.',
       descEn:
-        'With Dr. med. Andrea Leo, at FareWell from 16 November 2026. Single regions from €89, one zone from €109.',
+        'With Dr. med. Andrea Leo, at FareWell from 16 November 2026. Single regions from €89, one zone €99.',
       altDe: 'Das Studio von FareWell am Frauentorgraben 5 in Nürnberg',
       altEn: 'The FareWell studio at Frauentorgraben 5 in Nuremberg',
       path: '/behandlungen/botox-nuernberg',

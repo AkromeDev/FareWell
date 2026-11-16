@@ -7,8 +7,8 @@
     <h1>{{ t('Botox in', 'Botox in') }} <em>{{ t('Nürnberg', 'Nuremberg') }}</em></h1>
     <p class="lead answer">
       {{ t(
-        'Botox in Nürnberg bekommst du bei FareWell am Frauentorgraben 5, zwei Minuten vom Hauptbahnhof. Ab dem 16.11.2026 behandelt Dr. med. Andrea Leo persönlich, approbierter Arzt seit 2016. Einzelne Regionen kosten ab 89 €, eine Zone ab 109 €. Den Termin buchst du online über Salonkee oder telefonisch.',
-        'You can get Botox in Nuremberg at FareWell, Frauentorgraben 5, two minutes from the main station. From 16 November 2026 Dr. med. Andrea Leo treats in person, a licensed physician since 2016. Single regions cost from €89, one zone from €109. Book online through Salonkee or by phone.'
+        'Botox in Nürnberg bekommst du bei FareWell am Frauentorgraben 5, zwei Minuten vom Hauptbahnhof. Ab dem 16.11.2026 behandelt Dr. med. Andrea Leo persönlich, approbierter Arzt seit 2016. Einzelne Regionen kosten ab 89 €, eine Zone 99 €. Den Termin buchst du online über Salonkee oder telefonisch.',
+        'You can get Botox in Nuremberg at FareWell, Frauentorgraben 5, two minutes from the main station. From 16 November 2026 Dr. med. Andrea Leo treats in person, a licensed physician since 2016. Single regions cost from €89, one zone €99. Book online through Salonkee or by phone.'
       ) }}
     </p>
     <div class="ctas">
@@ -63,7 +63,16 @@
             @for (item of group.items; track item.name.de) {
               <li>
                 <span>{{ bi(item.name) }}</span>
-                <span class="price">{{ t('ab', 'from') }} {{ item.priceFrom }} €</span>
+                <span class="price">
+                  @if (item.was) {
+                    <s aria-hidden="true">{{ item.was }} €</s>
+                    <span class="sr-only">{{ t('statt', 'instead of') }} {{ item.was }} €, {{ t('jetzt', 'now') }}</span>
+                  }
+                  @if (!item.fixed) {
+                    {{ t('ab', 'from') }}
+                  }
+                  {{ item.priceFrom }} €
+                </span>
               </li>
             }
           </ul>
@@ -72,8 +81,8 @@
     </div>
     <p class="note">
       {{ t(
-        'Startpreise. Der endgültige Preis hängt von Befund, Umfang und Produktmenge ab und wird dir im Beratungsgespräch vor der Behandlung genannt. Ästhetische Behandlungen sind in der Regel Privatleistungen.',
-        'Starting prices. The final price depends on findings, scope and amount of product, and you are told it in the consultation before the treatment. Aesthetic treatments are usually private services.'
+        'Preise mit „ab“ sind Startpreise: dort hängt der endgültige Preis von Befund, Umfang und Produktmenge ab und wird dir im Beratungsgespräch vor der Behandlung genannt. Die übrigen sind Festpreise. Ästhetische Behandlungen sind in der Regel Privatleistungen.',
+        'Prices marked "from" are starting prices: there the final price depends on findings, scope and amount of product, and you are told it in the consultation before the treatment. The others are fixed prices. Aesthetic treatments are usually private services.'
       ) }}
     </p>
   </div>

@@ -5,16 +5,16 @@ import { Bi, FaqEntry, PHONE_HREF, PHONE_LABEL, PriceGroup, SALON_MAIL } from '.
 
 const PAGE_PATH = '/promotionen/aesthetische-medizin-nuernberg';
 
-/** Preise aus seiner Preisliste vom 02.10.2026. Startpreise, keine Präparatenamen. */
+/** Preise aus seiner Preisliste vom 02.10.2026. Startpreise, außer den Festpreisen vom 15.11.2026 (`fixed`); keine Präparatenamen. */
 const PRICE_GROUPS: PriceGroup[] = [
   {
     id: 'falten',
     title: { de: 'Faltenbehandlung', en: 'Wrinkle treatment' },
     blurb: { de: 'Mimische Falten, zum Beispiel Stirn, Zornesfalte oder Krähenfüße.', en: 'Expression lines, for example forehead, frown lines or crow\'s feet.' },
     items: [
-      { name: { de: '1 Zone', en: '1 zone' }, priceFrom: 109 },
-      { name: { de: '2 Zonen', en: '2 zones' }, priceFrom: 179 },
-      { name: { de: '3 Zonen', en: '3 zones' }, priceFrom: 229 },
+      { name: { de: '1 Zone', en: '1 zone' }, priceFrom: 99, fixed: true },
+      { name: { de: '2 Zonen', en: '2 zones' }, priceFrom: 149, fixed: true },
+      { name: { de: '3 Zonen', en: '3 zones' }, priceFrom: 199, fixed: true },
       { name: { de: '4 Zonen', en: '4 zones' }, priceFrom: 279 },
     ],
   },
@@ -23,7 +23,7 @@ const PRICE_GROUPS: PriceGroup[] = [
     title: { de: 'Lippen', en: 'Lips' },
     items: [
       { name: { de: 'Lippen 0,5 ml', en: 'Lips 0.5 ml' }, priceFrom: 159 },
-      { name: { de: 'Lippen 1 ml', en: 'Lips 1 ml' }, priceFrom: 249 },
+      { name: { de: 'Lippen 1 ml', en: 'Lips 1 ml' }, detail: { de: 'Herbst-Special bis 20.12.2026', en: 'Autumn special until 20 Dec 2026' }, priceFrom: 180, fixed: true, was: 249 },
     ],
   },
   {
