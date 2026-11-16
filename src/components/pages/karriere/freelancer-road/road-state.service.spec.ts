@@ -4,8 +4,9 @@ import { RoadStateService } from './road-state.service';
 import { ROAD, roadSteps, type Bi, type RoadDefinition } from './road.model';
 import { FREELANCER_ROAD } from './freelancer-road.data';
 import { GASTRO_ROAD } from './gastro-road.data';
+import { PARTY_ROAD } from '../../party4friends/party4friends.data';
 
-const ROADS: RoadDefinition[] = [FREELANCER_ROAD, GASTRO_ROAD];
+const ROADS: RoadDefinition[] = [FREELANCER_ROAD, GASTRO_ROAD, PARTY_ROAD];
 
 function serviceFor(road: RoadDefinition): RoadStateService {
   TestBed.resetTestingModule();

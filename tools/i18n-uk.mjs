@@ -38,6 +38,7 @@ const GROUP_RULES = [
   ['src/components/pages/aesthetische-medizin/', null],
   ['src/components/pages/massage-ruslana-ivanova/', null],
   ['src/components/pages/level-44/', null],
+  ['src/components/pages/party4friends/', null],
   ['src/components/pages/promotions/promotionen-hub/', null],
   ['src/components/pages/promotions/botox-promotion/', null],
   ['src/components/pages/promotions/aesthetik-promotion/', null],

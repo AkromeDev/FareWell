@@ -254,10 +254,12 @@
                     (input)="onNoteInput(step.id, $event)"
                     (blur)="onNoteBlur(step.id, $event)"
                     [placeholder]="
-                      t(
-                        'Wen hast du erreicht, was wurde gesagt, welche Nummer hat funktioniert?',
-                        'Whom did you reach, what was said, which number worked?'
-                      )
+                      road.copy.notePlaceholder
+                        ? bi(road.copy.notePlaceholder)
+                        : t(
+                            'Wen hast du erreicht, was wurde gesagt, welche Nummer hat funktioniert?',
+                            'Whom did you reach, what was said, which number worked?'
+                          )
                     "
                   ></textarea>
                 </div>

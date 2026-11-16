@@ -323,11 +323,11 @@ function localizedRoutes(lang: PageLang): Routes {
           data: d(
             {
               title: 'Botox Nürnberg: ab 89 €, Dr. med. Andrea Leo | FareWell',
-              description: 'Botox in Nürnberg bei Dr. med. Andrea Leo, bei FareWell am Frauentorgraben 5. Einzelne Regionen ab 89 €, eine Zone ab 109 €. Ab 16.11.2026 bei FareWell.'
+              description: 'Botox in Nürnberg bei Dr. med. Andrea Leo, bei FareWell am Frauentorgraben 5. Einzelne Regionen ab 89 €, eine Zone 99 €. Ab 16.11.2026 bei FareWell.'
             },
             {
               title: 'Botox Nuremberg: from €89, Dr. med. Andrea Leo | FareWell',
-              description: 'Botox in Nuremberg with Dr. med. Andrea Leo at FareWell, Frauentorgraben 5. Single regions from €89, one zone from €109. From 16 November 2026.'
+              description: 'Botox in Nuremberg with Dr. med. Andrea Leo at FareWell, Frauentorgraben 5. Single regions from €89, one zone €99. From 16 November 2026.'
             }
           )
         },
@@ -457,6 +457,26 @@ function localizedRoutes(lang: PageLang): Routes {
       )
     },
 
+    // Party4Friends: die Regeln für Freund:innen, die im Salon feiern
+    // (Joé, 15.11.2026). Versteckt wie die Gastro Road: noindex, nicht in der
+    // Sitemap, nirgends verlinkt, nur per Link erreichbar. Ohne ukrainische
+    // Fassung (UK_EXCLUDED_PATHS).
+    {
+      path: 'party4friends',
+      loadComponent: () =>
+        import('../components/pages/party4friends/party4friends.component')
+          .then(m => m.Party4FriendsComponent),
+      data: d(
+        {
+          title: 'Party4Friends: im Salon feiern, die Regeln | FareWell Nürnberg',
+          description: 'Die Regeln für Freund:innen, die bei FareWell in Nürnberg feiern wollen, Schritt für Schritt: erst reden, Hausregeln, Organisation, Aufräumen und Bezahlung.'
+        },
+        {
+          title: 'Party4Friends: Partying at the Salon, the Rules | FareWell Nuremberg',
+          description: 'The rules for friends who want to party at FareWell in Nuremberg, step by step: talk first, house rules, organising, cleaning up and payment.'
+        }
+      )
+    },
     // Freelancer Road: die Schritte-Seite steht VOR der Einstiegsseite, wie
     // beim Masseur-Onboarding, damit der längere Pfad zuerst greift.
     // Die Gastro Road (Restaurant oder Kochkurse) ist eine Variante ohne
