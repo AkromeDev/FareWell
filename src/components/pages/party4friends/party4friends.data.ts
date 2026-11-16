@@ -50,8 +50,8 @@ export const PARTY_PHASES: Phase<PartyId>[] = [
     tag: { de: 'Bevor ihr plant', en: 'Before you plan' },
     title: { de: 'Erst reden, dann planen', en: 'Talk first, then plan' },
     lead: {
-      de: 'Der Salon ist mein Arbeitsplatz und ich gebe ihn gern für eure Feier her. Das Einzige, worum ich wirklich bitte: Redet mit mir, bevor etwas feststeht, und redet so, dass alle gleichzeitig Bescheid wissen. Fast alles, was bisher schiefging, war keine böse Absicht, sondern fehlende Kommunikation.',
-      en: 'The salon is where I work, and I am happy to lend it for your party. The one thing I really ask: talk to me before anything is fixed, and talk so that everyone knows at the same time. Almost everything that went wrong so far was not bad intent but a lack of communication.',
+      de: 'Der Salon ist mein Arbeitsplatz und ich gebe ihn gern für eure Feier her. Das Einzige, worum ich wirklich bitte: Redet mit mir, bevor etwas feststeht, und redet so, dass alle gleichzeitig Bescheid wissen.',
+      en: 'The salon is where I work, and I am happy to lend it for your party. The one thing I really ask: talk to me before anything is fixed, and talk so that everyone knows at the same time.',
     },
     steps: [
       {
@@ -63,6 +63,10 @@ export const PARTY_PHASES: Phase<PartyId>[] = [
           en: 'Everyone organising comes by one evening. We go through the rules, and only after that is there a date and invitations.',
         },
         details: [
+          {
+            de: 'Am besten feiert ihr an einem Samstag: Am Freitagabend wird aufgebaut, am Sonntag aufgeräumt, und am Montag ist der Salon wieder offen.',
+            en: 'Saturday is the best day for the party: setting up on Friday evening, tidying up on Sunday, and on Monday the salon is open again.',
+          },
           {
             de: 'Alle Organisator:innen, nicht nur eine Person, die es dann weitererzählt.',
             en: 'All organisers, not just one person who then passes it on.',
@@ -227,19 +231,23 @@ export const PARTY_PHASES: Phase<PartyId>[] = [
       {
         id: 'hoechstzahl',
         weight: 'pflicht',
-        title: { de: 'Die Höchstzahl an Gästen', en: 'The maximum number of guests' },
+        title: { de: 'Höchstens 100 Gäste, höchstens 120 in der Einladungsgruppe', en: 'At most 100 guests, at most 120 in the invitation group' },
         summary: {
-          de: 'Beim Treffen machen wir eine Höchstzahl aus. Sie gilt auch dann, wenn ihr mit anderen zusammenlegt.',
-          en: 'At the meeting we agree on a maximum number. It still applies if you team up with others.',
+          de: 'Im Salon feiern höchstens 100 Leute. Weil immer weniger kommen als zusagen, dürfen in der Gruppe mit der Einladung bis zu 120 Personen sein, nicht mehr.',
+          en: 'At most 100 people party in the salon. Since fewer always come than say yes, the group with the invitation may hold up to 120 people, no more.',
         },
         details: [
           {
-            de: 'Wer nicht kommen kann, tritt aus der Gästegruppe aus oder sagt ab. Eine kurze Umfrage eine Woche vorher zeigt, wie viele wirklich kommen.',
-            en: 'Anyone who cannot come leaves the guest group or says so. A quick poll a week before shows how many are really coming.',
+            de: 'Die Zahl gilt auch dann, wenn ihr mit anderen zusammenlegt: zwei Feiern teilen sich die 100.',
+            en: 'The number still applies if you team up with others: two parties share the 100.',
           },
           {
-            de: 'Neue Leute einladen nur, solange ihr unter der Zahl bleibt.',
-            en: 'Invite new people only while you stay under the number.',
+            de: 'Wer nicht kommen kann, tritt aus der Einladungsgruppe aus. Eine kurze Umfrage eine Woche vorher zeigt, wie viele wirklich kommen.',
+            en: 'Anyone who cannot come leaves the invitation group. A quick poll a week before shows how many are really coming.',
+          },
+          {
+            de: 'Neue Leute einladen nur, solange ihr unter 120 in der Gruppe bleibt.',
+            en: 'Invite new people only while the group stays under 120.',
           },
         ],
       },
@@ -322,16 +330,24 @@ export const PARTY_PHASES: Phase<PartyId>[] = [
           en: 'I post the task list as a poll in the group and you tick what you take care of. A task with no name becomes my task on the night, and that is not the deal.',
         },
         details: [
-          { de: 'Getränke organisieren, mit Eis und Bechern.', en: 'Drinks, including ice and cups.' },
+          {
+            de: 'Jede Aufgabe aus der Liste steht in der Umfrage. Für Getränke und Sofas braucht es meistens zwei Leute.',
+            en: 'Every task in the list is in the poll. Drinks and sofas usually need two people.',
+          },
+        ],
+        list: [
+          { de: 'Getränke organisieren, mit Eis und Bechern (selbst oder über Flaschenpost).', en: 'Drinks, including ice and cups (yourselves or via a delivery service like Flaschenpost).' },
           { de: 'Musik und Anlage klären, vorher Soundtest im Salon.', en: 'Music and sound system, with a sound check in the salon beforehand.' },
           { de: 'Absperrband mit Spruch besorgen und ungenutzte Räume absperren.', en: 'Get barrier tape with a sign and close off unused rooms.' },
-          { de: 'Teppich für den großen Raum (optional) und Sofas hin und zurück.', en: 'A rug for the big room (optional) and sofas there and back.' },
-          { de: 'Socken- oder Hausschuhparty in der Gästegruppe ansagen.', en: 'Announce the socks or slippers party in the guest group.' },
-          { de: 'Einlasszeiten und Gästeliste festlegen, Höchstzahl beachten.', en: 'Set arrival times and the guest list, keep to the maximum.' },
+          { de: 'Teppich für den großen Raum (optional).', en: 'A rug for the big room (optional).' },
+          { de: 'Sofas hin und zurück bringen.', en: 'Sofas there and back.' },
+          { de: 'Socken- oder Hausschuhparty in der Einladungsgruppe ansagen.', en: 'Announce the socks or slippers party in the invitation group.' },
+          { de: 'Einlasszeiten festlegen, höchstens 100 Gäste und 120 in der Gruppe.', en: 'Set arrival times, at most 100 guests and 120 in the group.' },
+          { de: 'Ecke für Jacken am Eingang einrichten.', en: 'Set up a corner for coats at the entrance.' },
           { de: 'Türdienst unten, ein bis zwei Leute.', en: 'Door duty downstairs, one or two people.' },
           { de: 'Zettel mit Telefonnummer an die Haustür.', en: 'A note with a phone number on the front door.' },
           { de: 'Aschenbecher rausstellen und Kippen danach aufsammeln.', en: 'Put out the ashtrays and pick up the butts afterwards.' },
-          { de: 'Aufräumen und Putzen am nächsten Tag.', en: 'Tidying and cleaning the next day.' },
+          { de: 'Aufräumen und Putzen am Sonntag.', en: 'Tidying and cleaning on Sunday.' },
         ],
         joe: {
           de: 'Bei beiden Feiern blieben in der Umfrage Aufgaben ohne einen einzigen Haken stehen: einmal der Türdienst, einmal der Transport der Sofas und die Aschenbecher. Am Ende hat es geklappt, aber erst nach Nachfragen.',
@@ -362,8 +378,8 @@ export const PARTY_PHASES: Phase<PartyId>[] = [
         weight: 'pflicht',
         title: { de: 'Getränke, Eis und Becher', en: 'Drinks, ice and cups' },
         summary: {
-          de: 'Ihr kauft ein, ihr bringt es, ihr nehmt das Pfand wieder mit. Macht einen festen Termin aus, wann eingekauft und angeliefert wird.',
-          en: 'You buy, you bring it, you take the empties back. Fix a time for when you shop and deliver.',
+          de: 'Ihr kauft selbst ein oder bestellt über Flaschenpost, und ihr nehmt das Pfand wieder mit. Macht einen festen Termin aus, wann eingekauft oder geliefert wird.',
+          en: 'You shop yourselves or order from a delivery service like Flaschenpost, and you take the empties back. Fix a time for when you shop or the delivery comes.',
         },
         details: [
           {
@@ -371,8 +387,8 @@ export const PARTY_PHASES: Phase<PartyId>[] = [
             en: 'Reusable cups instead of disposable ones. Your own fridge for the bar is welcome if you announce it beforehand.',
           },
           {
-            de: 'Wer das Auto hat, wer trägt, wann: in die Gruppe schreiben, nicht nur im Kopf haben.',
-            en: 'Who has the car, who carries, when: write it in the group, do not just keep it in your head.',
+            de: 'Flaschenpost liefert bis vor die Tür und nimmt Leergut wieder mit, kostet aber etwas mehr. Wer selbst kauft: wer das Auto hat, wer trägt, wann, in die Gruppe schreiben.',
+            en: 'Flaschenpost delivers to the door and takes empties back, but costs a little more. If you shop yourselves: who has the car, who carries, when, write it in the group.',
           },
         ],
       },
@@ -400,8 +416,8 @@ export const PARTY_PHASES: Phase<PartyId>[] = [
         weight: 'pflicht',
         title: { de: 'Aufbau: Zeiten mit mir abmachen', en: 'Setting up: agree the times with me' },
         summary: {
-          de: 'Wann ihr reinkönnt, um aufzubauen, sagen wir in der Gruppe ab. Unter der Woche ist der Salon offen, aufbauen geht meistens erst am Abend vorher, nach den Kund:innen.',
-          en: 'When you can come in to set up, we agree in the group. During the week the salon is open, so setting up usually only works the evening before, after the clients.',
+          de: 'Aufbauen könnt ihr am Freitag ab 18 Uhr, nicht früher, denn bis dahin sind Kund:innen da. Die genaue Uhrzeit sagen wir in der Gruppe ab.',
+          en: 'You can set up on Friday from 6 pm, not earlier, because clients are in until then. We agree the exact time in the group.',
         },
         details: [
           {

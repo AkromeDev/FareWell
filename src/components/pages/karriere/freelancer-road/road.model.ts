@@ -46,6 +46,8 @@ export interface Step<P extends string = string> {
   summary: Bi;
   /** Aufzählungspunkte im ausgeklappten Zustand. */
   details: Bi[];
+  /** Optional: eine Liste, die immer sichtbar unter der Zusammenfassung steht. */
+  list?: Bi[];
   /** Für welche Auswahl der Schritt gilt. Leer = alle. */
   professions?: P[];
   /** Gewichtung: Pflicht (rechtlich), empfohlen, optional. */

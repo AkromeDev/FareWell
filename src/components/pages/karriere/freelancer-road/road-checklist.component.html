@@ -157,6 +157,16 @@
                   <span class="lang de">{{ step.summary.de }}</span>
                   <span class="lang en">{{ step.summary.en }}</span>
                 </p>
+                @if (step.list?.length) {
+                  <ul class="fr-list fr-step__list">
+                    @for (item of step.list; track $index) {
+                      <li>
+                        <span class="lang de">{{ item.de }}</span>
+                        <span class="lang en">{{ item.en }}</span>
+                      </li>
+                    }
+                  </ul>
+                }
               </div>
               <button
                 type="button"

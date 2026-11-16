@@ -249,7 +249,9 @@ button.gd-btn {
   }
 }
 
-.fr-step__title {
+// Mit .fr-step davor, sonst gewinnt `.gd .gd-section h3` (margin-top 2rem)
+// und der Titel rutscht unter das Häkchen.
+.fr-step .fr-step__title {
   margin: 0;
   font-family: var(--gd-font-sans);
   font-size: 17px;
@@ -536,5 +538,13 @@ button.gd-btn {
       font-weight: 650;
       margin-bottom: 0.15rem;
     }
+  }
+}
+
+.fr-step .fr-step__list {
+  margin: 0.6rem 0 0;
+
+  li {
+    list-style: disc;
   }
 }
