@@ -35,6 +35,11 @@
                 "glob": "security.txt",
                 "input": "src/.well-known",
                 "output": ".well-known"
+              },
+              {
+                "glob": "level44.json",
+                "input": "src/app/domain",
+                "output": "data"
               }
             ],
             "styles": [
@@ -100,6 +105,11 @@
                 "glob": "security.txt",
                 "input": "src/.well-known",
                 "output": ".well-known"
+              },
+              {
+                "glob": "level44.json",
+                "input": "src/app/domain",
+                "output": "data"
               }
             ],
             "styles": [

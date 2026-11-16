@@ -169,6 +169,40 @@
   }
 }
 
+/* Unter einem Dach: drei schlichte Zeilen, so leise wie die Karriere-Reihe.
+   Nur der Name ist ein Link. */
+.roof {
+  font-size: 0.86rem;
+  color: rgba($cream, 0.72);
+}
+
+.roof-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba($cream, 0.9);
+}
+
+.roof-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  a {
+    font-weight: 700;
+    color: rgba($cream, 0.9);
+
+    &:hover {
+      color: $gold;
+    }
+  }
+}
+
 /* Der Widerruf-Button sitzt optisch in derselben Reihe wie die Rechtstexte:
    Art. 7 Abs. 3 DSGVO verlangt, dass er so leicht zu finden ist wie sie. */
 .legal-row a,
@@ -228,5 +262,9 @@
 
   .links-row {
     justify-content: flex-end;
+  }
+
+  .roof {
+    text-align: right;
   }
 }

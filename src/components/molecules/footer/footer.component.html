@@ -145,6 +145,53 @@
         }
       </div>
 
+      <!-- Unter einem Dach: die drei Namen mit je einer schlichten Zeile, auf
+           jeder Seite gleich und ohne Suchwort-Text (AI-SEO-STRATEGY.md,
+           Cross-links). Der Name ist der Link. Wohin er führt, steht in
+           src/app/domain/partner-sites.ts: solange die eigene Website eines
+           Partners nicht öffentlich ist, auf seine Seite hier. -->
+      <div class="roof">
+        <p class="roof-title">
+          <span class="lang de">Unter einem Dach</span
+          ><span class="lang en">Under one roof</span>
+        </p>
+        <ul class="roof-list">
+          <li>
+            <a [routerLink]="p('/')" class="no-underline">FareWell</a
+            ><span class="lang de"> · Kosmetikstudio und Haarentfernung, Frauentorgraben 5, Nürnberg</span
+            ><span class="lang en"> · cosmetic studio and hair removal, Frauentorgraben 5, Nuremberg</span>
+          </li>
+          <li>
+            @if (drLeoSite.public) {
+            <a
+              [href]="drLeoSite.origin"
+              rel="noopener"
+              class="no-underline"
+              (click)="trackCrosslink(drLeoSite.origin)"
+              >Dr. med. Andrea Leo</a
+            >
+            } @else {
+            <a [routerLink]="p(drLeoSite.ownPage)" class="no-underline">Dr. med. Andrea Leo</a>
+            }<span class="lang de"> · Ästhetische Medizin</span
+            ><span class="lang en"> · aesthetic medicine</span>
+          </li>
+          <li>
+            @if (level44Site.public) {
+            <a
+              [href]="level44Site.origin"
+              rel="noopener"
+              class="no-underline"
+              (click)="trackCrosslink(level44Site.origin)"
+              >LEVEL 44</a
+            >
+            } @else {
+            <a [routerLink]="p(level44Site.ownPage)" class="no-underline">LEVEL 44</a>
+            }<span class="lang de"> · 9D Breathwork und Soul Touch mit Franziska Preusche</span
+            ><span class="lang en"> · 9D Breathwork and Soul Touch with Franziska Preusche</span>
+          </li>
+        </ul>
+      </div>
+
       <div class="links-row legal-row">
         <a [routerLink]="p('/faq')" class="no-underline"
           ><span class="lang de">FAQ &amp; Ratgeber</span

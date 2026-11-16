@@ -49,7 +49,7 @@ start with `pages/`, `atoms/` or `molecules/` are under `src/components/`.
 
 | Layer | Where in the code | What it holds |
 |---|---|---|
-| Domain | `src/app/domain/entities.ts`, the only file there (71 lines). Plain TypeScript inside page folders: `pages/price/price-data.ts`, `pages/promotions/promotion-offers.ts`, `pages/karriere/shared/karriere-content.ts`, the two `*-road.data.ts`, and `models/`, `data/`, `utils/` under `pages/tasks/`. | The shared ids of the structured data and two node builders. The price catalogue, the promotion offers, the career texts, the two checklists, the task plan and its recurrence types. 25 source files under `pages/` import nothing from Angular. |
+| Domain | `src/app/domain/`: `entities.ts` (the shared ids), and since 2026-11-13 `level44.json` with its reader `level44.ts` (LEVEL 44's prices, dates, booking links and ids, also published at `/data/level44.json` for the LEVEL 44 site), `partner-sites.ts` and `assistant-rules.json`. Plain TypeScript inside page folders: `pages/price/price-data.ts`, `pages/promotions/promotion-offers.ts`, `pages/karriere/shared/karriere-content.ts`, the two `*-road.data.ts`, and `models/`, `data/`, `utils/` under `pages/tasks/`. | The shared ids of the structured data and two node builders. The price catalogue, the promotion offers, the career texts, the two checklists, the task plan and its recurrence types. 25 source files under `pages/` import nothing from Angular. |
 | Application | No folder. `src/services/language.service.ts` and `seo.service.ts`. Under `pages/`: `task.service.ts`, `recurrence.service.ts`, `activity.service.ts`, `user-context.service.ts`, `task-migration.service.ts` in `tasks/services/`, `karriere/freelancer-road/road-state.service.ts`, `promotions/promo-experiment.service.ts`. | Which address carries which language and its counterpart. Title, meta tags, hreflang and JSON-LD of a page. The state and rules of the task plan. The progress of a checklist. The A/B test of the promotions page. |
 | Infrastructure | `src/services/analytics.service.ts`, `consent.service.ts`, `intern-seal.service.ts`, `intern-ticks.service.ts`, `responsive-images.ts`. In `pages/tasks/`: `services/task-repository.ts`, `task-storage.service.ts`, `task-sync.service.ts`, `supabase-session.service.ts`, `supabase-task-repository.ts`, `config/supabase.config.ts`. The inline consent script in `src/index.html`. `tools/`. | Everything that reaches outside: see *The seam to the outside*. |
 | Interface | `src/components/` (391 files): `atoms/` (14 components), `molecules/` (41), `pages/` (65), and beside them `dropdown/` (1) and `timeProjection/` (3). `src/directives/` (3), `src/styles/` (15 files), `src/models/` (types for the components), `src/app/app.component.*`. | The screens. There is no `organisms/` and no `templates/` folder. |
@@ -126,8 +126,9 @@ In the visitor's browser:
 
 Structure only, as it stands on 2026-11-13.
 
-1. **No domain layer for the salon.** `src/app/domain/` is one file, about the ids of the structured
-   data. The salon's facts are written in components, templates and static files, several times each.
+1. **No domain layer for the salon.** `src/app/domain/` holds the ids of the structured data and,
+   since 2026-11-13, the facts of one page (LEVEL 44, `level44.json`), which is the pattern for the
+   rest. The salon's facts are written in components, templates and static files, several times each.
    The opening hours: `atoms/opening-hours/opening-hours.component.ts`, the JSON-LD block of
    `src/index.html`, `src/llms.txt`. The booking link: a literal in 35 source files. The street
    address: 41 source files. Prices: the catalogue is `pages/price/price-data.ts`, which two treatment
