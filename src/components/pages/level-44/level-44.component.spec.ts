@@ -163,12 +163,20 @@ describe('Level44Component', () => {
         .map((link) => link.getAttribute('href') ?? '')
         .filter((href) => href.startsWith(`${LEVEL44.brandSite.origin}/`));
 
-    it('ist heute aus: die Seite bleibt das Zuhause der Marke, ohne Links in ihre Website hinein', () => {
-      expect(LEVEL44.brandSite.public).toBeFalse();
-      expect(el.querySelectorAll('.nine .nine-item').length).toBe(9);
-      expect(germanText(el.querySelector('#franziska')!)).toContain('Ich glaube, dass persönliche Veränderung');
-      expect(el.querySelector('#offer-online')).toBeNull();
-      expect(deepLinks(el)).toEqual([]);
+    it('ist seit 16.11.2026 an (Joé: ihre Website ist öffentlich)', () => {
+      expect(LEVEL44.brandSite.public).toBeTrue();
+    });
+
+    it('ist sie aus, bleibt die Seite das Zuhause der Marke, ohne Links in ihre Website hinein', () => {
+      const closed = TestBed.createComponent(Level44Component);
+      Object.assign(closed.componentInstance, { brandPublic: false });
+      closed.detectChanges();
+      const node: HTMLElement = closed.nativeElement;
+      expect(node.querySelectorAll('.nine .nine-item').length).toBe(9);
+      expect(germanText(node.querySelector('#franziska')!)).toContain('Ich glaube, dass persönliche Veränderung');
+      expect(node.querySelector('#offer-online')).toBeNull();
+      expect(deepLinks(node)).toEqual([]);
+      closed.destroy();
     });
 
     it('verweist, sobald sie öffentlich ist, für Methode, Journeys, Online und Franziska auf ihre Website', () => {

@@ -46,7 +46,10 @@ describe('FooterComponent', () => {
 
     it('bleibt auf dieser Website, solange die Website eines Partners nicht öffentlich ist', () => {
       expect(component.drLeoSite.public).toBeFalse();
-      expect(component.level44Site.public).toBeFalse();
+      // LEVEL 44 ist seit 16.11.2026 öffentlich; hier wird der Zustand davor geprüft.
+      expect(component.level44Site.public).toBeTrue();
+      Object.assign(component, { level44Site: { ...component.level44Site, public: false } });
+      fixture.detectChanges();
       expect(items().map((item) => item.querySelector('a')?.getAttribute('href'))).toEqual([
         '/',
         '/behandlungen/aesthetische-medizin',

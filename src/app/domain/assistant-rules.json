@@ -34,7 +34,7 @@
       "to": "LEVEL 44, Franziska Preusche's own site",
       "url": "https://farewell.salon/behandlungen/level-44",
       "ownSite": "https://level44.live",
-      "ownSitePublic": false
+      "ownSitePublic": true
     }
   ],
   "refersToNote": "url is where a visitor is sent today. ownSite is the partner's own website: it takes over for that topic once ownSitePublic is true. For LEVEL 44 that value follows brandSite.public in level44.json, for Dr. Leo DR_LEO_SITE in partner-sites.ts; the spec keeps them equal.",
