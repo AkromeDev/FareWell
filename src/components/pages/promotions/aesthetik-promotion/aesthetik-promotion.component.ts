@@ -41,7 +41,7 @@ const PRICE_GROUPS: PriceGroup[] = [
     items: [
       { name: { de: 'Mesotherapie', en: 'Mesotherapy' }, priceFrom: 149 },
       { name: { de: 'Skinbooster', en: 'Skin booster' }, priceFrom: 229 },
-      { name: { de: 'Biostimulatoren', en: 'Biostimulators' }, priceFrom: 429 },
+      { name: { de: 'Biostimulatoren', en: 'Biostimulators' }, priceFrom: 380 },
     ],
   },
   {

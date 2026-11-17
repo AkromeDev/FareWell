@@ -74,7 +74,7 @@ export interface TimelineRow extends Station {
 /** Eine Zeile der Preisliste: Startpreis („ab“) in Euro, optional mit Zusatz und Einheit. */
 interface TreatmentItem {
   name: Bi;
-  /** Startpreis in Euro laut Preisliste vom 02.10.2026, oder mit `fixed` der Festpreis vom 15.11.2026. */
+  /** Startpreis in Euro laut Preisliste vom 02.10.2026, oder mit `fixed` der Festpreis vom 15.11.2026 oder 17.11.2026. */
   priceFrom: number;
   /** Festpreis, ohne „ab“ gezeigt (Dr. Leo, 15.11.2026). */
   fixed?: boolean;
@@ -335,8 +335,8 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
       { name: { de: 'Wangen (Cheek Contouring)', en: 'Cheeks (cheek contouring)' }, priceFrom: 259 },
       { name: { de: 'Nasolabialfalten', en: 'Nasolabial folds' }, priceFrom: 259 },
       { name: { de: 'Marionettenfalten', en: 'Marionette lines' }, priceFrom: 259 },
-      { name: { de: 'Rhinofiller, nicht-operative Nasenkorrektur', en: 'Rhinofiller, non-surgical nose correction' }, priceFrom: 329 },
-      { name: { de: 'Tränenrinne, Augenregion', en: 'Tear trough, eye area' }, priceFrom: 329 },
+      { name: { de: 'Rhinofiller, nicht-operative Nasenkorrektur', en: 'Rhinofiller, non-surgical nose correction' }, priceFrom: 300, fixed: true },
+      { name: { de: 'Tränenrinne, Augenregion', en: 'Tear trough, eye area' }, priceFrom: 199, fixed: true },
       { name: { de: 'Jeder weitere ml in derselben Sitzung', en: 'Each additional ml in the same session' }, priceFrom: 189 },
       { name: { de: 'Full-Face- und Profilharmonisierung', en: 'Full-face and profile harmonisation' }, priceFrom: 649 },
     ],
@@ -350,8 +350,8 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
       en: 'Encourages the skin to build its own collagen again. Less volume, more structure: for face, neck, décolleté, eye area and scalp.',
     },
     items: [
-      { name: { de: 'Sculptra (Poly-L-Milchsäure)', en: 'Sculptra (poly-L-lactic acid)' }, priceFrom: 429 },
-      { name: { de: 'Radiesse (Calciumhydroxylapatit)', en: 'Radiesse (calcium hydroxylapatite)' }, priceFrom: 429 },
+      { name: { de: 'Sculptra (Poly-L-Milchsäure)', en: 'Sculptra (poly-L-lactic acid)' }, priceFrom: 450, fixed: true },
+      { name: { de: 'Radiesse (Calciumhydroxylapatit)', en: 'Radiesse (calcium hydroxylapatite)' }, priceFrom: 380, fixed: true },
       { name: { de: 'Profhilo', en: 'Profhilo' }, priceFrom: 259 },
       { name: { de: 'Skinbooster', en: 'Skin booster' }, priceFrom: 229 },
       { name: { de: 'Polynukleotide, Augenregion', en: 'Polynucleotides, eye area' }, priceFrom: 259 },
