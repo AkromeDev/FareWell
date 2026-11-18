@@ -12,9 +12,9 @@
       ) }}
     </p>
     <div class="ctas">
-      <a class="btn-gold" [href]="bookingUrl" target="_blank" rel="noopener noreferrer">{{ t('Direkt online buchen', 'Book online now') }}</a>
-      <a class="btn-outline" [href]="phoneHref">{{ phoneLabel }}</a>
-      <a class="btn-outline" [href]="whatsappHref" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a class="btn-gold" [href]="bookingUrl" (click)="track('booking', 'hero')" target="_blank" rel="noopener noreferrer">{{ t('Direkt online buchen', 'Book online now') }}</a>
+      <a class="btn-outline" [href]="phoneHref" (click)="track('phone', 'hero')">{{ phoneLabel }}</a>
+      <a class="btn-outline" [href]="whatsappHref" (click)="track('whatsapp', 'hero')" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
     <p class="disclaimer">
       {{ t(
@@ -55,9 +55,9 @@
     <h2>{{ t('Termin', 'Appointment') }}</h2>
     <p>FareWell, Frauentorgraben 5, 90443 {{ t('Nürnberg', 'Nuremberg') }}. {{ t('2 Minuten vom Hauptbahnhof.', '2 minutes from the main station.') }}</p>
     <div class="ctas">
-      <a class="btn-gold" [href]="bookingUrl" target="_blank" rel="noopener noreferrer">{{ t('Direkt online buchen', 'Book online now') }}</a>
-      <a class="btn-outline" [href]="phoneHref">{{ phoneLabel }}</a>
-      <a class="btn-outline" [href]="whatsappHref" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a class="btn-gold" [href]="bookingUrl" (click)="track('booking', 'termin')" target="_blank" rel="noopener noreferrer">{{ t('Direkt online buchen', 'Book online now') }}</a>
+      <a class="btn-outline" [href]="phoneHref" (click)="track('phone', 'termin')">{{ phoneLabel }}</a>
+      <a class="btn-outline" [href]="whatsappHref" (click)="track('whatsapp', 'termin')" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
     <p class="disclaimer">
       {{ t(

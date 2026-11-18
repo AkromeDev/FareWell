@@ -9,9 +9,9 @@
       ) }}
     </p>
     <div class="ctas">
-      <a class="btn-gold" [href]="phoneHref">{{ phoneLabel }}</a>
+      <a class="btn-gold" [href]="phoneHref" (click)="track('phone', 'hero')">{{ phoneLabel }}</a>
       <a class="btn-outline" [href]="mailHref">{{ mailLabel }}</a>
-      <a class="btn-outline" [href]="bookingUrl" target="_blank" rel="noopener noreferrer">{{ t('Online buchen', 'Book online') }}</a>
+      <a class="btn-outline" [href]="bookingUrl" (click)="track('booking', 'hero')" target="_blank" rel="noopener noreferrer">{{ t('Online buchen', 'Book online') }}</a>
     </div>
   </div>
 </section>
@@ -90,7 +90,7 @@
     <h2>{{ t('Anfahrt und Kontakt', 'Directions and contact') }}</h2>
     <p>FareWell, Frauentorgraben 5, 90443 {{ t('Nürnberg', 'Nuremberg') }}</p>
     <div class="ctas">
-      <a class="btn-gold" [href]="phoneHref">{{ phoneLabel }}</a>
+      <a class="btn-gold" [href]="phoneHref" (click)="track('phone', 'besuch')">{{ phoneLabel }}</a>
       <a class="btn-outline" [href]="mailHref">{{ mailLabel }}</a>
     </div>
   </div>

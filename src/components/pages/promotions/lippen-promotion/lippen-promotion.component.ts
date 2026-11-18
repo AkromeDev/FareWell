@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
+import { AdClick, trackAdClick } from '../ad-tracking';
 import { Bi, LIPS_SPECIAL, PHONE_HREF, PHONE_LABEL } from '../promotion-page.model';
 
 const PAGE_PATH = '/promotionen/lippen-nuernberg';
@@ -36,8 +37,9 @@ const FOR_WHOM: Bi[] = [
  * Bilder (HWG); die spec.ts prüft das. Preis aus LIPS_SPECIAL, wie auf den
  * anderen Leo-Seiten.
  *
- * Salonkee hat keine eigene Leistung „Lippen 1 ml“ und keine Links auf einzelne
- * Leistungen (geprüft 18.11.2026), deshalb führt Buchen auf die Salonseite.
+ * Buchen öffnet bei Salonkee seine Leistung „Hyaluronsäure und Konturierung“
+ * (serviceID 235681), deren zweite Option „Lippen, 1 ml“ ist (180 €, Option
+ * 404746). Eine einzelne Option lässt sich nicht verlinken (geprüft 18.11.2026).
  */
 @Component({
   selector: 'app-lippen-promotion',
@@ -56,8 +58,11 @@ export class LippenPromotionComponent implements OnInit {
   readonly phoneLabel = PHONE_LABEL;
   readonly whatsappHref = WHATSAPP_HREF;
 
-  get bookingUrl(): string {
-    return `https://salonkee.de/salon/farewell?lang=${this.language.lang() === 'en' ? 'en' : 'de'}`;
+  /** Salonkee: Dr. Leos Hyaluron-Leistung, Auswahl der Option dort. */
+  readonly bookingUrl = 'https://salonkee.de/checkout/farewell?serviceID=235681';
+
+  track(kind: AdClick, location: string): void {
+    trackAdClick(kind, PAGE_PATH, location);
   }
 
   t(de: string, en: string): string {

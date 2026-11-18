@@ -36,4 +36,26 @@ describe('LippenPromotionComponent', () => {
   it('ist nicht indexierbar und folgt keinen Links', () => {
     expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe('noindex,nofollow');
   });
+
+  it('bucht direkt seine Hyaluron-Leistung bei Salonkee', () => {
+    const book: HTMLAnchorElement = fixture.nativeElement.querySelector('a.btn-gold');
+    expect(book.href).toBe('https://salonkee.de/checkout/farewell?serviceID=235681');
+  });
+
+  it('meldet Buchen, Telefon und WhatsApp an Analytics', () => {
+    const calls: unknown[][] = [];
+    const before = window.gtag;
+    window.gtag = (...args: unknown[]) => { calls.push(args); };
+    try {
+      const links: HTMLAnchorElement[] = Array.from(fixture.nativeElement.querySelectorAll('.hero .ctas a'));
+      links.forEach((a) => {
+        a.addEventListener('click', (e) => e.preventDefault());
+        a.dispatchEvent(new MouseEvent('click', { cancelable: true }));
+      });
+    } finally {
+      window.gtag = before;
+    }
+    expect(calls.map((c) => c[1])).toEqual(['generate_lead', 'phone_click', 'whatsapp_click']);
+    expect((calls[0][2] as { page: string }).page).toBe('/promotionen/lippen-nuernberg');
+  });
 });

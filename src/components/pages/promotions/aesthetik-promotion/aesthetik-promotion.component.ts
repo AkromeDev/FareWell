@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
+import { AdClick, trackAdClick } from '../ad-tracking';
 import { Bi, FaqEntry, LIPS_SPECIAL, PHONE_HREF, PHONE_LABEL, PriceGroup, SALON_MAIL } from '../promotion-page.model';
 
 const PAGE_PATH = '/promotionen/aesthetische-medizin-nuernberg';
@@ -117,6 +118,10 @@ export class AesthetikPromotionComponent implements OnInit {
 
   get bookingUrl(): string {
     return `https://salonkee.de/salon/farewell?lang=${this.language.lang() === 'en' ? 'en' : 'de'}`;
+  }
+
+  track(kind: AdClick, location: string): void {
+    trackAdClick(kind, PAGE_PATH, location);
   }
 
   t(de: string, en: string): string {
