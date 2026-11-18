@@ -12,6 +12,7 @@ import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { Lang, LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
 import { sizeOf, srcsetOf } from 'src/services/responsive-images';
+import { LIPS_SPECIAL } from '../promotions/promotion-page.model';
 
 const PAGE_PATH = '/behandlungen/aesthetische-medizin';
 const ORIGIN = 'https://farewell.salon';
@@ -99,8 +100,8 @@ interface TreatmentGroup {
 /** Zeile mit fertig formatiertem Preis für das Template. */
 export interface PricedItem extends TreatmentItem {
   price: Bi;
-  /** Der durchgestrichene frühere Preis und was ein Screenreader dazu sagt. */
-  wasPrice?: { shown: Bi; spoken: Bi };
+  /** Der frühere Preis, hinter dem Preis gezeigt: „statt 249 €“. */
+  wasPrice?: { word: Bi; amount: Bi };
 }
 
 export interface PricedGroup extends Omit<TreatmentGroup, 'items'> {
@@ -328,7 +329,7 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
     },
     items: [
       { name: { de: 'Lippen, 0,5 ml', en: 'Lips, 0.5 ml' }, priceFrom: 159 },
-      { name: { de: 'Lippen, 1 ml', en: 'Lips, 1 ml' }, detail: { de: 'Herbst-Special bis 20.12.2026', en: 'Autumn special until 20 Dec 2026' }, priceFrom: 180, fixed: true, was: 249 },
+      { name: { de: 'Lippen, 1 ml', en: 'Lips, 1 ml' }, detail: LIPS_SPECIAL.label, priceFrom: LIPS_SPECIAL.price, fixed: true, was: LIPS_SPECIAL.was },
       { name: { de: 'Russian Lips, 1 ml', en: 'Russian lips, 1 ml' }, priceFrom: 249, fixed: true },
       { name: { de: 'Kinnaufbau', en: 'Chin augmentation' }, priceFrom: 249, fixed: true },
       { name: { de: 'Jawline Contouring', en: 'Jawline contouring' }, priceFrom: 250 },
@@ -495,12 +496,12 @@ function priceLabel(item: TreatmentItem): Bi {
   };
 }
 
-/** Der frühere Preis eines Angebots: sichtbar durchgestrichen, vorgelesen als „statt 249 €, jetzt“. */
+/** Der frühere Preis eines Angebots, hinter dem Preis: „180 € statt 249 €“, der alte Betrag durchgestrichen. */
 function wasPrice(item: TreatmentItem): PricedItem['wasPrice'] {
   if (item.was === undefined) return undefined;
   return {
-    shown: { de: `${item.was}\u00a0€`, en: `€${item.was}` },
-    spoken: { de: `statt ${item.was}\u00a0€, jetzt`, en: `instead of €${item.was}, now` },
+    word: { de: 'statt', en: 'instead of' },
+    amount: { de: `${item.was}\u00a0€`, en: `€${item.was}` },
   };
 }
 

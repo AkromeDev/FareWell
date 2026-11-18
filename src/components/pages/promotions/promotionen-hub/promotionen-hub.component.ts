@@ -21,8 +21,9 @@ const PAGE_PATH = '/promotionen';
  * Kartenübersicht, so lesen Suchmaschinen und KI-Dienste ohne JavaScript
  * alle Aktionen.
  *
- * Die Anzeigenseite /promotionen/aesthetische-medizin-nuernberg steht bewusst
- * nicht hier: sie ist nur das Ziel der Google Anzeigen.
+ * Die Anzeigenseiten /promotionen/aesthetische-medizin-nuernberg und
+ * /promotionen/lippen-nuernberg stehen bewusst nicht hier: sie sind nur das
+ * Ziel der Google- bzw. Instagram-Anzeigen.
  */
 @Component({
   selector: 'app-promotionen-hub',

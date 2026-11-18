@@ -374,16 +374,13 @@
                   </span>
                   <span class="menu-lead" aria-hidden="true"></span>
                   <span class="menu-price"
-                    >@if (item.wasPrice) {
-                      <s class="menu-was" aria-hidden="true"
-                        ><span class="lang de">{{ item.wasPrice.shown.de }}</span
-                        ><span class="lang en">{{ item.wasPrice.shown.en }}</span></s
-                      ><span class="sr-only"
-                        ><span class="lang de">{{ item.wasPrice.spoken.de }}</span
-                        ><span class="lang en">{{ item.wasPrice.spoken.en }}</span></span
+                    ><span class="lang de">{{ item.price.de }}</span
+                    ><span class="lang en">{{ item.price.en }}</span
+                    >@if (item.wasPrice) {&ngsp;<span class="menu-was"
+                        ><span class="lang de">{{ item.wasPrice.word.de }} <s>{{ item.wasPrice.amount.de }}</s></span
+                        ><span class="lang en">{{ item.wasPrice.word.en }} <s>{{ item.wasPrice.amount.en }}</s></span></span
                       >
-                    }<span class="lang de">{{ item.price.de }}</span
-                    ><span class="lang en">{{ item.price.en }}</span></span
+                    }</span
                   >
                 </li>
               }

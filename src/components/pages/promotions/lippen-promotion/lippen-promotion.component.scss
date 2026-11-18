@@ -1,0 +1,54 @@
+@use 'themes/theme-entry' as *;
+
+// Nur was die Lippen-Anzeigenseite zusätzlich zu promotion-page.scss braucht.
+
+.hero {
+  // Die Anzeige kommt fast nur vom Handy: Preis und Buchen ohne Scrollen sichtbar.
+  padding-top: clamp(110px, 14vh, 170px);
+}
+
+.offer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  margin: 0 0 18px;
+  color: $cream;
+
+  strong {
+    font-family: $font-fraunces;
+    font-size: clamp(48px, 7vw, 80px);
+    font-weight: 400;
+    line-height: 1;
+    color: $gold;
+  }
+
+  span {
+    font-size: 20px;
+    opacity: 0.75;
+  }
+}
+
+.disclaimer {
+  margin-top: 24px;
+  font-size: 13px;
+  color: rgba($cream, 0.65);
+}
+
+.for-whom {
+  margin: 0;
+  padding: 0 0 0 1.2em;
+
+  li {
+    margin-bottom: 12px;
+    max-width: 68ch;
+    color: rgba($cream, 0.82);
+  }
+}
+
+@media (max-width: 480px) {
+  .ctas a {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}

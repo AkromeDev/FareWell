@@ -26,9 +26,10 @@ export class FooterComponent {
 
   private readonly router = inject(Router);
 
-  /** Die wirkstofffreie Zielseite der Google Anzeigen, siehe aesthetik-promotion. */
+  /** Die wirkstofffreien Anzeigenseiten (Google: aesthetik-promotion, Instagram: lippen-promotion). */
   get isAdLandingPage(): boolean {
-    return this.router.url.split(/[?#]/)[0].endsWith('/promotionen/aesthetische-medizin-nuernberg');
+    const path = this.router.url.split(/[?#]/)[0];
+    return path.endsWith('/promotionen/aesthetische-medizin-nuernberg') || path.endsWith('/promotionen/lippen-nuernberg');
   }
 
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';

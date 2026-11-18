@@ -26,6 +26,8 @@ export interface PageSeo {
   alternates?: boolean;
   /** true erzwingt noindex unabhängig von der Sprache (z. B. 404-Seite). */
   noindex?: boolean;
+  /** true setzt zusätzlich nofollow (reine Anzeigenseiten). */
+  nofollow?: boolean;
 }
 
 const ORIGIN = 'https://farewell.salon';
@@ -94,7 +96,7 @@ export class SeoService {
       seo.noindex === true || (isOverlayLang(lang) && !OVERLAY_INDEXABLE[lang]);
     this.meta.updateTag({
       name: 'robots',
-      content: noindex ? 'noindex,follow' : 'index,follow',
+      content: `${noindex ? 'noindex' : 'index'},${seo.nofollow ? 'nofollow' : 'follow'}`,
     });
 
     this.meta.updateTag({ property: 'og:title', content: seo.title });

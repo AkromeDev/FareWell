@@ -8,6 +8,8 @@ export interface ConsentState {
   an: boolean;
   /** Marketing: ad_storage + ad_user_data + ad_personalization */
   ad: boolean;
+  /** Marketing chosen from a banner that names the Meta Pixel (since 18.11.2026). */
+  mp?: boolean;
   /** ISO timestamp of the choice, kept for the Nachweispflicht (Art. 7 DSGVO). */
   t: string;
 }

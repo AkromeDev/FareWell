@@ -1,0 +1,69 @@
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">{{ t('Lips Special · Nürnberg', 'Lips Special · Nuremberg') }}</p>
+    <h1>{{ t('Hyaluron Lippen', 'Hyaluronic acid lips') }} <em>1 ml</em></h1>
+    <p class="offer">
+      <strong>{{ offer.price }} €</strong>&ngsp;<span>{{ t('statt', 'instead of') }} <s>{{ offer.was }} €</s></span>
+    </p>
+    <p class="lead">
+      {{ t(
+        'Ärztlich durch Dr. med. Andrea Leo. Bei FareWell, Frauentorgraben 5, Nürnberg, 2 Minuten vom Hauptbahnhof.',
+        'By Dr. med. Andrea Leo, a physician. At FareWell, Frauentorgraben 5, Nuremberg, 2 minutes from the main station.'
+      ) }}
+    </p>
+    <div class="ctas">
+      <a class="btn-gold" [href]="bookingUrl" (click)="track('booking', 'hero')" target="_blank" rel="noopener noreferrer">{{ t('Direkt online buchen', 'Book online now') }}</a>
+      <a class="btn-outline" [href]="phoneHref" (click)="track('phone', 'hero')">{{ phoneLabel }}</a>
+      <a class="btn-outline" [href]="whatsappHref" (click)="track('whatsapp', 'hero')" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+    <p class="disclaimer">
+      {{ t(
+        'Jede Behandlung nur nach ärztlicher Beratung, Aufklärung und Indikation. Ergebnisse sind individuell. Nicht mit anderen Aktionen kombinierbar.',
+        'Every treatment only after medical consultation, information and indication. Results vary from person to person. Cannot be combined with other offers.'
+      ) }}
+    </p>
+  </div>
+</section>
+
+<section class="alt" id="ablauf">
+  <div class="wrap">
+    <h2>{{ t('So läuft es ab', 'How it works') }}</h2>
+    <ol class="steps">
+      @for (step of steps; track step.title.de) {
+        <li>
+          <h3>{{ bi(step.title) }}</h3>
+          <p>{{ bi(step.text) }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section id="fuer-wen">
+  <div class="wrap">
+    <h2>{{ t('Für wen', 'Who it is for') }}</h2>
+    <ul class="for-whom">
+      @for (line of forWhom; track line.de) {
+        <li>{{ bi(line) }}</li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="alt" id="besuch">
+  <div class="wrap">
+    <h2>{{ t('Termin', 'Appointment') }}</h2>
+    <p>FareWell, Frauentorgraben 5, 90443 {{ t('Nürnberg', 'Nuremberg') }}. {{ t('2 Minuten vom Hauptbahnhof.', '2 minutes from the main station.') }}</p>
+    <div class="ctas">
+      <a class="btn-gold" [href]="bookingUrl" (click)="track('booking', 'termin')" target="_blank" rel="noopener noreferrer">{{ t('Direkt online buchen', 'Book online now') }}</a>
+      <a class="btn-outline" [href]="phoneHref" (click)="track('phone', 'termin')">{{ phoneLabel }}</a>
+      <a class="btn-outline" [href]="whatsappHref" (click)="track('whatsapp', 'termin')" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+    <p class="disclaimer">
+      {{ t(
+        'Jede Behandlung nur nach ärztlicher Beratung, Aufklärung und Indikation. Ergebnisse sind individuell. Nicht mit anderen Aktionen kombinierbar.',
+        'Every treatment only after medical consultation, information and indication. Results vary from person to person. Cannot be combined with other offers.'
+      ) }}
+    </p>
+  </div>
+</section>
