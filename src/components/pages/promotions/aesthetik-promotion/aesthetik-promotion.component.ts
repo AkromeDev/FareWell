@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { LanguageService } from 'src/services/language.service';
 import { SeoService } from 'src/services/seo.service';
-import { Bi, FaqEntry, PHONE_HREF, PHONE_LABEL, PriceGroup, SALON_MAIL } from '../promotion-page.model';
+import { Bi, FaqEntry, LIPS_SPECIAL, PHONE_HREF, PHONE_LABEL, PriceGroup, SALON_MAIL } from '../promotion-page.model';
 
 const PAGE_PATH = '/promotionen/aesthetische-medizin-nuernberg';
 
@@ -23,7 +23,7 @@ const PRICE_GROUPS: PriceGroup[] = [
     title: { de: 'Lippen', en: 'Lips' },
     items: [
       { name: { de: 'Lippen 0,5 ml', en: 'Lips 0.5 ml' }, priceFrom: 159 },
-      { name: { de: 'Lippen 1 ml', en: 'Lips 1 ml' }, detail: { de: 'Herbst-Special bis 20.12.2026', en: 'Autumn special until 20 Dec 2026' }, priceFrom: 180, fixed: true, was: 249 },
+      { name: { de: 'Lippen 1 ml', en: 'Lips 1 ml' }, detail: LIPS_SPECIAL.label, priceFrom: LIPS_SPECIAL.price, fixed: true, was: LIPS_SPECIAL.was },
     ],
   },
   {

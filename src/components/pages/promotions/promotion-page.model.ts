@@ -27,6 +27,17 @@ export interface FaqEntry {
   a: Bi;
 }
 
+/**
+ * Das Lips Special von Dr. Leo: Lippen 1 ml zum Festpreis von 180 € statt 249 €.
+ * Ohne Enddatum (JC, 18.11.2026). Die eine Quelle für die Seite Ästhetische Medizin,
+ * die Google-Anzeigenseite und die Instagram-Anzeigenseite /promotionen/lippen-nuernberg.
+ */
+export const LIPS_SPECIAL = {
+  label: { de: 'Lips Special', en: 'Lips Special' } as Bi,
+  price: 180,
+  was: 249,
+} as const;
+
 export const ORIGIN = 'https://farewell.salon';
 export const SALON_MAIL = 'info@farewell.salon';
 export const PHONE_HREF = 'tel:+4915757995694';

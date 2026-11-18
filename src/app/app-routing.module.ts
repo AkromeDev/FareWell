@@ -735,6 +735,22 @@ function localizedRoutes(lang: PageLang): Routes {
         }
       )
     },
+    {
+      path: 'promotionen/lippen-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/promotions/lippen-promotion/lippen-promotion.component')
+          .then(m => m.LippenPromotionComponent),
+      data: d(
+        {
+          title: 'Lips Special: Lippen 1 ml für 180 € beim Arzt in Nürnberg | FareWell',
+          description: 'Hyaluron Lippen 1 ml für 180 € statt 249 €, ärztlich durch Dr. med. Andrea Leo. FareWell, Frauentorgraben 5, Nürnberg.'
+        },
+        {
+          title: 'Lips Special: lips 1 ml for €180 with a physician in Nuremberg | FareWell',
+          description: 'Hyaluronic acid lips 1 ml for €180 instead of €249, by Dr. med. Andrea Leo. FareWell, Frauentorgraben 5, Nuremberg.'
+        }
+      )
+    },
 
     {
       path: 'laser-haarentfernung-aktion-nuernberg',

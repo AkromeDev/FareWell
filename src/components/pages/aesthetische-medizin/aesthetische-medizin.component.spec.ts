@@ -47,7 +47,8 @@ describe('AesthetischeMedizinComponent', () => {
     }
     const lips = items.find((item) => item.name.de === 'Lippen, 1 ml');
     expect(lips?.price.de).toBe('180\u00a0€');
-    expect(lips?.wasPrice?.spoken.de).toBe('statt 249\u00a0€, jetzt');
+    expect(lips?.wasPrice?.amount.de).toBe('249\u00a0€');
+    expect(lips?.detail?.de).toBe('Lips Special');
     const rows = fixture.nativeElement.querySelectorAll('.menu-row .menu-price > .lang.de');
     expect(rows.length).toBe(items.length);
   });

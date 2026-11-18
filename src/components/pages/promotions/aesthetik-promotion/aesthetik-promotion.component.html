@@ -36,14 +36,13 @@
                   }
                 </span>
                 <span class="price">
-                  @if (item.was) {
-                    <s aria-hidden="true">{{ item.was }} €</s>
-                    <span class="sr-only">{{ t('statt', 'instead of') }} {{ item.was }} €, {{ t('jetzt', 'now') }}</span>
-                  }
                   @if (!item.fixed) {
                     {{ t('ab', 'from') }}
                   }
                   {{ item.priceFrom }} €
+                  @if (item.was) {
+                    <span class="was">{{ t('statt', 'instead of') }} <s>{{ item.was }} €</s></span>
+                  }
                 </span>
               </li>
             }
