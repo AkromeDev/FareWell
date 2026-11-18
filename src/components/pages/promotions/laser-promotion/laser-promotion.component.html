@@ -146,97 +146,6 @@
 
     <app-guide-section
       index="03"
-      [heading]="
-        t(
-          'Dauerhaft oder permanent, was ist der Unterschied?',
-          'Long-lasting or permanent, what is the difference?'
-        )
-      "
-      sectionId="dauerhaft-permanent"
-    >
-      <app-guide-media
-        image="assets/images/machines/laser-effect.png"
-        [imageAlt]="
-          t(
-            'Illustration: Laserlicht wird vom Melanin im Haar aufgenommen und erwärmt die Haarwurzel',
-            'Illustration: laser light is absorbed by the melanin in the hair and heats the hair root'
-          )
-        "
-        side="left"
-      >
-        <p class="lang de">
-          Ehrlichkeit gehört bei uns zur Beratung: <strong>Dauerhaft</strong> und
-          <strong>permanent</strong> sind nicht dasselbe. Beide Methoden bekommst du bei
-          FareWell, und wir sagen dir offen, welche zu dir passt.
-        </p>
-        <p class="lang en">
-          Honesty is part of our consultation: <strong>long-lasting</strong> and
-          <strong>permanent</strong> are not the same thing. You get both methods at FareWell,
-          and we tell you openly which one suits you.
-        </p>
-      </app-guide-media>
-      <div class="gd-split">
-        <app-guide-panel
-          [heading]="t('Diodenlaser, dauerhaft', 'Diode laser, long-lasting')"
-          tone="forest"
-        >
-          <li>
-            <span class="lang de">Deutliche, langanhaltende Reduktion des Haarwuchses</span>
-            <span class="lang en">Clear, long-lasting reduction of hair growth</span>
-          </li>
-          <li>
-            <span class="lang de">Ideal für größere Zonen wie Beine, Rücken oder Achseln</span>
-            <span class="lang en">Ideal for larger areas like legs, back or underarms</span>
-          </li>
-          <li>
-            <span class="lang de">Am wirksamsten bei dunkleren Haaren</span>
-            <span class="lang en">Most effective on darker hair</span>
-          </li>
-          <li>
-            <span class="lang de">Schnelle Sitzungen, gut planbar</span>
-            <span class="lang en">Fast sessions, easy to plan</span>
-          </li>
-        </app-guide-panel>
-        <app-guide-panel
-          [heading]="t('Elektrolyse, permanent', 'Electrolysis, permanent')"
-          tone="sage"
-          dots="sand"
-          [revealDelay]="60"
-        >
-          <li>
-            <span class="lang de">Die einzige in Deutschland rechtlich als permanent anerkannte Methode</span>
-            <span class="lang en">The only method legally recognised as permanent in Germany</span>
-          </li>
-          <li>
-            <span class="lang de">Jede Haarwurzel wird einzeln und endgültig verödet</span>
-            <span class="lang en">Every hair root is deactivated individually and for good</span>
-          </li>
-          <li>
-            <span class="lang de">Wirkt bei jedem Haut- und Haartyp, auch bei hellen, feinen oder grauen Haaren</span>
-            <span class="lang en">Works on every skin and hair type, including light, fine or grey hair</span>
-          </li>
-          <li>
-            <span class="lang de">Ideal für Gesicht und kleinere Zonen</span>
-            <span class="lang en">Ideal for the face and smaller areas</span>
-          </li>
-        </app-guide-panel>
-      </div>
-      <app-guide-note variant="tip" [label]="t('Unsicher?', 'Not sure?')">
-        <span class="lang de">
-          In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an. Mehr zur
-          permanenten Methode liest du auf der Seite zur
-          <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a>.
-        </span>
-        <span class="lang en">
-          In the free initial consultation we look at your skin and hair together. You can read
-          more about the permanent method on the page about
-          <a [routerLink]="p('/behandlungen/nadelepilation')">needle epilation (electrolysis)</a>.
-        </span>
-      </app-guide-note>
-    </app-guide-section>
-
-    <app-guide-section
-      index="04"
       [heading]="t('So läuft deine Behandlung ab', 'How your treatment works')"
       sectionId="ablauf"
     >
@@ -288,7 +197,7 @@
     </app-guide-section>
 
     <app-guide-section
-      index="05"
+      index="04"
       [heading]="t('Alle Körperzonen', 'All body areas')"
       sectionId="zonen"
     >
@@ -355,24 +264,10 @@
           </li>
         </app-guide-panel>
       </div>
-      <app-guide-note variant="tip" [label]="t('Gut zu wissen', 'Good to know')">
-        <span class="lang de">
-          Bei hormonell bedingtem Haarwuchs, etwa durch PCOS, empfehlen wir die
-          <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse</a>: Sie verödet jede
-          Haarwurzel endgültig und wirkt unabhängig von Haarfarbe und Hormonlage. Wir beraten
-          dich dazu ehrlich und einfühlsam, kostenlos und unverbindlich.
-        </span>
-        <span class="lang en">
-          For hormone-related hair growth, for example due to PCOS, we recommend
-          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis</a>: it deactivates every
-          hair root for good and works independently of hair colour and hormones. We advise you
-          on this honestly and with empathy, free and without obligation.
-        </span>
-      </app-guide-note>
     </app-guide-section>
 
     <app-guide-section
-      index="06"
+      index="05"
       [heading]="
         t(
           'Häufige Fragen zur Laser-Haarentfernung',
@@ -463,6 +358,111 @@
           FareWell you get both methods, and an honest recommendation about what suits you.
         </p>
       </app-faq-item>
+    </app-guide-section>
+
+    <app-guide-section
+      index="06"
+      [heading]="
+        t(
+          'Dauerhaft oder permanent, was ist der Unterschied?',
+          'Long-lasting or permanent, what is the difference?'
+        )
+      "
+      sectionId="dauerhaft-permanent"
+    >
+      <app-guide-media
+        image="assets/images/machines/laser-effect.png"
+        [imageAlt]="
+          t(
+            'Illustration: Laserlicht wird vom Melanin im Haar aufgenommen und erwärmt die Haarwurzel',
+            'Illustration: laser light is absorbed by the melanin in the hair and heats the hair root'
+          )
+        "
+        side="left"
+      >
+        <p class="lang de">
+          Ehrlichkeit gehört bei uns zur Beratung: <strong>Dauerhaft</strong> und
+          <strong>permanent</strong> sind nicht dasselbe. Beide Methoden bekommst du bei
+          FareWell, und wir sagen dir offen, welche zu dir passt.
+        </p>
+        <p class="lang en">
+          Honesty is part of our consultation: <strong>long-lasting</strong> and
+          <strong>permanent</strong> are not the same thing. You get both methods at FareWell,
+          and we tell you openly which one suits you.
+        </p>
+      </app-guide-media>
+      <div class="gd-split">
+        <app-guide-panel
+          [heading]="t('Diodenlaser, dauerhaft', 'Diode laser, long-lasting')"
+          tone="forest"
+        >
+          <li>
+            <span class="lang de">Deutliche, langanhaltende Reduktion des Haarwuchses</span>
+            <span class="lang en">Clear, long-lasting reduction of hair growth</span>
+          </li>
+          <li>
+            <span class="lang de">Ideal für größere Zonen wie Beine, Rücken oder Achseln</span>
+            <span class="lang en">Ideal for larger areas like legs, back or underarms</span>
+          </li>
+          <li>
+            <span class="lang de">Am wirksamsten bei dunkleren Haaren</span>
+            <span class="lang en">Most effective on darker hair</span>
+          </li>
+          <li>
+            <span class="lang de">Schnelle Sitzungen, gut planbar</span>
+            <span class="lang en">Fast sessions, easy to plan</span>
+          </li>
+        </app-guide-panel>
+        <app-guide-panel
+          [heading]="t('Elektrolyse, permanent', 'Electrolysis, permanent')"
+          tone="sage"
+          dots="sand"
+          [revealDelay]="60"
+        >
+          <li>
+            <span class="lang de">Die einzige in Deutschland rechtlich als permanent anerkannte Methode</span>
+            <span class="lang en">The only method legally recognised as permanent in Germany</span>
+          </li>
+          <li>
+            <span class="lang de">Jede Haarwurzel wird einzeln und endgültig verödet</span>
+            <span class="lang en">Every hair root is deactivated individually and for good</span>
+          </li>
+          <li>
+            <span class="lang de">Wirkt bei jedem Haut- und Haartyp, auch bei hellen, feinen oder grauen Haaren</span>
+            <span class="lang en">Works on every skin and hair type, including light, fine or grey hair</span>
+          </li>
+          <li>
+            <span class="lang de">Ideal für Gesicht und kleinere Zonen</span>
+            <span class="lang en">Ideal for the face and smaller areas</span>
+          </li>
+        </app-guide-panel>
+      </div>
+      <app-guide-note variant="tip" [label]="t('Unsicher?', 'Not sure?')">
+        <span class="lang de">
+          In der kostenlosen Erstberatung schauen wir uns Haut und Haare gemeinsam an. Mehr zur
+          permanenten Methode liest du auf der Seite zur
+          <a [routerLink]="p('/behandlungen/nadelepilation')">Nadelepilation (Elektrolyse)</a>.
+        </span>
+        <span class="lang en">
+          In the free initial consultation we look at your skin and hair together. You can read
+          more about the permanent method on the page about
+          <a [routerLink]="p('/behandlungen/nadelepilation')">needle epilation (electrolysis)</a>.
+        </span>
+      </app-guide-note>
+      <app-guide-note variant="tip" [label]="t('Gut zu wissen', 'Good to know')">
+        <span class="lang de">
+          Bei hormonell bedingtem Haarwuchs, etwa durch PCOS, empfehlen wir die
+          <a [routerLink]="p('/behandlungen/nadelepilation')">Elektrolyse</a>: Sie verödet jede
+          Haarwurzel endgültig und wirkt unabhängig von Haarfarbe und Hormonlage. Wir beraten
+          dich dazu ehrlich und einfühlsam, kostenlos und unverbindlich.
+        </span>
+        <span class="lang en">
+          For hormone-related hair growth, for example due to PCOS, we recommend
+          <a [routerLink]="p('/behandlungen/nadelepilation')">electrolysis</a>: it deactivates every
+          hair root for good and works independently of hair colour and hormones. We advise you
+          on this honestly and with empathy, free and without obligation.
+        </span>
+      </app-guide-note>
     </app-guide-section>
 
     <app-guide-cta

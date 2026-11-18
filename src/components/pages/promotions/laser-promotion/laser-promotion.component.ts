@@ -80,13 +80,13 @@ export class LaserPromotionComponent implements OnInit, OnDestroy {
         id: 'vorteile',
         label: this.t('Warum der 4-Wellen-Diodenlaser', 'Why the 4-wavelength diode laser'),
       },
+      { id: 'ablauf', label: this.t('So läuft deine Behandlung ab', 'How your treatment works') },
+      { id: 'zonen', label: this.t('Alle Körperzonen', 'All body areas') },
+      { id: 'faq', label: this.t('Häufige Fragen', 'Common questions') },
       {
         id: 'dauerhaft-permanent',
         label: this.t('Dauerhaft oder permanent?', 'Long-lasting or permanent?'),
       },
-      { id: 'ablauf', label: this.t('So läuft deine Behandlung ab', 'How your treatment works') },
-      { id: 'zonen', label: this.t('Alle Körperzonen', 'All body areas') },
-      { id: 'faq', label: this.t('Häufige Fragen', 'Common questions') },
     ];
   }
 
