@@ -74,7 +74,7 @@ export interface TimelineRow extends Station {
 /** Eine Zeile der Preisliste: Startpreis („ab“) in Euro, optional mit Zusatz und Einheit. */
 interface TreatmentItem {
   name: Bi;
-  /** Startpreis in Euro laut Preisliste vom 02.10.2026, oder mit `fixed` der Festpreis vom 15.11.2026 oder 17.11.2026. */
+  /** Startpreis in Euro laut Preisliste vom 02.10.2026, oder mit `fixed` der Festpreis vom 15.11.2026 oder aus seiner Liste vom 18.11.2026. */
   priceFrom: number;
   /** Festpreis, ohne „ab“ gezeigt (Dr. Leo, 15.11.2026). */
   fixed?: boolean;
@@ -329,12 +329,12 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
     items: [
       { name: { de: 'Lippen, 0,5 ml', en: 'Lips, 0.5 ml' }, priceFrom: 159 },
       { name: { de: 'Lippen, 1 ml', en: 'Lips, 1 ml' }, detail: { de: 'Herbst-Special bis 20.12.2026', en: 'Autumn special until 20 Dec 2026' }, priceFrom: 180, fixed: true, was: 249 },
-      { name: { de: 'Russian Lips, 1 ml', en: 'Russian lips, 1 ml' }, priceFrom: 269 },
-      { name: { de: 'Kinnaufbau', en: 'Chin augmentation' }, priceFrom: 259 },
-      { name: { de: 'Jawline Contouring', en: 'Jawline contouring' }, priceFrom: 259 },
-      { name: { de: 'Wangen (Cheek Contouring)', en: 'Cheeks (cheek contouring)' }, priceFrom: 259 },
-      { name: { de: 'Nasolabialfalten', en: 'Nasolabial folds' }, priceFrom: 259 },
-      { name: { de: 'Marionettenfalten', en: 'Marionette lines' }, priceFrom: 259 },
+      { name: { de: 'Russian Lips, 1 ml', en: 'Russian lips, 1 ml' }, priceFrom: 249, fixed: true },
+      { name: { de: 'Kinnaufbau', en: 'Chin augmentation' }, priceFrom: 249, fixed: true },
+      { name: { de: 'Jawline Contouring', en: 'Jawline contouring' }, priceFrom: 250 },
+      { name: { de: 'Wangen (Cheek Contouring)', en: 'Cheeks (cheek contouring)' }, priceFrom: 199 },
+      { name: { de: 'Nasolabialfalten', en: 'Nasolabial folds' }, priceFrom: 249, fixed: true },
+      { name: { de: 'Marionettenfalten', en: 'Marionette lines' }, priceFrom: 180, fixed: true },
       { name: { de: 'Rhinofiller, nicht-operative Nasenkorrektur', en: 'Rhinofiller, non-surgical nose correction' }, priceFrom: 300, fixed: true },
       { name: { de: 'Tränenrinne, Augenregion', en: 'Tear trough, eye area' }, priceFrom: 199, fixed: true },
       { name: { de: 'Jeder weitere ml in derselben Sitzung', en: 'Each additional ml in the same session' }, priceFrom: 189 },
@@ -350,8 +350,8 @@ const TREATMENT_GROUPS: TreatmentGroup[] = [
       en: 'Encourages the skin to build its own collagen again. Less volume, more structure: for face, neck, décolleté, eye area and scalp.',
     },
     items: [
-      { name: { de: 'Sculptra (Poly-L-Milchsäure)', en: 'Sculptra (poly-L-lactic acid)' }, priceFrom: 450, fixed: true },
-      { name: { de: 'Radiesse (Calciumhydroxylapatit)', en: 'Radiesse (calcium hydroxylapatite)' }, priceFrom: 380, fixed: true },
+      { name: { de: 'Sculptra (Poly-L-Milchsäure)', en: 'Sculptra (poly-L-lactic acid)' }, priceFrom: 499 },
+      { name: { de: 'Radiesse (Calciumhydroxylapatit)', en: 'Radiesse (calcium hydroxylapatite)' }, priceFrom: 380 },
       { name: { de: 'Profhilo', en: 'Profhilo' }, priceFrom: 259 },
       { name: { de: 'Skinbooster', en: 'Skin booster' }, priceFrom: 229 },
       { name: { de: 'Polynukleotide, Augenregion', en: 'Polynucleotides, eye area' }, priceFrom: 259 },

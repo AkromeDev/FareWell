@@ -5,7 +5,7 @@ import { Bi, FaqEntry, PHONE_HREF, PHONE_LABEL, PriceGroup, SALON_MAIL } from '.
 
 const PAGE_PATH = '/promotionen/aesthetische-medizin-nuernberg';
 
-/** Preise aus seiner Preisliste vom 02.10.2026. Startpreise, außer den Festpreisen vom 15.11.2026 (`fixed`); keine Präparatenamen. */
+/** Preise aus seiner Preisliste vom 02.10.2026. Startpreise, außer den Festpreisen vom 15.11.2026 und 18.11.2026 (`fixed`); keine Präparatenamen. */
 const PRICE_GROUPS: PriceGroup[] = [
   {
     id: 'falten',
@@ -30,9 +30,9 @@ const PRICE_GROUPS: PriceGroup[] = [
     id: 'hyaluron',
     title: { de: 'Hyaluron und Filler', en: 'Hyaluronic acid and fillers' },
     items: [
-      { name: { de: 'Nasolabialfalten', en: 'Nasolabial folds' }, priceFrom: 259 },
-      { name: { de: 'Marionettenfalten', en: 'Marionette lines' }, priceFrom: 259 },
-      { name: { de: 'Kinn, Jawline oder Wangen', en: 'Chin, jawline or cheeks' }, priceFrom: 259 },
+      { name: { de: 'Nasolabialfalten', en: 'Nasolabial folds' }, priceFrom: 249, fixed: true },
+      { name: { de: 'Marionettenfalten', en: 'Marionette lines' }, priceFrom: 180, fixed: true },
+      { name: { de: 'Kinn, Jawline oder Wangen', en: 'Chin, jawline or cheeks' }, priceFrom: 199 },
     ],
   },
   {
