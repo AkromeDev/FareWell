@@ -365,12 +365,16 @@
             v: 1,
             an: !!analytics,
             ad: !!ads,
+            // mp: Marketing was chosen from a banner that names the Meta Pixel.
+            // A choice stored before 18.11.2026 has no mp and never loads Meta.
+            mp: !!ads,
             t: new Date().toISOString()
           };
           document.cookie = COOKIE + '=' + encodeURIComponent(JSON.stringify(state)) +
             ';path=/;max-age=' + MAX_AGE + ';SameSite=Lax' +
             (location.protocol === 'https:' ? ';Secure' : '');
           gtag('consent', 'update', signals(state.an, state.ad));
+          if (window.fwMeta) { window.fwMeta.consent(state.ad && state.mp); }
           dataLayer.push({
             event: 'fw_consent_update',
             fw_consent_analytics: state.an,
@@ -384,6 +388,70 @@
           state = null;
         }
       };
+    })();
+  </script>
+
+  <!-- Meta Pixel (Facebook, Instagram), 1157341023263560. Only with the
+       Marketing choice of the cookie banner, everywhere, never by default:
+       before that choice nothing is loaded from Meta and nothing is sent.
+       The pixel counts page views itself, also on Angular's route changes
+       (it watches the history API). A Lead is a click on any link to Salonkee
+       (booking), a Contact a click on the phone number or WhatsApp; both are
+       read from the click, so every booking button of the site counts without
+       touching its component. Withdrawing consent stops the pixel at once. -->
+  <script>
+    (function () {
+      var PIXEL_ID = '1157341023263560';
+      var loaded = false;
+      var granted = false;
+
+      function load() {
+        if (loaded) { return; }
+        loaded = true;
+        !function (f, b, e, v, n, t, s) {
+          if (f.fbq) return; n = f.fbq = function () {
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+          n.queue = []; t = b.createElement(e); t.async = !0; t.src = v;
+          s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        window.fbq('init', PIXEL_ID);
+        window.fbq('track', 'PageView');
+      }
+
+      function track(name, params) {
+        if (granted && typeof window.fbq === 'function') { window.fbq('track', name, params); }
+      }
+
+      window.fwMeta = {
+        consent: function (ads) {
+          granted = !!ads;
+          if (granted) {
+            if (loaded) { window.fbq('consent', 'grant'); } else { load(); }
+          } else if (loaded) {
+            window.fbq('consent', 'revoke');
+          }
+        },
+        track: track
+      };
+
+      document.addEventListener('click', function (event) {
+        var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+        if (!link) { return; }
+        var href = link.href || '';
+        var page = location.pathname;
+        if (/^https:\/\/(www\.)?salonkee\.[a-z]+\//.test(href)) {
+          track('Lead', { content_name: page, content_category: 'salonkee' });
+        } else if (/^tel:/.test(href)) {
+          track('Contact', { content_name: page, content_category: 'phone' });
+        } else if (/^https:\/\/(wa\.me|api\.whatsapp\.com)\//.test(href)) {
+          track('Contact', { content_name: page, content_category: 'whatsapp' });
+        }
+      }, true);
+
+      var state = window.fwConsent && window.fwConsent.state();
+      if (state && state.ad && state.mp) { window.fwMeta.consent(true); }
     })();
   </script>
 
