@@ -1,4 +1,5 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, PLATFORM_ID, computed, effect, inject, input, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ConsentService } from 'src/services/consent.service';
 import { LanguageService } from 'src/services/language.service';
@@ -26,6 +27,18 @@ import { LanguageService } from 'src/services/language.service';
 export class CookieBannerComponent {
   private readonly consent = inject(ConsentService);
   private readonly language = inject(LanguageService);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
+  /** Steht der Banner auf einer eigenständigen Anzeigenseite (src/app/domain/ad-pages.ts)? */
+  readonly staticPage = input(false);
+
+  /**
+   * Nur beim Prerendering einer eigenständigen Anzeigenseite: der Banner steht
+   * dann versteckt und mit beiden Ebenen in der Datei, und
+   * src/assets/ad/ad-page.js bedient ihn. Läuft Angular im Browser (ng serve),
+   * arbeitet der Banner wie auf jeder anderen Seite.
+   */
+  readonly staticMarkup = computed(() => this.staticPage() && !this.isBrowser);
 
   /** Sichtbar, solange keine Entscheidung gespeichert ist. */
   readonly visible = this.consent.bannerVisible;
@@ -54,6 +67,10 @@ export class CookieBannerComponent {
   /** Interner Link in der aktiven Sprache (auf /en/-Seiten mit /en-Präfix). */
   p(path: string): string {
     return this.language.localizePath(path);
+  }
+
+  t(de: string, en: string): string {
+    return this.language.t(de, en);
   }
 
   toggleDetails(): void {

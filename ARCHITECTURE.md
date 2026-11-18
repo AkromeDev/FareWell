@@ -22,13 +22,16 @@ note is scheduled: the code of a page moves into the layers when that page is ne
   components or modules and mounts the same page tree at `/` in German, at `/en`, `/uk` and `/tr`. No
   hydration is provided: the browser renders the page again over the prerendered HTML.
 - **The prerender, at build time.** `npm run prerender` runs `tools/seal-intern.mjs --release`, then
-  `ng run FareWell:prerender` (`outputMode: static`, entry `src/main.server.ts`), then the flatten and
-  sitemap tools. Every route becomes an HTML file except the two staff task routes, which render in
+  `ng run FareWell:prerender` (`outputMode: static`, entry `src/main.server.ts`), then the flatten,
+  standalone ad page and sitemap tools. Every route becomes an HTML file except the two staff task routes, which render in
   the browser only (`src/app/app.routes.server.ts`). Before a page is written, the markup of the other
   languages is removed and a `/uk` or `/tr` page is translated (`src/app/app.config.server.ts`).
 - **The build tools**, in `tools/` unless the path says otherwise:
   - `seal-intern.mjs`: encrypts the internal pages; with `--release` it stops while a test seal exists.
   - `flatten-prerender.mjs`: moves `route/index.html` to `route.html`, copies not-found to `404.html`.
+  - `standalone-ad-pages.mjs`: ships the ad landing pages of `src/app/domain/ad-pages.json` without
+    Angular's scripts and refuses the build when one of them carries or links to a restricted drug
+    term (README, *Ad landing pages*). Added 2026-11-18.
   - `generate-sitemap.mjs`: writes `sitemap.xml` from the prerendered pages that may be indexed.
   - `check-seo-lengths.mjs`: checks title and description lengths. No npm script calls it.
   - `i18n-overlay.mjs`: extracts, merges, checks and lists the Ukrainian and Turkish dictionaries.

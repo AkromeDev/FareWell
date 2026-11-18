@@ -29,7 +29,9 @@ The app reloads automatically on source changes.
 
 - `npm run build` – production build into `dist/farewell`.
 - `npm run prerender` – static prerender for deployment; afterwards
-  `tools/flatten-prerender.mjs` rewrites `route/index.html` → `route.html`.
+  `tools/flatten-prerender.mjs` rewrites `route/index.html` → `route.html`,
+  and `tools/standalone-ad-pages.mjs` makes the ad landing pages standalone
+  (see *Ad landing pages*).
 - `npm run watch` – development build that rebuilds on change.
 
 ## English pages (/en/)
@@ -61,6 +63,36 @@ none of their weight. How it works and how to translate a changed text:
 `src/i18n/overlay/README.md`; style and glossary per language in
 `src/i18n/uk/README.md` and `src/i18n/tr/README.md`. Both stay `noindex` until
 a native speaker has reviewed them (`OVERLAY_INDEXABLE` in `seo.service.ts`).
+
+## Ad landing pages
+
+Google blocks an ad whose destination names a prescription drug ("Restricted
+drug terms"), and it reads more than the text of the page: the campaign for
+Dr. Leo stayed blocked while the word only stood in the site's shared script,
+which every prerendered page loads. So the page a Google ad points at is
+shipped as a **standalone file**.
+
+- `src/app/domain/ad-pages.json` is the one list: `standalone` (today
+  `/promotionen/aesthetische-medizin-nuernberg`), `adPages` (every ad page,
+  also the one for Instagram) and `linkedFromStandalone` (`/impressum`,
+  `/datenschutz`). The app reads it through `ad-pages.ts`.
+- On a standalone page `AppComponent` renders `app-ad-header` and
+  `app-ad-footer` instead of the site's menu and footer: the name, the
+  contact, the two legal links and the cookie settings. The cookie banner is
+  written into the file hidden (`CookieBannerComponent`, `staticMarkup`).
+- `tools/standalone-ad-pages.mjs` (part of `npm run prerender`) takes Angular's
+  scripts and the structured data out of the page, in German and in English,
+  and adds `src/assets/ad/ad-page.js`, which opens the banner and counts the
+  clicks on booking, phone and WhatsApp. Angular does not run on the shipped
+  page; `(click)` handlers there only work under `ng serve`.
+- The same tool **refuses the build** when the page, or a script or
+  stylesheet it loads, contains a restricted term, when it links to another
+  page of this site than those on its list, or when the HTML of a linked page
+  contains such a term. The site footer therefore leaves its one link with
+  such a term out on the ad pages and on the two legal pages.
+
+Before changing the text, the links or the scripts of an ad page, read the
+header of that tool. A new ad page for Google goes into `standalone`.
 
 ## URL canonicalization (SEO)
 

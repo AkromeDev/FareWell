@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { hidesDrugTermLinks } from 'src/app/domain/ad-pages';
 import { DR_LEO_SITE, LEVEL44_SITE } from 'src/app/domain/partner-sites';
 import { ScrollToDirective } from 'src/directives/scroll-to.directive';
 import { ConsentService } from 'src/services/consent.service';
@@ -26,10 +27,13 @@ export class FooterComponent {
 
   private readonly router = inject(Router);
 
-  /** Die wirkstofffreien Anzeigenseiten (Google: aesthetik-promotion, Instagram: lippen-promotion). */
+  /**
+   * Die wirkstofffreien Seiten: die Anzeigenseiten (Google: aesthetik-promotion,
+   * Instagram: lippen-promotion) und die Seiten, auf die eine eigenständige
+   * Anzeigenseite verlinkt (src/app/domain/ad-pages.ts).
+   */
   get isAdLandingPage(): boolean {
-    const path = this.router.url.split(/[?#]/)[0];
-    return path.endsWith('/promotionen/aesthetische-medizin-nuernberg') || path.endsWith('/promotionen/lippen-nuernberg');
+    return hidesDrugTermLinks(this.router.url);
   }
 
   private readonly bookingUrl = 'https://salonkee.de/salon/farewell?lang=de';

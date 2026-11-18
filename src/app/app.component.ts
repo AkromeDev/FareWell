@@ -2,7 +2,10 @@ import { Component, PLATFORM_ID, inject } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd, RouterOutlet, Routes } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
+import { isStandaloneAdPage } from 'src/app/domain/ad-pages';
+import { AdHeaderComponent } from 'src/components/atoms/ad-header/ad-header.component';
 import { HeaderComponent } from 'src/components/atoms/header/header.component';
+import { AdFooterComponent } from 'src/components/molecules/ad-footer/ad-footer.component';
 import { FooterComponent } from 'src/components/molecules/footer/footer.component';
 import { CookieBannerComponent } from 'src/components/molecules/cookie-banner/cookie-banner.component';
 import { AnalyticsService } from 'src/services/analytics.service';
@@ -17,7 +20,9 @@ import { LanguageService } from 'src/services/language.service';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    CookieBannerComponent
+    CookieBannerComponent,
+    AdHeaderComponent,
+    AdFooterComponent
   ]
 })
 export class AppComponent {
@@ -43,6 +48,13 @@ export class AppComponent {
    */
   skipHref = '#main-content';
 
+  /**
+   * Eine eigenständige Anzeigenseite: ohne Menü und Footer der Website. Der
+   * Startwert kommt aus der Adresse des Dokuments, weil der Router beim
+   * Aufbau der Komponente noch auf "/" steht.
+   */
+  adPage = isStandaloneAdPage(this.document.location?.pathname ?? '/');
+
   constructor(private analytics: AnalyticsService) {
     this.skipHref = this.buildSkipHref(this.router.url);
 
@@ -50,6 +62,7 @@ export class AppComponent {
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe((e) => {
         this.skipHref = this.buildSkipHref(e.urlAfterRedirects);
+        this.adPage = isStandaloneAdPage(e.urlAfterRedirects);
 
         // Nur der Pfad: Query (gclid, utm_*) und Fragment gehören nicht in
         // die Canonical-URL, sonst zeigt jeder Anzeigenklick auf eine eigene.

@@ -8,12 +8,23 @@
   t('Zum Inhalt springen', 'Skip to content')
 }}</a>
 
+<!-- Eine eigenständige Anzeigenseite (src/app/domain/ad-pages.ts) bekommt
+     statt Menü und Footer der Website nur Schriftzug, Kontakt und die
+     rechtlichen Links. -->
+@if (adPage) {
+<app-ad-header></app-ad-header>
+} @else {
 <app-header></app-header>
+}
 
 <main id="main-content" tabindex="-1">
   <router-outlet></router-outlet>
 </main>
 
+@if (adPage) {
+<app-ad-footer></app-ad-footer>
+} @else {
 <app-footer></app-footer>
+}
 
-<app-cookie-banner></app-cookie-banner>
+<app-cookie-banner [staticPage]="adPage"></app-cookie-banner>

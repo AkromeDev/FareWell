@@ -1,0 +1,58 @@
+@use 'themes/theme-entry' as *;
+
+.ad-footer {
+  background: $emerald-abyss;
+  border-top: 1px solid rgba($cream, 0.12);
+  color: rgba($cream, 0.82);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.ad-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 4vw, 56px) 48px;
+  display: grid;
+  gap: 14px;
+}
+
+.ad-brand {
+  margin: 0;
+  font-family: $font-script;
+  font-size: 2rem;
+  color: $cream;
+
+  .brand-dot {
+    color: $gold;
+  }
+}
+
+.ad-contact,
+.ad-legal {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+}
+
+a,
+button {
+  color: $cream;
+  text-decoration: underline;
+  text-decoration-color: rgba($cream, 0.35);
+  text-underline-offset: 3px;
+
+  &:hover,
+  &:focus-visible {
+    color: $gold;
+    text-decoration-color: $gold;
+  }
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}

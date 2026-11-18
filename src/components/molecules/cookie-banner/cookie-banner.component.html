@@ -1,5 +1,16 @@
-@if (visible()) {
-<div class="consent-sheet" role="dialog" aria-labelledby="consentTitle" aria-describedby="consentBody">
+<!-- staticMarkup(): auf einer eigenständigen Anzeigenseite schreibt das
+     Prerendering den Banner versteckt in die Datei, mit beiden Ebenen. Dort
+     läuft Angular nicht; src/assets/ad/ad-page.js zeigt ihn und liest die
+     data-Attribute. -->
+@if (visible() || staticMarkup()) {
+<div
+  class="consent-sheet"
+  role="dialog"
+  aria-labelledby="consentTitle"
+  aria-describedby="consentBody"
+  data-ad-consent
+  [attr.hidden]="staticMarkup() ? '' : null"
+>
   <div class="consent-card">
 
     <!-- Ebene 1: Erklärung links, beide Entscheidungen rechts. Auf schmalen
@@ -27,19 +38,19 @@
       </div>
 
       <div class="consent-actions">
-        <button type="button" class="consent-btn consent-btn-reject" (click)="rejectAll()">
+        <button type="button" class="consent-btn consent-btn-reject" data-consent="reject" (click)="rejectAll()">
           <span class="lang de">Alle ablehnen</span>
           <span class="lang en">Reject all</span>
         </button>
-        <button type="button" class="consent-btn consent-btn-accept" (click)="acceptAll()">
+        <button type="button" class="consent-btn consent-btn-accept" data-consent="accept" (click)="acceptAll()">
           <span class="lang de">Alle akzeptieren</span>
           <span class="lang en">Accept all</span>
         </button>
       </div>
     </div>
 
-    @if (detailsOpen()) {
-    <div class="consent-categories">
+    @if (detailsOpen() || staticMarkup()) {
+    <div class="consent-categories" data-consent-details [attr.hidden]="staticMarkup() ? '' : null">
 
       <div class="consent-category is-locked">
         <div class="consent-category-text">
@@ -72,6 +83,7 @@
         <input
           type="checkbox"
           class="consent-switch"
+          data-consent-box="an"
           [checked]="analytics()"
           (change)="analytics.set($any($event.target).checked)" />
       </label>
@@ -90,11 +102,12 @@
         <input
           type="checkbox"
           class="consent-switch"
+          data-consent-box="ad"
           [checked]="ads()"
           (change)="ads.set($any($event.target).checked)" />
       </label>
 
-      <button type="button" class="consent-save" (click)="saveSelection()">
+      <button type="button" class="consent-save" data-consent="save" (click)="saveSelection()">
         <span class="lang de">Auswahl speichern</span>
         <span class="lang en">Save selection</span>
       </button>
@@ -102,7 +115,15 @@
     }
 
     <div class="consent-meta">
-      <button type="button" class="consent-link" (click)="toggleDetails()" [attr.aria-expanded]="detailsOpen()">
+      <button
+        type="button"
+        class="consent-link"
+        data-consent="toggle"
+        [attr.data-label-open]="t('Einstellungen', 'Settings')"
+        [attr.data-label-close]="t('Einstellungen schließen', 'Close settings')"
+        (click)="toggleDetails()"
+        [attr.aria-expanded]="detailsOpen()"
+      >
         @if (detailsOpen()) {
         <span class="lang de">Einstellungen schließen</span>
         <span class="lang en">Close settings</span>

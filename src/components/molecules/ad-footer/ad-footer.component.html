@@ -1,0 +1,19 @@
+<footer class="ad-footer">
+  <div class="ad-footer-inner">
+    <p class="ad-brand">FareWell<span class="brand-dot">.</span></p>
+
+    <p class="ad-contact">
+      <span>Frauentorgraben 5, 90443 {{ t('Nürnberg', 'Nuremberg') }}</span>
+      <a [href]="phoneHref" data-ad-click="phone" data-ad-location="footer">{{ phoneLabel }}</a>
+      <a [href]="mailHref">{{ mailLabel }}</a>
+    </p>
+
+    <nav class="ad-legal" [attr.aria-label]="t('Rechtliches', 'Legal')">
+      <a href="/impressum">{{ t('Impressum', 'Imprint') }}</a>
+      <a href="/datenschutz">{{ t('Datenschutz', 'Privacy') }}</a>
+      <button type="button" data-consent="open" (click)="openConsentSettings()">
+        {{ t('Cookie-Einstellungen', 'Cookie settings') }}
+      </button>
+    </nav>
+  </div>
+</footer>

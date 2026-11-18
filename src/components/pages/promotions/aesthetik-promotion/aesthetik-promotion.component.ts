@@ -77,7 +77,7 @@ const FAQ: FaqEntry[] = [
   },
   {
     q: { de: 'Was kostet eine Behandlung?', en: 'What does a treatment cost?' },
-    a: { de: 'Die Preise auf dieser Seite sind Startpreise. Der endgültige Preis hängt von Befund, Umfang und Produktmenge ab und wird dir im Gespräch vor der Behandlung genannt. Ästhetische Behandlungen sind in der Regel Privatleistungen.', en: 'The prices on this page are starting prices. The final price depends on findings, scope and amount of product, and you are told it in the consultation before the treatment. Aesthetic treatments are usually private services.' },
+    a: { de: 'Preise mit „ab“ sind Startpreise: dort hängt der endgültige Preis von Befund, Umfang und Produktmenge ab und wird dir im Gespräch vor der Behandlung genannt. Die übrigen Preise auf dieser Seite sind Festpreise. Ästhetische Behandlungen sind in der Regel Privatleistungen.', en: 'Prices marked "from" are starting prices: there the final price depends on findings, scope and amount of product, and you are told it in the consultation before the treatment. The other prices on this page are fixed prices. Aesthetic treatments are usually private services.' },
   },
   {
     q: { de: 'Gibt es Risiken und Nebenwirkungen?', en: 'Are there risks and side effects?' },
@@ -95,6 +95,13 @@ const FAQ: FaqEntry[] = [
  * („Restricted drug terms", Meldung vom 09.11.2026). Deshalb stehen hier und in
  * den Ankern keine Wirkstoff- oder Markennamen und kein Link zur Botox-Seite.
  * Der Test in der spec.ts prüft das.
+ *
+ * Seit 18.11.2026 eine eigenständige Seite (src/app/domain/ad-pages.ts): der
+ * Build nimmt das Skript der Website heraus, und die Seite trägt statt Menü
+ * und Footer nur Schriftzug, Kontakt und die rechtlichen Links. Die Anzeigen
+ * waren weiter gesperrt, obwohl ihr Text sauber war. Auf der ausgelieferten
+ * Seite läuft Angular deshalb nicht: die Klicks zählt src/assets/ad/ad-page.js
+ * über data-ad-click, (click) gilt nur unter ng serve.
  *
  * noindex und nicht in der Sitemap: In der Suche soll die Botox-Seite stehen.
  */

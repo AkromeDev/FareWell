@@ -313,3 +313,11 @@
     align-items: center;
   }
 }
+
+/* Eigenständige Anzeigenseiten: der Banner steht versteckt in der Datei, bis
+   src/assets/ad/ad-page.js ihn zeigt. Ohne diese Regel gewinnt display:grid
+   der Klassen gegen das hidden-Attribut. */
+.consent-sheet[hidden],
+.consent-categories[hidden] {
+  display: none;
+}
