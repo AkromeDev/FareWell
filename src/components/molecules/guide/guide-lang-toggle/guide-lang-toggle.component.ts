@@ -14,7 +14,7 @@ interface MoreLang {
 
 /**
  * Sprachumschalter im Header: DE und EN als Knöpfe, dahinter ein Pfeil für
- * weitere Sprachen (zuerst Ukrainisch). Die weiteren Sprachen sind echte
+ * weitere Sprachen (Ukrainisch, dann Türkisch). Die weiteren Sprachen sind echte
  * Links auf die Gegenstück-URL: sie laden die vorgerenderte Seite neu und
  * sind für Suchmaschinen auffindbar.
  *
@@ -25,7 +25,7 @@ interface MoreLang {
   standalone: true,
   template: `
     <div class="lang-switch">
-      <div class="gd-lang-switch" role="group" aria-label="Sprache / Language / Мова">
+      <div class="gd-lang-switch" role="group" aria-label="Sprache / Language / Мова / Dil">
         <button type="button" lang="de" [attr.aria-pressed]="lang === 'de'" (click)="set('de')">DE</button>
         <button type="button" lang="en" [attr.aria-pressed]="lang === 'en'" (click)="set('en')">EN</button>
         <button
@@ -70,7 +70,10 @@ export class GuideLangToggleComponent {
   private readonly router = inject(Router);
   private readonly host: ElementRef<HTMLElement> = inject(ElementRef);
 
-  readonly moreLangs: readonly MoreLang[] = [{ code: 'uk', label: 'Українська', short: 'УКР' }];
+  readonly moreLangs: readonly MoreLang[] = [
+    { code: 'uk', label: 'Українська', short: 'УКР' },
+    { code: 'tr', label: 'Türkçe', short: 'TR' },
+  ];
 
   open = false;
   /** Breite Leiste: Abstand der fixierten Liste zum rechten Rand, bündig mit dem Pfeil. */

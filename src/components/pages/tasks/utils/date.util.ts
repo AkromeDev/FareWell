@@ -63,7 +63,7 @@ export function parseIso(iso: string | null | undefined): Date | null {
   return Number.isNaN(d.getTime()) ? null : d;
 }
 
-const LOCALE: Record<Lang, string> = { de: 'de-DE', en: 'en-GB', uk: 'uk-UA' };
+const LOCALE: Record<Lang, string> = { de: 'de-DE', en: 'en-GB', uk: 'uk-UA', tr: 'tr-TR' };
 
 /** Local date + time, e.g. "16.07.2026, 14:32" (exact, for tooltips/labels). */
 export function formatDateTime(iso: string, lang: Lang): string {

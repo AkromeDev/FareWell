@@ -12,7 +12,7 @@
 
     Zweisprachige Inhalte liegen im Browser als Paare im DOM (<span class="lang de">…</span>
     <span class="lang en">…</span>); dieselbe Regel steht auch in styles.scss
-    (dort auch zu den /uk/-Regeln). Die vorgerenderte Datei enthält nur noch
+    (dort auch zu den Regeln für /uk/ und /tr/). Die vorgerenderte Datei enthält nur noch
     die Sprache ihrer Adresse (src/i18n/strip-inactive-language.ts).
     Das Haupt-Stylesheet wird aber asynchron geladen (media="print" onload),
     und Beasties nimmt diese Regel nicht ins kritische CSS auf. Ohne die Kopie
@@ -24,8 +24,10 @@
   <style>
     [data-lang='de'] .lang.en,
     [data-lang='en'] .lang.de,
-    [data-lang='uk'] .lang.de:not([data-i18n='uk']),
-    [data-lang='uk'] .lang.en:not([data-i18n='fallback']) {
+    [data-lang='uk'] .lang.de:not([data-i18n='ok']),
+    [data-lang='uk'] .lang.en:not([data-i18n='fallback']),
+    [data-lang='tr'] .lang.de:not([data-i18n='ok']),
+    [data-lang='tr'] .lang.en:not([data-i18n='fallback']) {
       display: none !important;
     }
   </style>

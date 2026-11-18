@@ -5,7 +5,7 @@
  *
  * A page is listed when its HTML says it may be indexed (robots without
  * "noindex") and its canonical points at itself. That keeps out, without a
- * list to maintain: the /uk pages (noindex until reviewed), the 404 and
+ * list to maintain: the /uk and /tr pages (noindex until reviewed), the 404 and
  * not-found page, the internal pages, the redirect stubs and the A/B variants
  * of /promotionen (canonical to /promotionen). A new page is listed as soon
  * as it is prerendered with index,follow.

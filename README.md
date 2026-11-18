@@ -53,6 +53,15 @@ The sitemap is generated at build time by `tools/generate-sitemap.mjs` (part of
 on itself is listed. `tools/sitemap-meta.json` holds `lastmod` and `priority`
 per address; update a page's `lastmod` there when its content changes.
 
+## Ukrainian and Turkish pages (/uk/, /tr/)
+
+The same pages again under `/uk/` and `/tr/`, translated from the German text
+by dictionaries that only those pages load, so German and English pages carry
+none of their weight. How it works and how to translate a changed text:
+`src/i18n/overlay/README.md`; style and glossary per language in
+`src/i18n/uk/README.md` and `src/i18n/tr/README.md`. Both stay `noindex` until
+a native speaker has reviewed them (`OVERLAY_INDEXABLE` in `seo.service.ts`).
+
 ## URL canonicalization (SEO)
 
 The canonical URL for every page is `https://farewell.salon/<route>` – no www,

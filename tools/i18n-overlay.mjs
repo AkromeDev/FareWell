@@ -1,23 +1,25 @@
 #!/usr/bin/env node
 /**
- * Werkzeug für das ukrainische Overlay (src/i18n/uk, siehe README dort).
+ * Werkzeug für die Overlay-Sprachen (src/i18n/overlay, Wörterbücher in
+ * src/i18n/<sprache>/dict, siehe README dort). <sprache> ist uk oder tr.
  *
- *   node tools/i18n-uk.mjs extract   Alle deutschen Texte einsammeln, die noch
- *                                    keine Übersetzung haben, nach Wörterbuch
- *                                    gruppiert → tmp/i18n-uk/todo/<dict>.json
- *   node tools/i18n-uk.mjs merge     Übersetzungen aus tmp/i18n-uk/done/<dict>.json
- *                                    ({ "<id>": "<uk>" }) prüfen und in
- *                                    src/i18n/uk/dict/<dict>.json eintragen
- *   node tools/i18n-uk.mjs check     Prerendern und melden, was auf /uk/-Seiten
- *                                    noch ohne Übersetzung gerendert wurde
- *   node tools/i18n-uk.mjs review    Durchsicht-Tabelle DE | EN | UK als CSV
- *                                    → tmp/i18n-uk/review.csv
- *   node tools/i18n-uk.mjs validate <batch.json> <done.json…>
- *                                    Übersetzungen eines Stapels vorab prüfen
+ *   node tools/i18n-overlay.mjs <sprache> extract
+ *        Alle deutschen Texte einsammeln, die noch keine Übersetzung haben,
+ *        nach Wörterbuch gruppiert → tmp/i18n-<sprache>/todo/<dict>.json
+ *   node tools/i18n-overlay.mjs <sprache> merge
+ *        Übersetzungen aus tmp/i18n-<sprache>/done/*.json ({ "<id>": "<text>" })
+ *        prüfen und in src/i18n/<sprache>/dict/<dict>.json eintragen
+ *   node tools/i18n-overlay.mjs <sprache> check
+ *        Prerendern und melden, was auf /<sprache>/-Seiten noch ohne
+ *        Übersetzung gerendert wurde
+ *   node tools/i18n-overlay.mjs <sprache> review
+ *        Durchsicht-Tabelle DE | EN | <sprache> als CSV → tmp/i18n-<sprache>/review.csv
+ *   node tools/i18n-overlay.mjs <sprache> validate <batch.json> <done.json…>
+ *        Übersetzungen eines Stapels vorab prüfen
  *
  * Schlüssel sind der deutsche Text in derselben Normalform wie zur Laufzeit
- * (normalizeKey in catalog.ts): Kindelemente als <0>…</0>, eingesetzte Werte
- * ({{ x }}, ${x}, 'a' + x) als {0}.
+ * (normalizeKey in src/i18n/overlay/catalog.ts): Kindelemente als <0>…</0>,
+ * eingesetzte Werte ({{ x }}, ${x}, 'a' + x) als {0}.
  */
 import { execSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from 'node:fs';
@@ -25,14 +27,24 @@ import { join, relative } from 'node:path';
 import { parseFragment } from 'parse5';
 import ts from 'typescript';
 
+/** Overlay-Sprachen und ihre Name für die Durchsicht-Tabelle. */
+const LANGS = { uk: 'Українська', tr: 'Türkçe' };
+
+/** Wörter, die in einer Sprache nie vorkommen dürfen (Heilmittelwerberecht). */
+const FORBIDDEN = {
+  uk: [[/ботокс/i, '„ботокс“ (ботулотоксин verwenden)']],
+  tr: [[/botoks|botox/i, '„Botoks“ (botulinum toksini verwenden)']],
+};
+
 const ROOT = join(import.meta.dirname, '..');
 const SRC = join(ROOT, 'src');
-const DICT_DIR = join(SRC, 'i18n', 'uk', 'dict');
-const WORK = join(ROOT, 'tmp', 'i18n-uk');
+const LANG = process.argv[2];
+const DICT_DIR = join(SRC, 'i18n', LANG ?? '', 'dict');
+const WORK = join(ROOT, 'tmp', `i18n-${LANG}`);
 
 /** Quelldatei → Wörterbuch. Erste passende Regel gewinnt; null = nicht übersetzen. */
 const GROUP_RULES = [
-  // Ohne ukrainische Fassung (vgl. UK_EXCLUDED_PATHS / NON_UK_PREFIXES).
+  // Ohne Overlay-Fassung (vgl. OVERLAY_EXCLUDED_PATHS / NON_OVERLAY_PREFIXES).
   ['src/components/pages/tasks/', null],
   ['src/components/pages/legal/', null],
   ['src/components/pages/aesthetische-medizin/', null],
@@ -98,7 +110,7 @@ const TRANSPARENT = new Set(['ng-container', 'ng-template']);
 // Gemeinsame Helfer
 // ---------------------------------------------------------------------------
 
-/** Wie normalizeKey in src/i18n/uk/catalog.ts, bitte synchron halten. */
+/** Wie normalizeKey in src/i18n/overlay/catalog.ts, bitte synchron halten. */
 function normalizeKey(text) {
   return text
     .replace(/\s+/g, ' ')
@@ -484,19 +496,19 @@ function cmdMerge() {
         problems.push(`${f}#${id}: unbekannte id`);
         continue;
       }
-      const uk = String(value).trim();
+      const text = String(value).trim();
       const a = placeholders(item.de).join(' ');
-      const b = placeholders(uk).join(' ');
+      const b = placeholders(text).join(' ');
       if (a !== b) {
         problems.push(`${f}#${id}: Platzhalter ${a || '–'} ≠ ${b || '–'} (${item.src})`);
         continue;
       }
-      if (/\s[–—]\s/.test(uk) && !/\s[–—]\s/.test(item.de)) {
+      if (/\s[–—]\s/.test(text) && !/\s[–—]\s/.test(item.de)) {
         problems.push(`${f}#${id}: Gedankenstrich als Satztrenner (${item.src})`);
       }
       const dict = (dicts[item.group] ??= {});
       if (dict[item.de] === undefined) added++;
-      dict[item.de] = uk;
+      dict[item.de] = text;
       touched.add(item.group);
     }
   }
@@ -533,18 +545,19 @@ function cmdCheck() {
   execSync('npm run prerender', {
     cwd: ROOT,
     stdio: ['ignore', 'ignore', 'inherit'],
-    env: { ...process.env, I18N_UK_REPORT: report },
+    env: { ...process.env, I18N_OVERLAY_REPORT: report },
   });
   const byKey = new Map();
   for (const line of readFileSync(report, 'utf8').split('\n').filter(Boolean)) {
-    const { url, misses } = JSON.parse(line);
+    const { lang, url, misses } = JSON.parse(line);
+    if (lang !== LANG) continue;
     for (const key of misses) {
       if (!byKey.has(key)) byKey.set(key, new Set());
       byKey.get(key).add(url);
     }
   }
   if (!byKey.size) {
-    console.log('Alle /uk/-Seiten vollständig übersetzt.');
+    console.log(`Alle /${LANG}/-Seiten vollständig übersetzt.`);
     return;
   }
   console.log(`${byKey.size} Texte ohne Übersetzung:\n`);
@@ -563,10 +576,10 @@ function cmdReview() {
   const en = new Map();
   for (const item of items) if (!en.has(item.de)) en.set(item.de, item.en);
   const esc = (s) => `"${String(s ?? '').replace(/"/g, '""')}"`;
-  const rows = [['Wörterbuch', 'Deutsch', 'English', 'Українська'].map(esc).join(',')];
+  const rows = [['Wörterbuch', 'Deutsch', 'English', LANGS[LANG]].map(esc).join(',')];
   for (const [group, dict] of Object.entries(loadDicts()).sort()) {
-    for (const [de, uk] of Object.entries(dict)) {
-      rows.push([group, de, en.get(normalizeKey(de)) ?? '', uk].map(esc).join(','));
+    for (const [de, text] of Object.entries(dict)) {
+      rows.push([group, de, en.get(normalizeKey(de)) ?? '', text].map(esc).join(','));
     }
   }
   mkdirSync(WORK, { recursive: true });
@@ -579,9 +592,9 @@ function cmdReview() {
 // ---------------------------------------------------------------------------
 
 function cmdValidate() {
-  const [batchPath, ...donePaths] = process.argv.slice(3);
+  const [batchPath, ...donePaths] = process.argv.slice(4);
   if (!batchPath || !donePaths.length) {
-    console.error('Aufruf: node tools/i18n-uk.mjs validate <batch.json> <done.json> [<done.json> …]');
+    console.error(`Aufruf: node tools/i18n-overlay.mjs ${LANG} validate <batch.json> <done.json> [<done.json> …]`);
     process.exit(2);
   }
   const batch = readJson(batchPath, []);
@@ -590,19 +603,22 @@ function cmdValidate() {
   const problems = [];
   const notes = [];
   for (const item of batch) {
-    const uk = done[String(item.id)];
-    if (typeof uk !== 'string' || !uk.trim()) {
+    const text = done[String(item.id)];
+    if (typeof text !== 'string' || !text.trim()) {
       problems.push(`#${item.id}: fehlt`);
       continue;
     }
     const a = placeholders(item.de).join(' ');
-    const b = placeholders(uk).join(' ');
+    const b = placeholders(text).join(' ');
     if (a !== b) problems.push(`#${item.id}: Platzhalter ${a || '–'} ≠ ${b || '–'}`);
-    if (/\s[–—]\s/.test(uk) && !/\s[–—]\s/.test(item.de)) {
+    if (/\s[–—]\s/.test(text) && !/\s[–—]\s/.test(item.de)) {
       problems.push(`#${item.id}: Gedankenstrich als Satztrenner`);
     }
-    if (/ботокс/i.test(uk)) problems.push(`#${item.id}: „ботокс“ (ботулотоксин verwenden)`);
-    if (/\p{Script=Latin}{4,}/u.test(item.de) && uk === item.de) {
+    if (/—/.test(text)) problems.push(`#${item.id}: Gedankenstrich „—“`);
+    for (const [re, why] of FORBIDDEN[LANG] ?? []) {
+      if (re.test(text) && !re.test(item.de)) problems.push(`#${item.id}: ${why}`);
+    }
+    if (/\p{Script=Latin}{4,}/u.test(item.de) && text === item.de) {
       notes.push(`#${item.id}: unverändert übernommen (in Ordnung bei Namen, Codes, URLs)`);
     }
   }
@@ -625,9 +641,9 @@ const commands = {
   review: cmdReview,
   validate: cmdValidate,
 };
-const cmd = commands[process.argv[2]];
-if (!cmd) {
-  console.error('Aufruf: node tools/i18n-uk.mjs extract|merge|check|review|validate');
+const cmd = commands[process.argv[3]];
+if (!LANGS[LANG] || !cmd) {
+  console.error(`Aufruf: node tools/i18n-overlay.mjs ${Object.keys(LANGS).join('|')} extract|merge|check|review|validate`);
   process.exit(2);
 }
 cmd();

@@ -134,7 +134,8 @@ export class RoadChecklistComponent implements OnDestroy {
     if (Number.isNaN(date.getTime())) {
       return '';
     }
-    const locale = this.lang === 'en' ? 'en-GB' : this.lang === 'uk' ? 'uk-UA' : 'de-DE';
+    const locale =
+      this.lang === 'en' ? 'en-GB' : this.lang === 'uk' ? 'uk-UA' : this.lang === 'tr' ? 'tr-TR' : 'de-DE';
     const formatted = date.toLocaleDateString(locale, {
       day: '2-digit',
       month: '2-digit',

@@ -1,0 +1,47 @@
+import type { DictTable } from '../overlay/loader';
+
+/**
+ * Lade-Tabelle der türkischen Wörterbücher, je Wörterbuch ein eigener
+ * Chunk. Welche Route welches lädt, steht in src/i18n/overlay/route-dicts.ts.
+ */
+export const DICTS: DictTable = {
+  common: () => import('./dict/common.json'),
+  home: () => import('./dict/home.json'),
+  nadelepilation: () => import('./dict/nadelepilation.json'),
+  diodenlaser: () => import('./dict/diodenlaser.json'),
+  microneedling: () => import('./dict/microneedling.json'),
+  narbenbehandlung: () => import('./dict/narbenbehandlung.json'),
+  kavitation: () => import('./dict/kavitation.json'),
+  massage: () => import('./dict/massage.json'),
+  'therapeutische-massage': () => import('./dict/therapeutische-massage.json'),
+  price: () => import('./dict/price.json'),
+  zeit: () => import('./dict/zeit.json'),
+  historie: () => import('./dict/historie.json'),
+  faq: () => import('./dict/faq.json'),
+  'ratgeber-hub': () => import('./dict/ratgeber-hub.json'),
+  'elektrolyse-laser': () => import('./dict/elektrolyse-laser.json'),
+  koerperbehandlungen: () => import('./dict/koerperbehandlungen.json'),
+  'krankenkasse-epilation': () => import('./dict/krankenkasse-epilation.json'),
+  'krankenkasse-hormonell': () => import('./dict/krankenkasse-hormonell.json'),
+  kostenvoranschlag: () => import('./dict/kostenvoranschlag.json'),
+  'steuer-absetzen': () => import('./dict/steuer-absetzen.json'),
+  'mojoclipboard-support': () => import('./dict/mojoclipboard-support.json'),
+  karriere: () => import('./dict/karriere.json'),
+  'karriere-hub': () => import('./dict/karriere-hub.json'),
+  'kosmetik-karriere': () => import('./dict/kosmetik-karriere.json'),
+  'masseur-karriere': () => import('./dict/masseur-karriere.json'),
+  'masseur-onboarding': () => import('./dict/masseur-onboarding.json'),
+  'physio-karriere': () => import('./dict/physio-karriere.json'),
+  'yoga-karriere': () => import('./dict/yoga-karriere.json'),
+  'tanz-karriere': () => import('./dict/tanz-karriere.json'),
+  'botox-karriere': () => import('./dict/botox-karriere.json'),
+  'raum-mieten': () => import('./dict/raum-mieten.json'),
+  road: () => import('./dict/road.json'),
+  'freelancer-road': () => import('./dict/freelancer-road.json'),
+  'gastro-road': () => import('./dict/gastro-road.json'),
+  'laser-promotion': () => import('./dict/laser-promotion.json'),
+  'ipl-promotion': () => import('./dict/ipl-promotion.json'),
+  'electrolysis-promotion': () => import('./dict/electrolysis-promotion.json'),
+  'microneedling-promotion': () => import('./dict/microneedling-promotion.json'),
+  'nadelepilation-promotion': () => import('./dict/nadelepilation-promotion.json'),
+};

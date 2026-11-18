@@ -63,7 +63,9 @@ export class NadelepilationComponent implements OnInit, OnDestroy {
   /**
    * The price per time unit as one sentence, for readers and for the AI
    * answers that quote it. Built from the price list (price-data.ts), so it
-   * changes with the prices.
+   * changes with the prices. Each sentence is a template with {0}, {1} that
+   * is translated first and filled afterwards, so the /uk and /tr
+   * dictionaries hold the templates and survive a price change.
    */
   get priceFact(): string {
     const rows = PRICE_TABLES.nadelepilation.rows;
@@ -72,23 +74,40 @@ export class NadelepilationComponent implements OnInit, OnDestroy {
     const hour = sessions.find((row) => row.minutes === 60);
     const numbing = rows.find((row) => row.addon);
     const lengths = sessions.map((row) => row.minutes);
-    const list = (items: number[], and: string) =>
-      items.length > 1 ? `${items.slice(0, -1).join(', ')} ${and} ${items[items.length - 1]}` : `${items[0]}`;
-    const de = [
-      `Elektrolyse kostet bei FareWell ${base.price} € pro ${base.minutes} Minuten` +
-        (hour ? `, eine Stunde ${hour.price} €.` : '.'),
-      `Sitzungen gibt es mit ${list(lengths, 'und')} Minuten.`,
-      numbing ? `Betäubungscreme auf Wunsch ${numbing.price} €.` : '',
-      'Die Erstberatung ist kostenlos.',
-    ];
-    const en = [
-      `Electrolysis at FareWell costs €${base.price} per ${base.minutes} minutes` +
-        (hour ? `, one hour €${hour.price}.` : '.'),
-      `Sessions are available in ${list(lengths, 'and')} minutes.`,
-      numbing ? `Numbing cream on request €${numbing.price}.` : '',
-      'The first consultation is free.',
-    ];
-    return this.t(de.filter(Boolean).join(' '), en.filter(Boolean).join(' '));
+    const and = this.t('und', 'and');
+    const list =
+      lengths.length > 1
+        ? `${lengths.slice(0, -1).join(', ')} ${and} ${lengths[lengths.length - 1]}`
+        : `${lengths[0]}`;
+    const fill = (template: string, ...values: (number | string | null)[]) =>
+      template.replace(/\{(\d+)\}/g, (_, i: string) => String(values[Number(i)]));
+    return [
+      hour
+        ? fill(
+            this.t(
+              'Elektrolyse kostet bei FareWell {0} € pro {1} Minuten, eine Stunde {2} €.',
+              'Electrolysis at FareWell costs €{0} per {1} minutes, one hour €{2}.',
+            ),
+            base.price,
+            base.minutes,
+            hour.price,
+          )
+        : fill(
+            this.t(
+              'Elektrolyse kostet bei FareWell {0} € pro {1} Minuten.',
+              'Electrolysis at FareWell costs €{0} per {1} minutes.',
+            ),
+            base.price,
+            base.minutes,
+          ),
+      fill(this.t('Sitzungen gibt es mit {0} Minuten.', 'Sessions are available in {0} minutes.'), list),
+      numbing
+        ? fill(this.t('Betäubungscreme auf Wunsch {0} €.', 'Numbing cream on request €{0}.'), numbing.price)
+        : '',
+      this.t('Die Erstberatung ist kostenlos.', 'The first consultation is free.'),
+    ]
+      .filter(Boolean)
+      .join(' ');
   }
 
   get stats(): GuideStat[] {

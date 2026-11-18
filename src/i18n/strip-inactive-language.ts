@@ -8,14 +8,17 @@
  * styles.scss and _guide.scss): only what is display:none anyway goes. This is
  * safe because the browser does not hydrate the prerendered DOM: it renders
  * the app again from the templates, with both languages, so switching the
- * language and the /uk overlay work as before. On /uk pages it runs after
- * finalizeUkDocument, which marks the translated and fallback blocks.
+ * language and the /uk and /tr overlays work as before. On those pages it
+ * runs after finalizeOverlayDocument, which marks the translated and
+ * fallback blocks.
  */
 const HIDDEN_BY_LANGUAGE_CSS = [
   "[data-lang='de'] .lang.en",
   "[data-lang='en'] .lang.de",
-  "[data-lang='uk'] .lang.de:not([data-i18n='uk'])",
+  "[data-lang='uk'] .lang.de:not([data-i18n='ok'])",
   "[data-lang='uk'] .lang.en:not([data-i18n='fallback'])",
+  "[data-lang='tr'] .lang.de:not([data-i18n='ok'])",
+  "[data-lang='tr'] .lang.en:not([data-i18n='fallback'])",
 ].join(', ');
 
 export function stripInactiveLanguage(doc: Document): number {

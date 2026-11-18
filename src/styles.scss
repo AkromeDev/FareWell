@@ -236,9 +236,9 @@ a[href]:not(.no-underline):not(.gd a) {
 }
 
 // ---------------------------------------------------------------------------
-// Mehrsprachigkeit (DE/EN/UK) — global
+// Mehrsprachigkeit (DE/EN/UK/TR) — global
 // ---------------------------------------------------------------------------
-// Die UI-Sprache steht als data-lang="de|en|uk" auf <html> (LanguageService).
+// Die UI-Sprache steht als data-lang="de|en|uk|tr" auf <html> (LanguageService).
 // Inhalte liegen als Paare nebeneinander im DOM:
 //   <span class="lang de">Deutsch</span><span class="lang en">English</span>
 // und werden per CSS umgeschaltet. Im Browser stehen beide Sprachen im DOM und
@@ -246,9 +246,10 @@ a[href]:not(.no-underline):not(.gd a) {
 // HTML-Datei enthält dagegen nur die Sprache ihrer Adresse:
 // src/i18n/strip-inactive-language.ts entfernt beim Prerendern genau das, was
 // diese Regeln ausblenden (der Browser rendert die Seite ohnehin neu).
-// Ukrainisch (src/i18n/uk) übersetzt den deutschen Block an Ort und Stelle und
-// markiert ihn mit data-i18n="uk"; fehlt die Übersetzung, wird der englische
-// Block als data-i18n="fallback" gezeigt. Alles Unmarkierte bleibt verborgen.
+// Ukrainisch und Türkisch (src/i18n/overlay) übersetzen den deutschen Block an
+// Ort und Stelle und markieren ihn mit data-i18n="ok"; fehlt die Übersetzung,
+// wird der englische Block als data-i18n="fallback" gezeigt. Alles
+// Unmarkierte bleibt verborgen.
 // !important ist hier Absicht: Die Regel ist eine Invariante, keine Empfehlung.
 // Eine Komponentenregel wie `.rail-intro .lang { display: block }` hat mit dem
 // _ngcontent-Attribut eine höhere Spezifität und hat die inaktive Sprache
@@ -262,8 +263,10 @@ a[href]:not(.no-underline):not(.gd a) {
   display: none !important;
 }
 
-[data-lang='uk'] .lang.de:not([data-i18n='uk']),
-[data-lang='uk'] .lang.en:not([data-i18n='fallback']) {
+[data-lang='uk'] .lang.de:not([data-i18n='ok']),
+[data-lang='uk'] .lang.en:not([data-i18n='fallback']),
+[data-lang='tr'] .lang.de:not([data-i18n='ok']),
+[data-lang='tr'] .lang.en:not([data-i18n='fallback']) {
   display: none !important;
 }
 

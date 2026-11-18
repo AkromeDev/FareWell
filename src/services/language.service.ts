@@ -2,10 +2,17 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { CanActivateChildFn, Router, RoutesRecognized } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import type * as UkCatalog from 'src/i18n/uk/catalog';
-import { UK_EXCLUDED_PATHS, loadUkCommon } from 'src/i18n/uk/dictionaries';
+import type { OverlayCatalog } from 'src/i18n/overlay/catalog';
+import {
+  OVERLAY_EXCLUDED_PATHS,
+  OVERLAY_LANGS,
+  OverlayLang,
+  OverlayRouteDicts,
+  isOverlayLang,
+} from 'src/i18n/overlay/dictionaries';
+import type * as OverlayLoader from 'src/i18n/overlay/loader';
 
-export type Lang = 'de' | 'en' | 'uk';
+export type Lang = 'de' | 'en' | OverlayLang;
 
 const STORAGE_KEY = 'fw_lang';
 
@@ -24,53 +31,62 @@ const SPECIAL_EN_TO_DE: Record<string, string> = {
 const NON_LOCALIZED_PREFIXES = ['/impressum', '/datenschutz', '/agb', '/not-found', '/intern'];
 
 /**
- * Seiten ohne ukrainische Fassung: das MwSt-Paar für US-Streitkräfte
- * (Zielgruppe spricht Englisch), die internen Task-Seiten und alles aus
- * UK_EXCLUDED_PATHS.
+ * Seiten ohne Overlay-Fassung (Ukrainisch, Türkisch): das MwSt-Paar für
+ * US-Streitkräfte (Zielgruppe spricht Englisch), die internen Task-Seiten und
+ * alles aus OVERLAY_EXCLUDED_PATHS.
  */
-const NON_UK_PREFIXES = [
+const NON_OVERLAY_PREFIXES = [
   '/ratgeber/mehrwertsteuer-us-streitkraefte',
   '/ratgeber/us-forces-vat-relief',
   '/tasks',
   '/massage-tasks',
-  ...UK_EXCLUDED_PATHS.map((path) => `/${path}`),
+  ...OVERLAY_EXCLUDED_PATHS.map((path) => `/${path}`),
 ];
 
-const PREFIX: Record<Lang, string> = { de: '', en: '/en', uk: '/uk' };
+const PREFIX: Record<Lang, string> = { de: '', en: '/en', uk: '/uk', tr: '/tr' };
 
 /**
  * Outfit und Fraunces haben keine kyrillischen Zeichen. Auf /uk/-Seiten
  * springen Onest und Lora ein (in den font-family-Listen direkt dahinter);
  * dank unicode-range lädt der Browser nur deren kyrillische Dateien. Die
  * Schriften liegen auf dieser Website (src/assets/fonts), keine Anfrage an
- * Dritte.
+ * Dritte. Türkisch braucht keine eigenen Schriften: ğ, ş und İ stehen in den
+ * Latin-Extended-Dateien von Outfit und Fraunces, die index.html schon kennt.
  */
 const UK_FONTS_HREF = '/assets/fonts/uk-fonts.css';
 
 /**
- * Zentrale, seitenübergreifende UI-Sprache (DE/EN/UK).
+ * Zentrale, seitenübergreifende UI-Sprache (DE/EN/UK/TR).
  *
  * Die URL ist die Quelle der Wahrheit: Pfade unter /en/ (und die englischen
- * Sonderseiten) rendern Englisch, unter /uk/ Ukrainisch, alle anderen Deutsch
- * – identisch beim Prerendern und im Browser. Der Header-Umschalter navigiert
- * zur Gegenstück-URL; nur Seiten ohne Gegenstück schalten das UI direkt um.
- * Die Sprache wird auf <html lang data-lang> gespiegelt, damit das globale
- * CSS die passenden .lang-Blöcke ein- und ausblendet.
+ * Sonderseiten) rendern Englisch, unter /uk/ Ukrainisch, unter /tr/
+ * Türkisch, alle anderen Deutsch, identisch beim Prerendern und im Browser.
+ * Der Header-Umschalter navigiert zur Gegenstück-URL; nur Seiten ohne
+ * Gegenstück schalten das UI direkt um. Die Sprache wird auf
+ * <html lang data-lang> gespiegelt, damit das globale CSS die passenden
+ * .lang-Blöcke ein- und ausblendet.
  *
- * Ukrainisch ist ein Overlay (src/i18n/uk): t() und die .lang.de-Blöcke
- * werden über Wörterbücher übersetzt, die nur /uk/-Seiten laden. Der Wechsel
- * in den ukrainischen Baum und wieder heraus lädt die Seite deshalb neu,
- * statt im laufenden DOM zurückzuübersetzen.
+ * Ukrainisch und Türkisch sind Overlays (src/i18n/overlay): t() und die
+ * .lang.de-Blöcke werden über Wörterbücher übersetzt, die nur die Seiten
+ * dieser Sprache laden. Der Wechsel in einen Overlay-Baum, aus ihm heraus
+ * oder in einen anderen lädt die Seite deshalb neu, statt im laufenden DOM
+ * zurückzuübersetzen.
  */
 @Injectable({ providedIn: 'root' })
-export class LanguageService {
+export class LanguageService implements OverlayRouteDicts {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly document = inject(DOCUMENT);
   private readonly router = inject(Router);
   private observer: MutationObserver | null = null;
   private reloading = false;
-  /** Ukrainischer Katalog; nur auf /uk/-Seiten geladen (eigener Chunk). */
-  private uk: typeof UkCatalog | null = null;
+  /**
+   * Katalog der Overlay-Sprache dieses Seitenaufrufs (beim Prerendern: dieser
+   * einen Seite); nur auf /uk/- und /tr/-Seiten, Code als eigener Chunk.
+   */
+  private overlay: OverlayCatalog | null = null;
+  private loader: typeof OverlayLoader | null = null;
+  /** Erfüllt, sobald init() fertig ist; die Routen-Resolver warten darauf. */
+  private ready: Promise<void> = Promise.resolve();
 
   /** Aktuelle UI-Sprache; wird aus der URL abgeleitet. */
   readonly lang = signal<Lang>('de');
@@ -82,33 +98,60 @@ export class LanguageService {
 
     // RoutesRecognized feuert vor der Komponenten-Aktivierung, sodass
     // ngOnInit der Zielseite bereits die richtige Sprache sieht. Eine
-    // Navigation über die ukrainische Grenze lädt neu (languageBoundaryGuard),
-    // bis dahin bleibt die alte Sprache stehen.
+    // Navigation über die Grenze eines Overlays lädt neu
+    // (languageBoundaryGuard), bis dahin bleibt die alte Sprache stehen.
     this.router.events
       .pipe(filter((e): e is RoutesRecognized => e instanceof RoutesRecognized))
       .subscribe((e) => {
         const next = this.langForPath(e.urlAfterRedirects.split('?')[0].split('#')[0]);
-        if (this.isBrowser && this.crossesUkBoundary(next)) return;
+        if (this.isBrowser && this.crossesOverlayBoundary(next)) return;
         this.apply(next);
       });
   }
 
   /**
-   * Vor dem ersten Rendern (APP_INITIALIZER): auf /uk/-Seiten das gemeinsame
-   * Wörterbuch laden und im Browser die DOM-Übersetzung starten.
+   * Vor dem ersten Rendern (APP_INITIALIZER): auf Overlay-Seiten das
+   * gemeinsame Wörterbuch laden und im Browser die DOM-Übersetzung starten.
    */
-  async init(): Promise<void> {
-    if (this.lang() !== 'uk') return;
-    this.addUkFonts();
-    const [catalog] = await Promise.all([import('src/i18n/uk/catalog'), loadUkCommon()]);
-    this.uk = catalog;
-    if (this.isBrowser) this.startUkObserver();
+  init(): Promise<void> {
+    const lang = this.lang();
+    if (!isOverlayLang(lang)) return Promise.resolve();
+    if (lang === 'uk') this.addUkFonts();
+    this.ready = (async () => {
+      const [{ OverlayCatalog }, loader] = await Promise.all([
+        import('src/i18n/overlay/catalog'),
+        import('src/i18n/overlay/loader'),
+      ]);
+      const catalog = new OverlayCatalog(lang);
+      await loader.loadDicts(catalog, lang, ['common']);
+      this.overlay = catalog;
+      this.loader = loader;
+      if (this.isBrowser) this.startOverlayObserver();
+    })();
+    return this.ready;
+  }
+
+  /**
+   * Für den Resolver jeder Overlay-Route (OVERLAY_ROUTE_DICTS): die
+   * Wörterbücher dieser Route laden. path ist der Routenpfad ohne
+   * Sprachpräfix, wie in src/i18n/overlay/route-dicts.ts.
+   */
+  async loadRouteDicts(path: string): Promise<void> {
+    await this.ready;
+    const lang = this.lang();
+    if (!this.overlay || !this.loader || !isOverlayLang(lang)) return;
+    await this.loader.loadDictsForRoute(this.overlay, lang, path);
+  }
+
+  /** Der Katalog dieses Seitenaufrufs, für den Feinschliff beim Prerendern. */
+  overlayCatalog(): OverlayCatalog | null {
+    return this.overlay;
   }
 
   /**
    * Umschalten: navigiert zur Gegenstück-URL (die Sprache folgt dann der
-   * URL). Ohne Gegenstück wird nur das UI umgeschaltet; Ukrainisch führt dann
-   * auf die ukrainische Startseite.
+   * URL). Ohne Gegenstück wird nur das UI umgeschaltet; eine Overlay-Sprache
+   * führt dann auf ihre Startseite.
    */
   setLang(lang: Lang): void {
     if (this.isBrowser) {
@@ -127,9 +170,9 @@ export class LanguageService {
       this.apply(lang);
       return;
     }
-    const target = this.counterpartPath(current, lang) ?? (lang === 'uk' ? '/uk' : null);
+    const target = this.counterpartPath(current, lang) ?? (isOverlayLang(lang) ? `/${lang}` : null);
 
-    if (target !== null && this.isBrowser && this.crossesUkBoundary(lang)) {
+    if (target !== null && this.isBrowser && this.crossesOverlayBoundary(lang)) {
       this.hardNavigate(target);
     } else if (target !== null && target !== current) {
       this.router.navigateByUrl(target);
@@ -143,32 +186,32 @@ export class LanguageService {
   }
 
   /**
-   * Wählt den zur aktuellen Sprache passenden Text. Auf Ukrainisch aus dem
-   * Wörterbuch, mit Englisch als Rückfall für noch fehlende Einträge.
+   * Wählt den zur aktuellen Sprache passenden Text. In einer Overlay-Sprache
+   * aus dem Wörterbuch, mit Englisch als Rückfall für noch fehlende Einträge.
    */
   t(de: string, en: string): string {
     const lang = this.lang();
     if (lang === 'de') return de;
     if (lang === 'en') return en;
-    return this.uk?.ukLookup(de) ?? en;
+    return this.overlay?.lookup(de) ?? en;
   }
 
   /**
    * Für Komponenten, die ihren Text selbst im DOM umbauen (Wort-für-Wort-
-   * Hervorhebung o. Ä.): auf /uk/-Seiten vorher übersetzen, sonst passt der
-   * Schlüssel nicht mehr. Sonst ein No-op.
+   * Hervorhebung o. Ä.): auf Overlay-Seiten vorher übersetzen, sonst passt
+   * der Schlüssel nicht mehr. Sonst ein No-op.
    */
   translateDom(root: Element): void {
-    this.uk?.translateTree(root);
+    this.overlay?.translateTree(root);
   }
 
-  /** URL-Präfix der aktiven Sprache: '', '/en' oder '/uk'. */
+  /** URL-Präfix der aktiven Sprache: '', '/en', '/uk' oder '/tr'. */
   prefix(): string {
     return PREFIX[this.lang()];
   }
 
   /**
-   * Interner Link in der aktuellen Sprache: auf englischen und ukrainischen
+   * Interner Link in der aktuellen Sprache: auf englischen und Overlay-
    * Seiten wird der deutsche Pfad auf sein Gegenstück abgebildet, sonst
    * unverändert zurückgegeben. Templates binden Links als
    * [routerLink]="p('/price')" o. Ä.
@@ -188,27 +231,30 @@ export class LanguageService {
     if (target === 'de') return base;
     if (NON_LOCALIZED_PREFIXES.some((p) => base.startsWith(p))) return null;
     if (target === 'en') return SPECIAL_DE_TO_EN[base] ?? localized('/en');
-    if (NON_UK_PREFIXES.some((p) => base.startsWith(p))) return null;
-    return localized('/uk');
+    if (NON_OVERLAY_PREFIXES.some((p) => base.startsWith(p))) return null;
+    return localized(PREFIX[target]);
   }
 
   /** Sprache, die eine URL ausliefert. */
   langForPath(path: string): Lang {
     const normalized = path === '' ? '/' : path;
     if (normalized === '/en' || normalized.startsWith('/en/')) return 'en';
-    if (normalized === '/uk' || normalized.startsWith('/uk/')) return 'uk';
+    for (const lang of OVERLAY_LANGS) {
+      if (normalized === `/${lang}` || normalized.startsWith(`/${lang}/`)) return lang;
+    }
     if (SPECIAL_EN_TO_DE[normalized]) return 'en';
     return 'de';
   }
 
   /**
-   * Für languageBoundaryGuard: eine Navigation in den ukrainischen Baum oder
-   * aus ihm heraus wird zum Seitenaufruf. false bricht die Router-Navigation ab.
+   * Für languageBoundaryGuard: eine Navigation in einen Overlay-Baum, aus ihm
+   * heraus oder in einen anderen wird zum Seitenaufruf. false bricht die
+   * Router-Navigation ab.
    */
   allowNavigation(url: string): boolean {
     if (!this.isBrowser) return true;
     const next = this.langForPath(url.split('?')[0].split('#')[0]);
-    if (!this.crossesUkBoundary(next)) return true;
+    if (!this.crossesOverlayBoundary(next)) return true;
     this.hardNavigate(url);
     return false;
   }
@@ -217,13 +263,15 @@ export class LanguageService {
   private basePath(path: string): string {
     const normalized = path === '' ? '/' : path;
     if (SPECIAL_EN_TO_DE[normalized]) return SPECIAL_EN_TO_DE[normalized];
-    const m = /^\/(en|uk)(\/.*)?$/.exec(normalized);
-    if (m) return m[2] || '/';
+    const m = /^\/([a-z]{2})(\/.*)?$/.exec(normalized);
+    if (m && (m[1] === 'en' || isOverlayLang(m[1]))) return m[2] || '/';
     return normalized;
   }
 
-  private crossesUkBoundary(next: Lang): boolean {
-    return (this.lang() === 'uk') !== (next === 'uk');
+  /** Wörterbuch und Katalog gelten für genau eine Overlay-Sprache je Seitenaufruf. */
+  private crossesOverlayBoundary(next: Lang): boolean {
+    const overlayOf = (lang: Lang) => (isOverlayLang(lang) ? lang : null);
+    return overlayOf(this.lang()) !== overlayOf(next);
   }
 
   private hardNavigate(url: string): void {
@@ -254,15 +302,15 @@ export class LanguageService {
    * Übersetzt neu gerenderte .lang.de-Blöcke, bevor der Browser sie malt
    * (MutationObserver-Callbacks laufen als Microtask vor dem nächsten Frame).
    */
-  private startUkObserver(): void {
-    const uk = this.uk;
-    if (!uk || this.observer || typeof MutationObserver === 'undefined') return;
+  private startOverlayObserver(): void {
+    const catalog = this.overlay;
+    if (!catalog || this.observer || typeof MutationObserver === 'undefined') return;
     const body = this.document.body;
-    uk.translateTree(body);
+    catalog.translateTree(body);
     this.observer = new MutationObserver((records) => {
       for (const record of records) {
         record.addedNodes.forEach((node) => {
-          if (node.nodeType === 1) uk.translateTree(node as Element);
+          if (node.nodeType === 1) catalog.translateTree(node as Element);
         });
       }
     });
@@ -271,8 +319,8 @@ export class LanguageService {
 }
 
 /**
- * Sitzt auf der Wurzel aller Routen: eine Navigation in den ukrainischen
- * Baum oder aus ihm heraus wird zum normalen Seitenaufruf, damit die
+ * Sitzt auf der Wurzel aller Routen: eine Navigation in einen Overlay-Baum
+ * (/uk/, /tr/) oder aus ihm heraus wird zum normalen Seitenaufruf, damit die
  * vorgerenderte Seite in der richtigen Sprache kommt.
  */
 export const languageBoundaryGuard: CanActivateChildFn = (_route, state) =>

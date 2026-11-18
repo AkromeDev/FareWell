@@ -239,11 +239,11 @@
   }
 
   // ---------- zweisprachige Seiten ----------
-  // Der Seiten-Wrapper trägt data-lang="de|en|uk"; Inhalte liegen als
+  // Der Seiten-Wrapper trägt data-lang="de|en|uk|tr"; Inhalte liegen als
   // <span class="lang de">…</span><span class="lang en">…</span> nebeneinander.
   // !important wie in styles.scss: die inaktive Sprache darf von keiner
   // Komponentenregel wieder eingeblendet werden (sonst doppelte Vorlesung).
-  // Ukrainisch: siehe styles.scss (data-i18n="uk" bzw. "fallback").
+  // Ukrainisch und Türkisch: siehe styles.scss (data-i18n="ok" bzw. "fallback").
   &[data-lang='de'] .lang.en {
     display: none !important;
   }
@@ -252,8 +252,10 @@
     display: none !important;
   }
 
-  &[data-lang='uk'] .lang.de:not([data-i18n='uk']),
-  &[data-lang='uk'] .lang.en:not([data-i18n='fallback']) {
+  &[data-lang='uk'] .lang.de:not([data-i18n='ok']),
+  &[data-lang='uk'] .lang.en:not([data-i18n='fallback']),
+  &[data-lang='tr'] .lang.de:not([data-i18n='ok']),
+  &[data-lang='tr'] .lang.en:not([data-i18n='fallback']) {
     display: none !important;
   }
 

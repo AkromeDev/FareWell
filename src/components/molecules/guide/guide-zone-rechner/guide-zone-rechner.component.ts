@@ -318,7 +318,7 @@ export class GuideZoneRechnerComponent implements OnDestroy {
     const eur = (n: number) =>
       lang === 'en'
         ? `€${n.toLocaleString('en-US')}`
-        : `${n.toLocaleString(lang === 'uk' ? 'uk-UA' : 'de-DE')} €`;
+        : `${n.toLocaleString(lang === 'uk' ? 'uk-UA' : lang === 'tr' ? 'tr-TR' : 'de-DE')} €`;
 
     const groups = CATALOG.map((g) => ({
       name: this.t(g.de, g.en),

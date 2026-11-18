@@ -8,8 +8,9 @@ import { appendFileSync } from 'node:fs';
 import { AppRoutingModule } from './app-routing.module';
 import { serverRoutes } from './app.routes.server';
 import { LanguageService } from 'src/services/language.service';
-import { provideLanguage } from 'src/i18n/uk/provide';
-import { finalizeUkDocument } from 'src/i18n/uk/server';
+import { isOverlayLang } from 'src/i18n/overlay/dictionaries';
+import { provideLanguage } from 'src/i18n/overlay/provide';
+import { finalizeOverlayDocument } from 'src/i18n/overlay/server';
 import { stripInactiveLanguage } from 'src/i18n/strip-inactive-language';
 
 // Server/prerender bootstrap. Mirrors the browser providers from main.ts
@@ -28,17 +29,22 @@ export const config: ApplicationConfig = {
         const doc = inject(DOCUMENT);
         const language = inject(LanguageService);
         return () => {
-          if (language.lang() !== 'uk') {
+          const lang = language.lang();
+          if (!isOverlayLang(lang)) {
             stripInactiveLanguage(doc);
             return;
           }
-          const misses = finalizeUkDocument(doc);
+          const catalog = language.overlayCatalog();
+          if (!catalog) {
+            throw new Error(`Overlay-Katalog fehlt für ${doc.location.pathname}`);
+          }
+          const misses = finalizeOverlayDocument(doc, catalog);
           stripInactiveLanguage(doc);
-          // tools/i18n-uk.mjs check setzt die Variable und sammelt hier alle
-          // Texte, für die noch keine Übersetzung existiert.
-          const report = process.env['I18N_UK_REPORT'];
+          // tools/i18n-overlay.mjs <sprache> check setzt die Variable und
+          // sammelt hier alle Texte, für die noch keine Übersetzung existiert.
+          const report = process.env['I18N_OVERLAY_REPORT'];
           if (report && misses.length) {
-            appendFileSync(report, JSON.stringify({ url: doc.location.pathname, misses }) + '\n');
+            appendFileSync(report, JSON.stringify({ lang, url: doc.location.pathname, misses }) + '\n');
           }
         };
       },

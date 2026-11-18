@@ -1,51 +1,22 @@
 # Ukrainisch (/uk/)
 
-Die Website ist auf Deutsch und Englisch gebaut (`t('de', 'en')` und
-`<span class="lang de">…</span><span class="lang en">…</span>`). Ukrainisch
-liegt **nicht** daneben im Code, sondern als Overlay in diesem Ordner:
-
-- `dict/*.json`: Wörterbücher, Schlüssel = deutscher Text, Wert = Ukrainisch.
-  Pro Seite ein Wörterbuch, plus `common.json` für Header, Footer,
-  Cookie-Banner und geteilte Bausteine.
-- `table.ts`: welche Route welche Wörterbücher lädt (neue Seite → hier
-  eintragen, neues Wörterbuch → auch in `tools/i18n-uk.mjs`, `GROUP_RULES`).
-- `dictionaries.ts`: hängt das Laden an die /uk/-Routen; welche Seiten keine
-  ukrainische Fassung haben (`UK_EXCLUDED_PATHS`).
-- `catalog.ts`: Nachschlagen (`ukLookup`) und die DOM-Übersetzung der
-  `.lang.de`-Blöcke (`translateTree`).
-- `provide.ts`: Laden vor dem ersten Rendern, Feinschliff beim Prerendern.
-
-Die Wörterbücher lädt nur eine `/uk/`-Seite. Deutsche und englische Seiten
-werden dadurch nicht schwerer. Fehlt ein Eintrag, zeigt die ukrainische Seite
-den englischen Text (mit `lang="en"`).
+Ukrainisch ist ein Overlay über den deutschen und englischen Texten:
+Wörterbücher in `dict/*.json` (Schlüssel = deutscher Text, Wert =
+Ukrainisch), geladen nur auf `/uk/`-Seiten. Wie das Overlay funktioniert,
+welche Route welches Wörterbuch lädt und was die Platzhalter bedeuten, steht
+in `src/i18n/overlay/README.md` (seit 18.11.2026 für Ukrainisch und Türkisch
+gemeinsam). Fehlt ein Eintrag, zeigt die ukrainische Seite den englischen
+Text (mit `lang="en"`).
 
 ## Arbeitsablauf
 
 ```bash
-node tools/i18n-uk.mjs extract   # offene Texte → tmp/i18n-uk/todo/<wörterbuch>.json
+node tools/i18n-overlay.mjs uk extract   # offene Texte → tmp/i18n-uk/todo/<wörterbuch>.json
 # übersetzen: { "<id>": "<ukrainisch>" } → tmp/i18n-uk/done/<beliebig>.json
-node tools/i18n-uk.mjs merge     # prüft Platzhalter, trägt in dict/*.json ein
-node tools/i18n-uk.mjs check     # prerendert und meldet, was auf /uk/ noch fehlt
-node tools/i18n-uk.mjs review    # tmp/i18n-uk/review.csv (DE | EN | UK) zur Durchsicht
+node tools/i18n-overlay.mjs uk merge     # prüft Platzhalter, trägt in dict/*.json ein
+node tools/i18n-overlay.mjs uk check     # prerendert und meldet, was auf /uk/ noch fehlt
+node tools/i18n-overlay.mjs uk review    # tmp/i18n-uk/review.csv (DE | EN | UK) zur Durchsicht
 ```
-
-Ändert sich ein deutscher Text, passt sein alter Schlüssel nicht mehr: die
-ukrainische Seite zeigt dort Englisch, bis `extract` → übersetzen → `merge`
-gelaufen ist. Veraltete Übersetzungen bleiben so nie unbemerkt stehen.
-
-Indexierung: `UK_PREFIX_INDEXABLE` in `src/services/seo.service.ts`. Solange
-`false`, tragen die /uk/-Seiten `noindex,follow` und kein `hreflang="uk"`.
-Beim Umstellen auch den /uk/-Block in `src/sitemap.xml` eintragen.
-
-## Schlüssel und Platzhalter
-
-- `<0>…</0>`, `<1/>`: Kindelemente des deutschen Blocks (Links, `<strong>`,
-  `<br>`). Jeder Platzhalter kommt in der Übersetzung genau einmal vor, die
-  Reihenfolge darf sich ändern. Der Text dazwischen wird übersetzt.
-- `{0}`, `{1}`: eingesetzte Werte (Zahlen, Namen, Datum). Genau einmal
-  übernehmen, Position frei.
-- Leerzeichen um Platzhalter herum zählen beim Schlüssel nicht, in der
-  Übersetzung schon: `"див. <0>посібник</0> нижче"`.
 
 ## Stil
 

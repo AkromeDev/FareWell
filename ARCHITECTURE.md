@@ -19,19 +19,19 @@ note is scheduled: the code of a page moves into the layers when that page is ne
 
 - **The browser app.** `src/main.ts` starts `AppComponent` (skip link, header, router outlet, footer,
   cookie banner). The route table, `src/app/app-routing.module.ts` (946 lines), lazy-loads 51 distinct
-  components or modules and mounts the same page tree at `/` in German, at `/en` and at `/uk`. No
+  components or modules and mounts the same page tree at `/` in German, at `/en`, `/uk` and `/tr`. No
   hydration is provided: the browser renders the page again over the prerendered HTML.
 - **The prerender, at build time.** `npm run prerender` runs `tools/seal-intern.mjs --release`, then
   `ng run FareWell:prerender` (`outputMode: static`, entry `src/main.server.ts`), then the flatten and
   sitemap tools. Every route becomes an HTML file except the two staff task routes, which render in
   the browser only (`src/app/app.routes.server.ts`). Before a page is written, the markup of the other
-  languages is removed and a `/uk` page is translated (`src/app/app.config.server.ts`).
+  languages is removed and a `/uk` or `/tr` page is translated (`src/app/app.config.server.ts`).
 - **The build tools**, in `tools/` unless the path says otherwise:
   - `seal-intern.mjs`: encrypts the internal pages; with `--release` it stops while a test seal exists.
   - `flatten-prerender.mjs`: moves `route/index.html` to `route.html`, copies not-found to `404.html`.
   - `generate-sitemap.mjs`: writes `sitemap.xml` from the prerendered pages that may be indexed.
   - `check-seo-lengths.mjs`: checks title and description lengths. No npm script calls it.
-  - `i18n-uk.mjs`: extracts, merges, checks and lists the Ukrainian dictionaries.
+  - `i18n-overlay.mjs`: extracts, merges, checks and lists the Ukrainian and Turkish dictionaries.
   - `responsive-images.mjs`: makes the smaller image variants. Run by hand, the variants are committed.
   - `package-age.py`: refuses a locked package version younger than seven days (`npm run age`).
   - `supabase-keepalive.mjs`: one read request to the backend, for the workflow below.
@@ -66,8 +66,9 @@ No folder is named after a context. These are the groups that the folders and th
   `pages/karriere` (14 components) with `molecules/karriere` (6), the shared texts in
   `karriere/shared/`, and two checklists whose progress stays in the visitor's browser.
 - **Languages.** German and English are written side by side in the components (`t(de, en)` and paired
-  `.lang` blocks), and the address decides which one shows (README, *English pages*). Ukrainian is an
-  overlay keyed by the German text: `src/i18n/uk/`, 39 dictionaries, with a README of its own.
+  `.lang` blocks), and the address decides which one shows (README, *English pages*). Ukrainian and
+  Turkish are overlays keyed by the German text: the machinery in `src/i18n/overlay/`, 39 dictionaries
+  per language in `src/i18n/uk/` and `src/i18n/tr/`, each folder with a README of its own.
 - **Legal pages.** `pages/legal`: three components, German only.
 - **Search engine data.** `src/services/seo.service.ts`, `src/app/domain/entities.ts`, the JSON-LD block
   in `src/index.html`, `src/robots.txt`, `src/llms.txt`, the sitemap tool. Rules: `AI-SEO-STRATEGY.md`.

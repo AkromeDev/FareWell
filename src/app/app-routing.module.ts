@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { withUkDictionaries } from 'src/i18n/uk/dictionaries';
+import { OverlayLang, withOverlayDictionaries } from 'src/i18n/overlay/dictionaries';
 import { languageBoundaryGuard } from 'src/services/language.service';
 
-type PageLang = 'de' | 'en' | 'uk';
+type PageLang = 'de' | 'en' | OverlayLang;
 
 interface PageMeta {
   title: string;
@@ -12,11 +12,12 @@ interface PageMeta {
 
 /**
  * Mehrsprachige Seiten: identische Routenstruktur unter / (deutsch), unter
- * /en/ (englisch) und unter /uk/ (ukrainisch). Welche Sprache rendert,
- * entscheidet die URL (LanguageService); die title/description hier
- * dokumentieren die Ziel-Metadaten je Sprache — gesetzt werden sie von den
- * Komponenten über den SeoService (auf /uk/ per Wörterbuch aus dem deutschen
- * Text, daher hier die englischen als Platzhalter). Nicht übersetzte Seiten
+ * /en/ (englisch), unter /uk/ (ukrainisch) und unter /tr/ (türkisch). Welche
+ * Sprache rendert, entscheidet die URL (LanguageService); die
+ * title/description hier dokumentieren die Ziel-Metadaten je Sprache — gesetzt
+ * werden sie von den Komponenten über den SeoService (auf /uk/ und /tr/ per
+ * Wörterbuch aus dem deutschen Text, daher hier die englischen als
+ * Platzhalter). Nicht übersetzte Seiten
  * (Legal, die englische US-Forces-Sonderseite) leben ausschließlich im
  * deutschen Baum.
  */
@@ -354,7 +355,8 @@ function localizedRoutes(lang: PageLang): Routes {
         },
         // LEVEL 44 mit Franziska Preusche als Kooperationspartnerin: 9D Breathwork
         // und Soul Touch. Anders als die beiden Vorschauen oben zum Start bestimmt:
-        // indexierbar, in der Sitemap und in llms.txt, ohne ukrainische Fassung.
+        // indexierbar, in der Sitemap und in llms.txt, ohne ukrainische und
+        // türkische Fassung.
         {
           path: 'level-44',
           loadComponent: () =>
@@ -460,7 +462,7 @@ function localizedRoutes(lang: PageLang): Routes {
     // Party4Friends: die Regeln für Freund:innen, die im Salon feiern
     // (Joé, 15.11.2026). Versteckt wie die Gastro Road: noindex, nicht in der
     // Sitemap, nirgends verlinkt, nur per Link erreichbar. Ohne ukrainische
-    // Fassung (UK_EXCLUDED_PATHS).
+    // und türkische Fassung (OVERLAY_EXCLUDED_PATHS).
     {
       path: 'party4friends',
       loadComponent: () =>
@@ -826,12 +828,16 @@ const pageRoutes: Routes = [
     children: localizedRoutes('en')
   },
 
-  // Ukrainischer Spiegelbaum: gleiche Slugs unter /uk/ (ohne die Seiten in
-  // UK_EXCLUDED_PATHS). Jede Route lädt ihr Wörterbuch (src/i18n/uk)
-  // parallel zum Komponenten-Chunk.
+  // Ukrainischer und türkischer Spiegelbaum: gleiche Slugs unter /uk/ und
+  // /tr/ (ohne die Seiten in OVERLAY_EXCLUDED_PATHS). Jede Route lädt ihr
+  // Wörterbuch (src/i18n/overlay) per Resolver, parallel zum Komponenten-Chunk.
   {
     path: 'uk',
-    children: withUkDictionaries(localizedRoutes('uk'))
+    children: withOverlayDictionaries(localizedRoutes('uk'))
+  },
+  {
+    path: 'tr',
+    children: withOverlayDictionaries(localizedRoutes('tr'))
   },
 
   {
@@ -940,8 +946,8 @@ const pageRoutes: Routes = [
   }
 ];
 
-// Eine Wurzel ohne Komponente, nur für den Wächter: Navigationen in den
-// ukrainischen Baum oder aus ihm heraus werden zum Seitenaufruf.
+// Eine Wurzel ohne Komponente, nur für den Wächter: Navigationen in einen
+// Overlay-Baum (/uk/, /tr/) oder aus ihm heraus werden zum Seitenaufruf.
 const routes: Routes = [
   {
     path: '',

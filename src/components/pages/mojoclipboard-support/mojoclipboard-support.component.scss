@@ -73,8 +73,10 @@
 .mojo[data-lang='en'] .lang.de {
   display: none;
 }
-.mojo[data-lang='uk'] .lang.de:not([data-i18n='uk']),
-.mojo[data-lang='uk'] .lang.en:not([data-i18n='fallback']) {
+.mojo[data-lang='uk'] .lang.de:not([data-i18n='ok']),
+.mojo[data-lang='uk'] .lang.en:not([data-i18n='fallback']),
+.mojo[data-lang='tr'] .lang.de:not([data-i18n='ok']),
+.mojo[data-lang='tr'] .lang.en:not([data-i18n='fallback']) {
   display: none;
 }
 
