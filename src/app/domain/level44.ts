@@ -70,6 +70,8 @@ export interface Level44Facts {
     instagram: string;
     paths: { method: string; journeys: string; journey: string; online: string; about: string; safety: string };
   };
+  /** Her public number, the same as on her Google profile. */
+  phone: { note: string; e164: string; label: string };
   booking: { provider: string; salon: string; service: string };
   firstVisit: { code: string; price: number; offers: Level44OfferId[]; oncePerPerson: boolean; newClientsOnly: boolean };
   groupMaxPlaces: number;

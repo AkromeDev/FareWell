@@ -56,8 +56,9 @@ const GALLERY: { src: string; alt: Bi }[] = [
 ];
 /** Vorschaubild beim Teilen. */
 const OG_IMAGE = `${ORIGIN}/assets/images/partner/level44-breathwork-gastgeberin.jpg`;
-const PHONE_HREF = 'tel:+4915757995694';
-const PHONE_LABEL = '+49 157 5799 5694';
+/** Ihre öffentliche Nummer, wie im Google-Profil: aus level44.json. */
+const PHONE_HREF = `tel:${LEVEL44.phone.e164}`;
+const PHONE_LABEL = LEVEL44.phone.label;
 /** Ihre eigene Website und ihr Instagram: aus level44.json, dort einmal geschrieben. */
 const LEVEL44_URL = LEVEL44.brandSite.origin;
 const INSTAGRAM_URL = LEVEL44.brandSite.instagram;
@@ -688,6 +689,7 @@ export class Level44Component implements OnInit, OnDestroy {
           jobTitle: this.t('Gründerin von LEVEL 44', 'Founder of LEVEL 44'),
           url: pageUrl,
           sameAs: [LEVEL44_URL, INSTAGRAM_URL],
+          telephone: LEVEL44.phone.e164,
           brand: { '@id': LEVEL44_BRAND_ID },
           description,
           workLocation: {

@@ -13,10 +13,13 @@ export interface PartnerSite {
   ownPage: string;
 }
 
-/** Dr. med. Andrea Leo's site. Built, not published (noindex) on 13.11.2026. */
+/**
+ * Dr. med. Andrea Leo's site. Public and indexable since 15.11.2026 (Joé's
+ * decision); the domain answers since 19.11.2026, so the links lead there.
+ */
 export const DR_LEO_SITE: PartnerSite = {
   origin: 'https://drleoaesthetic.de',
-  public: false,
+  public: true,
   ownPage: '/behandlungen/aesthetische-medizin',
 };
 
