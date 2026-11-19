@@ -140,7 +140,7 @@ export const PRICE_TABLES = {
       { de: 'Füße', en: 'Feet', minutes: 15, price: 40 },
       { de: 'Zehen', en: 'Toes', minutes: 15, price: 30 },
       { de: 'Beine komplett', en: 'Complete legs', minutes: 105, price: 180 },
-      { de: 'Ganzer Körper', en: 'Full body', minutes: 210, price: 750 },
+      { de: 'Ganzer Körper', en: 'Full body', minutes: 180, price: 449 },
     ],
   },
 
