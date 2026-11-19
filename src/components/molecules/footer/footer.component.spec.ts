@@ -45,10 +45,14 @@ describe('FooterComponent', () => {
     });
 
     it('bleibt auf dieser Website, solange die Website eines Partners nicht öffentlich ist', () => {
-      expect(component.drLeoSite.public).toBeFalse();
-      // LEVEL 44 ist seit 16.11.2026 öffentlich; hier wird der Zustand davor geprüft.
+      // Beide Websites sind öffentlich (LEVEL 44 seit 16.11.2026, Dr. Leo seit
+      // 19.11.2026 verlinkt); hier wird der Zustand davor geprüft.
+      expect(component.drLeoSite.public).toBeTrue();
       expect(component.level44Site.public).toBeTrue();
-      Object.assign(component, { level44Site: { ...component.level44Site, public: false } });
+      Object.assign(component, {
+        drLeoSite: { ...component.drLeoSite, public: false },
+        level44Site: { ...component.level44Site, public: false },
+      });
       fixture.detectChanges();
       expect(items().map((item) => item.querySelector('a')?.getAttribute('href'))).toEqual([
         '/',

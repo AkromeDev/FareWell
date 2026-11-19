@@ -73,6 +73,18 @@
               ><span class="lang de">Sprachen: </span><span class="lang en">Languages: </span></span
             >Deutsch · English · Italiano · Magyar</span
           >
+          @if (drLeoSite.public) {
+          <a
+            class="portrait-ig no-underline"
+            [href]="drLeoSite.origin"
+            rel="noopener"
+            (click)="trackCrosslink('portrait')"
+            ><span class="sr-only"
+              ><span class="lang de">Seine eigene Website: </span
+              ><span class="lang en">His own website: </span></span
+            >{{ drLeoSiteLabel }} <span aria-hidden="true">↗</span></a
+          >
+          }
           <a class="portrait-ig no-underline" [href]="instagramUrl" target="_blank" rel="noopener noreferrer"
             >Instagram <span aria-hidden="true">↗</span></a
           >

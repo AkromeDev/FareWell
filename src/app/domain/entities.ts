@@ -1,4 +1,5 @@
 import { LEVEL44 } from './level44';
+import { DR_LEO_SITE } from './partner-sites';
 
 /**
  * Shared ids for structured data (AI-SEO-STRATEGY.md, "Shared ids").
@@ -45,7 +46,8 @@ const DR_LEO_INSTAGRAM = 'https://www.instagram.com/dr.leoaesthet1c/';
  * Dr. Leo as a person. He is an independent cooperation doctor, not an
  * employee of FareWell: the link to the studio runs only through his
  * practice (containedInPlace), never through worksFor or employee. No phone
- * and no mail here; his own contact data belong on his own site.
+ * and no mail here; his own contact data belong on his own site, which sameAs
+ * names once it is public (partner-sites.ts).
  */
 export function drLeoPersonNode(
   t: (de: string, en: string) => string,
@@ -59,7 +61,7 @@ export function drLeoPersonNode(
     givenName: 'Andrea',
     familyName: 'Leo',
     jobTitle: t('Arzt', 'Physician'),
-    sameAs: [DR_LEO_INSTAGRAM],
+    sameAs: DR_LEO_SITE.public ? [DR_LEO_SITE.origin, DR_LEO_INSTAGRAM] : [DR_LEO_INSTAGRAM],
     ...extra,
   };
 }

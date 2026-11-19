@@ -4,6 +4,7 @@ import {
   drLeoPersonNode,
   drLeoPracticeNode,
 } from 'src/app/domain/entities';
+import { DR_LEO_SITE } from 'src/app/domain/partner-sites';
 import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -542,6 +543,9 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
   readonly phoneHref = PHONE_HREF;
   readonly phoneLabel = PHONE_LABEL;
   readonly instagramUrl = INSTAGRAM_URL;
+  /** His own website and whether a visitor may be sent there: partner-sites.ts. */
+  readonly drLeoSite = DR_LEO_SITE;
+  readonly drLeoSiteLabel = new URL(DR_LEO_SITE.origin).host;
   readonly stats = STATS;
   readonly certs = CERTS;
   readonly groups = PRICED_GROUPS;
@@ -584,6 +588,17 @@ export class AesthetischeMedizinComponent implements OnInit, OnDestroy {
       event_label: 'Beratung ästhetische Medizin',
       location,
       destination: 'salonkee',
+    });
+  }
+
+  /** A click on the link to his own site, counted like the footer's (crosslink_click). */
+  trackCrosslink(location: string): void {
+    if (!this.isBrowser || typeof window.gtag !== 'function') return;
+    window.gtag('event', 'crosslink_click', {
+      from_site: 'farewell.salon',
+      from_page: PAGE_PATH,
+      to_site: this.drLeoSiteLabel,
+      location,
     });
   }
 
