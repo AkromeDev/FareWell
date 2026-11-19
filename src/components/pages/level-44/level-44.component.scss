@@ -315,7 +315,10 @@ ul {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
-  padding-top: clamp(40px, 6vh, 64px);
+  // Oben und unten derselbe Abstand: hier folgt das hellere Termine-Band, nicht
+  // wie auf den Schwesterseiten ein Abschnitt in derselben Farbe. Ohne den
+  // unteren Abstand sitzen die Kacheln auf dessen Kante.
+  padding-block: clamp(40px, 6vh, 64px);
 }
 
 .stat {
