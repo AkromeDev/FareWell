@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-16",
+  "updated": "2026-11-19",
   "owner": "farewell.salon. This file lives in the repository AkromeDev/FareWell at src/app/domain/level44.json and is published at https://farewell.salon/data/level44.json. The LEVEL 44 site reads the published file when it is built and keeps a copy. Change a fact here, never in the copy.",
   "source": "Salonkee, salon 'farewell', service group 43284 '9D Breathwork & Soul Touch', read on 2026-11-13. Salonkee is the truth for prices: change a price there first, then here. The Evening Experience and Group + Soul Touch Integration have no date in Salonkee yet, so they cannot be booked online. Online sessions are not in Salonkee: Franziska Preusche's mail of 2026-11-03 plans them weekly, about 2 hours, 49 €; where they are booked is not decided, so price and booking are null.",
   "currency": "EUR",
@@ -37,6 +37,11 @@
       "about": "/about",
       "safety": "/safety"
     }
+  },
+  "phone": {
+    "note": "Franziska Preusche's public number, the same as on her Google profile (Joé, 2026-11-19). Every page about LEVEL 44 shows this one, not FareWell's.",
+    "e164": "+4915561983079",
+    "label": "+49 155 6198 3079"
   },
   "booking": {
     "provider": "Salonkee",
