@@ -383,6 +383,43 @@ ul {
   }
 }
 
+// Die Termine nach den nächsten zwei: eine Zeile je Termin.
+.more-title {
+  margin: 34px 0 0;
+  font-size: 20px;
+}
+
+.more-dates {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba($gold, 0.22);
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 22px;
+    align-items: baseline;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba($gold, 0.22);
+    font-size: 15.5px;
+    color: rgba($cream, 0.72);
+  }
+
+  b {
+    min-width: 9.5em;
+    color: $cream;
+  }
+
+  a {
+    color: $gold;
+  }
+
+  .book {
+    margin-left: auto;
+  }
+}
+
 // Zwei Verweise auf ihre eigene Website nebeneinander.
 .pointer-ctas {
   display: flex;

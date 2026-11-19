@@ -63,7 +63,9 @@ describe('level44.json, the shared facts', () => {
       expect(session.start).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+0[12]:00$/);
       expect(Date.parse(session.end)).toBeGreaterThan(Date.parse(session.start));
       expect(level44Offer(session.offer).bookable).withContext(session.id).toBeTrue();
-      expect(session.journeySlug).toMatch(/^[a-z0-9-]+$/);
+      // A date may stand before its journey is named: then both are null, never one of them.
+      if (session.journey === null) expect(session.journeySlug).withContext(session.id).toBeNull();
+      else expect(session.journeySlug).withContext(session.id).toMatch(/^[a-z0-9-]+$/);
       expect(level44EventId(session)).toBe(`${LEVEL44_PAGE}#event-${session.id}`);
     }
   });
