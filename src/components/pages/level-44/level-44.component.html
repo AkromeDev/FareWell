@@ -148,14 +148,17 @@
       </div>
       @if (dates.length) {
         <ul class="cards dates">
-          @for (date of dates; track date.id) {
+          @for (date of nextDates; track date.id) {
             <li class="card" [id]="'termin-' + date.id" appReveal [revealDelay]="$index * 100">
               <span class="card-num"
                 ><span class="lang de">{{ date.dateDe }}</span
                 ><span class="lang en">{{ date.dateEn }}</span></span
               >
               <h3>
-                @if (brandPublic) {
+                @if (!date.journey) {
+                  <span class="lang de">Journey wird noch bekannt gegeben</span
+                  ><span class="lang en">Journey to be announced</span>
+                } @else if (brandPublic && date.journeyUrl) {
                   <a
                     [href]="date.journeyUrl"
                     target="_blank"
@@ -196,6 +199,54 @@
             </li>
           }
         </ul>
+        @if (moreDates.length) {
+          <!-- Die Termine danach: eine Zeile je Termin, damit die Seite nicht aus Karten besteht. -->
+          <h3 class="more-title" appReveal>
+            <span class="lang de">Alle weiteren Termine</span><span class="lang en">All further dates</span>
+          </h3>
+          <ul class="more-dates">
+            @for (date of moreDates; track date.id) {
+              <li [id]="'termin-' + date.id">
+                <b
+                  ><span class="lang de">{{ date.dateDe }}</span
+                  ><span class="lang en">{{ date.dateEn }}</span></b
+                >
+                <span
+                  ><span class="lang de">{{ date.time }} bis {{ date.endTime }} Uhr</span
+                  ><span class="lang en">{{ date.time }} to {{ date.endTime }}</span></span
+                >
+                <span>
+                  @if (date.journey && brandPublic && date.journeyUrl) {
+                    <a
+                      [href]="date.journeyUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      (click)="trackCrosslink('termin-' + date.id)"
+                      >{{ date.journey }}</a
+                    >
+                  } @else if (date.journey) {
+                    {{ date.journey }}
+                  } @else {
+                    <span class="lang de">Journey wird noch bekannt gegeben</span
+                    ><span class="lang en">Journey to be announced</span>
+                  }
+                </span>
+                <a
+                  class="book"
+                  [href]="bookingUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  (click)="trackLead('level44-termin-' + date.id)"
+                  ><span class="lang de">Platz buchen</span><span class="lang en">Book a place</span
+                  ><span class="sr-only"
+                    ><span class="lang de">, {{ date.dateDe }}</span
+                    ><span class="lang en">, {{ date.dateEn }}</span></span
+                  ></a
+                >
+              </li>
+            }
+          </ul>
+        }
       } @else {
         <p class="section-lede">
           <span class="lang de"

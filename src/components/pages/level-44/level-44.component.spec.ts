@@ -77,12 +77,15 @@ describe('Level44Component', () => {
     });
 
     it('listet die Termine der Datei unter #termine, jeden mit Buchungslink', () => {
-      const rows = el.querySelectorAll('#termine li.card');
+      // Die nächsten zwei als Karte, die danach je in einer Zeile: zusammen jeder Termin der Datei.
+      const rows = el.querySelectorAll('#termine li[id^="termin-"]');
       expect(rows.length).toBe(LEVEL44.sessions.length);
+      expect(el.querySelectorAll('#termine li.card').length).toBe(Math.min(2, LEVEL44.sessions.length));
       LEVEL44.sessions.forEach((session, index) => {
         expect(rows[index].id).toBe(`termin-${session.id}`);
-        expect(rows[index].textContent).toContain(session.journey);
-        expect(rows[index].querySelector('a.btn-gold')?.getAttribute('href')).toContain('salonkee.de/salon/farewell');
+        // Ein Termin, dessen Journey Franziska noch nicht genannt hat, sagt das.
+        expect(germanText(rows[index] as HTMLElement)).toContain(session.journey ?? 'Journey wird noch bekannt gegeben');
+        expect(rows[index].querySelector('a[href*="salonkee.de/salon/farewell"]')).withContext(session.id).not.toBeNull();
       });
       expect(germanText(el.querySelector('#termine')!)).toContain(`Höchstens ${LEVEL44.groupMaxPlaces} Plätze`);
     });
@@ -193,11 +196,12 @@ describe('Level44Component', () => {
       for (const path of [paths.method, paths.journeys, paths.online, paths.about]) {
         expect(links).toContain(`${origin}${path}`);
       }
-      for (const session of LEVEL44.sessions) {
+      for (const session of LEVEL44.sessions.filter((s) => s.journeySlug)) {
         expect(links).toContain(`${origin}${paths.journey}${session.journeySlug}`);
       }
+      expect(links.some((link) => link.endsWith('null'))).toBeFalse();
       // Der Ort bleibt hier: Termine, Preise, Kontraindikationen, FAQ.
-      expect(node.querySelectorAll('#termine li.card').length).toBe(LEVEL44.sessions.length);
+      expect(node.querySelectorAll('#termine li[id^="termin-"]').length).toBe(LEVEL44.sessions.length);
       expect(node.querySelector('#preise table')).not.toBeNull();
       expect(node.querySelectorAll('#sicherheit .check-list--inset li').length).toBeGreaterThan(5);
       expect(node.querySelectorAll('#fragen details').length).toBeGreaterThan(5);

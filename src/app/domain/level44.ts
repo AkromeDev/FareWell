@@ -40,9 +40,10 @@ export interface Level44Session {
   /** The date, YYYY-MM-DD. Also the end of the Event id. */
   id: string;
   offer: Level44OfferId;
-  journey: string;
-  /** The journey's page on the LEVEL 44 site: brandSite.paths.journey + this. */
-  journeySlug: string;
+  /** The journey of that day, or null while Franziska has not named it yet. */
+  journey: string | null;
+  /** The journey's page on the LEVEL 44 site: brandSite.paths.journey + this. Null with the journey. */
+  journeySlug: string | null;
   /** ISO 8601 with the offset of Europe/Berlin. */
   start: string;
   end: string;

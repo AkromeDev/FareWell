@@ -268,10 +268,14 @@ interface DateRow {
   dateEn: string;
   time: string;
   endTime: string;
-  journey: string;
+  /** Null, solange Franziska die Journey dieses Termins noch nicht genannt hat. */
+  journey: string | null;
   /** Die Seite der Journey auf ihrer Website. Verlinkt wird sie erst, wenn die öffentlich ist. */
-  journeyUrl: string;
+  journeyUrl: string | null;
 }
+
+/** So viele der nächsten Termine bekommen eine ganze Karte; die danach stehen je in einer Zeile. */
+const DATE_CARDS = 2;
 
 const OFFERS: BreathOffer[] = [
   {
@@ -577,8 +581,10 @@ export class Level44Component implements OnInit, OnDestroy {
     id: session.id,
     ...sessionWhen(session),
     journey: session.journey,
-    journeyUrl: level44SiteUrl('journey', session.journeySlug),
+    journeyUrl: session.journeySlug ? level44SiteUrl('journey', session.journeySlug) : null,
   }));
+  readonly nextDates = this.dates.slice(0, DATE_CARDS);
+  readonly moreDates = this.dates.slice(DATE_CARDS);
   readonly stats = STATS;
   readonly benefits = BENEFITS;
   readonly nine = NINE;
@@ -718,7 +724,7 @@ export class Level44Component implements OnInit, OnDestroy {
         ...this.sessions.map((session) => ({
           '@type': 'Event',
           '@id': level44EventId(session),
-          name: `${level44Offer('group').name}: ${session.journey}`,
+          name: session.journey ? `${level44Offer('group').name}: ${session.journey}` : level44Offer('group').name,
           description: this.t(
             'Geführte 9D Atemreise über Kopfhörer in der Gruppe, mit Einführung und Integration, ca. 2,5–3 Stunden.',
             'Guided 9D breath journey on headphones in a group, with introduction and integration, about 2.5–3 hours.',
