@@ -315,6 +315,32 @@ export const PRICE_TABLES = {
       { de: 'Medizinisch-funktionelle Massage', en: 'Medical-functional massage', minutes: 90, price: 135 },
     ],
   },
+
+  /**
+   * Massagen bei Nikolaj (Massagepraktiker, PRIMA Akademie Nürnberg). Preise von
+   * JC am 23.11.2026 festgelegt, Begründung und Wettbewerb in
+   * FareWell/domains/inklusion/kandidaten/2026-11-22_Massagemenue_Preise_Nikolaj.md.
+   * Wellness- und Sportmassage, keine Heilbehandlung: keine Heilversprechen,
+   * nicht unter „Therapeutische Massage" einsortieren.
+   */
+  massageNikolaj: {
+    de: '',
+    en: '',
+    rows: [
+      { de: 'Ganzkörpermassage bei Nikolaj (kräftig, sportlich)', en: 'Full-body massage with Nikolaj (firm, sporty)', minutes: 60, price: 95 },
+      { de: 'Ganzkörpermassage bei Nikolaj (kräftig, sportlich)', en: 'Full-body massage with Nikolaj (firm, sporty)', minutes: 90, price: 139 },
+      { de: 'Ganzkörpermassage bei Nikolaj, 5er-Karte', en: 'Full-body massage with Nikolaj, pack of 5', minutes: 60, sessions: 5, price: 450 },
+      { de: 'Ganzkörpermassage bei Nikolaj, 10er-Karte', en: 'Full-body massage with Nikolaj, pack of 10', minutes: 60, sessions: 10, price: 850 },
+      { de: 'Sportmassage Rücken, Nacken & Beine', en: 'Sports massage for back, neck & legs', minutes: 45, price: 69 },
+      { de: 'Schwedische Massage (sanft, Ganzkörper)', en: 'Swedish massage (gentle, full body)', minutes: 60, price: 85 },
+      { de: 'Kräuterstempelmassage', en: 'Herbal stamp massage', minutes: 60, price: 99 },
+      { de: 'Ayurveda Ölmassage (Abhyanga)', en: 'Ayurvedic oil massage (Abhyanga)', minutes: 60, price: 95 },
+      { de: 'Hot Stone Massage', en: 'Hot stone massage', minutes: 75, price: 115 },
+      { de: 'Breuss Massage (Rücken)', en: 'Breuss massage (back)', minutes: 30, price: 45 },
+      { de: 'Fußmassage', en: 'Foot massage', minutes: 30, price: 45 },
+      { de: 'Fußmassage als Zusatz zu einer Massage', en: 'Foot massage as an add-on to a massage', minutes: 15, price: 20, addon: true },
+    ],
+  },
 } satisfies Record<string, PriceTable>;
 
 export type PriceTableKey = keyof typeof PRICE_TABLES;
@@ -459,5 +485,17 @@ export const PRICE_SERVICES: PriceService[] = [
     descriptionEn:
       'Therapeutic massages: sports & recovery massage, medical-functional massage, plus a first appointment with intake & assessment.',
     tables: ['therapeutischeMassage'],
+  },
+  {
+    anchor: 'massage-nikolaj',
+    nameDe: 'Massage bei Nikolaj',
+    nameEn: 'Massage with Nikolaj',
+    serviceTypeDe: 'Massage',
+    serviceTypeEn: 'Massage',
+    descriptionDe:
+      'Wellness- und Sportmassagen bei Nikolaj in Nürnberg: kräftige Ganzkörpermassage, Sportmassage für Rücken, Nacken und Beine, Schwedische Massage, Kräuterstempel, Ayurveda, Hot Stone, Breuss und Fußmassage.',
+    descriptionEn:
+      'Wellness and sports massages with Nikolaj in Nuremberg: firm full-body massage, sports massage for back, neck and legs, Swedish massage, herbal stamps, Ayurveda, hot stone, Breuss and foot massage.',
+    tables: ['massageNikolaj'],
   },
 ];

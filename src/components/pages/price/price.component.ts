@@ -133,6 +133,12 @@ export class PriceComponent implements OnInit, OnDestroy {
       aDe: 'Therapeutische Massagen kosten bei FareWell in Nürnberg ab 50 €: Sport- und Regenerationsmassage 50 € bis 120 €, medizinisch-funktionelle Massage 60 € bis 135 €, Ersttermin mit Anamnese und Befundaufnahme 99 € (90 Min.). Das Beratungsgespräch ist kostenlos.',
       aEn: 'Therapeutic massages at FareWell in Nuremberg start at €50: sports & recovery massage €50 to €120, medical-functional massage €60 to €135, first appointment with intake & assessment €99 (90 min). The consultation is free.',
     },
+    massageNikolaj: {
+      qDe: 'Was kostet eine Massage bei Nikolaj?',
+      qEn: 'How much does a massage with Nikolaj cost?',
+      aDe: 'Bei Nikolaj kostet die kräftige Ganzkörpermassage 95 € (60 Min.) oder 139 € (90 Min.), als 5er-Karte 450 € und als 10er-Karte 850 € (je 60 Min.). Sportmassage für Rücken, Nacken und Beine 69 € (45 Min.), sanfte Schwedische Massage 85 € (60 Min.), Kräuterstempelmassage 99 € (60 Min.), Ayurveda Ölmassage 95 € (60 Min.), Hot Stone Massage 115 € (75 Min.), Breuss Massage 45 € (30 Min.), Fußmassage 45 € (30 Min.) oder 20 € als Zusatz (15 Min.).',
+      aEn: 'With Nikolaj, the firm full-body massage costs €95 (60 min) or €139 (90 min), €450 as a pack of 5 and €850 as a pack of 10 (60 min each). Sports massage for back, neck and legs €69 (45 min), gentle Swedish massage €85 (60 min), herbal stamp massage €99 (60 min), Ayurvedic oil massage €95 (60 min), hot stone massage €115 (75 min), Breuss massage €45 (30 min), foot massage €45 (30 min) or €20 as an add-on (15 min).',
+    },
   };
 
   /** Reihenfolge der FAQ-Einträge im FAQPage-Schema. */
@@ -145,6 +151,7 @@ export class PriceComponent implements OnInit, OnDestroy {
     'bodyForming',
     'wellnessMassage',
     'therapeutischeMassage',
+    'massageNikolaj',
   ];
 
   ngOnInit(): void {
@@ -229,6 +236,7 @@ export class PriceComponent implements OnInit, OnDestroy {
       { id: 'body-forming', label: this.t('Body Forming', 'Body forming') },
       { id: 'wellness-massage', label: this.t('Wellness Massage', 'Wellness massage') },
       { id: 'therapeutische-massage', label: this.t('Therapeutische Massage', 'Therapeutic massage') },
+      { id: 'massage-nikolaj', label: this.t('Massage bei Nikolaj', 'Massage with Nikolaj') },
       { id: 'gut-zu-wissen', label: this.t('Gut zu wissen', 'Good to know') },
     ];
   }

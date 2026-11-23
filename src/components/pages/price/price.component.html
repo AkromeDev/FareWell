@@ -694,9 +694,68 @@
       </div>
     </app-guide-section>
 
-    <!-- 10 · Gut zu wissen -->
+    <!-- 10 · Massage bei Nikolaj -->
     <app-guide-section
       index="10"
+      [heading]="t('Massage bei Nikolaj: Preise', 'Massage with Nikolaj: prices')"
+      sectionId="massage-nikolaj"
+    >
+      <p class="gd-lead-p gd-read" appReveal>
+        <span class="lang de">
+          Nikolaj massiert seit über 13 Jahren, ausgebildet als Massagepraktiker an der PRIMA
+          Akademie Nürnberg. Seine Ganzkörpermassage ist kräftig und geht in die Tiefe, ideal zur
+          Regeneration nach dem Sport. Wer es sanft mag, wählt die Schwedische Massage.
+        </span>
+        <span class="lang en">
+          Nikolaj has been massaging for more than 13 years and trained as a massage practitioner
+          at PRIMA Akademie Nuremberg. His full-body massage is firm and goes deep, ideal for
+          recovery after sport. If you prefer it gentle, choose the Swedish massage.
+        </span>
+      </p>
+      <div
+        class="gd-table-wrap gd-table-wrap--price"
+        appReveal
+        tabindex="0"
+        role="region"
+        [attr.aria-label]="t('Preise Massage bei Nikolaj', 'Prices for massage with Nikolaj')"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">{{ t('Massage', 'Massage') }}</th>
+              <th scope="col" class="num">{{ t('Preis', 'Price') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of tables.massageNikolaj.rows; track $index) {
+              <tr>
+                <td>{{ t(row.de, row.en) }} ({{ duration(row) }})</td>
+                <td class="num">{{ price(row) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="gd-read">
+        <app-guide-note variant="warn" [label]="t('Wichtig', 'Please note')">
+          <span class="lang de">
+            Wellness- und Sportmassage zur Entspannung und Regeneration. Keine Heilbehandlung,
+            ersetzt keine ärztliche oder physiotherapeutische Behandlung.
+          </span>
+          <span class="lang en">
+            Wellness and sports massage for relaxation and recovery. Not a medical treatment and
+            no substitute for treatment by a doctor or physiotherapist.
+          </span>
+        </app-guide-note>
+        <app-faq-item [question]="t(faqs['massageNikolaj'].qDe, faqs['massageNikolaj'].qEn)">
+          <p>{{ t(faqs['massageNikolaj'].aDe, faqs['massageNikolaj'].aEn) }}</p>
+        </app-faq-item>
+      </div>
+    </app-guide-section>
+
+    <!-- 11 · Gut zu wissen -->
+    <app-guide-section
+      index="11"
       [heading]="t('Gut zu wissen', 'Good to know')"
       sectionId="gut-zu-wissen"
     >
