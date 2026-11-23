@@ -751,6 +751,23 @@ function localizedRoutes(lang: PageLang): Routes {
         }
       )
     },
+    // Ziel der Google-Anzeigen „DE - Massage Nikolaj“ (ab 01.12.2026). Nur für die Anzeige: noindex, in keinem Menü.
+    {
+      path: 'promotionen/massage-nikolaj-nuernberg',
+      loadComponent: () =>
+        import('../components/pages/promotions/nikolaj-massage-promotion/nikolaj-massage-promotion.component')
+          .then(m => m.NikolajMassagePromotionComponent),
+      data: d(
+        {
+          title: 'Ganzkörpermassage bei Nikolaj in Nürnberg, 60 Min. 95 € | FareWell',
+          description: 'Kräftige Ganzkörpermassage, Sportmassage oder sanfte Schwedische Massage bei Nikolaj, Massagepraktiker mit über 13 Jahren Erfahrung. FareWell, Nürnberg.'
+        },
+        {
+          title: 'Full-body massage with Nikolaj in Nuremberg, 60 min €95 | FareWell',
+          description: 'Firm full-body massage, sports massage or gentle Swedish massage with Nikolaj, massage practitioner with over 13 years of experience. FareWell, Nuremberg.'
+        }
+      )
+    },
 
     {
       path: 'laser-haarentfernung-aktion-nuernberg',

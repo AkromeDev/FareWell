@@ -1,0 +1,102 @@
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">{{ t('Massage · Nürnberg', 'Massage · Nuremberg') }}</p>
+    <h1>{{ t('Ganzkörpermassage bei', 'Full-body massage with') }} <em>Nikolaj</em></h1>
+    <p class="offer">
+      <strong>{{ euro(mainPrice ?? null) }}</strong>&ngsp;<span>{{ t('60 Minuten, kräftig und tiefgehend', '60 minutes, firm and deep') }}</span>
+    </p>
+    <p class="lead">
+      {{ t(
+        'Nikolaj ist Massagepraktiker (PRIMA Akademie Nürnberg) und massiert seit über 13 Jahren. Bei FareWell, Frauentorgraben 5, Nürnberg, 2 Minuten vom Hauptbahnhof.',
+        'Nikolaj is a massage practitioner (PRIMA Akademie Nuremberg) and has been massaging for more than 13 years. At FareWell, Frauentorgraben 5, Nuremberg, 2 minutes from the main station.'
+      ) }}
+    </p>
+    <div class="ctas">
+      <a class="btn-gold" [href]="bookingUrl" (click)="track('booking', 'hero')" target="_blank" rel="noopener noreferrer">{{ t('Direkt online buchen', 'Book online now') }}</a>
+      <a class="btn-outline" [href]="phoneHref" (click)="track('phone', 'hero')">{{ phoneLabel }}</a>
+      <a class="btn-outline" [href]="whatsappHref" (click)="track('whatsapp', 'hero')" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+    <p class="disclaimer">
+      {{ t(
+        'Wellness- und Sportmassage zur Entspannung und Regeneration. Keine Heilbehandlung, ersetzt keine ärztliche oder physiotherapeutische Behandlung.',
+        'Wellness and sports massage for relaxation and recovery. Not a medical treatment and no substitute for treatment by a doctor or physiotherapist.'
+      ) }}
+    </p>
+  </div>
+</section>
+
+<section class="alt" id="massagen">
+  <div class="wrap">
+    <h2>{{ t('Kräftig oder sanft: du wählst', 'Firm or gentle: you choose') }}</h2>
+    <div class="grid">
+      @for (item of highlights; track item.id) {
+        <div class="card" [id]="item.id">
+          <h3 class="card-title">{{ bi(item.title) }}</h3>
+          <p>{{ bi(item.text) }}</p>
+          <ul class="prices">
+            @for (row of item.rows; track $index) {
+              <li><span>{{ row.minutes }} {{ t('Min.', 'min') }}</span><span class="price">{{ euro(row.price) }}</span></li>
+            }
+          </ul>
+          <a class="btn-gold book" [href]="bookingFor(item.serviceId)" (click)="track('booking', item.id)" target="_blank" rel="noopener noreferrer">{{ t('Buchen', 'Book') }}</a>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section id="nikolaj">
+  <div class="wrap">
+    <h2>{{ t('Über Nikolaj', 'About Nikolaj') }}</h2>
+    <p class="about">
+      {{ t(
+        'Nikolaj massiert seit 2008, mehr als 13 Jahre davon in einem Wellnesshotel, unter anderem für Sportmannschaften. 2023 hat er in Nürnberg die einjährige Ausbildung zum Massagepraktiker an der PRIMA Akademie abgeschlossen. Am liebsten massiert er den ganzen Körper, eine Stunde lang und kräftig. Wer es sanft mag, wählt bei ihm die Schwedische Massage.',
+        'Nikolaj has been massaging since 2008, more than 13 years of it in a wellness hotel, among others for sports teams. In 2023 he completed the one-year training as a massage practitioner at PRIMA Akademie in Nuremberg. He likes best to massage the whole body, for an hour and firmly. If you prefer it gentle, choose his Swedish massage.'
+      ) }}
+    </p>
+  </div>
+</section>
+
+<section class="alt" id="preise">
+  <div class="wrap">
+    <h2>{{ t('Alle Massagen bei Nikolaj', 'All massages with Nikolaj') }}</h2>
+    <ul class="prices price-list">
+      @for (row of rows; track $index) {
+        <li>
+          <span>
+            @if (rowBooking(row); as href) {
+              <a [href]="href" (click)="track('booking', 'preise')" target="_blank" rel="noopener noreferrer">{{ rowLabel(row) }}</a>
+            } @else {
+              {{ rowLabel(row) }}
+            }
+          </span>
+          <span class="price">{{ euro(row.price) }}</span>
+        </li>
+      }
+    </ul>
+    <p class="note">
+      {{ t(
+        'Preise inklusive MwSt. Die 5er- und 10er-Karte bekommst du telefonisch oder per WhatsApp.',
+        'Prices include VAT. For the pack of 5 or 10, call us or write on WhatsApp.'
+      ) }}
+    </p>
+  </div>
+</section>
+
+<section id="anfahrt">
+  <div class="wrap">
+    <h2>{{ t('Termin und Anfahrt', 'Appointment and directions') }}</h2>
+    <p>FareWell, Frauentorgraben 5, 90443 {{ t('Nürnberg', 'Nuremberg') }}. {{ t('2 Minuten vom Hauptbahnhof.', '2 minutes from the main station.') }}</p>
+    <div class="ctas">
+      <a class="btn-gold" [href]="bookingUrl" (click)="track('booking', 'anfahrt')" target="_blank" rel="noopener noreferrer">{{ t('Direkt online buchen', 'Book online now') }}</a>
+      <a class="btn-outline" [href]="phoneHref" (click)="track('phone', 'anfahrt')">{{ phoneLabel }}</a>
+      <a class="btn-outline" [href]="whatsappHref" (click)="track('whatsapp', 'anfahrt')" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+    <p class="disclaimer">
+      {{ t(
+        'Wellness- und Sportmassage zur Entspannung und Regeneration. Keine Heilbehandlung, ersetzt keine ärztliche oder physiotherapeutische Behandlung.',
+        'Wellness and sports massage for relaxation and recovery. Not a medical treatment and no substitute for treatment by a doctor or physiotherapist.'
+      ) }}
+    </p>
+  </div>
+</section>

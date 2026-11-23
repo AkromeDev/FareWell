@@ -34,6 +34,7 @@ export const OVERLAY_EXCLUDED_PATHS: readonly string[] = [
   'behandlungen/botox-nuernberg',
   'promotionen/aesthetische-medizin-nuernberg',
   'promotionen/lippen-nuernberg',
+  'promotionen/massage-nikolaj-nuernberg',
   'karriere/masseur-bademeister-blind-nuernberg',
   'party4friends',
 ];
