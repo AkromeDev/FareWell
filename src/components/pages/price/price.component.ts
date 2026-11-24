@@ -136,8 +136,8 @@ export class PriceComponent implements OnInit, OnDestroy {
     massageNikolaj: {
       qDe: 'Was kostet eine Massage bei Nikolaj?',
       qEn: 'How much does a massage with Nikolaj cost?',
-      aDe: 'Bei Nikolaj kostet die kräftige Ganzkörpermassage 95 € (60 Min.) oder 139 € (90 Min.), als 5er-Karte 450 € und als 10er-Karte 850 € (je 60 Min.). Sportmassage für Rücken, Nacken und Beine 69 € (45 Min.), sanfte Schwedische Massage 85 € (60 Min.), Kräuterstempelmassage 99 € (60 Min.), Ayurveda Ölmassage 95 € (60 Min.), Hot Stone Massage 115 € (75 Min.), Breuss Massage 45 € (30 Min.), Fußmassage 45 € (30 Min.) oder 20 € als Zusatz (15 Min.).',
-      aEn: 'With Nikolaj, the firm full-body massage costs €95 (60 min) or €139 (90 min), €450 as a pack of 5 and €850 as a pack of 10 (60 min each). Sports massage for back, neck and legs €69 (45 min), gentle Swedish massage €85 (60 min), herbal stamp massage €99 (60 min), Ayurvedic oil massage €95 (60 min), hot stone massage €115 (75 min), Breuss massage €45 (30 min), foot massage €45 (30 min) or €20 as an add-on (15 min).',
+      aDe: 'Bei Nikolaj kostet die kräftige Ganzkörpermassage 95 € (60 Min.) oder 139 € (90 Min.), als 5er-Karte 450 € und als 10er-Karte 850 € (je 60 Min.). Sportmassage für Rücken, Nacken und Beine 69 € (45 Min.), sanfte Schwedische Massage 85 € (60 Min.), Schröpfmassage für den Rücken 45 € (30 Min.) und Fußmassage als Zusatz zu einer Massage 20 € (15 Min.).',
+      aEn: 'With Nikolaj, the firm full-body massage costs €95 (60 min) or €139 (90 min), €450 as a pack of 5 and €850 as a pack of 10 (60 min each). Sports massage for back, neck and legs €69 (45 min), gentle Swedish massage €85 (60 min), cupping massage for the back €45 (30 min) and foot massage as an add-on to a massage €20 (15 min).',
     },
   };
 

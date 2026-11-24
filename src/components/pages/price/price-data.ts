@@ -333,11 +333,8 @@ export const PRICE_TABLES = {
       { de: 'Ganzkörpermassage bei Nikolaj, 10er-Karte', en: 'Full-body massage with Nikolaj, pack of 10', minutes: 60, sessions: 10, price: 850 },
       { de: 'Sportmassage Rücken, Nacken & Beine', en: 'Sports massage for back, neck & legs', minutes: 45, price: 69 },
       { de: 'Schwedische Massage (sanft, Ganzkörper)', en: 'Swedish massage (gentle, full body)', minutes: 60, price: 85 },
-      { de: 'Kräuterstempelmassage', en: 'Herbal stamp massage', minutes: 60, price: 99 },
-      { de: 'Ayurveda Ölmassage (Abhyanga)', en: 'Ayurvedic oil massage (Abhyanga)', minutes: 60, price: 95 },
-      { de: 'Hot Stone Massage', en: 'Hot stone massage', minutes: 75, price: 115 },
-      { de: 'Breuss Massage (Rücken)', en: 'Breuss massage (back)', minutes: 30, price: 45 },
-      { de: 'Fußmassage', en: 'Foot massage', minutes: 30, price: 45 },
+      // Trockenes Schröpfen mit Saugglocken als Wellnessmassage, nie blutiges Schröpfen (Heilkunde). JC, 24.11.2026.
+      { de: 'Schröpfmassage (Rücken)', en: 'Cupping massage (back)', minutes: 30, price: 45 },
       { de: 'Fußmassage als Zusatz zu einer Massage', en: 'Foot massage as an add-on to a massage', minutes: 15, price: 20, addon: true },
     ],
   },
@@ -493,9 +490,9 @@ export const PRICE_SERVICES: PriceService[] = [
     serviceTypeDe: 'Massage',
     serviceTypeEn: 'Massage',
     descriptionDe:
-      'Wellness- und Sportmassagen bei Nikolaj in Nürnberg: kräftige Ganzkörpermassage, Sportmassage für Rücken, Nacken und Beine, Schwedische Massage, Kräuterstempel, Ayurveda, Hot Stone, Breuss und Fußmassage.',
+      'Wellness- und Sportmassagen bei Nikolaj in Nürnberg: kräftige Ganzkörpermassage, Sportmassage für Rücken, Nacken und Beine, Schwedische Massage, Schröpfmassage für den Rücken und Fußmassage als Zusatz.',
     descriptionEn:
-      'Wellness and sports massages with Nikolaj in Nuremberg: firm full-body massage, sports massage for back, neck and legs, Swedish massage, herbal stamps, Ayurveda, hot stone, Breuss and foot massage.',
+      'Wellness and sports massages with Nikolaj in Nuremberg: firm full-body massage, sports massage for back, neck and legs, Swedish massage, cupping massage for the back and foot massage as an add-on.',
     tables: ['massageNikolaj'],
   },
 ];

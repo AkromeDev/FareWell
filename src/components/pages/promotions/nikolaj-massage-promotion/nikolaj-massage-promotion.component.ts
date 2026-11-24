@@ -14,18 +14,15 @@ const SALONKEE = 'https://salonkee.de/checkout/farewell?serviceID=';
 
 /**
  * Salonkee-Leistungen von Nikolaj (Gruppe „Massage - Nikolaj“, angelegt am
- * 23.11.2026), je Name aus PRICE_TABLES.massageNikolaj. Die 5er- und 10er-Karte
+ * 23.11.2026, am 24.11.2026 gekürzt: Schröpfmassage statt Breuss unter derselben
+ * serviceID 238619), je Name aus PRICE_TABLES.massageNikolaj. Die 5er- und 10er-Karte
  * sind in Salonkee ein Abonnement ohne eigenen Buchungslink, deshalb fehlen sie hier.
  */
 const SERVICE_IDS: Record<string, number> = {
   'Ganzkörpermassage bei Nikolaj (kräftig, sportlich)': 238612,
   'Sportmassage Rücken, Nacken & Beine': 238613,
   'Schwedische Massage (sanft, Ganzkörper)': 238614,
-  'Kräuterstempelmassage': 238615,
-  'Ayurveda Ölmassage (Abhyanga)': 238616,
-  'Hot Stone Massage': 238618,
-  'Breuss Massage (Rücken)': 238619,
-  'Fußmassage': 238620,
+  'Schröpfmassage (Rücken)': 238619,
   'Fußmassage als Zusatz zu einer Massage': 238620,
 };
 
