@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "owner": "farewell.salon. This file lives in the repository AkromeDev/FareWell at src/app/domain/level44.json and is published at https://farewell.salon/data/level44.json. The LEVEL 44 site reads the published file when it is built and keeps a copy. Change a fact here, never in the copy.",
-  "source": "Salonkee, salon 'farewell', service group 43284 '9D Breathwork & Soul Touch', read on 2026-11-13. Salonkee is the truth for prices: change a price there first, then here. The Evening Experience and Group + Soul Touch Integration have no date in Salonkee yet, so they cannot be booked online. Online sessions are not in Salonkee: Franziska Preusche's mail of 2026-11-03 plans them weekly, about 2 hours, 49 €; where they are booked is not decided, so price and booking are null. The group dates from 13.12.2026 to 21.02.2027 (every second Sunday, 11:00 to 14:00) were set in Salonkee on 2026-11-20 at Joé's word, as one series of six; Franziska has not named their journeys yet, so journey and journeySlug are null and the pages say so. On 2026-11-24, at Joé's word, the journey FULL RESET got a course of its own in Salonkee, '9D Group Experience: Full Reset' (service 238859, same group: 99 €, 180 minutes, 12 places, the code LEVEL44START applies to it). Here it is the journey of 13.12.2026, the next date that had none; that date is assumed until Joé confirms it, and the course has no date in Salonkee before he does.",
+  "source": "Salonkee, salon 'farewell', service group 43284 '9D Breathwork & Soul Touch', read on 2026-11-13. Salonkee is the truth for prices: change a price there first, then here. The Evening Experience and Group + Soul Touch Integration have no date in Salonkee yet, so they cannot be booked online. Online sessions are not in Salonkee: Franziska Preusche's mail of 2026-11-03 plans them weekly, about 2 hours, 49 €; where they are booked is not decided, so price and booking are null. The group dates from 13.12.2026 to 21.02.2027 (every second Sunday, 11:00 to 14:00) were set in Salonkee on 2026-11-20 at Joé's word, as one series of six; Franziska has not named their journeys yet, so journey and journeySlug are null and the pages say so. On 2026-11-24, at Joé's word, the journey FULL RESET got a course of its own in Salonkee, '9D Group Experience: Full Reset' (service 238859, same group: 99 €, 180 minutes, 12 places, the code LEVEL44START applies to it). It has no date in Salonkee yet, so it cannot be booked and no session here names it: Joé sets its date himself (2026-11-25). Once he has, the session of that day gets journey 'FULL RESET' and journeySlug 'full-reset'.",
   "currency": "EUR",
   "ids": {
     "organization": "https://farewell.salon/#organization",
@@ -168,8 +168,8 @@
     {
       "id": "2026-12-13",
       "offer": "group",
-      "journey": "FULL RESET",
-      "journeySlug": "full-reset",
+      "journey": null,
+      "journeySlug": null,
       "start": "2026-12-13T11:00:00+01:00",
       "end": "2026-12-13T14:00:00+01:00"
     },
