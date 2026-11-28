@@ -18,7 +18,7 @@ describe('NikolajMassagePromotionComponent', () => {
 
   const text = (): string => fixture.nativeElement.textContent.replace(/\s+/g, ' ');
 
-  it('zeigt die Ganzkörpermassage für 95 € und den Titel Massagepraktiker', () => {
+  it('zeigt die Sportmassage für 95 € und den Titel Massagepraktiker', () => {
     expect(text()).toContain('95 €');
     expect(text()).toContain('Massagepraktiker (PRIMA Akademie Nürnberg)');
   });
@@ -39,13 +39,13 @@ describe('NikolajMassagePromotionComponent', () => {
     expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe('noindex,nofollow');
   });
 
-  it('bucht direkt seine Ganzkörpermassage bei Salonkee', () => {
+  it('bucht direkt seine Sportmassage bei Salonkee', () => {
     const book: HTMLAnchorElement = fixture.nativeElement.querySelector('.hero a.btn-gold');
     expect(book.href).toBe('https://salonkee.de/checkout/farewell?serviceID=238612');
   });
 
   it('hat die Sprungziele der Sitelinks', () => {
-    for (const id of ['ganzkoerper', 'sport', 'schwedisch', 'preise', 'anfahrt']) {
+    for (const id of ['sport', 'wellness', 'ganzkoerper', 'schwedisch', 'preise', 'anfahrt']) {
       expect(fixture.nativeElement.querySelector(`#${id}`)).withContext(id).not.toBeNull();
     }
   });
@@ -55,6 +55,13 @@ describe('NikolajMassagePromotionComponent', () => {
     const items = fixture.nativeElement.querySelectorAll('#preise li').length;
     expect(links.length).toBe(items - 2);
     links.forEach((a) => expect(a.href).toMatch(/^https:\/\/salonkee\.de\/checkout\/farewell\?serviceID=\d+$/));
+  });
+
+  it('zeigt genau zwei Massagen von 60 Minuten und keinen Platzhalter', () => {
+    expect(fixture.nativeElement.querySelectorAll('#massagen .card').length).toBe(2);
+    expect(text()).toContain('Wellnessmassage');
+    expect(text()).not.toMatch(/Schröpf|Fußmassage|Schwedische Massage|90 Min/);
+    expect(text()).not.toMatch(/PLATZHALTER|PLACEHOLDER/);
   });
 
   it('meldet Buchen, Telefon und WhatsApp an Analytics', () => {

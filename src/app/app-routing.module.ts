@@ -759,12 +759,12 @@ function localizedRoutes(lang: PageLang): Routes {
           .then(m => m.NikolajMassagePromotionComponent),
       data: d(
         {
-          title: 'Ganzkörpermassage bei Nikolaj in Nürnberg, 60 Min. 95 € | FareWell',
-          description: 'Kräftige Ganzkörpermassage, Sportmassage oder sanfte Schwedische Massage bei Nikolaj, Massagepraktiker mit über 13 Jahren Erfahrung. FareWell, Nürnberg.'
+          title: 'Sportmassage bei Nikolaj in Nürnberg, 60 Min. 95 € | FareWell',
+          description: 'Kräftige Sportmassage oder sanfte Wellnessmassage, je 60 Minuten, bei Nikolaj, Massagepraktiker mit über 13 Jahren Erfahrung. FareWell, Nürnberg.'
         },
         {
-          title: 'Full-body massage with Nikolaj in Nuremberg, 60 min €95 | FareWell',
-          description: 'Firm full-body massage, sports massage or gentle Swedish massage with Nikolaj, massage practitioner with over 13 years of experience. FareWell, Nuremberg.'
+          title: 'Sports massage with Nikolaj in Nuremberg, 60 min €95 | FareWell',
+          description: 'Firm sports massage or gentle wellness massage, 60 minutes each, with Nikolaj, massage practitioner with over 13 years of experience. FareWell, Nuremberg.'
         }
       )
     },

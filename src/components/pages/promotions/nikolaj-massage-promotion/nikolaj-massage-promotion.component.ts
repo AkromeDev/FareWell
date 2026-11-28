@@ -14,16 +14,15 @@ const SALONKEE = 'https://salonkee.de/checkout/farewell?serviceID=';
 
 /**
  * Salonkee-Leistungen von Nikolaj (Gruppe „Massage - Nikolaj“, angelegt am
- * 23.11.2026, am 24.11.2026 gekürzt: Schröpfmassage statt Breuss unter derselben
- * serviceID 238619), je Name aus PRICE_TABLES.massageNikolaj. Die 5er- und 10er-Karte
- * sind in Salonkee ein Abonnement ohne eigenen Buchungslink, deshalb fehlen sie hier.
+ * 23.11.2026). Seit 28.11.2026 (JC) nur noch zwei Massagen, beide 60 Min.: die
+ * Sportmassage unter der serviceID der früheren kräftigen Ganzkörpermassage (238612),
+ * die Wellnessmassage unter der der früheren Schwedischen Massage (238614). Je Name aus
+ * PRICE_TABLES.massageNikolaj. Die 5er- und 10er-Karte sind in Salonkee ein Abonnement
+ * ohne eigenen Buchungslink, deshalb fehlen sie hier.
  */
 const SERVICE_IDS: Record<string, number> = {
-  'Ganzkörpermassage bei Nikolaj (kräftig, sportlich)': 238612,
-  'Sportmassage Rücken, Nacken & Beine': 238613,
-  'Schwedische Massage (sanft, Ganzkörper)': 238614,
-  'Schröpfmassage (Rücken)': 238619,
-  'Fußmassage als Zusatz zu einer Massage': 238620,
+  'Sportmassage (kräftig)': 238612,
+  'Wellnessmassage (sanft)': 238614,
 };
 
 interface Highlight {
@@ -33,6 +32,11 @@ interface Highlight {
   /** Zeilen aus PRICE_TABLES.massageNikolaj, deren Preis die Karte zeigt. */
   rows: PriceRow[];
   serviceId: number;
+  /**
+   * Alte Sprungziele der Sitelinks in den Google-Anzeigen (#ganzkoerper, #schwedisch),
+   * bis die Anzeigen auf die zwei Massagen umgestellt sind.
+   */
+  legacyAnchor: string;
 }
 
 const ROWS: PriceRow[] = PRICE_TABLES.massageNikolaj.rows;
@@ -40,34 +44,26 @@ const rowsNamed = (de: string) => ROWS.filter((r) => r.de === de && !r.sessions)
 
 const HIGHLIGHTS: Highlight[] = [
   {
-    id: 'ganzkoerper',
-    title: { de: 'Ganzkörpermassage', en: 'Full-body massage' },
-    text: {
-      de: 'Kräftig, sportlich und tiefgehend: Rücken, Nacken, Schultern, Arme und Beine. Seine Massage, so wie er am liebsten arbeitet.',
-      en: 'Firm, sporty and deep: back, neck, shoulders, arms and legs. His massage, the way he likes to work best.',
-    },
-    rows: rowsNamed('Ganzkörpermassage bei Nikolaj (kräftig, sportlich)'),
-    serviceId: 238612,
-  },
-  {
     id: 'sport',
-    title: { de: 'Sportmassage', en: 'Sports massage' },
+    title: { de: 'Sportmassage: Nikolajs Empfehlung', en: 'Sports massage: Nikolaj’s recommendation' },
     text: {
-      de: 'Rücken, Nacken und Beine, zur Regeneration nach dem Training oder in der Mittagspause.',
-      en: 'Back, neck and legs, for recovery after training or in your lunch break.',
+      de: 'Fester, kräftiger Druck mit langen, tiefen Griffen, ähnlich der klassischen schwedischen Massage, nur mit deutlich mehr Kraft. Seine liebste Massage: Für ihn ist sie die wirkungsvollste, deshalb empfiehlt er sie.',
+      en: 'Firm, strong pressure with long, deep strokes, similar to a classic Swedish massage, only with clearly more strength. His favourite massage: to him it is the most effective one, which is why he recommends it.',
     },
-    rows: rowsNamed('Sportmassage Rücken, Nacken & Beine'),
-    serviceId: 238613,
+    rows: rowsNamed('Sportmassage (kräftig)'),
+    serviceId: 238612,
+    legacyAnchor: 'ganzkoerper',
   },
   {
-    id: 'schwedisch',
-    title: { de: 'Schwedische Massage', en: 'Swedish massage' },
+    id: 'wellness',
+    title: { de: 'Wellnessmassage: die sanfte Wahl', en: 'Wellness massage: the gentle choice' },
     text: {
-      de: 'Lieber sanft? Die klassische Ganzkörpermassage zum Entspannen, mit ruhigen, fließenden Griffen.',
-      en: 'Prefer it gentle? The classic full-body massage to relax, with calm, flowing strokes.',
+      de: 'Ruhige, fließende Griffe mit sanftem Druck. Eine Stunde, in der du einfach abschalten und loslassen kannst.',
+      en: 'Calm, flowing strokes with gentle pressure. An hour in which you can simply switch off and let go.',
     },
-    rows: rowsNamed('Schwedische Massage (sanft, Ganzkörper)'),
+    rows: rowsNamed('Wellnessmassage (sanft)'),
     serviceId: 238614,
+    legacyAnchor: 'schwedisch',
   },
 ];
 
@@ -99,11 +95,11 @@ export class NikolajMassagePromotionComponent implements OnInit {
   readonly phoneLabel = PHONE_LABEL;
   readonly whatsappHref = WHATSAPP_HREF;
 
-  /** Hauptlink der Anzeige: seine Ganzkörpermassage bei Salonkee. */
+  /** Hauptlink der Anzeige: seine Sportmassage bei Salonkee. */
   readonly bookingUrl = SALONKEE + 238612;
 
-  /** Preis der 60-Minuten-Ganzkörpermassage, für die erste Zeile der Seite. */
-  readonly mainPrice = rowsNamed('Ganzkörpermassage bei Nikolaj (kräftig, sportlich)').find((r) => r.minutes === 60)?.price;
+  /** Preis der Sportmassage (60 Min.), für die erste Zeile der Seite. */
+  readonly mainPrice = rowsNamed('Sportmassage (kräftig)').find((r) => r.minutes === 60)?.price;
 
   bookingFor(id: number): string {
     return SALONKEE + id;
@@ -138,10 +134,10 @@ export class NikolajMassagePromotionComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.setPageSeo({
-      title: this.t('Ganzkörpermassage bei Nikolaj in Nürnberg, 60 Min. 95 € | FareWell', 'Full-body massage with Nikolaj in Nuremberg, 60 min €95 | FareWell'),
+      title: this.t('Sportmassage bei Nikolaj in Nürnberg, 60 Min. 95 € | FareWell', 'Sports massage with Nikolaj in Nuremberg, 60 min €95 | FareWell'),
       description: this.t(
-        'Kräftige Ganzkörpermassage, Sportmassage oder sanfte Schwedische Massage bei Nikolaj, Massagepraktiker mit über 13 Jahren Erfahrung. FareWell, Nürnberg.',
-        'Firm full-body massage, sports massage or gentle Swedish massage with Nikolaj, massage practitioner with over 13 years of experience. FareWell, Nuremberg.',
+        'Kräftige Sportmassage oder sanfte Wellnessmassage, je 60 Minuten, bei Nikolaj, Massagepraktiker mit über 13 Jahren Erfahrung. FareWell, Nürnberg.',
+        'Firm sports massage or gentle wellness massage, 60 minutes each, with Nikolaj, massage practitioner with over 13 years of experience. FareWell, Nuremberg.',
       ),
       path: PAGE_PATH,
       noindex: true,

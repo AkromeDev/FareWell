@@ -79,3 +79,9 @@ section[id] {
     justify-content: center;
   }
 }
+
+// Alte Sprungziele der Sitelinks (#ganzkoerper, #schwedisch) am Anfang der Karte.
+.anchor {
+  display: block;
+  scroll-margin-top: 110px;
+}
