@@ -1,9 +1,9 @@
 <section class="hero">
   <div class="wrap">
     <p class="eyebrow">{{ t('Massage · Nürnberg', 'Massage · Nuremberg') }}</p>
-    <h1>{{ t('Ganzkörpermassage bei', 'Full-body massage with') }} <em>Nikolaj</em></h1>
+    <h1>{{ t('Sportmassage bei', 'Sports massage with') }} <em>Nikolaj</em></h1>
     <p class="offer">
-      <strong>{{ euro(mainPrice ?? null) }}</strong>&ngsp;<span>{{ t('60 Minuten, kräftig und tiefgehend', '60 minutes, firm and deep') }}</span>
+      <strong>{{ euro(mainPrice ?? null) }}</strong>&ngsp;<span>{{ t('60 Minuten, kräftig und tief', '60 minutes, firm and deep') }}</span>
     </p>
     <p class="lead">
       {{ t(
@@ -31,8 +31,12 @@
     <div class="grid">
       @for (item of highlights; track item.id) {
         <div class="card" [id]="item.id">
+          <span class="anchor" [id]="item.legacyAnchor"></span>
           <h3 class="card-title">{{ bi(item.title) }}</h3>
           <p>{{ bi(item.text) }}</p>
+          @if (item.fillIn) {
+            <p class="fill-in">{{ bi(item.fillIn) }}</p>
+          }
           <ul class="prices">
             @for (row of item.rows; track $index) {
               <li><span>{{ row.minutes }} {{ t('Min.', 'min') }}</span><span class="price">{{ euro(row.price) }}</span></li>
@@ -50,8 +54,8 @@
     <h2>{{ t('Über Nikolaj', 'About Nikolaj') }}</h2>
     <p class="about">
       {{ t(
-        'Nikolaj massiert seit 2008, mehr als 13 Jahre davon in einem Wellnesshotel, unter anderem für Sportmannschaften. 2023 hat er in Nürnberg die einjährige Ausbildung zum Massagepraktiker an der PRIMA Akademie abgeschlossen. Am liebsten massiert er den ganzen Körper, eine Stunde lang und kräftig. Wer es sanft mag, wählt bei ihm die Schwedische Massage.',
-        'Nikolaj has been massaging since 2008, more than 13 years of it in a wellness hotel, among others for sports teams. In 2023 he completed the one-year training as a massage practitioner at PRIMA Akademie in Nuremberg. He likes best to massage the whole body, for an hour and firmly. If you prefer it gentle, choose his Swedish massage.'
+        'Nikolaj massiert seit 2008, mehr als 13 Jahre davon in einem Wellnesshotel, unter anderem für Sportmannschaften. 2023 hat er in Nürnberg die einjährige Ausbildung zum Massagepraktiker an der PRIMA Akademie abgeschlossen. Bei ihm wählst du zwischen zwei Massagen, beide 60 Minuten: kräftig oder sanft. Massiert wird mit einem neutralen, unparfümierten Basisöl. Wenn du magst, gibt Nikolaj ein paar Tropfen Aromaöl dazu.',
+        'Nikolaj has been massaging since 2008, more than 13 years of it in a wellness hotel, among others for sports teams. In 2023 he completed the one-year training as a massage practitioner at PRIMA Akademie in Nuremberg. With him you choose between two massages, both 60 minutes: firm or gentle. Nikolaj massages with a neutral, unscented base oil. If you like, he adds a few drops of aroma oil.'
       ) }}
     </p>
   </div>
