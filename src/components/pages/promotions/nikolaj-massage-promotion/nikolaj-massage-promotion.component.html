@@ -34,9 +34,6 @@
           <span class="anchor" [id]="item.legacyAnchor"></span>
           <h3 class="card-title">{{ bi(item.title) }}</h3>
           <p>{{ bi(item.text) }}</p>
-          @if (item.fillIn) {
-            <p class="fill-in">{{ bi(item.fillIn) }}</p>
-          }
           <ul class="prices">
             @for (row of item.rows; track $index) {
               <li><span>{{ row.minutes }} {{ t('Min.', 'min') }}</span><span class="price">{{ euro(row.price) }}</span></li>

@@ -37,8 +37,6 @@ interface Highlight {
    * bis die Anzeigen auf die zwei Massagen umgestellt sind.
    */
   legacyAnchor: string;
-  /** Platzhalter für Nikolajs eigenen Text, rot und fett, bis er ihn schickt. */
-  fillIn?: Bi;
 }
 
 const ROWS: PriceRow[] = PRICE_TABLES.massageNikolaj.rows;
@@ -55,10 +53,6 @@ const HIGHLIGHTS: Highlight[] = [
     rows: rowsNamed('Sportmassage (kräftig)'),
     serviceId: 238612,
     legacyAnchor: 'ganzkoerper',
-    fillIn: {
-      de: '[PLATZHALTER: Nikolajs eigener Text, warum er die Sportmassage empfiehlt]',
-      en: '[PLACEHOLDER: Nikolaj’s own text on why he recommends the sports massage]',
-    },
   },
   {
     id: 'wellness',

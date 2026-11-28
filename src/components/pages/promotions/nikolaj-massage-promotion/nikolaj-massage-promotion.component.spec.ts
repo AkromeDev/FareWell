@@ -57,11 +57,11 @@ describe('NikolajMassagePromotionComponent', () => {
     links.forEach((a) => expect(a.href).toMatch(/^https:\/\/salonkee\.de\/checkout\/farewell\?serviceID=\d+$/));
   });
 
-  it('zeigt genau zwei Massagen von 60 Minuten und den roten Platzhalter für Nikolajs Text', () => {
+  it('zeigt genau zwei Massagen von 60 Minuten und keinen Platzhalter', () => {
     expect(fixture.nativeElement.querySelectorAll('#massagen .card').length).toBe(2);
     expect(text()).toContain('Wellnessmassage');
     expect(text()).not.toMatch(/Schröpf|Fußmassage|Schwedische Massage|90 Min/);
-    expect(fixture.nativeElement.querySelector('.fill-in')?.textContent).toContain('PLATZHALTER');
+    expect(text()).not.toMatch(/PLATZHALTER|PLACEHOLDER/);
   });
 
   it('meldet Buchen, Telefon und WhatsApp an Analytics', () => {
